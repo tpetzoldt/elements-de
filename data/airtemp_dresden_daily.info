@@ -1,0 +1,24 @@
+File: airtemp_dresden_daily.info
+
+daily mean, min and max air temperature in Dresden, Germany (station Klotzsche)
+station: 1048, Dresden-Klotzsche, 51.127955, 13.754338
+
+Columns: 
+
+ZEIT: Time in ISO 8601 format
+TAG:  Measurement day as character
+TX:   Daily maximum temperature (degrees Celsius)
+TM:   Daily mean temperature (degrees Celsius)
+TN:   Daily minimum temperature (degrees Celsius)
+
+Data source:
+
+ReKIS - Regionales Klimainformationssystem Sachsen, Sachsen-Anhalt, Thüringen
+
+https://rekis.hydro.tu-dresden.de/
+
+Original file name: DS_DWD_112023_1048_1961-01-01_2023-10-30.csv
+
+Accessed: 2024-01-04
+
+The data are based on data from the German Weather Service, data modified and averaged.

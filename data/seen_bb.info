@@ -1,0 +1,23 @@
+Dataset: seen_bb.txt
+
+Description: Lake Chemistry and Morphometric Data 
+
+Details: see reference
+
+Source: 
+
+@ARTICLE{Koschel1987,
+  author = {Koschel, R. and Benndorf, J. and Proft, J. and Recknagel, F.},
+  year = 1987,
+  title = {Model-Assisted Evaluation of Alternative Hypothesis to Explain the
+          Self-Protection Mechanism of Lakes Due to Calcite Precipitation},
+  journal = {Ecol. Mod.},
+  volume = 39,
+  pages = {59--65},
+  language = {english}
+}
+
+
+
+
+

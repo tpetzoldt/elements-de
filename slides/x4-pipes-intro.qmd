@@ -1,0 +1,940 @@
+---
+title: "x4-Pipelines in R"
+date:   "`r Sys.Date()`"
+---
+
+
+```{r setup, include=FALSE}
+library("knitr")
+library("dplyr")
+library("ggplot2")
+library("readr")
+library("lubridate")
+library("DiagrammeR")
+knitr::opts_chunk$set(echo = TRUE, eval=TRUE, comment="")
+```
+
+## Prerequisites
+
+
+<br>
+
+The examples in slis slide require the following **R** packages: 
+packages, that must be installed and loaded.
+
+<br>
+
+**Installation**
+
+
+```{r echo=TRUE, eval=FALSE}
+install.packages(c("dplyr", "tiryr", "lubridate", "readxl", "ggplot2"))
+```
+
+
+<br>
+
+**Loading**
+
+
+```{r echo=TRUE}
+library("dplyr")
+library("tidyr")
+library("lubridate")
+library("readxl")
+library("ggplot2")
+```
+
+
+<br>
+
+The examples were tested with **R** 4.3.1 and **RStudio** 2023.06.1
+
+
+## An introductory example
+
+* In a statistics course, two samples of Maple (*Acer platanoides*) leaves were collected by two groups of students:
+
+* group **HSE**: had the freedom to collect leaves individually from trees close to the institute
+* group **HYB**: got a random sample from the supervisor
+
+**Hypothesis:** sampling bias may affect statistical parameters, especially mean and variance.
+
+
+:::{.column width="59%" .add-space}
+Download the file [leaves.csv](https://raw.githubusercontent.com/tpetzoldt/datasets/main/data/leaves.csv), save it to a working directory and then read it with
+`read.csv`:
+
+
+```{r eval=FALSE}
+leaves <- read.csv("leaves.csv") 
+```
+
+
+```{r include=FALSE}
+#filename <- "https://raw.githubusercontent.com/tpetzoldt/datasets/main/data/leaves.csv"
+filename <- "../data/leaves.csv"
+leaves <- read.csv(filename) 
+```
+
+<br>
+
+Have a look at the data:
+
+```{r}
+head(leaves)
+```
+:::
+
+:::{.column width="34%"}
+
+![](../img/leaves_measures.png)
+:::
+
+
+
+## A boxplot
+
+<br>
+
+:::{.bigfont}
+```{r leaves-boxplot, fig.align='center'}
+boxplot(width ~ group, data=leaves)
+```
+:::
+
+## Summary statistics
+
+<br>
+
+
+```{r}
+summary(leaves)
+```
+
+
+## Summary statistics per group
+
+<br>
+
+* different ways to calculate summary statistics
+* classical method with `aggregate`
+
+**A few examples**
+
+
+```{r}
+aggregate(cbind(length, width, stalk) ~ group, mean, data=leaves)
+aggregate(cbind(length, width, stalk) ~ group, sd, data=leaves)
+aggregate(cbind(length, width, stalk) ~ group, min, data=leaves)
+```
+
+
+<br>
+
+`aggregate` is very powerful, but the modern "tidyverse" approach is easier to understand. This is explained in the following.
+
+## Summary statistics with the `dplyr`-package
+
+Package **dplyr** contains two handy functions:
+
+* `group_by`
+* `summarize`
+
+The functions can be combined in different ways:
+
+
+**A) Two separate code lines**
+
+```{r, eval=FALSE}
+leaves_grouped <- group_by(leaves, group)
+summarize(leaves_grouped, mean = mean(width), sd = sd(width), min = min(width), max = max(width))
+```
+
+[$\ominus$]{.red} needs a temporary variable: `leaves_grouped`
+
+<br>
+**B) One line, `group_by` enclosed in parentheses**
+
+```{r, eval=FALSE}
+summarize(group_by(leaves, group), mean=mean(width), sd=sd(width), min=min(width), max=max(width))
+```
+
+[$\oplus$]{.red} no temporary variables necessary <br>
+[$\ominus$]{.red} nested parentheses
+
+
+
+
+## More streamlined: pipelines
+
+<br>
+
+Aim to make code easier to understand:
+
+* avoids nested parentheses
+* avoids temporary variables
+
+
+Recent versions of **R** (since 4.1) have built-in support for pipelines:
+
+* Native pipeline operator  **[|>]{.red}**
+
+
+A predecessor was the so-called "magrittr" pipeline operator  **[%>%]{.blue}**
+
+* Most examples from these slides will work with both pipeline operators.
+* There are a few differences regarding use of so-called placeholders.
+* I recommended to prefer native pipes **[|>]{.red}**
+
+
+
+::: aside
+The `%>%-pipeline was introduced by the user-contributed **magrittr** package
+[@bache_magrittr_2022] and became very popular.
+It is automatically loaded by the **dplyr** package [@wickham_dplyr_2023].
+In his new book, Hadley Wickham recommends native pipes [@wickham_r_2023].
+:::
+
+## Application of **[`|>`]{.red}**
+
+<br>
+
+
+**The output from the first function is piped to the next**
+
+```{r, eval=FALSE}
+group_by(leaves, group) |>
+summarize(mean = mean(width), sd = sd(width), 
+          min = min(width), max = max(width))
+```
+
+<br>
+
+**Or, even more streamlined: start pipeline with the data frame**
+
+```{r}
+leaves |>
+  group_by(group) |>
+  summarize(mean = mean(width), sd = sd(width), 
+            min = min(width), max = max(width))
+```
+
+## How it works
+
+The pipe operator [|>]{.red} inserts the output from one function<br>
+into the first argument of the next function.
+
+<br>
+
+::: {.column width="49%"}
+
+**Classical functional style**
+
+
+```{r, eval=FALSE}
+group_by(leaves, group)
+```  
+
+
+```{r diag-functional, echo=FALSE, fig.width=4.5, fig.height=4}
+grViz("digraph functional {
+         graph [rankdir = 'LR', bgcolor='none']
+           node [shape = box, penwidth=2, fontname = 'Helvetica']
+             'input', 'output'
+           node [shape = 'oval']
+             'function(arg1, arg2, ...)'
+           edge [penwidth=1.5]
+              output -> 'function(arg1, arg2, ...)'[dir=back]
+           edge [penwidth=0.7, tailport = 'e', headport = 'n', constraint = false, color='tomato']
+              'input' -> 'function(arg1, arg2, ...)'
+}")
+```
+:::
+
+::: {.column width="49%"}
+
+**Pipeline style**
+
+
+```{r, eval=FALSE}
+leaves |> group_by(group)
+```  
+
+
+```{r diag-pipeline, echo=FALSE, fig.width=4.5, fig.height=4}
+grViz("digraph pipes {
+         graph [rankdir = 'LR', bgcolor='none']
+           node [shape = box, penwidth=2, fontname = 'Helvetica']
+             'input', 'output'
+           node [shape = 'oval']
+             'function(arg2, ...)'
+           node [shape=none]
+             '|>'
+           edge [penwidth=1.5]
+              input -> '|>' -> 'function(arg2, ...)' -> output
+}")
+```
+:::
+
+## Summary statistics for all variables
+
+* The `leaves` dataset contains different variables `length`, `width` and `stalk` length. 
+* We can now, in principle, extend `summarize`:
+
+**Add more code rows**
+
+```{r, eval=FALSE}
+leaves |>
+  group_by(group) |>
+  summarize(mean_l=mean(width),  sd_l=sd(width),  min_l=min(width),  max_l=max(width),
+            mean_w=mean(length), sd_w=sd(length), min_w=min(length), max_w=max(length),
+            mean_s=mean(stalk),  sd_s=sd(stalk),  min_s=min(stalk),  max_s=max(stalk)
+  )
+```
+
+<br>
+
+**Is copy and paste a good idea?**
+
+**No**, at least not in excess. 
+
+- Copy and paste can lead to errors.
+- ... and there are more compact and elegant ways.
+
+
+
+## Tidy your data and use "long" data formats!
+
+<br>
+
+::: {.bigfont}
+[Long data formats are more database like and more flexible.]{.red}
+
+<br>
+
+If you are used to working with LibeOffiice or Excel, you will probably prefer 
+"wide" tables that fit well on the computer screen. However, this is not such
+a good idea for data bases and scripted data science.
+
+Modern data analysis packages like **dplyr** and **ggplot2** mandatorily require the long format.
+
+:::
+
+## Long data format (= tidy format)
+
+* Put data from all 3 variables in one column: `length, width, stalk` $\rightarrow$ `value`
+* Identifier column for the variables: `name`
+
+:::{.column width="49%"}
+**Wide format**
+
+```{r echo=FALSE}
+leaves |> head(10) |> knitr::kable()
+```
+:::
+
+:::{.column width="49%"}
+**Long format**
+
+```{r echo=FALSE}
+library("tidyr")
+leaves |> pivot_longer(c("length", "width", "stalk")) |> head(10) |> knitr::kable()
+```
+
+... ... ...
+:::
+
+
+
+## Long data format with `pivot_longer`
+
+<br>
+
+::: {.bigfont}
+```{r}
+leaves |> 
+  pivot_longer(c("length", "width", "stalk"))
+```
+:::
+
+## Summary statistics for all variables groupwise
+
+<br>
+
+::: {.bigfont}
+```{r}
+leaves |> 
+  pivot_longer(c("length", "width", "stalk")) |>
+  group_by(group, name) |>
+  summarize(mean = mean(value), 
+            sd   = sd(value), 
+            min  = min(value),
+            max  = max(value))
+```
+:::
+
+## Pipes and the assignment operator `<-`
+
+<br>
+
+* In the examples before, the pipe-output was directly printed to the screen
+* If we need the result in a subsequent operation, we assign it to a variable as usual with `<-`
+
+<br>
+
+```{r eval=FALSE}
+totals <- 
+  leaves |> 
+  pivot_longer(c("length", "width", "stalk")) |>
+  group_by(group, name) |>
+  summarize(mean=mean(value), sd=sd(value), min=min(value), max=max(value))
+```
+
+<br>
+
+Don't get confused! 
+
+* the pipe starts with `leaves` in the second code line
+* the direction of the pipeline is from left $\rightarrow$ right 
+* then the of the **complete pipeline** is assigned to `totals`
+
+It follows the convention, that the result of an equation is assigned from right to the left.
+
+## Reverse assignment?
+
+<br>
+
+"More logical", but less common would be a consequent left to the right notation with `->`
+
+<br>
+
+```{r eval=FALSE}
+leaves |> 
+  pivot_longer(c("length", "width", "stalk")) |>
+  group_by(group, name) |>
+  summarize(mean=mean(value), sd=sd(value), min=min(value), max=max(value)) ->
+  totals
+```
+
+<br>
+
+Amelia McNamara used this style in her keynote talk at the 2020 use!R conference about [Speaking R](https://youtu.be/ckW9sSdIVAc) on youtube.
+
+But, Headley Wickham discouraged this style, because the `->` breaks with mathematical convention and is difficult to spot in the code.
+
+
+## Indentation
+
+<br>
+
+```{r eval=FALSE}
+totals <- 
+  leaves |> 
+  pivot_longer(c("length", "width", "stalk")) |>
+  group_by(group, name) |>
+  summarize(mean=mean(value), sd=sd(value), min=min(value), max=max(value))
+```
+
+<br>
+
+The pipeline above shows essentially [one single line of code]{.blue}.
+
+* To improve readability, code lines should not be longer than 80 characters.
+* Remember: Line breaks can be at any position, as long as a code line is not complete.
+* Common style: make a newline after `<-` and `|>` and use 2 characters 
+for indentation.
+
+
+# Pipelines, tidy data and plotting
+
+## The Clementine orange data set
+
+![](../img/caliper.jpg){width="50%"}
+
+## Clementine orange data set
+
+<br>
+
+* Samples of clementine oranges, measured, weighed and consumed in a statistic course.
+* Excel file with two tables:
+    - long table with the **fruits** 
+    - shorter table **brands** with meta data
+* Data can be downloaded from [here](https://github.com/tpetzoldt/tpetzoldt.github.io/raw/master/RToolbox/../data/clementines_2019.xlsx).
+
+<br>
+
+**Read data directly from Excel file**
+
+```{r, echo=TRUE, eval=FALSE}
+brands  <- read_excel("clementines_2019.xlsx", "Brands")
+fruits  <- read_excel("clementines_2019.xlsx", "Fruits") 
+```
+
+
+```{r, eval=TRUE, echo=FALSE}
+brands  <- read_excel("../data/clementines_2019.xlsx", "Brands")
+fruits  <- read_excel("../data/clementines_2019.xlsx", "Fruits") 
+```
+
+
+## Clementine orange data set
+
+<br>
+
+:::{.column width="49%"}
+
+**Table "fruits"**
+
+```{r echo=FALSE}
+head(fruits, 20) |> select(year, brand, weight, width, height) |> head(12) |> kable()
+```
+:::
+
+:::{.column width="49%"}
+
+**Table "brands"**
+
+```{r echo=FALSE}
+head(brands, 10)  |> select(year, brand, type, kilogram, price) |> head(8) |> kable()
+```
+:::
+
+
+## Database join
+
+* **join** two tables to bring the information together
+* In case of **`left_join`**, the (larger) main table is at the left.
+* The tables have two [key fields]{.blue} in common: `year` and `brand`.
+* The key fields can be automatically detected or explicitly specified or renamed<br>
+$\rightarrow$ help page of [left_join](https://dplyr.tidyverse.org/reference/mutate-joins.html)
+
+
+<!-- chunk two times, bugfix to suppress joining output -->
+```{r left-join-fruits2, eval=FALSE}
+fruits2 <- left_join(fruits, brands)
+```
+
+```{r left-join-fruits2, include=FALSE}
+```
+
+
+::: {.smallfont}
+```{r, echo=FALSE}
+head(fruits2, 7) |> kable()
+```
+:::
+
+
+# Exercise
+
+<br>
+
+* calculate summary statistics for a single data column (e.g. `weight`)
+* re-organize the tables with `pivot_longer` so that all measurements are in one column
+* calculate summary statistics for all measurements
+
+
+
+
+## Selection of columns and rows: `select` and `filter`
+
+<br>
+
+* `select`: select columns
+* `filter`: filters rows
+
+<br>
+
+::: {.bigfont}
+```{r}
+fruits2 |>
+  select(brand, shop, type, weight, width) |>
+  filter(shop %in% c("Edeka", "Lidl"))
+```
+:::
+
+
+## Create or transform columns: `mutate`
+
+:::{.column width="49%"}
+
+**Example**
+
+Transform a variable, e.g. weight by $x^{1/3}$ into a theoretical mean diameter
+
+```{r}
+fruits2 <- 
+  fruits2 |>
+  mutate(L_mean = weight^(1/3))
+```
+:::
+
+:::{.column width="49%"}
+**Show results**
+
+Classical `boxplot`
+
+<br>
+
+```{r mutate-boxplot, fig.height=4, fig.width=5}
+boxplot(L_mean ~ brand, data=fruits2)
+```
+:::
+
+## Plot in "tidyverse"-style with pipes and `ggplot`
+
+
+```{r fruits-ggplot, fig.align='center'}
+fruits2 |>
+  mutate(L_mean = weight^(1/3)) |>
+  ggplot(aes(brand, L_mean)) + geom_boxplot()
+```
+
+
+
+## Another `mutate` example
+
+Let's compare the measured weight of our fruits with a "theoretical volume" 
+calculated from length and height using the formula of an ellipsoid. This is of 
+course an approximation:
+
+$$
+V = 4/3 \pi \cdot \rm (length/2)^2 \cdot height/2
+$$
+
+```{r}
+fruits <-
+  fruits |>
+  mutate(V = 0.001 * 4/3 * pi * (width/2)^2 * height/2, index = weight / V)
+```
+
+<br>
+
+::: {.column width="49%"}
+
+```{r fruits-volume, echo=TRUE, eval=FALSE}
+library(ggplot2)
+fruits |>
+  ggplot(aes(weight, index)) + 
+  geom_point()
+```
+
+The "+" operator in `ggplot` looks like a pipeline, but works differently.
+
+It adds elements to a plot.
+:::
+
+:::{.column width="49%"}
+```{r fruits-volume, echo=FALSE, eval=TRUE, fig.align='center'}
+```
+:::
+
+
+
+
+## Color coded points
+
+```{r fruits-color-coded, fig.align='center'}
+library(ggplot2)
+fruits |> ggplot(aes(weight, index, color=brand)) + geom_point()
+```
+
+
+
+
+## Categorial split (faceting) and regression line
+
+```{r fruits-categorial, fig.align='center'}
+fruits |> 
+  ggplot(aes(weight, V)) + 
+  geom_point() + 
+  geom_smooth(method=lm, se=FALSE) + 
+  facet_wrap( ~ brand)
+```
+
+## Modify font size
+
+```{r fruits-increased-font, fig.align='center'}
+fruits |> 
+  ggplot(aes(weight, V)) + 
+  geom_point() + 
+  geom_smooth(method=lm, se=FALSE) + 
+  facet_wrap( ~ brand) +
+  theme(text = element_text(size=24))
+```
+
+$\rightarrow$ **themes** allow to configure "almost everything" ...
+
+
+
+## Discharge of the Elbe River
+
+Elbe River in Dresden 2006-04-01
+
+![](../img/elbe.jpg){fig-align="center" width=40%}
+
+
+
+
+## Read data to R
+
+<br>
+
+The example file [elbe.csv](https://raw.githubusercontent.com/tpetzoldt/datasets/main/data/elbe.csv)
+contains daily discharge of the Elbe River in $\mathrm{m^3 s^{-1}}$ from gauging station 
+Dresden, river km 55.6. The data are from the Federal Waterways and Shipping 
+Administration (WSV) and where provided by the Federal Institute for Hydrology (BfG).
+
+<br>
+
+We can skip downloading and read the file directly from its internet location:
+
+<!--- read data from local file to save compilation time --->
+```{r, echo=TRUE, eval=FALSE}
+elbe <- read.csv("https://raw.githubusercontent.com/tpetzoldt/datasets/main/data/elbe.csv")
+```
+
+
+```{r, echo=FALSE}
+elbe <- read.csv("../data/elbe.csv")
+```
+
+<br>
+
+The third column "validated" indicate whether the values were finally approved by WSV and BfG. Data of the 19th century are particularly uncertain. Please consult the file [elbe_info.txt](https://raw.githubusercontent.com/tpetzoldt/datasets/main/data/elbe_info.txt) for details.
+
+
+
+## Date and time conversion
+
+<br>
+
+Now, let's extend the **elbe** data frame by adding information about
+the day, month, year and day of year. Here function `mutate` adds additional columns. 
+
+Note also that the day of year function in the date and time package **lubridate**
+is named `yday`.
+
+Details about date and time conversion can be found in the [lubridate cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/lubridate.pdf).
+
+<br>
+
+```{r}
+library(lubridate) # a tidyverse package for dates
+elbe <- mutate(elbe,
+               date  = as.POSIXct(date),
+               day   = day(date), 
+               month = month(date), 
+               year  = year(date), 
+               doy   = yday(date))
+```
+
+## Inspect data structure
+
+If we work with **RStudio**, may have a look at the "Global Environment" pane and 
+inspect the data structure of the `elbe` data frame.
+
+```{r echo=FALSE}
+elbe |> head(12) |> kable()
+```
+
+
+
+## Annual summary statistics
+
+<br>
+
+**Summarize data**
+
+```{r}
+## calculate annual mean, minimum, maximum
+totals <- elbe |>
+  group_by(year) |>
+  summarize(mean = mean(discharge), 
+            min = min(discharge), 
+            max = max(discharge))
+```
+
+<br>
+
+**Show table of summary statistics**
+
+```{r}
+head(totals)
+```
+
+<br>
+**Exercise:** Compute monthly discharge mean values and monthly sums.
+
+
+## More about pivot tables 
+
+<br>
+
+* In a section before, we already used `pivot_longer` to reorganize data. Now we do the opposite and
+convert a data base table (long data format) into a cross-table
+(wide data format) and vice versa.
+
+* R provides several function pairs for this, 
+so you may see functions like `melt` and `cast` 
+or `gather` and `spread`. 
+
+* Recently the two functions `pivot_wider` and
+`pivot_longer` were recommended for this purpose.
+    - The first argument is a data base table, the other arguments define
+      the structure of the desired crosstable.
+    - `id_cols` is the name of a column in a long table that will become the rows
+    - `names_from` indicates where the names of the columns are taken from
+    - `values_from` is the column with the values for the cross table.
+    
+$\rightarrow$ If more than one value exists for a row x column combination, an 
+optional aggregation function `values_fn` can be given. 
+
+
+## Crosstable with one column per year
+
+<br>
+
+```{r, recast,eval=FALSE,fig=FALSE}
+elbe_wide <-  elbe |>
+  pivot_wider(id_cols = doy, 
+              names_from = year, 
+              values_from = discharge, 
+              values_fn = mean)
+elbe_wide
+```
+
+<br>
+
+**Exercise** 
+
+* Create a suitable crosstable `elbe_wide`.
+* Then create a crosstable for monthly maximum discharge over all years.
+
+<!--
+pivot_wider(elbe, 
+            id_cols = month, 
+            names_from = year, 
+            values_from = discharge, 
+            values_fn = max)
+
+/ -->
+
+
+## Back-conversion of a crosstable into a data base table
+
+<br>
+
+The inverse case is also possible, e.g. the conversion of a cross table
+into a data base table.  It can be done with the function `pivot_longer`. 
+The column of the `id.vars` variable(s) will become identifier(s) downwards.
+
+<br>
+
+```{r, eval=FALSE,fig=FALSE}
+pivot_longer(elbe_wide, names_to="year", cols=as.character(1989:2019))
+```
+
+<br>
+
+**Exercise**
+
+Try it yourself.
+
+
+## Minimum-Maximum plot with summarize and ggplot2
+
+
+```{r elbe-minmax, fig.width=6, fig.height=3, fig.align='center'}
+elbe |> 
+  mutate(doy = yday(date)) |>
+  group_by(doy) |>
+  summarize(max = max(discharge), 
+            mean = mean(discharge), 
+            min = min(discharge)) |>
+  pivot_longer(cols = c("min", "mean", "max"), 
+               names_to = "statistic", 
+               values_to = "discharge") |>
+  ggplot(aes(doy, discharge, color = statistic)) + geom_line()
+
+```
+
+**Exercise**
+
+* Read the code and try to understand it. Then add a dry and a wet year.
+
+
+## Cumulative sums
+
+Annual cumulative sum plots are a hydrological standard tool used by 
+reservoir managers. We can use the **R** function `cumsum`, that by successive 
+cumulation converts a sequence of:
+
+$x_1, x_2, x_3, x_4, \dots$ 
+
+into
+
+$(x_1), (x_1+x_2), (x_1+x_2+x_3), (x_1+x_2+x_3+x_4), \dots$
+
+<br>
+
+**Example**
+
+```{r}
+x <- c(1, 3, 2, 6, 4, 2, 3)
+cumsum(x)
+```
+
+
+## Cumulative sums of the Elbe River
+
+Cummulative sums allow to detect dry and wet years, or periods within years.
+
+If we just use `cumsum`, we get a cumulative sum for all years:
+
+```{r elbe-cumsum, fig.width=6, fig.height=3, fig.align='center'}
+elbe |> 
+  mutate(doy = yday(date), year = year(date)) |>
+  filter(year %in% 2000:2010) |>
+  group_by(year = factor(year)) |>
+  mutate(cum_discharge = cumsum(discharge) * 60*60*24) |>
+  ggplot(aes(doy, cum_discharge, color = year)) + geom_line()
+```
+
+The multiplication with $60 \cdot 60 \cdot 24$ converts $\rm m^3 s^{-1}$ in $\rm m^3 d^{-1}$.
+
+
+## Exercises
+
+<br>
+
+1. Repeat the same for other time periods (years).
+2. Which year was the wettest, which one the driest year in total? Find a year with dry spring and wet summer.
+3. Identify some (e.g. 3 or 5) large floods in the historical time series and plot it together.
+4. Modify the commands so that the hydrological year is shown. Note that the German 
+hydrological year goes from    1st November to 31st October of the following year.
+Other countries have different regulations.
+
+
+## Further reading
+
+<br>
+
+**Online material**
+
+* "Welcome to tidyverse: <https://dplyr.tidyverse.org/>.
+* "ggplot Elegant Graphics for Data Analysis: <https://ggplot2-book.org/>
+* "R for Data Science": <https://r4ds.had.co.nz/>
+* Hadley Wickham's homepage: <https://hadley.nz/>
+
+<br>
+
+**Printed books**
+
+* "R for Data Science" [@wickham_r_2023] 
+* "ggplot Elegant Graphics for Data Analysis" [@wickham_ggplot2_2016]
+
+
+## References
+

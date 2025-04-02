@@ -1,0 +1,1531 @@
+---
+subtitle: "Applied Statistics -- A Practical Course"
+title: "05-Classical Tests"
+date:   "`r Sys.Date()`"
+--- 
+
+
+```{r, echo=FALSE, include=FALSE}
+library("exactRankTests")
+```
+
+
+# Hypothesen, Fehler und der p-Wert
+
+
+<!--
+ToDo: insert formulae and algorithms from the slides
+-->
+
+
+## Statistische Tests
+
+<br>
+
+Ein statistischer Hypothesentest ist eine Methode der statistischen Inferenz.
+
+* Üblicherweise werden zwei Stichproben miteinander verglichen, oder eine Stichprobe wird mit Eigenschaften eines idealisierten Modells verglichen.
+* Eine Hypothese $H_a$ für die statistische Beziehung zwischen den beiden Datensätzen wird mit einer idealisierten Nullhypothese $H_0$ verglichen, die keine Beziehung zwischen den beiden Datensätzen annimmt.
+* Der Vergleich wird als statistisch signifikant angesehen, wenn die Beziehung zwischen den Datensätzen eine unwahrscheinliche Realisierung der Nullhypothese gemäß einer Schwellenwahrscheinlichkeit - dem Signifikanzniveau - wäre.
+
+
+angepasst von:
+[https://en.wikipedia.org/wiki/Statistical hypothesis testing](https://en.wikipedia.org/wiki/Statistical hypothesis testing)
+
+## Effektgröße und Signifikanz
+
+<br>
+
+Bei relativen Mittelwertdifferenzen ist die relative Effektgröße:
+
+:::{.bigfont}
+$$
+  \delta = \frac{\bar{\mu}_1-\bar{\mu}_2}{\sigma}=\frac{\Delta}{\sigma}
+$$
+:::
+
+mit:
+
+* Mittelwerte von zwei Populationen $\mu_1, \mu_2$
+* Effektgröße $\Delta$
+* relative Effektgröße $\delta$ (auch Cohen's d genannt)
+* **Signifikanz** bedeutet, dass es unwahrscheinlich ist, dass ein beobachteter Effekt das Ergebnis einer reinen Zufallsvariation ist.
+
+
+## Nullhypothese und Alternativhypothese
+
+<br>
+
+[**$H_0$**]{.blue} Nullhypothese: Zwei Populationen unterscheiden sich nicht in Bezug auf eine bestimmte Eigenschaft.
+
+* Annahme: Der beobachtete Effekt ist rein zufällig entstanden, der wahre Effekt ist Null.
+
+[**$H_a$**]{.darkred} Alternativhypothese (Versuchshypothese): Vorhandensein eines bestimmten Effekts.
+
+* Eine Alternativhypothese ist nie vollständig wahr oder „bewiesen“. 
+* Die Annahme von $H_A$ bedeutet nur, dass $H_0$ unwahrscheinlich ist.
+
+**„Nicht signifikant“ bedeutet entweder kein Effekt oder Stichprobengröße zu klein!**
+
+<br>
+
+[Anmerkung: Unterschiedliche Bedeutung von **Signifikanz** ($H_0$ unwahrscheinlich) und **Relevanz** (Effekt groß genug, um in der Praxis eine Rolle zu spielen).]{.blue}
+
+<!------------------------------------------------------------------------------
+## Notes
+
+Statistical tests can only test for differences between samples, not
+for equality.  This means that $H_0$ is formulated to be rejected and that it
+is impossible to test if two populations are equal -- for principal reasons. If a
+test cannot reject "the null", it means only that an observed effect
+can also be explained as a result of random variability or error and
+that a potential effect was too small to be "significantly"
+detected, given the available sample size.
+
+**Important:** Not significant does not necessarily mean "no effect",
+it means "no effect or sample size too small"!
+
+Whether an effect is significant or not is determined by comparing the
+**p-value** of a test with a pre-defined critical value, the
+significance level $\alpha$ (or probability of error).  Here, the
+p-value is an estimate for the probability that an observed effect occured at random, 
+under the assumption that the null hypothesis is to be true.
+
+------------------------------------------------------------------------------->
+
+## Der p-Wert
+
+<br>
+
+Die Interpretation des p-Wertes war in der Vergangenheit oft verwirrend, selbst in Statistik-Lehrbüchern, so dass es gut ist, sich auf eine klare Definition zu beziehen:
+
+
+:::{.bigfont}
+> Der p-Wert ist definiert als die Wahrscheinlichkeit, ein Ergebnis zu erhalten, das gleich oder „extremer“ ist als das, was tatsächlich beobachtet wurde, wenn die Nullhypothese wahr ist. 
+:::
+
+<br>
+
+* [https://en.wikipedia.org/wiki/P-value](https://en.wikipedia.org/wiki/P-value):
+
+* @hubbard_alphabet_2004 Alphabet Soup: Blurring the Distinctions Between p’s and a’s in
+Psychological Research, Theory Psychology 14(3),
+295-327. DOI: [10.1177/0959354304043638](https://doi.org/10.1177/0959354304043638)
+
+
+## Alpha- und Beta-Fehler
+
+
+| Realität          | Entscheidung des Tests | Richtig? | Wahrscheinlichkeit      |
+|:----------------:|:--------------------:|:--------:|:----------------:|
+| $H_0$ = wahr     |signifikant           | nein       | $\alpha$-Fehler   |
+| $H_0$ = falsch    |nicht signifikant       | nein       | $\beta$-Fehler    |
+| $H_0$ = wahr     |nicht signifikant       | ja      | $1-\alpha$       |
+| $H_0$ = falsch    |signifikant           | ja      | $1-\beta$ (Trennschärfe)|
+|                  |                      |          |                  |
+
+
+1.$H_0$ fälschlicherweise abgelehnt (Fehler erster Art oder $\alpha$-Fehler)
+
+  * es wird ein Effekt behauptet, den es nicht gibt, z.B. ein Medikament, das keine Wirkung hat
+  
+2.$H_0$ fälschlicherweise beibehalten (Fehler zweiter Art oder $\beta$-Fehler)
+
+* typischer Fall in kleinen Studien, bei denen die Wirkung nicht ausreicht, um vorhandene Effekte zu erkennen
+
+**Verwendung in der Praxis**
+
+* übliche Konvention in den Umweltwissenschaften: $\alpha=0.05$, muss vorher festgelegt werden
+* $\beta=f(\alpha, \text{Effektgröße}, \text{Stichprobengröße}, \text{Art des Tests})$, sollte $\le 0,2$ sein
+
+## Signifikanz und Relevanz
+
+<br>
+
+Die Signifikanz ist nicht das einzig Wichtige. Achte auch auf die Effektgröße und die Relevanz!
+
+* Statistische **Signifikanz** bedeutet, dass die Nullhypothese $H_0$ im statistischen Sinne unwahrscheinlich ist.
+
+* Praktische **Relevanz** (manchmal auch „praktische Signifikanz“ genannt) bedeutet, dass die Effektgröße groß genug ist, um in der Praxis eine Rolle zu spielen. 
+
+Ob ein Effekt relevant sein kann oder nicht, hängt also von seiner **Effektgröße** und dem Anwendungsbereich ab.
+
+Betrachten wir zum Beispiel eine Impfung. Wenn ein Impfstoff in einem klinischen Test eine signifikante Wirkung hat, aber nur 10 von 1000 Menschen schützt, würde man diesen Effekt nicht als relevant ansehen und diesen Impfstoff nicht herstellen.
+
+Andererseits können auch kleine Wirkungen von Bedeutung sein. Wenn also eine toxische Substanz bei 1 von 1000 Personen Krebs auslösen würde, würden wir dies als relevant betrachten. Um dies als signifikante Auswirkung zu erkennen, wäre eine epidemiologische Studie mit einer großen Anzahl von Menschen erforderlich. Da es sich aber um eine hochrelevante Wirkung handelt, lohnt sich die Mühe.
+
+
+## Take home messages
+
+* Ein p-Wert misst die Wahrscheinlichkeit, dass ein rein zufälliger Effekt gleich groß oder größer ist als ein beobachteter Effekt, **wenn die Nullhypothese wahr ist**.
+
+* **Signifikant** bedeutet, dass die Ergebnisse unwahrscheinlich sind, wenn es keinen echten Effekt gäbe.
+
+* **Nicht signifikant** bedeutet nicht „kein Effekt“.
+
+* Nicht signifikante Ergebnisse deuten auf die Notwendigkeit weiterer Untersuchungen hin, z. B.:
+    - Vergrößerung der Stichprobe
+    - Erhöhung des experimentellen Effekts
+    - Reduzierung des experimentellen Fehlers
+    - ein leistungsfähigeres statistisches Verfahren in Betracht ziehen
+
+* Konzentriere dich nicht nur auf die p-Werte. Vergiss nie, auch Stichprobengröße, **Effektgröße** und Relevanz deiner Ergebnisse anzugeben.
+
+* Bei großen Datensätzen:
+    - Statistisch signifikante Ergebnisse können leicht auch für sehr kleine und praktisch irrelevante Effekte erzielt werden.
+    - $\rightarrow$ Effektgröße und Relevanz werden wichtiger als p-Werte.
+
+Der p-Wert ist nach wie vor ein wichtiges Instrument der Statistik, aber ein falscher Gebrauch kann zu Fehlinterpretationen führen.
+
+
+# Differenzen zwischen Mittelwerten
+
+
+## Einstichproben-t-Test
+
+<br>
+
+* prüft, ob eine Stichprobe aus einer Population mit gegebenem Mittelwert $\mu$ stammt 
+* basierend auf der Prüfung, ob der Mittelwert der Population $\mu$ im Konfidenzintervall von $\bar{x}$ liegt
+
+1. Nehmen wir eine Stichprobe mit dem Umfang $n=10, \bar{x}=5.5, s=1$ und $\mu=5$ an. 
+2. Schätze das 95%-Konfidenzintervall von $\bar{x}$:
+
+
+$$
+CI = \bar{x} \pm t_{1-\alpha/2, n-1} \cdot s_{\bar{x}}
+$$
+mit
+$$
+s_{\bar{x}} = \frac{s}{\sqrt{n}} \qquad \text{(Standardfehler)}
+$$ 
+
+
+
+Verschiedene Berechnungsmethoden werden auf den nächsten Folien gezeigt
+
+
+## Zur Erinnerung: Standardabweichung und Standardfehler
+
+```{r sd-and-se, echo=FALSE, fig.height=2.5}
+par(mar=c(4.1, 5.1, 1.1, 1.1), mfrow=c(1,2))
+x<-seq(0,10, length=100)
+plot(x, dnorm(x, mean=5.5, sd=1), col="blue", type="l", lwd=2, ylab="Density", las=1)
+abline(v=5, col="red", lwd=2)
+
+
+plot(x, dnorm(x, mean=5.5, sd=1/sqrt(5)), col="blue", type="l", lwd=2, ylab="Density", las=1)
+abline(v=5, col="red", lwd=2)
+```
+
+<small>
+Visualisierung eines Einstichproben-t-Test. Links: ursprüngliche Verteilung der Daten, gemessen an der Standardabweichung, rechts: Verteilung der Mittelwerte, gemessen an ihrem Standardfehler.
+</small>
+
+$$
+s_{\bar{x}} = \frac{s}{\sqrt{n}} \qquad \text{(Standardfehler)}
+$$ 
+
+* Standardfehler < Standardabweichung
+* misst die Genauigkeit des Mittelwerts
+* CLT!
+
+Der Test basiert auf der Verteilung der Mittelwerte, nicht auf der Verteilung der ursprünglichen Daten.
+
+
+## Methode 1: Liegt $\mu$ im Konfidenzintervall?
+
+<br>
+
+1. Stichprobe: $n=10, \bar{x}=5.5, s=1$ und $\mu=5$
+
+2. Wenn $\alpha = 0,05$ ist, erhalten wir ein zweiseitiges 95%-Konfidenzintervall mit:
+
+$$\bar{x} \pm t_{0,975, n-1} \cdot \frac{s}{\sqrt{n}}$$
+
+:::{.bigfont}
+```{r, echo=TRUE}
+5.5 + c(-1, 1) * qt(0.975, 10-1) * 1/sqrt(10)
+```
+:::
+
+<br>
+
+3. Prüfe, ob $\mu=5.0$ in diesem Intervall liegt? 
+
+4. Ja, es **ist** innerhalb von $\Rightarrow$ [Unterschied nicht signifikant]{.blue}.
+
+
+## Methode 2: Vergleich mit einem tabellierten t-Wert
+
+1. Stelle die Gleichung des Konfidenzintervalls um, um einen beobachteten $t_{obs}$ zu berechnen
+
+$$
+t_{obs} = |\bar{x}-\mu | \cdot \frac{1}{s_{\bar{x}}} = \frac{|\bar{x}-\mu |}{s} \cdot \sqrt{n} = \frac{|5.5 -5.0|}{1.0} \cdot \sqrt{10}
+$$
+
+Wir können das in **R** berechnen:
+
+```{r, echo=TRUE}
+t <- abs(5.5 - 5.0) / 1.0 * sqrt(10)
+t
+```
+
+2. Vergleich von $t_{obs}$ mit einem tabellierten Wert
+
+* „ Alter Style“: Ermittlung des kritischen t-Wertes in einer Tabelle für gegebenes $\alpha$ und Freiheitsgrade ($n-1$)
+* Für $\alpha=0.05$ und zweiseitig ist dies: $t_{1-\alpha/2, n-1} = `r round(qt(0.975, 9), 2)`$. 
+
+Vergleich: $`r round(t, 2)` < `r round(qt(0.975, 9), 2)`$ $\Rightarrow$ kein signifikanter Unterschied zwischen $\bar{x}$ und $\mu$.
+
+
+## Methode 3: Berechnung des p-Wertes aus $t_{obs}$
+
+<br>
+
+* Verwendung der computergestützten Wahrscheinlichkeitsfunktion (`pt`) anstelle des Tabellenvergleichs 
+* $t = t_{obs}$ und die Freiheitsgrade ($n-1$):
+
+<br>
+
+
+```{r, echo=TRUE}
+2 * (1 - pt(t, df = 10 - 1)) # 2 * (1 - p) is re-arranged from 1-alpha/2
+```
+
+
+Dieser p-Wert = `r 2 * (1 - pt(t, df=10-1))` ist größer als $0,05$, so dass wir die Differenz als nicht signifikant betrachten.
+
+<br>
+
+**FAQ: kleiner oder größer als?**
+
+<br>
+
+|                |                                 |                          |             |
+|----------------|---------------------------------|--------------------------|-------------|
+| p-Wert        | $\text{p-Wert} < \alpha$       | Nullhypothese unwahrscheinlich | signifikant |
+| Test Statistik | $t_{obs} > t_{1-\alpha/2, n-1}$ | Effekt übersteigt Grenze  | signifikant |
+|                |                                 |                          |             |
+
+
+## Methode 4: Integrierte t-Test-Funktion in R
+
+<br>
+
+Das Gleiche kann man viel einfacher mit dem Computer in **R** machen.
+
+Nehmen wir an, wir haben eine Stichprobe mit $\bar{x}=5, s=1$:
+
+
+```{r, echo=TRUE}
+## definiere Stichprobe
+x <- c(5.5, 3.5, 5.4, 5.3, 6, 7.2, 5.4, 6.3, 4.5, 5.9)
+
+## führe Einstichproben-t-Test durch
+t.test(x, mu=5)
+```
+
+
+Der Test liefert den beobachteten t-Wert, das 95%-Konfidenzintervall und den p-Wert.
+
+Ein wichtiger Unterschied ist, dass diese Methode die Originaldaten benötigt, während die anderen Methoden nur Mittelwert, Standardabweichung und Stichprobenumfang benötigen.
+
+
+## Zweistichproben-t-Test
+
+
+<br>
+
+Der Zweistichproben-t-Test vergleicht zwei unabhängige Stichproben:
+
+
+```{r, echo=TRUE}
+x1 <- c(5.3, 6.0, 7.1, 6.4, 5.7, 4.9, 5.0, 4.6, 5.7, 4.0, 4.5, 6.5)
+x2 <- c(5.8, 7.1, 5.8, 7.0, 6.7, 7.7, 9.2, 6.0, 7.2, 7.8, 7.8, 5.7)
+t.test(x1, x2)
+```
+
+<br>
+
+* $\rightarrow$ beide Stichproben unterscheiden sich signifikant ($p < 0,05$)
+* Anmerkung: **R** hat nicht den „normalen“ t-Test durchgeführt, sondern den Welch-Test (= heteroskedastischer t-Test)
+* wobei die Varianzen der beiden Stichproben nicht identisch sein müssen.
+
+## Hypothese und Formel für den Zweistichproben-t-Test
+
+<br>
+
+::: {.column width="49%"}
+
+$H_0$ $\mu_1 = \mu_2$
+
+$H_a$ die beiden Mittelwerte sind unterschiedlich
+
+**Testkriterium**
+
+$$
+ t_{obs} =\frac{|\bar{x}_1-\bar{x}_2|}{s_{tot}} \cdot \sqrt{\frac{n_1 n_2}{n_1+n_2}}
+$$
+:::
+
+::: {.column width="49%"}
+
+```{r twosample-t-test}
+par(cex=1.4)
+x<-seq(0,10, length=100)
+plot(x, dnorm(x, mean=5, sd=1), col="red", type="l", lwd=2, ylab="Density", las=1)
+lines(x, dnorm(x, mean=7, sd=1), col="blue", lwd=2)
+```
+
+
+:::
+
+**gepoolte Standardabweichung**
+
+$$
+s_{tot} = \sqrt{{({n}_1 - 1)\cdot s_1^2 + ({n}_2 - 1)\cdot s_2^2
+\over ({n}_1 + {n}_2 - 2)}}
+$$
+
+**Annahmen:** Unabhängigkeit, gleiche Varianzen, annähernde Normalverteilung
+
+## Der Welch-Test
+
+<br>
+
+**Bekannt als t-Test für Stichproben mit ungleicher Varianz, funktioniert auch bei gleicher Varianz!**
+
+<br>
+
+Testkriterium:
+
+$$
+t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{s^2_{\bar{x}_1} + s^2_{\bar{x}_2}}}
+$$
+
+
+Standardfehler der einzelnen Stichproben:
+
+$$
+s_{\bar{x}_i} = \frac{s_i}{\sqrt{n_i}}
+$$
+Korrigierte Freiheitsgrade:
+
+$$
+\text{df} = \frac{\frac{s^2_1}{n_1} + \frac{s^2_2}{n_2}}{\frac{s^4_1}{n^2_1(n_1-1)} + \frac{s^4_2}{n^2_2(n_2-1)}}
+$$
+
+# Welch-Test in R
+
+:::{.bigfont}
+```{r f-test, echo=TRUE}
+t.test(x1, x2)
+```
+:::
+
+... ist nur die Standardmethode der „t.test“-Funktion.
+
+
+## Gleichheit der Varianz: F-Test
+
+::: {.column width="69%"}
+
+$H_0$: $\sigma_1^2 = \sigma_2^2$
+
+$H_a$: ungleiche Varianzen
+
+**Testkriterium:**
+
+$$F = \frac{s_1^2}{s_2^2} $$
+
+
+- größere der beiden Varianzen im Zähler $(s^2_1 > s^2_2)$
+- getrennte Freiheitsgrade ($n-1$)
+:::
+
+::: {.column width="29%"}
+```{r var-homogeneity, fig.height=4, fig.width=4}
+par(cex=1.4, mar=c(4,4,1,1))
+x <- seq(0,10, length=100)
+plot(x, dnorm(x, mean=5, sd=1), col="red", type="l", lwd=2, ylab="Density", las=1)
+lines(x, dnorm(x, mean=5, sd=2), col="blue", lwd=2)
+```
+:::
+
+**Beispiel:**
+
+- [$s_1=1$]{.red}, [$s_2 =2$]{.blue}, $n_1=5, n_2=10, F=\frac{2^2}{1^2}=4$
+- Freiheitsgrad: $9 \atop 4$
+
+[$\Rightarrow$ $F_{9, 4, \alpha=0.975} = `r round(qf(0.975, 9, 4),2)` > 4 \quad\rightarrow$ nicht signifikant]{.darkred}
+
+
+
+
+## Homogenität der Varianzen bei > 2 Stichproben
+
+<br>
+
+::: {.column width="59%"}
+
+```{r, echo=FALSE}
+set.seed(123)
+```
+
+```{r}
+x1 <- rnorm(10, 5,  1)
+x2 <- rnorm(10, 5,  2)
+x3 <- rnorm(10, 10, 1)
+```
+
+**Bartlett's Test:**
+
+```{r, echo=TRUE}
+bartlett.test(list(x1, x2, x3))
+```
+
+<br>
+**Fligner-Killeen Test** (empfohlen):
+
+```{r, echo=TRUE}
+fligner.test(list(x1, x2, x3))
+```
+:::
+
+
+::: {.column width="39%"}
+```{r three-samples, fig.width=3, fig.height=4}
+par(mar=c(3,3,1,1))
+boxplot(x1, x2, x3, las=1, names=c("x1", "x2", "x3"), col="wheat")
+```
+:::
+
+* Tests werden häufig verwendet, um die Annahmen für ANOVA zu überprüfen.
+
+<!------------------------------------------------------------------------------
+## Role of the F-test for the classical t-test procedure
+
+The classical procedure would be as follows:
+
+1. Perform a check for the identity of both variances with `var.test` beforehand:
+
+```{r, echo=TRUE}
+var.test(x1, x2)  # F-Test
+```
+
+
+2. if $p < 0.05$ $\Rightarrow$ variances are significantly different $\rightarrow$ Welch test (`var.equal=FALSE`).
+
+3. if $p> 0.05$, $\Rightarrow$ assume equal variances $\rigtarrow$ "ordinary" t-test (`var.equal=TRUE`)
+
+```{r, echo=TRUE}
+t.test(x1, x2, var.equal = TRUE) # classical t-test
+```
+------------------------------------------------------------------------------->
+
+## Empfehlung für Zweistichproben-t-Tests
+
+<br>
+
+**Traditionelles Vorgehen:**
+
+1. Test auf gleiche Varianzen mit Hilfe des F-Tests: `var.test(x, y)`
+2. Wenn die Varianzen gleich sind: `t.test(x, y, var.equal=TRUE)`
+3. andernfalls: `t.test(x, y)` (= Welch-Test)
+4. Prüfe, ob beide Stichproben einer Normalverteilung folgen.
+
+<br>
+
+**Moderne Empfehlung (bevorzugt):**
+
+1. Verwende keine Pre-Tests!
+2. Verwende immer den Welch-Test: `t.test(x, y)`
+3. Überprüfe die ungefähre Normalverteilung mit Box- oder QQ-Plots. Weniger wichtig, wenn $n$ groß ist.
+
+siehe @zimmerman_note_2004 oder [Wikipedia](https://en.wikipedia.org/wiki/Welch%27s_t-test).
+
+
+
+## Gepaarter t-Test
+
+* manchmal auch „t-Test für abhängige Stichproben“ genannt 
+  - der Begriff „abhängig“ kann irreführend sein, „gepaart“ ist eindeutiger
+  - die Werte innerhalb der Stichproben müssen immer noch unabhängig sein
+* Beispiele: linker Arm / rechter Arm; vorher / nachher  
+
+* ist im Wesentlichen ein Einstichproben-t-Test von paarweisen Unterschieden gegen $\mu=0$  
+* Reduziert den Einfluss individueller Unterschiede („Kovariaten“) durch Konzentration auf die Veränderung innerhalb jedes Paares
+
+::: {.column width="49%"}
+
+```{r, echo=TRUE}
+x1 <- c(2, 3, 4, 5, 6)
+x2 <- c(3, 4, 7, 6, 8)
+t.test(x1, x2, var.equal=TRUE)
+```
+p=0.20, nicht signifikant
+:::
+
+::: {.column width="49%"}
+```{r, echo=TRUE}
+x1 <- c(2, 3, 4, 5, 6)
+x2 <- c(3, 4, 7, 6, 8)
+t.test(x1, x2, paired=TRUE)
+```
+p=0.016, signifikant
+:::
+
+Es ist zu erkennen, dass der gepaarte t-Test in diesem Fall eine größere Trennschärfe aufweist.
+
+
+## Mann-Whitney- und Wilcoxon-Test
+
+<br>
+
+* Nichtparametrische Tests:
+    * Keine Annahmen über Form und Parameter der Verteilung, aber
+    * Verteilungen sollten ähnlich sein, sonst kann der Test irreführend sein.
+* Basierend auf Rängen:  Die Tests vergleichen die Ränge der Daten.
+* Verwendung von Mann-Whitney für unabhängige Stichproben, Wilcoxon für gepaarte Stichproben.
+
+<br> 
+**Grundprinzip:** Zählung der so genannten „Umkehrungen“ der Ränge, bei denen sich die Proben überschneiden
+
+* Stichprobe A: 1, 3, 4, 5, 7
+* Stichprobe B: 6, 8, 9, 10, 11
+* Beide Stichproben zusammen geordnet: 1, 3, 4, 5, [6]{.red}, 7, [8]{.red}, [9]{.red}, [10]{.red}, [11]{.red}
+* Umkehrungen: $\rightarrow$ $U = 1$
+
+
+## Mann-Whitney-Testverfahren in der Praxis
+
+<br>
+
+1. Weise den beiden Stichproben $A$ und $B$ mit dem Stichprobenumfang $m$ und $n$ die Ränge $R_A$ und $R_B$ zu.
+2. Berechne die Anzahl der Umkehrungen $U$:
+  
+\begin{align*}
+     U_A &= m \cdot n + \frac{m (m + 1)}{2} - \sum_{i=1}^m R_A \\
+     U_B &= m \cdot n + \frac{n (n + 1)}{2} - \sum_{i=1}^n R_B \\
+     U   &= \min(U_A, U_B)
+\end{align*}
+
+* Kritische Werte von $U$ finden sich in gängigen Statistik-Lehrbüchern.
+* In **R** nicht notwendig, p-Wert wird direkt ausgegeben.
+**Anmerkung:** Verwende spezielle Version `wilcox.exact` mit Korrektur, wenn die Stichprobe Bindungen hat.
+
+
+## Mann-Whitney - Wilcoxon-Test in R
+
+<br>
+
+
+```{r, echo=TRUE}
+A <- c(1, 3, 4, 5, 7)
+B <- c(6, 8, 9, 10, 11)
+
+wilcox.test(A, B) # für gepaarte Daten das optionale Argument `paired = TRUE` verwenden
+```
+
+<br>
+
+
+**Mann-Whitney - Wilcoxon-Test mit Bindungskorrektur**
+
+* wird angewendet, wenn die Rangunterschiede doppelte Werte enthalten
+
+```{r, echo=TRUE}
+A <- c(1, 3, 4, 5, 7)
+B <- c(6, 8, 9, 10, 11)
+```
+
+
+```{r, echo=TRUE}
+library("exactRankTests")
+wilcox.exact(A, B, paired=TRUE)
+```
+
+
+## Permutationsmethoden
+
+* Grundprinzip: Schätzung einer Teststatistik $\xi_{obs}$ aus der Stichprobe,
+* Resampling: Simulieren vieler $\xi_{i, sim}$ aus zufällig permutiertem Datensatz ($n = 999$ oder mehr)
+* Wo erscheint $\xi_{est}$ innerhalb der geordneten Reihe der simulierten Werte $\xi_{i, sim}$?
+
+```{r permutation-test, fig.align='center'}
+  par(mar=c(4.1, 5.1, 1.1, 1.1))
+  set.seed(123)
+  x <- rgamma(100, 2, 1)
+  plot(seq(0,1, length=100), sort(x), xlab="p", ylab=expression(xi[i]),
+  pch=16, cex=0.5, las=1, col="blue")
+  xx <- 4.5
+  qxx <- approx(sort(x), seq(0,1, length=100), xx)$y
+  arrows(0, xx, qxx, xx, col="red")
+  arrows(qxx, xx, qxx, 0, col="red")
+  points(qxx, xx, pch=16, col="red")
+```
+
+Sei $\xi_{obs}$ in unserem Beispiel $`r xx`$, dann sei $\Rightarrow$ $p= `r round(qxx,2)`$.
+
+# Poweranalyse
+
+## Bestimmung der Trennschärfe von statistischen Tests
+
+<br>
+
+**Wie viele Wiederholungen benötige ich?**
+
+* Hängt ab von:
+    * der relativen Effektgröße $\frac{\mathrm{Effekt}}{\mathrm{Standardabweichung}}$
+    
+    $$\delta=\frac{(\bar{x}_1-\bar{x}_2)}{s}$$
+    
+    * der Stichprobenumfang $n$
+    * und das vordefinierte Signifikanzniveau $\alpha$
+    * und die angewandte Methode
+
+
+* Je kleiner $\alpha$, $n$ und $\delta$, desto größer ist der Fehler zweiter Art ($\beta$).
+* Der $\beta$-Fehler ist die Wahrscheinlichkeit, Effekte zu übersehen, obwohl sie vorhanden sind.
+* Die Trennschärfe ($1-\beta$) ist die Wahrscheinlichkeit, dass ein Test signifikant ist, wenn ein Effekt vorhanden ist.
+
+
+## Poweranalyse
+
+<br>
+
+Formel für den Mindeststichprobenumfang im Einstichprobenfall:
+
+
+$$
+n = \bigg(\frac{z_\alpha + z_{1-\beta}}{\delta}\bigg)^2
+$$
+
+* $z$: die Quantile (`qnorm`) der Standardnormalverteilung für $\alpha$ und für $1-\beta$ 
+* $\delta=\Delta / s$: relative Effektgröße.
+
+**Beispiel**
+
+Zweiseitiger Test mit $\alpha=0,025$ und $\beta=0,2$
+
+$\rightarrow$ $z_\alpha = 1.96$, $z_\beta=0.84$, dann:
+
+
+$$
+n= (1.96 + 0.84)^2 \cdot 1/\delta^2 \approx 8 /\delta^2
+$$
+
+
+$\delta = 1.0\cdot \sigma$ $\qquad\Rightarrow$ [n > 8 ]{.red}
+
+$\delta = 0.5\cdot \sigma$ $\qquad\Rightarrow$ [n > 32]{.red}
+
+## Trennschärfe des t-Tests
+
+
+Die Trennschärfe eines t-Tests bzw. der Mindeststichprobenumfang kann wie folgt berechnet werden:
+`power.t.test()`:
+
+```{r, echo=TRUE}
+power.t.test(n=5, delta=0.5, sig.level=0.05)
+```
+
+$\rightarrow$ 'power' = 0.10
+
+* Für $n=5$ wird ein vorhandener Effekt von $0,5\sigma$ nur in 1 von 10 Fällen entdeckt.
+* Für eine Trennschärfe von 80% bei $n=5$ benötigen wir eine Effektgröße von mindestens $2\sigma$:
+
+```{r, echo=TRUE,eval=FALSE}
+power.t.test(n=5, power=0.8, sig.level=0.05)
+```
+
+Für einen schwachen Effekt von $0,5\sigma$ benötigen wir eine Stichprobengröße von $n\ge64$ in jeder Gruppe:
+
+```{r, echo=TRUE,eval=FALSE}
+power.t.test(delta=0.5,power=0.8,sig.level=0.05)
+```
+
+[$\Rightarrow$ wir brauchen entweder einen großen Stichprobenumfang oder einen starken Effekt.]{.darkred}
+
+## Simulierte Trennschärfe eines t-Tests
+
+```{r, echo=TRUE, eval=FALSE}
+# Populationsparameter
+n      <- 10
+xmean1 <- 50; xmean2 <- 55
+xsd1   <- xsd2 <- 10
+alpha  <- 0.05
+
+nn <- 1000   # Anzahl an Testläufen in der Simulation
+a <- b <- 0  # initialisiere Zähler
+for (i in 1:nn) {
+  # erstelle Zufallszahlen
+  x1 <- rnorm(n, xmean1, xsd1)
+  x2 <- rnorm(n, xmean2, xsd2)
+  # Ergebnisse des t-Tests
+  p <- t.test(x1,x2,var.equal = TRUE)$p.value 
+  if (p < alpha) {
+     a <- a+1
+   } else {
+     b <- b+1
+  }
+}
+print(paste("a=", a, ", b=", b, ", a/n=", a/nn, ", b/n=", b/nn))
+```
+
+
+# Test auf Verteilungen
+
+
+## Testen auf Verteilungen
+
+**Nominale Variablen**
+
+* $\chi^2$-Test
+* Exakter Test von Fisher
+
+**Ordinale Variablen**
+
+* Cramér-von-Mises-Test
+* $\rightarrow$ stärker als $\chi^2$ oder KS-Test
+
+**Metrische Skalen**
+
+* Kolmogorov-Smirnov-Test (KS-Test)
+* Shapiro-Wilks-Test (für Normalverteilung)
+* Grafische Prüfungen
+
+## Mehrfeldertafeln für nominale Variablen
+
+* Werden für nominale (d. h. kategoriale oder qualitative) Daten verwendet.
+* Beispiele: Augen- und Haarfarbe, medizinische Behandlung und die Anzahl der geheilten/nicht geheilten Personen
+* Wichtig: Verwende **absolute Messwerte** (echte Zahlen!), keine Prozentsätze oder andere berechnete Daten (z. B. nicht so etwas wie Biomasse pro Fläche)
+
+**Beispiel:** Vorkommen von Daphnien (Wasserflöhen) in einem See:
+
+| Klone | Obere Schicht  | Tiefe Schicht |
+|------:|:------------:|:----------:|
+A       |          50  |          87| 
+B       |          37  |          78|
+C       |          72  |          45|
+
+* Futteralgen im sauerstoffarmen Tiefenwasser
+* genetisch weiterentwickelte Klone mit höherem Hämoglobingehalt können in tiefes Wasser tauchen
+
+
+## Berechnung des $\chi^2$-Tests 
+
+
+1. Beobachtete Häufigkeiten $O_{ij}$
+
+
+|               | Klon A  | Klon B  |  Klon C | Summe $s_i$|
+|---------------|---------|---------|---------|------------|
+|Obere Schicht  |   50    |    37   |   72    | 159        |
+|Untere Schicht |   87    |    78   |   45    | 210        |
+|Summe $s_j$    |  137    |   115   |  117    | $n=369$    |
+|               |         |         |         |            |
+
+2. Erwartete Häufigkeiten $E_{ij} = s_i \cdot s_j / n$ [(Gleichverteilung = Nullhypothese)]{.gray}
+
+|               | Klon A  | Klon B    | Klon C  | Summe $s_i$|
+|---------------|---------|-----------|---------|------------|
+|Obere Schicht  |   59.0  |    49.6   |   50.4  | 159        |
+|Untere Schicht |   78.0  |    65.4   |   66.6  | 210        |
+|Summe $s_j$    |   137   |    115    |   117   | $n=369$    |
+|               |         |           |         |            |
+
+3. Teststatistik $\hat{\chi}^2 = \sum_{i, j} \frac{(O_{ij} - E_{ij})^2}{E_{ij}}$
+  
+
+4. Vergleich mit kritischem $\chi^2$ aus der Tabelle [mit $(n_{Zeile} - 1) \cdot (n_{Spalte} - 1)$ df.]{.gray}
+
+
+## Der $\chi^2$-Test in **R**
+
+<br>
+
+Organisiere die Daten in einer Matrix mit 3 Zeilen (für die Klone) und 2 Spalten (für die Tiefen):
+
+:::{.bigfont}
+```{r, echo=TRUE}
+x <- matrix(c(50, 37, 72, 87, 78, 45), ncol=2)
+x
+```
+:::
+
+
+:::{.bigfont}
+```{r, echo=TRUE}
+chisq.test(x)
+```
+:::
+
+* Anmerkung: Die Ergebnisse sind nur zuverlässig, wenn alle beobachteten Häufigkeiten $\geq 5$ sind.
+* Für kleinere Stichproben ist der exakte Test von Fisher zu verwenden.
+
+
+## Exakter Test nach Fisher
+
+<br>
+
+:::{.bigfont}
+```{r, echo=TRUE}
+x <- matrix(c(50, 37, 72, 87, 78, 45), ncol=2)
+x
+```
+
+```{r, echo=TRUE}
+fisher.test(x)
+```
+:::
+
+<br>
+
+$\rightarrow$ signifikante Korrelation zwischen den Klonen und der vertikalen Verteilung im See.
+
+## Lieblingszahlen der HSE-Studenten
+
+```{r favorite-numbers}
+x <- c(1,1,6,2,2,5,8,6,3)
+barplot(x, names.arg=1:9, las=1, ylim=c(0,10))
+text((1:9)*1.2 - 0.5, x+0.5, x, cex=1.2)
+abline(h=mean(x), lty="dashed", lwd=2,col="red")
+```
+
+* Zahlen von 1..9, $n=34$
+* $H_0$: gleiche Wahrscheinlichkeit für alle Zahlen $1/9$ (diskrete Gleichverteilung)
+* $H_A$: einige Zahlen bevorzugt $\rightarrow$ weichen von diskreter Gleichverteilung ab 
+
+## Chi-Quadrat-Test
+
+<br>
+
+:::{.bigfont}
+```{r, echo=TRUE}
+obsfreq <- c(1, 1, 6, 2, 2, 5, 8, 6, 3)
+chisq.test(obsfreq)
+chisq.test(obsfreq, simulate.p.value=TRUE, B=1000)
+```
+:::
+
+<br>
+
+* **Einstichproben** $\chi^2$-Test. Er testet auf Gleichheit der Häufigkeit in allen Klassen.
+* Die simulationsbasierte Version des Tests (mit 1000 Wiederholungen) ist etwas genauer als der Standard-$\chi^2$-Test, aber beide sind nicht signifikant.
+
+## [Cramér-von-Mises-Test]{.gray}
+
+
+```{r von-mises, fig=TRUE,echo=FALSE,width=6,height=4}
+library(dgof)
+par(mar=c(4,5,0.5,0.5)+.1)
+obsfreq <- c(1, 1, 6, 2, 2, 5, 8, 6, 3)
+x <- rep(1:length(obsfreq), obsfreq)
+cdf <- stepfun(1:9, cumsum(c(0, rep(1/9, 9))))
+n <- length(x)
+plot(cdf, las=1, main="", col="red")
+points(sort(x), (1:n)/n, col="blue", pch=16, cex=0.8)
+lines(c(0, sort(x)), c(0, (1:n)/n), type="s", col="blue", lty="dashed")
+#lines(c(0, sort(x)), c(0, (2*(1:n)+1)/(2*n)), type="s", col="blue", lty="dashed")
+legend(0.5, 0.9, col=c("red", "blue"), lty=c("solid", "dashed"), legend=c("theoretical", "observed"), box.lty=0)
+```
+
+
+$$
+T = n \omega^2 = \frac{1}{12n} + \sum_{i=1}^n \left[ \frac{2i-1}{2n}-F(x_i) \right]^2
+$$
+
+## [Cramér-von-Mises-Test in **R**]{.gray}
+
+```{r, echo=TRUE}
+library(dgof)
+obsfreq <- c(1, 1, 6, 2, 2, 5, 8, 6, 3)
+
+## CvM-Test benötigt Einzelwerte, nicht Klassenhäufigkeiten
+x <- rep(1:length(obsfreq), obsfreq)
+x
+```
+
+<br>
+```{r, echo=TRUE}
+## erstelle eine kumulative Funktion mit gleicher Wahrscheinlichkeit für alle Fälle
+cdf <- stepfun(1:9, cumsum(c(0, rep(1/9, 9))))
+cdf <- ecdf(1:9)
+
+## führe den Test durch
+cvm.test(x, cdf)
+```
+
+* Der Cramér-von-Mises-Test arbeitet mit den ursprünglichen, nicht gebündelten Werten.
+* Verwendung der kumulativen Verteilungsfunktion [achtet auf die Reihenfolge der Klassen]{.blue} $\rightarrow$ leistungsfähiger als $\chi^2$-Test.
+
+# Testen auf Normalverteilung
+
+## Testen oder Prüfen?
+
+<br>
+
+**Philosophisches Problem:** Wir wollen $H_0$ [behalten]{.red}!
+
+* Gleichheit kann nicht getestet werden
+* Deshalb: besser „Normalität prüfen“ sagen.
+
+**Vorab denken**
+
+* Macht die Normalverteilung für die Daten „Sinn“?
+* Sind die Daten metrisch (kontinuierlich)?
+* Was ist der Prozess der Datenerzeugung? $\rightarrow$ * Kontextuelles Verständnis!
+
+**Inhärente Nicht-Normalität**
+
+> Einige Datentypen, wie z. B. Zähldaten (z. B. Anzahl der Vorkommnisse) und binäre Daten (z. B. Ja/Nein), sind von Natur aus nicht normal.
+
+
+* Binäre Daten: Verwende Methoden für Binomialverteilung mit Rohdaten anstelle von Prozentsätzen
+* Zähldaten: Verwende Methoden für die Poisson-Verteilung
+
+## Shapiro-Wilks-W-Test [?]{.red}
+
+$\rightarrow$ Ziel: prüft, ob eine Stichprobe mit einer Normalverteilung übereinstimmt
+
+```{r, include=FALSE}
+set.seed(734)
+```
+
+
+```{r echo=TRUE}
+x <- rnorm(100)
+shapiro.test(x)
+```
+
+<br>
+
+$\rightarrow$ der $p$-Wert ist größer als 0,05, also würden wir $H_0$ behalten und schlussfolgern, dass nichts gegen die Annahme der Normalität spricht
+
+<br>
+
+Die Interpretation des Shapiro-Wilks-Tests ist mit Vorsicht zu genießen:
+
+* für kleine $n$ ist der Test nicht empfindlich genug
+* bei großen $n$ ist er überempfindlich
+* [Die Verwendung von Shapiro-Wilks zur Überprüfung der Normalität für t-Tests und ANOVA wird nicht mehr empfohlen]{.red}
+
+::: aside
+Auch die $\chi^2$- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für Normalitätstests nicht mehr empfohlen, sind aber für andere Testprobleme weiterhin wichtig.
+:::
+
+
+## Alternative: Verwendung grafischer Methoden
+
+```{r normality-graphical,fig.align='center'}
+set.seed(123)
+par(mfrow=c(1, 3))
+x <- rnorm(100, mean=50, sd=10)
+hist(x, probability=TRUE, main="Histogram")
+lines(10:90, dnorm(10:90, mean(x), sd(x)), col="red", lwd=2)
+qqnorm(x); qqline(x, col="red")
+boxplot(x, col="wheat", main="Boxplot")
+```
+
+<br>
+
+* Histogramm, Boxplot, QQ-Plot (=Quantil-Quantil-Plot)
+* siehe auch: Box-Cox-Methode
+
+
+
+## Grafische Überprüfung der Normalität
+
+<br>
+
+
+::: {.column width="49%"}
+```{r distrbox-examples, fig.width=6, fig.height=4}
+set.seed(4213)
+par(mar=c(4.1, 4.1, 1, 1), las=1)
+x1 <- rnorm(100, mean = 50, sd = 10)      # normal distribution
+x2 <- runif(100, min = 30, max = 70)      # uniform distribution
+x3 <- rlnorm(100, meanlog = 2, sdlog = 1) # lognormal distribution
+x4 <- 50 +10 * rt(100, df=3) # heavy tailed
+boxplot(x1, x2, x3, x4,
+  names=c("Normal", "Uniform", "Lognormal", "heavy tailed"), col="wheat")
+```
+:::
+
+::: {.column width="49%"}
+```{r qqnorm-examples, fig.width=6, fig.height=4}
+par(las=1)
+par(mar=c(4,4,3,.1))
+#par(mfrow=c(1,4))
+par(mfrow=c(2,2))
+qqnorm(x1, main = "normal"); qqline(x1, col="forestgreen")
+qqnorm(x2, main = "uniform"); qqline(x2, col="red")
+qqnorm(x3, main = "lognormal"); qqline(x3, col="red")
+qqnorm(x4, main = "heavy tailed"); qqline(x4, col="red")
+```
+:::
+
+* $x$: theoretische Quantile, in denen ein Wert bei Normalverteilung gefunden werden sollte
+* $y$: normalisierte und geordnete Messwerte ($z$-Werte)
+* skaliert in der Einheit der Standardabweichungen
+* Normalverteilung, wenn die Punkte einer Geraden folgen
+
+
+## Transformationen
+
+* Ermöglicht die Anwendung von Methoden, die für normalverteilte Daten entwickelt wurden, auf nicht-normalverteilte Fälle.
+* in der Vergangenheit sehr verbreitet, manchmal immer noch nützlich
+* Moderne Methoden (z. B. verallgemeinerte lineare Modelle, GLM) können bestimmte Verteilungen direkt verarbeiten, wie die Binomial-, Gamma- oder Poisson-Verteilung.
+
+**Transformationen für rechtsschiefe Daten**
+
+* $x'=\log(x)$
+* [$x'=\log(x + a)$]{.red}
+* $x'=(x+a)^c$ [($a$ zwischen 0,5 und 1)]{.gray}
+* $x'=1/x$ [(„sehr stark“, d.h. in den meisten Fällen zu extrem)]{.gray}
+* $x'=a - 1/\sqrt{x}$ [(um die Skalierung zu vereinfachen)]{.gray}
+* $x'=1/\sqrt{x}$ [(Kompromiss zwischen $\ln$ und $1/x$)]{.gray}
+* $x'=a+bx^c$ [(sehr allgemein, schließt Potenzen und Wurzeln ein)]{.gray}
+
+## Transformationen II
+
+**Transformationen für Zähldaten**
+
+* $x'=\sqrt{3/8+x}$ [(Zählungen: 1, 2, 3 $\rightarrow$ 0.61, 1.17, 1.54,  1.84, \dots)]{.gray}
+* $x'=\lg(x+3/8)$
+* $x'=\log(\log(x))$ [für riesige Zahlen]{.gray}
+
+[$\rightarrow$ stattdessen ein GLM mit der Familie Poisson oder Quasi-Poisson in Betracht ziehen]{.blue}
+
+**Verhältnisse und Prozentsätze**
+
+* $x'=\arcsin \sqrt{x/n}$
+* $x'=\arcsin \sqrt{\frac{x+3/8}{n+3/4}}$
+
+[$\rightarrow$ stattdessen ein GLM mit Binomialfamilie in Betracht ziehen]{.blue}
+<!-----------------------------------------------------------------------------/ -->
+
+## Wie findet man die beste Transformation?
+
+* Beispiel: Biovolumen von Kieselalgenzellen [(Art *Nitzschia acicularis*)]{.gray}.
+
+::: {.column width="42%"}
+<br>
+```{r prk_nit_data, echo=TRUE, eval=FALSE}
+dat <- read.csv("prk_nit.csv")
+
+Nit85 <- dat$biovol[dat$group == "nit85"]
+Nit90 <- dat$biovol[dat$group == "nit90"]
+
+hist(Nit85, xlab="Biovolume (mm^3)")
+hist(Nit90, xlab="Biovolume (mm^3)")
+```
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="52%"}
+```{r prk_nit_fig, echo=FALSE, fig.width=6, fig.height=3}
+dat <- read.csv("../data/prk_nit.csv")
+Nit85 <- dat$biovol[dat$group == "nit85"]
+Nit90 <- dat$biovol[dat$group == "nit90"]
+
+par(mfrow=c(1,2))
+par(mar=c(4,4,1.5, 0.5))
+hist(Nit85, xlab="Biovolume (mm^3)")
+hist(Nit90, xlab="Biovolume (mm^3)")
+```
+:::
+
+
+* Rechtsschiefe Verteilung.
+* Berechnungen des Biovolumens, die für Studien zum Nahrungsnetz und zur Vorhersage von Algenblüten verwendet werden.
+
+:::{.aside}
+
+Mehr über **Nitzschia** in [Wikipedia](https://en.wikipedia.org/wiki/Nitzschia)
+
+Datensatz [`prk_nit.csv`]("https://github.com/tpetzoldt/datasets/blob/main/data/prk_nit.csv") und Metadaten [`prk_nit_info.txt`]("https://github.com/tpetzoldt/datasets/blob/main/data/prk_nit_info.txt") verfügbar unter [https://github.com/tpetzoldt/datasets](https://github.com/tpetzoldt/datasets).
+:::
+
+
+## Box-Cox Methode
+
+$$
+y' = 
+\begin{cases}
+y^\lambda & | & \lambda \ne 0\\
+\log(y) & | & \lambda =0 
+\end{cases}
+$$
+
+Abschätzung der optimalen Transformation aus der Klasse der Potenzen und Logarithmen
+
+<br>
+
+::: {.column width="42%"}
+<br>
+```{r boxcox_code, echo=TRUE, eval=FALSE}
+library(MASS)
+
+boxcox(Nit90 ~ 1)
+```
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="52%"}
+```{r boxcox, fig.width=4, fig.height=3}
+library(MASS)
+par(mar=c(4.,4,.5,.5))
+dat <- read.csv("../data/prk_nit.csv")
+Nit90 <- dat$biovol[dat$group == "nit90"]
+boxcox(Nit90 ~ 1)
+```
+:::
+
+
+* Argument von `boxcox` ist eine sogenannte „Modellformel“ oder das Ergebnis eines linearen Modells (`lm`)
+* Die einfachste Form ist das „Nullmodell“ ohne Erklärungsvariablen (`~ 1`).
+* Mehr über Modellformeln, siehe ANOVA Kapitel.
+
+
+## Box-Cox Methode: Ergebnisse
+
+
+::: {.column width="47%"}
+
+<br>
+
+### Interpretation
+
+<br>
+
+* Die gepunkteten vertikalen Linien und die horizontale 95%-Linie zeigen die Vertrauensgrenzen für mögliche Transformationen.
+* Die Zahlen sind angenähert $\rightarrow$ runde auf eine Dezimalstelle.
+* Hier können wir entweder eine **log**-Transformation ($\lambda=0$) oder eine Potenz von $\approx 0.5$ verwenden.
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="47%"}
+Ermittel den Zahlenwert direkt:
+
+```{r boxcox_interpretation, echo=TRUE, fig.width=6, fig.height=4}
+bc <- boxcox(Nit90 ~ 1)
+str(bc)
+bc$x[bc$y == max(bc$y)]
+```
+:::
+
+
+
+
+## Test von Sammelproben mit unterschiedlichen Mittelwerten
+
+
+```{r boxcox2, echo=TRUE, fig.align="center", fig.width=6, fig.height=4}
+boxcox(biovol ~ group, data = dat)
+```
+
+* Um die gemeinsame Verteilung aller Gruppen auf einmal zu testen, gib die erklärenden Variablen auf der rechten Seite der Modellformel an: `biovol ~ group`
+* Die optimale Transformation für beide Stichproben zusammen ist **log**.
+
+# Abhängigkeit und Korrelation
+
+## Korrelation
+
+<br>
+
+**Häufigkeiten von nominalen Variablen**
+
+* $\chi^2$-Test
+* Exakter Test von Fisher
+
+⇒ Abhängigkeit zwischen Pflanzenart und Bodentyp
+
+[(siehe oben)]{.gray}
+
+**Ordinale Variablen**
+
+* Spearman-Korrelation
+
+$\rightarrow$ Rangzahlen
+
+**Metrische Skalen**
+
+* Pearson-Korrelation
+* Spearman-Korrelation
+
+
+## Varianz und Kovarianz
+
+<br>
+
+::: {.column width="59%"}
+**Varianz**
+
+* misst die Variation einer einzelnen Variablen
+
+
+$$
+  s^2_x = \frac{\text{Quadratsumme}}{\text{Freiheitsgrade}}=\frac{\sum_{i=1}^n (x_i-\bar{x})^2}{n-1}
+$$
+
+**Kovarianz**
+
+* misst, wie sich zwei Variablen gemeinsam verändern
+
+$$
+  q_{x,y} = \frac{\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})}{n-1}
+$$
+  
+Korrelation: skaliert auf $(-1, +1)$
+
+$$
+  r_{x,y} = \frac{q_{x,y}}{s_x \cdot s_y}
+$$
+
+:::
+
+::: {.column width="39%"}
+
+```{r var-covar, fig.width=3, fig.height=6}
+library(mvtnorm)
+set.seed(123)
+par(mfrow=c(2, 1), mar=c(4,4,1,1))
+boxplot(rnorm(10), names="x")
+xy <- rmvnorm(n=100, mean=c(5,5), sigma=matrix(c(1,0.8,0.8,1), ncol=2))
+plot(xy, pch=16, xlab="x", ylab="y")
+```
+
+:::
+
+## Korrelationskoeffizient nach Pearson
+
+<br>
+
+::: {.column width="69%"}
+
+* der übliche Korrelationskoeffizient, den wir alle kennen
+* testet auf [lineare Abhängigkeit]{.blue}
+
+$$
+r_p=\frac{\sum{(x_i-\bar{x})  (y_i-\bar{y})}}
+       {\sqrt{\sum(x_i-\bar{x})^2\sum(y_i-\bar{y})^2}}
+$$
+
+**Oder:**
+  
+$$
+r_p=\frac {\sum xy - \sum y \sum y / n}
+        {\sqrt{(\sum x^2-(\sum x)^2/n)(\sum y^2-(\sum y)^2/n)}}
+$$
+<br>
+
+Wertebereich: $-1 \le r_p \le +1$
+
+|                     |                                            |
+|---------------------|--------------------------------------------|  
+|$0$                  | keine gegenseitige Abhängigkeit            |
+|$+1 \,\text{or}\,-1$ | strikt positive bzw. negative Abhängigkeit|
+|$0 < |r_p| < 1$      | positive bzw. negative Abhängigkeit        |
+|                     |                                            |
+:::
+
+
+::: {.column width="29%"}
+```{r pearson1, fig.width=4, fig.height=4}
+par(mar=c(4,4,1,1))
+plot(xy, pch=16, xlab="x", ylab="y")
+```
+:::
+
+
+## Welche Größe der Korrelation deutet auf eine Abhängigkeit hin?
+
+::: {.column width="49%"}  
+
+```{r pearson2, fig.width=5,fig.height=5}
+library("mvtnorm")
+par(mar=c(4.1, 5.1, 3.1, 1.1))
+set.seed(1235)
+x1 <- rmvnorm(n=50, mean=c(5,5), sigma=matrix(c(1,0.5,0.5,1), ncol=2))
+plot(x1, xlab="x", ylab="y", las=1, xlim=c(0,10), ylim=c(0,10),
+  main="n=50", pch=16)
+```
+
+$r=`r round(cor(x1[,1], x1[,2]), 2)`, \quad p=`r round(cor.test(x1[,1], x1[,2])$p.value, 4)`$
+:::
+  
+::: {.column width="49%"}  
+```{r pearson3, fig.width=5,fig.height=5}
+par(mar=c(4.1, 5.1, 3.1, 1.1))
+set.seed(345)
+x2 <- rmvnorm(n=5, mean=c(5,5), sigma=matrix(c(1,0.7,0.7,1), ncol=2))
+plot(x2, xlab="x", ylab="y", las=1, xlim=c(2,8), ylim=c(2,8),
+main="n=5", pch=16)
+```
+$r=`r round(cor(x2[,1], x2[,2]), 2)`, \quad p=`r round(cor.test(x2[,1], x2[,2])$p.value, 2)`$
+
+:::
+
+## Signifikante Korrelation?
+
+$$
+\hat{t}_{\alpha/2;n-2} =\frac{|r_p|\sqrt{n-2}}{\sqrt{1-r^2_p}}
+$$
+
+
+$t=0.829 \cdot \sqrt{1000-2}/\sqrt{1-0.829^2}=46.86, df=998$
+
+<br>
+**Schnelltest: kritische Werte für $r_p$**
+
+|     |     |         |          |
+|----:|----:|--------:|---------:|
+|$n$  | d.f.|  $t$    |$r_{krit}$|
+|3    |1    |12.706   |0.997     |
+|5    |3    |3.182    |0.878     |
+|10   |8    |2.306    |0.633     |
+|20   |18   |2.101    |0.445     |
+|50   |48   |2.011    |0.280     |
+|100  |98   |1.984    |0.197     |
+|1000 |998  |1.962    |0.062     |
+|     |     |         |          |
+
+## Rangkorrelation nach Spearman
+
+<br>
+
+* misst **monotone** (und nicht unbedingt lineare) Abhängigkeiten
+* Schätzung aus Rangunterschieden:
+
+$$
+r_s=1-\frac{6 \sum d^2_i}{n(n^2-1)}
+$$
+
+* oder, alternativ: Pearson-Korrelation der geordneten Daten (notwendig bei Gleichheit).
+* Test: für $n < 10$ $\rightarrow$ Tabelle der kritischen Werte
+
+für $10 \leq n$ $\rightarrow$ $t$-Verteilung
+
+$$
+   \hat{t}_{1-\frac{\alpha}{2};n-2}
+      =\frac{|r_s|}{\sqrt{1-r^2_S}} \sqrt{n-2}
+$$
+
+::: aside
+Computerstatistikpakete verwenden einen speziellen Algorithmus (Algorithmus AS 89 nach Best und Roberts, 1975).
+:::
+
+## Beispiel
+
+<br>
+
+|$x$ | $y$   | $R_x$ | $R_y$ | $d$ | $d^2$|
+|----|------:|-------|-------|-----|------|
+|1   | 2.7   |     1 | 1     | 0   | 0    |
+|2   | 7.4   |     2 | 2     | 0   | 0    |
+|3   | 20.1  |     3 | 3     | 0   | 0    |
+|4   | 500.0 |     4 | 5     | -1  | 1    |
+|5   | 148.4 |     5 | 4     | +1  | 1    |
+|    |       |       |       |     | 2    |
+|    |       |       |       |     |      |
+
+
+$$
+r_s=1-\frac{6 \cdot 2}{5\cdot (25-1)}=1-\frac{12}{120}=0.9
+$$
+
+Zum Vergleich: $r_p=0.58$
+
+## Anwendung von Spearman's-$r_s$
+
+<br>
+
+**Vorteile**
+
+* verteilungsfrei (erfordert keine Normalverteilung),
+* erkennt jegliche monotone Abhängigkeit,
+* wird durch Ausreißer kaum beeinträchtigt.
+
+**Nachteile:**
+
+* gewisser Informationsverlust aufgrund der Rangfolge,
+* keine Informationen über die Art der Abhängigkeit,
+* keine direkte Beziehung zum Bestimmtheitsmaß.
+
+Fazit: $r_s$ ist dennoch sehr empfehlenswert!
+
+
+## Korrelationskoeffizienten in **R**
+
+* Pearson's Produkt-Moment-Korrelationskoeffizient
+* Spearman's Rangkorrelationskoeffizient
+
+```{r, echo=TRUE}
+x <- c(1, 2, 3, 5, 7,  9)
+y <- c(3, 2, 5, 6, 8, 11)
+cor.test(x, y, method="pearson")
+```
+
+
+Wenn Linearität oder Normalität der Residuen zweifelhaft sind, verwende eine Rangkorrelation
+
+```{r, echo=TRUE}
+cor.test(x, y, method="spearman")
+```
+
+
+## Problemfälle
+
+```{r cor-violations, fig.width=6,fig.height=4}
+par(mfrow=c(2,2))
+par(mar=c(4.1, 5.1, 1.1, 1.1))
+x <- exp(rmvnorm(n=100, mean=c(5,5), sigma=matrix(c(1,0.8,0.8,1), ncol=2)))
+plot(x, xlab="x", ylab="y", las=1, pch=16, cex=0.5)
+
+x <- seq(1, 10, length=100)
+y <- exp(0.3*x) + rnorm(x, mean=5, sd=1)
+plot(x, y, xlab="x", ylab="y", las=1, pch=16, cex=0.5)
+
+x <- rmvnorm(n=100, mean=c(5,5), sigma=matrix(c(1,0.8,0.8,1), ncol=2))
+x[,2] <- exp(x[,2])
+plot(x, xlab="x", ylab="y", las=1, pch=16, cex=0.5)
+
+x <- rmvnorm(n=20, mean=c(5,5), sigma=matrix(c(0.3,0.0,0.0,0.3), ncol=2))
+x[1,] <- c(8,8)
+plot(x, xlab="x", ylab="y", las=1, pch=16, cex=0.5, xlim=c(0,10), ylim=c(0,10))
+```
+
+
+## Ausblick: Mehr als zwei unabhängige Variablen
+
+<br>
+
+**Mehrfache Korrelation**
+  
+* [Beispiel:]{.blue} Chl-a=$f(x_1, x_2, x_3, \dots)$, wobei $x_i$ =
+      Biomasse der $i$-ten Phytoplanktonart.
+* multipler Korrelationskoeffizient
+* partieller Korrelationskoeffizient
+* Attraktive Methode $\leftrightarrow$, aber in der Praxis schwierig:
+    * „unabhängige“ Variablen können miteinander korrelieren (Multikollinearität)<br>
+        $\Rightarrow$ Verzerrung des Vielfachen $r$.
+    * Nichtlinearitäten sind noch schwieriger zu handhaben als im Fall von zwei Stichproben.
+
+**Empfehlung:**
+
+* Verwende multivariate Methoden (NMDS, PCA, ...) für einen ersten Überblick,
+* Wende die multiple Regression mit Sorgfalt an und nutze Prozesswissen.
+
+
+## Referenzen
+
+<br>

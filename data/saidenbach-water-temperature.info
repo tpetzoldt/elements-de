@@ -1,0 +1,35 @@
+Water temprature of Saidenbach Reservoir, Germany
+
+Date: Year-Month-Day
+Lab: N = Ecological Station Neunzehnhain, S = Reservoir Laboratory Saidenbach
+Depth: water depth in m, measured from surface level
+WT: water temperature in degrees Celsius
+
+TUD - Dresden University of Technology
+Institute of Hydrobiology
+Ecological Station 19hain
+Faculty of Environmental Sciences
+
+and
+
+Workgroup "Limnologie of Reservoirs" 
+Saxonian Academy of Sciences, Leipzig
+
+Data downloaded from: https://fred.igb-berlin.de/data/package/23 (access: 2024-01-06)
+
+License: ODC-BY 1.0 (https://opendatacommons.org/licenses/by/summary/index.html)
+
+
+References: 
+
+Horn, H., W. Horn, L. Paul, D. Uhlmann & I. Röske, 2006: Drei Jahrzehnte
+kontinuierliche Untersuchungen an der Talsperre Saidenbach: Fakten,
+Zusammenhänge, Trends. Abschlussbericht zum Projekt "Langzeitstabilität
+der biologischen Struktur von Talsperren-Ökosystemen" der Arbeitsgruppe
+"Limnologie von Talsperren" der Sächsischen Akademie der Wissenschaften
+zu Leipzig, Verlag Dr. Uwe Miersch, Ossling, 178 S., ISBN: 978-3-00-020646-7
+
+Paul, L., Horn, H. and Horn W. (2020) Saidenbach reservoir in situ, 
+and Saidenbach reservoir inlets. Data packages 20, 23 and 177 from the 
+IGB Freshwater Research and Environmental Database (FRED), available from
+https://fred.igb-berlin.de under the terms of the ODB CC-By license.

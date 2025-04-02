@@ -1,0 +1,19 @@
+author: "Thomas Petzoldt"
+subtitle: "Applied Statistics -- A Practical Course"
+date-format: "YYYY-MM-DD"
+format:
+  html:
+    theme: cosmo
+    css: ../thpe.css
+    toc: true
+    number-sections: true
+  pdf:
+    toc: false
+    number-sections: true
+    colorlinks: true
+bibliography: ../bib.bib
+csl: ../apa.csl
+
+
+
+

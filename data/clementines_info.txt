@@ -1,0 +1,23 @@
+Datasets: clementines*.csv
+
+Description: Size of Clementine Orange samples
+
+License: CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/
+
+Purpose: Statistics Course
+
+Source: The data are from a students course experiments.
+
+clementines2017.csv: November 2017
+clementines.csv:     November 2020
+
+Samples of Clementines were bought in different shops, 
+then weight (in g), width and height (in mm) were measured.
+
+Note: as complete bags of fruits were bought in the shops, 
+  representativity has limited value. This is part of the
+  discussion in the course.
+
+Thomas Petzoldt, Technische Universitaet Dresden, 
+Institute of Hydrobiology, Workgroup Limnology
+

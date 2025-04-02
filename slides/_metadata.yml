@@ -1,0 +1,43 @@
+#format:
+#  html:
+#    theme: cosmo
+#    css: colors.css
+#    toc: true
+    
+author: "Thomas Petzoldt"
+subtitle: "Applied Statistics -- A Practical Course"
+date-format: "YYYY-MM-DD"
+title-page-header: "../img/logo-header.svg"
+title-slide-attributes:
+  ## without logos
+  data-background-image: "../img/tud-title-bg-wide-2021.png"
+  ## with logos; needs to uncomment also "contain""
+  #data-background-image: "../img/titlepage-lecture-slides-empty.svg"
+  #data-background-size: contain
+  body-color: "#ffffff"
+#  data-background-opacity: "0.5"
+include-in-header:
+  - text: |
+      <style>
+      #title-slide 
+        .title {color: #cef0ffff;}
+        .subtitle {color: #ee7f00;}
+        .quarto-title-author {color: #69af22;}
+        .date {color: #69af22;}
+      </style>  
+format: 
+  revealjs:
+    theme: [sky, ../thpe-large.scss]
+    css: ../thpe.css
+    body-color: "#069af22"
+    transition: fade
+    data-transition-speed: fast
+    navigation-mode: linear
+    code-line-numbers: false
+    footer: "<span style='color: white; font-size: small; font-weight:400; float: right; margin-top: 40px; margin-right: 4%;'> [&#x1F3E0; Home](../) </span>"
+bibliography: ../bib.bib
+csl: ../apa.csl
+
+
+
+

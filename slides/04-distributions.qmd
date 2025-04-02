@@ -1,0 +1,1081 @@
+---
+subtitle: "Applied Statistics -- A Practical Course"
+title: "04-Distributions"
+date:   "`r Sys.Date()`"
+--- 
+
+
+```{r, echo=FALSE, include=FALSE}
+library("knitr")
+```
+
+
+
+## Wahrscheinlichkeitsverteilungen
+
+<br>
+
+**Definition**
+
+* eine mathematische Funktion 
+* Wahrscheinlichkeit des Auftretens verschiedener möglicher Ergebnisse für ein Experiment
+
+[$\rightarrow$ https://en.wikipedia.org/wiki/Probability_distribution](https://en.wikipedia.org/wiki/Probability_distribution)
+
+<br>
+
+**Eigenschaften**
+
+1. Eine bestimmte Form (Verteilungstyp, eine mathematische Formel)
+2. Kann durch ihre Parameter beschrieben werden (z. B. Mittelwert $\mu$ und Standardabweichung $\sigma$).
+
+Wahrscheinlichkeitsverteilungen sind eines der Kernkonzepte der Statistik und viele Statistikkurse beginnen mit dem Werfen von Münzen[^coins] oder Würfeln.
+Wir beginnen mit einem kleinen Experiment im Klassenzimmer.
+
+
+[^coins]: Wir gehen davon aus, dass die Chancen 50:50 sind. Forscher fanden heraus, dass es eine sehr geringe Abweichung gibt, siehe [$\rightarrow$ youtube video](https://youtu.be/AYnJv68T3MM)
+
+
+## Was ist deine Lieblingszahl?
+
+In einem Experiment im Hörsaal wurden die Studierenden eines internationalen Kurses nach ihrer Lieblingszahl von 1 bis 9 gefragt.
+
+```{r, echo=FALSE}
+numbers <- 1:9
+obsfreq <- c(0, 1, 5, 5, 6, 4, 12, 3, 3) # 2024
+kable(t(data.frame(Zahl=numbers, Häufigkeit=obsfreq)))
+```
+
+
+```{r favorite-num, echo=FALSE, fig.align='center'}
+barplot(obsfreq, names.arg = 1:9, col="wheat", border="navy",
+        ylim=c(0, 1.1*max(obsfreq)), las=1, xlab="Zahl", ylab="Häufigkeit")
+box()
+```
+
+Die resultierende Verteilung ist:
+
+* **empirisch:** Daten aus einem Experiment
+* **diskret:** nur diskrete Zahlen (1, 2, 3 ..., 9) möglich, keine Brüche
+
+
+## Computersimulationen
+
+<br>
+
+Anstelle von realen Experimenten können wir auch simulierte Zufallszahlen verwenden.
+
+* **Vorteil:** wir können Daten aus Verteilungen mit bekannten Eigenschaften simulieren.
+* **Herausforderung:** etwas abstrakt
+
+**Zweck**
+
+* ein Gefühl für den Zufall zu bekommen, wie eine Stichprobe nach einer bestimmten „Theorie“ aussehen kann
+* statistische Methoden erforschen und testen und das Verständnis schulen
+* ein Werkzeug für die Versuchsplanung
+* Anwendung und Aussagekraft einer Analyse im Vorfeld testen
+
+<br>
+
+[$\rightarrow$ Simulation: ein wichtiges Instrument für die Entwicklung und das Verständnis statistischer Methoden!]{.red}
+
+## Kontinuierliche Gleichmäßigkeitsverteilung $\mathbf{U}(0, 1)$
+
+::: {.column width="59%"}
+* gleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall
+* z.B. $[0, 1]$
+* in **R**: `runif`, **r**andom, **unif**orm
+
+```{r, echo=TRUE}
+runif(10)
+```
+
+```{r, include=FALSE}
+set.seed(123)
+```
+
+```{r}
+x <- runif(400)
+```
+
+<br> <br>
+
+* **Binning:** Unterteilung der Werte in Klassen
+
+:::{.bigfont}
+```{r eval=FALSE}
+x <- runif(400)
+hist(x)
+```
+:::
+
+
+:::
+
+::: {.column width="39%"}
+```{r uniform-random, fig.align='right', fig.width=3, fig.height=6}
+par(mfrow=c(2, 1), mar=c(4,4,1,1)+.01, las=1)
+plot(x = x, y=1:length(x), ylab="Index")
+hist(x, main="")
+```
+:::
+
+<!---
+$$
+X \sim U(x_{min}, x_{max})
+$$
+--->
+
+## Dichtefunktion von $\mathbf{U}(x_{min}, x_{max})$
+
+
+```{r uniform-pdf, fig.align='center', fig.width=6, fig.height=4}
+par(mar=c(4.1,7.1,1,1), las=1)
+x <- c(-0.2, 0-1e-8, 0+1e-8, 1-1e-8, 1+1e-8, 1.2)
+plot(x, dunif(x), type="l", col="red", lwd=2,
+     axes=FALSE,
+     xlab="random variable X",
+     ylab="probability density")
+axis(1, at=c(0, 1), label=c("x_min", "x_max"))
+axis(2, at=c(0, 1), label=c(0, "1/(xmax-xmin)"))
+box()
+```
+
+
+* Dichte $f(X)$, manchmal abgekürzt als „pdf“ (*probability density function*):
+
+
+$$
+f(x) = \begin{cases}
+         \frac{1}{x_{max}-x_{min}} & \text{für } x \in [x_{min},x_{max}] \\
+         0                     & \text{sonst}
+       \end{cases}
+$$
+
+
+* Fläche unter der Kurve (d. h. das Integral) = 1,0
+* 100% der Ereignisse liegen zwischen $-\infty$ und $+\infty$<br>
+[und für $\mathbf{U}(x_{min}, x_{max})$ im Intervall $[x_{min}, y_{max}]$]{.gray}
+
+
+## Kumulative Verteilungsfunktion von $\mathbf{U}(x_{min}, x_{max})$
+
+<br>
+
+::: {.column width="59%"}
+Die **cdf** ist das Integral der Dichtefunktion:
+
+
+$$
+F(x) =\int_{-\infty}^{x} f(x) dx
+$$
+Die Gesamtfläche [(Gesamtwahrscheinlichkeit)]{.gray} ist $1.0$:
+
+$$
+F(x) =\int_{-\infty}^{+\infty} f(x) dx = 1
+$$
+
+Bei der Gleichverteilung ist es so:
+
+$$
+F(x) = \begin{cases}
+         0                     & \text{für } x < x_{min} \\
+         \frac{x-x_{min}}{x_{max}-x_{min}} & \text{für } x \in [x_{min},x_{max}] \\
+         1                     & \text{für } x > x_{max}
+       \end{cases}
+$$
+:::
+
+::: {.column width="39%"}
+
+```{r uniform-cdf, fig.width=4, fig.height=4}
+par(las=1)
+x <- c(-0.2, 0, 1, 1.2)
+plot(x, punif(x), type="l", lwd=2, col="red",
+                  xlab="random variable X",
+                  ylab="probability",
+     axes=FALSE)
+axis(1, at=c(0, 1), label=c("x_min", "x_max"))
+axis(2, at=c(0, 1), label=c(0, 1))
+box()
+```
+:::
+
+
+## Quantilsfunktion
+
+<br>
+
+... die Umkehrung der kumulativen Verteilungsfunktion.
+
+::: {.column width="49%"}
+
+```{r uniform-cdf, fig.width=4, fig.height=4}
+```
+[Kumulative Dichtefunktion]{.blue}
+:::
+
+::: {.column width="49%"}
+
+```{r uniform-qdf, fig.width=4, fig.height=4}
+x <- c(-0.2, 0, 1, 1.2)
+plot(y=x, x=punif(x), type="l", lwd=2, col="red",
+                  ylab="random variable X",
+                  xlab="probability",
+     axes=FALSE)
+axis(2, at=c(0, 1), label=c("x_min", "x_max"))
+axis(1, at=c(0, 1), label=c(0, "1"))
+box()
+```
+[Quantilsfunktion]{.blue}
+:::
+
+Beispiel: In welchem Bereich kann man 95% einer Gleichverteilung $\mathbf{U}(40,60)$ finden?
+
+
+## Zusammenfassung: Gleichverteilung
+
+<br>
+
+```{r unif-summary, echo=FALSE, fig.align='center'}
+par(mfrow=c(2, 2), mar=c(4,4,1,1)+.1, las=1)
+x <- runif(400)
+h <- hist(x, xlab="random variable X", main="", col="wheat")
+hcum <- cumsum(h$counts)/sum(h$counts)
+
+x <- c(-0.2, 0-1e-8, 0+1e-8, 1-1e-8, 1+1e-8, 1.2)
+plot(x, dunif(x), type="l",
+                  xlab="random variable X",
+                  ylab="probability function", col="red")
+
+barplot(hcum, names.arg=round(h$mids,2),
+        col="wheat", ylab="cumulative probability",
+        xlab="random variable X")
+plot(x, punif(x), type="l",
+                  xlab="random variable X",
+                  ylab="distribution function", col="red")
+```
+
+
+# Die Normalverteilung
+
+## Die Normalverteilung $\mathbf{N}(\mu, \sigma)$
+
+* von großer theoretischer Bedeutung aufgrund des zentralen Grenzwertsatzes (CLT)
+* ergibt sich aus der Addition einer großen Anzahl von Zufallswerten gleicher Größenordnung.
+
+**Die Dichtefunktion der Normalverteilung ist mathematisch schön.**
+
+$$
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} \, \mathrm{e}^{-\frac{(x-\mu)^2}{2 \sigma^2}}
+$$
+
+![C.F. Gauß, Gauß-Kurve und Formel auf einer deutschen DM-Banknote von 1991--2001 ([Wikipedia](https://de.wikipedia.org/wiki/Bargeld_der_Deutschen_Mark), CC0)](../img/10_DM_Serie4_Vorderseite.jpg)
+
+## Der zentrale Grenzwertsatz (CLT)
+
+<br>
+
+> Die Summen einer großen Anzahl $n$ unabhängiger und identisch verteilter Zufallswerte
+> sind normalverteilt, unabhängig vom Typ der
+> ursprünglichen Verteilung.
+
+<br>
+
+```{r clt-simulation2a, fig.align='center', fig.height=2.5}
+par(mfrow=c(1,2), mar=c(4,4,1,1), las=1)
+set.seed(890)
+x <- matrix(runif(100*100), nrow=100)
+plot(as.vector(x[,1]), main="", xlab="sample", ylab="value", pch=16, cex=0.5)
+hist(rowSums(x), xlab="distribution of sums", main="", col="wheat")
+```
+
+## Ein Simulationsexperiment
+
+<br>
+
+::: {.column width="59%"}
+
+1. Erstelle eine Matrix mit 100 Zeilen und 25 Spalten von gleichmäßig verteilten Zufallszahlen
+2. Berechne die Zeilensummen
+
+```{r clt-simulation, eval=FALSE, echo=TRUE}
+par(mfrow=c(2, 1), las=1)
+set.seed(42)
+x  <- matrix(runif(25 * 100), ncol = 25)
+
+# View(x) # uncomment this to show the matrix
+
+x_sums <- rowSums(x)
+hist(x)
+hist(x_sums)
+```
+
+<br>[
+$\rightarrow$ Zeilensummen sind annähernd normalverteilt]{.blue}
+:::
+
+
+::: {.column width="39%"}
+```{r clt-simulation, fig.width=4, fig.height=6, fig.aling='center'}
+```
+:::
+
+
+
+## Zufallszahlen und Dichtefunktion
+
+
+```{r, include=FALSE}
+set.seed(9275)
+```
+
+
+
+```{r normal-random}
+par(mfrow=c(1, 2))
+x <- rnorm(1000, 0, 1)
+plot(x, 1:1000, ylab="random numbers", pch=".", cex=2, xlim=c(-4, 4))
+hist(x, probability = TRUE, col="wheat", ylim=c(0, 0.4), xlim=c(-4, 4))
+xnew <- seq(min(x), max(x), length=100)
+lines(xnew, dnorm(xnew, mean(x), sd(x)), col="red", lwd=2)
+```
+
+
+## Dichte und Quantile der Standardnormalen
+
+```{r normal-density95, echo=FALSE, fig.align='center'}
+par(mar=c(4.1, 5.1, 1.1, 1.1))
+x <- seq(-3,3, 0.1)
+plot(x, dnorm(x), col="red", type="l", lwd=2, ylab="probability density", axes=FALSE, xlab="")
+axis(2, las=1)
+axis(1, at=-2:2, labels=c("-2", "-1", "0", "+1", "+2"))
+mtext("random variable X", side=1, line=2.2)
+box()
+x <- c(seq(-1.96, 1.96, 0.1))
+y <- dnorm(x)
+polygon(c(-1.96, x, 1.96, -1.96), c(0, y, 0, 0), density=10, col="grey",lty="solid")
+text(0, 0.15, "95%", cex=2)
+x <- seq(-3,3, 0.1)
+lines(x, dnorm(x), lwd=2, col="red")
+```
+* Theoretisch liegen 50% der Werte unter und 50% über dem Mittelwert
+* 95% liegen zwischen $\pm 2 \sigma$
+
+
+## Dichte und Quantile der Standardnormalen
+
+![](../img/normal-density-quantiles.png)
+
+
+## Kumulative Verteilungsfunktion -- Quantilsfunktion
+
+```{r normal-cdf, echo=FALSE, fig.align='center'}
+par(mfrow=c(1, 2), las=1)
+par(mar=c(4.1, 5.1, 1.1, 1.1))
+x <- seq(-3,3, 0.1)
+plot(x, pnorm(x), col="red", type="l", lwd=2, ylab="probability p", xlab="")
+yy <- c(0.025, 0.5, 0.975)
+mtext("random variable X", side=1, line=2.2)
+box()
+abline(v=qnorm(c(0.025, 0.975)), col="grey")
+abline(h=c(0.025,0.975), col="grey")
+arrows(-1.96, 0.025, -1.96, 0.975, angle=10, lwd=2)
+arrows(-1.96, 0.975, -1.96, 0.025, angle=10, lwd=2)
+text(-1, 0.5, "95%", cex=2)
+
+x <- seq(0.01, 0.99, length=100)
+plot(x, qnorm(x), col="red", type="l", lwd=2, ylab="quantile z", xlab="")
+yy <- c(0.025, 0.5, 0.975)
+mtext("probability p", side=1, line=2.2)
+box()
+arrows(0.975, -3, 0.975, qnorm(0.975), angle=10, col="blue", lwd=2)
+arrows(0.975, qnorm(0.975), 0, qnorm(0.975), angle=10, col="blue", lwd=2)
+text(-1.65, 0.5, "95%", cex=2)
+```
+
+
+| Quantile  | 1       | 1.64 |  1.96 | 2.0       | 2.33 | 2.57 | 3      | $\mu \pm z\cdot \sigma$ |
+|:---------:|:-------:|:----:|:-----:|:---------:|:----:|:----:|:------:|-------------------------|
+| one-sided |         | 0.95 |  0.975| 0.977     | 0.99 | 0.995| 0.9986 | $1-\alpha$              |
+| two-sided | 0.68    | 0.90 |  0.95 | 0.955     | 0.98 | 0.99 | 0.997  | $1-\alpha/2$            |
+|           |         |      |       |           |      |      |        |                         |
+
+## Standardnormale, Skalierung und Verschiebung
+
+```{r normal-shift-scale, fig.align='center'}
+par(mar=c(4.1, 5.1, 1.1, 1.1), las=1)
+x<-seq(-5,13,length=300)
+plot(x, dnorm(x), type="l", col="red", lwd=2, ylab="density function")
+lines(x, dnorm(x, mean=4), col="blue", lwd=2)
+#lines(x, dnorm(x, sd=2))
+lines(x, dnorm(x, mean=4, sd=2), col="orange", lwd=2)
+legend("topright",c(expression(mu==0~sigma==1),
+               expression(mu==4~sigma==1),
+               expression(mu==4~sigma==2)),
+               lwd=2, col=c("red", "blue", "orange"))
+```
+
+* $\mu$ ist der **Verschiebungs**parameter, der die gesamte glockenförmige Kurve entlang der $x$-Achse verschiebt.
+* $\sigma$ ist der **Skalierungs**parameter, der die Kurve in Richtung $x$ streckt oder staucht.
+
+
+## Standardisierung ($z$-Transformation)
+
+<br>
+
+Jede Normalverteilung kann skaliert verschoben werden, um eine Standardnormalverteilung mit $\mu=0, \sigma=1$ zu bilden.
+
+<br>
+
+::: {.column width="40%"}
+
+**Normalverteilung**
+
+```{r normal-ms, fig.width=4, fig.height=2.5}
+par(mar=c(4.1,4.1,1,1), las=1)
+x <- seq(10, 90, length.out=250)
+plot(x, dnorm(x, 50, 10), type="l", col="red", lwd=2, ylab="density function")
+```
+
+
+$$
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} \, \mathrm{e}^{-\frac{(x-\mu)^2}{2 \sigma^2}}
+$$
+:::
+
+
+::: {.column width="18%"}
+<br><br><br><br>
+$$
+z = \frac{x-\mu}{\sigma}
+$$
+$\longrightarrow$ $\longrightarrow$ $\longrightarrow$
+:::
+
+::: {.column width="40%"}
+
+**Standardnormalverteilung**
+
+
+```{r normal-standard, fig.width=4, fig.height=2.5}
+par(mar=c(4.1,4.1,1,1), las=1)
+x <- seq(-4, 4, length.out=250)
+plot(x, dnorm(x, 0, 1), type="l", col="red", lwd=2, xlab="z", ylab="density function")
+```
+
+$$
+f(x) = \frac{1}{\sqrt{2\pi}} \, \mathrm{e}^{-\frac{1}{2}x^2}
+$$
+:::
+
+## t-Verteilung $\mathbf{t}(x, df)$
+
+```{r t-distr, fig.align='center'}
+par(mar=c(4.1, 4.1, 1, 1), las=1)
+x <- seq(-3,3, length=100)
+plot(x, dnorm(x), type="l", col="red", ylab="density function")
+lines(x,dt(x, df=1), col="magenta", lwd=3)
+lines(x,dt(x, df=4), col="forestgreen", lwd=3)
+lines(x,dt(x, df=9), col="blue", lwd=3)
+lines(x,dt(x, df=29), col="cyan", lwd=3)
+lines(x,dnorm(x), col="red", lwd=3)
+legend("topright", legend=c("1 df", "4 df", "9 df", "29 df", "normal distr"),
+       col = c("magenta", "forestgreen", "blue", "cyan", "red"), lwd=3)
+```
+
+
+* zusätzlicher Parameter „Freiheitsgrade“ (df)
+* wird für Konfidenzintervalle und statistische Tests verwendet
+* konvergiert zur Normalverteilung für $df \rightarrow \infty$
+
+## Abhängigkeit des t-Wertes von der Anzahl der df
+
+```{r t-from-df}
+par(mar=c(4.1,4.1,1,1), las=1)
+plot(1:30, qt(0.975, 1:30), type="h", lwd=5, col="navy",
+   ylab="Student's t", xlab="degrees of freedom (d.f.)", ylim=c(0,15))
+abline(h=qnorm(0.975), lty="dotted", col="red", lwd=3)
+axis(side=2, at=1.96, col="red")
+```
+
+```{r t-table}
+df <- c(1, 4, 9, 19, 29, 99, 999)
+t <- qt(0.975, df)
+kable(t(data.frame(df=round(df, 0), t=round(t, 2))))
+```
+
+
+
+## Logarithmische Normalverteilung (Lognormal)
+
+
+```{r, eval=FALSE}
+set.seed(125)
+```
+
+```{r lognormal, fig.align='center'}
+par(mar=c(4.1,4.1,1,1), las=1)
+x <- rlnorm(1000, meanlog=0, sdlog=0.5)
+hist(x, probability=TRUE, ylim=c(0, 0.9), col="wheat", main="")
+xnew <- seq(min(x), max(x), length.out=250)
+lines(xnew, dlnorm(xnew, meanlog=mean(log(x)),
+  sdlog=sd(log(x))),lwd=2, col="red")
+```
+
+
+* Viele Prozesse in der Natur **folgen nicht** einer Normalverteilung.
+* begrenzt durch Null auf der linken Seite
+* große Extremwerte auf der rechten Seite
+
+**Beispiele:** Abfluss von Flüssen, Nährstoffkonzentrationen, Algenbiomasse in einem See
+
+
+## Übergeordnete Verteilung der Lognormalverteilung
+
+
+```{r lognormal-parent}
+par(mfrow=c(1 ,2))
+x <- rlnorm(1000, meanlog=0, sdlog=0.5)
+hist(x, probability=TRUE, main="Lognormal distribution", col="wheat")
+xnew <- seq(min(x), max(x), length=100)
+lines(xnew, dlnorm(xnew, meanlog=mean(log(x)),
+  sdlog=sd(log(x))), col="red", lwd=2)
+hist(log(x), probability=TRUE, xlim=c(-2, 2), ylim=c(0, 0.8), main="Parent distribution", col="wheat")
+xnew <- seq(log(min(x)), log(max(x)), length=100)
+lines(xnew, dnorm(xnew, mean=mean(log(x)), sd=sd(log(x))), col="red", lwd=2)
+```
+
+* log von Werten einer Lognormalverteilung $\rightarrow$ übergeordnete Normalverteilung.
+* Die Lognormalverteilung wird durch die Parameter der log-transformierten Daten $\bar{x}_L$ und $s_L$ beschrieben
+* der Antilog von $\bar{x}_L$ ist das geometrische Mittel
+
+
+## Binomialverteilung
+
+
+```{r binomial, echo=FALSE, fig.align='center'}
+par(mfrow=c(2, 2))
+par(mar=c(4.1, 5.1, 1.1, 1.1))
+x <- 0:4
+barplot(dbinom(x,3,1/6), names=x, las=1, xlab="6 eyes with 3 trials", ylab="rel. Freq.", col="wheat")
+box()
+x <- 0:10
+barplot(dbinom(x,10,1/6), names=x, las=1, xlab="6 eyes with 10 trials", ylab="rel. Freq.", col="wheat")
+box()
+x <- 0:25
+barplot(dbinom(x,25,1/6), names=x, las=1, xlab="6 eyes with 25 trials", ylab="rel. Freq.", col="wheat")
+box()
+x <- 0:35
+barplot(dbinom(x,100,1/6), names=x, las=1, xlab="6 eyes with 100 trials", ylab="rel. Freq.", col="wheat")
+box()
+```
+
+* Anzahl der erfolgreichen Versuche aus $n$ Gesamtversuchen mit
+  Erfolgswahrscheinlichkeit $p$.
+* Wie viele „6“ mit Wahrscheinlichkeit $1/6$ in 3 Versuchen?
+* Medizin, Toxikologie, Vergleich von Prozentzahlen
+* Ähnlich, aber ohne Ersetzen: Hypergeometrische Verteilung im Lotto
+
+
+## Poisson-Verteilung
+
+```{r poisson, fig.height=4, fig.width=12, fig.align='center'}
+x <- 1:20
+plot(x, dpois(x,2), type="b", col="blue", lwd=2, ylab="density")
+lines(x, dpois(x, 5), type="b", col="red", lwd=2)
+lines(x, dpois(x, 10), type="b", col="orange", lwd=2)
+legend(15,0.25,c(expression(lambda==2),
+               expression(lambda==5),
+               expression(lambda==10)),
+               lwd=2, col=c("blue", "red", "orange"))
+```
+
+* Verteilung von seltenen Ereignissen, eine diskrete Verteilung
+* Mittelwert und Varianz sind gleich ($\mu = \sigma^2$), daraus ergibt sich der Parameter „lamda“ ($\lambda$) 
+* **Beispiele:** Bakterienzählung auf einem Raster, Warteschlangen, Ausfallmodelle
+
+**Quasi-Poisson, wenn $\mu \neq \sigma^2$**
+
+* Wenn $s^2 > \bar{x}$: Überdispersion
+* wenn $s^2 < \bar{x}$: Unterdispersion
+
+## Konfidenzintervall
+
+-- hängt nur von $\lambda$ bzw. der Anzahl der gezählten Einheiten ($k$) ab
+
+```{r poisson-ci, echo=FALSE, fig.align='center'}
+library("epitools")
+x <- unique(round(seq(1, 400, length=100)))
+y <- pois.exact(x, conf.level=0.95)
+plot(x, y$lower/x-1, type="n", ylim=c(-0.5,0.8), xlab="n", ylab="rel. 95%-Interval", las=1)
+axis(1, at=seq(10,400,10), labels=FALSE, tcl=-0.2)
+abline(h=seq(-0.5,0.8, 0.1), col="grey", lty="dotted")
+abline(v=c(10, 20, 40, 100, 200, 400), col="grey", lty="dotted")
+abline(h=0, col="red", lty="dashed", lwd=2)
+lines(x, y$lower/x-1, lwd=2)
+lines(x, y$upper/x-1, lwd=2)
+```
+
+**Typischer Fehler der Zellzählung:** 95% Konfidenzintervall
+
+```{r, echo=FALSE}
+x <- c(2, 3, 5, 10, 50, 100, 200, 400, 1000)
+y <- pois.exact(x, conf.level=0.95)
+df <- as.data.frame(lapply(data.frame(counts = y$x, lower = y$lower, upper = y$upper), round))
+kable(t(df))
+```
+
+<!--
+
+## Gamma distribution
+
+The gamma distribution is a right skewed distribution, that is
+useful for a number of practical problems, especially in the context of
+*generalized linear models* (GLM), that are increasingly applied for the 
+analysis of variance of non-normal data.  
+The gamma distribution is described by the two parameters *shape* and *rate* or,
+alternatively, by *shape* and *scale* where $scale=1/rate$.  The density
+function is:
+
+
+$$
+f(x) = \frac{1}{\beta^\alpha \Gamma(\alpha)} x^{\alpha-1} \mathbf{e}^{-x/\beta}
+$$
+
+Here $\alpha$ represents the *shape* parameter and $\beta$ the
+*scale* parameter. Interestingly, $\alpha\cdot\beta$ is equal to the
+mean and $\alpha\cdot\beta^2$ to the variance, so that mean and variance can be used
+for an estimation of shape and scale (method of moments).
+
+The gamma distribution is related to several other distributions, for example the $\chi^2$-distribution that is a special case with $\alpha=df/2$,
+$\mu=df$ and $\sigma^2=2df$ or the exponental distribution with $\mu=\beta$, 
+$\sigma=\beta^2$ und $\alpha=1$.
+
+As we see the gamma distribution is very flexible. For visualization we
+will draw a few examples (@fig-dgamma):
+
+```{r gamma, dgamma}
+par(mfrow=c(2, 2))
+plot(x, dgamma(x, .5, .5), type="l")
+plot(x, dgamma(x, .8, .8), type="l")
+plot(x, dgamma(x, 2, 2), type="l")
+plot(x, dgamma(x, 10, 10), type="l")
+```
+
+
+As a small exercise we may generate 1000 random numbers for these examples
+with `rgamma` and estimate mean value and variance.
+
+**Example**
+
+The data set `prk_nit.txt` contains individual biomasses of diatom algae cells
+of the species *Nitzschia acicularis*, that were determined in two different
+students courses. The example data can directly be retrieved from Github,
+then will estimate the parameters of a gamma distribution using the method of 
+moments (fig-prknit1):
+
+
+```{r}
+#| label: fig-prknit1
+#| fig-cap: "Histogram of the Nitzschia data set and its estimated gamma distribution."
+dat <- read.csv("https://tpetzoldt.github.io/datasets/data/prk_nit.csv")
+Nit90 <- dat$biovol[dat$group == "nit90"]
+rate <- mean(Nit90) / var(Nit90)
+shape <- rate * mean(Nit90)
+xnew <- seq(0.01, max(Nit90), length = 100)
+hist(Nit90, probability=TRUE)
+lines(xnew, dgamma(xnew, rate=rate, shape=shape), col="red")
+```
+
+-->
+
+## Tests für die Verteilung
+
+<br>
+
+Manchmal möchte man wissen, ob ein Datensatz zu einer bestimmten
+Art von Verteilung gehört. Das klingt einfach, ist aber aus theoretischen Gründen ziemlich schwierig:
+
+* statistische Tests prüfen auf Abweichungen von der Nullhypothese
+* hier wollen wir aber das Gegenteil testen, ob $H_0$ wahr ist
+
+Das ist in der Tat unmöglich, denn „nicht signifikant“ bedeutet nur, dass ein potenzieller Effekt entweder nicht vorhanden oder einfach zu klein ist, um entdeckt zu werden. Im Gegensatz dazu beinhaltet „signifikant anders“ eine gewisse Wahrscheinlichkeit von falsch-positiven Ergebnissen.
+
+
+Die meisten statistischen Tests erfordern jedoch keine perfekte Übereinstimmung mit einer bestimmten Verteilung:
+
+* t-Test und ANOVA setzen Normalität der Residuen voraus
+* aufgrund des CLT konvergiert die Verteilung der Summen und Mittelwerte zur Normalverteilung 
+
+
+## Shapiro-Wilks-W-Test [?]{.red}
+
+$\rightarrow$ Ziel: Prüfung, ob eine Stichprobe einer Normalverteilung entspricht
+
+```{r, include=FALSE}
+set.seed(734)
+```
+
+
+```{r echo=TRUE}
+x <- rnorm(100)
+shapiro.test(x)
+```
+
+<br>
+
+$\rightarrow$ der $p$-Wert ist größer als 0,05, also würden wir $H_0$ behalten 
+und schlussfolgern, dass nichts gegen die Annahme der Normalität spricht
+
+<br>
+
+Die Interpretation des Shapiro-Wilks-Tests ist mit Vorsicht zu genießen:
+
+* für kleine $n$ ist der Test nicht empfindlich genug
+* bei großen $n$ ist er überempfindlich
+* [Die Verwendung von Shapiro-Wilks zur Überprüfung der Normalität für t-Tests und ANOVA wird nicht mehr empfohlen]{.red}
+
+::: aside
+Auch die $\chi^2$- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für Normalitätstests nicht mehr empfohlen, sind aber für andere Testprobleme weiterhin wichtig.
+:::
+
+## Grafische Prüfung der Normalität
+
+
+::: {.column width="49%"}
+```{r distrbox-examples, fig.width=5, fig.height=3}
+par(mar=c(4.1, 4.1, 1, 1), las=1)
+x1 <- rnorm(100, mean = 50, sd = 10)      # normal distribution
+x2 <- runif(100, min = 30, max = 70)      # uniform distribution
+x3 <- rlnorm(100, meanlog = 2, sdlog = 1) # lognormal distribution
+boxplot(x1, x2, x3,
+  names=c("Normal", "Uniform", "Lognormal"), col="wheat")
+```
+:::
+
+::: {.column width="49%"}
+```{r qqnorm-examples, fig.width=5, fig.height=3}
+par(las=1)
+par(mfrow=c(1,3))
+qqnorm(x1, main = "normal"); qqline(x1, col="forestgreen")
+qqnorm(x2, main = "uniform"); qqline(x2, col="red")
+qqnorm(x3, main = "lognormal"); qqline(x3, col="red")
+```
+:::
+
+* $x$: theoretische Quantile, in denen ein Wert bei Normalverteilung gefunden werden sollte
+* $y$: normalisierte und geordnete Messwerte ($z$- Scores)
+* skaliert in der Einheit der Standardabweichungen
+* Normalverteilung, wenn die Punkte einer Geraden folgen
+
+[Empfehlung: Verwende grafische Überprüfungen. Vertraue nicht auf Shapiro Wilks!]{.red}
+
+## Transformation
+
+
+* ermöglicht die Anwendung von Methoden, die für normalverteilte Daten entwickelt wurden, auf nicht-normalverteilte Fälle
+* in der Vergangenheit sehr verbreitet, manchmal immer noch nützlich
+* Moderne Methoden können bestimmte Verteilungen direkt verarbeiten, z. B. Binomial-, Gamma- oder Poisson-Verteilungen.
+
+**Transformationen für rechtsschiefe Daten**
+
+* $x'=\log(x)$
+* [$x'=\log(x + a)$]{.red}
+* $x'=(x+a)^c$ [($a$ zwischen 0.5 und 1)]{.gray}
+* $x'=1/x$ [("sehr stark“, d. h. in den meisten Fällen zu extrem)]{.gray}
+* $x'=a - 1/\sqrt{x}$ [(um die Skala einfacher zu gestalten)]{.gray}
+* $x'=1/\sqrt{x}$ [(Kompromiss zwischen $\ln$ und $1/x$)]{.gray}
+* $x'=a+bx^c$ [(sehr allgemein, enthält Potenzen und Wurzeln)]{.gray}
+
+## Transformationen II
+
+**Transformationen für Zähldaten**
+
+* $x'=\sqrt{3/8+x}$ [(Zählungen: 1, 2, 3 $\rightarrow$ 0.61, 1.17, 1.54,  1.84, \dots)]{.gray}
+* $x'=\lg(x+3/8)$
+* $x'=\log(\log(x))$ [für riesige Zahlen]{.gray}
+
+[$\rightarrow$ stattdessen ein GLM mit der Familie Poisson oder Quasi-Poisson in Betracht ziehen]{.blue}
+
+**Verhältnisse und Prozentsätze**
+
+* $x'=\arcsin \sqrt{x/n}$
+* $x'=\arcsin \sqrt{\frac{x+3/8}{n+3/4}}$
+
+[$\rightarrow$ stattdessen ein GLM mit Binomialfamilie in Betracht ziehen]{.blue}
+<!------------------------------------------------------------------------------
+
+## Box-Cox transformation
+
+Estimate optimal transformation from the class of powers and logarithms
+
+$$
+y' = y^\lambda
+$$
+
+* $\lambda=0$ means that a logarithmic transformation would be
+appropriate.  Function `boxcox` requires a so-called "model
+formula" or the outcome of a linear model (`lm`) as the
+argument. For testing a single sample, we can use the model formula of a "null
+model" to test the full data set without explanation variables
+(`~ 1`). More about model formulas can be found later, in
+the ANOVA chapter.
+
+```{r boxcox}
+library(MASS)
+dat <- read.csv("https://tpetzoldt.github.io/datasets/data/prk_nit.csv")
+Nit90 <- dat$biovol[dat$group == "nit90"]
+boxcox(Nit90 ~ 1)
+```
+
+The dotted vertical lines and the horizontal 95\,\%-line show the
+confidence limits for possible transformations. Here we see that
+either a logarithmic transformation ($\lambda=0$) or a power of
+approximately 0.5 are suitable.
+
+It is also possible to obtain the numerical value directly:
+
+```{r fig=FALSE}
+bc <- boxcox(Nit90 ~ 1, plotit = FALSE)
+str(bc)
+bc$x[bc$y == max(bc$y)]
+```
+
+We should keep in mind that these are approximate numbers so that
+it makes not much sense to use more than one decimal.
+
+It is also possible to test for joint distribution of all groups at once by
+using explanatory variables (here `group`) on the right hand side of
+the model formula:
+
+```{r boxcox2}
+#| label: fig-boxcox2
+#| fig-cap: "Log-Likelihood profile of a Box-Cox-transformation for the pooled data sets Nit85 and Nit90."
+dat <- read.csv("https://tpetzoldt.github.io/datasets/data/prk_nit.csv")
+boxcox(biovol ~ group, data=dat)
+```
+
+------------------------------------------------------------------------------->
+
+## Rangtransformation
+
+**Beispiel:** Spearman-Korrelation
+
+::: {.column width="49%"}
+<br>
+Datensatz
+
+
+```{r, echo=TRUE}
+x <- c(1, 2, 3, 5, 4, 5 ,6,  7)
+y <- c(1, 2, 4, 3, 4, 6, 8, 20)
+```
+
+Ränge
+```{r, echo=TRUE}
+rank(x)
+rank(y)
+```
+
+Zwei Berechnungsarten
+
+```{r, echo=TRUE}
+cor(x, y, method = "spearman")
+cor(rank(x), rank(y))
+```
+:::
+
+:::{.column width="49%"}
+<br><br><br>
+```{r rank-spearman, fig.width=4, fig.height=4, fig.align="right"}
+par(mar=c(4.1, 4.1, 1, 1), las=1)
+plot(x, y, pch=16)
+```
+:::
+
+
+## Zur Erinnerung: Der zentrale Grenzwertsatz (CLT)
+
+> Die Summen einer großen Anzahl $n$ unabhängiger und identisch verteilter Zufallswerte
+> sind normalverteilt, unabhängig vom Typ der
+> ursprünglichen Verteilung.
+
+
+* Wir können Methoden verwenden, die von einer Normalverteilung für nicht-normale Daten ausgehen.
+    * wenn wir einen großen Datensatz haben
+    * wenn die ursprüngliche Verteilung nicht „zu schief“ ist
+* Die erforderliche Zahl $n$ hängt von der Schiefe der ursprünglichen Verteilung ab.
+
+<br>
+
+```{r clt-simulation2, fig.align='center', fig.height=2.5}
+par(mfrow=c(1,2), mar=c(4,4,1,1))
+set.seed(890)
+x <- matrix(runif(100*100), nrow=100)
+hist(x, main="", xlab="uniform random numbers")
+hist(rowSums(x), xlab="sums of each 100 uniform numbers", main="")
+```
+
+
+**Grund:** Methoden wie t-Test oder ANOVA basieren auf Mittelwerten.
+
+
+
+## Konfidenzintervalle des Mittelwerts
+
+<br>
+
+**Standardfehler**
+
+$$
+s_{\bar{x}} = \frac{s}{\sqrt{n}}
+$$
+
+* Die Variabilität des Mittelwerts halbiert sich, wenn wir den Stichprobenumfang viermal erhöhen ($2^2$).
+* Intervall, in dem der wahre Mittelwert mit 95%iger Wahrscheinlichkeit gefunden wird
+
+Schätzung des 95%-Konfidenzintervalls:
+
+$$
+CI_{95\%} = \bigg(\bar{x} - z_{0.975} \cdot \frac{s}{\sqrt{n}},
+                 \bar{x} + z_{0.975} \cdot \frac{s}{\sqrt{n}}\bigg)
+$$
+
+mit $z_{1-\alpha/2} = z_{0.975} =$ [$1.96$]{.red}. 
+
+::: {.hugefont}
+[$\rightarrow$ $2\sigma$ Regel ]{.red}
+:::
+
+## Unterschied zwischen Stichprobe und Konfidenzintervall
+
+<br>
+
+* **Stichprobenintervall:** charakterisiert die Verteilung der Daten aus den Parametern der Stichprobe (z.B. Mittelwert, Standardabweichung)
+
+* Standardabweichung $s_x$ misst die Variabilität der ursprünglichen Daten
+* rekonstruiert die ursprüngliche Verteilung, wenn ihr Typ bekannt ist (z. B. normal, lognormal)
+
+<br>
+
+* **Konfidenzintervall:** charakterisiert die Genauigkeit eines statistischen Parameters, basierend auf seinem Standardfehler
+
+* Schätze anhand von $\bar{x}$ und $s_\bar{x}$ das Intervall, in dem $\mu$ mit einer bestimmten Wahrscheinlichkeit gefunden wird
+* weniger abhängig von der ursprünglichen Verteilung der Daten aufgrund des CLT
+
+
+## Verwendung der t-Verteilung für kleine Stichproben
+
+$$
+CI_{95\%} = \bigg(\bar{x} - t_{0.975, n-1} \cdot \frac{s}{\sqrt{n}},
+                 \bar{x} + t_{0.975, n-1} \cdot \frac{s}{\sqrt{n}}\bigg)
+$$
+
+
+* notwendig für kleine Stichproben: $n\lessapprox 30$, $n-1$ Freiheitsgrade
+* kann auch für $n>30$ verwendet werden
+* $t$-Quantil kann in Tabellen gefunden oder mit der Funktion `qt()` in **R** berechnet werden.
+
+Beispiel mit $\mu=50$ und $\sigma=10$:
+
+
+```{r, echo=TRUE}
+set.seed(123)
+n <- 10
+x <- rnorm(n, 50, 10)
+m <- mean(x); s <- sd(x)
+se <- s/sqrt(n)
+# lower and upper confidence limits
+m + qt(c(0.025, 0.975), n-1) * se
+```
+
+$\rightarrow$ der wahre Mittelwert ($\mu$=50) ist im Intervall CI = (`r  round(m + qt(c(0.025, 0.975), n-1) * se, 1)`).
+
+
+## Ausreißer
+
+* Extrem große oder extrem kleine Werte werden manchmal als „Ausreißer“ bezeichnet. 
+* Potenzielle Ausreißer können aber auch „Extremwerte“ aus einer schiefen Verteilung sein. Sie auszuschließen, kann wissenschaftliches Fehlverhalten sein.
+* Ein „echter“ Ausreißer ist ein Wert, der nicht aus der zu analysierenden Population stammt, z. B. ein schwerwiegender Messfehler, wenn jemand vergessen hat, eine Chemikalie in einer Analyse hinzuzufügen.
+* Er kann aber auch etwas Interessantes sein, z. B. das Ergebnis eines neuen Phänomens.
+
+$\Rightarrow$ Es kann falsch sein, Werte auszuschließen, nur weil sie „zu groß“ oder „zu klein“ sind. 
+
+$\rightarrow$ Versuche, den Grund zu finden, warum Werte extrem sind!
+
+<br>
+
+**$4 \sigma$-Regel**
+
+* prüft, ob ein Wert mehr als 4 Standardabweichungen vom Mittelwert entfernt ist.
+* Stichprobengröße sollte $n \ge 10$ sein, $\bar{x}$ und $s$ werden ohne den potentiellen Ausreißer berechnet.
+* Ähnliche „Faustregeln“ sind in Statistik-Lehrbüchern zu finden.
+
+
+## Ausreißertest für lineare Modelle mit Bonferroni-Korrektur
+
+* Für lineare Modelle und GLMs können wir den Bonferroni-Ausreißertest aus dem Paket **car** verwenden.
+
+
+```{r, echo=TRUE}
+library(car)
+x <- c(rnorm(20), 12) # the 21st value (=12) is an outlier
+outlierTest(lm(x~1))  # x ~ 1 is the null model
+```
+
+$\rightarrow$ Der 21. Wert wird als Ausreißer identifiziert:
+
+<br>
+**Alternative zu Ausreißertests** 
+
+* Verwendung robuster Parameter und Methoden, 
+    * z.B. Median oder getrimmter Mittelwert anstelle des arithmetischen Mittels, 
+    * robuste lineare Regression „rlm“ anstelle von „lm"
+    * Rangbasierte Methoden wie die Spearman-Korrelation
+* **Wichtig** Ausreißer können in einer Analyse weggelassen werden, aber die Anzahl und das Ausmaß der Ausreißer müssen erwähnt werden!
+
+
+## Extremwerte in Boxplots
+
+<br>
+
+* Extremwerte außerhalb der Whiskers, wenn sie mehr als das 1,5-fache der Breite der Interquartilsbox von den Boxgrenzen entfernt sind.  
+
+* Manchmal auch „Ausreißer“ genannt. 
+* Ich bevorzuge den Begriff „Extremwert“, da es sich um regelmäßige Beobachtungen aus einer schiefen oder 'heavy tailed' Verteilung handeln kann.
+
+```{r no-outliers, fig.width=9, fig.height=3, fig.align='center'}
+set.seed(123)
+par(mar=c(4.1, 4.1, 1, 1), las=1)
+x1 <- rnorm(100, mean = 50, sd = 10)      # normal distribution
+x2 <- rt(100, df=5) * 10 + 50             # t distribution (heavy tailed)
+x3 <- rlnorm(100, meanlog = 2, sdlog = 1) # lognormal distribution
+boxplot(x1, x2, x3,
+  names=c("Normal", "heavy tailed", "Lognormal"), col="wheat")
+```
+
+## Beispiel
+
+```{r elbe-boxplot, echo=TRUE, fig.height=3, fig.width=9, fig.align='center'}
+par(mfrow=c(1, 3), las=1)
+elbe <- read.csv("https://tpetzoldt.github.io/datasets/data/elbe.csv")
+discharge <- elbe$discharge
+boxplot(discharge, main="Boxplot of discharge")
+hist(discharge)
+hist(log(discharge - 70))
+```
+
+Abflussdaten der Elbe in Dresden in $\mathrm m^3 s^{-1}$,
+Datenquelle: Bundesanstalt für Gewässerkunde (BFG), siehe [terms and conditions](https://github.com/tpetzoldt/datasets/blob/main/data/elbe_info.txt).
+
+* **Links:** große Anzahl von Extremwerten, sind das Ausreißer?
+* **Mitte:** Verteilung ist rechtsschief.
+* **Rechts:** Transformation (3-parametrische Lognormalverteilung) 
+$\rightarrow$ symmetrische Verteilung, keine Ausreißer!
+
+## Mehr in den Übungen ...
+
+<br>
+
+[https://tpetzoldt.github.io/element-labs/](../element-labs)

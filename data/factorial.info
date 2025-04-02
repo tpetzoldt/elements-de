@@ -1,0 +1,20 @@
+Dataset: factorial.txt
+
+Description: Data from Michael Crawley's Book
+
+Details: see reference
+              
+Source:
+http://www.bio.ic.ac.uk/research/mjcraw/statcomp/welcome.htm
+http://www.bio.ic.ac.uk/research/mjcraw/statcomp/data/factorial.txt
+
+@BOOK{Crawley2002,
+  author = {Crawley, Michael J.},
+  year = 2002,
+  title = {Statistical Computing. An Introduction to Data Analysis Using
+          {S-PLUS}},
+  pages = {1--761},
+  publisher = {Wiley},
+  address = {Chichester},
+  language = {english}
+}

@@ -1,0 +1,1197 @@
+---
+title: "x1-R Basics"
+date:   "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+library("knitr")
+library("dplyr")
+library("ggplot2")
+library("readr")
+knitr::opts_chunk$set(echo = TRUE, eval=TRUE, comment="")
+```
+
+# Prerequisites
+
+
+1. Install R 4.x from the [CRAN](https://cran.r-project.org) server:
+   e.g. [https://cloud.r-project.org/](https://cloud.r-project.org/)
+2. Install a recent version of RStudio:
+[https://posit.co/download/rstudio-desktop/](https://posit.co/download/rstudio-desktop/)
+
+* R and RStudio are available for Linux, Windows and MacOS
+* Install **R** first and **RStudio** second
+
+
+# Outline
+
+1. Expressions and assignments
+2. Elements of the R language
+3. Data objects: vectors, matrices, algebra
+4. Data import
+5. Lists
+6. Loops and conditional execution
+7. Further reading
+
+
+## R is more convenient with RStudio
+
+
+![](../img/rstudio.png)
+
+
+## R and RStudio
+
+
+<br>
+
+**Engine and Control**
+
+* **R** The main engine for computations and graphics.
+* **Rstudio** the IDE (integrated development environment) that embeds and controls **R** and provides additional facilities.
+* [**R** can also be used without RStudio. ]{.gray}
+
+<br>
+
+**Citation**
+
+Cite **R** and optionally **RStudio**.
+
+R Core Team (2022). R: A language and environment for statistical computing. R Foundation for Statistical
+Computing, Vienna, Austria. [https://www.R-project.org/](https://www.R-project.org/)
+
+RStudio Team (2022). RStudio: Integrated Development Environment for R. RStudio, PBC, Boston, MA URL
+[http://www.rstudio.com/](http://www.rstudio.com/)
+
+# Elements of the **R** language
+
+## Expressions and Assignments
+
+<br>
+
+::::{.column width="47%" .add-space}
+**Expression**
+
+:::{.bigfont}
+```{r}
+1 - pi + exp(1.7)
+```
+:::
+
+- result is printed to the screen
+- the `[1]` indicates that the value shown at the beginning of the line is the first (and here the only) element
+
+::::
+
+
+:::: {.column width="47%"}
+**Assignment**
+
+:::{.bigfont}
+```{r}
+a <- 1 - pi + exp(1.7)
+```
+:::
+
+- The expression on the left hand side is assigned to the variable on the right.
+- The arrow is spelled as "a gets ..."
+- To avoid confusion: use `<-` for assignment and let `=` for parameter matching
+::::
+
+
+## Constants, variables and assignments
+
+
+Assignment of constants and variables to a variable
+
+<br>
+
+```{r}
+x <- 1.3      # numeric constant
+y <- "hello"  # character constant
+a <- x        # a and x both variables
+```
+
+Assignment in opposite direction (rarely used)
+
+```{r}
+x -> b
+```
+
+
+Multiple assignment
+```{r}
+x <- a <- b
+```
+
+<br>
+
+Do not use the following constructs
+
+
+```{r}
+# Equal sign has two meanings: parameter matching and assignment
+# - Don't use it for assignment!
+x = a
+
+# Super assignment, useful for programmers in special cases
+x <<- 2 
+```
+
+
+
+## Objects, constants, variables
+
+* Everything stored in R's memory is an **object**:
+    - can be simple or complex
+    - can be constants or variables
+    - **constants**: 1, 123, 5.6, 5e7, "hello"
+    - **variables**: can change their value, are referenced by variable names
+
+```{r}
+x <- 2.0 # x is a variable, 2.0 is a constant
+```
+
+
+**A syntactically valid variable name consists of:**
+
+- letters, numbers, underline (_), dot (.)
+- starts with a letter or the dot
+- if starting with the dot, not followed by a number
+
+Special characters, except _ and . (underscore and dot) are not allowed.
+
+International characters (e.g German umlauts &auml;, &ouml;, &uuml;, ...) are possible, but not recommended.
+
+
+## Allowed and disallowed identifiers
+
+<br>
+
+**correct:**
+
+- `x, y, X, x1, i, j, k`
+- `value, test, myVariableName, do_something`
+- `.hidden, .x1``
+
+**forbidden:**
+
+- `1x, .1x` (starts with a number)
+- `!, @, \$, #`, space, comma, semicolon and other special characters
+
+**reserved words** cannot be used as variable names:
+
+- `if, else, repeat, while, function, for, in, next, break`
+- `TRUE, FALSE, NULL, Inf, NaN, NA, NA_integer_, NA_real_, NA_complex_, NA_character\_`
+- `..., ..1, ..2`
+
+**Note:** R is case sensitive, `x` and `X`, `value` and `Value` are different.
+
+
+## Operators
+
+::: {.column width="49%"}
+```{r, echo=FALSE}
+op <- read.csv("../data/operators.csv")
+kable(op[1:10, ])
+```
+:::
+
+::: {.column width="49%"}
+```{r, echo=FALSE}
+kable(op[12:nrow(op), ], row.names = FALSE)
+```
+:::
+
+... and more
+
+## Functions
+
+**Pre-defined functions:**
+
+- with return value: `sin(x)`, `log(x)`
+- with side effect: `plot(x)`, `print(x)`
+- with both return value and side efect: `hist(x)`
+
+**Arguments:** mandatory or optional, un-named or named
+
+- `plot(1:4, c(3, 4, 3, 6), type = "l", col = "red")`
+- if named arguments are used (with the "=" sign), argument order does not matter
+
+**User-defined functions:**
+
+- can be used to extend R
+- will be discussed later
+
+$\rightarrow$ Functions have always a name followed by arguments in round parentheses.
+
+## Parentheses
+
+![](../img/parentheses.png)
+
+
+# Data objects
+
+* different classes: `vector`, `matrix`, `list`, `data.frame`, ... 
+* content: numbers, text, maps, sound, images, videos.
+
+We start with vectors, matrices and arrays, and data frames.
+
+
+## Vectors, matrices and arrays
+
+- vectors = 1D, matrices = 2D and arrays = n-dimensional
+- data are arranged into rows, columns, layers, ...
+- data filled in [column-wise]{.blue}, can be changed
+
+* create vector
+```{r}
+x <- 1:20
+x
+```
+
+* convert it to matrix
+```{r}
+y <- matrix(x, nrow = 5, ncol = 4)
+y
+```
+
+* back-convert (flatten) to vector
+```{r}
+as.vector(y) # flattens the matrix to a vector
+```
+
+
+## Vectors, matrices and arrays II
+
+
+- **recycling rule** if the number of elements is too small
+
+```{r}
+x <- matrix(0, nrow=5, ncol=4)
+x
+x <- matrix(1:4, nrow=5, ncol=4)
+x
+```
+
+## Transpose rows and columns
+
+- **row-wise** creation of a matrix
+```{r}
+x <- matrix(1:20, nrow = 5, ncol = 4, byrow = TRUE)
+x
+```
+
+- **transpose** of a matrix
+```{r}
+x <- t(x)
+x
+```
+
+## Access array elements
+
+::: {.column width="44%"}
+
+- a three dimensional **array**
+- row, column, layer/page
+- sub-matrices (slices)
+
+```{r}
+x <- array(1:24, dim=c(3, 4, 2))
+x
+```
+:::
+
+::: {.column width="10%"}
+:::
+
+
+::: {.column width="44%"}
+
+- **elements** of a matrix or array
+
+```{r}
+x[1, 3, 1] # single element
+x[ , 3, 1] # 3rd column of 1st layer
+x[ ,  , 2] # second layer
+x[1,  ,  ] # another slice
+```
+:::
+
+## Reordering and indirect indexing
+
+
+::: {.column width="49%"}
+Original matrix
+
+```{r}
+(x <- matrix(1:20, nrow = 4))
+```
+
+Inverted row order
+```{r}
+x[4:1, ]
+```
+:::
+
+::: {.column width="49%"}
+
+Indirect index
+```{r}
+x[c(1, 2, 1, 2), c(1, 3, 2, 5, 4)]
+```
+
+Logical selection
+```{r}
+x[c(FALSE, TRUE, FALSE, TRUE), ]
+```
+
+Surprise?
+```{r}
+x[c(0, 1, 0, 1), ]
+```
+:::
+
+Matrix algebra
+========================================================
+
+::: {.column width="49%"}
+Matrix
+
+```{r}
+(x <- matrix(1:4,   nrow = 2))
+
+```
+
+Diagonal matrix
+```{r}
+(y <- diag(2))
+```
+
+
+Element wise addition and multiplication
+```{r}
+x * (y + 1)
+```
+:::
+
+::: {.column width="49%"}
+
+Outer product (and sum)
+
+```{r}
+1:4 %o% 1:4
+outer(1:4, 1:4, FUN = "+")
+```
+
+Matrix multiplication
+
+```{r}
+x %*% y
+```
+:::
+
+
+## Matrix multiplication explained
+
+<br>
+
+::: {.column width="49%"}
+
+Two matrices: A and B
+
+```{r}
+A <- matrix(c(1, 2, 3,
+              5, 4, 2), 
+            nrow = 2, byrow = TRUE)
+
+B <- matrix(c(1, 2, 3, 4,
+              6, 8, 4, 2,
+              3, 1, 3, 2), 
+            nrow = 3, byrow = TRUE)
+```
+
+Multiplication: $A \cdot B$
+
+```{r}
+A %*% B
+```
+:::
+
+::: {.column width="49%"}
+![](../img/matrix-multiplication.svg)
+:::
+
+
+
+
+## Transpose and inverse
+
+
+Matrix
+```{r}
+X <- matrix(c(1, 2, 3, 
+              4, 3, 2, 
+              5, 4, 6),
+            nrow = 3)
+X
+```
+
+Transpose
+```{r}
+t(X)
+```
+
+Inverse ($X^{-1}$)
+```{r, eval=FALSE}
+solve(X)
+```
+
+```{r, echo=FALSE}
+round(solve(X), 4)
+```
+
+
+## Multiplication of a matrix with its inverse
+
+<br>
+
+:::{.hugefont}
+$$X \cdot X^{-1} = I$$
+
+```{r}
+X %*% solve(X)
+```
+:::
+
+<br>
+
+$I$: identity matrix
+
+## Linear system of equations
+
+<br>
+
+
+\begin{align}
+ 3x && +  && 2y   && -  && z  && =  && 1 \\
+ 2x && -  && 2y   && +  && 4z && =  && -2 \\
+ -x && +  && 1/2y && -  && z  && =  && 0
+\end{align}
+
+
+::: {.bigfont}
+```{r}
+A <- matrix(c(3,  2,   -1,
+             2,  -2,    4,
+            -1,   0.5, -1), nrow=3, byrow=TRUE)
+b <- c(1, -2, 0)
+```
+:::
+
+\begin{align}
+Ax &= b\\
+x  &= A^{-1}b
+\end{align}
+
+
+::: {.bigfont}
+```{r}
+solve(A) %*% b
+```
+:::
+# Data frames and data import
+
+
+## Data frames
+
+* represent tabular data
+* similar to matrices, but different types of data in **columns** possible
+* typically imported from a file with `read.table` or `read.csv`
+
+::: {.bigfont}
+```{r, eval=FALSE, echo=TRUE}
+cities <- read.csv("cities.csv")
+cities
+```
+:::
+
+```{r, echo=FALSE}
+cities <- read.csv("../data/cities.csv")
+cities
+```
+
+$\rightarrow$ [download](https://github.com/tpetzoldt/elements/tree/main/data) data set
+
+## What is a CSV file?
+
+
+* comma separated values.
+* first line contains column names
+* decimal is `dec="."`, column separator is `sep=","`
+
+**Example CSV file** [(Data from Wikipedia, 2023)]{.gray}
+
+:::{.bigfont}
+```
+Name,Country,Population,Latitude,Longitude
+Dhaka,Bangladesh,10278882,23.75,90.37
+Ulaanbaatar,Mongolia,1672627,47.917,106.883
+Shantou,China,5502031,23.35,116.67
+Kampala,Uganda,1680600,0.331,32.583
+Berlin,Germany,3850809,52.52,13.405
+Nairobi,Kenya,4672000,1.2833,36.8167
+Hanoi,Vietnam,8435700,21.03,105.84
+Addis Abba,Ethiopia,3945000,9.03,38.74
+Hyderabad,India,9482000,17.4,78.48
+```
+:::
+
+**Hints**
+
+* some countries use `dec = ","` and `sep = ";"`
+* Excel may export mixed style with `dec = "."` and `sep = ";"`
+* comments above the header line can be skipped
+
+## Different read-Funktions
+
+
+* **R** contains several `read`-functions for different file types.
+* Some are more flexible, some more automatic, some faster, some more robust ...
+
+To avoid confusion, we use only the following:
+
+**Base R**
+
+* `read.table()`: this is the most flexible standard function, see help file for details
+* `read.csv()`: default options for standard csv files (with `dec="."` and `sep=`,)
+
+**Tidyverse readr-package**
+
+* `read_delim()`: similar to `read.table()` but more modern, automatic and faster
+* `read_csv()`: similar to `read.csv()` with more automatism, e.g. date detection
+
+## The most versatile: `read.table()`
+
+
+```{r, eval=FALSE}
+read.table(file, header = FALSE, sep = "", quote = "\"'",
+           dec = ".", numerals = c("allow.loss", "warn.loss", "no.loss"),
+           row.names, col.names, as.is = !stringsAsFactors, tryLogical = TRUE,
+           na.strings = "NA", colClasses = NA, nrows = -1,
+           skip = 0, check.names = TRUE, fill = !blank.lines.skip,
+           strip.white = FALSE, blank.lines.skip = TRUE,
+           comment.char = "#",
+           allowEscapes = FALSE, flush = FALSE,
+           stringsAsFactors = FALSE,
+           fileEncoding = "", encoding = "unknown", text, skipNul = FALSE)
+
+```
+
+**Examples**
+
+```{r, eval=FALSE}
+read.table("cities.csv", sep = ",",  dec = ".")  # same as read.csv
+read.table("cities.txt", sep = "\t", dec = ".")  # tab delimited
+read.table("cities.csv", sep = ";",  dec = ",")  # German csv
+
+read.table("cities.csv", sep = ",", dec = ".", skip = 5) # skip first 5 lines
+```
+
+
+
+## Recommendation
+
+<br>
+
+Most of our course examples are plain CSV files, so we can use `read.csv()` or `read_csv()`.
+
+::: {.bigfont}
+```{r, eval=FALSE}
+library("readr")
+cities <- read_csv("cities.csv")
+cities
+```
+:::
+
+```{r, eval=TRUE, echo=FALSE}
+library("readr")
+cities <- read_csv("../data/cities.csv")
+cities
+```
+
+## Data import assistant of **RStudio**
+
+<br>
+
+
+File --> Import Dataset
+
+Several options are available:
+
+* "From text (base)" uses the classical R functions
+* "From text (readr)" is more modern and uses an add-on package
+* "From Excel" can read Excel files if (and only if) they have a clear tabular structure
+
+
+
+
+## From text (base)
+
+
+![](../img/rstudio-import-base.png)
+
+## From text (readr)
+
+
+![](../img/rstudio-import-readr.png)
+
+
+## Save data to Excel-compatible format
+
+
+English number format ("." as decimal):
+```{r, eval=FALSE}
+write.table(cities, "output.csv", row.names = FALSE, sep=",")
+```
+
+German number format ("," as decimal):
+```{r, eval=FALSE}
+write.table(cities, "output.csv", row.names = FALSE, sep=";", dec=",")
+```
+
+![](../img/dataframe-excel.png)
+## Creation of data frames
+
+<br>
+
+* typical: read data from external file, e.g. `csv`-files.
+* small data frames can be created **inline** in a script
+
+**Inline creation of a data frame**
+
+```{r, echo=TRUE, eval=TRUE}
+clem <- data.frame(
+  brand = c("EP", "EB", "EB", "EB", "EB", "EB", "EB", "EB", "EB", "EB", "EB", 
+            "EB", "EB", "EB", "EP", "EP", "EP", "EP", "EP", "EP", "EP", "EB", "EP"),
+  weight = c(88, 96, 100, 96, 90, 100, 92, 92, 102, 99, 86, 89, 99, 89, 75, 80, 
+             81, 96, 82, 98, 80, 107, 88)
+)
+```
+
+## Conversion between matrices and data frames
+
+:::{.column width="35%" .add-space}
+
+**Matrix to data frame**
+```{r}
+x <- matrix(1:16, nrow=4)
+df <- as.data.frame(x)
+df
+```
+
+<br>
+
+**Data frame to matrix**
+```{r}
+as.matrix(df)
+```
+
+:::
+
+:::{.column width="55%"}
+**Append column**
+```{r}
+df2 <- cbind(df,
+         id = c("first", "second", "third", "fourth")
+       )
+```
+
+**Or simply**
+
+```{r}
+df2$id <- c("first", "second", "third", "fourth")
+```
+
+
+<br>
+
+**Data frame with character column**
+```{r}
+as.matrix(df2)
+```
+
+* all columns are now character
+* matrix does not support mixed data
+
+:::
+
+
+## Selection of data frame columns
+
+Create a data frame from a matrix
+```{r}
+x <- matrix(1:16, nrow=4)
+df <- as.data.frame(x)
+df
+```
+
+Add names to the columns
+```{r}
+names(df) <- c("N", "P", "O2", "C")
+df
+```
+
+Select 3 columns and change order
+```{r}
+df2 <- df[c("C", "N", "P")]
+df2
+```
+
+## Data frame indexing like a matrix
+
+::: {.column width="45%" .add-space}
+
+A data frame
+```{r}
+df
+```
+
+A single value
+```{r}
+df[2, 3]
+```
+
+Complete column
+
+```{r}
+df[,1]
+```
+
+Complete row
+```{r}
+df[2,]
+```
+:::
+
+:::{.column width="45%"}
+
+Conditional selection of rows
+
+```{r}
+df[df$P > 6, ]
+```
+
+<br>
+
+Differences between `[]`, `[[]]` and `$`
+
+```{r}
+df["P"]     # a single column data frame
+df[["P"]]   # a vector
+df$P        # a vector
+```
+
+
+
+:::
+
+# Lists
+
+* Beginners may skip this section
+
+## Lists
+
+* most flexible data type in R
+* can contain arbitrary data objects as **elements** of the list
+* allows tree-like  structure
+
+**Examples**
+
+* Output of many **R** functions, e.g. return value of `hist`:
+
+```{r}
+L <- hist(rnorm(100), plot=FALSE)
+str(L)
+```
+
+
+## Creation of lists
+
+
+```{r}
+L1 <- list(a=1:10, b=c(1,2,3), x="hello")
+```
+
+**Nested list (lists within a list)**
+```{r}
+L2 <- list(a=5:7, b=L1)
+```
+
+`str` shows tree-like structure
+
+```{r}
+str(L2)
+```
+
+::: {.column width="46%"}
+
+Access to list elements by names
+```{r}
+L2$a
+L2$b$a
+```
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="46%"}
+or with indices
+```{r}
+L2[1]   # a list with 1 element
+L2[[1]] # content of 1st element
+```
+:::
+
+## Lists II
+
+<br>
+
+Convert list to vector
+
+::: {.bigfont}
+```{r}
+L <- unlist(L2)
+str(L)
+```
+:::
+
+<br>
+
+Flatten list (remove only top level of list)
+
+::: {.bigfont}
+```{r}
+L <- unlist(L2, recursive = FALSE)
+str(L)
+```
+:::
+
+<!---
+## Convert lists
+
+::: {.column width="39%" .add-space}
+Convert vector to list
+```{r}
+x <- 1:3
+L <- as.list(x)
+str(L)
+```
+:::
+--->
+
+
+## Naming of list elements
+
+
+**During creation**
+
+```{r}
+x <- c(a=1.2, b=2.3, c=6)
+L <- list(a=1:3, b="hello")
+```
+
+**With `names`-function**
+
+Original names:
+```{r}
+names(L)
+```
+
+Rename list elements:
+```{r}
+names(L) <- c("numbers", "text")
+names(L)
+```
+
+The `names`-functions works also with vectors. The pre-defined vectors `letters` contains lower case and `LETTERS` uppercase letters:
+
+```{r}
+x <- 1:5
+names(x) <- letters[1:5]
+x
+```
+
+
+## Apply a function to multiple rows and columns
+
+
+::: {.column width="44%"}
+
+
+Example data frame
+```{r}
+df  # data frame of previous slide
+```
+
+Apply a function to all elements of a list
+```{r}
+lapply(df, mean)  # returns list
+sapply(df, mean)  # returns vector
+```
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="44%"}
+
+Row wise apply
+```{r}
+apply(df, MARGIN = 1, sum)
+```
+
+Column wise apply
+```{r}
+apply(df, MARGIN = 2, sum)
+```
+
+Apply user defined function
+```{r eval=FALSE}
+se <- function(x)
+  sd(x)/sqrt(length(x))
+
+sapply(df, se)
+```
+
+```{r, echo=FALSE}
+se <- function(x)
+  sd(x)/sqrt(length(x))
+
+round(sapply(df, se), 4)
+```
+:::
+
+
+# Loops and conditional execution
+
+## `for`-loop
+
+A simple `for`-loop
+
+::: {bigfont}
+```{r}
+for (i in 1:4) {
+  cat(i, 2*i, "\n")
+}
+```
+:::
+
+Nested for-loops
+
+::: {bigfont}
+```{r}
+for (i in 1:3) {
+  for (j in c(1,3,5)) {
+    cat(i, i*j, "\n")
+  }
+}
+```
+:::
+
+## `repeat` and `while`-loops
+
+Repeat until a `break` condition occurs
+
+::: {bigfont}
+```{r}
+x <- 1
+repeat {
+ x <- 0.1*x
+ cat(x, "\n")
+ if (x < 1e-4) break
+}
+```
+
+Loop as long as a `while`condition is `TRUE`:
+```{r}
+j <- 1; x <- 0
+while (j > 1e-3) {
+  j <- 0.1 * j
+  x <- x + j
+  cat(j, x, "\n")
+}
+```
+:::
+
+In many cases, loops can be avoided by using vectors and matrices or `apply`.
+
+## Avoidable loops
+
+
+::: {.column width="44%"}
+Column means of a data frame
+```{r}
+## a data frame
+df <- data.frame(
+  N=1:4, P=5:8, O2=9:12, C=13:16
+)
+
+## loop
+m <- numeric(4)
+for(i in 1:4) {
+ m[i] <- mean(df[,i])
+}
+m
+```
+
+$\rightarrow$ easier without loop
+```{r}
+sapply(df, mean)
+```
+
+... also possible `colMeans`
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="44%"}
+An infinite series:
+
+$$
+\sum_{k=1}^{\infty}\frac{(-1)^{k-1}}{2k-1} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7}
+$$
+
+```{r}
+x <- 0
+for (k in seq(1, 1e5)) {
+  enum  <- (-1)^(k-1)
+  denom <- 2*k-1
+  x <- x + enum/denom
+}
+4 * x
+```
+
+$\Rightarrow$ Can you vectorize this?
+:::
+
+
+## Unavoidable loop
+
+The same series:
+
+$$
+\sum_{k=1}^{\infty}\frac{(-1)^{k-1}}{2k-1} = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7}
+$$
+
+```{r}
+x <- 0
+k <- 0
+repeat {
+  k <- k + 1
+  enum  <- (-1)^(k-1)
+  denom <- 2*k-1
+  delta <- enum/denom
+  x <- x + delta
+  if (abs(delta) < 1e-6) break
+}
+4 * x
+```
+
+* number of iterations not known in advance
+* convergence criterium, stop when required precision is reached
+* no allocation of long vectors --> less memory than for loop
+
+::: aside
+Note: there are more efficient methods to calculate $\pi$.
+:::
+
+# Conditional execution
+
+## if-clause
+
+
+::: {.column width="44%"}
+The example before showed already an `if`-clause. The syntax is as follows:
+
+```{r,eval=FALSE}
+if (<condition>)
+  <statement>
+else if (<condition>)
+  <statement>
+else
+  <statement>
+```
+
+* Proper indentation improves readability. 
+* Recommended: [2]{.darkred} characters
+* Professionals indent always.
+* Please do!
+
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="44%"}
+Use of [`{}`]{.red} to group statements
+
+* `statement` can of be a compound statement with curly brackets `{}`
+* to avoid common mistakes and be on the safe side, use always `{}`:
+
+Example:
+```{r,eval=FALSE}
+if (x == 0) {
+  print("x is Null")
+} else if (x < 0) {
+  print("x is negative")
+} else {
+  print("x is positive")
+}
+```
+:::
+
+## Vectorized if
+
+Often, a vectorized `ifelse` is more appropropriate than an `if`-function.
+
+Let's assume we have a data set of chemical measurements `x` with missing `NA` values,
+and "nondetects" that are encoded with `-99`. First we want to replace the nontetects
+with half of the detection limit (e.g. 0.5):
+
+```{r}
+x <- c(3, 6, NA, 5, 4, -99, 7, NA,  8, -99, -99, 9)
+x2 <- ifelse(x == -99, 0.5, x)
+x2
+```
+
+Now let's remove the `NA`s:
+
+```{r}
+x3 <- na.omit(x2)
+x3
+```
+
+
+## Further reading
+
+<br>
+
+Follow-up presentations:
+
+* [Functions everywhere](x3-r-functions.html)
+* [Graphics in R](x2-r-graphics.html)
+
+More details in the official R manuals, especially in "[**An Introduction to R**](https://cran.r-project.org/doc/manuals/r-release/R-intro.html)"
+
+Many videos can be found on [Youtube](https://www.youtube.com), at the [Posit](https://https://posit.co) webpage and somewhere else.
+
+This tutorial was made with [Quarto](https://quarto.org/)
+
+Author: tpetzoldt +++
+[Homepage](https://www.tu-dresden.de/Members/thomas.petzoldt) +++
+[Github page](https://tpetzoldt.github.io)
+
+

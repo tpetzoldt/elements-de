@@ -1,0 +1,7 @@
+file: lakename-abbreviations.csv
+
+Full lakenames from: 3_tab_kenndaten-ausgew-seen-d_2021-04-08.xlsx
+
+abbreviated lake names:  own codes for easier data management and plotting
+
+own work: CC-0

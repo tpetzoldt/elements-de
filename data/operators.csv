@@ -1,0 +1,24 @@
+operator, symbol
+Addition, +
+Subtraction, -
+Negation, -
+Multiplication, *
+Division, /
+Modulo, %%
+Integer Divison, %/%
+Power, ^
+Matrix product, %*%
+Outer product, %o%
+Element of a set, %in%
+Negation, !
+And, &
+Or, |
+Equal, ==
+Unequal, !=
+Less than, <
+Greater than, >
+Less or equal, <=
+Greater or equal, >=
+Assignment, <-
+Element of a list, $
+Pipeline, |>

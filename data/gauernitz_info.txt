@@ -1,0 +1,28 @@
+Dataset: gauernitz.csv
+
+Description: Benthic communities of two streams near Dresden
+
+Attention: Teaching data only.
+           taxa of the more comprehensive original data 
+		   set pragmatically aggregated
+
+------------------------------------------------------------
+Details:
+
+Factors:
+	p 	pool
+	r	riffle
+	g	Gauernitzbach
+	t	Tännichtgrundbach
+	v	before flood event
+	n	after flood event
+
+example of sites-codes:	GR10 = Gau riffle October
+------------------------------------------------------------
+
+License: CC-BY 4.0
+
+Source: Carola Winkelmann, unpublished 2002
+        TU Dresden 
+        Institut für Hydrobiologie
+        Arbeitsgruppe Limnologie 

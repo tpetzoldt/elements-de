@@ -1,0 +1,271 @@
+---
+subtitle: "Applied Statistics -- A Practical Course"
+title: "02-Basic Terminology"
+date:   "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+library("knitr")
+library("dplyr")
+library("ggplot2")
+library("readr")
+knitr::opts_chunk$set(echo = TRUE, eval=FALSE, comment="")
+```
+
+## Grundlagen und Terminologie
+
+<br>
+
+* Ziele der statistischen Analysen
+* Deskriptive und experimentelle Forschung
+* Das Prinzip der Parsimonie
+* Arten von Variablen
+* Wahrscheinlichkeit
+* Stichprobe und Population
+* Zufällige und systematische Fehler
+* Parameter der Population und der Stichprobe
+
+
+## Ziele der statistischen Analysen
+
+
+1. Daten zusammenfassen, komprimieren und beschreiben ([deskriptive Statistik]{.cyan})
+    * Effizientes Arbeiten mit großen Datensätzen
+    * Statistische Parameter, Mittelwerte, Variation, Korrelation abschätzen
+2. Erstellen von Hypothesen aus Daten ([explorative Statistik]{.cyan})
+    * Data Mining und explorative Statistik
+    * Grafische Methoden, multivariate Statistik
+3. Hypothesen testen ([statistische Inferenz]{.cyan})
+    * klassische Tests, ANOVA, Korrelation, . . .
+    * Modellauswahl
+4. Forschung planen ([Versuchsplanung]{.cyan})
+    * Effektgröße im Vergleich zum Zufallsfehler
+    * Versuchsaufbau und erforderliche Stichprobengröße
+5. [Statistische Modellierung]{.darkred}
+    * Effektgröße messen, beste Erklärung für ein Problem finden
+    * Mustererkennung, Vorhersage, maschinelles Lernen
+
+## Deskriptive oder experimentelle Forschung
+
+**Deskriptive Forschung**
+
+* Ermittlung von Auswirkungen und Beziehungen zwischen Daten.
+    * Beobachtung, Überwachung, Korrelationen
+    * das Forschungsthema wird [nicht manipuliert]{.cyan}
+
+**Experimentelle Forschung**
+
+* Kann ein erwarteter Effekt reproduziert werden?
+    * Manipulation von einzelnen Bedingungen
+    * Eliminierung von Störungen ([kontrollierte Randbedingungen]{.cyan})
+    * möglichst einfacher Versuchsplan
+
+**Starker Rückschluss** erfordert eine klare Hypothese und experimentelle Forschung.
+
+**Schwache Schlussfolgerung** aus Beobachtungen und Daten abgeleitet.
+
+$\rightarrow$ deskriptive Forschung [liefert die Daten für die Hypothesenbildung]{.cyan}.
+
+## Das Prinzip der Parsimonie
+
+Wird einem englischen Philosophen aus dem 14. Jahrhundert zugeschrieben („Ockhams Rasiermesser“)
+
+> Wenn man zwei konkurrierende Theorien hat, die genau die gleichen
+> Vorhersagen machen, ist die einfachere die bessere.
+
+Im Zusammenhang mit der statistischen Analyse und Modellierung:
+
+* Modelle sollten so **wenig Parameter** wie möglich haben
+* **lineare Modelle** sollten gegenüber nichtlinearen Modellen bevorzugt werden
+* Experimente sollten auf nur **wenigen Annahmen** beruhen
+* Modelle sollten **vereinfacht** werden, bis sie minimal angemessen sind
+* einfache Erklärungen sollten komplexen Erklärungen vorgezogen werden
+
+**Einer der wichtigsten wissenschaftlichen Grundsätze**
+
+[$\rightarrow$ Aber die Natur ist komplex, eine zu starke Vereinfachung muss vermieden werden.]{.darkred}
+
+* muss kritisch reflektiert und diskutiert werden
+
+
+## Variablen und Parameter
+
+<br>
+
+:::{.r-stack .hugefont}
+[y]{.blue} = [a]{.red} + [b]{.red} $\cdot$ [x]{.blue}
+
+:::
+<br>
+
+* [**Variablen**]{.blue}: alles, was [gemessen]{.blue} oder experimentell manipuliert wird, z. B. die Phosphorkonzentration in einem See, die Lufttemperatur oder das Vorhandensein von Tieren
+
+* [**Parameter:**]{.red} Werte, die durch ein statistisches Modell [geschätzt]{.red} werden, z. B. Mittelwert, Standardabweichung, Steigung eines linearen Modells.
+
+**Unabhängige Variablen** Erklärungsvariablen, [Prädiktoren]{.blue})
+
+- sind manuell kontrolliert oder werden als Ergebnis nicht kontrollierbarer Faktoren angenommen
+
+**Abhängige Variablen** ([Zielgröße]{.blue}, Zielvariablen, vorhergesagte Variablen)
+
+- die Variablen von Interesse, die wir zu verstehen versuchen.
+
+## Skalen von Variablen
+
+<br>
+
+* **Binär** (boolesche Variable): genau zwei Zustände: wahr/falsch, 1/0, vorhanden oder nicht vorhanden.
+* **Nominal** (benannte Entitäten): ohne Ordnung, \{rot, gelb, grün\}, Liste von Arten.
+* **Ordinale** Variablen (Ränge, geordnete Faktoren): Werte oder Begriffe mit einer Ordnung {1., 2., 3., ...}; \{oligotroph, mesotroph, eutroph, polytroph, hypertroph\}, aber nicht „dystroph“
+* **Metrisch:** kontinuierlich (idealerweise ohne Stufen). Zwei Untertypen:
+    * **Intervallskala:** ermöglicht Vergleiche und Unterschiede, aber Verhältnisse machen keinen Sinn. (20°C ist 10 Grad wärmer als 10°C, aber nicht das Doppelte)
+   * **Verhältnisskala:** Daten mit einem absoluten Nullpunkt, Verhältnisse machen Sinn. Ein Baum mit 2m ist doppelt so hoch wie ein Baum mit 1m.
+
+
+Das „Niveau“ der Variablen steigt von der binären zur Verhältnis-Skala. Es ist immer möglich, ein höheres in ein niedrigeres Niveau umzuwandeln. 
+
+## Umwandlung von Skalen
+
+<br>
+
+Das „Niveau“ der Variablen steigt von der binären zur Verhältnis-Skala. Es ist immer möglich, ein höheres in ein niedrigeres Niveau umzuwandeln:
+
+* metrisch $\rightarrow$ ordinal: Ranking
+* metrisch oder ordinal $\rightarrow$ binär: Schwellenwert
+* nominal $\rightarrow$ binär: Zuordnung zu zwei Gruppen
+
+Die Umwandlung in eine niedrigere Skala führt zu einem gewissen Informationsverlust,  ermöglicht aber die Verwendung zusätzlicher Methoden aus der untergeordneten Skala.
+
+[**Erklärung**: Wenn wir die Rangkorrelation auf metrische Daten anwenden, wenden wir im Wesentlichen eine Methode für die Ordinalskala auf metrische Daten an. In diesem Fall verlieren wir Informationen über die Unterschiede zwischen den Werten, verringern aber auch den Einfluss von Extremwerten und Ausreißern.]{.smallfont}
+
+[Die Umwandlung von metrischen in binäre Daten kann sinnvoll sein, wenn die metrischen Daten nicht genau genug sind. So kann beispielsweise die Zählung von Tieren (z. B. Wölfen) in einem bestimmten Gebiet von zu vielen Faktoren abhängen (Struktur der Landschaft, Erfahrung der Menschen, Jahreszeit usw.), so dass die genauen Zahlen (Häufigkeiten) fraglich sind. In solchen Fällen ist eine Umwandlung in eine binäre Skala (vorhanden/abwesend) und die Anwendung eines entsprechenden Test (z. B. logistische Regression oder exakter Test nach Fisher) zuverlässiger.]{.smallfont}
+
+[Andere Beispiele sind der Vergleich von Hochwasser zwischen verschiedenen Flüssen, z.B. einem großen und einem kleinen Fluss, oder das Vorkommen von Genen in einer molekularbiologischen Analyse.]{.smallfont}
+
+## Wahrscheinlichkeit
+
+<br>
+
+**Klassische Definition**
+
+* Die Wahrscheinlichkeit $p$ ist die Chance eines bestimmten Ereignisses:
+
+$$
+p = \frac{\text{Anzahl der ausgewählten Fälle}}{\text{Anzahl aller möglichen Fälle}}
+$$
+
+* 1 oder 6 bei einem Würfel $p=2/6$
+* Problem, wenn der Nenner unendlich wird
+
+**Axiomatische Definition**
+
+* **Axiom I:** $0 \le p \le 1$
+* **Axiom II:** unmögliche Ereignisse haben $p=0$, sichere Ereignisse haben $p=1$
+* **Axiom III:** für sich gegenseitig ausschließende Ereignisse $A$ und $B$, d.h. in der Mengenlehre gilt $A \bigcap B = \emptyset$: $p(A \bigcup B)= p(A) + p(B)$
+
+
+## Stichprobe und Population
+
+<br>
+
+**Stichprobe**
+
+Subjekte, von denen wir Messungen oder Beobachtungen [haben]{.blue}
+
+<br>
+
+**Population**
+
+Menge aller Probanden, die die [gleiche Chance]{.blue} hatten, Teil der Stichprobe zu werden.
+
+$\Rightarrow$ Die Population wird durch die Art der Probenentnahme definiert
+
+$\Rightarrow$  Die Proben sollten [repräsentativ]{.blue} für
+unser [beabsichtigtes]{.blue} Beobachtungsobjekt sein.
+
+
+## Samplingstrategien
+
+<br>
+
+**Zufallsstichproben**
+
+* Individuen werden nach dem Zufallsprinzip aus einer bestimmten Population ausgewählt.
+* Beispiele: 
+    * Zufällige Auswahl von Probenstellen auf einem Raster. 
+    * Zufällige Platzierung von Versuchseinheiten in einem Regal.
+
+<br>
+**Stratifizierte Stichprobe**
+
+* Die Population wird in Klassen ähnlicher Personen (**Schichten**) unterteilt.
+* Die Schichten werden getrennt analysiert und dann werden die Informationen gewichtet und kombiniert, um Rückschlüsse auf die Population zu ziehen.
+* Die geschichtete Stichprobe erfordert Informationen über die Größe und Repräsentativität der Schichten.
+
+* Beispiele: Wahlprognosen, Tiefenschichten in einem See, Altersklassen für Tiere.
+
+
+## Zufällige und systematische Fehler
+
+<br>
+
+**Zufallsfehler** 
+
+* können [mit statistischen Methoden geschätzt werden]{.blue}
+* werden eliminiert, wenn der Stichprobenumfang groß ist
+* bei großen Stichproben gleichen sich große und kleine Fehler aus
+
+**Systematische Fehler** auch **Bias** genannt 
+
+* können oft nicht einfach mit statistischen Methoden allein geschätzt werden
+* Kenntnisse über das betrachtete System
+* Eliminierung erfordert [Kalibrierung]{.blue} mittels Standards, Blindwerten oder Paarung
+
+## Populations- und Stichprobenparameter
+
+<br>
+
+**„Wahre“ Parameter der Population**
+
+* symbolisiert durch griechische Buchstaben, ([$\mu, \sigma, \gamma\, \alpha, \beta$]{.blue})
+* in der Regel unbekannt
+* anhand einer Stichprobe geschätzt
+
+**„Berechnete“ Parameter aus einer Probe**
+
+* symbolisiert mit lateinischen Buchstaben ([$\bar{x}$, $s$, $r^2$, ...]{.blue})
+* die Berechnung erfolgt anhand einer Stichprobe
+* Statistiker sagen „Schätzung“ statt „Berechnung“.
+* Parameter können selbst als Zufallsvariable behandelt werden
+
+## Erwartungswert
+
+<br>
+
+Eine einzelne Messung $x_i$ einer Zufallsvariablen $X$ kann als Summe des Erwartungswertes $\mathbf{E}(X)$ der Zufallsvariablen und eines Zufallsfehlers $\varepsilon_i$ geschrieben werden.
+
+\begin{align}
+  x_i &= \mathbf{E}(X) + \varepsilon_i\\
+  \mathbf{E}(\varepsilon)&=0
+\end{align}
+
+Beispiel: 
+
+* für einen fairen Würfel mit 6 Augen sollte der wahre Mittelwert $\mu$ 3,5 sein
+* In Wirklichkeit ist nicht genau bekannt, ob der Würfel ein perfekter Quader ist.
+
+**Beispiel:** 3 Personen mit 5 Versuchen:
+
+:::{.bigfont}
+```{r, eval=TRUE, echo=FALSE}
+set.seed(132)
+x1 <- sample(1:6, 5,  replace=TRUE)
+x2 <- sample(1:6, 5,  replace=TRUE)
+x3 <- sample(1:6, 5,  replace=TRUE)
+cat("sample 1: ", x1, " mean:", round(mean(x1), 2))
+cat("sample 2: ", x2, " mean:", round(mean(x2), 2))
+cat("sample 3: ", x3, " mean:", round(mean(x3), 2))
+```
+:::
+
+Gesamtmittelwert: $\bar{x} = `r round(mean(c(x1, x2, x3)), 2)`$ liegt nahe an $\mu = 3,5$.

@@ -1,0 +1,42 @@
+project:
+  type: website
+  output-dir: docs
+  render: 
+    - "slides/*.qmd"
+    - "tutorials/*.Rmd"
+    - "*.qmd"
+
+  
+
+website:
+  title: "Elements of Data Analysis and Statistics"
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - section: Basic Statistics
+        contents:
+          - slides/01-introduction.qmd
+          - slides/02-terminology.qmd
+          - slides/03-statparams.qmd
+          - slides/04-distributions.qmd
+          - slides/05-classtests.qmd
+          - slides/06-linear.qmd
+          - slides/07-anova.qmd
+          - slides/08-nonlinear-regression.qmd
+          - slides/09-timeseries-basics.qmd
+          - slides/10-timeseries-outlook.qmd
+          - slides/11-multivariate-1.qmd
+          - slides/12-multivariate-2.qmd
+      - section: Tutorials
+        contents:
+          - tutorials/s1-introductory-r-session.qmd
+          - tutorials/s2-multivar-3d.qmd
+          - tutorials/s3-multivar-lakes.qmd
+      - section: R Topics
+        contents:
+          - slides/x1-r-basics.qmd
+          - slides/x2-r-graphics.qmd
+          - slides/x3-r-functions.qmd
+          - slides/x4-pipes-intro.qmd
+          - slides/x5-quarto-intro.qmd

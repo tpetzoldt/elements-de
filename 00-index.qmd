@@ -1,0 +1,50 @@
+---
+#title: "Elements of applied statistics -- a practical course"
+#subtitle: "Teaching material"
+#format: html
+---
+
+![Elements of applied statistics](img/titlepage-lecture-slides.svg){width=100%}
+<!--
+## Introduction
+-->
+
+This website contains a collection of material for introductory statistics 
+courses with **R**. The aim is to provide insight in fundamental principles and 
+an overview to enable students to select and understand specialized books 
+and online material to dig in deeper in the diverse and fascinating field of 
+statistical computing.
+
+The corresponding lab exercises are found at [https://tpetzoldt.github.io/element-labs/](https://tpetzoldt.github.io/element-labs/).
+
+## Status
+
+The selection of topics reflects what I think is useful as door-opener into 
+various fields, useful in ecology and aquatic sciences. It is an ongoing project 
+based on former PDF slides and other course material, constructive comments and 
+suggestions for improvement are welcome.
+
+
+## Further reading
+
+- Dalgaard, P, 2008: Introductory Statistics with **R**. Springer Verlag, New York, 2nd edition. 
+      [https://link.springer.com/book/10.1007/b97671](https://link.springer.com/book/10.1007/b97671)
+- Kleiber, C and Zeileis, A, 2008: Applied Econometrics with R. Springer Verlag, New York. 
+    [https://link.springer.com/book/10.1007/978-0-387-77318-6](https://link.springer.com/book/10.1007/978-0-387-77318-6)
+- Verzani, J, 2014: Using R for introductory statistics. CRC press. 
+      [Publisher](https://www.routledge.com/Using-R-for-Introductory-Statistics/Verzani/p/book/9781466590731)
+- Wickham, H., Çetinkaya-Rundel, M and Grolemund, G, 2023: R for Data Science.
+      [https://r4ds.hadley.nz/](https://r4ds.hadley.nz/)
+
+## Related Pages
+
+
+* [**Collection of lab exercises**](../element-labs/)
+* [**Datasets**](../datasets/)
+* [Source code of the slides](https://github.com/tpetzoldt/elements)
+
+## Author
+
+[homepage](https://tu-dresden.de/Members/thomas.petzoldt) +++ [github](https://github.com/tpetzoldt)
+
+2024-12-03

@@ -1,0 +1,497 @@
+---
+title: "01-Introduction"
+subtitle: "Applied Statistics -- A Practical Course"
+date:   "`r Sys.Date()`"
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r, echo=FALSE, include=FALSE}
+library("dplyr")
+library("tidyr")
+library("kableExtra")
+```
+
+# Vorwort {data-background-color="#006ab2"}
+
+## Ziele des Kurses
+
+<br>
+
+1.  Einführung in die „Datenwissenschaft“
+2.  Statistische Konzepte und ausgewählte Methoden
+    -   Statistische Parameter
+    -   Verteilungen und Wahrscheinlichkeiten
+    -   Statistische Tests
+    -   Auswahl von Modellen
+3.  Praktische Erfahrungen
+    -   Daten-Strukturen
+    -   Grundlagen der Sprache R
+    -   Anwendungen mit realen und simulierten Datensätzen
+
+$\Rightarrow$ Praktisches Verständnis und „statistisches Gefühl“,
+
+$\rightarrow$ Wichtiger als auswendig gelernte Fakten.
+
+## Themen
+
+<br>
+
+1.  Grundlegende Konzepte der Statistik
+2.  Eine Einführung in R
+3.  Statistische Parameter und Verteilungen
+4.  Lineare Modelle
+5.  Varianzanalyse
+6.  Nichtlineare Regression
+7.  Zeitreihenanalyse
+8.  (Multivariate Statistik)
+
+## Material
+
+<br>
+
+-   Folien, Tutorien:
+    [tpetzoldt.github.io/elements](https://tpetzoldt.github.io/elements)
+-   Übungen:
+    [tpetzoldt.github.io/element-labs](https://tpetzoldt.github.io/element-labs)
+
+::: smallfont
+$\rightarrow$ Folien und Übungen werden regelmäßig aktualisiert, je nach
+Fortschritt des Kurses. Kommentare sind willkommen.
+:::
+
+<br>
+
+-   Schriftliche Klausur am Ende des Semesters
+
+    $\rightarrow$ [\> 50% praktische Fragen]{.blue}
+
+    $\rightarrow$ [Nehmt an den Übungen teil!]{.red}
+
+<br>
+
+::: {.bigfont .fragment .highlight-red}
+Fragen?
+:::
+
+# Warum Statistik? {data-background-color="#006ab2"}
+
+$\rightarrow$ ein paar Beispiele, bevor wir anfangen
+
+## Ein einführendes Beispiel
+
+Täglicher durchschnittlicher Abfluss der Elbe, Pegel Dresden, Fluss km
+55,6
+
+```         
+date,       discharge
+1806-01-01,  472
+1806-01-02, 1050
+1806-01-03, 1310
+1806-01-04, 1020
+1806-01-05,  767
+1806-01-06,  616
+...
+2020-10-11,  216
+2020-10-12,  204
+2020-10-13,  217
+2020-10-14,  288
+2020-10-15,  440
+2020-10-16,  601
+2020-10-17,  570
+2020-10-18,  516
+2020-10-19,  450
+2020-10-20,  422
+2020-10-21,  396
+2020-10-22,  372
+2020-10-23,  356
+2020-10-24,  357
+2020-10-25,  332
+2020-10-26,  303
+2020-10-27,  302
+2020-10-28,  316
+2020-10-29,  321
+2020-10-30,  331
+2020-10-31,  353
+2020-11-01,  395
+```
+
+$>$ 70.000 Messungen. Wie können wir das analysieren und was bedeutet
+das?
+
+Datenquelle: [Bundesanstalt für
+Gewässerkunde](https://raw.githubusercontent.com/tpetzoldt/datasets/main/data/elbe_info.txt)
+
+## Grafik der letzten 20 Jahre
+
+```{r elbe-timeseries1, echo=FALSE}
+
+library(ggplot2)
+dat <- read.csv("https://raw.githubusercontent.com/tpetzoldt/datasets/main/data/elbe.csv")
+dat$date <- as.Date(dat$date)
+dat <- na.omit(dat)
+
+plot(discharge ~ date, data=dat, type="l")
+```
+
+Abfluss der Elbe, Pegel Dresden, Datenquelle BfG
+
+## Was sagen uns diese Daten?
+
+```{r elbe-timeseries2, echo=FALSE, fig.height=2.5}
+par(mar=c(2,4,0.5,1))
+plot(discharge ~ date, data=dat, type="l")
+```
+
+-   Wie hoch ist der durchschnittliche Abfluss? → Mittelwerte
+-   Wie groß ist die Variation in den Daten? → Varianz
+-   Wie wahrscheinlich sind Dürren oder Überschwemmungen? → Verteilung
+-   Wie präzise sind unsere Vorhersagen? → Konfidenzintervalle
+-   Welche Faktoren beeinflussen den Abfluss? → Korrelationen
+
+## Wie man anfängt
+
+```{r elbe-timeseries3, echo=FALSE, fig.height=2.5}
+par(mar=c(2,4,0.5,1))
+plot(discharge ~ date, data=dat, type="l")
+```
+
+-   Mittelwert: `r round(mean(dat$discharge, 2))`
+-   Median: `r round(median(dat$discharge, 2))`
+-   Standardabweichung: `r round(sd(dat$discharge, 2))`
+-   Spannweite: `r round(range(dat$discharge, 2))`
+
+Welche dieser Parameter sind am besten geeignet?
+
+## Grafiken
+
+```{r elbe-barplot, echo=FALSE}
+par(mar=c(4.1,5,3,1))
+par(mfrow=c(2,2))
+dat$year <- as.numeric(format(dat$date, "%Y"))
+with(dat, plot(date, discharge, ylab=expression(m^3~s^{-1}), type="l", las=1, main="Time series"))
+with(dat, boxplot(discharge ~ year, ylab=expression(m^3~s^{-1}), range=0, las=2, main="Boxplot"))
+avg <- with(dat, aggregate(list(Q=discharge), list(year=year), mean))
+with(dat, barplot(avg$Q, las=2, names.arg=avg$year, ylab=expression(m^3~s^{-1}), main="Barplot"))
+with(dat, hist(discharge, xlab=expression(m^3~s^{-1}), las=1, main="Histogram", col="gray"))
+```
+
+## Boxplots
+
+```{r elbe-boxplot}
+par(mfrow=c(1,2))
+par(mar=c(4.1,5,1,1))
+with(dat, boxplot(discharge, ylab=expression(m^3~s^{-1}), range=0, las=2, main="", log="y"))
+with(dat, text(rep(0.6, 3), c(min(discharge), median(discharge), max(discharge)), c("min", "median", "max")))
+text(rep(1.3, 3), quantile(dat$discharge, c(0.25, 0.5, 0.75)), c("25%", "50%", "75%"))
+with(dat, boxplot(discharge, ylab=expression(m^3~s^{-1}), las=2, main="", log="y"))
+```
+
+-   Beachte die logarithmische Skala von y!
+-   In der rechten Version reichen die Whisker bis zum extremsten
+    Datenpunkt, der nicht mehr als das 1,5-fache des
+    Interquartilabstandes der Box beträgt.
+
+## Drei Wege mit Statistiken zu arbeiten
+
+**Deskriptive Statistiken und Grafiken**
+
+-   Diagramme, wie in den Beispielen
+-   Mittelwerte, Standardabweichungen, ...
+-   Rohdaten interpretieren
+
+**Hypothesentests**
+
+-   Unterscheidung von Effekten und zufälligen Schwankungen
+-   Ergebnisse überzeugender machen
+
+**Statistische Modellierung**
+
+-   Messung der Größe von Effekten (z. B. Klimatrends)
+-   Modelle erstellen, die Abhängigkeiten zusammenfassen
+-   Maschinelles Lernen
+
+## Statistische Hypothesentests
+
+<br>
+
+**Wie wahrscheinlich ist es, dass unsere Hypothese wahr ist?**
+
+<br>
+
+-   Umwandlung einer wissenschaftlichen in eine statistische Hypothese
+-   Schätzung der Wahrscheinlichkeit (p-Wert) einer bestimmten Hypothese
+
+**Beispiele**
+
+-   Ist eine medizinische Behandlung erfolgreich oder nicht? →
+    $\chi^2$-Test
+-   Erhöht eine spezielle Nahrung den Ertrag einer Fischzucht? → t-Test
+-   Welche Faktoren (z. B. Futter, Temperatur, pH-Wert) einer
+    kombinierten Behandlung beeinflussen das Wachstum von
+    Wasserlebewesen? → ANOVA
+-   (Wie) hängt die beobachtete Algenbiomasse vom Phosphor ab?<br>
+
+## Statistische Modellierung
+
+<br>
+
+**Anpassung eines statistischen Modells an die Daten**
+
+-   Wahl einer geeigneten Modellierungsstrategie
+-   Entwurf statistischer Modelle
+-   Messung der Effektgröße
+-   Auswahl des optimalen Modells aus verschiedenen Modellkandidaten
+
+**Beispiele**
+
+-   Anpassung einer Verteilung an die jährlichen Abflussdaten, um das
+    100-jährige Hochwasser zu schätzen.
+-   Passen Sie ein ANOVA-Modell an experimentelle Daten an, um
+    festzustellen, welcher Faktor das Ergebnis am meisten beeinflusst.
+-   Anpassen eines multiplen linearen Modells an Klimadaten, um
+    festzustellen, wie sehr sich die Klimatrends zwischen den einzelnen
+    geografischen Standorten unterscheiden.
+
+## Beispiel: Vergleich zweier Mittelwerte
+
+```{r dobson-boxplot, fig.align='center'}
+dobson <- data.frame(
+  week = c(40, 38, 40, 35, 36, 37, 41, 40, 37, 38, 40, 38,
+	 40, 36, 40, 38, 42, 39, 40, 37, 36, 38, 39, 40),
+  weight = c(2968, 2795, 3163, 2925, 2625, 2847, 3292, 3473, 2628, 3176,
+	    3421, 2975, 3317, 2729, 2935, 2754, 3210, 2817, 3126, 2539,
+	    2412, 2991, 2875, 3231),
+  gender = gl(2, 12, labels=c("male","female"))
+)
+with(dobson, boxplot(weight ~ gender, las=1, main="Birth weight of babies (g)"))
+```
+
+-   Ein gegebener Datensatz (Dobson, 1983) enthält das Geburtsgewicht (in g) von 12 Jungen und 12 Mädchen.
+-   Hat der Gewichtsunterschied etwas mit dem Geschlecht der Babys zu tun oder handelt es sich um eine reine Zufallsschwankung?
+
+## Beispiel: Korrelation und Regression
+
+```{r regression-example, fig.height=3, fig.width=8}
+par(mfrow=c(1,2))
+dat <- read.table("../data/seen_bb.txt", header=TRUE)
+#dat <- dat[c(1,2,5,6), ]
+plot(log(Chl) ~ log(P), data=dat, pch=16, col="red",
+  main=paste("r =", round(with(dat, cor(log(P), log(Chl))), 2), collapse="="))
+m1 <- lm(log(Chl) ~ log(P), data=dat)
+abline(m1)
+oecd <- read.table("../data/oecd.txt", header=TRUE)
+plot(log(CHLa) ~ log(TP), data=oecd, pch=16, col="navy",
+  main=paste("r =", round(with(oecd, cor(log(TP), log(CHLa))), 2), collapse="="))
+m2 <- lm(log(CHLa) ~ log(TP), data=oecd)
+abline(m2)
+```
+
+-   Abhängigkeit der Chlorophyllkonzentration in Seen von Phosphor, ein regionaler Datensatz von Koschel und Scheffler (1985) (links) und von Vollenweider und Kerekes (1980) (rechts).
+-   Welche der beiden Abbildungen hat eine größere Vorhersagekraft? Warum?
+
+::: aside
+Der Parameter $r$ ist der Korrelationskoeffizient nach Pearson.
+:::
+
+# Wie kann dies in der Praxis durchgeführt werden? {data-background-color="#006ab2"}
+
+1.  Daten
+2.  Mathematik
+3.  Datenverarbeitung
+
+## Welche **Daten**struktur ist besser?
+
+<br>
+
+```{r}
+data_long <- data.frame(
+  year = rep(2021:2023, each = 5),
+  station = rep(LETTERS[1:5], times = 3),
+  value = sample(1:20, 15, replace = TRUE)
+)
+
+data_wide <- data_long |> pivot_wider(names_from = year)
+```
+
+::: {.column width="49%"}
+**Wide-Format**
+
+<br>
+
+```{r}
+knitr::kable(data_wide)
+```
+:::
+
+:::: {.column width="49%"}
+**Long-Format**
+
+::: smallfont
+```{r}
+knitr::kable(data_long)
+```
+:::
+::::
+
+## Beispiel: Ein Experiment zum Algenwachstum
+
+<br>
+
+```{r, echo=FALSE}
+algae <- data.frame(
+  treat  = factor(c("Fertilizer", "Fertilizer", "Fertilizer", 
+             "F. open", "F. open", "F. open", 
+             "F.+sugar", "F.+sugar", "F.+sugar", 
+             "F.+CaCO3", "F.+CaCO3", "F.+CaCO3", 
+             "Bas.med.", "Bas.med.", "Bas.med.", 
+             "A.dest", "A.dest", "A.dest", 
+             "Tap water", "Tap water"),
+             levels=c("Fertilizer", "F. open", "F.+sugar", 
+                    "F.+CaCO3", "Bas.med.", "A.dest", "Tap water")),
+  rep   = c(1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2), 
+  growth = c(0.02, -0.217, -0.273, 0.94, 0.78, 0.555, 0.188, -0.1, 0.02, 
+             0.245, 0.236, 0.456, 0.699, 0.727, 0.656, -0.01, 0, -0.01, 0.03, -0.07)
+)
+
+xalgae <- 
+  algae |> 
+  pivot_wider(id_cols = treat, names_from = rep, values_from = growth, names_prefix = "replicate ")
+```
+
+### Wide-Format
+
+```{r}
+#| label: tbl-algae-growth
+#| tbl-cap: "Growth of algae within 4 days (relative units)"
+
+xalgae |>
+  kable('html') |> 
+  kable_styling(bootstrap_options = "striped", full_width = FALSE)
+```
+
+-   [NA]{.red} bedeutet „nicht verfügbar“, d. h. ein fehlender Wert
+
+## Daten im Long-Format
+
+::: {.column width="59%"}
+<br>
+
+### Vorteile
+
+-   sieht „dumm“ aus, ist aber besser für die Datenanalyse
+-   abhängige Variable **growth** und <br>Erklärungsvariable **treat** deutlich sichtbar
+-   Modellformel: `growth ~ treat`
+-   leicht erweiterbar auf $>1$ Erklärungsvariable
+:::
+
+::: {.column width="39%"}
+```{r}
+algae |> 
+  head(12) |>
+  kable('html') |>
+  kable_styling(bootstrap_options = c("striped"), full_width = FALSE)
+```
+:::
+
+## Warum das Long-Format?
+
+<br>
+
+**Vorteile**
+
+-   **Klar und konsistent:**
+    -   vermeidet Duplikationen
+    -   Datenstruktur einfacher zu verstehen
+-   **Flexibel:**
+    -   für verschiedene statistische Analysen, z.B. ANOVA, multiple Regression, Zeitreihen
+    -   bei Bedarf leicht in breite Formate zu transformieren
+-   **Kompatibel:**
+    -   moderne Datenanalysetools wie R und Python bevorzugen das long-Format
+    -   kompatibel mit Datenbanksystemen
+
+**Deshalb:**
+
+-   **Versuche das wide-Format zu vermeiden.** Es kann zu Ungereimtheiten und Komplikationen bei der Analyse führen.
+-   **Bereinige die Daten vor der Analyse** und konvertiere das wide-Format in das long-Format.
+
+<br>
+
+$\rightarrow$ Übung mit Zeitreihen der Elbe.
+
+## Mathematik
+
+<br>
+
+1.  **Lineare Algebra:** Die Grundlage für viele statistische Methoden, insbesondere Matrizen und Vektoren.
+2.  **Kalkül:** Optimierungsprobleme, Ableitung statistischer Formeln, Verständnis des Verhaltens von Funktionen.
+3.  **Numerische Analyse:** Implementierung von statistischen Methoden auf Computern, insbesondere bei großen oder komplexen Datensätzen.
+4.  **Wahrscheinlichkeitstheorie:** Stichprobenziehung und Modellierung von Daten, Verständnis statistischer Schlussfolgerungen, Entwicklung von Algorithmen.
+5.  **Statistische Modellierung:** Regressionsanalyse, Zeitreihenanalyse, bayesianische Modellierung, maschinelles Lernen.
+
+<br>
+
+[$\rightarrow$ Die ordnungsgemäße Verwendung fertiger Softwarepakete erfordert ein grundlegendes Verständnis.]{.red}
+
+## Datenverarbeitung
+
+**Benötigte Software**
+
+-   Ein Tabellenkalkulationsprogramm, Excel oder LibreOffice
+    <https://www.libreoffice.org/>
+-   Das **R**-System für Datenanalyse und Grafiken
+    <https://www.r-project.org>
+-   RStudio zur Verbesserung der Benutzerfreundlichkeit von R
+    <https://posit.co/download/rstudio-desktop/>
+
+![](../img/r-homepage.png){fig-align="center"}
+
+## Warum R?
+
+::: {.column width="58%"}
+1.  Statistiker bezeichnen es als „lingua franca“ in der computergestützten Statistik.
+    - Äußerst leistungsfähig
+    - Kein anderes System verfügt über so viele Statistiken
+    - Wird in der statistischen Forschung verwendet
+2.  Frei (OpenSource)
+    - Frei zu benutzen
+    - Frei zu modifizieren
+    - Frei, etwas beizutragen
+3.  Weniger kompliziert als es auf den ersten Blick scheint:
+    - Ja, es braucht Kommandozeilenprogrammierung
+    - aber: schon eine einzige Zeile kann viel bewirken
+    - große Anzahl von Büchern und Online-Skripten
+:::
+
+::: {.column width="41%"}
+![](../img/r-homepage.png)
+:::
+
+Im Gegensatz zu anderen Systemen ist Copy & Paste erlaubt! - einfach zitieren.
+
+## Bücher
+
+**Statistik**
+
+-   Gut lesbare Einführungen
+    -   Dalgaard, P., 2008: Introductory Statistics with **R**.
+        Springer, New York, 2nd edition. (fulltext of the 1st edition
+        [freely
+        available](https://link.springer.com/book/10.1007/b97671))
+    -   Verzani, J. (2019). Using R for introductory statistics. CRC
+        press.
+-   Eine sehr gut verständliche Einführung in viele Bereiche der Statistik, insbesondere in die Regressions- und Zeitreihenanalyse:
+    -   Kleiber, C. and Zeileis, A., 2008: Applied Econometrics with R,
+        Springer Verlag, New York.
+        <https://link.springer.com/book/10.1007/978-0-387-77318-6>
+
+**R Programmierung**
+
+-   Eine Einführung in die Datenwissenschaft unter Verwendung des modernen „Tidyverse“-Ansatzes:
+    -   Wickham, H., Çetinkaya-Rundel, M and Grolemund, G, 2023: R for
+        Data Science. Free ebook: <https://r4ds.hadley.nz/>
+
+::: aside
+Und jede Menge frei verfügbares Material im Internet ...
+:::

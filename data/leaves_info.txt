@@ -1,0 +1,22 @@
+Dataset: leaves.csv
+
+Description: Size of maple (Acer platanoides) leaves.
+
+License: CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/
+
+Source: The data are from a students course experiment in 2015:
+
+Two groups of students had the task to measure width, length, 
+ and stalk length of maple trees.
+ 
+The leaves are from the same trees, but samplig strategy was different:
+
+* Group "HYB" got randomly sampled leaves.
+* Group "HSE" hat the freedom to select an individual leave of their choice.
+
+Note also that "length" contains some outliers, because some measurements 
+added the stalk length to the leave length.
+
+Thomas Petzoldt, Technische Universitaet Dresden, 
+Institute of Hydrobiology, Workgroup Limnology
+

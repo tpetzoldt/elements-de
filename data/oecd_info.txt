@@ -1,0 +1,35 @@
+Dataset: oecd.csv
+
+Description: Chlorophyll (CHLa) and Total Phosphorus (TP) Data of the OECD Lakes
+
+Source: Taken manually from Fig. 6.1 of the report (digitized).
+
+Details: see reference
+
+Limitation: P = P limited lake, I = light limited lake, N = N limited lake
+
+Units of TP and CHLa: mg m ^-3 (milligram per cubic meter)
+
+
+Note: The data are for teaching purposes only.  The data points have
+  considerable bias as values were taken manually from the figure.
+  
+Reference: 
+  
+Vollenweider, R. A., & Kerekes, J. (1980). OECD cooperative programme
+for monitoring of inland waters (eutrophication control). Synthesis
+Report. OECD, Paris.
+
+@TECHREPORT{Vollenweider1980,
+  author = {Vollenweider, R. A. and Kerekes, J.},
+  year = 1980,
+  title = {{OECD} cooperative programme for monitoring of inland waters.
+          ({E}utrophication control)},
+  address = {Paris},
+  type = {Synthesis Report},
+  language = {english}
+}
+
+
+
+

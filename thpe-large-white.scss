@@ -1,0 +1,48 @@
+/*-- scss:defaults --*/
+
+$body-color: #00305d;
+$link-color: #009de0;
+$mainFont: 'Open Sans';
+$mainFontSize: 24px;
+
+$headingFont: 'Open Sans Semibold';
+$headingTextTransform: none;
+
+$headingLetterSpacing: normal;
+$codeFont: 'Source Code Pro Semibold';
+
+/*-- scss:mixins --*/
+
+// Background generator
+@mixin bodyBackground() {
+  @include radial-gradient(#ffffff, #ffffff);
+}
+
+/*-- scss:rules --*/
+
+.reveal .slide blockquote {
+  border-left: 3px solid $text-muted;
+  padding-left: 0.5em;
+}
+
+code.sourceCode {
+  font-size: 1.3em;
+}
+
+/*
+
+.reveal ul li::marker {
+  content: '*';
+  color: #ee7f00;
+  font-size: 24px;
+}
+
+*/
+
+
+
+ul li::marker {
+  color: #ee7f00; /* Change the color of list markers */
+}
+
+

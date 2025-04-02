@@ -1,0 +1,15 @@
+Dataset: prk_nit.csv
+
+Description: Biovolume data of Nitzschia acicularis cells in um^3 
+             (cubic micrometers), measured and calculated during 
+             student's courses.
+             Nitzschia acicularis is a pen-like diatom algae
+             found in lakes.
+              
+License: CC BY 4.0 https://creativecommons.org/licenses/by/4.0/
+
+Source: Technische Universitaet Dresden
+        Institut fuer Hydrobiologie
+        Arbeitsgruppe Limnologie
+
+Maintainer: Th. Petzoldt thomas.petzoldt@tu-dresden.de

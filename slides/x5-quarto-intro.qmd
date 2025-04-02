@@ -1,0 +1,640 @@
+---
+title: "x05-Creation of Reports with Quarto"
+date: "`r Sys.Date()`"
+---
+
+
+<!-- Own title slide / -->
+
+# About these slides
+
+<br>
+
+The slides were created with [Quarto](https://quarto.org) using [Rstudio](https://posit.co) and [R](https://www.r-project.org/).
+
+<br>
+
+Use cursor keys for navigation, press [O]{.red} for a slide [O]{.red}verview
+
+
+<!--- Setup ------------------------------------------------------------------->
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.width=14, 
+                      fig.height=6, dev.args = list(pointsize=20))
+#library("dplyr")
+#library("tidyr")
+#library("kableExtra")
+library("DiagrammeR")
+mypar <- list(las = 1, cex.lab = 1.4, cex.axis=1.4, lwd = 2)
+```
+
+<!--- End of Setup ------------------------------------------------------------>
+
+
+## Markdown, RMarkdown and Quarto
+
+<br>
+
+**Markdown** `.md`
+
+* " ... is a lightweight markup language for creating formatted text using a plain-text editor"  [@Wikipedia_Markdown].
+* Can be written with any text editor, less perfect than Latex, but much easier.
+* Markdown supported by many programs and services (e.g. Github, StackOverflow, Matrix, RStudio, ...)
+
+**RMarkdown** `.Rmd`
+
+* is an extension of markdown that can embed R code.
+* superseeded by Quarto
+
+
+**Quarto** `.qmd`
+
+* is an extension of Markdown that can embed R, Python, Julia and Observable code.
+* improved capabilities to create reports, slides, websites, papers, books.
+
+
+
+## Why Markdown or Quarto
+
+<br><br>
+
+* Quick note taking (documentation of ideas, experiments, SOPs, ...)
+* Documentation of statistical analyses (Quarto + R)
+* Clearly structured documents (outline clearly visible)
+* Easy literature referencing
+* Much easier than LaTeX
+<br>
+
+* Widely used technology, useful for Stackoverflow, Github or Matrix
+
+
+## Software
+
+<br>
+
+* You can use any text editor, e.g. Notepad++, your mail client<br> ... or even Word
+
+<br>
+
+* Better: use an editor with Markdown support
+    - **RStudio**
+    - **PanWriter**, a basic writing program with an almost empty screen<br>
+      $\rightarrow$ distraction free writing
+    - **Joplin**, a note taking program with cloud connectivity and encryption
+    - many online services: Github, Gitlab, StackOverflow, Matrix
+    - and more
+
+
+
+<!---
+## Panwriter
+
+
+![The interface of Panwriter](../img/panwriter.png)
+--->
+
+## Many Markdown Programs Available, e.g. Panwriter
+
+
+![Panwriter with live preview](../img/panwriter-preview.png)
+
+
+## Let's use RStudio. Supports Markdown and Quarto
+
+
+![RStudio](../img/new_rmarkdown-small.png)
+
+## Example
+
+<br>
+
+Section titles are introduced with one or several hash symbols `#`, `##`, praragraphs 
+with empty lines, italic and bold face are indicated with one or two starts before 
+and after a phrase, bullet points with a leading dash `-` or a star `*`. Weblinks 
+are automatically activated. Here an example:
+
+```
+    # First level
+
+    Text can be written with any editor, that can be formatted, e.g. *slanted*, **boldface**,
+    `verbatim text` weblinks: https://tu-dresden.de or bullet points:
+
+    * point 1
+    * point 2
+
+    Section titles start with one or more hash tags
+    
+    
+    ## Second level
+    
+    ### Third level
+```
+
+There are of course more formatting options, found in the docs or explained later.
+
+---
+
+## YAML Header
+
+<br>
+
+Quarto and markdown documents can have a few special lines on top,
+enclosed within three dashes `---`. This so called "YAML header" is used to set
+text settings and formatting options:
+
+```
+    ---
+    title: "Test"
+    author: "Who wrote this"
+    date: '2024-11-12'
+    format: html
+    ---
+    
+    # First Section
+
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+    eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
+    
+    At vero eos et accusam et justo duo dolores et ea rebum.
+    
+    # Second Section
+     
+    Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum 
+    dolor sit amet. 
+```
+
+YAML: yet another markup language. A list format coming from the python world.
+
+
+
+## Layout and format conversion
+
+* User can concentrate on writing, formatting is done automatically.
+* Several tools exist to convert markdown to other document formats.
+* One of the most popular is **pandoc**. It is built-in in **Rstudio**.
+
+
+```{r diag-markdown1, echo=FALSE, fig.height=4, out.width="100%"}
+library("DiagrammeR")
+grViz("digraph pandoc {
+         graph [rankdir = 'LR']
+           node [shape = 'box', penwidth=1, fontname = 'Helvetica', 
+                color='dodgerblue', style='filled', fontcolor='#006ab2' fillcolor='wheat']
+                Quarto HTML PDF Word
+           node [shape = cds, style='filled', fontsize=18, fontcolor='tomato', fillcolor='wheat']
+             render
+           node [shape = oval, penwidth=0.5, style='cds' fixedsize=20 
+                 fontsize=10 fontcolor='#93107d' style='filled', fillcolor='wheat']
+             figs bib
+           edge [penwidth=1.5]
+             Quarto -> render
+             {figs bib} -> {render}
+             render -> {HTML PDF Word}
+}")
+```
+
+
+Rendering is done with the pandoc utility to convert Quarto or Markdown text to  
+HTML for web pages, pdf for printing, or Word for further editing.
+
+
+## What is Pandoc?
+
+<br>
+
+
+* Pandoc is a universal text conversion tool
+* It is said to be the "swiss-army knife" to convert between formats
+* Open Source licensed: GPL 2.0 resp. MIT license
+* Available from: [https://pandoc.org/](https://pandoc.org/)
+* ... or embedded in RStudio
+
+---
+
+## Exercise
+
+<br>
+
+* Write your first Quarto document in RStudio.
+* Render it to HTML and Word
+
+
+
+### Optional without warranty
+
+* Create PDF output
+* Needs LaTeX type setting system installed
+* Can be done with R's tinytex package:
+
+````
+```{r, eval=FALSE}
+install.packages("tinytex")
+```
+````
+
+... or by installing tinytex from the Terminal of RStudio
+
+```
+quarto install tinytex
+```
+
+and then include `format: pdf` in the YAML header
+
+```
+title: "My document"
+format: pdf
+```
+
+See more at: [https://quarto.org/docs/output-formats/pdf-basics.html](https://quarto.org/docs/output-formats/pdf-basics.html)
+
+---
+
+## Section Titles
+
+<br>
+
+Section titles can be formatted with hashtags or by underlining:
+
+```
+# A Section
+
+## A subsection
+```
+
+or:
+
+```
+A Section
+=========
+
+A Subsection
+------------
+```
+
+Automatic numbering can optionally be enabled in the YAML header:
+
+```
+---
+title: "My document"
+format:
+  html:
+    toc: true
+    number-sections: true
+---
+```
+
+
+
+## Weblinks
+
+<br>
+
+### Formatted weblinks
+
+`[further reading](https://rmarkdown.rstudio.com)`
+
+is then formatted as: [further reading](https://rmarkdown.rstudio.com)
+
+### Example
+
+`The [*Markdown Wikipedia page*](https://de.wikipedia.org/wiki/Markdown) contains examples.`
+
+
+The [*Markdown Wikipedia page*](https://de.wikipedia.org/wiki/Markdown) contains examples.
+---
+
+## Images
+
+Images are similar to weblinks, but with a leading `!`
+
+`![figure title](mushrooms.jpg)`
+
+
+![figure title](../img/mushrooms.jpg)
+
+## Verbatim Text
+
+Verbatim text can be created with several methods:
+
+1. Inline: enclose text within single backticks `` `verbatim text` `` $\rightarrow$ `verbatim text`
+1. Indentation by 4 spaces
+1. Use so-called fencing with ` ``` ` before and after a tect or code block.
+
+````
+```
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+voluptua.
+```
+````
+
+appears as:
+
+```
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+voluptua.
+```
+
+
+## Tables
+
+Source code:
+
+```
+| Right | Left | Default | Center |
+|------:|:-----|---------|:------:|
+|    12 | 34   |   56    |   78   |
+| this  | is   |   a     | table  |
+```
+
+
+HTML Output:
+
+| Right | Left | Default | Center |
+|------:|:-----|---------|:------:|
+|    12 | 34   |   56    |   78   |
+| this  | is   |   a     | table  |
+
+PDF output:
+
+* Style similar to a scientific paper.
+
+**Bigger or more complex tables:** create the table in Excel or LibreOffice and 
+add markdown formatting, or use **R** and `kable` to create the table from data.
+
+---
+
+## Citations
+
+<br>
+
+#### Create database file in `.bib`-format, e.g. `references.bib`
+
+* can be exported from **Zotero**
+* put bibliography file to the document folder
+
+
+#### Use ` @bib_key`-syntax
+
+* textual citation: @APA2020 $\leftarrow$ `@APA2020b`
+* parenthetical citation: [@APA2020a] $\leftarrow$ `[@APA2020a]`
+
+<br>
+
+#### Declare bibliography in YAML header
+
+```
+bibliography: references.bib
+csl: apa
+```
+* and optionally a `.csl`-style e.g. `apa.csl`, that is copied to the folder of the document
+* csl styles can be found here: [https://citationstyles.org/authors/](https://citationstyles.org/authors/)
+
+
+
+
+---
+
+## Mathematical Formulae
+
+<br>
+
+Markdown and Quarto support a subset of the **LaTeX** [formula syntax](https://en.wikibooks.org/wiki/LaTeX/Mathematics)
+
+<br>
+
+#### Inline formula
+
+`$s_x = \frac{\sum_{i=1}^{N} (x_i - \bar{x})^2}{N-1}$` 
+$\quad \rightarrow \qquad s_x = \frac{\sum_{i=1}^{N} (x_i - \bar{x})^2}{N-1}$
+
+<br>
+#### Display formula
+
+```
+$$s_x = \frac{\sum_{i=1}^{N} (x_i - \bar{x})^2}{N-1}$$
+```
+
+$$s_x = \frac{\sum_{i=1}^{N} (x_i - \bar{x})^2}{N-1}$$
+
+#### Mathematical symbols
+
+$\rightarrow, \le, \approx, \mu, \delta, \int, \infty, \mathrm{m^3s^{-1}}$
+
+
+`$\rightarrow, \le, \approx, \mu, \delta, \int, \infty, \mathrm{m^3s^{-1}}$`
+
+
+## More maths and chemistry
+
+<br>
+
+\begin{align}
+\frac{dX_1}{dt} &=    k_1 \cdot X_1 -  k_2 X_1 X_2 \\
+\frac{dX_2}{dt} &=  - k_4 \cdot X_2 + k_3 X_1 X_2 \\
+\end{align}
+
+```
+\begin{align}
+\frac{dX_1}{dt} &=  k_1 \cdot X_1 -  k_2 X_1 X_2 \\
+\frac{dX_2}{dt} &=  k_3 X_1 X_2 - k_4 \cdot X_2 \\
+\end{align}
+```
+
+<br>
+
+$$\rm 6CO_2 + 6H_2O \rightarrow C_6H_{12}O_6 + 6O_2 
+\quad \Delta H^0 = +2870 kJ mol^{-1}$$
+```
+$$\rm 6CO_2 + 6H_2O \rightarrow C_6H_{12}O_6 + 6O_2 \quad \Delta H^0 = +2870 kJ mol^{-1}$$
+```
+
+<!---
+## Quarto
+
+Markdown extension with embedded R, Python, Julia or Observable.
+
+```{r diag-markdown2, echo=FALSE, fig.height=5.5, out.width="100%"}
+grViz("digraph pandoc {
+         graph [rankdir = 'LR']
+           node [shape = 'box', penwidth=1, fontname = 'Helvetica', 
+                color='dodgerblue', style='filled', fontcolor='#006ab2' fillcolor='wheat']
+             Quarto Markdown HTML PDF Tex Word
+      
+           node [shape = cds, style='filled', fontsize=18, fontcolor='tomato', fillcolor='wheat']
+             knitr pandoc pdflatex
+      
+           node [shape = oval, penwidth=0.5, style='cds' fixedsize=22
+                 fontsize=10 fontcolor='#93107d' style='filled', fillcolor='wheat']
+             R_Output figs R_figs bib csl
+      
+           edge [penwidth=1.5]
+             Quarto -> knitr -> Markdown -> pandoc
+             R_Output -> Markdown
+             knitr -> {R_Output R_figs}
+             {R_figs} -> {pandoc}
+             pandoc -> {HTML Word Tex}
+             Tex -> pdflatex -> PDF
+           edge [minlen=4 penwidth=1]
+             {figs bib csl} -> pandoc
+}")
+```
+--->
+
+
+## Embedding of R in Quarto Documents
+
+<br>
+
+Create a Quarto template from the File menu in RStudio. Then make your
+changes and click the **Render** button. Then, a document will be generated that 
+includes both content as well as the output of any embedded R code chunks. 
+
+<br>
+
+Then embed your own R code chunks like this:
+
+````
+```{r iris_summary}`r ''`
+summary(iris)
+```
+````
+
+<br>
+To show both, the code and the output
+```{r iris_summary}
+summary(iris)
+```
+
+---
+
+## Tables from R
+
+<br>
+
+If you want to include real tables, you 
+can create the table in R and then format it with `knitr::kable`
+
+<br>
+
+
+````
+```{r iris_table}`r ''`
+knitr::kable(iris[1:4, ])
+```
+````
+
+```{r iris_table}
+knitr::kable(iris[1:4, ])
+```
+
+
+The `kable` function has several functions for configuring table layout, see 
+`kable` help page for details.
+
+---
+
+## Include Plots
+
+You can also embed plots, for example:
+
+````
+```{r iris_sepal}`r ''`
+plot(Sepal.Width ~ Sepal.Length, data=iris, pch=16, col=Species)
+```
+````
+
+
+```{r iris_sepal2, fig.height=4, fig.width=4, fig.align="center"}
+plot(Sepal.Width ~ Sepal.Length, data=iris, pch=16, col=Species)
+```
+
+
+---
+
+## Suppress Code
+
+
+The code chunks can be modified with additional options. In the following example
+the figure size is adjusted and an option `echo = FALSE` was added to prevent 
+printing of the R code that generated the plot.
+
+````
+```{r iris_sepal3, fig.width=3, fig.height=3, echo=FALSE}`r ''`
+plot(Sepal.Width ~ Sepal.Length, data=iris, pch=16, col=Species)
+```
+````
+
+Shows the plot without the code:
+
+```{r iris_sepal3, fig.width=4, fig.height=4, echo=FALSE, fig.align="center"}
+par(mar=c(3,3,1,1))
+plot(Sepal.Width ~ Sepal.Length, data=iris, pch=16, col=Species)
+```
+
+
+## Flowcharts and graphs
+
+<br>
+
+... can be created with the **DiagrammeR** package that supports the [graphviz](https://graphviz.org/) language.
+
+<br>
+
+```{r diag-markdown3, echo=FALSE, fig.height=4, out.width="100%"}
+library("DiagrammeR")
+grViz("digraph quarto {
+         graph [rankdir = LR]
+           node [shape = 'box']
+                Quarto HTML PDF Word
+           node [shape = cds]
+             render
+           node [shape = oval]
+             figs bib
+           edge [penwidth=2]
+             Quarto -> render
+             {figs bib} -> {render}
+             render -> {HTML PDF Word}
+}")
+```
+
+## R code of the flowchart
+
+<br><br>
+
+```
+library("DiagrammeR")
+grViz("digraph pandoc {
+         graph [rankdir = LR]
+           node [shape = 'box']
+                Markdown HTML PDF Word
+           node [shape = cds]
+             pandoc
+           node [shape = oval]
+             figs bib
+           edge [penwidth=2]
+             Markdown -> pandoc
+             {figs bib} -> {pandoc}
+             pandoc -> {HTML PDF Word}
+}")
+```
+
+More at: [https://graphviz.org/](https://graphviz.org/)
+
+
+
+## Further reading
+
+
+![[$\rightarrow$ Quarto cheat sheet](https://rstudio.github.io/cheatsheets/html/quarto.html)](../img/quarto-cheetsheet.png)
+
+
+For more details, see [https://quarto.org](https://quarto.org) and @RCore", @RStudio, @Xie2015 and @Quarto.
+
+Thesis templates for Hydrobiology students at TU Dresden: [https://github.com/tpetzoldt/hyb-tud-thesis-starterkit](https://github.com/tpetzoldt/hyb-tud-thesis-starterkit)
+in Word, Latex and Quarto format. It may also be useful for you.
+
+## References
+
+

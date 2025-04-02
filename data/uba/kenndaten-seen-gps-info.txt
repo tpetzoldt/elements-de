@@ -1,0 +1,11 @@
+GPS coordinates of selected lakes
+
+lake names from kenndaten-seen-npchl.csv
+
+Source of lake names: Umweltbundesamt 
+
+https://www.umweltbundesamt.de/sites/default/files/medien/384/bilder/dateien/de-en_indikator_aqua-02_oekolog-zustand-seen_2018-06-08.xlsx
+
+Coordinates (lat lon) WGS 84
+
+Wikipedia, except lakes with two basins (Müritz and Schweriner See) where coordinates were taken from Google Maps

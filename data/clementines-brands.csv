@@ -1,0 +1,9 @@
+brand,shop,type,quality,year,kilogram,price
+EB,Edeka,Basic,Basic,2019,1.5,2.99
+EP,Edeka,Gold,Premium,2019,0.75,1.49
+LB,Lidl,Basic,Basic,2019,1,1.49
+LO,Lidl,Bio,Premium,2019,0.5,1.49
+NX,Netto,Box,Basic,2019,2.3,2.99
+NP,Netto,Premium,Premium,2019,1,2.29
+NB,Netto,Basic,Basic,2019,1,1.49
+NC,Netto,Basic,Basic,2019,1,1.49

@@ -1,0 +1,17 @@
+Dataset: dobson.txt
+
+Description: Annette Dobson's Birthweight Data
+
+License: ???
+              
+Source: ???
+
+@BOOK{Dobson1983,
+  author = {Dobson, A. J.},
+  year = 1983,
+  title = {An Introduction to Statistical Modelling},
+  publisher = {Chapman and Hall},
+  address = {London},
+  abstract = {Birthweight Data (?)},
+  language = {english}
+}
