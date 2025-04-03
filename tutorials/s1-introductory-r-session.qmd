@@ -35,21 +35,21 @@ Der folgende Abschnitt soll einen ersten Eindruck vermitteln, was **R** [@RCore2
 
 Anmerkung: Bitte installiere zuerst **R** bevor du **RStudio** installierst.
 
-Ein gutes Beispiel für den Anfang ist das kurze Video „R tutorial - The True Basics of R“ von DataCamp, siehe [https://youtu.be/SWxoJqTqo08](https://youtu.be/SWxoJqTqo08). Außerdem bietet [Datacamp](https://www.datacamp.com/) ausgezeichnete **R**-Tutorials, die zum Teil kostenlos sind. Ein weiteres nützliches **R**-Tutorial gibt es bei [W3Schools.com](https://www.w3schools.com/r/).
+Ein gutes Beispiel für den Anfang ist das kurze Video „R tutorial - The True Basics of R“ von DataCamp, siehe [https://youtu.be/SWxoJqTqo08](https://youtu.be/SWxoJqTqo08). Außerdem bietet [Datacamp](https://www.datacamp.com/) ausgezeichnete **R**-Kurse, die zum Teil sogar kostenlos sind. Ein weiteres nützliches **R**-Tutorial gibt es bei [W3Schools.com](https://www.w3schools.com/r/).
 
 # Erste Schritte
 
 ## Programmstart und Hilfesystem
 
-Der einfachste Weg, **R** zu erlernen, ist das kreative Verstehen und Abwandeln von gegebenen Beispielen, die Verwendung von **R** zur Lösung praktischer Probleme und die Diagnose der häufig auftretenden Probleme und Fehlermeldungen. Keine Sorge: Fehlermeldungen sind ein normales Phänomen im wissenschaftlichen Rechnen und kein Hinweis auf eine Funktionsstörung des Computers oder des menschlichen Gehirns. Das Gegenteil ist der Fall: Ein gewisses Maß an Stresshormonen hilft, dauerhafte Lerneffekte zu erzielen. Nach einer gewissen Erfahrung ist dann die offizielle **R**-Dokumentation „An Introduction to R“ [@Venables2021]. oder ein gutes **R**-Buch sehr zu empfehlen.
+Der einfachste Weg, **R** zu erlernen, ist das kreative Verstehen und Abwandeln von gegebenen Beispielen, die Verwendung von **R** zur Lösung praktischer Probleme und die Diagnose von Warnungen und Fehlermeldungen. Keine Sorge: Fehlermeldungen sind ein normales Phänomen im wissenschaftlichen Rechnen und kein Hinweis auf eine Funktionsstörung des Computers oder des menschlichen Gehirns. Das Gegenteil ist der Fall: Ein gewisses Maß an Stresshormonen hilft, dauerhafte Lerneffekte zu erzielen. Nach einer gewissen Erfahrung ist dann die offizielle **R**-Dokumentation „An Introduction to R“ [@Venables2021] oder ein gutes **R**-Buch sehr zu empfehlen.
 
 Die ersten Abschnitte dieses „Crashkurses“ sollen einen Überblick über einige der wichtigsten Elemente von **R** und einen Einblick in einen typischen Arbeitsablauf geben, der für die ersten statistischen Analysen und als Ausgangspunkt für die selbstständige Einarbeitung nützlich sein kann.
 
-Wir beginnen unsere erste Sitzung mit dem Start von **RStudio**, einer plattformunabhängigen Schnittstelle, die das Arbeiten mit R erleichtert. RStudio unterteilt den Bildschirm in 3 (bzw. 4) Fenster (sogenannte Panes), von denen einige zusätzliche Tabs haben, um zwischen verschiedenen Ansichten zu wechseln.
+Wir beginnen unsere erste Sitzung mit dem Start von **RStudio**, einer plattformunabhängigen Benutzerumgebung, die das Arbeiten mit R erleichtert. RStudio unterteilt den Bildschirm in 3 (bzw. 4) Fenster (sogenannte Panes), von denen einige zusätzliche Tabs haben, um zwischen verschiedenen Ansichten zu wechseln.
 
 ![](../img/rstudio.png)
 
-**Abbildung 1:** R Studio mit 4 Fenstern. Benutze **Datei -- Neues R-Skript**, um das Quellcode-Fenster zu öffnen (siehe oben links). Gib dann etwas Code ein und vergiss nicht, die Hilfsdateien zu lesen.
+**Abbildung 1:** R Studio mit 4 Fenstern. Benutze **Datei -- Neues R-Skript**, um das Quellcode-Fenster zu öffnen (siehe oben links). Gib dann etwas Code ein und vergiss nicht, im Hilfesystem zu lesen.
 
 
 In einer neuen RStudio-Sitzung sollte ein „Pane“ die Haupt-Hilfsseite von **R** sein.  Es ist eine gute Idee, ein wenig herumzustöbern, um einen Eindruck über den Umfang und den typischen Stil der verfügbaren Hilfsthemen zu bekommen. Die wichtigsten Abschnitte sind „An Introduction to R“, „Search Engine \& Keywords“, „Packages“, die „Frequently Asked Questions“ und eventuell „**R** Data Import/Export“.
@@ -57,21 +57,20 @@ In einer neuen RStudio-Sitzung sollte ein „Pane“ die Haupt-Hilfsseite von **
 Wir beginnen nun, das **R**-System selbst zu erkunden.
 
 
-
 ## R als Taschenrechner
 
-Einen arithmetischen Ausdruck wie diesen eingeben:
+Wenn man einen arithmetischen Ausdruck eingibt:
 
 ```{r pocketcalc, eval=FALSE, fig=FALSE, echo=TRUE, keep.source=TRUE}
 2 + 4
 ```
 
-zeigt, dass **R** als Taschenrechner verwendet werden kann, der das Ergebnis sofort ausgibt:
+sieht man, dass **R** als Taschenrechner verwendet werden kann, der das Ergebnis sofort ausgibt:
 
 ```{r pocketcalc, eval=TRUE, echo=FALSE}
 ```
 
-Anstatt das Ergebnis auf dem Bildschirm auszugeben, ist es auch möglich, das Ergebnis mit dem Zuweisungsoperator „`<-`“ in einer benannten **Variablen** zu speichern.
+Anstatt das Ergebnis auf dem Bildschirm auszugeben, kann man das Ergebnis mit dem Zuweisungsoperator „`<-`“ in einer benannten **Variablen** speichern:
 
 ```{r eval=TRUE, fig=FALSE, echo=TRUE, keep.source=TRUE}
 a <- 2 + 4
@@ -84,17 +83,16 @@ a
 ```
 
 
-Variablennamen in **R** beginnen immer mit einem Buchstaben (oder für besondere Zwecke mit einem Punkt), gefolgt von weiteren Buchstaben, Ziffern, Punkten oder Unterstrichen, wobei zwischen Klein- und Großbuchstaben unterschieden wird, d.h. die Variablen `Wert`, `Value` und `VALUE` können unterschiedliche Daten enthalten. Einige wenige Zeichenkombinationen sind **reservierte Wörter** und können nicht als Variablen verwendet werden:  
+Variablennamen in **R** beginnen immer mit einem Buchstaben (oder für besondere Zwecke mit einem Punkt), gefolgt von weiteren Buchstaben, Ziffern, Punkten oder Unterstrichen. Es wird zwischen Klein- und Großbuchstaben unterschieden, d.h. die Variablen `value`, `Value` und `VALUE` können unterschiedliche Daten enthalten. Einige wenige Zeichenkombinationen sind **reservierte Wörter** und können nicht als Variablen verwendet werden:  
 
-`break`, `for`, `function`,
-  `if`, `in`, `next`, `repeat`, `while` und "`...`" (drei Punkte). 
+`break`, `for`, `function`, `if`, `in`, `next`, `repeat`, `while` und "`...`" (drei Punkte). 
 
 Andere Bezeichner wie `plot` können umdefiniert werden, doch dies sollte mit Vorsicht geschehen, um unerwünschte Verwechslungen und Nebenwirkungen zu vermeiden.
 
 
 ## Vektoren
 
-Vielleicht hast du bemerkt, dass die Ausgabe des obigen Beispiels ein führendes `[1]` hatte, was bedeutet, dass die Zeile mit dem ersten Element von `a` beginnt.  Dies bringt uns zu einer sehr wichtigen Eigenschaft von **R**, dass Variablen mehr als nur einzelne Werte enthalten können: Vektoren, Matrizen, Listen, Datenrahmen (Tabellen) und so weiter.
+Vielleicht hast du bemerkt, dass die Ausgabe des obigen Beispiels ein führendes `[1]` hat. Das bedeutet, dass die Zeile mit dem ersten Element von `a` beginnt.  Dies bringt uns zu einer sehr wichtigen Eigenschaft von **R**, dass Variablen mehr als nur einzelne Werte enthalten können: Vektoren, Matrizen, Listen, Dataframes (Tabellen) und so weiter.
 
 
 Der grundlegendste Datentyp ist der Vektor, der mit Hilfe der Funktion „c“ (combine) mit Daten gefüllt werden kann:
@@ -118,7 +116,7 @@ x <- seq(2, 4, 0.25)
 x
 ```
 
-Sequenzen von wiederholten gleichen Werten können mit `rep` erhalten werden:
+Sequenzen von wiederholten gleichen Werten können mit `rep` erzeugt werden:
 
 ```{r fig=FALSE, echo=TRUE}
 x <- rep(2, 4)
@@ -140,7 +138,7 @@ rep(c(0, 1, 2, 4, 9), each = 2, times = 5)
 
 ## Zugriff auf Vektorelemente
 
-Anstatt auf Vektoren als Ganzes zuzugreifen, ist es auch möglich, einzelne Elemente zu extrahieren, wobei der Index der angeforderten Daten selbst ein Vektor ist:
+Anstatt auf Vektoren als Ganzes zuzugreifen, ist es auch möglich, einzelne Elemente zu extrahieren, wobei der Index der angeforderten Daten ebenfalls ein Vektor sein kann:
 
 ```{r fig=FALSE, echo=TRUE}
 values[5]
@@ -148,7 +146,7 @@ values[2:4]
 values[c(1, 3, 5)]
 ```
 
-Manchmal haben die Elemente eines Vektors individuelle Namen, was den Zugriff auf sie erleichtert:
+Manchmal haben die Elemente eines Vektors individuelle Namen, was den Zugriff erleichtert:
 
 ```{r fig=FALSE, echo=TRUE}
 named <- c(a = 1, b = 2.3, c = 4.5)
@@ -162,19 +160,19 @@ In **R** (und im Gegensatz zu anderen Sprachen wie **C/C++**) beginnen Vektorind
 values[-3]
 ```
 
-Es ist auch möglich, einen gegebenen Vektor durch Voranstellen oder Anhängen von Werten mit der Kombinationsfunktion (`c`) zu erweitern:
+Es ist auch möglich, einen gegebenen Vektor durch Voranstellen oder Anhängen von Werten mit der Combine-Funktion (`c`) zu erweitern:
 
 ```{r fig=FALSE, echo=TRUE}
 c(1, 1, values, 0, 0)
 ```
 
-Die Länge eines Vektors kann bestimmt werden mit:
+Die Länge eines Vektors kann mit der Funktion `length` ermittelt werden:
 
 ```{r fig=FALSE, echo=TRUE}
 length(values)
 ```
 
-und es ist auch möglich, leere Vektoren zu haben, d. h. Vektoren, die zwar existieren, aber keine Werte enthalten. Hier bedeutet das Schlüsselwort `NULL` „nichts“ im Gegensatz zu „0“ (Null), was die Länge 1 hat:
+Auch leere Vektoren sind möglich, d. h. Vektoren, die zwar existieren, aber keine Werte enthalten. Hier bedeutet das Schlüsselwort `NULL` „nichts“ im Gegensatz zu „0“ (Null), was die Länge 1 hat:
 
 ```{r fig=FALSE, echo=TRUE}
 values <- NULL
@@ -194,7 +192,7 @@ values <- c(values, 1.34)
 values
 ```
 
-Soll ein Datenelement vollständig entfernt werden, so kann dies mit der Funktion `remove` geschehen:
+Soll ein Datenelement vollständig entfernt werden, so kann dies mit der Funktion `remove` (kurz `rm`) geschehen:
 
 ```
 rm(values)
@@ -215,7 +213,7 @@ q()
 ```
 
 Manchmal und abhängig von der Konfiguration fragt **R**, ob der
-„**R** Arbeitsbereich“ auf der Festplatte gespeichert werden soll. Dies kann nützlich sein, um die Arbeit zu einem späteren Zeitpunkt fortzusetzen, birgt aber das Risiko, den Arbeitsbereich zu überladen und bei einer späteren Sitzung nicht reproduzierbare Ergebnisse zu erhalten, so dass es empfehlenswert ist, vorerst „Nein“ zu sagen, es sei denn, man weiß genau, warum.
+„**R** Workspace“ auf der Festplatte gespeichert werden soll. Dies kann nützlich sein, um die Arbeit zu einem späteren Zeitpunkt fortzusetzen, birgt aber das Risiko, den Arbeitsbereich zu überladen und bei einer späteren Sitzung nicht reproduzierbare Ergebnisse zu erhalten, so dass es empfehlenswert ist, vorerst „Nein“ zu sagen, es sei denn, man weiß genau, warum.
 
 Später werden wir lernen, wie man nur die Daten (und Befehle) speichert, die benötigt werden.
 
@@ -224,8 +222,7 @@ Später werden wir lernen, wie man nur die Daten (und Befehle) speichert, die be
 
 ## R als Funktionsplotter
 
-Nun wollen wir sehen, wie man **R** als Funktionsplotter verwendet, indem man Sinus- oder Kosinusfunktionen innerhalb eines Intervalls zwischen 0 und 10 zeichnet. Zuerst erstellen wir zwei Vektoren mit `x` und `y`. Um eine glatte Kurve zu erhalten, ist es sinnvoll, eine kleine Schrittweite zu wählen. Als Faustregel empfehle ich immer, etwa 100...400 kleine Schritte zu verwenden
-als guten Kompromiss zwischen Glättung und Speicherbedarf, also setzen wir die Schrittweite auf 0.1:
+Nun wollen wir sehen, wie man **R** als Funktionsplotter verwendet, indem man Sinus- oder Kosinusfunktionen innerhalb eines Intervalls zwischen 0 und 10 zeichnet. Zuerst erstellen wir zwei Vektoren mit `x` und `y`. Um eine glatte Kurve zu erhalten, ist es sinnvoll, eine kleine Schrittweite zu wählen. Als Faustregel empfehle ich immer, etwa 100...400 kleine Schritte zu verwenden. Das ist ein guter Kompromiss zwischen Glättung und Speicherbedarf. Im Folgenden setzen wir die Schrittweite deshalb auf 0.1:
 
 ```{r sin-curve, eval=TRUE, fig=TRUE, echo=TRUE, keep.source=TRUE}
 x <- seq(0, 10, 0.1)
@@ -234,17 +231,17 @@ plot(x, y)
 ```
 
 Anstatt Punkte zu plotten, können wir auch durchgehende Linien zeichnen. Dies wird durch die Angabe eines optionalen Arguments angegeben
-`type = „l“`.  
+`type = "l"`.  
 
-**Anmerkung:** das hier verwendete Symbol für `type` ist der **kleine Buchstabe „L ‚** für ‘line“ und nicht die -- im Druck sehr ähnliche -- Zahl „1“ (eins)!
+**Anmerkung:** das hier verwendete Symbol für `type` ist der **kleine Buchstabe „L“** für 'line' und nicht die -- im Druck sehr ähnliche -- Zahl "1" (eins)!
 
-Wir sehen auch, dass optionale Argumente wie `type` als „ keyword = value“ Paar angegeben werden können. Dies hat den Vorteil, dass die Reihenfolge der Argumente keine Rolle spielt, da die Argumente durch ihren Namen referenziert werden:
+Wir sehen auch, dass optionale Argumente wie `type` als „keyword = value“ Paar angegeben werden können. Dies hat den Vorteil, dass die Reihenfolge der Argumente keine Rolle spielt, da die Argumente durch ihren Namen referenziert werden:
 
 ```{r eval=FALSE, fig=FALSE, echo=TRUE, keep.source=TRUE}
 plot(x, y, type = "l")
 ```
 
-Jetzt wollen wir eine Kosinusfunktion mit einer anderen Farbe hinzufügen. Dies kann mit einer der Funktionen `lines` oder `points` gemacht werden, um Linien oder Punkte zu einer bestehenden Figur hinzuzufügen:
+Jetzt wollen wir eine Kosinusfunktion mit einer anderen Farbe zeichnen. Dies kann mit einer der Funktionen `lines` oder `points` erreicht werden, um Linien oder Punkte zu einem bestehenden Plot hinzuzufügen:
 
 ```{r eval=FALSE, fig=FALSE, echo=TRUE, keep.source=TRUE}
 y1 <- cos(x)
@@ -258,7 +255,7 @@ x1 <- 1:10
 text(x1, sin(x1), x1, col = "green")
 ```
 
-Es gibt viele Optionen, um das Verhalten der meisten Grafikfunktionen zu ändern. Im Folgenden werden benutzerdefinierte Koordinatengrenzen (`xlim`, `ylim`), Achsenbeschriftungen und eine Überschrift (`xlab`, `ylab`, `main`) angegeben.
+Es gibt noch viele weitere Optionen, um das Verhalten der Grafikfunktionen zu ändern. Im Folgenden werden benutzerdefinierte Koordinatengrenzen (`xlim`, `ylim`), Achsenbeschriftungen und eine Überschrift (`xlab`, `ylab`, `main`) angegeben:
 
 ```{r eval=FALSE, fig=FALSE, echo=TRUE, keep.source=TRUE}
 plot(x, y, xlim = c(-10, 10), ylim = c(-2, 2),
@@ -267,24 +264,25 @@ plot(x, y, xlim = c(-10, 10), ylim = c(-2, 2),
 
 **Codeformatierung und Zeilenumbrüche**
 
-Das obige Beispiel zeigt einen ziemlich langen Befehl, der möglicherweise nicht in eine einzige Zeile passt. In solchen Fällen zeigt **R** ein `+` (Pluszeichen) an, um anzuzeigen, dass ein Befehl fortgesetzt werden muss, z.B. weil noch eine schließende Klammer oder ein schließendes Anführungszeichen fehlt. Ein solches `+` am Anfang einer Zeile ist ein automatischer „Prompt“ ähnlich dem gewöhnlichen `>`-Prompt und muss niemals manuell eingegeben werden. Wenn die „+“-Fortsetzungsaufforderung jedoch versehentlich auftritt, drücke „ESC“, um diesen Modus abzubrechen.
+Das obige Beispiel zeigt einen ziemlich langen Befehl, der möglicherweise nicht auf eine einzelne Zeile passt. In solchen Fällen zeigt **R** ein `+` (Pluszeichen) an, um anzuzeigen, dass ein Befehl fortgesetzt werden muss, z.B. weil noch eine schließende Klammer oder ein schließendes Anführungszeichen fehlt. Ein solches `+` am Anfang einer Zeile ist ein automatischer „Prompt“ ähnlich dem gewöhnlichen `>`-Prompt und muss niemals manuell eingegeben werden. Wenn die „+“-Fortsetzungsaufforderung jedoch versehentlich auftritt, drücke „ESC“, um diesen Modus abzubrechen.
 
-Im Gegensatz zur langzeiligen Fortsetzungsaufforderung ist es auch möglich, mehrere Befehle in eine Zeile zu schreiben, getrennt durch ein Semikolon „`;`“. Dies ist in einigen Fällen sinnvoll, aber im Allgemeinen ist es viel besser, den Skript-Editor zu verwenden und dann:
+Im Gegensatz zur Fortsetzungsaufforderung ist es auch möglich, mehrere Befehle in eine Zeile zu schreiben, getrennt durch ein Semikolon „`;`“. Das ist in einigen Fällen sinnvoll, aber im Allgemeinen ist es viel besser, den Skript-Editor zu verwenden und dann:
 
 * jeden Befehl in eine eigene Zeile zu schreiben
 * lange Zeilen mit mehr als 80 Zeichen zu vermeiden
 * eine angemessene Einrückung zu verwenden, z.B. 2 Zeichen pro Einrückungsebene
-* Verwendung von Abständen, um die Lesbarkeit des Codes zu verbessern, z.B. vor und nach dem Zuweisungsoperator ` <- `.
+* Leerzeichen einzufügen, um die Lesbarkeit des Codes zu verbessern, z.B. vor und nach dem Zuweisungsoperator ` <- `.
 
-Schließlich bedeutet ein Zahlensymbol (oder eine Raute) `#`, dass eine komplette Zeile oder der Teil der Zeile, der auf `#` folgt, ein Kommentar ist und von **R** ignoriert werden sollte.
+Schließlich bedeutet ein Zahlensymbol (oder eine Raute) `#`, dass eine komplette Zeile oder der Teil der Zeile, der auf `#` folgt, ein Kommentar ist und von **R** ignoriert wird.
 
 ## Zusätzliche Plotting-Optionen
 
-Um die Fülle der grafischen Funktionen zu erkunden, lohnt es sich nun, einen Blick in die Online-Hilfe zu werfen, insbesondere in Bezug auf `?plot` oder `?plot.default`, und ein wenig mit verschiedenen Plot-Parametern zu experimentieren, wie `lty`, `pch`, `lwd`, `type`, `log` usw. **R** enthält unzählige Möglichkeiten, um die volle Kontrolle über den Stil und Inhalt Ihrer Grafiken zu erhalten, z.B. mit benutzerdefinierten Achsen (`axis`), Legenden (`legend`) oder benutzerdefinierten Linien und Flächen (`abline`, `rect`, `polygon`). Der allgemeine Stil von Abbildungen wie (Schriftgröße, Ränder, Linienbreite) kann mit der Funktion `par` beeinflusst werden.
+Um die Fülle der grafischen Funktionen zu erkunden, lohnt es sich nun, einen Blick in die Online-Hilfe zu werfen, insbesondere in Bezug auf `?plot` oder `?plot.default`, und ein wenig mit verschiedenen Plot-Parametern zu experimentieren, wie `lty`, `pch`, `lwd`, `type`, `log` usw.
+**R** enthält unzählige Möglichkeiten, um die volle Kontrolle über den Stil und Inhalt von Grafiken zu bekommen, z.B. mit benutzerdefinierten Achsen (`axis`), Legenden (`legend`) oder benutzerdefinierten Linien und Flächen (`abline`, `rect`, `polygon`). Der allgemeine Stil von Abbildungen wie (Schriftgröße, Ränder, Linienbreite) kann mit der Funktion `par` beeinflusst werden.
 
-## Hochrangige Plot-Funktionen
+## High-Level Grafiken
 
-Darüber hinaus enthalten **R** und seine Pakete zahlreiche „High-Level“-Grafikfunktionen für bestimmte Zwecke.  Um einige davon zu demonstrieren, erzeugen wir zunächst einen Datensatz mit normalverteilten Zufallszahlen (`Mittelwert = 0`, Standardabweichung `sd = 1`), dann plotten wir sie und erstellen ein Histogramm.  In diesem Fall teilt die Funktion „par(mfrow = c(2, 2))“ den Darstellungsbereich in 2 Zeilen und 2 Spalten, um 4 separate Abbildungen anzuzeigen:
+Darüber hinaus enthalten **R** und seine Pakete zahlreiche „High-Level“-Grafikfunktionen für bestimmte Zwecke.  Um einige davon zu demonstrieren, erzeugen wir zunächst einen Datensatz mit normalverteilten Zufallszahlen (`Mittelwert = 0`, Standardabweichung `sd = 1`), dann plotten wir sie und erstellen ein Histogramm.  In diesem Fall teilt die Funktion `par(mfrow = c(2, 2))` den Darstellungsbereich in 2 Zeilen und 2 Spalten, um 4 separate Abbildungen anzuzeigen:
 
 ```{r eval=FALSE, echo=TRUE, keep.source=TRUE}
 par(mfrow = c(2, 2))
@@ -293,7 +291,7 @@ plot(x)
 hist(x)
 ```
 
-Nun fügen wir ein sogenanntes *Normalwahrscheinlichkeitsdiagramm* und ein zweites Histogramm mit relativen Häufigkeiten zusammen mit der glockenförmigen Dichtekurve der Standardnormalverteilung. Das optionale Argument `probability = TRUE` sorgt dafür, dass das Histogramm die gleiche Skalierung wie die Dichtefunktion hat, so dass beide überlagert werden können:
+Nun erzeugen wir ein sogenanntes *Normalwahrscheinlichkeitsdiagramm* und ein zweites Histogramm mit relativen Häufigkeiten zusammen mit der glockenförmigen Dichtekurve der Standardnormalverteilung. Das optionale Argument `probability = TRUE` sorgt dafür, dass das Histogramm die gleiche Skalierung wie die Dichtefunktion hat, so dass beide überlagert werden können:
 
 ```{r eval=FALSE, echo=TRUE, keep.source=TRUE}
 qqnorm(x)
@@ -318,11 +316,9 @@ lines(xx, dnorm(xx, 0, 1), col = "red")
 ```
 
 
-Hier bietet sich auch eine gute Gelegenheit, eine kleine zusammenfassende Statistik zu erstellen: z.B. `mean(x)`, `var(x)`,
-`sd(x)`, `range(x)`, `summary(x)`,
-`min(x)`, `max(x)`, ...
+Hier bietet sich eine gute Gelegenheit, verschiedene Funktionen der zusammenfassenden Statistik auszuprobieren: z.B. `mean(x)`, `var(x)`, `sd(x)`, `range(x)`, `summary(x)`, `min(x)`, `max(x)`, ...
 
-Oder wir können prüfen, ob die generierten Zufallszahlen `x` annähernd normalverteilt sind, indem wir den Shapiro-Wilks-W-Test verwenden:
+Alternativ können wir prüfen, ob die generierten Zufallszahlen `x` annähernd normalverteilt sind, indem wir den Shapiro-Wilks-W-Test verwenden:
 
 ```{r fig=FALSE,echo=FALSE,include=FALSE}
 set.seed(123)
@@ -334,7 +330,7 @@ x <- rnorm(100)
 shapiro.test(x)
 ```
 
-Ein p-Wert größer als 0.05 sagt uns, dass der Test keine Einwände gegen die Normalverteilung der Daten hat. Die konkreten Ergebnisse können abweichen, da `x` Zufallszahlen enthält, so dass es sinnvoll ist, den Test mehrmals zu wiederholen. Es kann auch sinnvoll sein, diese mit `rnorm` erzeugten normalverteilten Zufallszahlen mit gleichverteilten Zufallszahlen zu vergleichen, die mit `runif` erzeugt wurden:
+Ein p-Wert größer als 0.05 sagt uns, dass der Test keine Einwände gegen die Normalverteilung der Daten hat. Die konkreten Ergebnisse können abweichen, da `x` Zufallszahlen enthält, so dass es sinnvoll ist, den Test mehrmals zu wiederholen. Es kann auch sinnvoll sein, die mit `rnorm` erzeugten normalverteilten Zufallszahlen mit gleichverteilten Zufallszahlen zu vergleichen, die mit `runif` erzeugt wurden:
 
 
 ```{r eval=FALSE, fig=FALSE, echo=TRUE, keep.source=TRUE}
@@ -371,7 +367,7 @@ Wiederhole dieses Beispiel mit neuen Zufallszahlen und variiere die Stichprobeng
 
 # Grundlegende Datenstrukturen von **R**
 
-Neben Vektoren enthält **R** noch einige andere Objektklassen zur Speicherung von Daten, z.B. `matrix`, `array`, `list` oder `data.frame`. Sowohl „base **R**“ als auch beitragende Pakete enthalten viele weitere Klassen. Es ist auch möglich, eigene benutzerdefinierte Klassen zu definieren.
+Neben Vektoren enthält **R** einige weitere Objektklassen zur Speicherung von Daten, z.B. `matrix`, `array`, `list` oder `data.frame`. Darüber hinaus enthalten sowohl „base **R**“ als auch Zusatzpakete viele weitere Klassen. Es ist auch möglich, eigene benutzerdefinierte Klassen zu definieren.
 
 Unter bestimmten Umständen können einige der Datentypen ineinander konvertiert werden, z.B. durch die Verwendung von Funktionen wie `as.matrix`, `as.vector`, `as.data.frame` und so weiter.
 
@@ -380,14 +376,14 @@ Unter bestimmten Umständen können einige der Datentypen ineinander konvertiert
 
 Alle Datenobjekte haben die beiden eingebauten Attribute `mode` (Datentyp) und `length` (Anzahl der Daten im Objekt).
 
-Modi können „numerisch“ für Berechnungen oder „Zeichen“ für Textelemente sein. 
+Modi können „numerisch“ (numeric) für Berechnungen oder „Zeichen“ (character) für Textelemente sein. 
 
 ```{r eval=FALSE}
 x <- c(1, 3, 4, 5)       # numeric
 a <- c("hello", "world") # character
 ```
 
-Das Folgende ist ebenfalls eine Zeichenvariable, da die Zahlen in Anführungszeichen stehen. Es ist dann nicht möglich, Berechnungen durchzuführen:
+Das Folgende ist ebenfalls eine Zeichenvariable, da die Zahlen in Anführungszeichen stehen. Es ist damit nicht möglich, Berechnungen durchzuführen:
 
 ```{r eval=FALSE}
 x <- c("1", "3", "4", "5")  # character
@@ -406,13 +402,13 @@ sum(y)
 ## Faktoren
 
 Eine besondere Art von Modus ist `factor`. Dies ist, statistisch gesehen, eine nominale Variable
-die wie Zeichen aussieht, z. B. „Kontrolle“, „Behandlung A“, „Behandlung B“ ..., aber ihre **Stufen** sind intern als Ganzzahl kodiert. 
+die wie eine Zeichenvariable aussieht, z. B. „control“, „treatment A“, „treatment B“ ..., aber ihre **Faktorstufen** sind intern als Ganzzahl kodiert. 
 
-Hier ein typisches Beispiel mit drei **Faktorstufen**. In einem ersten Schritt erstellen wir eine Zeichenvariable:
+Hier ein typisches Beispiel mit drei Faktorstufen. In einem ersten Schritt erstellen wir eine Zeichenvariable:
 
 
 ```{r, eval=TRUE}
-text <- rep(c("control", "treatment A", "treatment B"), each=5)
+text <- rep(c("control", "treatment A", "treatment B"), each = 5)
 text
 ```
 
@@ -423,7 +419,7 @@ f <- factor(text)
 f
 ```
 
-Wir sehen, dass die Zeichenvariable mit Anführungszeichen gedruckt wird und der Faktor ohne Anführungszeichen, aber mit einer zusätzlichen Information über die **Stufen**. Der Grund dafür ist, dass der Faktor intern als Ganzzahlwerte mit zugewiesenen Stufen als Übersetzungstabelle kodiert ist:
+Wir sehen, dass die Zeichenvariable mit Anführungszeichen ausgedruckt wird und der Faktor ohne Anführungszeichen, aber mit einer zusätzlichen Information über die Faktorstufen. Der Grund dafür ist, dass der Faktor intern als Ganzzahlwerte mit zugewiesenen Stufen als Übersetzungstabelle kodiert ist:
 
 ```{r, eval=TRUE}
 levels(f)
@@ -443,7 +439,7 @@ f2
 as.numeric(f2)
 ```
 
-Faktoren sind nützlich für statistische Analysen wie ANOVA und statistische Tests und auch als Kategorien für die Darstellung:
+Faktoren sind für statistische Analysen wie ANOVA und statistische Tests nützlich oder auch als Kategorien für die Darstellung:
 
 ```{r boxplot-factors, eval=TRUE}
 x <- c(7.44, 6.45, 6.04, 5.58, 4.5, 8.13, 5.54, 7.34, 8.91, 5.16, 8.7, 7.74, 6.8, 6.49, 6.2)
@@ -455,7 +451,7 @@ Wir sehen, dass ein Boxplot erstellt wird und kein x-y-Plot, weil die Erklärung
 
 Numerische Variablen (insbesondere ordinale) können ebenfalls in Faktoren umgewandelt werden. Dies ist nützlich, wenn wir deutlich machen wollen, dass Zahlen als Namen ohne Reihenfolge zu behandeln sind.
 
-Bei der Rückkonvertierung solcher Faktoren in numerische Variablentypen ist jedoch Vorsicht geboten, da ein Zeichen „123“ mit einem anderen Wert (z. B. 1) und nicht mit 123 kodiert werden kann, siehe die folgende Demonstration einer korrekten und einer falschen Faktorumwandlung:
+Bei der Rückkonvertierung solcher Faktoren in numerische Variablentypen ist große Vorsicht geboten, da ein Zeichen „123“ mit einem anderen Wert (z. B. 1) und nicht mit 123 kodiert werden kann, siehe die folgende Demonstration einer korrekten und einer falschen Faktorumwandlung:
 
 ```{r eval=FALSE}
 x <- c(2, 4, 6, 5, 8)
@@ -465,11 +461,11 @@ as.numeric(as.character(f)) # richtig
 as.numeric(levels(f))[f]    # noch besser
 ```
 
-Eine solche Faktorkodierung ist nicht spezifisch für **R** und kommt auch in anderen Statistikpaketen vor. Sie werden dann manchmal als „Dummy-Variablen“ bezeichnet.
+Eine derartige Faktorkodierung ist nicht spezifisch für **R** und kommt auch in anderen Statistikpaketen vor. Sie werden dann manchmal als „Dummy-Variablen“ bezeichnet.
 
 ## Matrizen und Arrays
 
-Eine Matrix ist eine zweidimensionale Datenstruktur, die für Matrixalgebra verwendet werden kann. Um eine Matrix zu erstellen, können wir zunächst einen eindimensionalen Vektor erstellen und ihn dann als zweidimensionale Matrix mit „nrow“-Zeilen und „ncol“-Spalten umformatieren:
+Eine Matrix ist eine zweidimensionale Datenstruktur, die für Matrixalgebra verwendet werden kann. Um eine Matrix zu erhalten, können wir zunächst einen eindimensionalen Vektor erstellen und ihn dann als zweidimensionale Matrix mit „nrow“-Zeilen und „ncol“-Spalten umformatieren:
 
 ```{r}
 x <- 1:20
@@ -479,7 +475,7 @@ y <- matrix(x, nrow = 5, ncol = 4)
 y
 ```
 
-Wir sehen, dass die Matrix zeilenweise gefüllt ist. Wir können sie auch wieder in einen Vektor umwandeln:
+Wir sehen, dass die Matrix zeilenweise gefüllt aufgefüllt wird. Wir können sie auch wieder in einen Vektor umwandeln:
 
 ```{r}
 as.vector(y) # reduziert die Matrix auf einen Vektor
@@ -491,7 +487,7 @@ Ein „Array“ erweitert das Matrixkonzept auf mehr als zwei Dimensionen:
 x <- array(1:24, dim=c(3, 4, 2))
 ```
 
-Vektoren, Matrizen und Arrays haben eine wichtige Einschränkung: Sie können nur einen Datentyp (Modus) enthalten, entweder einen numerischen oder einen Zeichentyp. Wenn also ein einzelnes Element vom Typ Zeichen ist, hat die gesamte Matrix den Modus Zeichen und erscheint in Anführungszeichen:
+Vektoren, Matrizen und Arrays haben eine wichtige Einschränkung: Sie können nur einen Datentyp (Modus) enthalten, entweder einen numerischen oder einen Zeichentyp. Wenn mindestens ein einzelnes Element vom Typ Zeichen ist, hat die gesamte Matrix den Modus Zeichen und erscheint in Anführungszeichen:
 
 ```{r}
 x <- c(1, 2, 5, 2, "a")
@@ -510,11 +506,11 @@ l <- list(x = 1:3, y = c(1,2,3,4), a = "hello", L = list(x = 1, y = 2))
 
 Listen sind äußerst leistungsfähig und flexibel und werden später behandelt. Die Ungeduldigen können einen Blick auf das Tutorial von [w3schools.com](https://www.w3schools.com/r/r_lists.asp) werfen.
 
-## Daten Frames
+## Dataframes
 
-Die typische Datenstruktur für die Datenanalyse in **R** ist der sogenannte `data.frame`. Er kann sowohl Spalten mit numerischen Daten als auch Spalten mit Moduszeichen enthalten. Einige Pakete verwenden erweiterte Versionen von Datenrahmen, so genannte `tibble`.
+Die typische Datenstruktur für die Datenanalyse in **R** ist der sogenannte `data.frame`. Er kann sowohl Spalten mit numerischen Daten als auch Spalten mit Zeichenvariablen enthalten. Einige Pakete verwenden eine von Dataframes abgeleitete Objektklasse, das so genannte `tibble`.
 
-Ein Daten Frame kann von Grund auf direkt im **R**-Code erstellt werden erstellt oder aus einer Datei oder dem Internet gelesen werden. Als Beispiel wurden die Studierenden in verschiedenen Jahren nach ihrer Lieblingszahl von eins bis 9 gefragt. Die Ergebnisse können wie folgt in einen Daten Frame eingetragen werden:
+Ein Dataframe kann von Grund auf direkt im **R**-Code erstellt werden oder aus einer Datei oder dem Internet gelesen werden. Als Beispiel wurden die Studierenden eines Kurses in verschiedenen Jahren nach ihrer Lieblingszahl von eins bis 9 gefragt. Die Ergebnisse können wie folgt in einen Dataframe eingetragen werden:
 
 ```{r}
 favnum <- data.frame(
@@ -533,13 +529,13 @@ Es gibt verschiedene Methoden zur Eingabe von Daten in **R**.  Die wichtigsten s
 
 
 1. Direkte Eingabe in den **R**-Code (siehe Beispiel oben)
-2. Eingabe aus einer Textdatei
-3. Eingabe aus einer Tabellenkalkulationsdatei (LibreOffice oder Excel)
-4. Eingabe aus einer Textdatei aus dem Internet
-5. Eingabe aus einer Datenbank
+2. Einlesen aus einer Textdatei
+3. Einlesen aus einer Tabellenkalkulationsdatei (LibreOffice oder Excel)
+4. Einlesen aus einer Textdatei aus dem Internet
+5. Einlesen aus einer Datenbank
 
 
-Darüber hinaus ist es möglich, Daten aus anderen Statistikpaketen wie SPSS, SAS oder Stata zu importieren (`library(foreign)`), GIS-Shapefiles zu lesen (`library(shapefiles)`), und sogar Sounddateien oder Bilder einzulesen.
+Darüber hinaus ist es möglich, Daten aus anderen Statistikpaketen wie SPSS, SAS oder Stata zu importieren (`library(foreign)`), GIS-Shapefiles zu lesen (`library(shapefiles)`), und sogar Sounddateien oder Bilder.
 
 ## Direkte Eingabe
 
@@ -550,7 +546,7 @@ x <- c(1, 2, 5, 7, 3, 4, 5, 8)
 x
 ```
 
-Auf die gleiche Weise ist es möglich, andere Datentypen wie Daten Frames zu erstellen:
+Auf die gleiche Weise ist es möglich, andere Datentypen wie z.B. Dataframes zu erstellen:
 
 ```{r fig=FALSE, echo=TRUE, keep.source=TRUE}
 dat <- data.frame(f = c("a", "a", "a", "b", "b", "b"),
@@ -562,11 +558,11 @@ dat
 oder Matrizen:
 
 ```{r fig=FALSE, echo=TRUE, keep.source=TRUE}
-A <- matrix(c(1:9), nrow=3)
+A <- matrix(c(1:9), nrow = 3)
 A
 ```
 
-Wie wir sehen, unterscheidet sich eine Matrix nicht wesentlich von einem Vektor, der in Zeilen und Spalten formatiert ist.
+Wie wir sehen, unterscheidet sich eine Matrix nicht wesentlich von einem Vektor, nur dass er in Zeilen und Spalten formatiert ist.
 
 
 ## Daten aus einer Textdatei lesen
@@ -581,7 +577,7 @@ lakes <- read.csv("../data/lakes.csv")
 kable(lakes)
 ```
 
-Die Daten können heruntergeladen werden von [https://github.com/tpetzoldt/datasets/tree/main/data](https://github.com/tpetzoldt/datasets/tree/main/data)
+Die Daten können von [https://tpetzoldt.github.io/datasets/data/lakes.csv](https://tpetzoldt.github.io/datasets/data/lakes.csv) heruntergeladen werden.
 
 
 ### Arbeitsverzeichnis (working directory) festlegen
@@ -595,9 +591,9 @@ lakes <- read.csv("c:/users/julia/documents/lakes.csv")
 
 Dies kann umständlich und fehleranfällig sein, so dass die bevorzugte Methode darin besteht, das **Arbeitsverzeichnis** von **R** auf das Datenverzeichnis zu setzen. Dies kann in **RStudio** wie folgt gemacht werden:
 
-1. Suche nach dem Ordner mit den Daten im Fenster „ Files “.
-2. Wähle „ More“
-3. Wähle „ Set As Working Directory“
+1. Suche nach dem Ordner mit den Daten im Fenster „Files“.
+2. Wähle „More“
+3. Wähle „Set As Working Directory“
 
 ![](../img/set-working-directory.png)
 **Abbildung 2:** Festlegen des Arbeitsverzeichnisses in **RStudio**
@@ -605,30 +601,30 @@ Dies kann umständlich und fehleranfällig sein, so dass die bevorzugte Methode 
 Danach können die Daten direkt aus dem **Arbeitsverzeichnis** abgerufen werden:
 
 ```{r eval=FALSE}
-lakes <- read.csv("lakes.csv", header=TRUE)
+lakes <- read.csv("lakes.csv", header = TRUE)
 ```
 
 Wir können auch einen Unterordner `data` des Arbeitsverzeichnisses erstellen und die Daten dort ablegen. Dann könnten wir zum Beispiel verwenden:
 
 ```{r eval=TRUE}
-lakes <- read.csv("../data/lakes.csv", header=TRUE)
+lakes <- read.csv("../data/lakes.csv", header = TRUE)
 ```
 
 
 Beachte auch, dass wir immer den gewöhnlichen Schrägstrich „/“ und nicht den Backslash „\\“ verwenden, auch unter Windows. 
 
 
-In einigen Ländern, in denen das Komma und nicht der Punkt als Dezimaltrennzeichen und dann z.B. ein Semikolon als Spaltentrennzeichen verwendet wird, können zusätzliche Argumente `dec = „,“`, `sep=„;“` erforderlich sein. Die Details sind auf der Hilfeseite `read.table` zu finden.
+In einigen Ländern, in denen das Komma und nicht der Punkt als Dezimaltrennzeichen und dann z.B. ein Semikolon als Spaltentrennzeichen verwendet wird, können zusätzliche Argumente `dec = ","`, `sep=";"` erforderlich sein. Die Details sind auf der Hilfeseite `read.table` zu finden.
 
 ## Daten aus dem Internet lesen
 
 Wenn die Daten auf einem Internet-Server verfügbar sind, können sie direkt von dort gelesen werden:
 
 ```{r eval=FALSE, fig=FALSE, echo=TRUE, keep.source=TRUE}
-lakes <- read.csv("https://raw.githubusercontent.com/tpetzoldt/datasets/main/data/lakes.csv")
+lakes <- read.csv("https://tpetzoldt.github.io/datasets/data/lakes.csv")
 ```
 
-Da die Daten im Daten Frame lakes` gespeichert sind, ist es nun möglich, wie gewohnt auf sie zuzugreifen:
+Da die Daten im Dataframe lakes` gespeichert sind, ist es nun möglich, wie gewohnt auf sie zuzugreifen:
 
 ```{r eval=FALSE, fig=FALSE, echo=TRUE, keep.source=TRUE}
 lakes
@@ -638,12 +634,12 @@ boxplot(lakes[-1])
 
 Hier zeigt `summary` einen schnellen Überblick und `boxplot` erstellt ein Boxplot für alle Spalten außer der ersten, die keine Zahlen enthält.
 
-Jetzt können wir den Inhalt der neuen Variable `lakes` untersuchen. Wenn wir **RStudio** verwenden, kann eine „Ansicht“ aufgerufen werden, indem man auf `lakes` im Umgebungsfenster klickt.
+Jetzt können wir den Inhalt der neuen Variable `lakes` untersuchen. Wenn wir **RStudio** verwenden, kann eine Ansicht ("View") aufgerufen werden, indem man auf `lakes` im Environment-Fenster klickt.
 
 
 ## „Datensatz importieren“ in RStudio
 
-**RStudio** enthält eine praktische Funktion, die das Importieren von Daten vereinfacht.  Im Wesentlichen hilft uns dieser „Import Dataset“-Assistent dabei, interaktiv die richtige `read.table`, `read.csv` oder `read_delim` Funktion zu konstruieren. Es ist möglich, verschiedene Optionen auszuprobieren, bis ein zufriedenstellendes Ergebnis erzielt wird. Aktuelle Versionen von **RStudio** enthalten mehrere verschiedene Möglichkeiten, Daten zu importieren. Hier demonstrieren wir den Assistenten „Import Dataset From Text (readr)“:
+**RStudio** enthält eine praktische Funktion, die das Importieren von Daten vereinfacht.  Im Wesentlichen hilft uns dieser „Import Dataset“-Assistent dabei, interaktiv die richtige `read.table`, `read.csv` oder `read_delim` Funktion zu konstruieren. Es ist möglich, verschiedene Optionen auszuprobieren, bis ein zufriedenstellendes Ergebnis erzielt wird. Aktuelle Versionen von **RStudio** enthalten mehrere verschiedene Möglichkeiten dafür. Hier demonstrieren wir den Assistenten „Import Dataset From Text (readr)“:
 
 1. Wähle aus dem Menü: File -- Import DataSet -- From CSV.
 2. Wähle die gewünschte Datei und gib geeignete Optionen an, wie den Namen der Variablen, der die Daten zugeordnet werden sollen, das Trennzeichen (Komma oder Tabulator) und ob die erste Zeile der Datei Variablennamen enthalten soll.
@@ -652,9 +648,9 @@ Jetzt können wir den Inhalt der neuen Variable `lakes` untersuchen. Wenn wir **
 
 "Import Dataset From Text (readr)" Assistent von **RStudio**.
 
-Hinweis: Im obigen Beispiel ist der Name des Daten Frames identisch mit dem Dateinamen, d.h „lakes“. Wenn wir ihn anders benennen wollen (z.B.: `dat`), dürfen wir nicht vergessen, diese Einstellung zu ändern.
+Hinweis: Im obigen Beispiel ist der Name des Dataframes identisch mit dem Dateinamen, d.h „lakes“. Wenn wir ihn anders benennen wollen (z.B.: `dat`), dürfen wir nicht vergessen, diese Einstellung zu ändern.
 
-Beachte auch, dass die Code-Vorschau die Befehle enthält, die der Assistent erstellt hat. Wenn wir diese Befehle in das Skriptfenster kopieren, können die Daten mehrmals gelesen werden ohne zum Menüsystem zurückkehren zu müssen:
+Hierbei zeigt die Code-Vorschau die Befehle, die der Assistent erstellt hat. Wenn wir diese Befehle in das Skriptfenster kopieren, können die Daten mehrmals gelesen werden ohne zum Menüsystem zurückkehren zu müssen:
 
 ```{r, eval=FALSE}
 library(readr)
@@ -665,18 +661,18 @@ View(lakes)
 
 # Arbeiten mit Dataframes
 
-## Den Inhalt des Datenframes anzeigen
+## Den Inhalt des Dataframes anzeigen
 
-Am einfachsten ist es, einfach den Namen des Datenframes in die **R**-Konsole einzugeben, z.B.:
+Am einfachsten ist es, den Namen des Dataframes in die **R**-Konsole einzugeben, z.B.:
 
 ```{r}
 lakes
 ```
 
-oder auf den Namen des Datenframes im „Environment“-Explorer von **RStudio** zu klicken.
-Dies führt dann `View(lakes)` aus, so dass die Daten angezeigt werden.
+oder man klickt auf den Namen des Dataframes im „Environment“-Explorer von **RStudio**.
+Dies führt dann `View(lakes)` aus und die Daten werden angezeigt.
 
-Bei großen Tabellen ist es oft nicht sehr sinnvoll, den gesamten Inhalt mit `View` anzuzeigen, so dass es besser sein kann, die Funktion `str` (Struktur) zu verwenden, die einen kompakten Überblick über Typ, Größe und Inhalt einer Variablen gibt:
+Bei großen Tabellen ist es manchmal unbersichtlich, den gesamten Inhalt mit `View` anzuzeigen, so dass es besser sein kann, die Funktion `str` (Struktur) zu verwenden, die einen kompakten Überblick über Typ, Größe und Inhalt einer Variablen gibt:
 
 ```{r eval=FALSE, fig=FALSE, echo=TRUE, keep.source=TRUE}
 str(mydata)
@@ -698,7 +694,7 @@ plot(lakes)
 
 ## Zugriff auf einzelne Spalten mit $
 
-Auf einzelne Spalten eines Datenrahmens kann durch die Verwendung von Indizes (mit `[]`) ähnlich wie bei einem Vektor oder einer Matrix oder durch die Verwendung des Spaltennamens und des Operators `$`) zugegriffen werden:
+Auf einzelne Spalten eines Dataframes kann durch die Indizes (mit `[]`), ähnlich wie bei einem Vektor oder einer Matrix oder mit dem Operator `$` und dem Spaltennamen) zugegriffen werden:
 
 ```{r eval=FALSE, fig=FALSE, echo=TRUE, keep.source=TRUE}
 mean(lakes[,2])
@@ -709,11 +705,11 @@ plot(lakes$z, lakes$t)
 ```
 wobei `z` die mittlere Tiefe der Seen und `t` die sogenannte mittlere Verweilzeit ist.
 
-Wir sollten auch den feinen Unterschied zwischen der Ausgabe der `[]` und der `[[]]`- Version beachten.  Der Unterschied ist folgender: einfache Klammern geben einen Datenframe mit einer Spalte zurück, aber doppelte eckige Klammern geben den Inhalt der Spalte als Vektor ohne Beschriftung zurück.
+Wir sollten auch den subtilen Unterschied zwischen der Ausgabe der `[]` und der `[[]]`- Version beachten.  Der Unterschied ist folgender: einfache Klammern geben einen Dataframe mit einer Spalte zurück, aber doppelte eckige Klammern ergeben den Inhalt der Spalte als Vektor ohne den Spaltennamen.
 
 **Warnung:** In einigen älteren Büchern wird der `$`-Stil manchmal mit den Funktionen `attach` und `detach` abgekürzt. Von diesem „prähistorischen Relikt“ wird dringend abgeraten, da es zu Dateninkonsistenz und seltsamen Fehlern führen kann. Wenn man es irgendwo findet, wo es noch benutzt wird, dann ist es eine gute Idee, `detach` wiederholt zu benutzen, bis eine Fehlermeldung uns bestätigt, dass es nichts mehr gibt, was abgetrennt werden kann. Schließlich: Verwende niemals `attach/detach` in einem Paket.
 
-Stattdessen ist es viel besser, eine andere Funktion `width` zu verwenden, die den Datenframe nur vorübergehend öffnet:
+Stattdessen ist es viel besser, eine andere Funktion `width` zu verwenden, die den Dataframe nur vorübergehend öffnet:
 
 ```{r eval=FALSE, fig=FALSE, echo=TRUE, keep.source=TRUE}
 with(lakes, plot(z, t))
@@ -724,13 +720,13 @@ with(lakes, plot(z, t))
 Im Folgenden verwenden wir einen weiteren Datensatz, den wir direkt aus dem Internet eingelesen haben:
 
 ```{r eval=TRUE}
-fruits <- read.csv("https://raw.githubusercontent.com/tpetzoldt/datasets/main/data/clementines.csv")
+fruits <- read.csv("https://tpetzoldt.github.io/datasets/data/clementines.csv")
 ```
 
-Er enthält das Gewicht, die Breite und die Höhe von zwei Marken von Clementinenfrüchten. Nach dem Laden der Daten können wir sie mit „View(fruits)“ oder dem Environment Explorer von **Rstudio** betrachten.
+Er enthält das Gewicht, die Breite und die Höhe von zwei Marken von Clementinenfrüchten. Nach dem Laden der Daten können wir sie mit `View(fruits)` oder dem Environment Explorer von **Rstudio** betrachten.
 
 
-Eine sehr leistungsfähige Funktion von **R** ist die Verwendung von logischen Vektoren als „Indizes“, mit ähnlichen Ergebnissen wie bei Datenbankabfragen. Als Beispiel können wir das Gewicht aller Früchte der Marke „A“ anzeigen mit
+Eine sehr leistungsfähige Funktion von **R** ist die Verwendung von logischen Vektoren als Indizes, mit ähnlichen Ergebnissen wie bei Datenbankabfragen. Als Beispiel können wir das Gewicht aller Früchte der Marke „A“ anzeigen mit
 
 ```{r eval=TRUE}
 fruits[fruits$brand == "A", c("brand", "weight")]
@@ -743,7 +739,7 @@ fruits[fruits$brand == "A", ]
 
 Ein logischer Vergleich erfordert immer ein doppeltes „`==`“. Logische Operationen wie `&` (und) und `|` (oder) sind ebenfalls möglich.  Beachte, dass „und“ immer Vorrang vor „oder“ hat, außer dies wird durch Klammern geändert.
 
-Eine Teilmenge eines Datenframes kann auch mit der Funktion `subset` extrahiert werden:
+Eine Teilmenge eines Dataframes kann auch mit der Funktion `subset` extrahiert werden:
 
 ```{r eval=FALSE, fig=FALSE, echo=TRUE, keep.source=TRUE}
 brand_B <- subset(fruits, brand == "B")
@@ -752,9 +748,7 @@ brand_B
 
 Wie im Beispiel zuvor, erlaubt das Bedingungsargument auch logische Ausdrücke mit `&` (und) und `|` (oder).
 
-Wir können auch auf einzelne Elemente in Matrix-ähnlicher Weise zugreifen.
-
-Das Element aus der 2. Zeile und der 4. Spalte kann ausgewählt werden mit:
+Wir können auch auf einzelne Elemente in Matrix-ähnlicher Weise zugreifen, z.B. auf das Element aus der 2. Zeile und der 4. Spalte mit:
 
 ```{r fig=FALSE, echo=TRUE, keep.source=TRUE}
 fruits[2, 4]
@@ -773,7 +767,7 @@ fruits[5:10, 4]
 ```
 
 
-Weitere Methoden für die Arbeit mit Matrizen, Datenframes und Listen sind in **R**-Lehrbüchern oder in der offiziellen **R**-Dokumentation zu finden.
+Weitere Methoden für die Arbeit mit Matrizen, Dataframes und Listen sind in **R**-Lehrbüchern oder in der offiziellen **R**-Dokumentation zu finden.
 
 # Ausblick
 
@@ -781,12 +775,12 @@ Weitere Methoden für die Arbeit mit Matrizen, Datenframes und Listen sind in **
 
 Die letzten Beispiele sollen zeigen, wie mächtig eine einzelne Zeile in **R** sein kann. Die Art und Weise, wie Datensätze analysiert werden können, hat sich im Laufe der Geschichte von **R** weiterentwickelt, so gibt es z.B. eine Funktion `aggregate`, um Statistiken (z.B. Mittelwerte) in Abhängigkeit von bestimmten Kriterien zu berechnen.
 
-Dies funktioniert gut und wird immer noch verwendet, aber die modernen Methoden sind kompakter und einfacher zu verstehen. Hier wollen wir zunächst ein modernes Konzept vorstellen, das „Pipelining“ genannt wird. Die Idee ist, dass das Ergebnis einer Funktion direkt an eine andere Funktion weitergeleitet wird, also anstatt zu schreiben:
+Dies funktioniert gut und wird immer noch verwendet, aber die modernen Methoden aus dem sogenannten „tidyverse“ sind kompakter und einfacher zu verstehen. Hier wollen wir zunächst ein modernes Konzept vorstellen, das „Pipelining“ genannt wird. Die Idee ist, dass das Ergebnis einer Funktion direkt an eine andere Funktion weitergeleitet wird, also anstatt zu schreiben:
 
 ```{r}
-brand_B <- subset(fruits, brand == "B")
+brand_B   <- subset(fruits, brand == "B")
 columns_B <- brand_B[c("weight", "width", "height")]
-means_B <- colMeans(columns_B)
+means_B   <- colMeans(columns_B)
 means_B
 ```
 
@@ -797,9 +791,9 @@ library("dplyr")
 fruits |> filter(brand == "B") |> select(weight, width, height) |> colMeans()
 ```
 
-Hier laden wir zunächst ein Zusatzpaket *dplyr*, das viele hilfreiche Funktionen für die Datenverwaltung enthält, z.B. `filter`, das Zeilen auswählt und `select`, das Spalten auswählt. Der Pipeline-Operator `|>` leitet dann die Datenmenge `fruits` zur `filter`- Funktion und anschließend zur nächsten. Der „native Pipeline-Operator“ `|>` wurde mit **R** 4.1 eingeführt. Alternativ können wir auch den `%>%`-Pipelineoperator verwenden, der vom **dplyr**-Paket geladen wird. Seine Funktion wäre in diesem Fall identisch.
+Hier laden wir zunächst ein Zusatzpaket *dplyr*, das viele hilfreiche Funktionen für die Datenverwaltung enthält, z.B. `filter`, das Zeilen auswählt und `select`, das Spalten auswählt. Der Pipeline-Operator `|>` leitet dann die Datenmenge `fruits` zur `filter`- Funktion und anschließend zur nächsten. Der „native Pipeline-Operator“ `|>` wurde mit **R** 4.1 eingeführt. Alternativ können wir auch den `%>%`-Pipelineoperator verwenden, der vom **dplyr**-Paket geladen wird. Die Funktionsweise ist in diesem Fall identisch.
 
-Zwei weitere äußerst nützliche **dplyr**-Funktionen sind `group_by` und `summary`, die es ermöglichen, beliebige zusammenfassende Statistiken in Abhängigkeit von gruppierenden Variablen zu berechnen. Wenn wir die „Marke“ („brand“) zur Gruppierung verwenden, können wir alle Gruppen gleichzeitig zusammenfassen:
+Zwei weitere äußerst nützliche **dplyr**-Funktionen sind `group_by` und `summary`, die es ermöglichen, beliebige zusammenfassende Statistiken in Abhängigkeit von gruppierenden Variablen zu berechnen. Wenn wir die „Marke“ ("brand") zur Gruppierung verwenden, können wir alle Gruppen gleichzeitig zusammenfassen:
 
 ```{r}
 fruits |> 
@@ -807,14 +801,14 @@ fruits |>
   summarise(mean(weight), mean(width), mean(height))
 ```
 
-Die obige Zeile `summarise` kann immer noch besser gemacht werden, und es gibt viele andere verblüffende Möglichkeiten, daher werden wir später darauf zurückkommen.
+Die obige Zeile `summarise` kann immer noch verbessert werden, und es gibt viele andere verblüffende Möglichkeiten, daher werden wir später darauf zurückkommen.
 
 
 ## Ausgabe von Ergebnissen
 
 Die einfachste Methode, die Ergebnisse von **R** zu speichern, besteht darin, sie direkt von der **R**-Konsole über die Zwischenablage in ein beliebiges anderes Programm (z. B. LibreOffice, Microsoft Word oder Powerpoint) zu kopieren. Dies ist bequem, kann aber nicht automatisiert werden. Daher ist es besser, einen Programmieransatz zu verwenden.
 
-Nehmen wir das obige Beispiel und speichern wir die Ergebnisse in einem neuen Datenrahmen `results`:
+Nehmen wir das obige Beispiel und speichern wir die Ergebnisse in einen neue Dataframe `results`:
 
 ```{r eval=TRUE}
 results <-
@@ -823,14 +817,14 @@ results <-
   summarise(mean(weight), mean(width), mean(height))
 ```
 
-Datenframes können als Textdateien mit `write.table`, `write.csv` oder `write_csv` gespeichert werden. Hier verwenden wir `write_csv` (mit Unterstrich, nicht Punkt) aus dem Paket **readr**:
+Dataframes können als Textdateien mit `write.table`, `write.csv` oder `write_csv` gespeichert werden. Hier verwenden wir `write_csv` (mit Unterstrich, nicht Punkt) aus dem Paket **readr**:
 
 ```{r echo=TRUE,eval=FALSE}
 library("readr")
 write_csv(results, file="output-data.csv")
 ```
 
-Zusätzlich zu diesen Grundfunktionen verfügt **R** über eine Fülle von Möglichkeiten, Ausgaben und Daten für die spätere Verwendung in Berichten und Präsentationen zu speichern. Alle sind natürlich in der Online-Hilfe dokumentiert, z.B. `print`, `print.table`, `cat` für Textdateien, und `pdf`, `png` für Abbildungen. Das Zusatzpaket **xtable** enthält Funktionen zur Erstellung von **LaTeX**- oder HTML-Tabellen, während die vollständige HTML-Ausgabe von den Paketen `R2HTML` oder `knitr` unterstützt wird.
+Zusätzlich zu diesen Grundfunktionen verfügt **R** über eine Fülle von Möglichkeiten, Ausgaben und Daten für die spätere Verwendung in Berichten und Präsentationen zu speichern. Alle sind selbstverständlich in der Online-Hilfe dokumentiert, z.B. `print`, `print.table`, `cat` für Textdateien, und `pdf`, `png` für Abbildungen. Das Zusatzpaket **xtable** enthält Funktionen zur Erstellung von **LaTeX**- oder HTML-Tabellen, während die vollständige HTML-Ausgabe von den Paketen `R2HTML` oder `knitr` unterstützt wird.
 
 ## Plots mit ggplot2
 
@@ -860,8 +854,7 @@ fruits |> ggplot(aes(weight, width)) +
 
 ## Übungen
 
-**R** enthält viele Datensätze zum Erforschen seiner grafischen und statistischen Funktionen, die mit der data-Funktion aktiviert werden können, z.B. `data(iris)` oder `data(cars)`. Eine Beschreibung des
-Datensatzes findet sich wie üblich in den Hilfedateien, z.B. `?iris`, `?cars`.
+**R** enthält viele Datensätze zum Ausprobieren seiner grafischen und statistischen Funktionen, die mit der data-Funktion aktiviert werden können, z.B. `data(iris)` oder `data(cars)`. Eine Beschreibung des Datensatzes findet sich wie üblich in den Hilfedateien, z.B. `?iris`, `?cars`.
 
 Verwende einen dieser Datensätze und probiere aus
 
