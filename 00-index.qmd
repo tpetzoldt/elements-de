@@ -3,29 +3,35 @@
 #subtitle: "Teaching material"
 #format: html
 ---
-
+<!--
 ![Elements of applied statistics](img/titlepage-lecture-slides.svg){width=100%}
+-->
 <!--
 ## Introduction
 -->
 
-This website contains a collection of material for introductory statistics 
-courses with **R**. The aim is to provide insight in fundamental principles and 
-an overview to enable students to select and understand specialized books 
-and online material to dig in deeper in the diverse and fascinating field of 
-statistical computing.
+Diese Website enthält eine Sammlung von Materialien für einführende Statistikkurse mit **R**. Das Ziel ist es, einen Einblick in grundlegende Prinzipien zu geben und einen Einstieg zu vermitteln, um weiterführende Fachbücher und Online-Materialien auswählen und verstehen zu können und so tiefer in das vielfältige und faszinierende Gebiet des "statistical Computings" einzusteigen.
 
-The corresponding lab exercises are found at [https://tpetzoldt.github.io/element-labs/](https://tpetzoldt.github.io/element-labs/).
+Die Auswahl der Themen spiegelt meine persönliche Erfahrung wider, als Türöffner zu Themen, die für die Ökologie und die Hydrowissenschaften nützlich sind. Es handelt sich um ein forlaufendes Projekt, basierend auf früheren PDF-Folien und anderem Kursmaterial. 
+
+Die deutschsprachige Version ist eine Übersetzung aus dem englischen. Für die Korrektheit wird keine Gewähr übernommen. Konstruktive Kommentare und Verbesserungsvorschläge sind willkommen.
+
+Die dazugehörigen Übungsaufgaben befinden sich unter:
+[https://tpetzoldt.github.io/element-labs/](https://tpetzoldt.github.io/element-labs/).
 
 ## Status
 
-The selection of topics reflects what I think is useful as door-opener into 
-various fields, useful in ecology and aquatic sciences. It is an ongoing project 
-based on former PDF slides and other course material, constructive comments and 
-suggestions for improvement are welcome.
+2025-04-03
+
+- Beginn der Überarbeitung bzw. Fachbegriffen, Anglizismen, Formatierung
+
+2025-04-02 
+
+- Initialer Commit der deutschen Übersetzung
 
 
-## Further reading
+
+## Weiterführende Literatur
 
 - Dalgaard, P, 2008: Introductory Statistics with **R**. Springer Verlag, New York, 2nd edition. 
       [https://link.springer.com/book/10.1007/b97671](https://link.springer.com/book/10.1007/b97671)
@@ -39,12 +45,14 @@ suggestions for improvement are welcome.
 ## Related Pages
 
 
-* [**Collection of lab exercises**](../element-labs/)
+* [**Elements of Data Analysis and Statistics**](../elements/) (englische Version)
+* [**Collection of lab exercises**](../element-labs/) (english)
 * [**Datasets**](../datasets/)
-* [Source code of the slides](https://github.com/tpetzoldt/elements)
+* [Quelltexte der Folien](https://github.com/tpetzoldt/elements-de) (deutsche Version)
+* [Source code of the slides](https://github.com/tpetzoldt/elements) (englische Version)
 
-## Author
+## Autor
 
 [homepage](https://tu-dresden.de/Members/thomas.petzoldt) +++ [github](https://github.com/tpetzoldt)
 
-2024-12-03
+2025-04-03

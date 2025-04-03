@@ -9,12 +9,12 @@ project:
   
 
 website:
-  title: "Elements of Data Analysis and Statistics"
+  title: "Elemente der statistischen Datenanalyse und Statistik mit R"
   sidebar:
     style: "docked"
     search: true
     contents:
-      - section: Basic Statistics
+      - section: Statistische Grundlagen
         contents:
           - slides/01-introduction.qmd
           - slides/02-terminology.qmd
@@ -24,15 +24,15 @@ website:
           - slides/06-linear.qmd
           - slides/07-anova.qmd
           - slides/08-nonlinear-regression.qmd
-          - slides/09-timeseries-basics.qmd
-          - slides/10-timeseries-outlook.qmd
-          - slides/11-multivariate-1.qmd
-          - slides/12-multivariate-2.qmd
+#          - slides/09-timeseries-basics.qmd
+#          - slides/10-timeseries-outlook.qmd
+#          - slides/11-multivariate-1.qmd
+#          - slides/12-multivariate-2.qmd
       - section: Tutorials
         contents:
           - tutorials/s1-introductory-r-session.qmd
-          - tutorials/s2-multivar-3d.qmd
-          - tutorials/s3-multivar-lakes.qmd
+#          - tutorials/s2-multivar-3d.qmd
+#          - tutorials/s3-multivar-lakes.qmd
       - section: R Topics
         contents:
           - slides/x1-r-basics.qmd
