@@ -7,6 +7,7 @@
 author: "Thomas Petzoldt"
 subtitle: "Angewandte Statistik -- Ein Praxiskurs"
 date-format: "YYYY-MM-DD"
+#lang: de
 title-page-header: "../img/logo-header.svg"
 title-slide-attributes:
   ## without logos

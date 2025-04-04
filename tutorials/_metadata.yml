@@ -1,6 +1,6 @@
 author: "Thomas Petzoldt"
-subtitle: "Applied Statistics -- A Practical Course"
 date-format: "YYYY-MM-DD"
+#lang: de
 format:
   html:
     css: ../thpe.css
