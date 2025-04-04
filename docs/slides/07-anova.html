@@ -1,0 +1,2177 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
+
+  <meta name="author" content="Thomas Petzoldt">
+  <meta name="dcterms.date" content="2025-04-04">
+  <title>Elemente der statistischen Datenanalyse und Statistik mit R – 07-ANOVA und ANCOVA</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-cb13c09ad5a7270edb89df8c4c84031f.css">
+  <link rel="stylesheet" href="../thpe.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+  <link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <style>
+  #title-slide 
+    .title {color: #cef0ffff;}
+    .subtitle {color: #ee7f00;}
+    .quarto-title-author {color: #69af22;}
+    .date {color: #69af22;}
+  </style>  
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" body-color="#ffffff" data-background-image="../img/tud-title-bg-wide-2021.png" class="quarto-title-block center">
+  <h1 class="title">07-ANOVA und ANCOVA</h1>
+  <p class="subtitle">Applied Statistics – A Practical Course</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Thomas Petzoldt 
+</div>
+</div>
+</div>
+
+  <p class="date">2025-04-04</p>
+</section>
+<section>
+<section id="achtung-deutsche-übersetzung-muss-noch-geprüft-werden" class="title-slide slide level1 center">
+<h1>Achtung: deutsche Übersetzung muss noch geprüft werden</h1>
+
+</section>
+<section id="anova---analyse-der-varianzen" class="slide level2">
+<h2>ANOVA - Analyse der Varianzen</h2>
+<p><br></p>
+<ul>
+<li>Prüfung komplexer Hypothesen als Ganzes, z.B.:
+<ul>
+<li>mehr als zwei Stichproben (Problem des Mehrfachtests),</li>
+<li>mehrere multiple Faktoren (multiway ANOVA)</li>
+<li>Eliminierung von Kovariaten (ANCOVA)</li>
+<li>feste und/oder zufällige Effekte (Varianzzerlegungsmethoden, Modelle mit gemischten Effekten)</li>
+</ul></li>
+<li>Verschiedene Anwendungsszenarien:
+<ul>
+<li>explorative Anwendung: Welche Einflussfaktoren sind wichtig?</li>
+<li>deskriptive Anwendung: Anpassen von Modellen zur Prozessbeschreibung und Vorhersage.</li>
+<li>Signifikanztests.</li>
+</ul></li>
+<li>ANOVA-Methoden basieren (in den meisten Fällen) auf linearen Modellen.</li>
+</ul>
+</section>
+<section id="ein-praxisbezogenes-beispiel" class="slide level2">
+<h2>Ein praxisbezogenes Beispiel</h2>
+<div class="column" style="width:49%;">
+<p><span class="darkred">Suche nach einem geeigneten Medium für Wachstumsexperimente mit Grünalgen</span></p>
+<ul>
+<li>billig, einfach zu handhaben</li>
+<li>geeignet für Schülerkurse und Experimente im Unterricht</li>
+</ul>
+</div><div class="column" style="width:49%;">
+<p><img data-src="../img/ansaetze.jpg"></p>
+</div><p><strong>Idee</strong></p>
+<ul>
+<li>Verwendung eines kommerziellen Düngers mit den Hauptnährstoffen N und P</li>
+<li>Mineralwasser mit Spurenelementen</li>
+<li>Enthält Mineralwasser ohne Kohlensäure genügend <span class="math inline">\(\mathrm{CO_2}\)</span>?</li>
+<li>testen, wie man die Verfügbarkeit von <span class="math inline">\(\mathrm{CO_2}\)</span> für die Photosynthese verbessern kann</li>
+</ul>
+</section>
+<section id="anwendung" class="slide level2">
+<h2>Anwendung</h2>
+<p><br></p>
+<p><strong>7 Verschiedene Behandlungen</strong></p>
+<p><br></p>
+<ol type="1">
+<li>Düngemittellösung in geschlossenen Flaschen</li>
+<li>Düngemittellösung in offenen Flaschen (<span class="math inline">\(\mathrm{CO_2}\)</span> aus der Luft)</li>
+<li>Düngemittel + Zucker (organische C-Quelle)</li>
+<li>Dünger + zusätzliches <span class="math inline">\(\mathrm{HCO_3^-}\)</span> (Zusatz von <span class="math inline">\(\mathrm{CaCO_3}\)</span> zu sprudelndem Mineralwasser)</li>
+<li>ein Standard-Algenwachstumsmedium („Basalmedium“) zum Vergleich</li>
+<li>deionisiertes („destilliertes“) Wasser und</li>
+<li>Leitungswasser zum Vergleich</li>
+</ol>
+</section>
+<section id="versuchsaufbau" class="slide level2">
+<h2>Versuchsaufbau</h2>
+
+<img data-src="../img/ruettler.jpg" class="quarto-figure quarto-figure-center r-stretch" alt="bottles with algae on a shaker"><ul>
+<li>jede Behandlung mit 3 Wiederholungen</li>
+<li>zufällige Platzierung auf einem Schüttler</li>
+<li>16:8 Licht:Dunkel-Zyklus</li>
+<li>Messung direkt in den Flaschen mit einem selbstgebauten <a href="https://tpetzoldt.github.io/growthlab/doc/versuchsaufbau.html">Trübungsmessgerät</a></li>
+</ul>
+</section>
+<section id="ergebnisse" class="slide level2">
+<h2>Ergebnisse</h2>
+<div class="vbox">
+
+</div>
+<div class="hbox">
+<p><img data-src="../img/ansaetze2.jpg"> Dünger – Offene Flasche– D. + Zucker – D. + CaCO3 – Basalmedium – A. dest – Leitungswasser</p>
+</div>
+</section>
+<section id="der-datensatz" class="slide level2">
+<h2>Der Datensatz</h2>
+<p><br></p>
+<div class="cell">
+<div id="tbl-algae-growth" class="cell quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-tbl">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-algae-growth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Wachstum von Tag 2 bis Tag 6 (relative Einheiten)
+</figcaption>
+<div aria-describedby="tbl-algae-growth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="table table-striped do-not-create-environment cell caption-top" data-quarto-postprocess="true" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">treat</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">replicate 1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">replicate 2</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">replicate 3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Fertilizer</td>
+<td style="text-align: right;">0.020</td>
+<td style="text-align: right;">-0.217</td>
+<td style="text-align: right;">-0.273</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F. open</td>
+<td style="text-align: right;">0.940</td>
+<td style="text-align: right;">0.780</td>
+<td style="text-align: right;">0.555</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F.+sugar</td>
+<td style="text-align: right;">0.188</td>
+<td style="text-align: right;">-0.100</td>
+<td style="text-align: right;">0.020</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F.+CaCO3</td>
+<td style="text-align: right;">0.245</td>
+<td style="text-align: right;">0.236</td>
+<td style="text-align: right;">0.456</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bas.med.</td>
+<td style="text-align: right;">0.699</td>
+<td style="text-align: right;">0.727</td>
+<td style="text-align: right;">0.656</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A.dest</td>
+<td style="text-align: right;">-0.010</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">-0.010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Tap water</td>
+<td style="text-align: right;">0.030</td>
+<td style="text-align: right;">-0.070</td>
+<td style="text-align: right;">NA</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</figure>
+</div>
+</div>
+<ul>
+<li><span class="red">NA</span> bedeutet „nicht verfügbar“, d.h. ein fehlender Wert</li>
+<li>Die Crosstable-Struktur ist kompakt und leicht zu lesen, aber nicht ideal für die Datenanalyse.</li>
+<li><span class="math inline">\(\Rightarrow\)</span> konvertiere sie in ein Long-Format</li>
+</ul>
+</section>
+<section id="daten-im-long-format" class="slide level2">
+<h2>Daten im Long-Format</h2>
+<div class="column" style="width:59%;">
+<p><br></p>
+<h3 id="vorteile">Vorteile</h3>
+<ul>
+<li>sieht „blöd“ aus, ist aber besser für die Datenanalyse</li>
+<li>abhängige Variable <strong>Wachstum</strong> und <br>Erklärungsvariable <strong>Behandlung</strong> deutlich sichtbar</li>
+<li>Modellformel: <code>growth ~ treat</code></li>
+<li>leicht erweiterbar auf <span class="math inline">\(&gt;1\)</span> Erklärungsvariable</li>
+</ul>
+</div><div class="column" style="width:39%;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-striped caption-top" data-quarto-postprocess="true" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">treat</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">rep</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">growth</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Fertilizer</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.020</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fertilizer</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">-0.217</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Fertilizer</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">-0.273</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F. open</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.940</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F. open</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.780</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F. open</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.555</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F.+sugar</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.188</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F.+sugar</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">-0.100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F.+sugar</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.020</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F.+CaCO3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.245</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F.+CaCO3</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.236</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F.+CaCO3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.456</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div></section>
+<section id="die-daten-in-r" class="slide level2">
+<h2>Die Daten in R</h2>
+<p><br><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a>algae <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">treat  =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Fertilizer"</span>, <span class="st">"Fertilizer"</span>, <span class="st">"Fertilizer"</span>, </span>
+<span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a>             <span class="st">"F. open"</span>, <span class="st">"F. open"</span>, <span class="st">"F. open"</span>, </span>
+<span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a>             <span class="st">"F.+sugar"</span>, <span class="st">"F.+sugar"</span>, <span class="st">"F.+sugar"</span>, </span>
+<span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a>             <span class="st">"F.+CaCO3"</span>, <span class="st">"F.+CaCO3"</span>, <span class="st">"F.+CaCO3"</span>, </span>
+<span id="cb1-6"><a aria-hidden="true" tabindex="-1"></a>             <span class="st">"Bas.med."</span>, <span class="st">"Bas.med."</span>, <span class="st">"Bas.med."</span>, </span>
+<span id="cb1-7"><a aria-hidden="true" tabindex="-1"></a>             <span class="st">"A.dest"</span>, <span class="st">"A.dest"</span>, <span class="st">"A.dest"</span>, </span>
+<span id="cb1-8"><a aria-hidden="true" tabindex="-1"></a>             <span class="st">"Tap water"</span>, <span class="st">"Tap water"</span>),</span>
+<span id="cb1-9"><a aria-hidden="true" tabindex="-1"></a>             <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Fertilizer"</span>, <span class="st">"F. open"</span>, <span class="st">"F.+sugar"</span>, </span>
+<span id="cb1-10"><a aria-hidden="true" tabindex="-1"></a>                    <span class="st">"F.+CaCO3"</span>, <span class="st">"Bas.med."</span>, <span class="st">"A.dest"</span>, <span class="st">"Tap water"</span>)),</span>
+<span id="cb1-11"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">rep   =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>), </span>
+<span id="cb1-12"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">growth =</span> <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="sc">-</span><span class="fl">0.217</span>, <span class="sc">-</span><span class="fl">0.273</span>, <span class="fl">0.94</span>, <span class="fl">0.78</span>, <span class="fl">0.555</span>, <span class="fl">0.188</span>, <span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">0.02</span>, </span>
+<span id="cb1-13"><a aria-hidden="true" tabindex="-1"></a>             <span class="fl">0.245</span>, <span class="fl">0.236</span>, <span class="fl">0.456</span>, <span class="fl">0.699</span>, <span class="fl">0.727</span>, <span class="fl">0.656</span>, <span class="sc">-</span><span class="fl">0.01</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="fl">0.01</span>, <span class="fl">0.03</span>, <span class="sc">-</span><span class="fl">0.07</span>)</span>
+<span id="cb1-14"><a aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>… können direkt in den Code eingegeben werden. Eine csv-Datei im Long-Format ist ebenfalls möglich.</p>
+</section>
+<section id="boxplot" class="slide level2">
+<h2>Boxplot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(growth <span class="sc">~</span> treat, <span class="at">data =</span> algae)</span>
+<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="st">"dashed"</span>, <span class="at">col =</span> <span class="st">"grey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="07-anova_files/figure-revealjs/algae-boxplot-1.png" width="960" class="r-stretch"></section>
+<section id="streifendiagramm" class="slide level2">
+<h2>Streifendiagramm</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(growth <span class="sc">~</span> treat, <span class="at">data =</span> algae, <span class="at">vertical =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="07-anova_files/figure-revealjs/algae-stripchart-1.png" width="960" class="r-stretch"><p>Besser, denn wir haben nur 2-3 Wiederholungen. Boxplot braucht mehr.</p>
+</section>
+<section id="umwandlung-einer-wissenschaftlichen-frage-in-eine-statistische-hypothese" class="slide level2">
+<h2>Umwandlung einer wissenschaftlichen Frage in eine statistische Hypothese</h2>
+<p><br></p>
+<p><strong>Wissenschaftliche Fragen</strong></p>
+<ul>
+<li>Sind die Behandlungen unterschiedlich?</li>
+<li>Welches Medium ist das beste?</li>
+<li>Ist das beste Medium signifikant besser als die anderen?</li>
+</ul>
+<p><br> <strong>Statistische Hypothesen</strong></p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: das Wachstum ist bei allen Behandlungen gleich</li>
+<li><span class="math inline">\(H_A\)</span>: Unterschiede zwischen den Medien</li>
+</ul>
+</section>
+<section id="warum-können-wir-nicht-einfach-mehrere-t-tests-anwenden" class="slide level2">
+<h2>Warum können wir nicht einfach mehrere t-Tests anwenden?</h2>
+<p><br></p>
+<ul>
+<li>Wenn wir 7 Behandlungen haben und alle gegeneinander testen wollen, brauchen wir:</li>
+</ul>
+<p><span class="math display">\[7 \cdot (7 - 1) / 2 = 21 \qquad\text{Tests.}\]</span></p>
+<ul>
+<li>Wenn wir <span class="math inline">\(\alpha = 0,05\)</span> setzen, erhalten wir 5% falsch positive Ergebnisse. <span class="math inline">\(\Rightarrow\)</span> <span class="red">Einer</span> von 20 Tests ist im Durchschnitt ein <span class="red">falsch positiver</span></li>
+<li>Wenn wir <span class="math inline">\(N\)</span> Tests durchführen, erhöht sich der Gesamtfehler von <span class="math inline">\(\alpha\)</span> im schlimmsten Fall auf <span class="math inline">\(N\cdot\alpha\)</span>.</li>
+<li>Dies wird <strong>alpha-Fehler-Inflation</strong> oder das <strong>Bonferroni-Gesetz</strong> genannt:</li>
+</ul>
+<p><span class="math display">\[
+\alpha_{total} \le \sum_{i=1}^{N} \alpha_i = N \cdot \alpha
+\]</span></p>
+<p>Wenn wir das Bonferroni-Gesetz ignorieren, landen wir beim <strong>statistischen Fischen</strong> und erhalten zufällige falsche Ergebnisse.</p>
+</section></section>
+<section>
+<section id="lösungen" class="title-slide slide level1 center">
+<h1>Lösungen</h1>
+<div class="bigfont">
+<ol type="1">
+<li>Korrigiere die Alpha-Fehler nach unten, so dass <span class="math inline">\(\alpha_{total} = 0,05\)</span>. <span class="math inline">\(\rightarrow\)</span> Bonferroni-Regel.</li>
+<li>Verwende eine Methode, die alle Tests gleichzeitig durchführt: die ANOVA.</li>
+</ol>
+</div>
+</section>
+<section id="anova-analyse-der-varianzen" class="slide level2">
+<h2>ANOVA: Analyse der Varianzen</h2>
+<p><br></p>
+<p><strong>Grundgedanke</strong></p>
+<ul>
+<li>Aufteilung der Gesamtvarianz in Wirkung(en) und Fehler:</li>
+</ul>
+<div class="bigfont">
+<p><span class="math display">\[
+s_y^2 = s^2_\mathrm{effect} + s^2_{\varepsilon}
+\]</span></p>
+</div>
+<ul>
+<li>Etwas überraschend: Wir verwenden Varianzen, um Mittelwerte zu vergleichen.</li>
+<li><strong>Erklärung:</strong> Mittelwertunterschiede tragen zur Gesamtvarianz der ganzen Stichprobe bei.</li>
+<li>Die Varianzkomponenten können als <strong>Varianz innerhalb</strong> (<span class="math inline">\(s^2_\varepsilon\)</span>) und <strong>Varianz zwischen</strong> Stichproben bezeichnet werden.</li>
+<li>Die Art und Weise, wie man die Varianzen trennt, ist ein <span class="blue">lineares Modell</span>.</li>
+</ul>
+</section>
+<section id="beispiel" class="slide level2">
+<h2>Beispiel</h2>
+<p><br></p>
+<p>Zwei Marken von Clementinenfrüchten aus einem Geschäft „E“, die wir als „EB“ und „EP“ kodieren. Wir wollen wissen, ob die Premiummarke („P“) und die Basismarke („B“) ein unterschiedliches Gewicht haben.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a>clem <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">brand =</span> <span class="fu">c</span>(<span class="st">"EP"</span>, <span class="st">"EB"</span>, <span class="st">"EB"</span>, <span class="st">"EB"</span>, <span class="st">"EB"</span>, <span class="st">"EB"</span>, <span class="st">"EB"</span>, <span class="st">"EB"</span>, <span class="st">"EB"</span>, <span class="st">"EB"</span>, <span class="st">"EB"</span>, </span>
+<span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a>            <span class="st">"EB"</span>, <span class="st">"EB"</span>, <span class="st">"EB"</span>, <span class="st">"EP"</span>, <span class="st">"EP"</span>, <span class="st">"EP"</span>, <span class="st">"EP"</span>, <span class="st">"EP"</span>, <span class="st">"EP"</span>, <span class="st">"EP"</span>, <span class="st">"EB"</span>, <span class="st">"EP"</span>),</span>
+<span id="cb4-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">weight =</span> <span class="fu">c</span>(<span class="dv">88</span>, <span class="dv">96</span>, <span class="dv">100</span>, <span class="dv">96</span>, <span class="dv">90</span>, <span class="dv">100</span>, <span class="dv">92</span>, <span class="dv">92</span>, <span class="dv">102</span>, <span class="dv">99</span>, <span class="dv">86</span>, <span class="dv">89</span>, <span class="dv">99</span>, <span class="dv">89</span>, <span class="dv">75</span>, <span class="dv">80</span>, </span>
+<span id="cb4-5"><a aria-hidden="true" tabindex="-1"></a>             <span class="dv">81</span>, <span class="dv">96</span>, <span class="dv">82</span>, <span class="dv">98</span>, <span class="dv">80</span>, <span class="dv">107</span>, <span class="dv">88</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br> Wir kodieren eine Stichprobe („EB“) mit 1 und die andere Stichprobe („EP“) mit 2:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>clem<span class="sc">$</span>code <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(clem<span class="sc">$</span>brand))</span>
+<span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>clem<span class="sc">$</span>code</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 2 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 1 2</code></pre>
+</div>
+</div>
+</section>
+<section id="dann-wird-eine-lineare-regression-angewandt" class="slide level2">
+<h2>Dann wird eine lineare Regression angewandt:</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(weight <span class="sc">~</span> code, <span class="at">data =</span> clem, <span class="at">axes =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> code, <span class="at">data =</span> clem)</span>
+<span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"EB"</span>, <span class="st">"EP"</span>)); <span class="fu">axis</span>(<span class="dv">2</span>); <span class="fu">box</span>()</span>
+<span id="cb7-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(m, <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="07-anova_files/figure-revealjs/eb-ep-linear-1.png" width="960" class="r-stretch"></section>
+<section id="varianzkomponenten" class="slide level2">
+<h2>Varianzkomponenten</h2>
+<p><br></p>
+<p>Wir passen ein lineares Modell an und vergleichen die Varianzen:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> code, <span class="at">data =</span> clem)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Gesamtvarianz</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>(var_tot <span class="ot">&lt;-</span> <span class="fu">var</span>(clem<span class="sc">$</span>weight))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 68.98814</code></pre>
+</div>
+</div>
+<p><strong>Restvarianz (= innere Varianz)</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>(var_res <span class="ot">&lt;-</span> <span class="fu">var</span>(<span class="fu">residuals</span>(m)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 43.25</code></pre>
+</div>
+</div>
+<p><strong>Erklärte Varianz (= Zwischenvarianz)</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>var_tot <span class="sc">-</span> var_res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 25.73814</code></pre>
+</div>
+</div>
+<p>Nun können wir analysieren, ob die Zwischenvarianz groß genug ist, um einen signifikanten Effekt zu begründen.</p>
+<p>Dies nennt man eine ANOVA.</p>
+</section>
+<section id="anova" class="slide level2">
+<h2>ANOVA</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: weight
+          Df Sum Sq Mean Sq F value   Pr(&gt;F)   
+code       1 566.24  566.24  12.497 0.001963 **
+Residuals 21 951.50   45.31                    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p><br></p>
+<p><strong>Ein t-Test zum Vergleich</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(weight <span class="sc">~</span> code, <span class="at">data =</span> clem, <span class="at">var.equal=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  weight by code
+t = 3.5351, df = 21, p-value = 0.001963
+alternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0
+95 percent confidence interval:
+  4.185911 16.147423
+sample estimates:
+mean in group 1 mean in group 2 
+       95.50000        85.33333 </code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\Rightarrow\)</span> die p-Werte sind genau gleich.</p>
+</section>
+<section id="anova-mit-mehr-als-2-stichproben" class="slide level2">
+<h2>ANOVA mit mehr als 2 Stichproben</h2>
+<p>Zurück zu den Daten über das Algenwachstum. Nennen wir das lineare Modell „m“:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(growth <span class="sc">~</span> treat, <span class="at">data =</span> algae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<ul>
+<li>Wir können die Koeffizienten des linearen Modells mit <code>summary(m)</code> ausgeben.</li>
+<li>Wir interessieren uns aber für den Gesamteffekt und verwenden <code>anova</code>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: growth
+          Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+treat      6 2.35441 0.39240  25.045 1.987e-06 ***
+Residuals 13 0.20368 0.01567                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<ul>
+<li>Die ANOVA-Tabelle zeigt F-Tests, die die Signifikanz aller Faktoren prüfen.</li>
+<li>In der obigen Tabelle haben wir nur einen einzigen Faktor.</li>
+</ul>
+<p><span class="math inline">\(\Rightarrow\)</span> Wir sehen, dass die Behandlung einen signifikanten Effekt hat.</p>
+</section>
+<section id="posthoc-tests" class="slide level2">
+<h2>Posthoc-Tests</h2>
+<ul>
+<li>Der Test zeigte, dass der <strong>Faktor</strong> „Behandlung“ einen signifikanten Effekt hatte.</li>
+<li>Wir wissen noch nicht, welche <strong>Faktorlevel</strong> unterschiedlich waren.</li>
+</ul>
+<p>Der <strong>Tukey-HSD-Test</strong> ist der häufigste.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a>tk <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(<span class="fu">aov</span>(m))</span>
+<span id="cb22-2"><a aria-hidden="true" tabindex="-1"></a>tk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = m)
+
+$treat
+                            diff         lwr         upr     p adj
+F. open-Fertilizer    0.91500000  0.56202797  1.26797203 0.0000103
+F.+sugar-Fertilizer   0.19266667 -0.16030537  0.54563870 0.5211198
+F.+CaCO3-Fertilizer   0.46900000  0.11602797  0.82197203 0.0069447
+Bas.med.-Fertilizer   0.85066667  0.49769463  1.20363870 0.0000231
+A.dest-Fertilizer     0.15000000 -0.20297203  0.50297203 0.7579063
+Tap water-Fertilizer  0.13666667 -0.25796806  0.53130140 0.8837597
+F.+sugar-F. open     -0.72233333 -1.07530537 -0.36936130 0.0001312
+F.+CaCO3-F. open     -0.44600000 -0.79897203 -0.09302797 0.0102557
+Bas.med.-F. open     -0.06433333 -0.41730537  0.28863870 0.9943994
+A.dest-F. open       -0.76500000 -1.11797203 -0.41202797 0.0000721
+Tap water-F. open    -0.77833333 -1.17296806 -0.38369860 0.0001913
+F.+CaCO3-F.+sugar     0.27633333 -0.07663870  0.62930537 0.1727182
+Bas.med.-F.+sugar     0.65800000  0.30502797  1.01097203 0.0003363
+A.dest-F.+sugar      -0.04266667 -0.39563870  0.31030537 0.9994197
+Tap water-F.+sugar   -0.05600000 -0.45063473  0.33863473 0.9985686
+Bas.med.-F.+CaCO3     0.38166667  0.02869463  0.73463870 0.0307459
+A.dest-F.+CaCO3      -0.31900000 -0.67197203  0.03397203 0.0879106
+Tap water-F.+CaCO3   -0.33233333 -0.72696806  0.06230140 0.1247914
+A.dest-Bas.med.      -0.70066667 -1.05363870 -0.34769463 0.0001792
+Tap water-Bas.med.   -0.71400000 -1.10863473 -0.31936527 0.0004507
+Tap water-A.dest     -0.01333333 -0.40796806  0.38130140 0.9999997</code></pre>
+</div>
+</div>
+</section>
+<section id="grafische-darstellung" class="slide level2">
+<h2>Grafische Darstellung</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">las =</span> <span class="dv">1</span>)             <span class="co"># las = 1 macht y-Anmerkung horizontal</span></span>
+<span id="cb24-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">1</span>)) <span class="co"># mehr Platz auf der linken Seite für Achsenbeschriftungen</span></span>
+<span id="cb24-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tk)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="07-anova_files/figure-revealjs/algae-tukey-1.png" width="960" class="r-stretch"></section>
+<section id="anova-annahmen-und-diagnosen" class="slide level2">
+<h2>ANOVA Annahmen und Diagnosen</h2>
+<div class="column" style="width:49%;">
+<p>Für die ANOVA gelten dieselben Annahmen wie für das lineare Modell.</p>
+<p><br></p>
+<ol type="1">
+<li>Unabhängigkeit von Fehlern</li>
+<li>Homogenität der Varianz</li>
+<li>Annähernde Normalität der Fehler</li>
+</ol>
+<p>Grafische Überprüfungen werden bevorzugt.</p>
+</div><div class="column" style="width:49%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb25-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="07-anova_files/figure-revealjs/algae-diagnostics-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></section>
+<section id="numerische-tests" class="slide level2">
+<h2>Numerische Tests</h2>
+<p><br><br></p>
+<div class="column" style="width:49%;">
+<p><strong>Test der Varianzhomogenität</strong></p>
+<ul>
+<li>Der F-Test vergleicht nur zwei Varianzen.</li>
+<li>Verschiedene Tests für multiple Varianzen, z.B. Bartlett, Levene, Fligner-Killeen</li>
+<li>Empfohlen: Fligner-Killeen-Test</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">fligner.test</span>(growth <span class="sc">~</span> treat, </span>
+<span id="cb26-2"><a aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> algae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Fligner-Killeen test of homogeneity of variances
+
+data:  growth by treat
+Fligner-Killeen:med chi-squared = 4.2095, df = 6, p-value = 0.6483</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:49%;">
+<p><strong>Test der Normalverteilung</strong></p>
+<ul>
+<li>Der Shapiro-Wilks-Test kann irreführend sein.</li>
+<li>Verwende eine grafische Methode!</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">residuals</span>(m))</span>
+<span id="cb28-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(<span class="fu">residuals</span>(m))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="07-anova_files/figure-revealjs/algae-qqnorm-1.png" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></section>
+<section id="einseitige-anova-mit-heterogenen-varianzen" class="slide level2">
+<h2>Einseitige ANOVA mit heterogenen Varianzen</h2>
+<p><br><br></p>
+<ul>
+<li>Erweiterung des Welch-Tests für <span class="math inline">\(\ge 2\)</span> Stichproben</li>
+<li>in R genannt <code>oneway.test</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">oneway.test</span>(growth <span class="sc">~</span> treat, <span class="at">data =</span> algae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    One-way analysis of means (not assuming equal variances)
+
+data:  growth and treat
+F = 115.09, num df = 6.0000, denom df = 4.6224, p-value = 6.57e-05</code></pre>
+</div>
+</div>
+</section>
+<section id="zweiseitige-anova" class="slide level2">
+<h2>Zweiseitige ANOVA</h2>
+<ul>
+<li>Beispiel aus einem Statistik-Lehrbuch <span class="citation" data-cites="Crawley2002">(<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">Crawley, 2002</a>)</span>, angewandt auf einen neuen Kontext</li>
+<li>Auswirkungen von Dünger und Lichtregime auf das Wachstum der Pflanzenhöhe in cm pro Zeit</li>
+</ul>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Dünger</th>
+<th>helles Licht</th>
+<th>schwaches Licht</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>8.3</td>
+<td>6.6</td>
+</tr>
+<tr class="even">
+<td>A</td>
+<td>8.7</td>
+<td>7.2</td>
+</tr>
+<tr class="odd">
+<td>B</td>
+<td>8.1</td>
+<td>6.9</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>8.5</td>
+<td>8.3</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>9.1</td>
+<td>7.9</td>
+</tr>
+<tr class="even">
+<td>C</td>
+<td>9.0</td>
+<td>9.2</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>faktorielles Experiment (<strong>mit Wiederholungen</strong>): jede Faktorkombination hat mehr als eine Beobachtung.</li>
+<li>ohne Wiederholungen:
+<ul>
+<li>keine Wiederholungen pro Faktorkombination</li>
+<li>dies ist möglich, erlaubt aber keine Identifizierung von Wechselwirkungen</li>
+</ul></li>
+</ul>
+</section>
+<section id="daten-im-long-format-eingeben" class="slide level2">
+<h2>Daten im Long-Format eingeben</h2>
+<div class="column" style="width:59%;">
+<p><br><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a aria-hidden="true" tabindex="-1"></a>plants <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">No =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
+<span id="cb31-2"><a aria-hidden="true" tabindex="-1"></a>                    <span class="at">growth =</span> <span class="fu">c</span>(<span class="fl">6.6</span>, <span class="fl">7.2</span>, <span class="fl">6.9</span>, <span class="fl">8.3</span>, <span class="fl">7.9</span>, <span class="fl">9.2</span>,</span>
+<span id="cb31-3"><a aria-hidden="true" tabindex="-1"></a>                               <span class="fl">8.3</span>, <span class="fl">8.7</span>, <span class="fl">8.1</span>, <span class="fl">8.5</span>, <span class="fl">9.1</span>, <span class="fl">9.0</span>),</span>
+<span id="cb31-4"><a aria-hidden="true" tabindex="-1"></a>                    <span class="at">fert   =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">each=</span><span class="dv">2</span>),</span>
+<span id="cb31-5"><a aria-hidden="true" tabindex="-1"></a>                    <span class="at">light   =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"high"</span>), <span class="at">each=</span><span class="dv">6</span>)</span>
+<span id="cb31-6"><a aria-hidden="true" tabindex="-1"></a>          )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:39%;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-striped caption-top" data-quarto-postprocess="true" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">No</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">growth</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">fert</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">light</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6.6</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">low</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">7.2</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">low</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">6.9</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">low</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">8.3</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">low</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">7.9</td>
+<td style="text-align: left;">C</td>
+<td style="text-align: left;">low</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">9.2</td>
+<td style="text-align: left;">C</td>
+<td style="text-align: left;">low</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">8.3</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">high</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">8.7</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">high</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">8.1</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">high</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">8.5</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">high</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">9.1</td>
+<td style="text-align: left;">C</td>
+<td style="text-align: left;">high</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">9.0</td>
+<td style="text-align: left;">C</td>
+<td style="text-align: left;">high</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div></section>
+<section id="beispiele-für-modellformeln" class="slide level2">
+<h2>Beispiele für Modellformeln</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Modell Typ</th>
+<th>Formel</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nullmodell</td>
+<td><code>y ~ 1</code></td>
+</tr>
+<tr class="even">
+<td>Einfache lineare Regression</td>
+<td><code>y ~ x</code></td>
+</tr>
+<tr class="odd">
+<td>Lineares Modell ohne Achsenschnittpunkt</td>
+<td><code>y ~ x - 1</code></td>
+</tr>
+<tr class="even">
+<td>Multiple Regression, keine Interaktion</td>
+<td><code>y ~ x1 + x2 + x3</code></td>
+</tr>
+<tr class="odd">
+<td>Multiple Regression mit Interaktion</td>
+<td><code>y ~ x1 * x2 * x3</code></td>
+</tr>
+<tr class="even">
+<td>Multiple Regression, keine 3-fache Interaktion</td>
+<td><code>y ~ x1 * x2 * x3 - x1 : x2 : x3</code></td>
+</tr>
+<tr class="odd">
+<td>Transformiert mit ‘as is’ Funktion</td>
+<td><code>y ~ x + I(x^2)</code></td>
+</tr>
+<tr class="even">
+<td>Einseitige ANOVA</td>
+<td><code>y ~ f</code></td>
+</tr>
+<tr class="odd">
+<td>ANOVA mit Interaktion</td>
+<td><code>y ~ f1 * f2</code></td>
+</tr>
+<tr class="even">
+<td>ANCOVA mit Interaktion</td>
+<td><code>y ~ x * f</code></td>
+</tr>
+<tr class="odd">
+<td>Verschachtelte ANOVA</td>
+<td><code>y ~ x + (1 | a / b)</code></td>
+</tr>
+<tr class="even">
+<td>GAM mit glättendem <code>s</code></td>
+<td><code>y ~ s(x) + f</code></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>y</code> = Antwortvariable (abhängig, Ziel)</li>
+<li><code>x</code> = metrische Erklärungsvariable (Prädiktor, unabhängig)</li>
+<li><code>f</code> = Faktorvariable (nominal)</li>
+</ul>
+</section>
+<section id="lineares-modell-und-anova" class="slide level2">
+<h2>Lineares Modell und ANOVA</h2>
+
+<img data-src="07-anova_files/figure-revealjs/plants-boxplot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p><strong>ANOVA</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(growth <span class="sc">~</span> light <span class="sc">*</span> fert, <span class="at">data =</span> plants)</span>
+<span id="cb32-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: growth
+           Df  Sum Sq Mean Sq F value  Pr(&gt;F)  
+light       1 2.61333 2.61333  7.2258 0.03614 *
+fert        2 2.66000 1.33000  3.6774 0.09069 .
+light:fert  2 0.68667 0.34333  0.9493 0.43833  
+Residuals   6 2.17000 0.36167                  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+</section>
+<section id="interaktionsplot" class="slide level2">
+<h2>Interaktionsplot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(plants, <span class="fu">interaction.plot</span>(fert, light, growth, </span>
+<span id="cb34-2"><a aria-hidden="true" tabindex="-1"></a>                            <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"orange"</span>, <span class="st">"brown"</span>), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="07-anova_files/figure-revealjs/plants-interaction-1.png" width="960" class="r-stretch"></section>
+<section id="diagnostik" class="slide level2">
+<h2>Diagnostik</h2>
+<p><strong>Annahmen</strong></p>
+<ol type="1">
+<li>Unabhängigkeit der Messungen (innerhalb von Stichproben)</li>
+<li>Homogenität der Varianz der Residuen</li>
+<li>Normalverteilung der Residuen</li>
+</ol>
+<p><br> <span class="red">Der Test der Annahmen benötigt Residuen des angepassten Modells.</span> <br><br> <span class="math inline">\(\Rightarrow\)</span> Passe zuerst das ANOVA-Modell an und prüfe dann, ob es richtig war!</p>
+<p><br></p>
+<p><strong>Diagnoseinstrumente</strong></p>
+<ul>
+<li>Boxplot</li>
+<li>Plot der Residuen im Vergleich zu den Mittelwerten</li>
+<li>Q-Q-Diagramm der Residuen</li>
+<li>Fligner-Killeen-Test (alternativ: von manchen wird der Levene-Test empfohlen)</li>
+</ul>
+</section>
+<section id="diagnostik-ii" class="slide level2">
+<h2>Diagnostik II</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb35-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">cex=</span><span class="fl">1.2</span>, <span class="at">las=</span><span class="dv">1</span>)</span>
+<span id="cb35-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">residuals</span>(m))</span>
+<span id="cb35-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(<span class="fu">residuals</span>(m))</span>
+<span id="cb35-5"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">residuals</span>(m)<span class="sc">~</span><span class="fu">fitted</span>(m))</span>
+<span id="cb35-7"><a aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="07-anova_files/figure-revealjs/plants-diagnostics-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">fligner.test</span>(growth <span class="sc">~</span> <span class="fu">interaction</span>(light, fert), <span class="at">data=</span>plants)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Fligner-Killeen test of homogeneity of variances
+
+data:  growth by interaction(light, fert)
+Fligner-Killeen:med chi-squared = 10.788, df = 5, p-value = 0.05575</code></pre>
+</div>
+</div>
+<p>Residuen: sehen in Ordnung aus und der p-Wert des Fligner-Tests <span class="math inline">\(&gt; 0,05\)</span>, <span class="math inline">\(\rightarrow\)</span> sieht gut aus.</p>
+</section>
+<section id="anmerkungen" class="slide level2">
+<h2>Anmerkungen</h2>
+<p><strong>Lineare Regression oder ANOVA?</strong></p>
+<ul>
+<li>im Wesentlichen dasselbe</li>
+<li>unabhängige Variablen sind <strong>metrisch</strong>: lineares Modell</li>
+<li>unabhängige Variablen sind nominal (= Faktor): ANOVA</li>
+<li>Mischung aus metrischen und nominalen Variablen: ANCOVA</li>
+</ul>
+<p><strong>Verwendung von Pre-Tests</strong></p>
+<p>Pre-Tests sind im Allgemeinen aus theoretischen Gründen fragwürdig:</p>
+<ol type="1">
+<li>Die Nullhypothesen <span class="math inline">\(H_0\)</span> können nur verworfen und nicht endgültig bestätigt werden.</li>
+<li>Wenn der Stichprobenumfang groß ist, ist die Normalität der Residuen nicht erforderlich</li>
+<li>Wenn <span class="math inline">\(p\)</span> in der Nähe des Schwellenwerts liegt und der Stichprobenumfang klein ist, bleiben wir im Ungewissen.</li>
+</ol>
+<p>All dies lässt sich nur durch sorgfältiges Nachdenken und mit etwas Erfahrung überwinden.</p>
+<p>Es ist immer eine gute Idee, die Ergebnisse mit Kollegen und Vorgesetzten zu besprechen.</p>
+</section>
+<section id="sequentielles-holm-bonferroni-verfahren" class="slide level2">
+<h2>Sequentielles Holm-Bonferroni-Verfahren</h2>
+<ul>
+<li>Auch Holm-Verfahren genannt <span class="citation" data-cites="Holm1979">(<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">Holm, 1979</a>)</span></li>
+<li>Einfach zu verwenden</li>
+<li>Kann auf jedes Problem mit Mehrfachtests angewendet werden</li>
+<li>Weniger konservativ als die normale Bonferroni-Korrektur, aber …</li>
+<li>… immer noch ein sehr konservativer Ansatz</li>
+<li>siehe auch <a href="https://en.wikipedia.org/wiki/Holm%E2%80%93Bonferroni_method">Wikipedia</a></li>
+</ul>
+<p><strong>Algorithmus</strong></p>
+<ol type="1">
+<li>Wähle den kleinsten <span class="math inline">\(p\)</span>-Wert aus allen <span class="math inline">\(n\)</span> <span class="math inline">\(p\)</span>-Werten</li>
+<li>Wenn <span class="math inline">\(p \cdot n &lt; \alpha\)</span> <span class="math inline">\(\Rightarrow\)</span> signifikant, sonst <bf>STOPP</bf></li>
+<li>Setze <span class="math inline">\(n - 1 \rightarrow n\)</span>, entferne das kleinste <span class="math inline">\(p\)</span> aus der Liste und gehe zu Schritt 1.</li>
+</ol>
+</section>
+<section id="beispiel-1" class="slide level2">
+<h2>Beispiel</h2>
+<p><br></p>
+<p>Wachstumsrate pro Tag (<span class="math inline">\(d^{-1}\)</span>) von Blaualgenkulturen (<em>Pseudanabaena</em>) nach Zugabe toxischer Peptide einer anderen Blaualge (<em>Microcystis</em>).</p>
+<p>Die ursprüngliche Hypothese war, dass Microcystin LR (MCYST) oder ein Derivat davon (Substanz A) das Wachstum hemmt.</p>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a aria-hidden="true" tabindex="-1"></a>mcyst <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">treat =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Control"</span>, <span class="dv">5</span>),</span>
+<span id="cb38-2"><a aria-hidden="true" tabindex="-1"></a>                                       <span class="fu">rep</span>(<span class="st">"MCYST"</span>, <span class="dv">5</span>),</span>
+<span id="cb38-3"><a aria-hidden="true" tabindex="-1"></a>                                       <span class="fu">rep</span>(<span class="st">"Subst A"</span>, <span class="dv">5</span>)),</span>
+<span id="cb38-4"><a aria-hidden="true" tabindex="-1"></a>                                <span class="at">levels=</span><span class="fu">c</span>(<span class="st">"Control"</span>, <span class="st">"MCYST"</span>, <span class="st">"Subst A"</span>)),</span>
+<span id="cb38-5"><a aria-hidden="true" tabindex="-1"></a>                      <span class="at">mu   =</span> <span class="fu">c</span>(<span class="fl">0.086</span>, <span class="fl">0.101</span>, <span class="fl">0.086</span>, <span class="fl">0.086</span>, <span class="fl">0.099</span>,</span>
+<span id="cb38-6"><a aria-hidden="true" tabindex="-1"></a>                               <span class="fl">0.092</span>, <span class="fl">0.088</span>, <span class="fl">0.093</span>, <span class="fl">0.088</span>, <span class="fl">0.086</span>,</span>
+<span id="cb38-7"><a aria-hidden="true" tabindex="-1"></a>                               <span class="fl">0.095</span>, <span class="fl">0.102</span>, <span class="fl">0.106</span>, <span class="fl">0.106</span>, <span class="fl">0.106</span>)</span>
+<span id="cb38-8"><a aria-hidden="true" tabindex="-1"></a>                     )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="ansatz-1-einseitige-anova" class="slide level2">
+<h2>Ansatz 1: einseitige ANOVA</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="at">las=</span><span class="dv">1</span>)</span>
+<span id="cb39-2"><a aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(mu <span class="sc">~</span> treat, <span class="at">data=</span>mcyst)</span>
+<span id="cb39-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: mu
+          Df     Sum Sq    Mean Sq F value   Pr(&gt;F)   
+treat      2 0.00053293 2.6647e-04   8.775 0.004485 **
+Residuals 12 0.00036440 3.0367e-05                    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">TukeyHSD</span>(<span class="fu">aov</span>(m)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="07-anova_files/figure-revealjs/mcyst-tukey-1.png" width="960" class="r-stretch"></section>
+<section id="ansatz-2-multiple-t-tests-mit-sequentieller-bonferroni-korrektur" class="slide level2">
+<h2>Ansatz 2: multiple t-Tests mit sequentieller Bonferroni-Korrektur</h2>
+<p>Wir trennen den Datensatz in einzelne Teilmengen:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a aria-hidden="true" tabindex="-1"></a>Control <span class="ot">&lt;-</span> mcyst<span class="sc">$</span>mu[mcyst<span class="sc">$</span>treat <span class="sc">==</span> <span class="st">"Control"</span>]</span>
+<span id="cb42-2"><a aria-hidden="true" tabindex="-1"></a>MCYST   <span class="ot">&lt;-</span> mcyst<span class="sc">$</span>mu[mcyst<span class="sc">$</span>treat <span class="sc">==</span> <span class="st">"MCYST"</span>]</span>
+<span id="cb42-3"><a aria-hidden="true" tabindex="-1"></a>SubstA  <span class="ot">&lt;-</span> mcyst<span class="sc">$</span>mu[mcyst<span class="sc">$</span>treat <span class="sc">==</span> <span class="st">"Subst A"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>und führen 3 t-Tests durch:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(Control, MCYST)<span class="sc">$</span>p.value</span>
+<span id="cb43-2"><a aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(Control, SubstA)<span class="sc">$</span>p.value</span>
+<span id="cb43-3"><a aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(MCYST, SubstA)<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Im Folgenden sind die rohen p-Werte ohne Korrektur dargestellt:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(p1, p2, p3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.576275261 0.027378832 0.001190592</code></pre>
+</div>
+</div>
+<p>… und mit Holm-Korrektur:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">p.adjust</span>(<span class="fu">c</span>(p1, p2, p3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.576275261 0.054757664 0.003571775</code></pre>
+</div>
+</div>
+</section>
+<section id="schlussfolgerungen" class="slide level2">
+<h2>Schlussfolgerungen</h2>
+<p><strong>Statistische Methoden</strong></p>
+<ul>
+<li>Im Falle der Holm-korrigierten t-Tests bleibt nur ein einziger p-Wert (MCYST vs.&nbsp;Subst A) signifikant. Dies zeigt, dass die Holm-Methode in diesem Fall konservativer ist als TukeyHSD (nur ein signifikanter Effekt im Vergleich zu zwei signifikanten).</li>
+<li>Eine ANOVA mit Posthoc-Test ist im Allgemeinen vorzuziehen,</li>
+<li>aber die sequentielle Holm-Bonferroni-Methode kann in besonderen Fällen hilfreich sein.</li>
+<li>Außerdem zeigt es deutlich, dass massive Mehrfachtests vermieden werden müssen.</li>
+</ul>
+<p><span class="math inline">\(\Rightarrow\)</span> ANOVA ist zu bevorzugen, wenn möglich.</p>
+<p><strong>Interpretation</strong></p>
+<ul>
+<li>Hinsichtlich unserer ursprünglichen Hypothese können wir feststellen, dass MCYST und SubstA das Wachstum von <em>Pseudanabaena</em> nicht hemmen. Vielmehr stimulierte SubstA das Wachstum.</li>
+<li>Dies widersprach unseren Erwartungen - der biologische Grund wurde dann 10 Jahre später gefunden.</li>
+</ul>
+<p>Mehr dazu ist zu finden in <span class="citation" data-cites="Jahnichen2001">Jähnichen et al. (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2001</a>)</span>, <span class="citation" data-cites="Jahnichen2007">Jähnichen et al. (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2007</a>)</span>, <span class="citation" data-cites="Jahnichen2011">Jähnichen et al. (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2011</a>)</span>, <span class="citation" data-cites="Zilliges2011">Zilliges et al. (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2011</a>)</span> oder <span class="citation" data-cites="Dziallas2011">Dziallas &amp; Grossart (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2011</a>)</span>.</p>
+</section>
+<section id="ancova" class="slide level2">
+<h2>ANCOVA</h2>
+<p><strong>Statistische Frage</strong></p>
+<ul>
+<li>Vergleich von Regressionslinien</li>
+<li>Ähnlich wie bei der ANOVA, enthält aber auch <strong>metrische</strong> Variablen (Kovariaten)</li>
+</ul>
+<p><strong>Beispiel</strong></p>
+<p>Annette Dobsons Daten zum Geburtsgewicht. Ein Datensatz aus einem Statistik-Lehrbuch <span class="citation" data-cites="Dobson2013">(<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">Dobson, 2013</a>)</span>, Geburtsgewicht von Jungen und Mädchen in Abhängigkeit von der Schwangerschaftswoche.</p>
+
+<img data-src="07-anova_files/figure-revealjs/dobson-lines-1.png" width="960" class="r-stretch"></section>
+<section id="der-datensatz-zum-geburtsgewicht" class="slide level2">
+<h2>Der Datensatz zum Geburtsgewicht</h2>
+<p><br></p>
+<p>Der Datensatz ist an verschiedenen Stellen im Internet und in verschiedenen Versionen zu finden.</p>
+<p>Hier die Version, die in einer R-Demo zu finden ist: <code>demo(lm.glm)</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a aria-hidden="true" tabindex="-1"></a><span class="do">## Daten zum Geburtsgewicht siehe stats/demo/lm.glm.R</span></span>
+<span id="cb48-2"><a aria-hidden="true" tabindex="-1"></a>dobson <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb48-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">week =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">38</span>, <span class="dv">40</span>, <span class="dv">35</span>, <span class="dv">36</span>, <span class="dv">37</span>, <span class="dv">41</span>, <span class="dv">40</span>, <span class="dv">37</span>, <span class="dv">38</span>, <span class="dv">40</span>, <span class="dv">38</span>,</span>
+<span id="cb48-4"><a aria-hidden="true" tabindex="-1"></a>     <span class="dv">40</span>, <span class="dv">36</span>, <span class="dv">40</span>, <span class="dv">38</span>, <span class="dv">42</span>, <span class="dv">39</span>, <span class="dv">40</span>, <span class="dv">37</span>, <span class="dv">36</span>, <span class="dv">38</span>, <span class="dv">39</span>, <span class="dv">40</span>),</span>
+<span id="cb48-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">weight =</span> <span class="fu">c</span>(<span class="dv">2968</span>, <span class="dv">2795</span>, <span class="dv">3163</span>, <span class="dv">2925</span>, <span class="dv">2625</span>, <span class="dv">2847</span>, <span class="dv">3292</span>, <span class="dv">3473</span>, <span class="dv">2628</span>, <span class="dv">3176</span>,</span>
+<span id="cb48-6"><a aria-hidden="true" tabindex="-1"></a>        <span class="dv">3421</span>, <span class="dv">2975</span>, <span class="dv">3317</span>, <span class="dv">2729</span>, <span class="dv">2935</span>, <span class="dv">2754</span>, <span class="dv">3210</span>, <span class="dv">2817</span>, <span class="dv">3126</span>, <span class="dv">2539</span>,</span>
+<span id="cb48-7"><a aria-hidden="true" tabindex="-1"></a>        <span class="dv">2412</span>, <span class="dv">2991</span>, <span class="dv">2875</span>, <span class="dv">3231</span>),</span>
+<span id="cb48-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fu">gl</span>(<span class="dv">2</span>, <span class="dv">12</span>, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"M"</span>, <span class="st">"F"</span>))</span>
+<span id="cb48-9"><a aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<p>Anmerkung: Dies ist ein künstlicher Datensatz, nicht die Realität.</p>
+<!------------------------------------------------------------------------------
+## Linear regression, ANOVA and ANCOVA
+
+
+* ANCOVA (analysis of covariance) deals with the comparison of regression lines
+* Simply speaking, we can distinguish the following:
+    * independent variables have metric scale: linear regression
+    * independent variables all nominal (factor): ANOVA
+    * independent variables are mixed nominal and metric: ANCOVA
+    
+For the linear models discussed so far, the **dependent** variable is always 
+metric, while binary or nominal dependent variables can be handled with generalized
+linear models (GLM).
+------------------------------------------------------------------------------->
+</section>
+<section id="anette-dobsons-daten-zum-geburtsgewicht" class="slide level2">
+<h2>Anette Dobsons Daten zum Geburtsgewicht</h2>
+<p>Warum nicht einfach einen t-Test durchführen?</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(weight <span class="sc">~</span> gender,<span class="at">data =</span> dobson, <span class="at">ylab =</span> <span class="st">"weight"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(weight <span class="sc">~</span> gender, <span class="at">data =</span> dobson, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  weight by gender
+t = 0.97747, df = 22, p-value = 0.339
+alternative hypothesis: true difference in means between group M and group F is not equal to 0
+95 percent confidence interval:
+ -126.3753  351.7086
+sample estimates:
+mean in group M mean in group F 
+       3024.000        2911.333 </code></pre>
+</div>
+</div>
+<img data-src="07-anova_files/figure-revealjs/dobson-boxplot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>Der Boxplot zeigt viele Überschneidungen, und der Unterschied ist nicht signifikant, weil der t-Test wichtige Informationen außer Acht lässt: die Schwangerschaftswoche.</p>
+</section>
+<section id="ancova-verwendet-kovariaten" class="slide level2">
+<h2>ANCOVA verwendet Kovariaten</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> week <span class="sc">*</span> gender, <span class="at">data =</span> dobson)</span>
+<span id="cb52-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: weight
+            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+week         1 1013799 1013799 31.0779 1.862e-05 ***
+gender       1  157304  157304  4.8221   0.04006 *  
+week:gender  1    6346    6346  0.1945   0.66389    
+Residuals   20  652425   32621                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+
+<!---------------------
+## How this works
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+plot(weight ~ week, data=dobson, col=c("blue","red")[as.numeric(gender)], pch=16)
+
+#summary(m)
+p <- coef(m)
+
+## lines fitted by the ANCOVA
+abline(a=p[1],      b=p[2],      col="red")
+abline(a=p[1]+p[3], b=p[2]+p[4], col="blue")
+
+## the result is the same as when we would fit separate linear models
+fem <- lm(weight ~ week, data=dobson, subset = gender=="F")
+mal <- lm(weight ~ week, data=dobson, subset = gender=="M")
+abline(fem, col="black", lty="dashed")
+abline(mal, col="black", lty="dashed")
+```
+:::
+
+
+
+--------------------------->
+<img data-src="07-anova_files/figure-revealjs/dobson-ancova-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
+<section>
+<section id="tücken-der-anovaancova" class="title-slide slide level1 center">
+<h1>Tücken der ANOVA/ANCOVA</h1>
+
+</section>
+<section id="bisher-beschriebene-tücken-von-anova-und-ancova" class="slide level2">
+<h2>Bisher beschriebene Tücken von ANOVA und ANCOVA</h2>
+<p><br></p>
+<ol type="1">
+<li>Heterogenität der Varianz
+<ul>
+<li>p-Werte können verzerrt sein (d.&nbsp;h. irreführend oder falsch)</li>
+<li>Verwendung einer einseitigen ANOVA für ungleiche Varianzen (in R: <code>oneway.test</code>)</li>
+</ul></li>
+<li>Unausgeglichener Fall:<br> Ungleiche Anzahl von Stichproben für jede Faktorkombination<br> <span class="math inline">\(\rightarrow\)</span> Die Ergebnisse der ANOVA hängen von der Reihenfolge der Faktoren in der Modellformel ab.
+<ul>
+<li>Klassische Methode: Typ II oder Typ III ANOVA</li>
+<li>Moderner Ansatz: Modellauswahl und Likelihood-Ratio-Tests</li>
+</ul></li>
+</ol>
+</section>
+<section id="typ-ii-und-typ-iii-anova" class="slide level2">
+<h2>Typ II und Typ III ANOVA</h2>
+<p><br></p>
+<ul>
+<li>Funktion <code>Anova</code> (mit Großbuchstabe <code>A</code>) im Paket <strong>car</strong></li>
+<li>Hilfsdatei der Funktion <code>Anova</code>:</li>
+</ul>
+<blockquote>
+<p>„Typ-II-Tests werden nach dem Prinzip der Marginalität berechnet, wobei jeder Term nach allen anderen getestet wird, ohne die Verwandten höherer Ordnung zu berücksichtigen; so genannte Typ-III-Tests verletzen die Marginalität, indem sie jeden Term im Modell nach allen anderen testen.“</p>
+</blockquote>
+<ul>
+<li>Schlussfolgerung: Verwende Typ II und nicht Typ III.</li>
+<li>Versuche nicht, einzelne Terme im Falle signifikanter Wechselwirkungen zu interpretieren.</li>
+</ul>
+</section>
+<section id="typ-ii-anova-beispiel" class="slide level2">
+<h2>Typ II ANOVA: Beispiel</h2>
+
+<img data-src="07-anova_files/figure-revealjs/plants-boxplot-ancova-1.png" width="960" class="r-stretch"><div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"car"</span>)</span>
+<span id="cb54-2"><a aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(growth <span class="sc">~</span> light <span class="sc">*</span> fert, <span class="at">data =</span> plants)</span>
+<span id="cb54-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(m, <span class="at">type=</span><span class="st">"II"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type II tests)
+
+Response: growth
+            Sum Sq Df F value  Pr(&gt;F)  
+light      2.61333  1  7.2258 0.03614 *
+fert       2.66000  2  3.6774 0.09069 .
+light:fert 0.68667  2  0.9493 0.43833  
+Residuals  2.17000  6                  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="modellauswahl---ein-paradigmenwechsel" class="title-slide slide level1 center">
+<h1>Modellauswahl - <br> ein Paradigmenwechsel</h1>
+
+</section>
+<section id="auswahl-eines-optimalen-modells-aus-einer-menge-von-kandidaten" class="slide level2">
+<h2>Auswahl eines optimalen Modells aus einer Menge von Kandidaten</h2>
+<p><br></p>
+<p><strong>Problem:</strong></p>
+<ul>
+<li>Bei komplexen ANOVA-Modellen hängen die p-Werte von der Anzahl (und manchmal von der Reihenfolge) der einbezogenen Faktoren und Wechselwirkungen ab.</li>
+<li>Der <span class="math inline">\(H_0\)</span>-basierte Ansatz wird verwirrend, z.B. wegen widersprüchlicher p-Werte.</li>
+</ul>
+<p><strong>Alternativer Ansatz:</strong></p>
+<ul>
+<li>Nutzt das Prinzip der Parsimonie</li>
+</ul>
+<p>Anstelle von p-Wert-basierten Tests werden verschiedene Modellkandidaten verglichen:</p>
+<ul>
+<li>Modell mit allen potentiellen Effekten → <span class="blue">vollständiges Modell</span></li>
+<li>Weglassen einzelner Faktoren → <span class="blue">reduzierte Modelle</span> (mehrere!)</li>
+<li>Keine Einflussfaktoren (nur Mittelwert) → <span class="blue">Nullmodell</span></li>
+<li>Welches Modell ist das beste → <span class="blue">minimales adäquates Modell</span>?</li>
+</ul>
+</section>
+<section id="wie-können-wir-messen-welches-modell-das-beste-ist" class="slide level2">
+<h2>Wie können wir messen, welches Modell das beste ist?</h2>
+<p><br></p>
+<p>Kompromiss zwischen Modellanpassung und Modellkomplexität (Anzahl der Parameter, k).</p>
+<ul>
+<li>Güte der Anpassung: Likelihood L (misst, wie gut die Daten zu einem bestimmten Modell passen).</li>
+<li>Log Likelihood: macht das Kriterium additiv.</li>
+<li>AIC (Akaike Information Criterion):</li>
+</ul>
+<p><span class="math display">\[AIC = −2 \ln(L) + 2k\]</span></p>
+<ul>
+<li>BIC ( Bayesian Information Criterion), berücksichtigt den Stichprobenumfang (<span class="math inline">\(n\)</span>):</li>
+</ul>
+<p><span class="math display">\[BIC = −2 \ln(L) + k · \ln(n)\]</span></p>
+<p>Das Modell mit dem kleinsten AIC (oder BIC) ist das <span class="blue">minimal adäquate</span> (d.h. optimale) Modell.</p>
+</section>
+<section id="modellauswahl-und-likelihood-ratio-tests" class="slide level2">
+<h2>Modellauswahl und Likelihood-Ratio-Tests</h2>
+<p><strong>Ansatz</strong></p>
+<ol type="1">
+<li>Mehrere Modelle einzeln anpassen</li>
+<li>Vergleiche die Modelle paarweise mit ANOVA (Likelihood Ratio Test)</li>
+</ol>
+<p><strong>Daten und Beispiel</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a aria-hidden="true" tabindex="-1"></a>plants <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">No=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,</span>
+<span id="cb56-2"><a aria-hidden="true" tabindex="-1"></a>                   <span class="at">growth=</span><span class="fu">c</span>(<span class="fl">6.6</span>, <span class="fl">7.2</span>, <span class="fl">6.9</span>, <span class="fl">8.3</span>, <span class="fl">7.9</span>, <span class="fl">9.2</span>,</span>
+<span id="cb56-3"><a aria-hidden="true" tabindex="-1"></a>                            <span class="fl">8.3</span>, <span class="fl">8.7</span>, <span class="fl">8.1</span>, <span class="fl">8.5</span>, <span class="fl">9.1</span>, <span class="fl">9.0</span>),</span>
+<span id="cb56-4"><a aria-hidden="true" tabindex="-1"></a>                   <span class="at">fert=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">each=</span><span class="dv">2</span>),</span>
+<span id="cb56-5"><a aria-hidden="true" tabindex="-1"></a>                   <span class="at">light=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"high"</span>), <span class="at">each=</span><span class="dv">6</span>)</span>
+<span id="cb56-6"><a aria-hidden="true" tabindex="-1"></a>                   )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(growth <span class="sc">~</span> fert <span class="sc">*</span> light, <span class="at">data=</span>plants)  <span class="co"># f1 + f2 + f1:f2</span></span>
+<span id="cb57-2"><a aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(growth <span class="sc">~</span> fert <span class="sc">+</span> light, <span class="at">data=</span>plants)  <span class="co"># f1 + f2</span></span>
+<span id="cb57-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m3, m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Model 1: growth ~ fert * light
+Model 2: growth ~ fert + light
+  Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
+1      6 2.1700                           
+2      8 2.8567 -2  -0.68667 0.9493 0.4383</code></pre>
+</div>
+</div>
+<ul>
+<li>Likelihood-Ratio-Test vergleicht zwei Modelle (<code>anova</code> mit &gt; 1 Modell)</li>
+<li>Modell mit Interaktion (<code>m3</code>) nicht signifikant besser als Modell ohne Interaktion (<code>m2</code>).</li>
+</ul>
+</section>
+<section id="aic-basierte-modellauswahl" class="slide level2">
+<h2>AIC-basierte Modellauswahl</h2>
+<ul>
+<li>Der paarweise Modellvergleich ist umständlich, insbesondere bei einer großen Anzahl von Modellen.</li>
+<li><strong>Lösung:</strong> Erstelle eine Menge von Kandidatenmodellen</li>
+<li>Verwende <span class="blue">kleinstes AIC</span>, um das <span class="blue">minimal angemessene</span> Modell auszuwählen.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a aria-hidden="true" tabindex="-1"></a>m3  <span class="ot">&lt;-</span> <span class="fu">lm</span>(growth <span class="sc">~</span> light <span class="sc">*</span> fert, <span class="at">data =</span> plants) <span class="co"># Gesamtmodell</span></span>
+<span id="cb59-2"><a aria-hidden="true" tabindex="-1"></a>m2  <span class="ot">&lt;-</span> <span class="fu">lm</span>(growth <span class="sc">~</span> light <span class="sc">+</span> fert, <span class="at">data =</span> plants)</span>
+<span id="cb59-3"><a aria-hidden="true" tabindex="-1"></a>m1a <span class="ot">&lt;-</span> <span class="fu">lm</span>(growth <span class="sc">~</span> fert, <span class="at">data =</span> plants)</span>
+<span id="cb59-4"><a aria-hidden="true" tabindex="-1"></a>m1b <span class="ot">&lt;-</span> <span class="fu">lm</span>(growth <span class="sc">~</span> light, <span class="at">data =</span> plants)</span>
+<span id="cb59-5"><a aria-hidden="true" tabindex="-1"></a>m0  <span class="ot">&lt;-</span> <span class="fu">lm</span>(growth <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> plants)            <span class="co"># Nullmodell</span></span>
+<span id="cb59-6"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-7"><a aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m0, m1a, m1b, m2, m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    df      AIC
+m0   2 33.38238
+m1a  4 32.62699
+m1b  3 30.72893
+m2   5 26.83151
+m3   7 27.53237</code></pre>
+</div>
+</div>
+<p><strong>Anmerkung</strong></p>
+<ul>
+<li>AIC-Werte sind <span class="blue">bis zu einer additiven Konstante definiert</span></li>
+<li><span class="math inline">\(\rightarrow\)</span> absolute Werte unterscheiden sich manchmal, abhängig von der angewandten Methode</li>
+<li><span class="math inline">\(\Rightarrow\)</span> betrachtet den Bereich des AIC und die Unterschiede, ignoriert die absoluten Werte</li>
+<li>Faustregel: die „AIC-Einheit“ ist 2, Unterschiede <span class="math inline">\(\approx 2.0\rightarrow\)</span> geringe Bedeutung</li>
+</ul>
+</section>
+<section id="schrittweise-modellauswahl-automatisch" class="slide level2">
+<h2>Schrittweise Modellauswahl (automatisch)</h2>
+<ul>
+<li>Das vollständige Modell wird an die Funktion <code>step</code> übergeben:</li>
+</ul>
+<div class="column" style="width:49%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(growth <span class="sc">~</span> fert <span class="sc">*</span> light, <span class="at">data=</span>plants)</span>
+<span id="cb61-2"><a aria-hidden="true" tabindex="-1"></a>opt <span class="ot">&lt;-</span> <span class="fu">step</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Start:  AIC=-8.52
+growth ~ fert * light
+
+             Df Sum of Sq    RSS     AIC
+- fert:light  2   0.68667 2.8567 -9.2230
+&lt;none&gt;                    2.1700 -8.5222
+
+Step:  AIC=-9.22
+growth ~ fert + light
+
+        Df Sum of Sq    RSS     AIC
+&lt;none&gt;               2.8567 -9.2230
+- fert   2    2.6600 5.5167 -5.3256
+- light  1    2.6133 5.4700 -3.4275</code></pre>
+</div>
+</div>
+<ul>
+<li>Modell mit dem kleinsten AIC<br> <span class="math inline">\(\rightarrow\)</span> optimales Modell.</li>
+</ul>
+</div><div class="column" style="width:49%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(opt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Variance Table
+
+Response: growth
+          Df Sum Sq Mean Sq F value  Pr(&gt;F)  
+fert       2 2.6600 1.33000  3.7246 0.07190 .
+light      1 2.6133 2.61333  7.3186 0.02685 *
+Residuals  8 2.8567 0.35708                  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p><br><br></p>
+<ul>
+<li>p &lt; 0.05 <br> <span class="math inline">\(\rightarrow\)</span> signifikant</li>
+</ul>
+</div><p><strong>Ergebnisse des Beispiels:</strong></p>
+<ul>
+<li>optimales Modell (<code>m2</code>, <code>opt</code>), enthält beide Faktoren <code>fert</code> und <code>light</code>, aber keine Interaktion.</li>
+<li>Die Modellauswahl hat <code>fert</code> und <code>light</code> als notwendige erklärende Variablen identifiziert,<br> im Gegensatz zur klassischen ANOVA-Tabelle, in der nur <code>light</code> signifikant ist.</li>
+</ul>
+</section>
+<section id="signifikanztests" class="slide level2">
+<h2>Signifikanztests?</h2>
+<p><br></p>
+<ul>
+<li>Das Konzept der Modellauswahl überlagert die p-Wert-basierte Statistik.</li>
+<li>Einige Autoren raten generell davon ab, p-Werte in diesem Zusammenhang zu verwenden, andere empfehlen einen Kompromiss.</li>
+<li>Wenn man einen p-Wert erhalten möchte, sollte man das optimale Modell mit weiteren reduzierten Modellen vergleichen, die p-Werte aber dennoch mit Vorsicht interpretieren:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2, m1a) <span class="co"># fert</span></span>
+<span id="cb65-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2, m1b) <span class="co"># light</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>In jedem Fall gilt: Konzentriere dich auf die praktischen Implikationen und vergiss nicht, die Effektgrößen anzugeben!</li>
+</ul>
+</section>
+<section id="zusammenfassung-des-kapitels-anova" class="slide level2">
+<h2>Zusammenfassung des Kapitels ANOVA</h2>
+<ul>
+<li>Lineare Modelle bilden die Grundlage für viele statistische Methoden.
+<ul>
+<li>Lineare Regression</li>
+<li>ANOVA, ANCOVA, GLM, GAM, GLMM, . . .</li>
+<li>ANOVA/ANCOVA anstelle von Mehrfachtests</li>
+</ul></li>
+<li>ANOVA ist leistungsfähiger als Mehrfachtests:
+<ul>
+<li>vermeidet <span class="math inline">\(\alpha\)</span>-Fehlerinflation</li>
+<li>ein großes Experiment benötigt weniger n als viele kleine Experimente</li>
+<li>Identifizierung von Interaktionseffekten</li>
+<li>Eliminierung von Kovariaten</li>
+</ul></li>
+<li>Modellauswahl vs.&nbsp;p-Wert-basierte Tests
+<ul>
+<li>Paradigmenwechsel in der Statistik: AIC anstelle des p-Wertes</li>
+<li>zuverlässiger, insbesondere bei unausgewogenen oder komplexen Designs</li>
+<li>erweiterbar auf generalisierte, additive und gemischte Modelle (GLM, GAM, LME, GLMM, …)</li>
+<li>aber: p-Wert-basierte Tests sind manchmal leichter zu verstehen</li>
+</ul></li>
+</ul>
+</section>
+<section id="vermeide-manipulation-von-p-werten" class="slide level2">
+<h2>Vermeide Manipulation von p-Werten</h2>
+<p><strong>Experimente NICHT wiederholen, bis ein signifikanter p-Wert gefunden wird.</strong></p>
+<p>Die hochrangige Zeitschrift „… Nature hat einflussreiche Statistiker gebeten, eine Änderung zur Verbesserung der Wissenschaft zu empfehlen. Das gemeinsame Thema? Das Problem ist nicht unsere Mathematik, sondern wir selbst.“ <a href="https://doi.org/10.1038/d41586-017-07522-z">(Leek et al.&nbsp;(2017))</a>:</p>
+<p><strong>Fünf Wege, Statistiken zu verbessern. Kommentar zur Nature</strong></p>
+<ol type="1">
+<li>Jeff Leek: Anpassung an die menschliche Kognition</li>
+<li>Blakeley B. McShane &amp; Andrew Gelman: Verzicht auf statistische Signifikanz</li>
+<li>David Colquhoun: Auch falsch-positives Risiko angeben</li>
+<li>Michèle B. Nuijten: Analysepläne und Ergebnisse mitteilen</li>
+<li>Steven N. Goodman: Normen von innen heraus ändern</li>
+</ol>
+<!--
+See also: [http://daniellakens.blogspot.de/2017/12/understanding-common-misconceptions.html?m=1](http://daniellakens.blogspot.de/2017/12/understanding-common-misconceptions.html?m=1)
+-->
+<p><strong>Selbststudium</strong></p>
+<p>Lies das Paper von <span class="citation" data-cites="JohnsonOmland2004">Johnson &amp; Omland (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2004</a>)</span> um mehr über das Paradigma der Modellauswahl zu erfahren.</p>
+</section>
+<section id="literaturverzeichnis" class="slide level2 smaller scrollable">
+<h2>Literaturverzeichnis</h2>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-Crawley2002" class="csl-entry" role="listitem">
+Crawley, M. J. (2002). <em>Statistical computing. An introduction to data analysis using <span>S-PLUS</span></em> (pp. 1–761). Wiley. <a href="datasets: http://www.bio.ic.ac.uk/research/mjcraw/statcomp/data/">datasets: http://www.bio.ic.ac.uk/research/mjcraw/statcomp/data/</a>
+</div>
+<div id="ref-Dobson2013" class="csl-entry" role="listitem">
+Dobson, A. J. (2013). <em>Introduction to statistical modelling</em>. Springer.
+</div>
+<div id="ref-Dziallas2011" class="csl-entry" role="listitem">
+Dziallas, C., &amp; Grossart, H.-P. (2011). Increasing <span>Oxygen Radicals</span> and <span>Water Temperature Select</span> for <span>Toxic Microcystis</span> sp. <em>PLoS ONE</em>, <em>6</em>(9), e25569. <a href="https://doi.org/10.1371/journal.pone.0025569">https://doi.org/10.1371/journal.pone.0025569</a>
+</div>
+<div id="ref-Holm1979" class="csl-entry" role="listitem">
+Holm, S. (1979). A simple sequentially rejective multiple test procedure. <em>Scandinavian Journal of Statistics</em>, 65–70. <a href="https://www.jstor.org/stable/4615733">https://www.jstor.org/stable/4615733</a>
+</div>
+<div id="ref-Jahnichen2007" class="csl-entry" role="listitem">
+Jähnichen, S., Ihle, T., Petzoldt, T., &amp; Benndorf, J. (2007). Impact of <span>Inorganic Carbon Availability</span> on <span>Microcystin Production</span> by <span>Microcystis</span> aeruginosa <span>PCC</span> 7806. <em>Applied and Environmental Microbiology</em>, <em>73</em>(21), 6994–7002. <a href="https://doi.org/10.1128/AEM.01253-07">https://doi.org/10.1128/AEM.01253-07</a>
+</div>
+<div id="ref-Jahnichen2011" class="csl-entry" role="listitem">
+Jähnichen, S., Long, B. M., &amp; Petzoldt, T. (2011). Microcystin production by <span>Microcystis</span> aeruginosa: <span>Direct</span> regulation by multiple environmental factors. <em>Harmful Algae</em>, <em>12</em>, 95–104. <a href="https://doi.org/10.1016/j.hal.2011.09.002">https://doi.org/10.1016/j.hal.2011.09.002</a>
+</div>
+<div id="ref-Jahnichen2001" class="csl-entry" role="listitem">
+Jähnichen, S., Petzoldt, T., &amp; Benndorf, J. (2001). Evidence for control of microcystin dynamics in <span>Bautzen Reservoir</span> (<span>Germany</span>) by cyanobacterial population growth rates and dissolved inorganic carbon. <em>Fundamental and Applied Limnology</em>, <em>150</em>(2), 177–196. <a href="https://doi.org/10.1127/archiv-hydrobiol/150/2001/177">https://doi.org/10.1127/archiv-hydrobiol/150/2001/177</a>
+</div>
+<div id="ref-JohnsonOmland2004" class="csl-entry" role="listitem">
+Johnson, G., Jerald, &amp; Omland, K. S. (2004). Model <span>Selection</span> in <span>Ecology</span> and <span>Evolution</span>. <em>Trends in Ecology and Evolution</em>, <em>19</em>(2), 101–108. <a href="https://doi.org/10.1016/j.tree.2003.10.013">https://doi.org/10.1016/j.tree.2003.10.013</a>
+</div>
+<div id="ref-Zilliges2011" class="csl-entry" role="listitem">
+Zilliges, Y., Kehr, J.-C., Meissner, S., Ishida, K., Mikkat, S., Hagemann, M., Kaplan, A., Börner, T., &amp; Dittmann, E. (2011). The <span>Cyanobacterial Hepatotoxin Microcystin Binds</span> to <span>Proteins</span> and <span>Increases</span> the <span>Fitness</span> of <span>Microcystis</span> under <span>Oxidative Stress Conditions</span>. <em>PLoS ONE</em>, <em>6</em>(3), e17615. <a href="https://doi.org/10.1371/journal.pone.0017615">https://doi.org/10.1371/journal.pone.0017615</a>
+</div>
+</div>
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p><span style="color: white; font-size: small; font-weight:400; float: right; margin-top: 40px; margin-right: 4%;"> <a href="../">🏠 Home</a> </span></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

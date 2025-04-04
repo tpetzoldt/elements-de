@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
+
+  <meta name="author" content="Thomas Petzoldt">
+  <meta name="dcterms.date" content="2025-04-04">
+  <title>Elemente der statistischen Datenanalyse und Statistik mit R – 04-Distributions</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-cb13c09ad5a7270edb89df8c4c84031f.css">
+  <link rel="stylesheet" href="../thpe.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <style>
+  #title-slide 
+    .title {color: #cef0ffff;}
+    .subtitle {color: #ee7f00;}
+    .quarto-title-author {color: #69af22;}
+    .date {color: #69af22;}
+  </style>  
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" body-color="#ffffff" data-background-image="../img/tud-title-bg-wide-2021.png" class="quarto-title-block center">
+  <h1 class="title">04-Distributions</h1>
+  <p class="subtitle">Applied Statistics – A Practical Course</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Thomas Petzoldt 
+</div>
+</div>
+</div>
+
+  <p class="date">2025-04-04</p>
+</section>
+<section id="wahrscheinlichkeitsverteilungen" class="slide level2">
+<h2>Wahrscheinlichkeitsverteilungen</h2>
+<p><br></p>
+<p><strong>Definition</strong></p>
+<ul>
+<li>eine mathematische Funktion</li>
+<li>Wahrscheinlichkeit des Auftretens verschiedener möglicher Ergebnisse für ein Experiment</li>
+</ul>
+<p><a href="https://en.wikipedia.org/wiki/Probability_distribution"><span class="math inline">\(\rightarrow\)</span> https://en.wikipedia.org/wiki/Probability_distribution</a></p>
+<p><br></p>
+<p><strong>Eigenschaften</strong></p>
+<ol type="1">
+<li>Eine bestimmte Form (Verteilungstyp, eine mathematische Formel)</li>
+<li>Kann durch ihre Parameter beschrieben werden (z. B. Mittelwert <span class="math inline">\(\mu\)</span> und Standardabweichung <span class="math inline">\(\sigma\)</span>).</li>
+</ol>
+<p>Wahrscheinlichkeitsverteilungen sind eines der Kernkonzepte der Statistik und viele Statistikkurse beginnen mit dem Werfen von Münzen<sup>1</sup> oder Würfeln. Wir beginnen mit einem kleinen Experiment im Klassenzimmer.</p>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Wir gehen davon aus, dass die Chancen 50:50 sind. Forscher fanden heraus, dass es eine sehr geringe Abweichung gibt, siehe <a href="https://youtu.be/AYnJv68T3MM"><span class="math inline">\(\rightarrow\)</span> youtube video</a></p></li></ol></aside></section>
+<section id="was-ist-deine-lieblingszahl" class="slide level2">
+<h2>Was ist deine Lieblingszahl?</h2>
+<p>In einem Experiment im Hörsaal wurden die Studierenden eines internationalen Kurses nach ihrer Lieblingszahl von 1 bis 9 gefragt.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Zahl</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Häufigkeit</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<img data-src="04-distributions_files/figure-revealjs/favorite-num-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>Die resultierende Verteilung ist:</p>
+<ul>
+<li><strong>empirisch:</strong> Daten aus einem Experiment</li>
+<li><strong>diskret:</strong> nur diskrete Zahlen (1, 2, 3 …, 9) möglich, keine Brüche</li>
+</ul>
+</section>
+<section id="computersimulationen" class="slide level2">
+<h2>Computersimulationen</h2>
+<p><br></p>
+<p>Anstelle von realen Experimenten können wir auch simulierte Zufallszahlen verwenden.</p>
+<ul>
+<li><strong>Vorteil:</strong> wir können Daten aus Verteilungen mit bekannten Eigenschaften simulieren.</li>
+<li><strong>Herausforderung:</strong> etwas abstrakt</li>
+</ul>
+<p><strong>Zweck</strong></p>
+<ul>
+<li>ein Gefühl für den Zufall zu bekommen, wie eine Stichprobe nach einer bestimmten „Theorie“ aussehen kann</li>
+<li>statistische Methoden erforschen und testen und das Verständnis schulen</li>
+<li>ein Werkzeug für die Versuchsplanung</li>
+<li>Anwendung und Aussagekraft einer Analyse im Vorfeld testen</li>
+</ul>
+<p><br></p>
+<p><span class="red"><span class="math inline">\(\rightarrow\)</span> Simulation: ein wichtiges Instrument für die Entwicklung und das Verständnis statistischer Methoden!</span></p>
+</section>
+<section id="kontinuierliche-gleichverteilung-mathbfu0-1" class="slide level2">
+<h2>Kontinuierliche Gleichverteilung <span class="math inline">\(\mathbf{U}(0, 1)\)</span></h2>
+<div class="column" style="width:59%;">
+<ul>
+<li>gleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall</li>
+<li>z.B. <span class="math inline">\([0, 1]\)</span></li>
+<li>in <strong>R</strong>: <code>runif</code>, <strong>r</strong>andom, <strong>unif</strong>orm</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 0.6105169 0.6431216 0.5988244 0.3728285 0.5111436 0.7224263 0.6867357
+ [8] 0.2092646 0.2523193 0.2443016</code></pre>
+</div>
+</div>
+<p><br> <br></p>
+<ul>
+<li><strong>Klassenbildung</strong> (Binning): Einteilung der Werte in Klassen</li>
+</ul>
+<div class="bigfont">
+
+</div>
+</div><div class="column" style="width:39%;">
+<div class="cell" data-layout-align="right">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-right">
+<figure>
+<p><img data-src="04-distributions_files/figure-revealjs/uniform-random-1.png" class="quarto-figure quarto-figure-right" width="288"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><!---
+$$
+X \sim U(x_{min}, x_{max})
+$$
+--->
+</section>
+<section id="dichtefunktion-von-mathbfux_min-x_max" class="slide level2">
+<h2>Dichtefunktion von <span class="math inline">\(\mathbf{U}(x_{min}, x_{max})\)</span></h2>
+
+<img data-src="04-distributions_files/figure-revealjs/uniform-pdf-1.png" class="quarto-figure quarto-figure-center r-stretch" width="576"><ul>
+<li>Dichte <span class="math inline">\(f(X)\)</span>, manchmal abgekürzt als „pdf“ (<em>probability density function</em>):</li>
+</ul>
+<p><span class="math display">\[
+f(x) = \begin{cases}
+         \frac{1}{x_{max}-x_{min}} &amp; \text{für } x \in [x_{min},x_{max}] \\
+         0                     &amp; \text{sonst}
+       \end{cases}
+\]</span></p>
+<ul>
+<li>Fläche unter der Kurve (d.&nbsp;h. das Integral) = 1,0</li>
+<li>100% der Ereignisse liegen zwischen <span class="math inline">\(-\infty\)</span> und <span class="math inline">\(+\infty\)</span><br> <span class="gray">und für <span class="math inline">\(\mathbf{U}(x_{min}, x_{max})\)</span> im Intervall <span class="math inline">\([x_{min}, y_{max}]\)</span></span></li>
+</ul>
+</section>
+<section id="kumulative-verteilungsfunktion-von-mathbfux_min-x_max" class="slide level2">
+<h2>Kumulative Verteilungsfunktion von <span class="math inline">\(\mathbf{U}(x_{min}, x_{max})\)</span></h2>
+<p><br></p>
+<div class="column" style="width:59%;">
+<p>Die <strong>cdf</strong> (cumulative density function) ist das Integral der Dichtefunktion:</p>
+<p><span class="math display">\[
+F(x) =\int_{-\infty}^{x} f(x) dx
+\]</span> Die Gesamtfläche <span class="gray">(Gesamtwahrscheinlichkeit)</span> ist <span class="math inline">\(1.0\)</span>:</p>
+<p><span class="math display">\[
+F(x) =\int_{-\infty}^{+\infty} f(x) dx = 1
+\]</span></p>
+<p>Für die Verteilungsfunktion der Gleichverteilung gilt somit:</p>
+<p><span class="math display">\[
+F(x) = \begin{cases}
+         0                     &amp; \text{für } x &lt; x_{min} \\
+         \frac{x-x_{min}}{x_{max}-x_{min}} &amp; \text{für } x \in [x_{min},x_{max}] \\
+         1                     &amp; \text{für } x &gt; x_{max}
+       \end{cases}
+\]</span></p>
+</div><div class="column" style="width:39%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="04-distributions_files/figure-revealjs/uniform-cdf-1.png" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></section>
+<section id="quantilsfunktion" class="slide level2">
+<h2>Quantilsfunktion</h2>
+<p><br></p>
+<p>… die Umkehrung der kumulativen Verteilungsfunktion.</p>
+<div class="column" style="width:49%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="04-distributions_files/figure-revealjs/uniform-cdf-1.png" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="blue">Kumulative Dichtefunktion</span></p>
+</div><div class="column" style="width:49%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="04-distributions_files/figure-revealjs/uniform-qdf-1.png" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="blue">Quantilsfunktion</span></p>
+</div><p>Beispiel: In welchem Bereich kann man 95% einer Gleichverteilung <span class="math inline">\(\mathbf{U}(40,60)\)</span> finden?</p>
+</section>
+<section id="zusammenfassung-gleichverteilung" class="slide level2">
+<h2>Zusammenfassung: Gleichverteilung</h2>
+<p><br></p>
+
+<img data-src="04-distributions_files/figure-revealjs/unif-summary-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section>
+<section id="die-normalverteilung" class="title-slide slide level1 center">
+<h1>Die Normalverteilung</h1>
+
+</section>
+<section id="die-normalverteilung-mathbfnmu-sigma" class="slide level2">
+<h2>Die Normalverteilung <span class="math inline">\(\mathbf{N}(\mu, \sigma)\)</span></h2>
+<ul>
+<li>von großer theoretischer Bedeutung aufgrund des zentralen Grenzwertsatzes (ZGWS / central limit theorem CLT)</li>
+<li>ergibt sich aus der Addition einer großen Anzahl von Zufallswerten gleicher Größenordnung.</li>
+</ul>
+<p><strong>Die Dichtefunktion der Normalverteilung ist eine mathematische Schönheit.</strong></p>
+<p><span class="math display">\[
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} \, \mathrm{e}^{-\frac{(x-\mu)^2}{2 \sigma^2}}
+\]</span></p>
+
+<img data-src="../img/10_DM_Serie4_Vorderseite.jpg" class="r-stretch quarto-figure-center"><p class="caption">C.F. Gauß, Gauß-Kurve und Formel auf einer deutschen DM-Banknote von 1991–2001 (<a href="https://de.wikipedia.org/wiki/Bargeld_der_Deutschen_Mark">Wikipedia</a>, CC0)</p></section>
+<section id="der-zentrale-grenzwertsatz-clt" class="slide level2">
+<h2>Der zentrale Grenzwertsatz (CLT)</h2>
+<p><br></p>
+<blockquote>
+<p>Die Summe einer großen Anzahl <span class="math inline">\(n\)</span> unabhängiger und identisch verteilter Zufallswerte konvergiert gegen eine Normalverteilung, unabhängig vom Typ der ursprünglichen Verteilung.</p>
+</blockquote>
+<p><br></p>
+
+<img data-src="04-distributions_files/figure-revealjs/clt-simulation2a-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
+<section id="ein-simulationsexperiment" class="slide level2">
+<h2>Ein Simulationsexperiment</h2>
+<p><br></p>
+<div class="column" style="width:59%;">
+<ol type="1">
+<li>Erstelle eine Matrix mit 100 Zeilen und 25 Spalten von gleichverteilten Zufallszahlen</li>
+<li>Berechne die Zeilensummen</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>), <span class="at">las=</span><span class="dv">1</span>)</span>
+<span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a>x  <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">runif</span>(<span class="dv">25</span> <span class="sc">*</span> <span class="dv">100</span>), <span class="at">ncol =</span> <span class="dv">25</span>)</span>
+<span id="cb3-4"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a aria-hidden="true" tabindex="-1"></a><span class="co"># View(x) # uncomment this to show the matrix</span></span>
+<span id="cb3-6"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a aria-hidden="true" tabindex="-1"></a>x_sums <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(x)</span>
+<span id="cb3-8"><a aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x)</span>
+<span id="cb3-9"><a aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x_sums)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br><span class="blue"><span class="math inline">\(\rightarrow\)</span> Zeilensummen sind annähernd normalverteilt</span></p>
+</div><div class="column" style="width:39%;">
+<div class="cell" data-fig.aling="center">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="04-distributions_files/figure-revealjs/clt-simulation-1.png" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></section>
+<section id="zufallszahlen-und-dichtefunktion" class="slide level2">
+<h2>Zufallszahlen und Dichtefunktion</h2>
+
+<img data-src="04-distributions_files/figure-revealjs/normal-random-1.png" width="960" class="r-stretch"></section>
+<section id="dichte-und-quantile-der-standardnormalverteilung" class="slide level2">
+<h2>Dichte und Quantile der Standardnormalverteilung</h2>
+
+<img data-src="04-distributions_files/figure-revealjs/normal-density95-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
+<li>Theoretisch liegen 50% der Werte unter und 50% über dem Mittelwert</li>
+<li>95% liegen ungefähr zwischen <span class="math inline">\(\pm 2 \sigma\)</span></li>
+</ul>
+</section>
+<section id="dichte-und-quantile-der-standardnormalverteilung-1" class="slide level2">
+<h2>Dichte und Quantile der Standardnormalverteilung</h2>
+
+<img data-src="../img/normal-density-quantiles.png" class="r-stretch"></section>
+<section id="kumulative-verteilungsfunktion-und-quantilfunktion" class="slide level2">
+<h2>Kumulative Verteilungsfunktion und Quantilfunktion</h2>
+
+<img data-src="04-distributions_files/figure-revealjs/normal-cdf-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><table class="caption-top">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 10%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 12%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Quantil</th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">1.64</th>
+<th style="text-align: center;">1.96</th>
+<th style="text-align: center;">2.0</th>
+<th style="text-align: center;">2.33</th>
+<th style="text-align: center;">2.57</th>
+<th style="text-align: center;">3</th>
+<th><span class="math inline">\(\mu \pm z\cdot \sigma\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">einseitig</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.95</td>
+<td style="text-align: center;">0.975</td>
+<td style="text-align: center;">0.977</td>
+<td style="text-align: center;">0.99</td>
+<td style="text-align: center;">0.995</td>
+<td style="text-align: center;">0.9986</td>
+<td><span class="math inline">\(1-\alpha\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">zweiseitig</td>
+<td style="text-align: center;">0.68</td>
+<td style="text-align: center;">0.90</td>
+<td style="text-align: center;">0.95</td>
+<td style="text-align: center;">0.955</td>
+<td style="text-align: center;">0.98</td>
+<td style="text-align: center;">0.99</td>
+<td style="text-align: center;">0.997</td>
+<td><span class="math inline">\(1-\alpha/2\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="standardnormalverteilung-skalierung-und-verschiebung" class="slide level2">
+<h2>Standardnormalverteilung, Skalierung und Verschiebung</h2>
+
+<img data-src="04-distributions_files/figure-revealjs/normal-shift-scale-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
+<li><span class="math inline">\(\mu\)</span> ist der <strong>Verschiebungs</strong>parameter, der die gesamte glockenförmige Kurve entlang der <span class="math inline">\(x\)</span>-Achse verschiebt.</li>
+<li><span class="math inline">\(\sigma\)</span> ist der <strong>Skalierungs</strong>parameter, der die Kurve in Richtung <span class="math inline">\(x\)</span> streckt oder staucht.</li>
+</ul>
+</section>
+<section id="standardisierung-z-transformation" class="slide level2">
+<h2>Standardisierung (<span class="math inline">\(z\)</span>-Transformation)</h2>
+<p><br></p>
+<p>Jede Normalverteilung kann skaliert und verschoben werden, um eine Standardnormalverteilung mit <span class="math inline">\(\mu=0, \sigma=1\)</span> zu bilden.</p>
+<p><br></p>
+<div class="column" style="width:40%;">
+<p><strong>Normalverteilung</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="04-distributions_files/figure-revealjs/normal-ms-1.png" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math display">\[
+f(x) = \frac{1}{\sigma\sqrt{2\pi}} \, \mathrm{e}^{-\frac{(x-\mu)^2}{2 \sigma^2}}
+\]</span></p>
+</div><div class="column" style="width:18%;">
+<p><br><br><br><br> <span class="math display">\[
+z = \frac{x-\mu}{\sigma}
+\]</span> <span class="math inline">\(\longrightarrow\)</span> <span class="math inline">\(\longrightarrow\)</span> <span class="math inline">\(\longrightarrow\)</span></p>
+</div><div class="column" style="width:40%;">
+<p><strong>Standardnormalverteilung</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="04-distributions_files/figure-revealjs/normal-standard-1.png" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math display">\[
+f(x) = \frac{1}{\sqrt{2\pi}} \, \mathrm{e}^{-\frac{1}{2}x^2}
+\]</span></p>
+</div></section>
+<section id="t-verteilung-mathbftx-df" class="slide level2">
+<h2>t-Verteilung <span class="math inline">\(\mathbf{t}(x, df)\)</span></h2>
+
+<img data-src="04-distributions_files/figure-revealjs/t-distr-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
+<li>zusätzlicher Parameter „Freiheitsgrade“ (df)</li>
+<li>wird für Konfidenzintervalle und statistische Tests verwendet</li>
+<li>konvergiert gegen Normalverteilung für <span class="math inline">\(df \rightarrow \infty\)</span></li>
+</ul>
+</section>
+<section id="abhängigkeit-des-t-wertes-von-der-anzahl-der-df" class="slide level2">
+<h2>Abhängigkeit des t-Wertes von der Anzahl der df</h2>
+
+<img data-src="04-distributions_files/figure-revealjs/t-from-df-1.png" width="960" class="r-stretch"><div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">df</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">4.00</td>
+<td style="text-align: right;">9.00</td>
+<td style="text-align: right;">19.00</td>
+<td style="text-align: right;">29.00</td>
+<td style="text-align: right;">99.00</td>
+<td style="text-align: right;">999.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">t</td>
+<td style="text-align: right;">12.71</td>
+<td style="text-align: right;">2.78</td>
+<td style="text-align: right;">2.26</td>
+<td style="text-align: right;">2.09</td>
+<td style="text-align: right;">2.05</td>
+<td style="text-align: right;">1.98</td>
+<td style="text-align: right;">1.96</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="logarithmische-normalverteilung-lognormal" class="slide level2">
+<h2>Logarithmische Normalverteilung (Lognormal)</h2>
+
+<img data-src="04-distributions_files/figure-revealjs/lognormal-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
+<li>Viele Prozesse in der Natur <strong>folgen nicht</strong> einer Normalverteilung.</li>
+<li>begrenzt durch Null auf der linken Seite</li>
+<li>große Extremwerte auf der rechten Seite</li>
+</ul>
+<p><strong>Beispiele:</strong> Abfluss von Flüssen, Nährstoffkonzentrationen, Algenbiomasse in einem See</p>
+</section>
+<section id="elternverteilung-der-lognormalverteilung" class="slide level2">
+<h2>Elternverteilung der Lognormalverteilung</h2>
+
+<img data-src="04-distributions_files/figure-revealjs/lognormal-parent-1.png" width="960" class="r-stretch"><ul>
+<li>Logarithmus von Werten einer Lognormalverteilung <span class="math inline">\(\rightarrow\)</span> Eltern-Normalverteilung.</li>
+<li>Die Lognormalverteilung wird durch die Parameter der log-transformierten Daten <span class="math inline">\(\bar{x}_L\)</span> und <span class="math inline">\(s_L\)</span> beschrieben</li>
+<li>der Antilog von <span class="math inline">\(\bar{x}_L\)</span> ist das geometrische Mittel</li>
+</ul>
+</section>
+<section id="binomialverteilung" class="slide level2">
+<h2>Binomialverteilung</h2>
+
+<img data-src="04-distributions_files/figure-revealjs/binomial-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
+<li>Anzahl der erfolgreichen Versuche aus <span class="math inline">\(n\)</span> Gesamtversuchen mit Erfolgswahrscheinlichkeit <span class="math inline">\(p\)</span>.</li>
+<li>Wie viele 6en mit Wahrscheinlichkeit <span class="math inline">\(1/6\)</span> in 3 Versuchen?</li>
+<li>Medizin, Toxikologie, Vergleich von Prozentzahlen</li>
+<li>Ähnlich, aber ohne zurücklegen: Hypergeometrische Verteilung im Lotto</li>
+</ul>
+</section>
+<section id="poisson-verteilung" class="slide level2">
+<h2>Poisson-Verteilung</h2>
+
+<img data-src="04-distributions_files/figure-revealjs/poisson-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1152"><ul>
+<li>Verteilung von seltenen Ereignissen, eine diskrete Verteilung</li>
+<li>Mittelwert und Varianz sind gleich (<span class="math inline">\(\mu = \sigma^2\)</span>), daraus ergibt sich der Parameter „lambda“ (<span class="math inline">\(\lambda\)</span>)</li>
+<li><strong>Beispiele:</strong> Bakterienzählung auf einem Raster, Warteschlangen, Ausfallmodelle</li>
+</ul>
+<p><strong>Quasi-Poisson, wenn <span class="math inline">\(\mu \neq \sigma^2\)</span></strong></p>
+<ul>
+<li>Wenn <span class="math inline">\(s^2 &gt; \bar{x}\)</span>: Überdispersion</li>
+<li>wenn <span class="math inline">\(s^2 &lt; \bar{x}\)</span>: Unterdispersion</li>
+</ul>
+</section>
+<section id="konfidenzintervall" class="slide level2">
+<h2>Konfidenzintervall</h2>
+<p>– hängt nur von <span class="math inline">\(\lambda\)</span> bzw. der Anzahl der gezählten Einheiten (<span class="math inline">\(k\)</span>) ab</p>
+
+<img data-src="04-distributions_files/figure-revealjs/poisson-ci-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p><strong>Typischer Fehler bei einer Zellzählung:</strong> 95% Konfidenzintervall</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Anzahl</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">400</td>
+<td style="text-align: right;">1000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">von</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">81</td>
+<td style="text-align: right;">173</td>
+<td style="text-align: right;">362</td>
+<td style="text-align: right;">939</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bis</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">122</td>
+<td style="text-align: right;">230</td>
+<td style="text-align: right;">441</td>
+<td style="text-align: right;">1064</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!--
+
+## Gamma distribution
+
+The gamma distribution is a right skewed distribution, that is
+useful for a number of practical problems, especially in the context of
+*generalized linear models* (GLM), that are increasingly applied for the 
+analysis of variance of non-normal data.  
+The gamma distribution is described by the two parameters *shape* and *rate* or,
+alternatively, by *shape* and *scale* where $scale=1/rate$.  The density
+function is:
+
+
+$$
+f(x) = \frac{1}{\beta^\alpha \Gamma(\alpha)} x^{\alpha-1} \mathbf{e}^{-x/\beta}
+$$
+
+Here $\alpha$ represents the *shape* parameter and $\beta$ the
+*scale* parameter. Interestingly, $\alpha\cdot\beta$ is equal to the
+mean and $\alpha\cdot\beta^2$ to the variance, so that mean and variance can be used
+for an estimation of shape and scale (method of moments).
+
+The gamma distribution is related to several other distributions, for example the $\chi^2$-distribution that is a special case with $\alpha=df/2$,
+$\mu=df$ and $\sigma^2=2df$ or the exponental distribution with $\mu=\beta$, 
+$\sigma=\beta^2$ und $\alpha=1$.
+
+As we see the gamma distribution is very flexible. For visualization we
+will draw a few examples (@fig-dgamma):
+
+
+
+
+::: {.cell}
+::: {.cell-output-display}
+![](04-distributions_files/figure-revealjs/gamma, dgamma-1.png){width=960}
+:::
+:::
+
+
+
+
+
+As a small exercise we may generate 1000 random numbers for these examples
+with `rgamma` and estimate mean value and variance.
+
+**Example**
+
+The data set `prk_nit.txt` contains individual biomasses of diatom algae cells
+of the species *Nitzschia acicularis*, that were determined in two different
+students courses. The example data can directly be retrieved from Github,
+then will estimate the parameters of a gamma distribution using the method of 
+moments (fig-prknit1):
+
+
+
+
+
+::: {.cell}
+::: {.cell-output-display}
+![Histogram of the Nitzschia data set and its estimated gamma distribution.](04-distributions_files/figure-revealjs/fig-prknit1-1.png){#fig-prknit1 width=960}
+:::
+:::
+
+
+
+
+-->
+</section>
+<section id="tests-für-die-verteilung" class="slide level2">
+<h2>Tests für die Verteilung</h2>
+<p><br></p>
+<p>Manchmal möchte man wissen, ob ein Datensatz zu einer bestimmten Art von Verteilung gehört. Das klingt einfach, ist aber aus theoretischen Gründen ziemlich schwierig:</p>
+<ul>
+<li>statistische Tests prüfen auf Abweichungen von der Nullhypothese</li>
+<li>hier wollen wir aber das Gegenteil testen, ob <span class="math inline">\(H_0\)</span> wahr ist</li>
+</ul>
+<p>Das ist in der Tat unmöglich, denn „nicht signifikant“ bedeutet nur, dass ein potenzieller Effekt entweder nicht vorhanden oder einfach zu klein ist, um entdeckt zu werden. Im Gegensatz dazu beinhaltet „signifikant anders“ eine gewisse Wahrscheinlichkeit von falsch-positiven Ergebnissen.</p>
+<p>Die meisten statistischen Tests erfordern jedoch keine perfekte Übereinstimmung mit einer bestimmten Verteilung:</p>
+<ul>
+<li>t-Test und ANOVA setzen Normalität der Residuen voraus</li>
+<li>aufgrund des CLT konvergiert die Verteilung der Summen und Mittelwerte zur Normalverteilung</li>
+</ul>
+</section>
+<section id="shapiro-wilks-w-test" class="slide level2">
+<h2>Shapiro-Wilks-W-Test <span class="red">?</span></h2>
+<p><span class="math inline">\(\rightarrow\)</span> Ziel: Prüfung, ob eine Stichprobe aus einer Normalverteilung stammt</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  x
+W = 0.99064, p-value = 0.7165</code></pre>
+</div>
+</div>
+<p><br></p>
+<p><span class="math inline">\(\rightarrow\)</span> der <span class="math inline">\(p\)</span>-Wert ist größer als 0,05, also würden wir <span class="math inline">\(H_0\)</span> behalten und schlussfolgern, dass nichts gegen die Annahme der Normalität spricht</p>
+<p><br></p>
+<p>Die Interpretation des Shapiro-Wilks-Tests ist mit Vorsicht zu genießen:</p>
+<ul>
+<li>für kleine <span class="math inline">\(n\)</span> ist der Test nicht empfindlich genug</li>
+<li>bei großen <span class="math inline">\(n\)</span> ist er überempfindlich</li>
+<li><span class="red">Die Verwendung von Shapiro-Wilks zur Überprüfung der Normalität für t-Tests und ANOVA wird nicht mehr empfohlen</span></li>
+</ul>
+
+<aside><div>
+<p>Auch die <span class="math inline">\(\chi^2\)</span>- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für Normalitätstests nicht mehr empfohlen, sind aber für andere Testprobleme weiterhin wichtig.</p>
+</div></aside></section>
+<section id="grafische-prüfung-der-normalität" class="slide level2">
+<h2>Grafische Prüfung der Normalität</h2>
+<div class="column" style="width:49%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="04-distributions_files/figure-revealjs/distrbox-examples-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:49%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="04-distributions_files/figure-revealjs/qqnorm-examples-1.png" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><ul>
+<li><span class="math inline">\(x\)</span>: theoretische Quantile, bei denen ein Wert bei Normalverteilung gefunden werden sollte</li>
+<li><span class="math inline">\(y\)</span>: normalisierte und geordnete Messwerte (<span class="math inline">\(z\)</span>- Scores)</li>
+<li>skaliert in der Einheit der Standardabweichungen</li>
+<li>Normalverteilung, wenn die Punkte einer Geraden folgen</li>
+</ul>
+<p><span class="red">Empfehlung: Verwende eine grafische Prüfung. Vertraue nicht auf Shapiro Wilks!</span></p>
+</section>
+<section id="transformation" class="slide level2">
+<h2>Transformation</h2>
+<ul>
+<li>ermöglicht die Anwendung von Methoden, die für normalverteilte Daten entwickelt wurden, auf nicht-normalverteilte Fälle</li>
+<li>in der Vergangenheit sehr verbreitet, manchmal immer noch nützlich</li>
+<li>Moderne Methoden können bestimmte Verteilungen direkt verarbeiten, z. B. Binomial-, Gamma- oder Poisson-Verteilung.</li>
+</ul>
+<p><strong>Transformationen für rechtsschiefe Daten</strong></p>
+<ul>
+<li><span class="math inline">\(x'=\log(x)\)</span></li>
+<li><span class="red"><span class="math inline">\(x'=\log(x + a)\)</span></span></li>
+<li><span class="math inline">\(x'=(x+a)^c\)</span> <span class="gray">(<span class="math inline">\(a\)</span> zwischen 0.5 und 1)</span></li>
+<li><span class="math inline">\(x'=1/x\)</span> <span class="gray">(“sehr stark”, d.&nbsp;h. in den meisten Fällen zu extrem)</span></li>
+<li><span class="math inline">\(x'=a - 1/\sqrt{x}\)</span> <span class="gray">(um die Skala bequemer zu gestalten)</span></li>
+<li><span class="math inline">\(x'=1/\sqrt{x}\)</span> <span class="gray">(Kompromiss zwischen <span class="math inline">\(\ln\)</span> und <span class="math inline">\(1/x\)</span>)</span></li>
+<li><span class="math inline">\(x'=a+bx^c\)</span> <span class="gray">(sehr allgemein, enthält Potenzen und Wurzeln)</span></li>
+</ul>
+</section>
+<section id="transformationen-ii" class="slide level2">
+<h2>Transformationen II</h2>
+<p><strong>Transformationen für Zähldaten</strong></p>
+<ul>
+<li><span class="math inline">\(x'=\sqrt{3/8+x}\)</span> <span class="gray">(Zählungen: 1, 2, 3 <span class="math inline">\(\rightarrow\)</span> 0.61, 1.17, 1.54, 1.84, )</span></li>
+<li><span class="math inline">\(x'=\lg(x+3/8)\)</span></li>
+<li><span class="math inline">\(x'=\log(\log(x))\)</span> <span class="gray">für riesige Zahlen</span></li>
+</ul>
+<p><span class="blue"><span class="math inline">\(\rightarrow\)</span> stattdessen ein GLM mit der Familie Poisson oder Quasi-Poisson in Betracht ziehen</span></p>
+<p><strong>Verhältnisse und Prozentsätze</strong></p>
+<ul>
+<li><span class="math inline">\(x'=\arcsin \sqrt{x/n}\)</span></li>
+<li><span class="math inline">\(x'=\arcsin \sqrt{\frac{x+3/8}{n+3/4}}\)</span></li>
+</ul>
+<p><span class="blue"><span class="math inline">\(\rightarrow\)</span> stattdessen ein GLM mit Familie Binomial in Betracht ziehen</span> <!------------------------------------------------------------------------------
+
+## Box-Cox transformation
+
+Estimate optimal transformation from the class of powers and logarithms
+
+$$
+y' = y^\lambda
+$$
+
+* $\lambda=0$ means that a logarithmic transformation would be
+appropriate.  Function `boxcox` requires a so-called "model
+formula" or the outcome of a linear model (`lm`) as the
+argument. For testing a single sample, we can use the model formula of a "null
+model" to test the full data set without explanation variables
+(`~ 1`). More about model formulas can be found later, in
+the ANOVA chapter.
+
+
+
+
+::: {.cell}
+::: {.cell-output-display}
+![](04-distributions_files/figure-revealjs/boxcox-1.png){width=960}
+:::
+:::
+
+
+
+
+The dotted vertical lines and the horizontal 95\,\%-line show the
+confidence limits for possible transformations. Here we see that
+either a logarithmic transformation ($\lambda=0$) or a power of
+approximately 0.5 are suitable.
+
+It is also possible to obtain the numerical value directly:
+
+
+
+
+::: {.cell fig='false'}
+::: {.cell-output .cell-output-stdout}
+
+```
+List of 2
+ $ x: num [1:41] -2 -1.9 -1.8 -1.7 -1.6 -1.5 -1.4 -1.3 -1.2 -1.1 ...
+ $ y: num [1:41] -237 -228 -220 -212 -204 ...
+```
+
+
+:::
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] 0.2
+```
+
+
+:::
+:::
+
+
+
+
+We should keep in mind that these are approximate numbers so that
+it makes not much sense to use more than one decimal.
+
+It is also possible to test for joint distribution of all groups at once by
+using explanatory variables (here `group`) on the right hand side of
+the model formula:
+
+
+
+
+::: {.cell}
+::: {.cell-output-display}
+![Log-Likelihood profile of a Box-Cox-transformation for the pooled data sets Nit85 and Nit90.](04-distributions_files/figure-revealjs/fig-boxcox2-1.png){#fig-boxcox2 width=960}
+:::
+:::
+
+
+
+
+-------------------------------------------------------------------------------></p>
+</section>
+<section id="rangtransformation" class="slide level2">
+<h2>Rangtransformation</h2>
+<p><strong>Beispiel:</strong> Spearman-Korrelation</p>
+<div class="column" style="width:49%;">
+<p><br> Datensatz</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">5</span> ,<span class="dv">6</span>,  <span class="dv">7</span>)</span>
+<span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ränge</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">rank</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.0 2.0 3.0 5.5 4.0 5.5 7.0 8.0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">rank</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.0 2.0 4.5 3.0 4.5 6.0 7.0 8.0</code></pre>
+</div>
+</div>
+<p>Zwei Berechnungsmöglichkeiten</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y, <span class="at">method =</span> <span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8915663</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="fu">rank</span>(x), <span class="fu">rank</span>(y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8915663</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:49%;">
+<p><br><br><br></p>
+<div class="cell" data-layout-align="right">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-right">
+<figure>
+<p><img data-src="04-distributions_files/figure-revealjs/rank-spearman-1.png" class="quarto-figure quarto-figure-right" width="384"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></section>
+<section id="zur-erinnerung-der-zentrale-grenzwertsatz-zgws" class="slide level2">
+<h2>Zur Erinnerung: Der zentrale Grenzwertsatz (ZGWS)</h2>
+<blockquote>
+<p>Die Summen einer großen Anzahl <span class="math inline">\(n\)</span> unabhängiger und identisch verteilter Zufallswerte konvergieren gegen eine Normalverteilung, unabhängig vom Typ der ursprünglichen Verteilung.</p>
+</blockquote>
+<ul>
+<li>Wir können Methoden für eine Normalverteilung auch bei Abweichungen von der NV anwenden:
+<ul>
+<li>wenn wir einen großen Datensatz haben</li>
+<li>wenn die ursprüngliche Verteilung nicht „zu schief“ ist</li>
+</ul></li>
+<li>Die erforderliche Zahl <span class="math inline">\(n\)</span> hängt von der Schiefe der ursprünglichen Verteilung ab.</li>
+</ul>
+<p><br></p>
+
+<img data-src="04-distributions_files/figure-revealjs/clt-simulation2-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p><strong>Grund:</strong> Methoden wie t-Test oder ANOVA basieren auf Mittelwerten.</p>
+</section>
+<section id="konfidenzintervalle-des-mittelwerts" class="slide level2">
+<h2>Konfidenzintervalle des Mittelwerts</h2>
+<p><br></p>
+<p><strong>Standardfehler</strong></p>
+<p><span class="math display">\[
+s_{\bar{x}} = \frac{s}{\sqrt{n}}
+\]</span></p>
+<ul>
+<li>Die Variabilität des Mittelwerts halbiert sich, wenn wir den Stichprobenumfang vervierfachen (<span class="math inline">\(2^2\)</span>).</li>
+</ul>
+<p>Schätzung des 95%-Konfidenzintervalls:</p>
+<p><span class="math display">\[
+CI_{95\%} = \bigg(\bar{x} - z_{0.975} \cdot \frac{s}{\sqrt{n}},
+                 \bar{x} + z_{0.975} \cdot \frac{s}{\sqrt{n}}\bigg)
+\]</span></p>
+<p>mit <span class="math inline">\(z_{1-\alpha/2} = z_{0.975} =\)</span> <span class="red"><span class="math inline">\(1.96\)</span></span>.</p>
+<div class="hugefont">
+<p><span class="red"><span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(2\sigma\)</span> Regel</span></p>
+</div>
+<ul>
+<li>Intervall, in dem der wahre Mittelwert mit 95%iger Wahrscheinlichkeit gefunden wird</li>
+</ul>
+</section>
+<section id="unterschied-zwischen-stichprobe-und-konfidenzintervall" class="slide level2">
+<h2>Unterschied zwischen Stichprobe und Konfidenzintervall</h2>
+<p><br></p>
+<ul>
+<li><p><strong>Stichprobenintervall:</strong> charakterisiert die Verteilung der Daten aus den Parametern der Stichprobe (z.B. Mittelwert, Standardabweichung)</p></li>
+<li><p>Standardabweichung <span class="math inline">\(s_x\)</span> misst die Variabilität der ursprünglichen Daten</p></li>
+<li><p>rekonstruiert die ursprüngliche Verteilung, wenn ihr Typ bekannt ist (z. B. normal, lognormal)</p></li>
+</ul>
+<p><br></p>
+<ul>
+<li><p><strong>Konfidenzintervall:</strong> charakterisiert die Genauigkeit eines statistischen Parameters, basierend auf seinem Standardfehler</p></li>
+<li><p>Schätzt anhand von <span class="math inline">\(\bar{x}\)</span> und <span class="math inline">\(s_\bar{x}\)</span> das Intervall, in dem <span class="math inline">\(\mu\)</span> mit einer bestimmten Wahrscheinlichkeit gefunden wird</p></li>
+<li><p>weniger abhängig von der ursprünglichen Verteilung der Daten aufgrund des ZGWS</p></li>
+</ul>
+</section>
+<section id="verwendung-der-t-verteilung-für-kleine-stichproben" class="slide level2">
+<h2>Verwendung der t-Verteilung für kleine Stichproben</h2>
+<p><span class="math display">\[
+CI_{95\%} = \bigg(\bar{x} - t_{0.975, n-1} \cdot \frac{s}{\sqrt{n}},
+                 \bar{x} + t_{0.975, n-1} \cdot \frac{s}{\sqrt{n}}\bigg)
+\]</span></p>
+<ul>
+<li>notwendig für kleine Stichproben: <span class="math inline">\(n\lessapprox 30\)</span>, <span class="math inline">\(n-1\)</span> Freiheitsgrade</li>
+<li>kann selbstverständlich auch für <span class="math inline">\(n &gt; 30\)</span> verwendet werden</li>
+<li><span class="math inline">\(t\)</span>-Quantil kann in Tabellen gefunden oder mit der Funktion <code>qt()</code> in <strong>R</strong> berechnet werden.</li>
+</ul>
+<p>Beispiel mit <span class="math inline">\(\mu=50\)</span> und <span class="math inline">\(\sigma=10\)</span>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb15-3"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">50</span>, <span class="dv">10</span>)</span>
+<span id="cb15-4"><a aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x); s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb15-5"><a aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> s<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
+<span id="cb15-6"><a aria-hidden="true" tabindex="-1"></a><span class="co"># lower and upper confidence limits</span></span>
+<span id="cb15-7"><a aria-hidden="true" tabindex="-1"></a>m <span class="sc">+</span> <span class="fu">qt</span>(<span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>), n<span class="dv">-1</span>) <span class="sc">*</span> se</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 43.92330 57.56922</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\rightarrow\)</span> der wahre Mittelwert (<span class="math inline">\(\mu\)</span>=50) ist im Intervall CI = (43.9, 57.6).</p>
+</section>
+<section id="ausreißer" class="slide level2">
+<h2>Ausreißer</h2>
+<ul>
+<li>Extrem große oder extrem kleine Werte werden oft als „Ausreißer“ bezeichnet.</li>
+<li>Potenzielle Ausreißer können aber auch „Extremwerte“ aus einer schiefen Verteilung sein. Sie auszuschließen, kann wissenschaftliches Fehlverhalten sein.</li>
+<li>Ein „echter“ Ausreißer ist ein Wert, der nicht aus der zu analysierenden Population stammt, z. B. ein schwerwiegender Messfehler, wenn jemand vergessen hat, eine Chemikalie in einer Analyse hinzuzufügen.</li>
+<li>Er kann aber auch etwas Interessantes sein, z. B. das Ergebnis eines neuen Phänomens.</li>
+</ul>
+<p><span class="math inline">\(\Rightarrow\)</span> Es kann falsch sein, Werte auszuschließen, nur weil sie „zu groß“ oder „zu klein“ sind.</p>
+<p><span class="math inline">\(\rightarrow\)</span> Versuche, den Grund zu finden, warum Werte extrem sind!</p>
+<p><br></p>
+<p><strong><span class="math inline">\(4 \sigma\)</span>-Regel</strong></p>
+<ul>
+<li>prüft, ob ein Wert mehr als 4 Standardabweichungen vom Mittelwert entfernt ist.</li>
+<li>Stichprobengröße sollte <span class="math inline">\(n \ge 10\)</span> sein, <span class="math inline">\(\bar{x}\)</span> und <span class="math inline">\(s\)</span> werden ohne den potentiellen Ausreißer berechnet.</li>
+<li>Ähnliche „Faustregeln“ sind in Statistik-Lehrbüchern zu finden.</li>
+</ul>
+</section>
+<section id="ausreißertest-für-lineare-modelle-mit-bonferroni-korrektur" class="slide level2">
+<h2>Ausreißertest für lineare Modelle mit Bonferroni-Korrektur</h2>
+<ul>
+<li>Für lineare Modelle und GLMs können wir den Bonferroni-Ausreißertest aus dem Paket <strong>car</strong> verwenden.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb17-2"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>), <span class="dv">12</span>) <span class="co"># the 21st value (=12) is an outlier</span></span>
+<span id="cb17-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">outlierTest</span>(<span class="fu">lm</span>(x<span class="sc">~</span><span class="dv">1</span>))  <span class="co"># x ~ 1 is the null model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   rstudent unadjusted p-value Bonferroni p
+21 11.66351         4.1822e-10   8.7826e-09</code></pre>
+</div>
+</div>
+<p><span class="math inline">\(\rightarrow\)</span> Der 21. Wert wird als Ausreißer identifiziert:</p>
+<p><br> <strong>Alternative zu Ausreißertests</strong></p>
+<ul>
+<li>Verwendung robuster Parameter und Methoden,
+<ul>
+<li>z.B. Median oder getrimmter Mittelwert anstelle des arithmetischen Mittels,</li>
+<li>robuste lineare Regression „rlm“ anstelle von „lm”</li>
+<li>Rangbasierte Methoden wie die Spearman-Korrelation</li>
+</ul></li>
+<li><strong>Wichtig</strong> Ausreißer können in einer Analyse weggelassen werden, aber die Anzahl und das Ausmaß der Ausreißer müssen erwähnt werden!</li>
+</ul>
+</section>
+<section id="extremwerte-in-boxplots" class="slide level2">
+<h2>Extremwerte in Boxplots</h2>
+<p><br></p>
+<ul>
+<li><p>Extremwerte außerhalb der Whiskers, wenn sie mehr als das 1,5-fache der Breite der Interquartilsbox von den Boxgrenzen entfernt sind.</p></li>
+<li><p>Manchmal auch „Ausreißer“ genannt.</p></li>
+<li><p>Ich bevorzuge den Begriff „Extremwert“, da es sich um regelmäßige Beobachtungen aus einer schiefen oder ‘heavy tailed’ Verteilung handeln kann.</p></li>
+</ul>
+
+<img data-src="04-distributions_files/figure-revealjs/no-outliers-1.png" class="quarto-figure quarto-figure-center r-stretch" width="864"></section>
+<section id="beispiel" class="slide level2">
+<h2>Beispiel</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="at">las=</span><span class="dv">1</span>)</span>
+<span id="cb19-2"><a aria-hidden="true" tabindex="-1"></a>elbe <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://tpetzoldt.github.io/datasets/data/elbe.csv"</span>)</span>
+<span id="cb19-3"><a aria-hidden="true" tabindex="-1"></a>discharge <span class="ot">&lt;-</span> elbe<span class="sc">$</span>discharge</span>
+<span id="cb19-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(discharge, <span class="at">main=</span><span class="st">"Boxplot des Abflusses"</span>)</span>
+<span id="cb19-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(discharge)</span>
+<span id="cb19-6"><a aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log</span>(discharge <span class="sc">-</span> <span class="dv">70</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="04-distributions_files/figure-revealjs/elbe-boxplot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="864"><p>Abflussdaten der Elbe in Dresden in <span class="math inline">\(\mathrm m^3 s^{-1}\)</span>, Datenquelle: Bundesanstalt für Gewässerkunde (BFG), siehe <a href="https://github.com/tpetzoldt/datasets/blob/main/data/elbe_info.txt">terms and conditions</a>.</p>
+<ul>
+<li><strong>Links:</strong> große Anzahl von Extremwerten, sind das Ausreißer?</li>
+<li><strong>Mitte:</strong> Verteilung ist rechtsschief.</li>
+<li><strong>Rechts:</strong> Transformation (3-parametrische Lognormalverteilung) <span class="math inline">\(\rightarrow\)</span> symmetrische Verteilung, keine Ausreißer!</li>
+</ul>
+</section>
+<section id="mehr-in-den-übungen" class="slide level2">
+<h2>Mehr in den Übungen …</h2>
+<p><br></p>
+<p><a href="../element-labs">https://tpetzoldt.github.io/element-labs/</a></p>
+
+
+</section></section>
+
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p><span style="color: white; font-size: small; font-weight:400; float: right; margin-top: 40px; margin-right: 4%;"> <a href="../">🏠 Home</a> </span></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
