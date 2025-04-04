@@ -1,7 +1,7 @@
 ---
-title: "An Introductory R Session"
+title: "Erste Schritte mit R"
 author: "Thomas Petzoldt"
-date: '2024-10-22'
+date: "`r Sys.Date()`"
 date-format: "YYYY-MM-DD"
 format:
   html:

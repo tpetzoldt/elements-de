@@ -2,287 +2,287 @@
   {
     "objectID": "tutorials/s1-introductory-r-session.html",
     "href": "tutorials/s1-introductory-r-session.html",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "",
     "text": "Der folgende Abschnitt soll einen ersten Eindruck vermitteln, was R (R Core Team, 2021) ist und wie es funktioniert. Es wird davon ausgegangen, dass die folgende Software installiert ist:\n\nDas R-System für statistische Berechnungen: https://www.r-project.org\nR Studio, ein Programm, das die Arbeit mit R vereinfacht: https://www.rstudio.org\n\nAnmerkung: Bitte installiere zuerst R bevor du RStudio installierst.\nEin gutes Beispiel für den Anfang ist das kurze Video „R tutorial - The True Basics of R“ von DataCamp, siehe https://youtu.be/SWxoJqTqo08. Außerdem bietet Datacamp ausgezeichnete R-Kurse, die zum Teil sogar kostenlos sind. Ein weiteres nützliches R-Tutorial gibt es bei W3Schools.com.",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#programmstart-und-hilfesystem",
     "href": "tutorials/s1-introductory-r-session.html#programmstart-und-hilfesystem",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "2.1 Programmstart und Hilfesystem",
     "text": "2.1 Programmstart und Hilfesystem\nDer einfachste Weg, R zu erlernen, ist das kreative Verstehen und Abwandeln von gegebenen Beispielen, die Verwendung von R zur Lösung praktischer Probleme und die Diagnose von Warnungen und Fehlermeldungen. Keine Sorge: Fehlermeldungen sind ein normales Phänomen im wissenschaftlichen Rechnen und kein Hinweis auf eine Funktionsstörung des Computers oder des menschlichen Gehirns. Das Gegenteil ist der Fall: Ein gewisses Maß an Stresshormonen hilft, dauerhafte Lerneffekte zu erzielen. Nach einer gewissen Erfahrung ist dann die offizielle R-Dokumentation „An Introduction to R“ (Venables et al., 2021) oder ein gutes R-Buch sehr zu empfehlen.\nDie ersten Abschnitte dieses „Crashkurses“ sollen einen Überblick über einige der wichtigsten Elemente von R und einen Einblick in einen typischen Arbeitsablauf geben, der für die ersten statistischen Analysen und als Ausgangspunkt für die selbstständige Einarbeitung nützlich sein kann.\nWir beginnen unsere erste Sitzung mit dem Start von RStudio, einer plattformunabhängigen Benutzerumgebung, die das Arbeiten mit R erleichtert. RStudio unterteilt den Bildschirm in 3 (bzw. 4) Fenster (sogenannte Panes), von denen einige zusätzliche Tabs haben, um zwischen verschiedenen Ansichten zu wechseln.\n\nAbbildung 1: R Studio mit 4 Fenstern. Benutze Datei – Neues R-Skript, um das Quellcode-Fenster zu öffnen (siehe oben links). Gib dann etwas Code ein und vergiss nicht, im Hilfesystem zu lesen.\nIn einer neuen RStudio-Sitzung sollte ein „Pane“ die Haupt-Hilfsseite von R sein. Es ist eine gute Idee, ein wenig herumzustöbern, um einen Eindruck über den Umfang und den typischen Stil der verfügbaren Hilfsthemen zu bekommen. Die wichtigsten Abschnitte sind „An Introduction to R“, „Search Engine & Keywords“, „Packages“, die „Frequently Asked Questions“ und eventuell „R Data Import/Export“.\nWir beginnen nun, das R-System selbst zu erkunden.",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#r-als-taschenrechner",
     "href": "tutorials/s1-introductory-r-session.html#r-als-taschenrechner",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "2.2 R als Taschenrechner",
     "text": "2.2 R als Taschenrechner\nWenn man einen arithmetischen Ausdruck eingibt:\n\n2 + 4\n\nsieht man, dass R als Taschenrechner verwendet werden kann, der das Ergebnis sofort ausgibt:\n\n\n[1] 6\n\n\nAnstatt das Ergebnis auf dem Bildschirm auszugeben, kann man das Ergebnis mit dem Zuweisungsoperator „&lt;-“ in einer benannten Variablen speichern:\n\na &lt;- 2 + 4\n\nEs scheint nichts zu passieren, aber das Ergebnis wird nun in der Variablen a gespeichert, die jederzeit durch Eingabe des Variablennamens allein aufgerufen werden kann:\n\na\n\nVariablennamen in R beginnen immer mit einem Buchstaben (oder für besondere Zwecke mit einem Punkt), gefolgt von weiteren Buchstaben, Ziffern, Punkten oder Unterstrichen. Es wird zwischen Klein- und Großbuchstaben unterschieden, d.h. die Variablen value, Value und VALUE können unterschiedliche Daten enthalten. Einige wenige Zeichenkombinationen sind reservierte Wörter und können nicht als Variablen verwendet werden:\nbreak, for, function, if, in, next, repeat, while und “...” (drei Punkte).\nAndere Bezeichner wie plot können umdefiniert werden, doch dies sollte mit Vorsicht geschehen, um unerwünschte Verwechslungen und Nebenwirkungen zu vermeiden.",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#vektoren",
     "href": "tutorials/s1-introductory-r-session.html#vektoren",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "2.3 Vektoren",
     "text": "2.3 Vektoren\nVielleicht hast du bemerkt, dass die Ausgabe des obigen Beispiels ein führendes [1] hat. Das bedeutet, dass die Zeile mit dem ersten Element von a beginnt. Dies bringt uns zu einer sehr wichtigen Eigenschaft von R, dass Variablen mehr als nur einzelne Werte enthalten können: Vektoren, Matrizen, Listen, Dataframes (Tabellen) und so weiter.\nDer grundlegendste Datentyp ist der Vektor, der mit Hilfe der Funktion „c“ (combine) mit Daten gefüllt werden kann:\n\nvalues &lt;- c(2, 3, 5, 7, 8.3, 10)\nvalues\n\n[1]  2.0  3.0  5.0  7.0  8.3 10.0\n\n\nUm eine Folge von Werten zu erstellen, kann man den : (Doppelpunkt) verwenden:\n\nx &lt;- 1:10\nx\n\noder, noch flexibler, die Funktion seq:\n\nx &lt;- seq(2, 4, 0.25)\nx\n\nSequenzen von wiederholten gleichen Werten können mit rep erzeugt werden:\n\nx &lt;- rep(2, 4)\nx",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#übung",
     "href": "tutorials/s1-introductory-r-session.html#übung",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "2.4 Übung",
     "text": "2.4 Übung\nEs gibt viele Möglichkeiten, diese Funktionen zu verwenden, versuche zum Beispiel:\n\nseq(0, 10)\nseq(0, 10, by = 2)\nseq(0, pi, length = 12)\nrep(c(0, 1, 2, 4, 9), times = 5)\nrep(c(0, 1, 2, 4, 9), each = 2)\nrep(c(0, 1, 2, 4, 9), each = 2, times = 5)",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#zugriff-auf-vektorelemente",
     "href": "tutorials/s1-introductory-r-session.html#zugriff-auf-vektorelemente",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "2.5 Zugriff auf Vektorelemente",
     "text": "2.5 Zugriff auf Vektorelemente\nAnstatt auf Vektoren als Ganzes zuzugreifen, ist es auch möglich, einzelne Elemente zu extrahieren, wobei der Index der angeforderten Daten ebenfalls ein Vektor sein kann:\n\nvalues[5]\nvalues[2:4]\nvalues[c(1, 3, 5)]\n\nManchmal haben die Elemente eines Vektors individuelle Namen, was den Zugriff erleichtert:\n\nnamed &lt;- c(a = 1, b = 2.3, c = 4.5)\nnamed\nnamed[\"a\"]\n\nIn R (und im Gegensatz zu anderen Sprachen wie C/C++) beginnen Vektorindizes mit 1. Negative Indizes sind ebenfalls möglich, haben aber den speziellen Zweck, ein oder mehrere Elemente zu löschen:\n\nvalues[-3]\n\nEs ist auch möglich, einen gegebenen Vektor durch Voranstellen oder Anhängen von Werten mit der Combine-Funktion (c) zu erweitern:\n\nc(1, 1, values, 0, 0)\n\nDie Länge eines Vektors kann mit der Funktion length ermittelt werden:\n\nlength(values)\n\nAuch leere Vektoren sind möglich, d. h. Vektoren, die zwar existieren, aber keine Werte enthalten. Hier bedeutet das Schlüsselwort NULL „nichts“ im Gegensatz zu „0“ (Null), was die Länge 1 hat:\n\nvalues &lt;- NULL\nvalues\nlength(values)\n\nSolche leeren Vektoren werden manchmal als „Container“ zum schrittweisen Anhängen von Daten verwendet:\n\nvalues &lt;- NULL\nvalues\nlength(values)\nvalues &lt;- c(values, 1)\nvalues\nvalues &lt;- c(values, 1.34)\nvalues\n\nSoll ein Datenelement vollständig entfernt werden, so kann dies mit der Funktion remove (kurz rm) geschehen:\nrm(values)\nvalues\nError: Object \"values\" not found\nDer gesamte Arbeitsbereich kann über das Menü von R oder RStudio (Session – Clear workspace) oder über die Kommandozeile mit rm (remove) gelöscht werden:\n\nrm(list = ls(all = TRUE))\n\nDie R-Sitzung kann wie gewohnt über das Menü oder durch Eingabe beendet werden:\n\nq()\n\nManchmal und abhängig von der Konfiguration fragt R, ob der „R Workspace“ auf der Festplatte gespeichert werden soll. Dies kann nützlich sein, um die Arbeit zu einem späteren Zeitpunkt fortzusetzen, birgt aber das Risiko, den Arbeitsbereich zu überladen und bei einer späteren Sitzung nicht reproduzierbare Ergebnisse zu erhalten, so dass es empfehlenswert ist, vorerst „Nein“ zu sagen, es sei denn, man weiß genau, warum.\nSpäter werden wir lernen, wie man nur die Daten (und Befehle) speichert, die benötigt werden.",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#r-als-funktionsplotter",
     "href": "tutorials/s1-introductory-r-session.html#r-als-funktionsplotter",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "3.1 R als Funktionsplotter",
     "text": "3.1 R als Funktionsplotter\nNun wollen wir sehen, wie man R als Funktionsplotter verwendet, indem man Sinus- oder Kosinusfunktionen innerhalb eines Intervalls zwischen 0 und 10 zeichnet. Zuerst erstellen wir zwei Vektoren mit x und y. Um eine glatte Kurve zu erhalten, ist es sinnvoll, eine kleine Schrittweite zu wählen. Als Faustregel empfehle ich immer, etwa 100…400 kleine Schritte zu verwenden. Das ist ein guter Kompromiss zwischen Glättung und Speicherbedarf. Im Folgenden setzen wir die Schrittweite deshalb auf 0.1:\n\nx &lt;- seq(0, 10, 0.1)\ny &lt;- sin(x)\nplot(x, y)\n\n\n\n\n\n\n\n\nAnstatt Punkte zu plotten, können wir auch durchgehende Linien zeichnen. Dies wird durch die Angabe eines optionalen Arguments angegeben type = \"l\".\nAnmerkung: das hier verwendete Symbol für type ist der kleine Buchstabe „L“ für ‘line’ und nicht die – im Druck sehr ähnliche – Zahl “1” (eins)!\nWir sehen auch, dass optionale Argumente wie type als „keyword = value“ Paar angegeben werden können. Dies hat den Vorteil, dass die Reihenfolge der Argumente keine Rolle spielt, da die Argumente durch ihren Namen referenziert werden:\n\nplot(x, y, type = \"l\")\n\nJetzt wollen wir eine Kosinusfunktion mit einer anderen Farbe zeichnen. Dies kann mit einer der Funktionen lines oder points erreicht werden, um Linien oder Punkte zu einem bestehenden Plot hinzuzufügen:\n\ny1 &lt;- cos(x)\nlines(x, y1, col = \"red\")\n\nMit Hilfe von text ist es auch möglich, beliebigen Text hinzuzufügen, indem man zuerst die x- und y-Koordinaten und dann den Text angibt:\n\nx1 &lt;- 1:10\ntext(x1, sin(x1), x1, col = \"green\")\n\nEs gibt noch viele weitere Optionen, um das Verhalten der Grafikfunktionen zu ändern. Im Folgenden werden benutzerdefinierte Koordinatengrenzen (xlim, ylim), Achsenbeschriftungen und eine Überschrift (xlab, ylab, main) angegeben:\n\nplot(x, y, xlim = c(-10, 10), ylim = c(-2, 2),\n    xlab = \"x-Values\", ylab = \"y-Values\", main = \"Example Graphics\")\n\nCodeformatierung und Zeilenumbrüche\nDas obige Beispiel zeigt einen ziemlich langen Befehl, der möglicherweise nicht auf eine einzelne Zeile passt. In solchen Fällen zeigt R ein + (Pluszeichen) an, um anzuzeigen, dass ein Befehl fortgesetzt werden muss, z.B. weil noch eine schließende Klammer oder ein schließendes Anführungszeichen fehlt. Ein solches + am Anfang einer Zeile ist ein automatischer „Prompt“ ähnlich dem gewöhnlichen &gt;-Prompt und muss niemals manuell eingegeben werden. Wenn die „+“-Fortsetzungsaufforderung jedoch versehentlich auftritt, drücke „ESC“, um diesen Modus abzubrechen.\nIm Gegensatz zur Fortsetzungsaufforderung ist es auch möglich, mehrere Befehle in eine Zeile zu schreiben, getrennt durch ein Semikolon „;“. Das ist in einigen Fällen sinnvoll, aber im Allgemeinen ist es viel besser, den Skript-Editor zu verwenden und dann:\n\njeden Befehl in eine eigene Zeile zu schreiben\nlange Zeilen mit mehr als 80 Zeichen zu vermeiden\neine angemessene Einrückung zu verwenden, z.B. 2 Zeichen pro Einrückungsebene\nLeerzeichen einzufügen, um die Lesbarkeit des Codes zu verbessern, z.B. vor und nach dem Zuweisungsoperator &lt;-.\n\nSchließlich bedeutet ein Zahlensymbol (oder eine Raute) #, dass eine komplette Zeile oder der Teil der Zeile, der auf # folgt, ein Kommentar ist und von R ignoriert wird.",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#zusätzliche-plotting-optionen",
     "href": "tutorials/s1-introductory-r-session.html#zusätzliche-plotting-optionen",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "3.2 Zusätzliche Plotting-Optionen",
     "text": "3.2 Zusätzliche Plotting-Optionen\nUm die Fülle der grafischen Funktionen zu erkunden, lohnt es sich nun, einen Blick in die Online-Hilfe zu werfen, insbesondere in Bezug auf ?plot oder ?plot.default, und ein wenig mit verschiedenen Plot-Parametern zu experimentieren, wie lty, pch, lwd, type, log usw. R enthält unzählige Möglichkeiten, um die volle Kontrolle über den Stil und Inhalt von Grafiken zu bekommen, z.B. mit benutzerdefinierten Achsen (axis), Legenden (legend) oder benutzerdefinierten Linien und Flächen (abline, rect, polygon). Der allgemeine Stil von Abbildungen wie (Schriftgröße, Ränder, Linienbreite) kann mit der Funktion par beeinflusst werden.",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#high-level-grafiken",
     "href": "tutorials/s1-introductory-r-session.html#high-level-grafiken",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "3.3 High-Level Grafiken",
     "text": "3.3 High-Level Grafiken\nDarüber hinaus enthalten R und seine Pakete zahlreiche „High-Level“-Grafikfunktionen für bestimmte Zwecke. Um einige davon zu demonstrieren, erzeugen wir zunächst einen Datensatz mit normalverteilten Zufallszahlen (Mittelwert = 0, Standardabweichung sd = 1), dann plotten wir sie und erstellen ein Histogramm. In diesem Fall teilt die Funktion par(mfrow = c(2, 2)) den Darstellungsbereich in 2 Zeilen und 2 Spalten, um 4 separate Abbildungen anzuzeigen:\n\npar(mfrow = c(2, 2))\nx &lt;- rnorm(100)\nplot(x)\nhist(x)\n\nNun erzeugen wir ein sogenanntes Normalwahrscheinlichkeitsdiagramm und ein zweites Histogramm mit relativen Häufigkeiten zusammen mit der glockenförmigen Dichtekurve der Standardnormalverteilung. Das optionale Argument probability = TRUE sorgt dafür, dass das Histogramm die gleiche Skalierung wie die Dichtefunktion hat, so dass beide überlagert werden können:\n\nqqnorm(x)\nqqline(x, col = \"red\")\nhist(x, probability = TRUE)\nxx &lt;- seq(-3, 3, 0.1)\nlines(xx, dnorm(xx, 0, 1), col = \"red\")\n\n\n\n\n\n\n\n\n\n\n\nHier bietet sich eine gute Gelegenheit, verschiedene Funktionen der zusammenfassenden Statistik auszuprobieren: z.B. mean(x), var(x), sd(x), range(x), summary(x), min(x), max(x), …\nAlternativ können wir prüfen, ob die generierten Zufallszahlen x annähernd normalverteilt sind, indem wir den Shapiro-Wilks-W-Test verwenden:\n\nx &lt;- rnorm(100)\nshapiro.test(x)\n\nEin p-Wert größer als 0.05 sagt uns, dass der Test keine Einwände gegen die Normalverteilung der Daten hat. Die konkreten Ergebnisse können abweichen, da x Zufallszahlen enthält, so dass es sinnvoll ist, den Test mehrmals zu wiederholen. Es kann auch sinnvoll sein, die mit rnorm erzeugten normalverteilten Zufallszahlen mit gleichverteilten Zufallszahlen zu vergleichen, die mit runif erzeugt wurden:\n\npar(mfrow=c(2,2))\ny &lt;- runif(100)\nplot(y)\nhist(y)\nqqnorm(y)\nqqline(y, col=\"red\")\nmean(y)\nvar(y)\nmin(y)\nmax(y)\nhist(y, probability=TRUE)\nyy &lt;- seq(min(y), max(y), length = 50)\nlines(yy, dnorm(yy, mean(y), sd(y)), col = \"red\")\nshapiro.test(y)\n\nZum Schluss vergleichen wir die Muster beider Datensätze mit Box-and-Whisker-Diagrammen:\n\npar(mfrow=c(1, 1))\nboxplot(x, y)",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#übungen",
     "href": "tutorials/s1-introductory-r-session.html#übungen",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "3.4 Übungen",
     "text": "3.4 Übungen\nWiederhole dieses Beispiel mit neuen Zufallszahlen und variiere die Stichprobengröße (n), den Mittelwert (mean) und die Standardabweichung (sd) für Zufallszahlen, die mit rnorm erzeugt wurden, und verwende verschiedene min und max für runif. Konsultiere die Hilfeseiten, um eine Erklärung der Funktionen und ihrer Argumente zu erhalten, und erstelle Boxplots mit verschiedenen Datensätzen.",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#numerische-und-zeichen-vektoren",
     "href": "tutorials/s1-introductory-r-session.html#numerische-und-zeichen-vektoren",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "4.1 Numerische und Zeichen-Vektoren",
     "text": "4.1 Numerische und Zeichen-Vektoren\nAlle Datenobjekte haben die beiden eingebauten Attribute mode (Datentyp) und length (Anzahl der Daten im Objekt).\nModi können „numerisch“ (numeric) für Berechnungen oder „Zeichen“ (character) für Textelemente sein.\n\nx &lt;- c(1, 3, 4, 5)       # numeric\na &lt;- c(\"hello\", \"world\") # character\n\nDas Folgende ist ebenfalls eine Zeichenvariable, da die Zahlen in Anführungszeichen stehen. Es ist damit nicht möglich, Berechnungen durchzuführen:\n\nx &lt;- c(\"1\", \"3\", \"4\", \"5\")  # character\nsum(x)\n\nError in sum(x) : invalid 'type' (character) of argument\n\nHier ist es notwendig, das Zeichen zuerst in eine Zahl umzuwandeln:\n\ny &lt;- as.numeric(x)\nsum(y)\n\n[1] 9.040591",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#faktoren",
     "href": "tutorials/s1-introductory-r-session.html#faktoren",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "4.2 Faktoren",
     "text": "4.2 Faktoren\nEine besondere Art von Modus ist factor. Dies ist, statistisch gesehen, eine nominale Variable die wie eine Zeichenvariable aussieht, z. B. „control“, „treatment A“, „treatment B“ …, aber ihre Faktorstufen sind intern als Ganzzahl kodiert.\nHier ein typisches Beispiel mit drei Faktorstufen. In einem ersten Schritt erstellen wir eine Zeichenvariable:\n\ntext &lt;- rep(c(\"control\", \"treatment A\", \"treatment B\"), each = 5)\ntext\n\n [1] \"control\"     \"control\"     \"control\"     \"control\"     \"control\"    \n [6] \"treatment A\" \"treatment A\" \"treatment A\" \"treatment A\" \"treatment A\"\n[11] \"treatment B\" \"treatment B\" \"treatment B\" \"treatment B\" \"treatment B\"\n\n\nund konvertieren sie dann in einen Faktor:\n\nf &lt;- factor(text)\nf\n\n [1] control     control     control     control     control     treatment A\n [7] treatment A treatment A treatment A treatment A treatment B treatment B\n[13] treatment B treatment B treatment B\nLevels: control treatment A treatment B\n\n\nWir sehen, dass die Zeichenvariable mit Anführungszeichen ausgedruckt wird und der Faktor ohne Anführungszeichen, aber mit einer zusätzlichen Information über die Faktorstufen. Der Grund dafür ist, dass der Faktor intern als Ganzzahlwerte mit zugewiesenen Stufen als Übersetzungstabelle kodiert ist:\n\nlevels(f)\n\n[1] \"control\"     \"treatment A\" \"treatment B\"\n\n\nUm die Kodierung zu zeigen, können wir den Faktor in eine ganze Zahl umwandeln\n\nas.integer(f)\n\n [1] 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3\n\n\nDie Kodierung wird standardmäßig in alphabetischer Reihenfolge vorgenommen. Sie kann durch ein zusätzliches Argument levels geändert werden:\n\nf2 &lt;- factor(text, levels=c(\"treatment A\", \"treatment B\", \"control\"))\nf2\n\n [1] control     control     control     control     control     treatment A\n [7] treatment A treatment A treatment A treatment A treatment B treatment B\n[13] treatment B treatment B treatment B\nLevels: treatment A treatment B control\n\nas.numeric(f2)\n\n [1] 3 3 3 3 3 1 1 1 1 1 2 2 2 2 2\n\n\nFaktoren sind für statistische Analysen wie ANOVA und statistische Tests nützlich oder auch als Kategorien für die Darstellung:\n\nx &lt;- c(7.44, 6.45, 6.04, 5.58, 4.5, 8.13, 5.54, 7.34, 8.91, 5.16, 8.7, 7.74, 6.8, 6.49, 6.2)\nplot(x ~ f)\n\n\n\n\n\n\n\n\nWir sehen, dass ein Boxplot erstellt wird und kein x-y-Plot, weil die Erklärungsvariable ein Faktor ist.\nNumerische Variablen (insbesondere ordinale) können ebenfalls in Faktoren umgewandelt werden. Dies ist nützlich, wenn wir deutlich machen wollen, dass Zahlen als Namen ohne Reihenfolge zu behandeln sind.\nBei der Rückkonvertierung solcher Faktoren in numerische Variablentypen ist große Vorsicht geboten, da ein Zeichen „123“ mit einem anderen Wert (z. B. 1) und nicht mit 123 kodiert werden kann, siehe die folgende Demonstration einer korrekten und einer falschen Faktorumwandlung:\n\nx &lt;- c(2, 4, 6, 5, 8)\nf &lt;- as.factor(x)\nas.numeric(f)               # falsch !!!\nas.numeric(as.character(f)) # richtig\nas.numeric(levels(f))[f]    # noch besser\n\nEine derartige Faktorkodierung ist nicht spezifisch für R und kommt auch in anderen Statistikpaketen vor. Sie werden dann manchmal als „Dummy-Variablen“ bezeichnet.",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#matrizen-und-arrays",
     "href": "tutorials/s1-introductory-r-session.html#matrizen-und-arrays",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "4.3 Matrizen und Arrays",
     "text": "4.3 Matrizen und Arrays\nEine Matrix ist eine zweidimensionale Datenstruktur, die für Matrixalgebra verwendet werden kann. Um eine Matrix zu erhalten, können wir zunächst einen eindimensionalen Vektor erstellen und ihn dann als zweidimensionale Matrix mit „nrow“-Zeilen und „ncol“-Spalten umformatieren:\n\nx &lt;- 1:20\nx\n\ny &lt;- matrix(x, nrow = 5, ncol = 4)\ny\n\nWir sehen, dass die Matrix zeilenweise gefüllt aufgefüllt wird. Wir können sie auch wieder in einen Vektor umwandeln:\n\nas.vector(y) # reduziert die Matrix auf einen Vektor\n\nEin „Array“ erweitert das Matrixkonzept auf mehr als zwei Dimensionen:\n\nx &lt;- array(1:24, dim=c(3, 4, 2))\n\nVektoren, Matrizen und Arrays haben eine wichtige Einschränkung: Sie können nur einen Datentyp (Modus) enthalten, entweder einen numerischen oder einen Zeichentyp. Wenn mindestens ein einzelnes Element vom Typ Zeichen ist, hat die gesamte Matrix den Modus Zeichen und erscheint in Anführungszeichen:\n\nx &lt;- c(1, 2, 5, 2, \"a\")\nmode(x)\nx",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#listen",
     "href": "tutorials/s1-introductory-r-session.html#listen",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "4.4 Listen",
     "text": "4.4 Listen\nDer flexibelste Datentyp von R ist die Liste. Sie kann beliebige Daten unterschiedlicher Art enthalten. Listen können verschachtelt werden, um eine baumartige Struktur zu bilden:\n\nl &lt;- list(x = 1:3, y = c(1,2,3,4), a = \"hello\", L = list(x = 1, y = 2))\n\nListen sind äußerst leistungsfähig und flexibel und werden später behandelt. Die Ungeduldigen können einen Blick auf das Tutorial von w3schools.com werfen.",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#dataframes",
     "href": "tutorials/s1-introductory-r-session.html#dataframes",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "4.5 Dataframes",
     "text": "4.5 Dataframes\nDie typische Datenstruktur für die Datenanalyse in R ist der sogenannte data.frame. Er kann sowohl Spalten mit numerischen Daten als auch Spalten mit Zeichenvariablen enthalten. Einige Pakete verwenden eine von Dataframes abgeleitete Objektklasse, das so genannte tibble.\nEin Dataframe kann von Grund auf direkt im R-Code erstellt werden oder aus einer Datei oder dem Internet gelesen werden. Als Beispiel wurden die Studierenden eines Kurses in verschiedenen Jahren nach ihrer Lieblingszahl von eins bis 9 gefragt. Die Ergebnisse können wie folgt in einen Dataframe eingetragen werden:\n\nfavnum &lt;- data.frame(\n  favorite = 1:9,\n  obs2019  = c(1, 1, 6, 2, 2,  5,  8, 6, 3),\n  obs2020  = c(1, 2, 8, 1, 2,  2, 20, 2, 4),\n  obs2021  = c(2, 6, 8, 1, 6,  4, 13, 2, 4),\n  obs2022  = c(2, 3, 7, 8, 2, 10, 12, 6, 1)\n)",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#direkte-eingabe",
     "href": "tutorials/s1-introductory-r-session.html#direkte-eingabe",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "5.1 Direkte Eingabe",
     "text": "5.1 Direkte Eingabe\nDiese Methode haben wir bereits bei der Erstellung von Vektoren mit der c (combine)-Funktion verwendet:\n\nx &lt;- c(1, 2, 5, 7, 3, 4, 5, 8)\nx\n\nAuf die gleiche Weise ist es möglich, andere Datentypen wie z.B. Dataframes zu erstellen:\n\ndat &lt;- data.frame(f = c(\"a\", \"a\", \"a\", \"b\", \"b\", \"b\"),\n                  x = c(1,   4,   3,   3,   5,   7)\n       )\ndat\n\noder Matrizen:\n\nA &lt;- matrix(c(1:9), nrow = 3)\nA\n\nWie wir sehen, unterscheidet sich eine Matrix nicht wesentlich von einem Vektor, nur dass er in Zeilen und Spalten formatiert ist.",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#daten-aus-einer-textdatei-lesen",
     "href": "tutorials/s1-introductory-r-session.html#daten-aus-einer-textdatei-lesen",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "5.2 Daten aus einer Textdatei lesen",
     "text": "5.2 Daten aus einer Textdatei lesen\nR hat sehr flexible Funktionen zum Lesen von Daten aus Textdateien. Nehmen wir zum Beispiel eine Tabelle, die einige Daten aus einem Seegebiet in Nord-Ost-Deutschland enthält (Tabelle 1).\nTabelle 1:  Morphometrische und chemische Eigenschaften ausgewählter Seen (S=Stechlinsee, NN=Nehmitzsee Nord, NS=Nehmitzsee Süd, BL=Breiter Luzin, SL = Schmaler Luzin, DA = Dagowsee, HS = Feldberger Haussee; z=mittlere Tiefe (m), t=theoretische Retentionszeit (a), P=Phosphorkonzentration (\\(\\mathrm{\\mu g L^{-1}}\\)), N=Stickstoffkonzentration (\\(\\mathrm{mg L{^-1}}\\)), Chl=Chlorophyllkonzentration (\\(\\mathrm{\\mu g L^{-1}}\\)), PP=jährliche Primärproduktion (\\(\\mathrm{g C m^{-2} a^{-1}}\\)), SD = Secchi-Tiefe (m)). Die Daten sind eine angepasste und vereinfachte „Spielzeugversion“ aus Casper (1985) und Koschel & Scheffler (1985).\n\n\n\n\n\nLake\nz\nt\nP\nN\nChl\nPP\nSD\n\n\n\n\nS\n23.7\n40\n2.5\n0.20\n0.7\n95\n8.4\n\n\nNN\n5.9\n10\n2.0\n0.20\n1.1\n140\n7.4\n\n\nNS\n7.1\n10\n2.5\n0.10\n0.9\n145\n6.5\n\n\nBL\n25.2\n17\n50.0\n0.10\n6.1\n210\n3.8\n\n\nSL\n7.8\n2\n30.0\n0.10\n4.7\n200\n3.7\n\n\nDA\n5.0\n4\n100.0\n0.50\n14.9\n250\n1.9\n\n\nHS\n6.3\n4\n1150.0\n0.75\n17.5\n420\n1.6\n\n\n\n\n\nDie Daten können von https://tpetzoldt.github.io/datasets/data/lakes.csv heruntergeladen werden.\n\n5.2.1 Arbeitsverzeichnis (working directory) festlegen\nR muss wissen, wo die Daten auf deinem Computer zu finden sind. Eine Möglichkeit ist, den vollständigen Pfad zum Datensatz anzugeben, z.B. wenn er c:/users/&lt;Benutzername&gt;/documents lautet, dann\n\nlakes &lt;- read.csv(\"c:/users/julia/documents/lakes.csv\")\n\nDies kann umständlich und fehleranfällig sein, so dass die bevorzugte Methode darin besteht, das Arbeitsverzeichnis von R auf das Datenverzeichnis zu setzen. Dies kann in RStudio wie folgt gemacht werden:\n\nSuche nach dem Ordner mit den Daten im Fenster „Files“.\nWähle „More“\nWähle „Set As Working Directory“\n\n Abbildung 2: Festlegen des Arbeitsverzeichnisses in RStudio\nDanach können die Daten direkt aus dem Arbeitsverzeichnis abgerufen werden:\n\nlakes &lt;- read.csv(\"lakes.csv\", header = TRUE)\n\nWir können auch einen Unterordner data des Arbeitsverzeichnisses erstellen und die Daten dort ablegen. Dann könnten wir zum Beispiel verwenden:\n\nlakes &lt;- read.csv(\"../data/lakes.csv\", header = TRUE)\n\nBeachte auch, dass wir immer den gewöhnlichen Schrägstrich „/“ und nicht den Backslash „\\“ verwenden, auch unter Windows.\nIn einigen Ländern, in denen das Komma und nicht der Punkt als Dezimaltrennzeichen und dann z.B. ein Semikolon als Spaltentrennzeichen verwendet wird, können zusätzliche Argumente dec = \",\", sep=\";\" erforderlich sein. Die Details sind auf der Hilfeseite read.table zu finden.",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#daten-aus-dem-internet-lesen",
     "href": "tutorials/s1-introductory-r-session.html#daten-aus-dem-internet-lesen",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "5.3 Daten aus dem Internet lesen",
     "text": "5.3 Daten aus dem Internet lesen\nWenn die Daten auf einem Internet-Server verfügbar sind, können sie direkt von dort gelesen werden:\n\nlakes &lt;- read.csv(\"https://tpetzoldt.github.io/datasets/data/lakes.csv\")\n\nDa die Daten im Dataframe lakes` gespeichert sind, ist es nun möglich, wie gewohnt auf sie zuzugreifen:\n\nlakes\nsummary(lakes)\nboxplot(lakes[-1])\n\nHier zeigt summary einen schnellen Überblick und boxplot erstellt ein Boxplot für alle Spalten außer der ersten, die keine Zahlen enthält.\nJetzt können wir den Inhalt der neuen Variable lakes untersuchen. Wenn wir RStudio verwenden, kann eine Ansicht (“View”) aufgerufen werden, indem man auf lakes im Environment-Fenster klickt.",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#datensatz-importieren-in-rstudio",
     "href": "tutorials/s1-introductory-r-session.html#datensatz-importieren-in-rstudio",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "5.4 „Datensatz importieren“ in RStudio",
     "text": "5.4 „Datensatz importieren“ in RStudio\nRStudio enthält eine praktische Funktion, die das Importieren von Daten vereinfacht. Im Wesentlichen hilft uns dieser „Import Dataset“-Assistent dabei, interaktiv die richtige read.table, read.csv oder read_delim Funktion zu konstruieren. Es ist möglich, verschiedene Optionen auszuprobieren, bis ein zufriedenstellendes Ergebnis erzielt wird. Aktuelle Versionen von RStudio enthalten mehrere verschiedene Möglichkeiten dafür. Hier demonstrieren wir den Assistenten „Import Dataset From Text (readr)“:\n\nWähle aus dem Menü: File – Import DataSet – From CSV.\nWähle die gewünschte Datei und gib geeignete Optionen an, wie den Namen der Variablen, der die Daten zugeordnet werden sollen, das Trennzeichen (Komma oder Tabulator) und ob die erste Zeile der Datei Variablennamen enthalten soll.\n\n\n“Import Dataset From Text (readr)” Assistent von RStudio.\nHinweis: Im obigen Beispiel ist der Name des Dataframes identisch mit dem Dateinamen, d.h „lakes“. Wenn wir ihn anders benennen wollen (z.B.: dat), dürfen wir nicht vergessen, diese Einstellung zu ändern.\nHierbei zeigt die Code-Vorschau die Befehle, die der Assistent erstellt hat. Wenn wir diese Befehle in das Skriptfenster kopieren, können die Daten mehrmals gelesen werden ohne zum Menüsystem zurückkehren zu müssen:\n\nlibrary(readr)\nlakes &lt;- read_csv(\"D:/DATA/lakes.csv\")\nView(lakes)",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#den-inhalt-des-dataframes-anzeigen",
     "href": "tutorials/s1-introductory-r-session.html#den-inhalt-des-dataframes-anzeigen",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "6.1 Den Inhalt des Dataframes anzeigen",
     "text": "6.1 Den Inhalt des Dataframes anzeigen\nAm einfachsten ist es, den Namen des Dataframes in die R-Konsole einzugeben, z.B.:\n\nlakes\n\noder man klickt auf den Namen des Dataframes im „Environment“-Explorer von RStudio. Dies führt dann View(lakes) aus und die Daten werden angezeigt.\nBei großen Tabellen ist es manchmal unbersichtlich, den gesamten Inhalt mit View anzuzeigen, so dass es besser sein kann, die Funktion str (Struktur) zu verwenden, die einen kompakten Überblick über Typ, Größe und Inhalt einer Variablen gibt:\n\nstr(mydata)\n\nDie Funktion str ist universell und auch für komplizierte Objekttypen wie Listen geeignet. Natürlich gibt es noch viele weitere Möglichkeiten, den Inhalt einer Variablen zu untersuchen:\n\nnames(lakes)\nmode(lakes)\nlength(lakes)\n\nund manchmal sogar:\n\nplot(lakes)",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#zugriff-auf-einzelne-spalten-mit",
     "href": "tutorials/s1-introductory-r-session.html#zugriff-auf-einzelne-spalten-mit",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "6.2 Zugriff auf einzelne Spalten mit $",
     "text": "6.2 Zugriff auf einzelne Spalten mit $\nAuf einzelne Spalten eines Dataframes kann durch die Indizes (mit []), ähnlich wie bei einem Vektor oder einer Matrix oder mit dem Operator $ und dem Spaltennamen) zugegriffen werden:\n\nmean(lakes[,2])\nmean(lakes$z)\nmean(lakes[,\"z\"])\nmean(lakes[[\"z\"]])\nplot(lakes$z, lakes$t)\n\nwobei z die mittlere Tiefe der Seen und t die sogenannte mittlere Verweilzeit ist.\nWir sollten auch den subtilen Unterschied zwischen der Ausgabe der [] und der [[]]- Version beachten. Der Unterschied ist folgender: einfache Klammern geben einen Dataframe mit einer Spalte zurück, aber doppelte eckige Klammern ergeben den Inhalt der Spalte als Vektor ohne den Spaltennamen.\nWarnung: In einigen älteren Büchern wird der $-Stil manchmal mit den Funktionen attach und detach abgekürzt. Von diesem „prähistorischen Relikt“ wird dringend abgeraten, da es zu Dateninkonsistenz und seltsamen Fehlern führen kann. Wenn man es irgendwo findet, wo es noch benutzt wird, dann ist es eine gute Idee, detach wiederholt zu benutzen, bis eine Fehlermeldung uns bestätigt, dass es nichts mehr gibt, was abgetrennt werden kann. Schließlich: Verwende niemals attach/detach in einem Paket.\nStattdessen ist es viel besser, eine andere Funktion width zu verwenden, die den Dataframe nur vorübergehend öffnet:\n\nwith(lakes, plot(z, t))",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#teilmengen-und-logische-indizes",
     "href": "tutorials/s1-introductory-r-session.html#teilmengen-und-logische-indizes",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "6.3 Teilmengen und logische Indizes",
     "text": "6.3 Teilmengen und logische Indizes\nIm Folgenden verwenden wir einen weiteren Datensatz, den wir direkt aus dem Internet eingelesen haben:\n\nfruits &lt;- read.csv(\"https://tpetzoldt.github.io/datasets/data/clementines.csv\")\n\nEr enthält das Gewicht, die Breite und die Höhe von zwei Marken von Clementinenfrüchten. Nach dem Laden der Daten können wir sie mit View(fruits) oder dem Environment Explorer von Rstudio betrachten.\nEine sehr leistungsfähige Funktion von R ist die Verwendung von logischen Vektoren als Indizes, mit ähnlichen Ergebnissen wie bei Datenbankabfragen. Als Beispiel können wir das Gewicht aller Früchte der Marke „A“ anzeigen mit\n\nfruits[fruits$brand == \"A\", c(\"brand\", \"weight\")]\n\n   brand weight\n6      A     81\n7      A    113\n8      A     94\n9      A     86\n10     A    108\n11     A     91\n12     A     94\n13     A     86\n14     A     91\n15     A     88\n\n\nHier gibt der erste Index in den eckigen Klammern die gewünschte Teilmenge der Zeilen an und das zweite Argument die Spalten. Wenn wir alle Spalten sehen wollen, lassen wir das Argument nach dem Komma leer:\n\nfruits[fruits$brand == \"A\", ]\n\n   id no brand weight width height\n6   6  7     A     81    53     54\n7   7  8     A    113    61     60\n8   8  9     A     94    62     49\n9   9  3     A     86    58     53\n10 10  6     A    108    64     50\n11 11  1     A     91    59     51\n12 12 10     A     94    59     51\n13 13  4     A     86    55     55\n14 14  2     A     91    61     51\n15 15  5     A     88    54     55\n\n\nEin logischer Vergleich erfordert immer ein doppeltes „==“. Logische Operationen wie & (und) und | (oder) sind ebenfalls möglich. Beachte, dass „und“ immer Vorrang vor „oder“ hat, außer dies wird durch Klammern geändert.\nEine Teilmenge eines Dataframes kann auch mit der Funktion subset extrahiert werden:\n\nbrand_B &lt;- subset(fruits, brand == \"B\")\nbrand_B\n\nWie im Beispiel zuvor, erlaubt das Bedingungsargument auch logische Ausdrücke mit & (und) und | (oder).\nWir können auch auf einzelne Elemente in Matrix-ähnlicher Weise zugreifen, z.B. auf das Element aus der 2. Zeile und der 4. Spalte mit:\n\nfruits[2, 4]\n\ndie komplette 5. Zeile mit:\n\nfruits[5, ]\n\nund die Zeilen 5:10 der 4. Spalte (Gewicht) mit:\n\nfruits[5:10, 4]\n\nWeitere Methoden für die Arbeit mit Matrizen, Dataframes und Listen sind in R-Lehrbüchern oder in der offiziellen R-Dokumentation zu finden.",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#pipelines-und-zusammenfassungen",
     "href": "tutorials/s1-introductory-r-session.html#pipelines-und-zusammenfassungen",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "7.1 Pipelines und Zusammenfassungen",
     "text": "7.1 Pipelines und Zusammenfassungen\nDie letzten Beispiele sollen zeigen, wie mächtig eine einzelne Zeile in R sein kann. Die Art und Weise, wie Datensätze analysiert werden können, hat sich im Laufe der Geschichte von R weiterentwickelt, so gibt es z.B. eine Funktion aggregate, um Statistiken (z.B. Mittelwerte) in Abhängigkeit von bestimmten Kriterien zu berechnen.\nDies funktioniert gut und wird immer noch verwendet, aber die modernen Methoden aus dem sogenannten „tidyverse“ sind kompakter und einfacher zu verstehen. Hier wollen wir zunächst ein modernes Konzept vorstellen, das „Pipelining“ genannt wird. Die Idee ist, dass das Ergebnis einer Funktion direkt an eine andere Funktion weitergeleitet wird, also anstatt zu schreiben:\n\nbrand_B   &lt;- subset(fruits, brand == \"B\")\ncolumns_B &lt;- brand_B[c(\"weight\", \"width\", \"height\")]\nmeans_B   &lt;- colMeans(columns_B)\nmeans_B\n\nkönnen wir direkt schreiben:\n\nlibrary(\"dplyr\")\nfruits |&gt; filter(brand == \"B\") |&gt; select(weight, width, height) |&gt; colMeans()\n\nHier laden wir zunächst ein Zusatzpaket dplyr, das viele hilfreiche Funktionen für die Datenverwaltung enthält, z.B. filter, das Zeilen auswählt und select, das Spalten auswählt. Der Pipeline-Operator |&gt; leitet dann die Datenmenge fruits zur filter- Funktion und anschließend zur nächsten. Der „native Pipeline-Operator“ |&gt; wurde mit R 4.1 eingeführt. Alternativ können wir auch den %&gt;%-Pipelineoperator verwenden, der vom dplyr-Paket geladen wird. Die Funktionsweise ist in diesem Fall identisch.\nZwei weitere äußerst nützliche dplyr-Funktionen sind group_by und summary, die es ermöglichen, beliebige zusammenfassende Statistiken in Abhängigkeit von gruppierenden Variablen zu berechnen. Wenn wir die „Marke“ (“brand”) zur Gruppierung verwenden, können wir alle Gruppen gleichzeitig zusammenfassen:\n\nfruits |&gt; \n  group_by(brand) |&gt;\n  summarise(mean(weight), mean(width), mean(height))\n\nDie obige Zeile summarise kann immer noch verbessert werden, und es gibt viele andere verblüffende Möglichkeiten, daher werden wir später darauf zurückkommen.",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#ausgabe-von-ergebnissen",
     "href": "tutorials/s1-introductory-r-session.html#ausgabe-von-ergebnissen",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "7.2 Ausgabe von Ergebnissen",
     "text": "7.2 Ausgabe von Ergebnissen\nDie einfachste Methode, die Ergebnisse von R zu speichern, besteht darin, sie direkt von der R-Konsole über die Zwischenablage in ein beliebiges anderes Programm (z. B. LibreOffice, Microsoft Word oder Powerpoint) zu kopieren. Dies ist bequem, kann aber nicht automatisiert werden. Daher ist es besser, einen Programmieransatz zu verwenden.\nNehmen wir das obige Beispiel und speichern wir die Ergebnisse in einen neue Dataframe results:\n\nresults &lt;-\n  fruits |&gt; \n  group_by(brand) |&gt;\n  summarise(mean(weight), mean(width), mean(height))\n\nDataframes können als Textdateien mit write.table, write.csv oder write_csv gespeichert werden. Hier verwenden wir write_csv (mit Unterstrich, nicht Punkt) aus dem Paket readr:\n\nlibrary(\"readr\")\nwrite_csv(results, file=\"output-data.csv\")\n\nZusätzlich zu diesen Grundfunktionen verfügt R über eine Fülle von Möglichkeiten, Ausgaben und Daten für die spätere Verwendung in Berichten und Präsentationen zu speichern. Alle sind selbstverständlich in der Online-Hilfe dokumentiert, z.B. print, print.table, cat für Textdateien, und pdf, png für Abbildungen. Das Zusatzpaket xtable enthält Funktionen zur Erstellung von LaTeX- oder HTML-Tabellen, während die vollständige HTML-Ausgabe von den Paketen R2HTML oder knitr unterstützt wird.",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#plots-mit-ggplot2",
     "href": "tutorials/s1-introductory-r-session.html#plots-mit-ggplot2",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "7.3 Plots mit ggplot2",
     "text": "7.3 Plots mit ggplot2\nZusätzlich zu den bisher verwendeten Plot-Funktionen gibt es noch andere Plot-Pakete, zum Beispiel lattice oder ggplot2. Hier ein paar kleine Beispiele mit dem sehr populären **ggplot2*-Paket:\n\nlibrary(\"ggplot2\")\nfruits |&gt;\n  ggplot(aes(brand, weight)) + geom_boxplot()\n\n\n\n\n\n\n\n\nOder ein Streudiagramm zum Vergleich von Gewicht (“weight”) und Breite (“width”) der Früchte\n\nfruits |&gt; ggplot(aes(weight, width)) + geom_point(aes(color=brand))\n\n\n\n\n\n\n\n\nwobei die Marke als Farbe angegeben ist. Eine andere Option könnte sein:\n\nfruits |&gt; ggplot(aes(weight, width)) + \n  geom_point() + \n  geom_smooth(method=\"lm\") + \n  facet_grid(~brand)\n\n`geom_smooth()` using formula = 'y ~ x'",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
     "objectID": "tutorials/s1-introductory-r-session.html#übungen-1",
     "href": "tutorials/s1-introductory-r-session.html#übungen-1",
-    "title": "An Introductory R Session",
+    "title": "Erste Schritte mit R",
     "section": "7.4 Übungen",
     "text": "7.4 Übungen\nR enthält viele Datensätze zum Ausprobieren seiner grafischen und statistischen Funktionen, die mit der data-Funktion aktiviert werden können, z.B. data(iris) oder data(cars). Eine Beschreibung des Datensatzes findet sich wie üblich in den Hilfedateien, z.B. ?iris, ?cars.\nVerwende einen dieser Datensätze und probiere aus\n\nwie man auf Spalten zugreift, Zeilen auswählt und Teilmengen erstellt\nwie man Statistiken zusammenfasst und mit R’s Basisplotfunktionen und optional mit ggplot visualisiert.",
     "crumbs": [
       "Tutorials",
-      "An Introductory R Session"
+      "Erste Schritte mit R"
     ]
   },
   {
@@ -4565,7 +4565,7 @@
     "href": "00-index.html#status",
     "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
     "section": "Status",
-    "text": "Status\n2025-04-03\n\nBeginn der Überarbeitung bzw. Fachbegriffen, Anglizismen, Formatierung\n\n2025-04-02\n\nInitialer Commit der deutschen Übersetzung"
+    "text": "Status\n2025-04-03\n\nBeginn der Überarbeitung, Fachbegriffe und Formulierungen\n\n2025-04-04\n\nInitialer Commit der deutschen Übersetzung"
   },
   {
     "objectID": "00-index.html#weiterführende-literatur",

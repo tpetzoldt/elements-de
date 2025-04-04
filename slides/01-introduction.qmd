@@ -1,6 +1,5 @@
 ---
 title: "01-Einführung"
-subtitle: "Applied Statistics -- A Practical Course"
 date:   "`r Sys.Date()`"
 editor: 
   markdown: 

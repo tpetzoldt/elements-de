@@ -33,7 +33,7 @@ website:
           - tutorials/s1-introductory-r-session.qmd
 #          - tutorials/s2-multivar-3d.qmd
 #          - tutorials/s3-multivar-lakes.qmd
-      - section: R Topics
+      - section: Selected Programming Topics
         contents:
           - slides/x1-r-basics.qmd
           - slides/x2-r-graphics.qmd

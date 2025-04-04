@@ -3,9 +3,9 @@
 #subtitle: "Teaching material"
 #format: html
 ---
-<!--
-![Elements of applied statistics](img/titlepage-lecture-slides.svg){width=100%}
--->
+
+![Elemente der Angewandten Statistik](img/titlepage-lecture-slides.svg){width=100%}
+
 <!--
 ## Introduction
 -->
@@ -23,9 +23,9 @@ Die dazugehörigen Übungsaufgaben befinden sich unter:
 
 2025-04-03
 
-- Beginn der Überarbeitung bzw. Fachbegriffen, Anglizismen, Formatierung
+- Beginn der Überarbeitung, Fachbegriffe und Formulierungen
 
-2025-04-02 
+2025-04-04
 
 - Initialer Commit der deutschen Übersetzung
 
