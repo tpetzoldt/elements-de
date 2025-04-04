@@ -1,6 +1,5 @@
 ---
-subtitle: "Applied Statistics -- A Practical Course"
-title: "04-Distributions"
+title: "04-Wahrscheinlichkeitsverteilungen"
 date:   "`r Sys.Date()`"
 --- 
 

@@ -2961,430 +2961,430 @@
   {
     "objectID": "slides/04-distributions.html#wahrscheinlichkeitsverteilungen",
     "href": "slides/04-distributions.html#wahrscheinlichkeitsverteilungen",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Wahrscheinlichkeitsverteilungen",
     "text": "Wahrscheinlichkeitsverteilungen\n\nDefinition\n\neine mathematische Funktion\nWahrscheinlichkeit des Auftretens verschiedener möglicher Ergebnisse für ein Experiment\n\n\\(\\rightarrow\\) https://en.wikipedia.org/wiki/Probability_distribution\n\nEigenschaften\n\nEine bestimmte Form (Verteilungstyp, eine mathematische Formel)\nKann durch ihre Parameter beschrieben werden (z. B. Mittelwert \\(\\mu\\) und Standardabweichung \\(\\sigma\\)).\n\nWahrscheinlichkeitsverteilungen sind eines der Kernkonzepte der Statistik und viele Statistikkurse beginnen mit dem Werfen von Münzen1 oder Würfeln. Wir beginnen mit einem kleinen Experiment im Klassenzimmer.\nWir gehen davon aus, dass die Chancen 50:50 sind. Forscher fanden heraus, dass es eine sehr geringe Abweichung gibt, siehe \\(\\rightarrow\\) youtube video",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#was-ist-deine-lieblingszahl",
     "href": "slides/04-distributions.html#was-ist-deine-lieblingszahl",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Was ist deine Lieblingszahl?",
     "text": "Was ist deine Lieblingszahl?\nIn einem Experiment im Hörsaal wurden die Studierenden eines internationalen Kurses nach ihrer Lieblingszahl von 1 bis 9 gefragt.\n\n\n\n\n\nZahl\n1\n2\n3\n4\n5\n6\n7\n8\n9\n\n\nHäufigkeit\n0\n1\n5\n5\n6\n4\n12\n3\n3\n\n\n\n\n\n\nDie resultierende Verteilung ist:\n\nempirisch: Daten aus einem Experiment\ndiskret: nur diskrete Zahlen (1, 2, 3 …, 9) möglich, keine Brüche",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#computersimulationen",
     "href": "slides/04-distributions.html#computersimulationen",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Computersimulationen",
     "text": "Computersimulationen\n\nAnstelle von realen Experimenten können wir auch simulierte Zufallszahlen verwenden.\n\nVorteil: wir können Daten aus Verteilungen mit bekannten Eigenschaften simulieren.\nHerausforderung: etwas abstrakt\n\nZweck\n\nein Gefühl für den Zufall zu bekommen, wie eine Stichprobe nach einer bestimmten „Theorie“ aussehen kann\nstatistische Methoden erforschen und testen und das Verständnis schulen\nein Werkzeug für die Versuchsplanung\nAnwendung und Aussagekraft einer Analyse im Vorfeld testen\n\n\n\\(\\rightarrow\\) Simulation: ein wichtiges Instrument für die Entwicklung und das Verständnis statistischer Methoden!",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#kontinuierliche-gleichverteilung-mathbfu0-1",
     "href": "slides/04-distributions.html#kontinuierliche-gleichverteilung-mathbfu0-1",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)",
-    "text": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)\n\n\ngleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall\nz.B. \\([0, 1]\\)\nin R: runif, random, uniform\n\n\nrunif(10)\n\n [1] 0.3720563 0.7318672 0.3292717 0.4059864 0.2240486 0.1852547 0.7786827\n [8] 0.7449358 0.4151967 0.7610181\n\n\n \n\nKlassenbildung (Binning): Einteilung der Werte in Klassen",
+    "text": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)\n\n\ngleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall\nz.B. \\([0, 1]\\)\nin R: runif, random, uniform\n\n\nrunif(10)\n\n [1] 0.94183720 0.67978714 0.16612390 0.92404223 0.96320447 0.36402175\n [7] 0.54582301 0.64181272 0.07355433 0.30045639\n\n\n \n\nKlassenbildung (Binning): Einteilung der Werte in Klassen",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#dichtefunktion-von-mathbfux_min-x_max",
     "href": "slides/04-distributions.html#dichtefunktion-von-mathbfux_min-x_max",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Dichtefunktion von \\(\\mathbf{U}(x_{min}, x_{max})\\)",
     "text": "Dichtefunktion von \\(\\mathbf{U}(x_{min}, x_{max})\\)\n\n\nDichte \\(f(X)\\), manchmal abgekürzt als „pdf“ (probability density function):\n\n\\[\nf(x) = \\begin{cases}\n         \\frac{1}{x_{max}-x_{min}} & \\text{für } x \\in [x_{min},x_{max}] \\\\\n         0                     & \\text{sonst}\n       \\end{cases}\n\\]\n\nFläche unter der Kurve (d. h. das Integral) = 1,0\n100% der Ereignisse liegen zwischen \\(-\\infty\\) und \\(+\\infty\\) und für \\(\\mathbf{U}(x_{min}, x_{max})\\) im Intervall \\([x_{min}, y_{max}]\\)",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#kumulative-verteilungsfunktion-von-mathbfux_min-x_max",
     "href": "slides/04-distributions.html#kumulative-verteilungsfunktion-von-mathbfux_min-x_max",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Kumulative Verteilungsfunktion von \\(\\mathbf{U}(x_{min}, x_{max})\\)",
     "text": "Kumulative Verteilungsfunktion von \\(\\mathbf{U}(x_{min}, x_{max})\\)\n\n\nDie cdf (cumulative density function) ist das Integral der Dichtefunktion:\n\\[\nF(x) =\\int_{-\\infty}^{x} f(x) dx\n\\] Die Gesamtfläche (Gesamtwahrscheinlichkeit) ist \\(1.0\\):\n\\[\nF(x) =\\int_{-\\infty}^{+\\infty} f(x) dx = 1\n\\]\nFür die Verteilungsfunktion der Gleichverteilung gilt somit:\n\\[\nF(x) = \\begin{cases}\n         0                     & \\text{für } x &lt; x_{min} \\\\\n         \\frac{x-x_{min}}{x_{max}-x_{min}} & \\text{für } x \\in [x_{min},x_{max}] \\\\\n         1                     & \\text{für } x &gt; x_{max}\n       \\end{cases}\n\\]",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#quantilsfunktion",
     "href": "slides/04-distributions.html#quantilsfunktion",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Quantilsfunktion",
     "text": "Quantilsfunktion\n\n… die Umkehrung der kumulativen Verteilungsfunktion.\n\n\n\n\n\n\n\n\n\n\nKumulative Dichtefunktion\n\n\n\n\n\n\n\n\n\n\nQuantilsfunktion\nBeispiel: In welchem Bereich kann man 95% einer Gleichverteilung \\(\\mathbf{U}(40,60)\\) finden?",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#zusammenfassung-gleichverteilung",
     "href": "slides/04-distributions.html#zusammenfassung-gleichverteilung",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Zusammenfassung: Gleichverteilung",
     "text": "Zusammenfassung: Gleichverteilung",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#die-normalverteilung-mathbfnmu-sigma",
     "href": "slides/04-distributions.html#die-normalverteilung-mathbfnmu-sigma",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Die Normalverteilung \\(\\mathbf{N}(\\mu, \\sigma)\\)",
     "text": "Die Normalverteilung \\(\\mathbf{N}(\\mu, \\sigma)\\)\n\nvon großer theoretischer Bedeutung aufgrund des zentralen Grenzwertsatzes (ZGWS / central limit theorem CLT)\nergibt sich aus der Addition einer großen Anzahl von Zufallswerten gleicher Größenordnung.\n\nDie Dichtefunktion der Normalverteilung ist eine mathematische Schönheit.\n\\[\nf(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}} \\, \\mathrm{e}^{-\\frac{(x-\\mu)^2}{2 \\sigma^2}}\n\\]\n\nC.F. Gauß, Gauß-Kurve und Formel auf einer deutschen DM-Banknote von 1991–2001 (Wikipedia, CC0)",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#der-zentrale-grenzwertsatz-clt",
     "href": "slides/04-distributions.html#der-zentrale-grenzwertsatz-clt",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Der zentrale Grenzwertsatz (CLT)",
     "text": "Der zentrale Grenzwertsatz (CLT)\n\n\nDie Summe einer großen Anzahl \\(n\\) unabhängiger und identisch verteilter Zufallswerte konvergiert gegen eine Normalverteilung, unabhängig vom Typ der ursprünglichen Verteilung.",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#ein-simulationsexperiment",
     "href": "slides/04-distributions.html#ein-simulationsexperiment",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Ein Simulationsexperiment",
     "text": "Ein Simulationsexperiment\n\n\n\nErstelle eine Matrix mit 100 Zeilen und 25 Spalten von gleichverteilten Zufallszahlen\nBerechne die Zeilensummen\n\n\npar(mfrow=c(2, 1), las=1)\nset.seed(42)\nx  &lt;- matrix(runif(25 * 100), ncol = 25)\n\n# View(x) # uncomment this to show the matrix\n\nx_sums &lt;- rowSums(x)\nhist(x)\nhist(x_sums)\n\n\\(\\rightarrow\\) Zeilensummen sind annähernd normalverteilt",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#zufallszahlen-und-dichtefunktion",
     "href": "slides/04-distributions.html#zufallszahlen-und-dichtefunktion",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Zufallszahlen und Dichtefunktion",
     "text": "Zufallszahlen und Dichtefunktion",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#dichte-und-quantile-der-standardnormalverteilung",
     "href": "slides/04-distributions.html#dichte-und-quantile-der-standardnormalverteilung",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Dichte und Quantile der Standardnormalverteilung",
     "text": "Dichte und Quantile der Standardnormalverteilung\n\n\nTheoretisch liegen 50% der Werte unter und 50% über dem Mittelwert\n95% liegen ungefähr zwischen \\(\\pm 2 \\sigma\\)",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#dichte-und-quantile-der-standardnormalverteilung-1",
     "href": "slides/04-distributions.html#dichte-und-quantile-der-standardnormalverteilung-1",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Dichte und Quantile der Standardnormalverteilung",
     "text": "Dichte und Quantile der Standardnormalverteilung",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#kumulative-verteilungsfunktion-und-quantilfunktion",
     "href": "slides/04-distributions.html#kumulative-verteilungsfunktion-und-quantilfunktion",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Kumulative Verteilungsfunktion und Quantilfunktion",
     "text": "Kumulative Verteilungsfunktion und Quantilfunktion\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nQuantil\n1\n1.64\n1.96\n2.0\n2.33\n2.57\n3\n\\(\\mu \\pm z\\cdot \\sigma\\)\n\n\n\n\neinseitig\n\n0.95\n0.975\n0.977\n0.99\n0.995\n0.9986\n\\(1-\\alpha\\)\n\n\nzweiseitig\n0.68\n0.90\n0.95\n0.955\n0.98\n0.99\n0.997\n\\(1-\\alpha/2\\)",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#standardnormalverteilung-skalierung-und-verschiebung",
     "href": "slides/04-distributions.html#standardnormalverteilung-skalierung-und-verschiebung",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Standardnormalverteilung, Skalierung und Verschiebung",
     "text": "Standardnormalverteilung, Skalierung und Verschiebung\n\n\n\\(\\mu\\) ist der Verschiebungsparameter, der die gesamte glockenförmige Kurve entlang der \\(x\\)-Achse verschiebt.\n\\(\\sigma\\) ist der Skalierungsparameter, der die Kurve in Richtung \\(x\\) streckt oder staucht.",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#standardisierung-z-transformation",
     "href": "slides/04-distributions.html#standardisierung-z-transformation",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Standardisierung (\\(z\\)-Transformation)",
     "text": "Standardisierung (\\(z\\)-Transformation)\n\nJede Normalverteilung kann skaliert und verschoben werden, um eine Standardnormalverteilung mit \\(\\mu=0, \\sigma=1\\) zu bilden.\n\n\nNormalverteilung\n\n\n\n\n\n\n\n\n\n\\[\nf(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}} \\, \\mathrm{e}^{-\\frac{(x-\\mu)^2}{2 \\sigma^2}}\n\\]\n\n \\[\nz = \\frac{x-\\mu}{\\sigma}\n\\] \\(\\longrightarrow\\) \\(\\longrightarrow\\) \\(\\longrightarrow\\)\n\nStandardnormalverteilung\n\n\n\n\n\n\n\n\n\n\\[\nf(x) = \\frac{1}{\\sqrt{2\\pi}} \\, \\mathrm{e}^{-\\frac{1}{2}x^2}\n\\]",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#t-verteilung-mathbftx-df",
     "href": "slides/04-distributions.html#t-verteilung-mathbftx-df",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "t-Verteilung \\(\\mathbf{t}(x, df)\\)",
     "text": "t-Verteilung \\(\\mathbf{t}(x, df)\\)\n\n\nzusätzlicher Parameter „Freiheitsgrade“ (df)\nwird für Konfidenzintervalle und statistische Tests verwendet\nkonvergiert gegen Normalverteilung für \\(df \\rightarrow \\infty\\)",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#abhängigkeit-des-t-wertes-von-der-anzahl-der-df",
     "href": "slides/04-distributions.html#abhängigkeit-des-t-wertes-von-der-anzahl-der-df",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Abhängigkeit des t-Wertes von der Anzahl der df",
     "text": "Abhängigkeit des t-Wertes von der Anzahl der df\n\n\n\n\n\n\ndf\n1.00\n4.00\n9.00\n19.00\n29.00\n99.00\n999.00\n\n\nt\n12.71\n2.78\n2.26\n2.09\n2.05\n1.98\n1.96",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#logarithmische-normalverteilung-lognormal",
     "href": "slides/04-distributions.html#logarithmische-normalverteilung-lognormal",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Logarithmische Normalverteilung (Lognormal)",
     "text": "Logarithmische Normalverteilung (Lognormal)\n\n\nViele Prozesse in der Natur folgen nicht einer Normalverteilung.\nbegrenzt durch Null auf der linken Seite\ngroße Extremwerte auf der rechten Seite\n\nBeispiele: Abfluss von Flüssen, Nährstoffkonzentrationen, Algenbiomasse in einem See",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#elternverteilung-der-lognormalverteilung",
     "href": "slides/04-distributions.html#elternverteilung-der-lognormalverteilung",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Elternverteilung der Lognormalverteilung",
     "text": "Elternverteilung der Lognormalverteilung\n\n\nLogarithmus von Werten einer Lognormalverteilung \\(\\rightarrow\\) Eltern-Normalverteilung.\nDie Lognormalverteilung wird durch die Parameter der log-transformierten Daten \\(\\bar{x}_L\\) und \\(s_L\\) beschrieben\nder Antilog von \\(\\bar{x}_L\\) ist das geometrische Mittel",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#binomialverteilung",
     "href": "slides/04-distributions.html#binomialverteilung",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Binomialverteilung",
     "text": "Binomialverteilung\n\n\nAnzahl der erfolgreichen Versuche aus \\(n\\) Gesamtversuchen mit Erfolgswahrscheinlichkeit \\(p\\).\nWie viele 6en mit Wahrscheinlichkeit \\(1/6\\) in 3 Versuchen?\nMedizin, Toxikologie, Vergleich von Prozentzahlen\nÄhnlich, aber ohne zurücklegen: Hypergeometrische Verteilung im Lotto",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#poisson-verteilung",
     "href": "slides/04-distributions.html#poisson-verteilung",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Poisson-Verteilung",
     "text": "Poisson-Verteilung\n\n\nVerteilung von seltenen Ereignissen, eine diskrete Verteilung\nMittelwert und Varianz sind gleich (\\(\\mu = \\sigma^2\\)), daraus ergibt sich der Parameter „lambda“ (\\(\\lambda\\))\nBeispiele: Bakterienzählung auf einem Raster, Warteschlangen, Ausfallmodelle\n\nQuasi-Poisson, wenn \\(\\mu \\neq \\sigma^2\\)\n\nWenn \\(s^2 &gt; \\bar{x}\\): Überdispersion\nwenn \\(s^2 &lt; \\bar{x}\\): Unterdispersion",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#konfidenzintervall",
     "href": "slides/04-distributions.html#konfidenzintervall",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Konfidenzintervall",
     "text": "Konfidenzintervall\n– hängt nur von \\(\\lambda\\) bzw. der Anzahl der gezählten Einheiten (\\(k\\)) ab\n\nTypischer Fehler bei einer Zellzählung: 95% Konfidenzintervall\n\n\n\n\n\nAnzahl\n2\n3\n5\n10\n50\n100\n200\n400\n1000\n\n\nvon\n0\n1\n2\n5\n37\n81\n173\n362\n939\n\n\nbis\n7\n9\n12\n18\n66\n122\n230\n441\n1064",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#tests-für-die-verteilung",
     "href": "slides/04-distributions.html#tests-für-die-verteilung",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Tests für die Verteilung",
     "text": "Tests für die Verteilung\n\nManchmal möchte man wissen, ob ein Datensatz zu einer bestimmten Art von Verteilung gehört. Das klingt einfach, ist aber aus theoretischen Gründen ziemlich schwierig:\n\nstatistische Tests prüfen auf Abweichungen von der Nullhypothese\nhier wollen wir aber das Gegenteil testen, ob \\(H_0\\) wahr ist\n\nDas ist in der Tat unmöglich, denn „nicht signifikant“ bedeutet nur, dass ein potenzieller Effekt entweder nicht vorhanden oder einfach zu klein ist, um entdeckt zu werden. Im Gegensatz dazu beinhaltet „signifikant anders“ eine gewisse Wahrscheinlichkeit von falsch-positiven Ergebnissen.\nDie meisten statistischen Tests erfordern jedoch keine perfekte Übereinstimmung mit einer bestimmten Verteilung:\n\nt-Test und ANOVA setzen Normalität der Residuen voraus\naufgrund des CLT konvergiert die Verteilung der Summen und Mittelwerte zur Normalverteilung",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#shapiro-wilks-w-test",
     "href": "slides/04-distributions.html#shapiro-wilks-w-test",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Shapiro-Wilks-W-Test ?",
     "text": "Shapiro-Wilks-W-Test ?\n\\(\\rightarrow\\) Ziel: Prüfung, ob eine Stichprobe aus einer Normalverteilung stammt\n\nx &lt;- rnorm(100)\nshapiro.test(x)\n\n\n    Shapiro-Wilk normality test\n\ndata:  x\nW = 0.99064, p-value = 0.7165\n\n\n\n\\(\\rightarrow\\) der \\(p\\)-Wert ist größer als 0,05, also würden wir \\(H_0\\) behalten und schlussfolgern, dass nichts gegen die Annahme der Normalität spricht\n\nDie Interpretation des Shapiro-Wilks-Tests ist mit Vorsicht zu genießen:\n\nfür kleine \\(n\\) ist der Test nicht empfindlich genug\nbei großen \\(n\\) ist er überempfindlich\nDie Verwendung von Shapiro-Wilks zur Überprüfung der Normalität für t-Tests und ANOVA wird nicht mehr empfohlen\n\n\n\nAuch die \\(\\chi^2\\)- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für Normalitätstests nicht mehr empfohlen, sind aber für andere Testprobleme weiterhin wichtig.",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#grafische-prüfung-der-normalität",
     "href": "slides/04-distributions.html#grafische-prüfung-der-normalität",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Grafische Prüfung der Normalität",
     "text": "Grafische Prüfung der Normalität\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(x\\): theoretische Quantile, bei denen ein Wert bei Normalverteilung gefunden werden sollte\n\\(y\\): normalisierte und geordnete Messwerte (\\(z\\)- Scores)\nskaliert in der Einheit der Standardabweichungen\nNormalverteilung, wenn die Punkte einer Geraden folgen\n\nEmpfehlung: Verwende eine grafische Prüfung. Vertraue nicht auf Shapiro Wilks!",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#transformation",
     "href": "slides/04-distributions.html#transformation",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Transformation",
     "text": "Transformation\n\nermöglicht die Anwendung von Methoden, die für normalverteilte Daten entwickelt wurden, auf nicht-normalverteilte Fälle\nin der Vergangenheit sehr verbreitet, manchmal immer noch nützlich\nModerne Methoden können bestimmte Verteilungen direkt verarbeiten, z. B. Binomial-, Gamma- oder Poisson-Verteilung.\n\nTransformationen für rechtsschiefe Daten\n\n\\(x'=\\log(x)\\)\n\\(x'=\\log(x + a)\\)\n\\(x'=(x+a)^c\\) (\\(a\\) zwischen 0.5 und 1)\n\\(x'=1/x\\) (“sehr stark”, d. h. in den meisten Fällen zu extrem)\n\\(x'=a - 1/\\sqrt{x}\\) (um die Skala bequemer zu gestalten)\n\\(x'=1/\\sqrt{x}\\) (Kompromiss zwischen \\(\\ln\\) und \\(1/x\\))\n\\(x'=a+bx^c\\) (sehr allgemein, enthält Potenzen und Wurzeln)",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#transformationen-ii",
     "href": "slides/04-distributions.html#transformationen-ii",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Transformationen II",
     "text": "Transformationen II\nTransformationen für Zähldaten\n\n\\(x'=\\sqrt{3/8+x}\\) (Zählungen: 1, 2, 3 \\(\\rightarrow\\) 0.61, 1.17, 1.54, 1.84, )\n\\(x'=\\lg(x+3/8)\\)\n\\(x'=\\log(\\log(x))\\) für riesige Zahlen\n\n\\(\\rightarrow\\) stattdessen ein GLM mit der Familie Poisson oder Quasi-Poisson in Betracht ziehen\nVerhältnisse und Prozentsätze\n\n\\(x'=\\arcsin \\sqrt{x/n}\\)\n\\(x'=\\arcsin \\sqrt{\\frac{x+3/8}{n+3/4}}\\)\n\n\\(\\rightarrow\\) stattdessen ein GLM mit Familie Binomial in Betracht ziehen",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#rangtransformation",
     "href": "slides/04-distributions.html#rangtransformation",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Rangtransformation",
     "text": "Rangtransformation\nBeispiel: Spearman-Korrelation\n\n Datensatz\n\nx &lt;- c(1, 2, 3, 5, 4, 5 ,6,  7)\ny &lt;- c(1, 2, 4, 3, 4, 6, 8, 20)\n\nRänge\n\nrank(x)\n\n[1] 1.0 2.0 3.0 5.5 4.0 5.5 7.0 8.0\n\nrank(y)\n\n[1] 1.0 2.0 4.5 3.0 4.5 6.0 7.0 8.0\n\n\nZwei Berechnungsmöglichkeiten\n\ncor(x, y, method = \"spearman\")\n\n[1] 0.8915663\n\ncor(rank(x), rank(y))\n\n[1] 0.8915663",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#zur-erinnerung-der-zentrale-grenzwertsatz-zgws",
     "href": "slides/04-distributions.html#zur-erinnerung-der-zentrale-grenzwertsatz-zgws",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Zur Erinnerung: Der zentrale Grenzwertsatz (ZGWS)",
     "text": "Zur Erinnerung: Der zentrale Grenzwertsatz (ZGWS)\n\nDie Summen einer großen Anzahl \\(n\\) unabhängiger und identisch verteilter Zufallswerte konvergieren gegen eine Normalverteilung, unabhängig vom Typ der ursprünglichen Verteilung.\n\n\nWir können Methoden für eine Normalverteilung auch bei Abweichungen von der NV anwenden:\n\nwenn wir einen großen Datensatz haben\nwenn die ursprüngliche Verteilung nicht „zu schief“ ist\n\nDie erforderliche Zahl \\(n\\) hängt von der Schiefe der ursprünglichen Verteilung ab.\n\n\n\nGrund: Methoden wie t-Test oder ANOVA basieren auf Mittelwerten.",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#konfidenzintervalle-des-mittelwerts",
     "href": "slides/04-distributions.html#konfidenzintervalle-des-mittelwerts",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Konfidenzintervalle des Mittelwerts",
     "text": "Konfidenzintervalle des Mittelwerts\n\nStandardfehler\n\\[\ns_{\\bar{x}} = \\frac{s}{\\sqrt{n}}\n\\]\n\nDie Variabilität des Mittelwerts halbiert sich, wenn wir den Stichprobenumfang vervierfachen (\\(2^2\\)).\n\nSchätzung des 95%-Konfidenzintervalls:\n\\[\nCI_{95\\%} = \\bigg(\\bar{x} - z_{0.975} \\cdot \\frac{s}{\\sqrt{n}},\n                 \\bar{x} + z_{0.975} \\cdot \\frac{s}{\\sqrt{n}}\\bigg)\n\\]\nmit \\(z_{1-\\alpha/2} = z_{0.975} =\\) \\(1.96\\).\n\n\\(\\rightarrow\\) \\(2\\sigma\\) Regel\n\n\nIntervall, in dem der wahre Mittelwert mit 95%iger Wahrscheinlichkeit gefunden wird",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#unterschied-zwischen-stichprobe-und-konfidenzintervall",
     "href": "slides/04-distributions.html#unterschied-zwischen-stichprobe-und-konfidenzintervall",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Unterschied zwischen Stichprobe und Konfidenzintervall",
     "text": "Unterschied zwischen Stichprobe und Konfidenzintervall\n\n\nStichprobenintervall: charakterisiert die Verteilung der Daten aus den Parametern der Stichprobe (z.B. Mittelwert, Standardabweichung)\nStandardabweichung \\(s_x\\) misst die Variabilität der ursprünglichen Daten\nrekonstruiert die ursprüngliche Verteilung, wenn ihr Typ bekannt ist (z. B. normal, lognormal)\n\n\n\nKonfidenzintervall: charakterisiert die Genauigkeit eines statistischen Parameters, basierend auf seinem Standardfehler\nSchätzt anhand von \\(\\bar{x}\\) und \\(s_\\bar{x}\\) das Intervall, in dem \\(\\mu\\) mit einer bestimmten Wahrscheinlichkeit gefunden wird\nweniger abhängig von der ursprünglichen Verteilung der Daten aufgrund des ZGWS",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#verwendung-der-t-verteilung-für-kleine-stichproben",
     "href": "slides/04-distributions.html#verwendung-der-t-verteilung-für-kleine-stichproben",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Verwendung der t-Verteilung für kleine Stichproben",
     "text": "Verwendung der t-Verteilung für kleine Stichproben\n\\[\nCI_{95\\%} = \\bigg(\\bar{x} - t_{0.975, n-1} \\cdot \\frac{s}{\\sqrt{n}},\n                 \\bar{x} + t_{0.975, n-1} \\cdot \\frac{s}{\\sqrt{n}}\\bigg)\n\\]\n\nnotwendig für kleine Stichproben: \\(n\\lessapprox 30\\), \\(n-1\\) Freiheitsgrade\nkann selbstverständlich auch für \\(n &gt; 30\\) verwendet werden\n\\(t\\)-Quantil kann in Tabellen gefunden oder mit der Funktion qt() in R berechnet werden.\n\nBeispiel mit \\(\\mu=50\\) und \\(\\sigma=10\\):\n\nset.seed(123)\nn &lt;- 10\nx &lt;- rnorm(n, 50, 10)\nm &lt;- mean(x); s &lt;- sd(x)\nse &lt;- s/sqrt(n)\n# lower and upper confidence limits\nm + qt(c(0.025, 0.975), n-1) * se\n\n[1] 43.92330 57.56922\n\n\n\\(\\rightarrow\\) der wahre Mittelwert (\\(\\mu\\)=50) ist im Intervall CI = (43.9, 57.6).",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#ausreißer",
     "href": "slides/04-distributions.html#ausreißer",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Ausreißer",
     "text": "Ausreißer\n\nExtrem große oder extrem kleine Werte werden oft als „Ausreißer“ bezeichnet.\nPotenzielle Ausreißer können aber auch „Extremwerte“ aus einer schiefen Verteilung sein. Sie auszuschließen, kann wissenschaftliches Fehlverhalten sein.\nEin „echter“ Ausreißer ist ein Wert, der nicht aus der zu analysierenden Population stammt, z. B. ein schwerwiegender Messfehler, wenn jemand vergessen hat, eine Chemikalie in einer Analyse hinzuzufügen.\nEr kann aber auch etwas Interessantes sein, z. B. das Ergebnis eines neuen Phänomens.\n\n\\(\\Rightarrow\\) Es kann falsch sein, Werte auszuschließen, nur weil sie „zu groß“ oder „zu klein“ sind.\n\\(\\rightarrow\\) Versuche, den Grund zu finden, warum Werte extrem sind!\n\n\\(4 \\sigma\\)-Regel\n\nprüft, ob ein Wert mehr als 4 Standardabweichungen vom Mittelwert entfernt ist.\nStichprobengröße sollte \\(n \\ge 10\\) sein, \\(\\bar{x}\\) und \\(s\\) werden ohne den potentiellen Ausreißer berechnet.\nÄhnliche „Faustregeln“ sind in Statistik-Lehrbüchern zu finden.",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#ausreißertest-für-lineare-modelle-mit-bonferroni-korrektur",
     "href": "slides/04-distributions.html#ausreißertest-für-lineare-modelle-mit-bonferroni-korrektur",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Ausreißertest für lineare Modelle mit Bonferroni-Korrektur",
     "text": "Ausreißertest für lineare Modelle mit Bonferroni-Korrektur\n\nFür lineare Modelle und GLMs können wir den Bonferroni-Ausreißertest aus dem Paket car verwenden.\n\n\nlibrary(car)\nx &lt;- c(rnorm(20), 12) # the 21st value (=12) is an outlier\noutlierTest(lm(x~1))  # x ~ 1 is the null model\n\n   rstudent unadjusted p-value Bonferroni p\n21 11.66351         4.1822e-10   8.7826e-09\n\n\n\\(\\rightarrow\\) Der 21. Wert wird als Ausreißer identifiziert:\n Alternative zu Ausreißertests\n\nVerwendung robuster Parameter und Methoden,\n\nz.B. Median oder getrimmter Mittelwert anstelle des arithmetischen Mittels,\nrobuste lineare Regression „rlm“ anstelle von „lm”\nRangbasierte Methoden wie die Spearman-Korrelation\n\nWichtig Ausreißer können in einer Analyse weggelassen werden, aber die Anzahl und das Ausmaß der Ausreißer müssen erwähnt werden!",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#extremwerte-in-boxplots",
     "href": "slides/04-distributions.html#extremwerte-in-boxplots",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Extremwerte in Boxplots",
     "text": "Extremwerte in Boxplots\n\n\nExtremwerte außerhalb der Whiskers, wenn sie mehr als das 1,5-fache der Breite der Interquartilsbox von den Boxgrenzen entfernt sind.\nManchmal auch „Ausreißer“ genannt.\nIch bevorzuge den Begriff „Extremwert“, da es sich um regelmäßige Beobachtungen aus einer schiefen oder ‘heavy tailed’ Verteilung handeln kann.",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#beispiel",
     "href": "slides/04-distributions.html#beispiel",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Beispiel",
     "text": "Beispiel\n\npar(mfrow=c(1, 3), las=1)\nelbe &lt;- read.csv(\"https://tpetzoldt.github.io/datasets/data/elbe.csv\")\ndischarge &lt;- elbe$discharge\nboxplot(discharge, main=\"Boxplot des Abflusses\")\nhist(discharge)\nhist(log(discharge - 70))\n\n\nAbflussdaten der Elbe in Dresden in \\(\\mathrm m^3 s^{-1}\\), Datenquelle: Bundesanstalt für Gewässerkunde (BFG), siehe terms and conditions.\n\nLinks: große Anzahl von Extremwerten, sind das Ausreißer?\nMitte: Verteilung ist rechtsschief.\nRechts: Transformation (3-parametrische Lognormalverteilung) \\(\\rightarrow\\) symmetrische Verteilung, keine Ausreißer!",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
     "objectID": "slides/04-distributions.html#mehr-in-den-übungen",
     "href": "slides/04-distributions.html#mehr-in-den-übungen",
-    "title": "04-Distributions",
+    "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Mehr in den Übungen …",
     "text": "Mehr in den Übungen …\n\nhttps://tpetzoldt.github.io/element-labs/",
     "crumbs": [
       "Statistische Grundlagen",
-      "04-Distributions"
+      "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
