@@ -1060,7 +1060,7 @@
     "href": "slides/x1-r-basics.html#lists-1",
     "title": "x1-R Basics",
     "section": "Lists",
-    "text": "Lists\n\nmost flexible data type in R\ncan contain arbitrary data objects as elements of the list\nallows tree-like structure\n\nExamples\n\nOutput of many R functions, e.g. return value of hist:\n\n\nL &lt;- hist(rnorm(100), plot=FALSE)\nstr(L)\n\nList of 6\n $ breaks  : num [1:11] -2.5 -2 -1.5 -1 -0.5 0 0.5 1 1.5 2 ...\n $ counts  : int [1:10] 2 5 7 13 20 18 21 5 5 4\n $ density : num [1:10] 0.04 0.1 0.14 0.26 0.4 0.36 0.42 0.1 0.1 0.08\n $ mids    : num [1:10] -2.25 -1.75 -1.25 -0.75 -0.25 0.25 0.75 1.25 1.75 2.25\n $ xname   : chr \"rnorm(100)\"\n $ equidist: logi TRUE\n - attr(*, \"class\")= chr \"histogram\"",
+    "text": "Lists\n\nmost flexible data type in R\ncan contain arbitrary data objects as elements of the list\nallows tree-like structure\n\nExamples\n\nOutput of many R functions, e.g. return value of hist:\n\n\nL &lt;- hist(rnorm(100), plot=FALSE)\nstr(L)\n\nList of 6\n $ breaks  : num [1:13] -3 -2.5 -2 -1.5 -1 -0.5 0 0.5 1 1.5 ...\n $ counts  : int [1:12] 1 2 4 6 15 20 20 15 11 4 ...\n $ density : num [1:12] 0.02 0.04 0.08 0.12 0.3 0.4 0.4 0.3 0.22 0.08 ...\n $ mids    : num [1:12] -2.75 -2.25 -1.75 -1.25 -0.75 -0.25 0.25 0.75 1.25 1.75 ...\n $ xname   : chr \"rnorm(100)\"\n $ equidist: logi TRUE\n - attr(*, \"class\")= chr \"histogram\"",
     "crumbs": [
       "R Topics",
       "x1-R Basics"
@@ -2732,7 +2732,7 @@
     "href": "slides/01-introduction.html#welche-datenstruktur-ist-besser",
     "title": "01-Einführung",
     "section": "Welche Datenstruktur ist besser?",
-    "text": "Welche Datenstruktur ist besser?\n\n\nWide-Format\n\n\n\n\n\n\nstation\n2021\n2022\n2023\n\n\n\n\nA\n14\n14\n10\n\n\nB\n10\n5\n8\n\n\nC\n1\n10\n2\n\n\nD\n11\n8\n4\n\n\nE\n13\n7\n7\n\n\n\n\n\n\nLong-Format\n\n\n\n\n\n\nyear\nstation\nvalue\n\n\n\n\n2021\nA\n14\n\n\n2021\nB\n10\n\n\n2021\nC\n1\n\n\n2021\nD\n11\n\n\n2021\nE\n13\n\n\n2022\nA\n14\n\n\n2022\nB\n5\n\n\n2022\nC\n10\n\n\n2022\nD\n8\n\n\n2022\nE\n7\n\n\n2023\nA\n10\n\n\n2023\nB\n8\n\n\n2023\nC\n2\n\n\n2023\nD\n4\n\n\n2023\nE\n7",
+    "text": "Welche Datenstruktur ist besser?\n\n\nWide-Format\n\n\n\n\n\n\nstation\n2021\n2022\n2023\n\n\n\n\nA\n13\n2\n9\n\n\nB\n16\n9\n15\n\n\nC\n12\n2\n13\n\n\nD\n9\n1\n8\n\n\nE\n17\n18\n7\n\n\n\n\n\n\nLong-Format\n\n\n\n\n\n\nyear\nstation\nvalue\n\n\n\n\n2021\nA\n13\n\n\n2021\nB\n16\n\n\n2021\nC\n12\n\n\n2021\nD\n9\n\n\n2021\nE\n17\n\n\n2022\nA\n2\n\n\n2022\nB\n9\n\n\n2022\nC\n2\n\n\n2022\nD\n1\n\n\n2022\nE\n18\n\n\n2023\nA\n9\n\n\n2023\nB\n15\n\n\n2023\nC\n13\n\n\n2023\nD\n8\n\n\n2023\nE\n7",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -2996,7 +2996,7 @@
     "href": "slides/04-distributions.html#kontinuierliche-gleichverteilung-mathbfu0-1",
     "title": "04-Distributions",
     "section": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)",
-    "text": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)\n\n\ngleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall\nz.B. \\([0, 1]\\)\nin R: runif, random, uniform\n\n\nrunif(10)\n\n [1] 0.6105169 0.6431216 0.5988244 0.3728285 0.5111436 0.7224263 0.6867357\n [8] 0.2092646 0.2523193 0.2443016\n\n\n \n\nKlassenbildung (Binning): Einteilung der Werte in Klassen",
+    "text": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)\n\n\ngleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall\nz.B. \\([0, 1]\\)\nin R: runif, random, uniform\n\n\nrunif(10)\n\n [1] 0.3720563 0.7318672 0.3292717 0.4059864 0.2240486 0.1852547 0.7786827\n [8] 0.7449358 0.4151967 0.7610181\n\n\n \n\nKlassenbildung (Binning): Einteilung der Werte in Klassen",
     "crumbs": [
       "Statistische Grundlagen",
       "04-Distributions"
@@ -4558,7 +4558,7 @@
     "href": "00-index.html",
     "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
     "section": "",
-    "text": "Diese Website enthält eine Sammlung von Materialien für einführende Statistikkurse mit R. Das Ziel ist es, einen Einblick in grundlegende Prinzipien zu geben und einen Einstieg zu vermitteln, um weiterführende Fachbücher und Online-Materialien auswählen und verstehen zu können und so tiefer in das vielfältige und faszinierende Gebiet des “statistical Computings” einzusteigen.\nDie Auswahl der Themen spiegelt meine persönliche Erfahrung wider, als Türöffner zu Themen, die für die Ökologie und die Hydrowissenschaften nützlich sind. Es handelt sich um ein forlaufendes Projekt, basierend auf früheren PDF-Folien und anderem Kursmaterial.\nDie deutschsprachige Version ist eine Übersetzung aus dem englischen. Für die Korrektheit wird keine Gewähr übernommen. Konstruktive Kommentare und Verbesserungsvorschläge sind willkommen.\nDie dazugehörigen Übungsaufgaben befinden sich unter: https://tpetzoldt.github.io/element-labs/."
+    "text": "Elemente der Angewandten Statistik\nDiese Website enthält eine Sammlung von Materialien für einführende Statistikkurse mit R. Das Ziel ist es, einen Einblick in grundlegende Prinzipien zu geben und einen Einstieg zu vermitteln, um weiterführende Fachbücher und Online-Materialien auswählen und verstehen zu können und so tiefer in das vielfältige und faszinierende Gebiet des “statistical Computings” einzusteigen.\nDie Auswahl der Themen spiegelt meine persönliche Erfahrung wider, als Türöffner zu Themen, die für die Ökologie und die Hydrowissenschaften nützlich sind. Es handelt sich um ein forlaufendes Projekt, basierend auf früheren PDF-Folien und anderem Kursmaterial.\nDie deutschsprachige Version ist eine Übersetzung aus dem englischen. Für die Korrektheit wird keine Gewähr übernommen. Konstruktive Kommentare und Verbesserungsvorschläge sind willkommen.\nDie dazugehörigen Übungsaufgaben befinden sich unter: https://tpetzoldt.github.io/element-labs/."
   },
   {
     "objectID": "00-index.html#status",
