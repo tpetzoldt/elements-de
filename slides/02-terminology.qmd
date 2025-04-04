@@ -1,6 +1,5 @@
 ---
-subtitle: "Applied Statistics -- A Practical Course"
-title: "02-Basic Terminology"
+title: "02-Grundbegriffe"
 date:   "`r Sys.Date()`"
 ---
 
@@ -16,22 +15,22 @@ knitr::opts_chunk$set(echo = TRUE, eval=FALSE, comment="")
 
 <br>
 
-* Ziele der statistischen Analysen
+* Ziele von statistischen Analysen
 * Deskriptive und experimentelle Forschung
-* Das Prinzip der Parsimonie
-* Arten von Variablen
+* Das Sparsamkeitsprinzip
+* Skalen von Variablen
 * Wahrscheinlichkeit
-* Stichprobe und Population
+* Stichprobe und Grundgesamtheit
 * Zufällige und systematische Fehler
-* Parameter der Population und der Stichprobe
+* Parameter der Grundgesamtheit und der Stichprobe
 
 
-## Ziele der statistischen Analysen
+## Ziele von statistischen Analysen
 
 
 1. Daten zusammenfassen, komprimieren und beschreiben ([deskriptive Statistik]{.cyan})
     * Effizientes Arbeiten mit großen Datensätzen
-    * Statistische Parameter, Mittelwerte, Variation, Korrelation abschätzen
+    * Statistische Parameter, Mittelwerte, Streuung, Korrelation abschätzen
 2. Erstellen von Hypothesen aus Daten ([explorative Statistik]{.cyan})
     * Data Mining und explorative Statistik
     * Grafische Methoden, multivariate Statistik
@@ -39,17 +38,17 @@ knitr::opts_chunk$set(echo = TRUE, eval=FALSE, comment="")
     * klassische Tests, ANOVA, Korrelation, . . .
     * Modellauswahl
 4. Forschung planen ([Versuchsplanung]{.cyan})
-    * Effektgröße im Vergleich zum Zufallsfehler
+    * Effektstärke im Vergleich zum Zufallsfehler
     * Versuchsaufbau und erforderliche Stichprobengröße
 5. [Statistische Modellierung]{.darkred}
-    * Effektgröße messen, beste Erklärung für ein Problem finden
+    * Effektstärke messen, beste Erklärung für ein Problem finden
     * Mustererkennung, Vorhersage, maschinelles Lernen
 
 ## Deskriptive oder experimentelle Forschung
 
 **Deskriptive Forschung**
 
-* Ermittlung von Auswirkungen und Beziehungen zwischen Daten.
+* Aufdecken von Unterschieden und von Wechselbeziehungen in Datensätzen.
     * Beobachtung, Überwachung, Korrelationen
     * das Forschungsthema wird [nicht manipuliert]{.cyan}
 
@@ -58,15 +57,15 @@ knitr::opts_chunk$set(echo = TRUE, eval=FALSE, comment="")
 * Kann ein erwarteter Effekt reproduziert werden?
     * Manipulation von einzelnen Bedingungen
     * Eliminierung von Störungen ([kontrollierte Randbedingungen]{.cyan})
-    * möglichst einfacher Versuchsplan
+    * möglichst einfacher Versuchsaufbau
 
-**Starker Rückschluss** erfordert eine klare Hypothese und experimentelle Forschung.
+**Starke Inferenz** erfordert eine klare Hypothese und experimentelle Forschung.
 
-**Schwache Schlussfolgerung** aus Beobachtungen und Daten abgeleitet.
+**Schwache Inferenz** aus Beobachtungen und Daten abgeleitet.
 
 $\rightarrow$ deskriptive Forschung [liefert die Daten für die Hypothesenbildung]{.cyan}.
 
-## Das Prinzip der Parsimonie
+## Das Sparsamkeitsprinzip (Parsimonieprinzip)
 
 Wird einem englischen Philosophen aus dem 14. Jahrhundert zugeschrieben („Ockhams Rasiermesser“)
 
@@ -79,7 +78,7 @@ Im Zusammenhang mit der statistischen Analyse und Modellierung:
 * **lineare Modelle** sollten gegenüber nichtlinearen Modellen bevorzugt werden
 * Experimente sollten auf nur **wenigen Annahmen** beruhen
 * Modelle sollten **vereinfacht** werden, bis sie minimal angemessen sind
-* einfache Erklärungen sollten komplexen Erklärungen vorgezogen werden
+* einfache Erklärungen sind komplexen Erklärungen vorzuziehen
 
 **Einer der wichtigsten wissenschaftlichen Grundsätze**
 
@@ -98,13 +97,13 @@ Im Zusammenhang mit der statistischen Analyse und Modellierung:
 :::
 <br>
 
-* [**Variablen**]{.blue}: alles, was [gemessen]{.blue} oder experimentell manipuliert wird, z. B. die Phosphorkonzentration in einem See, die Lufttemperatur oder das Vorhandensein von Tieren
+* [**Variablen**]{.blue}: alles, was [gemessen]{.blue} oder experimentell manipuliert wird, z. B. die Phosphorkonzentration in einem See, die Lufttemperatur oder die Abundanz von Tieren
 
 * [**Parameter:**]{.red} Werte, die durch ein statistisches Modell [geschätzt]{.red} werden, z. B. Mittelwert, Standardabweichung, Steigung eines linearen Modells.
 
 **Unabhängige Variablen** Erklärungsvariablen, [Prädiktoren]{.blue})
 
-- sind manuell kontrolliert oder werden als Ergebnis nicht kontrollierbarer Faktoren angenommen
+- werden absichtlich eingestellt oder als Ergebnis nicht kontrollierbarer Faktoren angenommen
 
 **Abhängige Variablen** ([Zielgröße]{.blue}, Zielvariablen, vorhergesagte Variablen)
 
@@ -118,27 +117,27 @@ Im Zusammenhang mit der statistischen Analyse und Modellierung:
 * **Nominal** (benannte Entitäten): ohne Ordnung, \{rot, gelb, grün\}, Liste von Arten.
 * **Ordinale** Variablen (Ränge, geordnete Faktoren): Werte oder Begriffe mit einer Ordnung {1., 2., 3., ...}; \{oligotroph, mesotroph, eutroph, polytroph, hypertroph\}, aber nicht „dystroph“
 * **Metrisch:** kontinuierlich (idealerweise ohne Stufen). Zwei Untertypen:
-    * **Intervallskala:** ermöglicht Vergleiche und Unterschiede, aber Verhältnisse machen keinen Sinn. (20°C ist 10 Grad wärmer als 10°C, aber nicht das Doppelte)
+    * **Intervallskala:** ermöglicht Vergleiche und Differenzen, aber Verhältnisse machen keinen Sinn. (20°C ist 10 Grad wärmer als 10°C, aber nicht das Doppelte)
    * **Verhältnisskala:** Daten mit einem absoluten Nullpunkt, Verhältnisse machen Sinn. Ein Baum mit 2m ist doppelt so hoch wie ein Baum mit 1m.
 
 
-Das „Niveau“ der Variablen steigt von der binären zur Verhältnis-Skala. Es ist immer möglich, ein höheres in ein niedrigeres Niveau umzuwandeln. 
+Das Niveau der Variablen steigt von der binären zur Verhältnis-Skala. Es ist immer möglich, ein höheres in ein niedrigeres Niveau umzuwandeln. 
 
 ## Umwandlung von Skalen
 
 <br>
 
-Das „Niveau“ der Variablen steigt von der binären zur Verhältnis-Skala. Es ist immer möglich, ein höheres in ein niedrigeres Niveau umzuwandeln:
+Das Niveau der Variablen steigt von der binären zur Verhältnis-Skala. Es ist immer möglich, ein höheres in ein niedrigeres Niveau umzuwandeln:
 
-* metrisch $\rightarrow$ ordinal: Ranking
-* metrisch oder ordinal $\rightarrow$ binär: Schwellenwert
+* metrisch $\rightarrow$ ordinal: Rangbildung
+* metrisch oder ordinal $\rightarrow$ binär: Vergleich mit Schwellenwert
 * nominal $\rightarrow$ binär: Zuordnung zu zwei Gruppen
 
 Die Umwandlung in eine niedrigere Skala führt zu einem gewissen Informationsverlust,  ermöglicht aber die Verwendung zusätzlicher Methoden aus der untergeordneten Skala.
 
 [**Erklärung**: Wenn wir die Rangkorrelation auf metrische Daten anwenden, wenden wir im Wesentlichen eine Methode für die Ordinalskala auf metrische Daten an. In diesem Fall verlieren wir Informationen über die Unterschiede zwischen den Werten, verringern aber auch den Einfluss von Extremwerten und Ausreißern.]{.smallfont}
 
-[Die Umwandlung von metrischen in binäre Daten kann sinnvoll sein, wenn die metrischen Daten nicht genau genug sind. So kann beispielsweise die Zählung von Tieren (z. B. Wölfen) in einem bestimmten Gebiet von zu vielen Faktoren abhängen (Struktur der Landschaft, Erfahrung der Menschen, Jahreszeit usw.), so dass die genauen Zahlen (Häufigkeiten) fraglich sind. In solchen Fällen ist eine Umwandlung in eine binäre Skala (vorhanden/abwesend) und die Anwendung eines entsprechenden Test (z. B. logistische Regression oder exakter Test nach Fisher) zuverlässiger.]{.smallfont}
+[Die Umwandlung von metrischen in binäre Daten kann sinnvoll sein, wenn die metrischen Daten nicht genau genug sind. So kann beispielsweise die Zählung von Tieren (z. B. Wölfen) in einem bestimmten Gebiet von zu vielen Faktoren abhängen (Struktur der Landschaft, Erfahrung der Menschen, Jahreszeit usw.), so dass die genauen Zahlen (Häufigkeiten) fraglich sind. In solchen Fällen ist eine Umwandlung in eine binäre Skala (vorhanden/abwesend) und die Anwendung eines entsprechenden Tests (z. B. logistische Regression oder Fisher's exakter Test) zuverlässiger.]{.smallfont}
 
 [Andere Beispiele sind der Vergleich von Hochwasser zwischen verschiedenen Flüssen, z.B. einem großen und einem kleinen Fluss, oder das Vorkommen von Genen in einer molekularbiologischen Analyse.]{.smallfont}
 
@@ -164,45 +163,46 @@ $$
 * **Axiom III:** für sich gegenseitig ausschließende Ereignisse $A$ und $B$, d.h. in der Mengenlehre gilt $A \bigcap B = \emptyset$: $p(A \bigcup B)= p(A) + p(B)$
 
 
-## Stichprobe und Population
+## Stichprobe und Grundgesamtheit
 
 <br>
 
 **Stichprobe**
 
-Subjekte, von denen wir Messungen oder Beobachtungen [haben]{.blue}
+Objekte, von denen wir Messungen oder Beobachtungen [haben]{.blue}
 
 <br>
 
-**Population**
+**Grundgesamtheit**
 
 Menge aller Probanden, die die [gleiche Chance]{.blue} hatten, Teil der Stichprobe zu werden.
 
-$\Rightarrow$ Die Population wird durch die Art der Probenentnahme definiert
+$\Rightarrow$ Die Grundgesamtheit wird durch die Art der Strichprobengewinnung definiert
 
-$\Rightarrow$  Die Proben sollten [repräsentativ]{.blue} für
+$\Rightarrow$  Die Stichproben sollten [repräsentativ]{.blue} für
 unser [beabsichtigtes]{.blue} Beobachtungsobjekt sein.
 
 
-## Samplingstrategien
+## Stichproben-Strategien
 
 <br>
 
-**Zufallsstichproben**
+**Zufallsstichprobe**
 
-* Individuen werden nach dem Zufallsprinzip aus einer bestimmten Population ausgewählt.
+* Individuen werden nach dem Zufallsprinzip aus einer Grundgesamtheit ausgewählt.
 * Beispiele: 
-    * Zufällige Auswahl von Probenstellen auf einem Raster. 
+    * Zufällige Auswahl von Probenahmestellen auf einem Raster. 
     * Zufällige Platzierung von Versuchseinheiten in einem Regal.
 
 <br>
-**Stratifizierte Stichprobe**
 
-* Die Population wird in Klassen ähnlicher Personen (**Schichten**) unterteilt.
-* Die Schichten werden getrennt analysiert und dann werden die Informationen gewichtet und kombiniert, um Rückschlüsse auf die Population zu ziehen.
+**Geschichtete Stichprobe**
+
+* Die Grundgesamtheit wird in Klassen ähnlicher Objekte (**Schichten** oder Strata) unterteilt.
+* Die Schichten werden getrennt analysiert, danach werden die Informationen gewichtet und kombiniert, um Rückschlüsse auf die Grundgesamtheit zu ziehen.
 * Die geschichtete Stichprobe erfordert Informationen über die Größe und Repräsentativität der Schichten.
 
-* Beispiele: Wahlprognosen, Tiefenschichten in einem See, Altersklassen für Tiere.
+* Beispiele: Wahlprognosen, Tiefenschichten in einem See, Altersklassen von Tieren.
 
 
 ## Zufällige und systematische Fehler
@@ -217,32 +217,32 @@ unser [beabsichtigtes]{.blue} Beobachtungsobjekt sein.
 
 **Systematische Fehler** auch **Bias** genannt 
 
-* können oft nicht einfach mit statistischen Methoden allein geschätzt werden
-* Kenntnisse über das betrachtete System
-* Eliminierung erfordert [Kalibrierung]{.blue} mittels Standards, Blindwerten oder Paarung
+* können in der Regel nicht allein mit statistischen Methoden geschätzt werden
+* erfordern Kenntnisse über das betrachtete System
+* Eliminierung erfordert [Kalibrierung]{.blue} mittels Standards, Blindwerten oder Paarbildung
 
-## Populations- und Stichprobenparameter
+## Grundgesamtheits- und Stichprobenparameter
 
 <br>
 
-**„Wahre“ Parameter der Population**
+**„Wahre“ Parameter der Grundgesamtheit**
 
 * symbolisiert durch griechische Buchstaben, ([$\mu, \sigma, \gamma\, \alpha, \beta$]{.blue})
 * in der Regel unbekannt
-* anhand einer Stichprobe geschätzt
+* werden anhand einer Stichprobe geschätzt
 
 **„Berechnete“ Parameter aus einer Probe**
 
 * symbolisiert mit lateinischen Buchstaben ([$\bar{x}$, $s$, $r^2$, ...]{.blue})
 * die Berechnung erfolgt anhand einer Stichprobe
 * Statistiker sagen „Schätzung“ statt „Berechnung“.
-* Parameter können selbst als Zufallsvariable behandelt werden
+* Die geschätzten Parameter können auch wieder als Zufallsvariable behandelt werden
 
 ## Erwartungswert
 
 <br>
 
-Eine einzelne Messung $x_i$ einer Zufallsvariablen $X$ kann als Summe des Erwartungswertes $\mathbf{E}(X)$ der Zufallsvariablen und eines Zufallsfehlers $\varepsilon_i$ geschrieben werden.
+Eine einzelne Messung $x_i$ einer Zufallsvariablen $X$ kann als Summe des Erwartungswertes $\mathbf{E}(X)$ der Zufallsvariablen und eines Zufallsfehlers $\varepsilon_i$ formuliert werden.
 
 \begin{align}
   x_i &= \mathbf{E}(X) + \varepsilon_i\\
@@ -252,7 +252,7 @@ Eine einzelne Messung $x_i$ einer Zufallsvariablen $X$ kann als Summe des Erwart
 Beispiel: 
 
 * für einen fairen Würfel mit 6 Augen sollte der wahre Mittelwert $\mu$ 3,5 sein
-* In Wirklichkeit ist nicht genau bekannt, ob der Würfel ein perfekter Quader ist.
+* In Wirklichkeit ist nicht genau bekannt, ob ein realer Würfel perfekt symmetrisch ist.
 
 **Beispiel:** 3 Personen mit 5 Versuchen:
 

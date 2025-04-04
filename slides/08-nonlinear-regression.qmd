@@ -1,9 +1,10 @@
 ---
 subtitle: "Applied Statistics -- A Practical Course"
-title: "08-Nonlinear Regression"
+title: "08-Nichtlineare Regression"
 date:   "`r Sys.Date()`"
 --- 
 
+# Achtung: deutsche Übersetzung muss noch geprüft werden
 
 ## Nichtlineare Regression
 

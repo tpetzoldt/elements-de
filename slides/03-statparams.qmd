@@ -1,6 +1,5 @@
 ---
-subtitle: "Applied Statistics -- A Practical Course"
-title: "03-Statistical Parameters"
+title: "03-Statistische Parameter"
 date:   "`r Sys.Date()`"
 ---
 
@@ -27,14 +26,12 @@ $\rightarrow$ Zur Erinnerung: Die Berechnung statistischer Parameter wird als [*
 
 **Eigenschaften von statistischen Parametern**
 
-**Unvoreingenommenheit:** die Schätzung konvergiert gegen den wahren Wert
-  mit zunehmendem $n$
-* **Effizienz** ein relativ kleines $n$ ist ausreichend für eine gute
-  Schätzung
-* **Robustheit** die Schätzung wird durch Ausreißer oder bestimmte Verletzungen statistischer Annahmen kaum beeinflusst
+* **Erwartungstreue:** die Schätzung konvergiert  mit zunehmendem $n$ gegen den wahren Wert
+* **Effizienz** für eine gute Schätzung ist ein relativ kleines $n$ ausreichend 
+* **Robustheit** die Schätzung wird durch Ausreißer oder gewisse Verletzungen statistischer Annahmen nur wenig beeinflusst
 
-Je nach Fragestellung gibt es verschiedene Klassen von Parametern
-existieren, insbesondere Maße der Lage (z.B. Mittelwert, Median), der Variation
+Je nach Fragestellung gibt es verschiedene Arten von Parametern, 
+insbesondere Maße der Lage (z.B. Mittelwert, Median), der Variation
 (z. B. Varianz, Standardabweichung) oder der Abhängigkeit (z. B. Korrelation).
 
 ## Lagemaße I
@@ -64,7 +61,7 @@ $$
   G =\exp\Bigg(\frac{1}{n} \cdot {\sum_{i=1}^n \ln{x_i}}\Bigg)
 $$
 
-vermeidet große Zahlen, die dem Computer Probleme bereiten.
+vermeidet große Zahlen, die dem Computer numerische Probleme bereiten.
 :::
 
 ## Lagemaße II
@@ -77,8 +74,8 @@ $$
 
 **Beispiel:**
 
-Du fährst mit 50km/h zur Uni und mit 100km/h wieder nach Hause.<br> 
-Was ist die mittlere Geschwindigkeit?
+Man fährt mit 50km/h zur Uni und mit 100km/h wieder nach Hause.<br> 
+Wie groß ist die mittlere Geschwindigkeit?
 
 **Ergebnis:**
 
@@ -103,11 +100,11 @@ x <- round(runif(7, max=10), 1)
 x_sort <- sort(x)
 ```
 
-|                       |                                                          |
-|-----------------------|----------------------------------------------------------|
-| Stichprobe mit 7 Werten  | `r x`                                                    |
-| sortierte Stichprobe        | `r x_sort[1:3]`, [`r x_sort[4]`]{.red}, `r x_sort[5:7]` |
-|                       |                                                          |
+|                             |                                                          |
+|-----------------------------|----------------------------------------------------------|
+| Stichprobe mit 7 Werten     | `r x`                                                    |
+| sortierte Stichprobe        | `r x_sort[1:3]`, [`r x_sort[4]`]{.red}, `r x_sort[5:7]`  |
+|                             |                                                          |
 
 
 $\Rightarrow$ Median: $\tilde{x} = `r median(x)`$
@@ -118,7 +115,7 @@ $\Rightarrow$ Median: $\tilde{x} = `r median(x)`$
 
 <br>
 
-* auch „abgeschnittener Mittelwert“ genannt
+* auch „gestutzter Mittelwert“ genannt
 * Kompromiss zwischen dem arithmetischen Mittel und dem Median
 * Ein bestimmter Prozentsatz der kleinsten und größten Werte wird ignoriert(z.B. 10% oder 25%), bevor das arithmetische Mittel berechnet wird
 * wird auch im Sport verwendet
@@ -137,7 +134,7 @@ $\rightarrow$ Arithmetisches Mittel: $\bar{x}=`r mean(x)`$<br>
 $\rightarrow$ Getrimmter Mittelwert: $\bar{x}_{t, 0.1}=`r mean(x, trim = 0.1)`$
 
 
-* Median und getrimmter Mittelwert werden weniger von Ausreißern und Schiefen beeinflusst $\rightarrow$ [robuster]{.blue}
+* Median und getrimmter Mittelwert werden weniger von Ausreißern und Schiefe der Verteilung beeinflusst $\rightarrow$ [robuster]{.blue}
 * aber etwas weniger effizient
 
 
@@ -157,9 +154,9 @@ text(h$mids, h$counts, h$counts, pos=3)
 
 * häufigster Wert einer Stichprobe
 * Strenge Definition nur gültig für diskrete (binäre, nominale, ordinale) Skalen
-* Erweiterung auf kontinuierliche Skalen: Bündelung oder Dichteschätzung
+* Erweiterung auf kontinuierliche Skalen: Klassenbildung oder Dichteschätzung
 
-Erste Vermutung: Mitte der häufigsten Klasse.
+Erste Näherung: Mitte der häufigsten Klasse.
 
 ## Modus: Gewichtungsformel
 
@@ -220,7 +217,7 @@ abline(v=peaks(dens, mode = "max")$x, col="red", lwd=2) # outputs the modal valu
 **Beispiel:** Fischpopulation mit mehreren Altersklassen (Kohorten)
 
 
-## Maße der Variabilität
+## Maßzahlen der Streuung
 
 **Varianz**
 
@@ -239,7 +236,7 @@ $\rightarrow$ dieselbe Einheit wie der Mittelwert $\bar{x}$, so dass sie direkt 
 <hr>
 
 :::{.gray}
-In der Praxis wird $s^2$ oft damit berechnet:
+In der Praxis wird $s^2$ oft mit folgender Formel berechnet:
 
 $$
   s^2_x = \frac{\sum{(x_i)^2}-(\sum{x_i})^2/n}{n-1}
@@ -257,13 +254,13 @@ $$
 $$
 :::
 
-* Nützlich für den Vergleich von Variationen verschiedener Variablen, unabhängig von ihrer Maßeinheit
+* Nützlich für den Vergleich der Streuung verschiedener Variablen, unabhängig von ihrer Maßeinheit
 * nur anwendbar für Daten mit [Verhältnisskala]{.blue}, d.h. mit einem absoluten Nullpunkt (wie Meter) 
 * nicht für Variablen wie Celsius-Temperatur oder pH-Wert.
 
 **Beispiel**
 
-Nehmen wir an, wir haben den Abfluss von zwei Flüssen, einer mit $cv=0.3$, der andere mit $cv=0,8$. Wir sehen, dass der 2. eine extremere Schwankung aufweist.
+Nehmen wir an, wir haben den Abfluss von zwei Flüssen, einer mit $cv=0,3$, der andere mit $cv=0,8$. Wir sehen, dass der 2. eine extremere Schwankung aufweist.
 
 ## Spannweite
 
@@ -322,7 +319,7 @@ $$
   \sigma = E(I_{50}/(2\Phi^{-1}(3/4))) \approx E(I_{50}/1.394) % 2*qnorm(3/4))
 $$
 
-wobei $\Phi^{-1}$ die Quantilsfunktion der Normalverteilung ist.
+wobei $\Phi^{-1}$ die Quantilfunktion der Normalverteilung ist.
 
 :::
 
@@ -330,13 +327,13 @@ wobei $\Phi^{-1}$ die Quantilsfunktion der Normalverteilung ist.
 
 <br>
 
-Der Median der absoluten Differenzen zwischen Median und Werten.
+Der Median der absoluten Differenzen zwischen dem Median und den Einzelwerten.
 
 $$
   MAD = \text{median}(|\text{median} - x_i|)
 $$
 
-* in einigen Communities häufig verwendet, in unserem Bereich selten verwendet
+* in einigen Communities häufig verwendet, in unserem Bereich selten 
 * Einige Programme skalieren den MAD mit einem Faktor $1,4826$ neu, um die Standardabweichung anzunähern. 
 
 $\rightarrow$ Sei vorsichtig und [prüfe die Software-Dokumente!]{.red}
@@ -371,7 +368,7 @@ $$
 :::
 
 * misst die [Genauigkeit des Mittelwerts]{.red}
-* spielt eine zentrale Rolle bei der Berechnung von Konfidenzintervallen und statistischen Tests
+* spielt eine zentrale Rolle bei der Schätzung von Konfidenzintervallen und statistischen Tests
 
 **Faustregel** für einen Stichprobenumfang von etwa $n > 30$:
 

@@ -1,8 +1,9 @@
 ---
-subtitle: "Applied Statistics -- A Practical Course"
-title: "06-Linear Regression"
+title: "06-Lineare Regression"
 date:   "`r Sys.Date()`"
 --- 
+
+# Achtung: deutsche Übersetzung muss noch geprüft werden
 
 <style>
 .add-space{

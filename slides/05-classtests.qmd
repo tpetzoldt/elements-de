@@ -1,9 +1,9 @@
 ---
-subtitle: "Applied Statistics -- A Practical Course"
-title: "05-Classical Tests"
+title: "05-Klassische Tests"
 date:   "`r Sys.Date()`"
 --- 
 
+# Achtung: deutsche Übersetzung muss noch geprüft werden
 
 ```{r, echo=FALSE, include=FALSE}
 library("exactRankTests")

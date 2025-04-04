@@ -1,9 +1,10 @@
 ---
-title: "07-One and two-way ANOVA"
+title: "07-ANOVA und ANCOVA"
 subtitle: "Applied Statistics -- A Practical Course" 
 date:   "`r Sys.Date()`"
 ---
 
+# Achtung: deutsche Übersetzung muss noch geprüft werden
 
 
 ```{r setup, include=FALSE}
