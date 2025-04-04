@@ -475,14 +475,13 @@ Im Gegensatz zu anderen Systemen ist Copy & Paste erlaubt -- aber bitte zitieren
 
 **Statistische Methoden**
 
--   Gut lesbare Einführungen
+-   Sehr gut lesbare Einführungen
     -   Dalgaard, P., 2008: Introductory Statistics with **R**.
-        Springer, New York, 2nd edition. (fulltext of the 1st edition
-        [freely
-        available](https://link.springer.com/book/10.1007/b97671))
+        Springer, New York, 2nd edition. (Volltext der 1. Auflage 
+        [frei verfügbar](https://link.springer.com/book/10.1007/b97671))
     -   Verzani, J. (2019). Using R for introductory statistics. CRC
         press.
--   Eine sehr gut verständliche Einführung in viele Bereiche der Statistik, insbesondere in die Regressions- und Zeitreihenanalyse:
+-   Sehr gut verständliche Einführung, insbesondere in die Regressions- und Zeitreihenanalyse:
     -   Kleiber, C. and Zeileis, A., 2008: Applied Econometrics with R,
         Springer Verlag, New York.
         <https://link.springer.com/book/10.1007/978-0-387-77318-6>
