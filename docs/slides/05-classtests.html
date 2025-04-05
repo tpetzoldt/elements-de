@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Thomas Petzoldt">
-  <meta name="dcterms.date" content="2025-04-04">
+  <meta name="dcterms.date" content="2025-04-05">
   <title>Elemente der statistischen Datenanalyse und Statistik mit R – 05-Klassische Tests</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -232,13 +232,8 @@ Thomas Petzoldt
 </div>
 </div>
 
-  <p class="date">2025-04-04</p>
+  <p class="date">2025-04-05</p>
 </section>
-<section id="achtung-deutsche-übersetzung-muss-noch-geprüft-werden" class="title-slide slide level1 center">
-<h1>Achtung: deutsche Übersetzung muss noch geprüft werden</h1>
-
-</section>
-
 <section>
 <section id="hypothesen-fehler-und-der-p-wert" class="title-slide slide level1 center">
 <h1>Hypothesen, Fehler und der p-Wert</h1>
@@ -249,18 +244,22 @@ ToDo: insert formulae and algorithms from the slides
 <section id="statistische-tests" class="slide level2">
 <h2>Statistische Tests</h2>
 <p><br></p>
-<p>Ein statistischer Hypothesentest ist eine Methode der statistischen Inferenz.</p>
+<p>Ein statistischer Test hilft zu entscheiden, ob eine Hypothese wahrscheinlich richtig ist oder nicht, basierend auf vorliegenden Daten.</p>
 <ul>
-<li>Üblicherweise werden zwei Stichproben miteinander verglichen, oder eine Stichprobe wird mit Eigenschaften eines idealisierten Modells verglichen.</li>
-<li>Eine Hypothese <span class="math inline">\(H_a\)</span> für die statistische Beziehung zwischen den beiden Datensätzen wird mit einer idealisierten Nullhypothese <span class="math inline">\(H_0\)</span> verglichen, die keine Beziehung zwischen den beiden Datensätzen annimmt.</li>
-<li>Der Vergleich wird als statistisch signifikant angesehen, wenn die Beziehung zwischen den Datensätzen eine unwahrscheinliche Realisierung der Nullhypothese gemäß einer Schwellenwahrscheinlichkeit - dem Signifikanzniveau - wäre.</li>
+<li>Beispiel: Wir vergleichen zwei Stichproben oder eine Stichprobe mit einem statistischen Modell.</li>
+<li>Dazu stellen zwei Hypothesen auf:
+<ul>
+<li><strong>Alternativhypothese</strong> (<span class="math inline">\(H_a\)</span>): Das ist unsere eigentliche Hypothese, dass es einen Unterschied oder eine Beziehung gibt.</li>
+<li><strong>Nullhypothese</strong> (<span class="math inline">\(H_0\)</span>): Wir nehmen an, dass es keinen Unterschied oder keine Beziehung gibt und testen, ob wir diese Hypothese ablehnen können.</li>
+</ul></li>
+<li><strong>Statistisch signifikant</strong> bedeutet: Die Wahrscheinlichkeit, dass wir unsere Beobachtung nur durch puren Zufall gemacht haben, ist sehr gering. Wenn das so ist, sagen wir, dass unser Ergebnis signifikant ist und <span class="math inline">\(H_a\)</span> unterstützt wird.</li>
 </ul>
-<p>angepasst von: <a href="https://en.wikipedia.org/wiki/Statistical%20hypothesis%20testing">https://en.wikipedia.org/wiki/Statistical hypothesis testing</a></p>
+<p>siehe dazu auch: <a href="https://de.wikipedia.org/wiki/Statistischer_Test">https://de.wikipedia.org/wiki/Statistischer_Test</a></p>
 </section>
-<section id="effektgröße-und-signifikanz" class="slide level2">
-<h2>Effektgröße und Signifikanz</h2>
+<section id="effektstärke-und-signifikanz" class="slide level2">
+<h2>Effektstärke und Signifikanz</h2>
 <p><br></p>
-<p>Bei relativen Mittelwertdifferenzen ist die relative Effektgröße:</p>
+<p>Für Mittelwertdifferenzen ist die relative Effektstärke:</p>
 <div class="bigfont">
 <p><span class="math display">\[
   \delta = \frac{\bar{\mu}_1-\bar{\mu}_2}{\sigma}=\frac{\Delta}{\sigma}
@@ -268,16 +267,16 @@ ToDo: insert formulae and algorithms from the slides
 </div>
 <p>mit:</p>
 <ul>
-<li>Mittelwerte von zwei Populationen <span class="math inline">\(\mu_1, \mu_2\)</span></li>
-<li>Effektgröße <span class="math inline">\(\Delta\)</span></li>
-<li>relative Effektgröße <span class="math inline">\(\delta\)</span> (auch Cohen’s d genannt)</li>
+<li>Mittelwerte von zwei Grundgesamtheiten <span class="math inline">\(\mu_1, \mu_2\)</span></li>
+<li>absolute Effektstärke <span class="math inline">\(\Delta\)</span></li>
+<li>relative Effektstärke <span class="math inline">\(\delta\)</span> (auch Cohen’s d genannt)</li>
 <li><strong>Signifikanz</strong> bedeutet, dass es unwahrscheinlich ist, dass ein beobachteter Effekt das Ergebnis einer reinen Zufallsvariation ist.</li>
 </ul>
 </section>
 <section id="nullhypothese-und-alternativhypothese" class="slide level2">
 <h2>Nullhypothese und Alternativhypothese</h2>
 <p><br></p>
-<p><span class="blue"><strong><span class="math inline">\(H_0\)</span></strong></span> Nullhypothese: Zwei Populationen unterscheiden sich nicht in Bezug auf eine bestimmte Eigenschaft.</p>
+<p><span class="blue"><strong><span class="math inline">\(H_0\)</span></strong></span> Nullhypothese: Zwei Grundgesamtheiten unterscheiden sich nicht in Bezug auf eine bestimmte Eigenschaft.</p>
 <ul>
 <li>Annahme: Der beobachtete Effekt ist rein zufällig entstanden, der wahre Effekt ist Null.</li>
 </ul>
@@ -289,27 +288,6 @@ ToDo: insert formulae and algorithms from the slides
 <p><strong>„Nicht signifikant“ bedeutet entweder kein Effekt oder Stichprobengröße zu klein!</strong></p>
 <p><br></p>
 <p><span class="blue">Anmerkung: Unterschiedliche Bedeutung von <strong>Signifikanz</strong> (<span class="math inline">\(H_0\)</span> unwahrscheinlich) und <strong>Relevanz</strong> (Effekt groß genug, um in der Praxis eine Rolle zu spielen).</span></p>
-<!------------------------------------------------------------------------------
-## Notes
-
-Statistical tests can only test for differences between samples, not
-for equality.  This means that $H_0$ is formulated to be rejected and that it
-is impossible to test if two populations are equal -- for principal reasons. If a
-test cannot reject "the null", it means only that an observed effect
-can also be explained as a result of random variability or error and
-that a potential effect was too small to be "significantly"
-detected, given the available sample size.
-
-**Important:** Not significant does not necessarily mean "no effect",
-it means "no effect or sample size too small"!
-
-Whether an effect is significant or not is determined by comparing the
-**p-value** of a test with a pre-defined critical value, the
-significance level $\alpha$ (or probability of error).  Here, the
-p-value is an estimate for the probability that an observed effect occured at random, 
-under the assumption that the null hypothesis is to be true.
-
-------------------------------------------------------------------------------->
 </section>
 <section id="der-p-wert" class="slide level2">
 <h2>Der p-Wert</h2>
@@ -323,17 +301,17 @@ under the assumption that the null hypothesis is to be true.
 <p><br></p>
 <ul>
 <li><p><a href="https://en.wikipedia.org/wiki/P-value">https://en.wikipedia.org/wiki/P-value</a>:</p></li>
-<li><p><span class="citation" data-cites="hubbard_alphabet_2004">Hubbard (<a href="#/referenzen" role="doc-biblioref" onclick="">2004</a>)</span> Alphabet Soup: Blurring the Distinctions Between p’s and a’s in Psychological Research, Theory Psychology 14(3), 295-327. DOI: <a href="https://doi.org/10.1177/0959354304043638">10.1177/0959354304043638</a></p></li>
+<li><p><span class="citation" data-cites="hubbard_alphabet_2004">Hubbard (<a href="#/literatur" role="doc-biblioref" onclick="">2004</a>)</span> Alphabet Soup: Blurring the Distinctions Between p’s and a’s in Psychological Research, Theory Psychology 14(3), 295-327. DOI: <a href="https://doi.org/10.1177/0959354304043638">10.1177/0959354304043638</a></p></li>
 </ul>
 </section>
 <section id="alpha--und-beta-fehler" class="slide level2">
 <h2>Alpha- und Beta-Fehler</h2>
 <table class="caption-top">
 <colgroup>
-<col style="width: 26%">
+<col style="width: 24%">
+<col style="width: 30%">
+<col style="width: 12%">
 <col style="width: 32%">
-<col style="width: 14%">
-<col style="width: 26%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -387,20 +365,21 @@ under the assumption that the null hypothesis is to be true.
 <p><strong>Verwendung in der Praxis</strong></p>
 <ul>
 <li>übliche Konvention in den Umweltwissenschaften: <span class="math inline">\(\alpha=0.05\)</span>, muss vorher festgelegt werden</li>
-<li><span class="math inline">\(\beta=f(\alpha, \text{Effektgröße}, \text{Stichprobengröße}, \text{Art des Tests})\)</span>, sollte <span class="math inline">\(\le 0,2\)</span> sein</li>
+<li><span class="math inline">\(\beta=f(\alpha, \text{Effektstärke}, \text{Stichprobengröße},
+\text{Art des Tests})\)</span>, sollte <span class="math inline">\(\le 0,2\)</span> sein</li>
 </ul>
 </section>
 <section id="signifikanz-und-relevanz" class="slide level2">
 <h2>Signifikanz und Relevanz</h2>
 <p><br></p>
-<p>Die Signifikanz ist nicht das einzig Wichtige. Achte auch auf die Effektgröße und die Relevanz!</p>
+<p>Die Signifikanz ist nicht das einzig Wichtige. Achte auch auf Effektstärke und Relevanz!</p>
 <ul>
 <li><p>Statistische <strong>Signifikanz</strong> bedeutet, dass die Nullhypothese <span class="math inline">\(H_0\)</span> im statistischen Sinne unwahrscheinlich ist.</p></li>
-<li><p>Praktische <strong>Relevanz</strong> (manchmal auch „praktische Signifikanz“ genannt) bedeutet, dass die Effektgröße groß genug ist, um in der Praxis eine Rolle zu spielen.</p></li>
+<li><p>Praktische <strong>Relevanz</strong> (manchmal auch „praktische Signifikanz“ genannt) bedeutet, dass die Effektstärke groß genug ist, um in der Praxis eine Rolle zu spielen.</p></li>
 </ul>
-<p>Ob ein Effekt relevant sein kann oder nicht, hängt also von seiner <strong>Effektgröße</strong> und dem Anwendungsbereich ab.</p>
+<p>Ob ein Effekt relevant sein kann oder nicht, hängt also von seiner <strong>Effektstärke</strong> und dem Anwendungsbereich ab.</p>
 <p>Betrachten wir zum Beispiel eine Impfung. Wenn ein Impfstoff in einem klinischen Test eine signifikante Wirkung hat, aber nur 10 von 1000 Menschen schützt, würde man diesen Effekt nicht als relevant ansehen und diesen Impfstoff nicht herstellen.</p>
-<p>Andererseits können auch kleine Wirkungen von Bedeutung sein. Wenn also eine toxische Substanz bei 1 von 1000 Personen Krebs auslösen würde, würden wir dies als relevant betrachten. Um dies als signifikante Auswirkung zu erkennen, wäre eine epidemiologische Studie mit einer großen Anzahl von Menschen erforderlich. Da es sich aber um eine hochrelevante Wirkung handelt, lohnt sich die Mühe.</p>
+<p>Andererseits können auch kleine Wirkungen von Bedeutung sein. Wenn also eine toxische Substanz bei 1 von 1000 Personen Krebs auslösen würde, würden wir das als relevant betrachten. Um es auch als signifikant zu erkennen, ist eine epidemiologische Studie mit einer großen Anzahl von Menschen erforderlich. Da es sich aber um eine hochrelevante Wirkung handelt, lohnt sich der Aufwand.</p>
 </section>
 <section id="take-home-messages" class="slide level2">
 <h2>Take home messages</h2>
@@ -413,13 +392,14 @@ under the assumption that the null hypothesis is to be true.
 <li>Vergrößerung der Stichprobe</li>
 <li>Erhöhung des experimentellen Effekts</li>
 <li>Reduzierung des experimentellen Fehlers</li>
-<li>ein leistungsfähigeres statistisches Verfahren in Betracht ziehen</li>
+<li>Wahl eines leistungsfähigeren statistischen Verfahrens</li>
 </ul></li>
-<li><p>Konzentriere dich nicht nur auf die p-Werte. Vergiss nie, auch Stichprobengröße, <strong>Effektgröße</strong> und Relevanz deiner Ergebnisse anzugeben.</p></li>
+<li><p>Wichtig: Konzentriere Dich nicht nur auf p-Werte und Signifikanz!</p></li>
+<li><p>Vergiss nie, Stichprobengröße, <strong>Effektstärke</strong> und Relevanz anzugeben.</p></li>
 <li><p>Bei großen Datensätzen:</p>
 <ul>
 <li>Statistisch signifikante Ergebnisse können leicht auch für sehr kleine und praktisch irrelevante Effekte erzielt werden.</li>
-<li><span class="math inline">\(\rightarrow\)</span> Effektgröße und Relevanz werden wichtiger als p-Werte.</li>
+<li><span class="math inline">\(\rightarrow\)</span> Effektstärke und Relevanz werden wichtiger als p-Werte.</li>
 </ul></li>
 </ul>
 <p>Der p-Wert ist nach wie vor ein wichtiges Instrument der Statistik, aber ein falscher Gebrauch kann zu Fehlinterpretationen führen.</p>
@@ -433,19 +413,19 @@ under the assumption that the null hypothesis is to be true.
 <h2>Einstichproben-t-Test</h2>
 <p><br></p>
 <ul>
-<li>prüft, ob eine Stichprobe aus einer Population mit gegebenem Mittelwert <span class="math inline">\(\mu\)</span> stammt</li>
-<li>basierend auf der Prüfung, ob der Mittelwert der Population <span class="math inline">\(\mu\)</span> im Konfidenzintervall von <span class="math inline">\(\bar{x}\)</span> liegt</li>
+<li>prüft, ob eine Stichprobe aus einer Grundgesamtheit mit gegebenem Mittelwert <span class="math inline">\(\mu\)</span> stammt</li>
+<li>basiert auf der Prüfung, ob der Mittelwert der Grundgesamtheit <span class="math inline">\(\mu\)</span> im Konfidenzintervall von <span class="math inline">\(\bar{x}\)</span> liegt</li>
 </ul>
 <ol type="1">
-<li>Nehmen wir eine Stichprobe mit dem Umfang <span class="math inline">\(n=10, \bar{x}=5.5, s=1\)</span> und <span class="math inline">\(\mu=5\)</span> an.</li>
-<li>Schätze das 95%-Konfidenzintervall von <span class="math inline">\(\bar{x}\)</span>:</li>
+<li>Angenommen, wir haben eine Stichprobe mit dem Umfang <span class="math inline">\(n=10, \bar{x}=5.5, s=1\)</span> und <span class="math inline">\(\mu=5\)</span>.</li>
+<li>Nun schätzen wir das 95%-Konfidenzintervall von <span class="math inline">\(\bar{x}\)</span>:</li>
 </ol>
 <p><span class="math display">\[
 CI = \bar{x} \pm t_{1-\alpha/2, n-1} \cdot s_{\bar{x}}
 \]</span> mit <span class="math display">\[
 s_{\bar{x}} = \frac{s}{\sqrt{n}} \qquad \text{(Standardfehler)}
 \]</span></p>
-<p>Verschiedene Berechnungsmethoden werden auf den nächsten Folien gezeigt</p>
+<p>Auf den folgenden Folien werden unterschiedliche Berechnungsmethoden vorgestellt.</p>
 </section>
 <section id="zur-erinnerung-standardabweichung-und-standardfehler" class="slide level2">
 <h2>Zur Erinnerung: Standardabweichung und Standardfehler</h2>
@@ -457,9 +437,9 @@ s_{\bar{x}} = \frac{s}{\sqrt{n}} \qquad \text{(Standardfehler)}
 <ul>
 <li>Standardfehler &lt; Standardabweichung</li>
 <li>misst die Genauigkeit des Mittelwerts</li>
-<li>CLT!</li>
+<li>ZGWS!</li>
 </ul>
-<p>Der Test basiert auf der Verteilung der Mittelwerte, nicht auf der Verteilung der ursprünglichen Daten.</p>
+<p>Wichtig: Der Test arbeitet mit der Verteilung der Mittelwerte, nicht mit der Verteilung der ursprünglichen Daten.</p>
 </section>
 <section id="methode-1-liegt-mu-im-konfidenzintervall" class="slide level2">
 <h2>Methode 1: Liegt <span class="math inline">\(\mu\)</span> im Konfidenzintervall?</h2>
@@ -479,19 +459,19 @@ s_{\bar{x}} = \frac{s}{\sqrt{n}} \qquad \text{(Standardfehler)}
 </div>
 <p><br></p>
 <ol start="3" type="1">
-<li><p>Prüfe, ob <span class="math inline">\(\mu=5.0\)</span> in diesem Intervall liegt?</p></li>
-<li><p>Ja, es <strong>ist</strong> innerhalb von <span class="math inline">\(\Rightarrow\)</span> <span class="blue">Unterschied nicht signifikant</span>.</p></li>
+<li><p>Prüfung, ob <span class="math inline">\(\mu=5.0\)</span> in diesem Intervall liegt?</p></li>
+<li><p>Ja, es befindet sich innerhalb <span class="math inline">\(\Rightarrow\)</span> <span class="blue">Unterschied nicht signifikant</span>.</p></li>
 </ol>
 </section>
 <section id="methode-2-vergleich-mit-einem-tabellierten-t-wert" class="slide level2">
 <h2>Methode 2: Vergleich mit einem tabellierten t-Wert</h2>
 <ol type="1">
-<li>Stelle die Gleichung des Konfidenzintervalls um, um einen beobachteten <span class="math inline">\(t_{obs}\)</span> zu berechnen</li>
+<li>Umstellung der Gleichung des Konfidenzintervalls, Berechnung eines beobachteten <span class="math inline">\(t\)</span>-Werts, <span class="math inline">\(t_{obs}\)</span>:</li>
 </ol>
 <p><span class="math display">\[
 t_{obs} = |\bar{x}-\mu | \cdot \frac{1}{s_{\bar{x}}} = \frac{|\bar{x}-\mu |}{s} \cdot \sqrt{n} = \frac{|5.5 -5.0|}{1.0} \cdot \sqrt{10}
 \]</span></p>
-<p>Wir können das in <strong>R</strong> berechnen:</p>
+<p>Berechnung in <strong>R</strong>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fl">5.5</span> <span class="sc">-</span> <span class="fl">5.0</span>) <span class="sc">/</span> <span class="fl">1.0</span> <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="dv">10</span>)</span>
 <span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a>t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -503,8 +483,8 @@ t_{obs} = |\bar{x}-\mu | \cdot \frac{1}{s_{\bar{x}}} = \frac{|\bar{x}-\mu |}{s} 
 <li>Vergleich von <span class="math inline">\(t_{obs}\)</span> mit einem tabellierten Wert</li>
 </ol>
 <ul>
-<li>„ Alter Style“: Ermittlung des kritischen t-Wertes in einer Tabelle für gegebenes <span class="math inline">\(\alpha\)</span> und Freiheitsgrade (<span class="math inline">\(n-1\)</span>)</li>
-<li>Für <span class="math inline">\(\alpha=0.05\)</span> und zweiseitig ist dies: <span class="math inline">\(t_{1-\alpha/2, n-1} = 2.26\)</span>.</li>
+<li>„Historische Methode“: Ablesen des kritischen t-Wertes für gegebenes <span class="math inline">\(\alpha\)</span> und Freiheitsgrade (<span class="math inline">\(n-1\)</span>) aus einer Tabelle.</li>
+<li>Für <span class="math inline">\(\alpha=0.05\)</span> und zweiseitig ist das: <span class="math inline">\(t_{1-\alpha/2, n-1} = 2.26\)</span>.</li>
 </ul>
 <p>Vergleich: <span class="math inline">\(1.58 &lt; 2.26\)</span> <span class="math inline">\(\Rightarrow\)</span> kein signifikanter Unterschied zwischen <span class="math inline">\(\bar{x}\)</span> und <span class="math inline">\(\mu\)</span>.</p>
 </section>
@@ -512,26 +492,26 @@ t_{obs} = |\bar{x}-\mu | \cdot \frac{1}{s_{\bar{x}}} = \frac{|\bar{x}-\mu |}{s} 
 <h2>Methode 3: Berechnung des p-Wertes aus <span class="math inline">\(t_{obs}\)</span></h2>
 <p><br></p>
 <ul>
-<li>Verwendung der computergestützten Wahrscheinlichkeitsfunktion (<code>pt</code>) anstelle des Tabellenvergleichs</li>
-<li><span class="math inline">\(t = t_{obs}\)</span> und die Freiheitsgrade (<span class="math inline">\(n-1\)</span>):</li>
+<li>Verwendung der computergestützten Wahrscheinlichkeitsfunktion der t-Verteilung (<code>pt</code>) anstelle des Tabellenvergleichs</li>
+<li>Für <span class="math inline">\(t = t_{obs}\)</span> und Anzahl der Freiheitsgrade (<span class="math inline">\(n-1\)</span>):</li>
 </ul>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(t, <span class="at">df =</span> <span class="dv">10</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="co"># 2 * (1 - p) is re-arranged from 1-alpha/2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(t, <span class="at">df =</span> <span class="dv">10</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="co"># 2 * (1 - p) ist umgestellt von 1-alpha/2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1483047</code></pre>
 </div>
 </div>
-<p>Dieser p-Wert = 0.1483047 ist größer als <span class="math inline">\(0,05\)</span>, so dass wir die Differenz als nicht signifikant betrachten.</p>
+<p>Der p-Wert = 0.1483047 ist größer als <span class="math inline">\(0,05\)</span>, somit betrachten wir die Differenz als nicht signifikant.</p>
 <p><br></p>
 <p><strong>FAQ: kleiner oder größer als?</strong></p>
 <p><br></p>
 <table class="caption-top">
 <colgroup>
-<col style="width: 18%">
-<col style="width: 37%">
-<col style="width: 29%">
-<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 35%">
+<col style="width: 34%">
+<col style="width: 13%">
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -559,13 +539,13 @@ t_{obs} = |\bar{x}-\mu | \cdot \frac{1}{s_{\bar{x}}} = \frac{|\bar{x}-\mu |}{s} 
 <h2>Methode 4: Integrierte t-Test-Funktion in R</h2>
 <p><br></p>
 <p>Das Gleiche kann man viel einfacher mit dem Computer in <strong>R</strong> machen.</p>
-<p>Nehmen wir an, wir haben eine Stichprobe mit <span class="math inline">\(\bar{x}=5, s=1\)</span>:</p>
+<p>Angenommen, wir haben eine Stichprobe mit <span class="math inline">\(\bar{x}=5, s=1\)</span>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="do">## definiere Stichprobe</span></span>
 <span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">5.5</span>, <span class="fl">3.5</span>, <span class="fl">5.4</span>, <span class="fl">5.3</span>, <span class="dv">6</span>, <span class="fl">7.2</span>, <span class="fl">5.4</span>, <span class="fl">6.3</span>, <span class="fl">4.5</span>, <span class="fl">5.9</span>)</span>
 <span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a aria-hidden="true" tabindex="-1"></a><span class="do">## führe Einstichproben-t-Test durch</span></span>
-<span id="cb7-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, <span class="at">mu=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, <span class="at">mu =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -581,7 +561,7 @@ mean of x
 </div>
 </div>
 <p>Der Test liefert den beobachteten t-Wert, das 95%-Konfidenzintervall und den p-Wert.</p>
-<p>Ein wichtiger Unterschied ist, dass diese Methode die Originaldaten benötigt, während die anderen Methoden nur Mittelwert, Standardabweichung und Stichprobenumfang benötigen.</p>
+<p>Ein wichtiger Unterschied ist, dass diese Methode mit den Originaldaten arbeitet, während die anderen Methoden nur Mittelwert, Standardabweichung und Stichprobenumfang benötigen.</p>
 </section>
 <section id="zweistichproben-t-test" class="slide level2">
 <h2>Zweistichproben-t-Test</h2>
@@ -608,8 +588,8 @@ mean of x mean of y
 <p><br></p>
 <ul>
 <li><span class="math inline">\(\rightarrow\)</span> beide Stichproben unterscheiden sich signifikant (<span class="math inline">\(p &lt; 0,05\)</span>)</li>
-<li>Anmerkung: <strong>R</strong> hat nicht den „normalen“ t-Test durchgeführt, sondern den Welch-Test (= heteroskedastischer t-Test)</li>
-<li>wobei die Varianzen der beiden Stichproben nicht identisch sein müssen.</li>
+<li>Anmerkung: <strong>R</strong> hat hier nicht den „normalen“ t-Test durchgeführt, sondern den Welch-Test (= heteroskedastischer t-Test),</li>
+<li>bei dem die Varianzen der beiden Stichproben nicht gleich sein müssen.</li>
 </ul>
 </section>
 <section id="hypothese-und-formel-für-den-zweistichproben-t-test" class="slide level2">
@@ -677,18 +657,18 @@ mean of x mean of y
 </div>
 </div>
 </div>
-<p>… ist nur die Standardmethode der „t.test“-Funktion.</p>
+<p>… das ist die Standardmethode der <code>t.test</code>-Funktion.</p>
 </section>
-<section id="gleichheit-der-varianz-f-test" class="slide level2">
-<h2>Gleichheit der Varianz: F-Test</h2>
+<section id="test-auf-varianzgleichheit-f-test" class="slide level2">
+<h2>Test auf Varianzgleichheit: F-Test</h2>
 <div class="column" style="width:69%;">
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\sigma_1^2 = \sigma_2^2\)</span></p>
-<p><span class="math inline">\(H_a\)</span>: ungleiche Varianzen</p>
+<p><span class="math inline">\(H_a\)</span>: Varianzen ungleich</p>
 <p><strong>Testkriterium:</strong></p>
 <p><span class="math display">\[F = \frac{s_1^2}{s_2^2} \]</span></p>
 <ul>
 <li>größere der beiden Varianzen im Zähler <span class="math inline">\((s^2_1 &gt; s^2_2)\)</span></li>
-<li>getrennte Freiheitsgrade (<span class="math inline">\(n-1\)</span>)</li>
+<li>Freiheitsgrade (<span class="math inline">\(n-1\)</span>) für Zähler und Nenner können verschieden sein</li>
 </ul>
 </div><div class="column" style="width:29%;">
 <div class="cell">
@@ -744,84 +724,8 @@ Fligner-Killeen:med chi-squared = 2.2486, df = 2, p-value = 0.3249</code></pre>
 </div>
 </div>
 </div><ul>
-<li>Tests werden häufig verwendet, um die Annahmen für ANOVA zu überprüfen.</li>
+<li>Tests werden häufig verwendet, um die Annahmen für eine ANOVA zu überprüfen.</li>
 </ul>
-<!------------------------------------------------------------------------------
-## Role of the F-test for the classical t-test procedure
-
-The classical procedure would be as follows:
-
-1. Perform a check for the identity of both variances with `var.test` beforehand:
-
-
-
-
-::: {.cell}
-
-```{.r .cell-code}
-var.test(x1, x2)  # F-Test
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-
-    F test to compare two variances
-
-data:  x1 and x2
-F = 0.21105, num df = 9, denom df = 9, p-value = 0.02989
-alternative hypothesis: true ratio of variances is not equal to 1
-95 percent confidence interval:
- 0.05242167 0.84968342
-sample estimates:
-ratio of variances 
-         0.2110493 
-```
-
-
-:::
-:::
-
-
-
-
-
-2. if $p < 0.05$ $\Rightarrow$ variances are significantly different $\rightarrow$ Welch test (`var.equal=FALSE`).
-
-3. if $p> 0.05$, $\Rightarrow$ assume equal variances $\rigtarrow$ "ordinary" t-test (`var.equal=TRUE`)
-
-
-
-
-::: {.cell}
-
-```{.r .cell-code}
-t.test(x1, x2, var.equal = TRUE) # classical t-test
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-
-    Two Sample t-test
-
-data:  x1 and x2
-t = -0.47421, df = 18, p-value = 0.6411
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -1.860538  1.175302
-sample estimates:
-mean of x mean of y 
- 5.074626  5.417244 
-```
-
-
-:::
-:::
-
-
-
-------------------------------------------------------------------------------->
 </section>
 <section id="empfehlung-für-zweistichproben-t-tests" class="slide level2">
 <h2>Empfehlung für Zweistichproben-t-Tests</h2>
@@ -829,18 +733,18 @@ mean of x mean of y
 <p><strong>Traditionelles Vorgehen:</strong></p>
 <ol type="1">
 <li>Test auf gleiche Varianzen mit Hilfe des F-Tests: <code>var.test(x, y)</code></li>
-<li>Wenn die Varianzen gleich sind: <code>t.test(x, y, var.equal=TRUE)</code></li>
+<li>Wenn die Varianzen gleich sind: <code>t.test(x, y, var.equal = TRUE)</code></li>
 <li>andernfalls: <code>t.test(x, y)</code> (= Welch-Test)</li>
 <li>Prüfe, ob beide Stichproben einer Normalverteilung folgen.</li>
 </ol>
 <p><br></p>
 <p><strong>Moderne Empfehlung (bevorzugt):</strong></p>
 <ol type="1">
-<li>Verwende keine Pre-Tests!</li>
+<li>Verwende keine Vortests!</li>
 <li>Verwende immer den Welch-Test: <code>t.test(x, y)</code></li>
-<li>Überprüfe die ungefähre Normalverteilung mit Box- oder QQ-Plots. Weniger wichtig, wenn <span class="math inline">\(n\)</span> groß ist.</li>
+<li>Überprüfe die ungefähre Normalverteilung mit Box- oder QQ-Plots. Das ist weniger wichtig, wenn <span class="math inline">\(n\)</span> groß ist.</li>
 </ol>
-<p>siehe <span class="citation" data-cites="zimmerman_note_2004">Zimmerman (<a href="#/referenzen" role="doc-biblioref" onclick="">2004</a>)</span> oder <a href="https://en.wikipedia.org/wiki/Welch%27s_t-test">Wikipedia</a>.</p>
+<p>siehe <span class="citation" data-cites="zimmerman_note_2004">Zimmerman (<a href="#/literatur" role="doc-biblioref" onclick="">2004</a>)</span> oder <a href="https://en.wikipedia.org/wiki/Welch%27s_t-test">Wikipedia</a>.</p>
 </section>
 <section id="gepaarter-t-test" class="slide level2">
 <h2>Gepaarter t-Test</h2>
@@ -853,7 +757,7 @@ mean of x mean of y
 <li><p>Beispiele: linker Arm / rechter Arm; vorher / nachher</p></li>
 <li><p>ist im Wesentlichen ein Einstichproben-t-Test von paarweisen Unterschieden gegen <span class="math inline">\(\mu=0\)</span><br>
 </p></li>
-<li><p>Reduziert den Einfluss individueller Unterschiede („Kovariaten“) durch Konzentration auf die Veränderung innerhalb jedes Paares</p></li>
+<li><p>Reduziert den Einfluss individueller Unterschiede („Kovariate“) dank Fokussierung auf die paarweisen Unterschiede</p></li>
 </ul>
 <div class="column" style="width:49%;">
 <div class="cell">
@@ -895,7 +799,7 @@ mean difference
 </div>
 </div>
 <p>p=0.016, signifikant</p>
-</div><p>Es ist zu erkennen, dass der gepaarte t-Test in diesem Fall eine größere Trennschärfe aufweist.</p>
+</div><p>Es ist zu erkennen, dass der gepaarte t-Test in diesem Fall eine größere Power (Trennschärfe) aufweist.</p>
 </section>
 <section id="mann-whitney--und-wilcoxon-test" class="slide level2">
 <h2>Mann-Whitney- und Wilcoxon-Test</h2>
@@ -904,25 +808,25 @@ mean difference
 <li>Nichtparametrische Tests:
 <ul>
 <li>Keine Annahmen über Form und Parameter der Verteilung, aber</li>
-<li>Verteilungen sollten ähnlich sein, sonst kann der Test irreführend sein.</li>
+<li>Verteilungen sollten ähnlich sein, sonst kann der Test irreführend werden.</li>
 </ul></li>
 <li>Basierend auf Rängen: Die Tests vergleichen die Ränge der Daten.</li>
-<li>Verwendung von Mann-Whitney für unabhängige Stichproben, Wilcoxon für gepaarte Stichproben.</li>
+<li>Bezeichnung “Mann-Whitney” für unabhängige Stichproben, “Wilcoxon” für gepaarte Stichproben.</li>
 </ul>
-<p><br> <strong>Grundprinzip:</strong> Zählung der so genannten „Umkehrungen“ der Ränge, bei denen sich die Proben überschneiden</p>
+<p><br> <strong>Grundprinzip:</strong> Zählung der so genannten „Inversionen“ der Ränge, d.h. wie oft sich die Reihenfolge der Stichproben überschneidet</p>
 <ul>
 <li>Stichprobe A: 1, 3, 4, 5, 7</li>
 <li>Stichprobe B: 6, 8, 9, 10, 11</li>
-<li>Beide Stichproben zusammen geordnet: 1, 3, 4, 5, <span class="red">6</span>, 7, <span class="red">8</span>, <span class="red">9</span>, <span class="red">10</span>, <span class="red">11</span></li>
-<li>Umkehrungen: <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(U = 1\)</span></li>
+<li>Beide Stichproben gemeinsam geordnet: 1, 3, 4, 5, <span class="red">6</span>, 7, <span class="red">8</span>, <span class="red">9</span>, <span class="red">10</span>, <span class="red">11</span></li>
+<li>Inversionen: <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(U = 1\)</span></li>
 </ul>
 </section>
-<section id="mann-whitney-testverfahren-in-der-praxis" class="slide level2">
-<h2>Mann-Whitney-Testverfahren in der Praxis</h2>
+<section id="mann-whitney-test-in-der-praxis" class="slide level2">
+<h2>Mann-Whitney-Test in der Praxis</h2>
 <p><br></p>
 <ol type="1">
 <li>Weise den beiden Stichproben <span class="math inline">\(A\)</span> und <span class="math inline">\(B\)</span> mit dem Stichprobenumfang <span class="math inline">\(m\)</span> und <span class="math inline">\(n\)</span> die Ränge <span class="math inline">\(R_A\)</span> und <span class="math inline">\(R_B\)</span> zu.</li>
-<li>Berechne die Anzahl der Umkehrungen <span class="math inline">\(U\)</span>:</li>
+<li>Berechne die Anzahl der Inversionen <span class="math inline">\(U\)</span>:</li>
 </ol>
 <p><span class="math display">\[\begin{align*}
      U_A &amp;= m \cdot n + \frac{m (m + 1)}{2} - \sum_{i=1}^m R_A \\
@@ -931,7 +835,7 @@ mean difference
 \end{align*}\]</span></p>
 <ul>
 <li>Kritische Werte von <span class="math inline">\(U\)</span> finden sich in gängigen Statistik-Lehrbüchern.</li>
-<li>In <strong>R</strong> nicht notwendig, p-Wert wird direkt ausgegeben. <strong>Anmerkung:</strong> Verwende spezielle Version <code>wilcox.exact</code> mit Korrektur, wenn die Stichprobe Bindungen hat.</li>
+<li>In <strong>R</strong> nicht notwendig, p-Wert wird direkt ausgegeben. <strong>Anmerkung:</strong> Verwende spezielle Version <code>wilcox.exact</code> mit Korrektur, wenn mehrfach gleiche Werte (Bindungen) vorliegen.</li>
 </ul>
 </section>
 <section id="mann-whitney---wilcoxon-test-in-r" class="slide level2">
@@ -941,7 +845,7 @@ mean difference
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">7</span>)</span>
 <span id="cb21-2"><a aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>)</span>
 <span id="cb21-3"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(A, B) <span class="co"># für gepaarte Daten das optionale Argument `paired = TRUE` verwenden</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(A, B) <span class="co"># für gepaarte Daten optionales Argument `paired = TRUE` verwenden</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Wilcoxon rank sum exact test
@@ -978,7 +882,7 @@ alternative hypothesis: true mu is not equal to 0</code></pre>
 <ul>
 <li>Grundprinzip: Schätzung einer Teststatistik <span class="math inline">\(\xi_{obs}\)</span> aus der Stichprobe,</li>
 <li>Resampling: Simulieren vieler <span class="math inline">\(\xi_{i, sim}\)</span> aus zufällig permutiertem Datensatz (<span class="math inline">\(n = 999\)</span> oder mehr)</li>
-<li>Wo erscheint <span class="math inline">\(\xi_{est}\)</span> innerhalb der geordneten Reihe der simulierten Werte <span class="math inline">\(\xi_{i, sim}\)</span>?</li>
+<li>Wie extrem ist <span class="math inline">\(\xi_{est}\)</span> innerhalb der geordneten Reihe der simulierten Werte <span class="math inline">\(\xi_{i, sim}\)</span>?</li>
 </ul>
 
 <img data-src="05-classtests_files/figure-revealjs/permutation-test-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>Sei <span class="math inline">\(\xi_{obs}\)</span> in unserem Beispiel <span class="math inline">\(4.5\)</span>, dann sei <span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(p= 0.97\)</span>.</p>
@@ -995,17 +899,17 @@ alternative hypothesis: true mu is not equal to 0</code></pre>
 <ul>
 <li><p>Hängt ab von:</p>
 <ul>
-<li>der relativen Effektgröße <span class="math inline">\(\frac{\mathrm{Effekt}}{\mathrm{Standardabweichung}}\)</span></li>
+<li>der relativen Effektstärke <span class="math inline">\(\frac{\mathrm{Effekt}}{\mathrm{Standardabweichung}}\)</span></li>
 </ul>
 <p><span class="math display">\[\delta=\frac{(\bar{x}_1-\bar{x}_2)}{s}\]</span></p>
 <ul>
-<li>der Stichprobenumfang <span class="math inline">\(n\)</span></li>
-<li>und das vordefinierte Signifikanzniveau <span class="math inline">\(\alpha\)</span></li>
-<li>und die angewandte Methode</li>
+<li>dem Stichprobenumfang <span class="math inline">\(n\)</span></li>
+<li>dem vordefinierten Signifikanzniveau <span class="math inline">\(\alpha\)</span></li>
+<li>und der angewandten statistischen Methode</li>
 </ul></li>
 <li><p>Je kleiner <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(n\)</span> und <span class="math inline">\(\delta\)</span>, desto größer ist der Fehler zweiter Art (<span class="math inline">\(\beta\)</span>).</p></li>
 <li><p>Der <span class="math inline">\(\beta\)</span>-Fehler ist die Wahrscheinlichkeit, Effekte zu übersehen, obwohl sie vorhanden sind.</p></li>
-<li><p>Die Trennschärfe (<span class="math inline">\(1-\beta\)</span>) ist die Wahrscheinlichkeit, dass ein Test signifikant ist, wenn ein Effekt vorhanden ist.</p></li>
+<li><p>Die Trennschärfe (Power) (<span class="math inline">\(1-\beta\)</span>) ist die Wahrscheinlichkeit, dass ein Test signifikant ist, wenn ein Effekt vorhanden ist.</p></li>
 </ul>
 </section>
 <section id="poweranalyse-1" class="slide level2">
@@ -1017,10 +921,10 @@ n = \bigg(\frac{z_\alpha + z_{1-\beta}}{\delta}\bigg)^2
 \]</span></p>
 <ul>
 <li><span class="math inline">\(z\)</span>: die Quantile (<code>qnorm</code>) der Standardnormalverteilung für <span class="math inline">\(\alpha\)</span> und für <span class="math inline">\(1-\beta\)</span></li>
-<li><span class="math inline">\(\delta=\Delta / s\)</span>: relative Effektgröße.</li>
+<li><span class="math inline">\(\delta=\Delta / s\)</span>: relative Effektstärke.</li>
 </ul>
 <p><strong>Beispiel</strong></p>
-<p>Zweiseitiger Test mit <span class="math inline">\(\alpha=0,025\)</span> und <span class="math inline">\(\beta=0,2\)</span></p>
+<p>Zweiseitiger Test mit <span class="math inline">\(\alpha=0.025\)</span> und <span class="math inline">\(\beta=0.2\)</span></p>
 <p><span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(z_\alpha = 1.96\)</span>, <span class="math inline">\(z_\beta=0.84\)</span>, dann:</p>
 <p><span class="math display">\[
 n= (1.96 + 0.84)^2 \cdot 1/\delta^2 \approx 8 /\delta^2
@@ -1030,7 +934,7 @@ n= (1.96 + 0.84)^2 \cdot 1/\delta^2 \approx 8 /\delta^2
 </section>
 <section id="trennschärfe-des-t-tests" class="slide level2">
 <h2>Trennschärfe des t-Tests</h2>
-<p>Die Trennschärfe eines t-Tests bzw. der Mindeststichprobenumfang kann wie folgt berechnet werden: <code>power.t.test()</code>:</p>
+<p>Die Trennschärfe eines t-Tests bzw. der Mindeststichprobenumfang kann mit der Funktion <code>power.t.test()</code> geschätzt werden:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">power.t.test</span>(<span class="at">n=</span><span class="dv">5</span>, <span class="at">delta=</span><span class="fl">0.5</span>, <span class="at">sig.level=</span><span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1049,13 +953,13 @@ NOTE: n is number in *each* group</code></pre>
 </div>
 <p><span class="math inline">\(\rightarrow\)</span> ‘power’ = 0.10</p>
 <ul>
-<li>Für <span class="math inline">\(n=5\)</span> wird ein vorhandener Effekt von <span class="math inline">\(0,5\sigma\)</span> nur in 1 von 10 Fällen entdeckt.</li>
-<li>Für eine Trennschärfe von 80% bei <span class="math inline">\(n=5\)</span> benötigen wir eine Effektgröße von mindestens <span class="math inline">\(2\sigma\)</span>:</li>
+<li>Für <span class="math inline">\(n=5\)</span> wird ein vorhandener Effekt von <span class="math inline">\(0.5\sigma\)</span> nur in 1 von 10 Fällen entdeckt.</li>
+<li>Für eine Trennschärfe von 80% bei <span class="math inline">\(n=5\)</span> benötigen wir eine Effektstärke von mindestens <span class="math inline">\(2\sigma\)</span>:</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">power.t.test</span>(<span class="at">n=</span><span class="dv">5</span>, <span class="at">power=</span><span class="fl">0.8</span>, <span class="at">sig.level=</span><span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Für einen schwachen Effekt von <span class="math inline">\(0,5\sigma\)</span> benötigen wir eine Stichprobengröße von <span class="math inline">\(n\ge64\)</span> in jeder Gruppe:</p>
+<p>Für einen schwachen Effekt von <span class="math inline">\(0.5\sigma\)</span> benötigen wir eine Stichprobengröße von <span class="math inline">\(n\ge64\)</span> in jeder Gruppe:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">power.t.test</span>(<span class="at">delta=</span><span class="fl">0.5</span>,<span class="at">power=</span><span class="fl">0.8</span>,<span class="at">sig.level=</span><span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1064,13 +968,13 @@ NOTE: n is number in *each* group</code></pre>
 <section id="simulierte-trennschärfe-eines-t-tests" class="slide level2">
 <h2>Simulierte Trennschärfe eines t-Tests</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Populationsparameter</span></span>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Grundgesamtheitsparameter</span></span>
 <span id="cb30-2"><a aria-hidden="true" tabindex="-1"></a>n      <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb30-3"><a aria-hidden="true" tabindex="-1"></a>xmean1 <span class="ot">&lt;-</span> <span class="dv">50</span>; xmean2 <span class="ot">&lt;-</span> <span class="dv">55</span></span>
 <span id="cb30-4"><a aria-hidden="true" tabindex="-1"></a>xsd1   <span class="ot">&lt;-</span> xsd2 <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb30-5"><a aria-hidden="true" tabindex="-1"></a>alpha  <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
 <span id="cb30-6"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-7"><a aria-hidden="true" tabindex="-1"></a>nn <span class="ot">&lt;-</span> <span class="dv">1000</span>   <span class="co"># Anzahl an Testläufen in der Simulation</span></span>
+<span id="cb30-7"><a aria-hidden="true" tabindex="-1"></a>nn <span class="ot">&lt;-</span> <span class="dv">1000</span>   <span class="co"># Anzahl an Testläufen der Simulation</span></span>
 <span id="cb30-8"><a aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> b <span class="ot">&lt;-</span> <span class="dv">0</span>  <span class="co"># initialisiere Zähler</span></span>
 <span id="cb30-9"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nn) {</span>
 <span id="cb30-10"><a aria-hidden="true" tabindex="-1"></a>  <span class="co"># erstelle Zufallszahlen</span></span>
@@ -1115,14 +1019,14 @@ NOTE: n is number in *each* group</code></pre>
 <h2>Mehrfeldertafeln für nominale Variablen</h2>
 <ul>
 <li>Werden für nominale (d.&nbsp;h. kategoriale oder qualitative) Daten verwendet.</li>
-<li>Beispiele: Augen- und Haarfarbe, medizinische Behandlung und die Anzahl der geheilten/nicht geheilten Personen</li>
-<li>Wichtig: Verwende <strong>absolute Messwerte</strong> (echte Zahlen!), keine Prozentsätze oder andere berechnete Daten (z. B. nicht so etwas wie Biomasse pro Fläche)</li>
+<li>Beispiele: Augen- und Haarfarbe, medizinische Behandlung und Anzahl der geheilten/nicht geheilten Personen</li>
+<li>Wichtig: Verwende <strong>absolute Messwerte</strong> (echte Zahlen!), keine Prozentsätze oder andere berechnete Daten (also nicht etwa Biomasse pro Fläche)</li>
 </ul>
-<p><strong>Beispiel:</strong> Vorkommen von Daphnien (Wasserflöhen) in einem See:</p>
+<p><strong>Beispiel:</strong> Verteilung von Daphnien (Wasserflöhen) in den Wasserschichten eines Sees:</p>
 <table class="caption-top">
 <thead>
 <tr class="header">
-<th style="text-align: right;">Klone</th>
+<th style="text-align: right;">Klon</th>
 <th style="text-align: center;">Obere Schicht</th>
 <th style="text-align: center;">Tiefe Schicht</th>
 </tr>
@@ -1146,12 +1050,12 @@ NOTE: n is number in *each* group</code></pre>
 </tbody>
 </table>
 <ul>
-<li>Futteralgen im sauerstoffarmen Tiefenwasser</li>
-<li>genetisch weiterentwickelte Klone mit höherem Hämoglobingehalt können in tiefes Wasser tauchen</li>
+<li>In der oberen Schicht wurden die Futteralgen bereits aufgefressen. Sie finden sich nur noch im sauerstoffarmen Tiefenwasser.</li>
+<li>genetisch angepasste Klone mit höherem Hämoglobingehalt können in sauerstoffreies Wasser tauchen</li>
 </ul>
 </section>
-<section id="berechnung-des-chi2-tests" class="slide level2">
-<h2>Berechnung des <span class="math inline">\(\chi^2\)</span>-Tests</h2>
+<section id="rechenschema-des-chi2-tests" class="slide level2">
+<h2>Rechenschema des <span class="math inline">\(\chi^2\)</span>-Tests</h2>
 <ol type="1">
 <li>Beobachtete Häufigkeiten <span class="math inline">\(O_{ij}\)</span></li>
 </ol>
@@ -1307,8 +1211,8 @@ alternative hypothesis: two.sided</code></pre>
 <p><br></p>
 <p><span class="math inline">\(\rightarrow\)</span> signifikante Korrelation zwischen den Klonen und der vertikalen Verteilung im See.</p>
 </section>
-<section id="lieblingszahlen-der-hse-studenten" class="slide level2">
-<h2>Lieblingszahlen der HSE-Studenten</h2>
+<section id="lieblingszahlen-von-hse-studenten" class="slide level2">
+<h2>Lieblingszahlen von HSE-Studenten</h2>
 
 <img data-src="05-classtests_files/figure-revealjs/favorite-numbers-1.png" width="960" class="r-stretch"><ul>
 <li>Zahlen von 1..9, <span class="math inline">\(n=34\)</span></li>
@@ -1330,7 +1234,7 @@ alternative hypothesis: two.sided</code></pre>
 data:  obsfreq
 X-squared = 13.647, df = 8, p-value = 0.09144</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(obsfreq, <span class="at">simulate.p.value=</span><span class="cn">TRUE</span>, <span class="at">B=</span><span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(obsfreq, <span class="at">simulate.p.value =</span> <span class="cn">TRUE</span>, <span class="at">B =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Chi-squared test for given probabilities with simulated p-value (based
@@ -1369,7 +1273,7 @@ T = n \omega^2 = \frac{1}{12n} + \sum_{i=1}^n \left[ \frac{2i-1}{2n}-F(x_i) \rig
 </div>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a aria-hidden="true" tabindex="-1"></a><span class="do">## erstelle eine kumulative Funktion mit gleicher Wahrscheinlichkeit für alle Fälle</span></span>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a aria-hidden="true" tabindex="-1"></a><span class="do">## erstelle kumulative Verteilung mit identischer Wahrscheinlichkeit für alle Fälle</span></span>
 <span id="cb45-2"><a aria-hidden="true" tabindex="-1"></a>cdf <span class="ot">&lt;-</span> <span class="fu">stepfun</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="fu">cumsum</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">9</span>, <span class="dv">9</span>))))</span>
 <span id="cb45-3"><a aria-hidden="true" tabindex="-1"></a>cdf <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>)</span>
 <span id="cb45-4"><a aria-hidden="true" tabindex="-1"></a></span>
@@ -1385,8 +1289,8 @@ alternative hypothesis: Two.sided</code></pre>
 </div>
 </div>
 <ul>
-<li>Der Cramér-von-Mises-Test arbeitet mit den ursprünglichen, nicht gebündelten Werten.</li>
-<li>Verwendung der kumulativen Verteilungsfunktion <span class="blue">achtet auf die Reihenfolge der Klassen</span> <span class="math inline">\(\rightarrow\)</span> leistungsfähiger als <span class="math inline">\(\chi^2\)</span>-Test.</li>
+<li>Der Cramér-von-Mises-Test arbeitet mit den ursprünglichen, nicht in klassen eingeteilten Werten.</li>
+<li>Verwendung der kumulativen Verteilungsfunktion <span class="blue">berücksichtigt die Reihenfolge der Klassen</span> <span class="math inline">\(\rightarrow\)</span> leistungsfähiger als <span class="math inline">\(\chi^2\)</span>-Test.</li>
 </ul>
 </section></section>
 <section>
@@ -1406,20 +1310,20 @@ alternative hypothesis: Two.sided</code></pre>
 <ul>
 <li>Macht die Normalverteilung für die Daten „Sinn“?</li>
 <li>Sind die Daten metrisch (kontinuierlich)?</li>
-<li>Was ist der Prozess der Datenerzeugung? <span class="math inline">\(\rightarrow\)</span> * Kontextuelles Verständnis!</li>
+<li>Was ist der Prozess der Datenerzeugung <span class="math inline">\(\rightarrow\)</span> fachlicher Kontext?</li>
 </ul>
-<p><strong>Inhärente Nicht-Normalität</strong></p>
+<p><strong>Intrinsische Nicht-Normalität</strong></p>
 <blockquote>
-<p>Einige Datentypen, wie z. B. Zähldaten (z. B. Anzahl der Vorkommnisse) und binäre Daten (z. B. Ja/Nein), sind von Natur aus nicht normal.</p>
+<p>Einige Datentypen, wie z. B. Zähldaten (z. B. Anzahl der Vorkommnisse) oder binäre Daten (z. B. Ja/Nein), sind von Natur aus nicht normalverteilt.</p>
 </blockquote>
 <ul>
-<li>Binäre Daten: Verwende Methoden für Binomialverteilung mit Rohdaten anstelle von Prozentsätzen</li>
-<li>Zähldaten: Verwende Methoden für die Poisson-Verteilung</li>
+<li>Binäre Daten: Verwende Methoden für Binomialverteilung mit den Rohdaten anstelle von Prozentsätzen</li>
+<li>Zähldaten: Nutze Methoden für die Poisson-Verteilung</li>
 </ul>
 </section>
 <section id="shapiro-wilks-w-test" class="slide level2">
 <h2>Shapiro-Wilks-W-Test <span class="red">?</span></h2>
-<p><span class="math inline">\(\rightarrow\)</span> Ziel: prüft, ob eine Stichprobe mit einer Normalverteilung übereinstimmt</p>
+<p><span class="math inline">\(\rightarrow\)</span> Ziel: prüft, ob eine Stichprobe aus einer Normalverteilung stammt</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
 <span id="cb47-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1432,9 +1336,9 @@ W = 0.99064, p-value = 0.7165</code></pre>
 </div>
 </div>
 <p><br></p>
-<p><span class="math inline">\(\rightarrow\)</span> der <span class="math inline">\(p\)</span>-Wert ist größer als 0,05, also würden wir <span class="math inline">\(H_0\)</span> behalten und schlussfolgern, dass nichts gegen die Annahme der Normalität spricht</p>
+<p><span class="math inline">\(\rightarrow\)</span> der <span class="math inline">\(p\)</span>-Wert ist größer als 0.05, also würden wir <span class="math inline">\(H_0\)</span> behalten und schlussfolgern, dass nichts gegen die Annahme der Normalität spricht</p>
 <p><br></p>
-<p>Die Interpretation des Shapiro-Wilks-Tests ist mit Vorsicht zu genießen:</p>
+<p>Die Interpretation des Shapiro-Wilks-Tests ist mit Vorsicht zu betrachten:</p>
 <ul>
 <li>für kleine <span class="math inline">\(n\)</span> ist der Test nicht empfindlich genug</li>
 <li>bei großen <span class="math inline">\(n\)</span> ist er überempfindlich</li>
@@ -1477,10 +1381,10 @@ W = 0.99064, p-value = 0.7165</code></pre>
 </div>
 </div>
 </div><ul>
-<li><span class="math inline">\(x\)</span>: theoretische Quantile, in denen ein Wert bei Normalverteilung gefunden werden sollte</li>
+<li><span class="math inline">\(x\)</span>: theoretische Quantile, wo die Werte bei Vorliegen einer Normalverteilung gefunden werden sollten</li>
 <li><span class="math inline">\(y\)</span>: normalisierte und geordnete Messwerte (<span class="math inline">\(z\)</span>-Werte)</li>
 <li>skaliert in der Einheit der Standardabweichungen</li>
-<li>Normalverteilung, wenn die Punkte einer Geraden folgen</li>
+<li>Normalverteilung liegt vor, wenn die Punkte einer Geraden folgen</li>
 </ul>
 </section>
 <section id="transformationen" class="slide level2">
@@ -1488,7 +1392,7 @@ W = 0.99064, p-value = 0.7165</code></pre>
 <ul>
 <li>Ermöglicht die Anwendung von Methoden, die für normalverteilte Daten entwickelt wurden, auf nicht-normalverteilte Fälle.</li>
 <li>in der Vergangenheit sehr verbreitet, manchmal immer noch nützlich</li>
-<li>Moderne Methoden (z. B. verallgemeinerte lineare Modelle, GLM) können bestimmte Verteilungen direkt verarbeiten, wie die Binomial-, Gamma- oder Poisson-Verteilung.</li>
+<li>Moderne Methoden (z. B. verallgemeinerte lineare Modelle, GLM) können bestimmte Verteilungen direkt verarbeiten, z.B. Binomial-, Gamma- oder Poisson-Verteilung.</li>
 </ul>
 <p><strong>Transformationen für rechtsschiefe Daten</strong></p>
 <ul>
@@ -1547,7 +1451,7 @@ W = 0.99064, p-value = 0.7165</code></pre>
 </div>
 </div><ul>
 <li>Rechtsschiefe Verteilung.</li>
-<li>Berechnungen des Biovolumens, die für Studien zum Nahrungsnetz und zur Vorhersage von Algenblüten verwendet werden.</li>
+<li>Berechnungen des Biovolumens für Studien zum Nahrungsnetz und zur Vorhersage von Algenmassenentwicklungen.</li>
 </ul>
 
 <aside><div>
@@ -1598,13 +1502,13 @@ y^\lambda &amp; | &amp; \lambda \ne 0\\
 <p><br></p>
 <ul>
 <li>Die gepunkteten vertikalen Linien und die horizontale 95%-Linie zeigen die Vertrauensgrenzen für mögliche Transformationen.</li>
-<li>Die Zahlen sind angenähert <span class="math inline">\(\rightarrow\)</span> runde auf eine Dezimalstelle.</li>
+<li>Die Zahlen sind angenähert <span class="math inline">\(\rightarrow\)</span> eine Dezimalstelle genügt.</li>
 <li>Hier können wir entweder eine <strong>log</strong>-Transformation (<span class="math inline">\(\lambda=0\)</span>) oder eine Potenz von <span class="math inline">\(\approx 0.5\)</span> verwenden.</li>
 </ul>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:47%;">
-<p>Ermittel den Zahlenwert direkt:</p>
+<p>Direkte Ermittlung des Zahlenwerts:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a aria-hidden="true" tabindex="-1"></a>bc <span class="ot">&lt;-</span> <span class="fu">boxcox</span>(Nit90 <span class="sc">~</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1626,20 +1530,20 @@ y^\lambda &amp; | &amp; \lambda \ne 0\\
 </div>
 </div>
 </div></section>
-<section id="test-von-sammelproben-mit-unterschiedlichen-mittelwerten" class="slide level2">
-<h2>Test von Sammelproben mit unterschiedlichen Mittelwerten</h2>
+<section id="test-von-gepoolten-stichproben-mit-unterschiedlichen-mittelwerten" class="slide level2">
+<h2>Test von gepoolten Stichproben mit unterschiedlichen Mittelwerten</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">boxcox</span>(biovol <span class="sc">~</span> group, <span class="at">data =</span> dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="05-classtests_files/figure-revealjs/boxcox2-1.png" class="quarto-figure quarto-figure-center r-stretch" width="576"><ul>
-<li>Um die gemeinsame Verteilung aller Gruppen auf einmal zu testen, gib die erklärenden Variablen auf der rechten Seite der Modellformel an: <code>biovol ~ group</code></li>
+<li>Um die gemeinsame Verteilung aller Gruppen auf einmal zu testen, gibt man die Erklärungsvariablen auf der rechten Seite der Modellformel an: <code>biovol ~ group</code></li>
 <li>Die optimale Transformation für beide Stichproben zusammen ist <strong>log</strong>.</li>
 </ul>
 </section></section>
 <section>
-<section id="abhängigkeit-und-korrelation" class="title-slide slide level1 center">
-<h1>Abhängigkeit und Korrelation</h1>
+<section id="korrelation-und-regression" class="title-slide slide level1 center">
+<h1>Korrelation und Regression</h1>
 
 </section>
 <section id="korrelation" class="slide level2">
@@ -1745,8 +1649,8 @@ r_p=\frac {\sum xy - \sum y \sum y / n}
 </div>
 </div>
 </div></section>
-<section id="welche-größe-der-korrelation-deutet-auf-eine-abhängigkeit-hin" class="slide level2">
-<h2>Welche Größe der Korrelation deutet auf eine Abhängigkeit hin?</h2>
+<section id="welcher-korrelationskoeffizient-deutet-auf-eine-abhängigkeit-hin" class="slide level2">
+<h2>Welcher Korrelationskoeffizient deutet auf eine Abhängigkeit hin?</h2>
 <div class="column" style="width:49%;">
 <div class="cell">
 <div class="cell-output-display">
@@ -1948,7 +1852,7 @@ r_s=1-\frac{6 \cdot 2}{5\cdot (25-1)}=1-\frac{12}{120}=0.9
 </ul>
 <p><strong>Nachteile:</strong></p>
 <ul>
-<li>gewisser Informationsverlust aufgrund der Rangfolge,</li>
+<li>gewisser Informationsverlust aufgrund der Rangbildung,</li>
 <li>keine Informationen über die Art der Abhängigkeit,</li>
 <li>keine direkte Beziehung zum Bestimmtheitsmaß.</li>
 </ul>
@@ -2001,7 +1905,7 @@ sample estimates:
 <section id="ausblick-mehr-als-zwei-unabhängige-variablen" class="slide level2">
 <h2>Ausblick: Mehr als zwei unabhängige Variablen</h2>
 <p><br></p>
-<p><strong>Mehrfache Korrelation</strong></p>
+<p><strong>Multiple Korrelation</strong></p>
 <ul>
 <li><span class="blue">Beispiel:</span> Chl-a=<span class="math inline">\(f(x_1, x_2, x_3, \dots)\)</span>, wobei <span class="math inline">\(x_i\)</span> = Biomasse der <span class="math inline">\(i\)</span>-ten Phytoplanktonart.</li>
 <li>multipler Korrelationskoeffizient</li>
@@ -2018,8 +1922,8 @@ sample estimates:
 <li>Wende die multiple Regression mit Sorgfalt an und nutze Prozesswissen.</li>
 </ul>
 </section>
-<section id="referenzen" class="slide level2 smaller scrollable">
-<h2>Referenzen</h2>
+<section id="literatur" class="slide level2 smaller scrollable">
+<h2>Literatur</h2>
 <p><br></p>
 
 

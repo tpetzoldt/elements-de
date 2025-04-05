@@ -1764,7 +1764,7 @@
     "href": "slides/05-classtests.html#statistische-tests",
     "title": "05-Klassische Tests",
     "section": "Statistische Tests",
-    "text": "Statistische Tests\n\nEin statistischer Hypothesentest ist eine Methode der statistischen Inferenz.\n\nÜblicherweise werden zwei Stichproben miteinander verglichen, oder eine Stichprobe wird mit Eigenschaften eines idealisierten Modells verglichen.\nEine Hypothese \\(H_a\\) für die statistische Beziehung zwischen den beiden Datensätzen wird mit einer idealisierten Nullhypothese \\(H_0\\) verglichen, die keine Beziehung zwischen den beiden Datensätzen annimmt.\nDer Vergleich wird als statistisch signifikant angesehen, wenn die Beziehung zwischen den Datensätzen eine unwahrscheinliche Realisierung der Nullhypothese gemäß einer Schwellenwahrscheinlichkeit - dem Signifikanzniveau - wäre.\n\nangepasst von: https://en.wikipedia.org/wiki/Statistical hypothesis testing",
+    "text": "Statistische Tests\n\nEin statistischer Test hilft zu entscheiden, ob eine Hypothese wahrscheinlich richtig ist oder nicht, basierend auf vorliegenden Daten.\n\nBeispiel: Wir vergleichen zwei Stichproben oder eine Stichprobe mit einem statistischen Modell.\nDazu stellen zwei Hypothesen auf:\n\nAlternativhypothese (\\(H_a\\)): Das ist unsere eigentliche Hypothese, dass es einen Unterschied oder eine Beziehung gibt.\nNullhypothese (\\(H_0\\)): Wir nehmen an, dass es keinen Unterschied oder keine Beziehung gibt und testen, ob wir diese Hypothese ablehnen können.\n\nStatistisch signifikant bedeutet: Die Wahrscheinlichkeit, dass wir unsere Beobachtung nur durch puren Zufall gemacht haben, ist sehr gering. Wenn das so ist, sagen wir, dass unser Ergebnis signifikant ist und \\(H_a\\) unterstützt wird.\n\nsiehe dazu auch: https://de.wikipedia.org/wiki/Statistischer_Test",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1786,7 +1786,7 @@
     "href": "slides/05-classtests.html#nullhypothese-und-alternativhypothese",
     "title": "05-Klassische Tests",
     "section": "Nullhypothese und Alternativhypothese",
-    "text": "Nullhypothese und Alternativhypothese\n\n\\(H_0\\) Nullhypothese: Zwei Populationen unterscheiden sich nicht in Bezug auf eine bestimmte Eigenschaft.\n\nAnnahme: Der beobachtete Effekt ist rein zufällig entstanden, der wahre Effekt ist Null.\n\n\\(H_a\\) Alternativhypothese (Versuchshypothese): Vorhandensein eines bestimmten Effekts.\n\nEine Alternativhypothese ist nie vollständig wahr oder „bewiesen“.\nDie Annahme von \\(H_A\\) bedeutet nur, dass \\(H_0\\) unwahrscheinlich ist.\n\n„Nicht signifikant“ bedeutet entweder kein Effekt oder Stichprobengröße zu klein!\n\nAnmerkung: Unterschiedliche Bedeutung von Signifikanz (\\(H_0\\) unwahrscheinlich) und Relevanz (Effekt groß genug, um in der Praxis eine Rolle zu spielen).",
+    "text": "Nullhypothese und Alternativhypothese\n\n\\(H_0\\) Nullhypothese: Zwei Grundgesamtheiten unterscheiden sich nicht in Bezug auf eine bestimmte Eigenschaft.\n\nAnnahme: Der beobachtete Effekt ist rein zufällig entstanden, der wahre Effekt ist Null.\n\n\\(H_a\\) Alternativhypothese (Versuchshypothese): Vorhandensein eines bestimmten Effekts.\n\nEine Alternativhypothese ist nie vollständig wahr oder „bewiesen“.\nDie Annahme von \\(H_A\\) bedeutet nur, dass \\(H_0\\) unwahrscheinlich ist.\n\n„Nicht signifikant“ bedeutet entweder kein Effekt oder Stichprobengröße zu klein!\n\nAnmerkung: Unterschiedliche Bedeutung von Signifikanz (\\(H_0\\) unwahrscheinlich) und Relevanz (Effekt groß genug, um in der Praxis eine Rolle zu spielen).",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1808,7 +1808,7 @@
     "href": "slides/05-classtests.html#alpha--und-beta-fehler",
     "title": "05-Klassische Tests",
     "section": "Alpha- und Beta-Fehler",
-    "text": "Alpha- und Beta-Fehler\n\n\n\n\n\n\n\n\n\nRealität\nEntscheidung des Tests\nRichtig?\nWahrscheinlichkeit\n\n\n\n\n\\(H_0\\) = wahr\nsignifikant\nnein\n\\(\\alpha\\)-Fehler\n\n\n\\(H_0\\) = falsch\nnicht signifikant\nnein\n\\(\\beta\\)-Fehler\n\n\n\\(H_0\\) = wahr\nnicht signifikant\nja\n\\(1-\\alpha\\)\n\n\n\\(H_0\\) = falsch\nsignifikant\nja\n\\(1-\\beta\\) (Trennschärfe)\n\n\n\n\n\n\n\n\n\n1.\\(H_0\\) fälschlicherweise abgelehnt (Fehler erster Art oder \\(\\alpha\\)-Fehler)\n\nes wird ein Effekt behauptet, den es nicht gibt, z.B. ein Medikament, das keine Wirkung hat\n\n2.\\(H_0\\) fälschlicherweise beibehalten (Fehler zweiter Art oder \\(\\beta\\)-Fehler)\n\ntypischer Fall in kleinen Studien, bei denen die Wirkung nicht ausreicht, um vorhandene Effekte zu erkennen\n\nVerwendung in der Praxis\n\nübliche Konvention in den Umweltwissenschaften: \\(\\alpha=0.05\\), muss vorher festgelegt werden\n\\(\\beta=f(\\alpha, \\text{Effektgröße}, \\text{Stichprobengröße}, \\text{Art des Tests})\\), sollte \\(\\le 0,2\\) sein",
+    "text": "Alpha- und Beta-Fehler\n\n\n\n\n\n\n\n\n\nRealität\nEntscheidung des Tests\nRichtig?\nWahrscheinlichkeit\n\n\n\n\n\\(H_0\\) = wahr\nsignifikant\nnein\n\\(\\alpha\\)-Fehler\n\n\n\\(H_0\\) = falsch\nnicht signifikant\nnein\n\\(\\beta\\)-Fehler\n\n\n\\(H_0\\) = wahr\nnicht signifikant\nja\n\\(1-\\alpha\\)\n\n\n\\(H_0\\) = falsch\nsignifikant\nja\n\\(1-\\beta\\) (Trennschärfe)\n\n\n\n\n\n\n\n\n\n1.\\(H_0\\) fälschlicherweise abgelehnt (Fehler erster Art oder \\(\\alpha\\)-Fehler)\n\nes wird ein Effekt behauptet, den es nicht gibt, z.B. ein Medikament, das keine Wirkung hat\n\n2.\\(H_0\\) fälschlicherweise beibehalten (Fehler zweiter Art oder \\(\\beta\\)-Fehler)\n\ntypischer Fall in kleinen Studien, bei denen die Wirkung nicht ausreicht, um vorhandene Effekte zu erkennen\n\nVerwendung in der Praxis\n\nübliche Konvention in den Umweltwissenschaften: \\(\\alpha=0.05\\), muss vorher festgelegt werden\n\\(\\beta=f(\\alpha, \\text{Effektstärke}, \\text{Stichprobengröße},\n\\text{Art des Tests})\\), sollte \\(\\le 0,2\\) sein",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1819,7 +1819,7 @@
     "href": "slides/05-classtests.html#signifikanz-und-relevanz",
     "title": "05-Klassische Tests",
     "section": "Signifikanz und Relevanz",
-    "text": "Signifikanz und Relevanz\n\nDie Signifikanz ist nicht das einzig Wichtige. Achte auch auf die Effektgröße und die Relevanz!\n\nStatistische Signifikanz bedeutet, dass die Nullhypothese \\(H_0\\) im statistischen Sinne unwahrscheinlich ist.\nPraktische Relevanz (manchmal auch „praktische Signifikanz“ genannt) bedeutet, dass die Effektgröße groß genug ist, um in der Praxis eine Rolle zu spielen.\n\nOb ein Effekt relevant sein kann oder nicht, hängt also von seiner Effektgröße und dem Anwendungsbereich ab.\nBetrachten wir zum Beispiel eine Impfung. Wenn ein Impfstoff in einem klinischen Test eine signifikante Wirkung hat, aber nur 10 von 1000 Menschen schützt, würde man diesen Effekt nicht als relevant ansehen und diesen Impfstoff nicht herstellen.\nAndererseits können auch kleine Wirkungen von Bedeutung sein. Wenn also eine toxische Substanz bei 1 von 1000 Personen Krebs auslösen würde, würden wir dies als relevant betrachten. Um dies als signifikante Auswirkung zu erkennen, wäre eine epidemiologische Studie mit einer großen Anzahl von Menschen erforderlich. Da es sich aber um eine hochrelevante Wirkung handelt, lohnt sich die Mühe.",
+    "text": "Signifikanz und Relevanz\n\nDie Signifikanz ist nicht das einzig Wichtige. Achte auch auf Effektstärke und Relevanz!\n\nStatistische Signifikanz bedeutet, dass die Nullhypothese \\(H_0\\) im statistischen Sinne unwahrscheinlich ist.\nPraktische Relevanz (manchmal auch „praktische Signifikanz“ genannt) bedeutet, dass die Effektstärke groß genug ist, um in der Praxis eine Rolle zu spielen.\n\nOb ein Effekt relevant sein kann oder nicht, hängt also von seiner Effektstärke und dem Anwendungsbereich ab.\nBetrachten wir zum Beispiel eine Impfung. Wenn ein Impfstoff in einem klinischen Test eine signifikante Wirkung hat, aber nur 10 von 1000 Menschen schützt, würde man diesen Effekt nicht als relevant ansehen und diesen Impfstoff nicht herstellen.\nAndererseits können auch kleine Wirkungen von Bedeutung sein. Wenn also eine toxische Substanz bei 1 von 1000 Personen Krebs auslösen würde, würden wir das als relevant betrachten. Um es auch als signifikant zu erkennen, ist eine epidemiologische Studie mit einer großen Anzahl von Menschen erforderlich. Da es sich aber um eine hochrelevante Wirkung handelt, lohnt sich der Aufwand.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1830,7 +1830,7 @@
     "href": "slides/05-classtests.html#take-home-messages",
     "title": "05-Klassische Tests",
     "section": "Take home messages",
-    "text": "Take home messages\n\nEin p-Wert misst die Wahrscheinlichkeit, dass ein rein zufälliger Effekt gleich groß oder größer ist als ein beobachteter Effekt, wenn die Nullhypothese wahr ist.\nSignifikant bedeutet, dass die Ergebnisse unwahrscheinlich sind, wenn es keinen echten Effekt gäbe.\nNicht signifikant bedeutet nicht „kein Effekt“.\nNicht signifikante Ergebnisse deuten auf die Notwendigkeit weiterer Untersuchungen hin, z. B.:\n\nVergrößerung der Stichprobe\nErhöhung des experimentellen Effekts\nReduzierung des experimentellen Fehlers\nein leistungsfähigeres statistisches Verfahren in Betracht ziehen\n\nKonzentriere dich nicht nur auf die p-Werte. Vergiss nie, auch Stichprobengröße, Effektgröße und Relevanz deiner Ergebnisse anzugeben.\nBei großen Datensätzen:\n\nStatistisch signifikante Ergebnisse können leicht auch für sehr kleine und praktisch irrelevante Effekte erzielt werden.\n\\(\\rightarrow\\) Effektgröße und Relevanz werden wichtiger als p-Werte.\n\n\nDer p-Wert ist nach wie vor ein wichtiges Instrument der Statistik, aber ein falscher Gebrauch kann zu Fehlinterpretationen führen.",
+    "text": "Take home messages\n\nEin p-Wert misst die Wahrscheinlichkeit, dass ein rein zufälliger Effekt gleich groß oder größer ist als ein beobachteter Effekt, wenn die Nullhypothese wahr ist.\nSignifikant bedeutet, dass die Ergebnisse unwahrscheinlich sind, wenn es keinen echten Effekt gäbe.\nNicht signifikant bedeutet nicht „kein Effekt“.\nNicht signifikante Ergebnisse deuten auf die Notwendigkeit weiterer Untersuchungen hin, z. B.:\n\nVergrößerung der Stichprobe\nErhöhung des experimentellen Effekts\nReduzierung des experimentellen Fehlers\nWahl eines leistungsfähigeren statistischen Verfahrens\n\nWichtig: Konzentriere Dich nicht nur auf p-Werte und Signifikanz!\nVergiss nie, Stichprobengröße, Effektstärke und Relevanz anzugeben.\nBei großen Datensätzen:\n\nStatistisch signifikante Ergebnisse können leicht auch für sehr kleine und praktisch irrelevante Effekte erzielt werden.\n\\(\\rightarrow\\) Effektstärke und Relevanz werden wichtiger als p-Werte.\n\n\nDer p-Wert ist nach wie vor ein wichtiges Instrument der Statistik, aber ein falscher Gebrauch kann zu Fehlinterpretationen führen.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1841,7 +1841,7 @@
     "href": "slides/05-classtests.html#einstichproben-t-test",
     "title": "05-Klassische Tests",
     "section": "Einstichproben-t-Test",
-    "text": "Einstichproben-t-Test\n\n\nprüft, ob eine Stichprobe aus einer Population mit gegebenem Mittelwert \\(\\mu\\) stammt\nbasierend auf der Prüfung, ob der Mittelwert der Population \\(\\mu\\) im Konfidenzintervall von \\(\\bar{x}\\) liegt\n\n\nNehmen wir eine Stichprobe mit dem Umfang \\(n=10, \\bar{x}=5.5, s=1\\) und \\(\\mu=5\\) an.\nSchätze das 95%-Konfidenzintervall von \\(\\bar{x}\\):\n\n\\[\nCI = \\bar{x} \\pm t_{1-\\alpha/2, n-1} \\cdot s_{\\bar{x}}\n\\] mit \\[\ns_{\\bar{x}} = \\frac{s}{\\sqrt{n}} \\qquad \\text{(Standardfehler)}\n\\]\nVerschiedene Berechnungsmethoden werden auf den nächsten Folien gezeigt",
+    "text": "Einstichproben-t-Test\n\n\nprüft, ob eine Stichprobe aus einer Grundgesamtheit mit gegebenem Mittelwert \\(\\mu\\) stammt\nbasiert auf der Prüfung, ob der Mittelwert der Grundgesamtheit \\(\\mu\\) im Konfidenzintervall von \\(\\bar{x}\\) liegt\n\n\nAngenommen, wir haben eine Stichprobe mit dem Umfang \\(n=10, \\bar{x}=5.5, s=1\\) und \\(\\mu=5\\).\nNun schätzen wir das 95%-Konfidenzintervall von \\(\\bar{x}\\):\n\n\\[\nCI = \\bar{x} \\pm t_{1-\\alpha/2, n-1} \\cdot s_{\\bar{x}}\n\\] mit \\[\ns_{\\bar{x}} = \\frac{s}{\\sqrt{n}} \\qquad \\text{(Standardfehler)}\n\\]\nAuf den folgenden Folien werden unterschiedliche Berechnungsmethoden vorgestellt.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1852,7 +1852,7 @@
     "href": "slides/05-classtests.html#zur-erinnerung-standardabweichung-und-standardfehler",
     "title": "05-Klassische Tests",
     "section": "Zur Erinnerung: Standardabweichung und Standardfehler",
-    "text": "Zur Erinnerung: Standardabweichung und Standardfehler\n\n Visualisierung eines Einstichproben-t-Test. Links: ursprüngliche Verteilung der Daten, gemessen an der Standardabweichung, rechts: Verteilung der Mittelwerte, gemessen an ihrem Standardfehler. \n\\[\ns_{\\bar{x}} = \\frac{s}{\\sqrt{n}} \\qquad \\text{(Standardfehler)}\n\\]\n\nStandardfehler &lt; Standardabweichung\nmisst die Genauigkeit des Mittelwerts\nCLT!\n\nDer Test basiert auf der Verteilung der Mittelwerte, nicht auf der Verteilung der ursprünglichen Daten.",
+    "text": "Zur Erinnerung: Standardabweichung und Standardfehler\n\n Visualisierung eines Einstichproben-t-Test. Links: ursprüngliche Verteilung der Daten, gemessen an der Standardabweichung, rechts: Verteilung der Mittelwerte, gemessen an ihrem Standardfehler. \n\\[\ns_{\\bar{x}} = \\frac{s}{\\sqrt{n}} \\qquad \\text{(Standardfehler)}\n\\]\n\nStandardfehler &lt; Standardabweichung\nmisst die Genauigkeit des Mittelwerts\nZGWS!\n\nWichtig: Der Test arbeitet mit der Verteilung der Mittelwerte, nicht mit der Verteilung der ursprünglichen Daten.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1863,7 +1863,7 @@
     "href": "slides/05-classtests.html#methode-1-liegt-mu-im-konfidenzintervall",
     "title": "05-Klassische Tests",
     "section": "Methode 1: Liegt \\(\\mu\\) im Konfidenzintervall?",
-    "text": "Methode 1: Liegt \\(\\mu\\) im Konfidenzintervall?\n\n\nStichprobe: \\(n=10, \\bar{x}=5.5, s=1\\) und \\(\\mu=5\\)\nWenn \\(\\alpha = 0,05\\) ist, erhalten wir ein zweiseitiges 95%-Konfidenzintervall mit:\n\n\\[\\bar{x} \\pm t_{0,975, n-1} \\cdot \\frac{s}{\\sqrt{n}}\\]\n\n\n5.5 + c(-1, 1) * qt(0.975, 10-1) * 1/sqrt(10)\n\n[1] 4.784643 6.215357\n\n\n\n\n\nPrüfe, ob \\(\\mu=5.0\\) in diesem Intervall liegt?\nJa, es ist innerhalb von \\(\\Rightarrow\\) Unterschied nicht signifikant.",
+    "text": "Methode 1: Liegt \\(\\mu\\) im Konfidenzintervall?\n\n\nStichprobe: \\(n=10, \\bar{x}=5.5, s=1\\) und \\(\\mu=5\\)\nWenn \\(\\alpha = 0,05\\) ist, erhalten wir ein zweiseitiges 95%-Konfidenzintervall mit:\n\n\\[\\bar{x} \\pm t_{0,975, n-1} \\cdot \\frac{s}{\\sqrt{n}}\\]\n\n\n5.5 + c(-1, 1) * qt(0.975, 10-1) * 1/sqrt(10)\n\n[1] 4.784643 6.215357\n\n\n\n\n\nPrüfung, ob \\(\\mu=5.0\\) in diesem Intervall liegt?\nJa, es befindet sich innerhalb \\(\\Rightarrow\\) Unterschied nicht signifikant.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1874,7 +1874,7 @@
     "href": "slides/05-classtests.html#methode-2-vergleich-mit-einem-tabellierten-t-wert",
     "title": "05-Klassische Tests",
     "section": "Methode 2: Vergleich mit einem tabellierten t-Wert",
-    "text": "Methode 2: Vergleich mit einem tabellierten t-Wert\n\nStelle die Gleichung des Konfidenzintervalls um, um einen beobachteten \\(t_{obs}\\) zu berechnen\n\n\\[\nt_{obs} = |\\bar{x}-\\mu | \\cdot \\frac{1}{s_{\\bar{x}}} = \\frac{|\\bar{x}-\\mu |}{s} \\cdot \\sqrt{n} = \\frac{|5.5 -5.0|}{1.0} \\cdot \\sqrt{10}\n\\]\nWir können das in R berechnen:\n\nt &lt;- abs(5.5 - 5.0) / 1.0 * sqrt(10)\nt\n\n[1] 1.581139\n\n\n\nVergleich von \\(t_{obs}\\) mit einem tabellierten Wert\n\n\n„ Alter Style“: Ermittlung des kritischen t-Wertes in einer Tabelle für gegebenes \\(\\alpha\\) und Freiheitsgrade (\\(n-1\\))\nFür \\(\\alpha=0.05\\) und zweiseitig ist dies: \\(t_{1-\\alpha/2, n-1} = 2.26\\).\n\nVergleich: \\(1.58 &lt; 2.26\\) \\(\\Rightarrow\\) kein signifikanter Unterschied zwischen \\(\\bar{x}\\) und \\(\\mu\\).",
+    "text": "Methode 2: Vergleich mit einem tabellierten t-Wert\n\nUmstellung der Gleichung des Konfidenzintervalls, Berechnung eines beobachteten \\(t\\)-Werts, \\(t_{obs}\\):\n\n\\[\nt_{obs} = |\\bar{x}-\\mu | \\cdot \\frac{1}{s_{\\bar{x}}} = \\frac{|\\bar{x}-\\mu |}{s} \\cdot \\sqrt{n} = \\frac{|5.5 -5.0|}{1.0} \\cdot \\sqrt{10}\n\\]\nBerechnung in R:\n\nt &lt;- abs(5.5 - 5.0) / 1.0 * sqrt(10)\nt\n\n[1] 1.581139\n\n\n\nVergleich von \\(t_{obs}\\) mit einem tabellierten Wert\n\n\n„Historische Methode“: Ablesen des kritischen t-Wertes für gegebenes \\(\\alpha\\) und Freiheitsgrade (\\(n-1\\)) aus einer Tabelle.\nFür \\(\\alpha=0.05\\) und zweiseitig ist das: \\(t_{1-\\alpha/2, n-1} = 2.26\\).\n\nVergleich: \\(1.58 &lt; 2.26\\) \\(\\Rightarrow\\) kein signifikanter Unterschied zwischen \\(\\bar{x}\\) und \\(\\mu\\).",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1885,7 +1885,7 @@
     "href": "slides/05-classtests.html#methode-3-berechnung-des-p-wertes-aus-t_obs",
     "title": "05-Klassische Tests",
     "section": "Methode 3: Berechnung des p-Wertes aus \\(t_{obs}\\)",
-    "text": "Methode 3: Berechnung des p-Wertes aus \\(t_{obs}\\)\n\n\nVerwendung der computergestützten Wahrscheinlichkeitsfunktion (pt) anstelle des Tabellenvergleichs\n\\(t = t_{obs}\\) und die Freiheitsgrade (\\(n-1\\)):\n\n\n\n2 * (1 - pt(t, df = 10 - 1)) # 2 * (1 - p) is re-arranged from 1-alpha/2\n\n[1] 0.1483047\n\n\nDieser p-Wert = 0.1483047 ist größer als \\(0,05\\), so dass wir die Differenz als nicht signifikant betrachten.\n\nFAQ: kleiner oder größer als?\n\n\n\n\n\n\n\n\n\n\np-Wert\n\\(\\text{p-Wert} &lt; \\alpha\\)\nNullhypothese unwahrscheinlich\nsignifikant\n\n\nTest Statistik\n\\(t_{obs} &gt; t_{1-\\alpha/2, n-1}\\)\nEffekt übersteigt Grenze\nsignifikant",
+    "text": "Methode 3: Berechnung des p-Wertes aus \\(t_{obs}\\)\n\n\nVerwendung der computergestützten Wahrscheinlichkeitsfunktion der t-Verteilung (pt) anstelle des Tabellenvergleichs\nFür \\(t = t_{obs}\\) und Anzahl der Freiheitsgrade (\\(n-1\\)):\n\n\n\n2 * (1 - pt(t, df = 10 - 1)) # 2 * (1 - p) ist umgestellt von 1-alpha/2\n\n[1] 0.1483047\n\n\nDer p-Wert = 0.1483047 ist größer als \\(0,05\\), somit betrachten wir die Differenz als nicht signifikant.\n\nFAQ: kleiner oder größer als?\n\n\n\n\n\n\n\n\n\n\np-Wert\n\\(\\text{p-Wert} &lt; \\alpha\\)\nNullhypothese unwahrscheinlich\nsignifikant\n\n\nTest Statistik\n\\(t_{obs} &gt; t_{1-\\alpha/2, n-1}\\)\nEffekt übersteigt Grenze\nsignifikant",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1896,7 +1896,7 @@
     "href": "slides/05-classtests.html#methode-4-integrierte-t-test-funktion-in-r",
     "title": "05-Klassische Tests",
     "section": "Methode 4: Integrierte t-Test-Funktion in R",
-    "text": "Methode 4: Integrierte t-Test-Funktion in R\n\nDas Gleiche kann man viel einfacher mit dem Computer in R machen.\nNehmen wir an, wir haben eine Stichprobe mit \\(\\bar{x}=5, s=1\\):\n\n## definiere Stichprobe\nx &lt;- c(5.5, 3.5, 5.4, 5.3, 6, 7.2, 5.4, 6.3, 4.5, 5.9)\n\n## führe Einstichproben-t-Test durch\nt.test(x, mu=5)\n\n\n    One Sample t-test\n\ndata:  x\nt = 1.5811, df = 9, p-value = 0.1483\nalternative hypothesis: true mean is not equal to 5\n95 percent confidence interval:\n 4.784643 6.215357\nsample estimates:\nmean of x \n      5.5 \n\n\nDer Test liefert den beobachteten t-Wert, das 95%-Konfidenzintervall und den p-Wert.\nEin wichtiger Unterschied ist, dass diese Methode die Originaldaten benötigt, während die anderen Methoden nur Mittelwert, Standardabweichung und Stichprobenumfang benötigen.",
+    "text": "Methode 4: Integrierte t-Test-Funktion in R\n\nDas Gleiche kann man viel einfacher mit dem Computer in R machen.\nAngenommen, wir haben eine Stichprobe mit \\(\\bar{x}=5, s=1\\):\n\n## definiere Stichprobe\nx &lt;- c(5.5, 3.5, 5.4, 5.3, 6, 7.2, 5.4, 6.3, 4.5, 5.9)\n\n## führe Einstichproben-t-Test durch\nt.test(x, mu = 5)\n\n\n    One Sample t-test\n\ndata:  x\nt = 1.5811, df = 9, p-value = 0.1483\nalternative hypothesis: true mean is not equal to 5\n95 percent confidence interval:\n 4.784643 6.215357\nsample estimates:\nmean of x \n      5.5 \n\n\nDer Test liefert den beobachteten t-Wert, das 95%-Konfidenzintervall und den p-Wert.\nEin wichtiger Unterschied ist, dass diese Methode mit den Originaldaten arbeitet, während die anderen Methoden nur Mittelwert, Standardabweichung und Stichprobenumfang benötigen.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1907,7 +1907,7 @@
     "href": "slides/05-classtests.html#zweistichproben-t-test",
     "title": "05-Klassische Tests",
     "section": "Zweistichproben-t-Test",
-    "text": "Zweistichproben-t-Test\n\nDer Zweistichproben-t-Test vergleicht zwei unabhängige Stichproben:\n\nx1 &lt;- c(5.3, 6.0, 7.1, 6.4, 5.7, 4.9, 5.0, 4.6, 5.7, 4.0, 4.5, 6.5)\nx2 &lt;- c(5.8, 7.1, 5.8, 7.0, 6.7, 7.7, 9.2, 6.0, 7.2, 7.8, 7.8, 5.7)\nt.test(x1, x2)\n\n\n    Welch Two Sample t-test\n\ndata:  x1 and x2\nt = -3.7185, df = 21.611, p-value = 0.001224\nalternative hypothesis: true difference in means is not equal to 0\n95 percent confidence interval:\n -2.3504462 -0.6662205\nsample estimates:\nmean of x mean of y \n 5.475000  6.983333 \n\n\n\n\n\\(\\rightarrow\\) beide Stichproben unterscheiden sich signifikant (\\(p &lt; 0,05\\))\nAnmerkung: R hat nicht den „normalen“ t-Test durchgeführt, sondern den Welch-Test (= heteroskedastischer t-Test)\nwobei die Varianzen der beiden Stichproben nicht identisch sein müssen.",
+    "text": "Zweistichproben-t-Test\n\nDer Zweistichproben-t-Test vergleicht zwei unabhängige Stichproben:\n\nx1 &lt;- c(5.3, 6.0, 7.1, 6.4, 5.7, 4.9, 5.0, 4.6, 5.7, 4.0, 4.5, 6.5)\nx2 &lt;- c(5.8, 7.1, 5.8, 7.0, 6.7, 7.7, 9.2, 6.0, 7.2, 7.8, 7.8, 5.7)\nt.test(x1, x2)\n\n\n    Welch Two Sample t-test\n\ndata:  x1 and x2\nt = -3.7185, df = 21.611, p-value = 0.001224\nalternative hypothesis: true difference in means is not equal to 0\n95 percent confidence interval:\n -2.3504462 -0.6662205\nsample estimates:\nmean of x mean of y \n 5.475000  6.983333 \n\n\n\n\n\\(\\rightarrow\\) beide Stichproben unterscheiden sich signifikant (\\(p &lt; 0,05\\))\nAnmerkung: R hat hier nicht den „normalen“ t-Test durchgeführt, sondern den Welch-Test (= heteroskedastischer t-Test),\nbei dem die Varianzen der beiden Stichproben nicht gleich sein müssen.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1951,7 +1951,7 @@
     "href": "slides/05-classtests.html#homogenität-der-varianzen-bei-2-stichproben",
     "title": "05-Klassische Tests",
     "section": "Homogenität der Varianzen bei > 2 Stichproben",
-    "text": "Homogenität der Varianzen bei &gt; 2 Stichproben\n\n\nBartlett’s Test:\n\nbartlett.test(list(x1, x2, x3))\n\n\n    Bartlett test of homogeneity of variances\n\ndata:  list(x1, x2, x3)\nBartlett's K-squared = 7.7136, df = 2, p-value = 0.02114\n\n\n Fligner-Killeen Test (empfohlen):\n\nfligner.test(list(x1, x2, x3))\n\n\n    Fligner-Killeen test of homogeneity of variances\n\ndata:  list(x1, x2, x3)\nFligner-Killeen:med chi-squared = 2.2486, df = 2, p-value = 0.3249\n\n\n\n\n\n\n\n\n\n\n\n\n\nTests werden häufig verwendet, um die Annahmen für ANOVA zu überprüfen.",
+    "text": "Homogenität der Varianzen bei &gt; 2 Stichproben\n\n\nBartlett’s Test:\n\nbartlett.test(list(x1, x2, x3))\n\n\n    Bartlett test of homogeneity of variances\n\ndata:  list(x1, x2, x3)\nBartlett's K-squared = 7.7136, df = 2, p-value = 0.02114\n\n\n Fligner-Killeen Test (empfohlen):\n\nfligner.test(list(x1, x2, x3))\n\n\n    Fligner-Killeen test of homogeneity of variances\n\ndata:  list(x1, x2, x3)\nFligner-Killeen:med chi-squared = 2.2486, df = 2, p-value = 0.3249\n\n\n\n\n\n\n\n\n\n\n\n\n\nTests werden häufig verwendet, um die Annahmen für eine ANOVA zu überprüfen.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1962,7 +1962,7 @@
     "href": "slides/05-classtests.html#empfehlung-für-zweistichproben-t-tests",
     "title": "05-Klassische Tests",
     "section": "Empfehlung für Zweistichproben-t-Tests",
-    "text": "Empfehlung für Zweistichproben-t-Tests\n\nTraditionelles Vorgehen:\n\nTest auf gleiche Varianzen mit Hilfe des F-Tests: var.test(x, y)\nWenn die Varianzen gleich sind: t.test(x, y, var.equal=TRUE)\nandernfalls: t.test(x, y) (= Welch-Test)\nPrüfe, ob beide Stichproben einer Normalverteilung folgen.\n\n\nModerne Empfehlung (bevorzugt):\n\nVerwende keine Pre-Tests!\nVerwende immer den Welch-Test: t.test(x, y)\nÜberprüfe die ungefähre Normalverteilung mit Box- oder QQ-Plots. Weniger wichtig, wenn \\(n\\) groß ist.\n\nsiehe Zimmerman (2004) oder Wikipedia.",
+    "text": "Empfehlung für Zweistichproben-t-Tests\n\nTraditionelles Vorgehen:\n\nTest auf gleiche Varianzen mit Hilfe des F-Tests: var.test(x, y)\nWenn die Varianzen gleich sind: t.test(x, y, var.equal = TRUE)\nandernfalls: t.test(x, y) (= Welch-Test)\nPrüfe, ob beide Stichproben einer Normalverteilung folgen.\n\n\nModerne Empfehlung (bevorzugt):\n\nVerwende keine Vortests!\nVerwende immer den Welch-Test: t.test(x, y)\nÜberprüfe die ungefähre Normalverteilung mit Box- oder QQ-Plots. Das ist weniger wichtig, wenn \\(n\\) groß ist.\n\nsiehe Zimmerman (2004) oder Wikipedia.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1973,7 +1973,7 @@
     "href": "slides/05-classtests.html#gepaarter-t-test",
     "title": "05-Klassische Tests",
     "section": "Gepaarter t-Test",
-    "text": "Gepaarter t-Test\n\nmanchmal auch „t-Test für abhängige Stichproben“ genannt\n\nder Begriff „abhängig“ kann irreführend sein, „gepaart“ ist eindeutiger\ndie Werte innerhalb der Stichproben müssen immer noch unabhängig sein\n\nBeispiele: linker Arm / rechter Arm; vorher / nachher\nist im Wesentlichen ein Einstichproben-t-Test von paarweisen Unterschieden gegen \\(\\mu=0\\)\n\nReduziert den Einfluss individueller Unterschiede („Kovariaten“) durch Konzentration auf die Veränderung innerhalb jedes Paares\n\n\n\nx1 &lt;- c(2, 3, 4, 5, 6)\nx2 &lt;- c(3, 4, 7, 6, 8)\nt.test(x1, x2, var.equal=TRUE)\n\n\n    Two Sample t-test\n\ndata:  x1 and x2\nt = -1.372, df = 8, p-value = 0.2073\nalternative hypothesis: true difference in means is not equal to 0\n95 percent confidence interval:\n -4.28924  1.08924\nsample estimates:\nmean of x mean of y \n      4.0       5.6 \n\n\np=0.20, nicht signifikant\n\n\nx1 &lt;- c(2, 3, 4, 5, 6)\nx2 &lt;- c(3, 4, 7, 6, 8)\nt.test(x1, x2, paired=TRUE)\n\n\n    Paired t-test\n\ndata:  x1 and x2\nt = -4, df = 4, p-value = 0.01613\nalternative hypothesis: true mean difference is not equal to 0\n95 percent confidence interval:\n -2.710578 -0.489422\nsample estimates:\nmean difference \n           -1.6 \n\n\np=0.016, signifikant\nEs ist zu erkennen, dass der gepaarte t-Test in diesem Fall eine größere Trennschärfe aufweist.",
+    "text": "Gepaarter t-Test\n\nmanchmal auch „t-Test für abhängige Stichproben“ genannt\n\nder Begriff „abhängig“ kann irreführend sein, „gepaart“ ist eindeutiger\ndie Werte innerhalb der Stichproben müssen immer noch unabhängig sein\n\nBeispiele: linker Arm / rechter Arm; vorher / nachher\nist im Wesentlichen ein Einstichproben-t-Test von paarweisen Unterschieden gegen \\(\\mu=0\\)\n\nReduziert den Einfluss individueller Unterschiede („Kovariate“) dank Fokussierung auf die paarweisen Unterschiede\n\n\n\nx1 &lt;- c(2, 3, 4, 5, 6)\nx2 &lt;- c(3, 4, 7, 6, 8)\nt.test(x1, x2, var.equal=TRUE)\n\n\n    Two Sample t-test\n\ndata:  x1 and x2\nt = -1.372, df = 8, p-value = 0.2073\nalternative hypothesis: true difference in means is not equal to 0\n95 percent confidence interval:\n -4.28924  1.08924\nsample estimates:\nmean of x mean of y \n      4.0       5.6 \n\n\np=0.20, nicht signifikant\n\n\nx1 &lt;- c(2, 3, 4, 5, 6)\nx2 &lt;- c(3, 4, 7, 6, 8)\nt.test(x1, x2, paired=TRUE)\n\n\n    Paired t-test\n\ndata:  x1 and x2\nt = -4, df = 4, p-value = 0.01613\nalternative hypothesis: true mean difference is not equal to 0\n95 percent confidence interval:\n -2.710578 -0.489422\nsample estimates:\nmean difference \n           -1.6 \n\n\np=0.016, signifikant\nEs ist zu erkennen, dass der gepaarte t-Test in diesem Fall eine größere Power (Trennschärfe) aufweist.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1984,7 +1984,7 @@
     "href": "slides/05-classtests.html#mann-whitney--und-wilcoxon-test",
     "title": "05-Klassische Tests",
     "section": "Mann-Whitney- und Wilcoxon-Test",
-    "text": "Mann-Whitney- und Wilcoxon-Test\n\n\nNichtparametrische Tests:\n\nKeine Annahmen über Form und Parameter der Verteilung, aber\nVerteilungen sollten ähnlich sein, sonst kann der Test irreführend sein.\n\nBasierend auf Rängen: Die Tests vergleichen die Ränge der Daten.\nVerwendung von Mann-Whitney für unabhängige Stichproben, Wilcoxon für gepaarte Stichproben.\n\n Grundprinzip: Zählung der so genannten „Umkehrungen“ der Ränge, bei denen sich die Proben überschneiden\n\nStichprobe A: 1, 3, 4, 5, 7\nStichprobe B: 6, 8, 9, 10, 11\nBeide Stichproben zusammen geordnet: 1, 3, 4, 5, 6, 7, 8, 9, 10, 11\nUmkehrungen: \\(\\rightarrow\\) \\(U = 1\\)",
+    "text": "Mann-Whitney- und Wilcoxon-Test\n\n\nNichtparametrische Tests:\n\nKeine Annahmen über Form und Parameter der Verteilung, aber\nVerteilungen sollten ähnlich sein, sonst kann der Test irreführend werden.\n\nBasierend auf Rängen: Die Tests vergleichen die Ränge der Daten.\nBezeichnung “Mann-Whitney” für unabhängige Stichproben, “Wilcoxon” für gepaarte Stichproben.\n\n Grundprinzip: Zählung der so genannten „Inversionen“ der Ränge, d.h. wie oft sich die Reihenfolge der Stichproben überschneidet\n\nStichprobe A: 1, 3, 4, 5, 7\nStichprobe B: 6, 8, 9, 10, 11\nBeide Stichproben gemeinsam geordnet: 1, 3, 4, 5, 6, 7, 8, 9, 10, 11\nInversionen: \\(\\rightarrow\\) \\(U = 1\\)",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2006,7 +2006,7 @@
     "href": "slides/05-classtests.html#mann-whitney---wilcoxon-test-in-r",
     "title": "05-Klassische Tests",
     "section": "Mann-Whitney - Wilcoxon-Test in R",
-    "text": "Mann-Whitney - Wilcoxon-Test in R\n\n\nA &lt;- c(1, 3, 4, 5, 7)\nB &lt;- c(6, 8, 9, 10, 11)\n\nwilcox.test(A, B) # für gepaarte Daten das optionale Argument `paired = TRUE` verwenden\n\n\n    Wilcoxon rank sum exact test\n\ndata:  A and B\nW = 1, p-value = 0.01587\nalternative hypothesis: true location shift is not equal to 0\n\n\n\nMann-Whitney - Wilcoxon-Test mit Bindungskorrektur\n\nwird angewendet, wenn die Rangunterschiede doppelte Werte enthalten\n\n\nA &lt;- c(1, 3, 4, 5, 7)\nB &lt;- c(6, 8, 9, 10, 11)\n\n\nlibrary(\"exactRankTests\")\nwilcox.exact(A, B, paired=TRUE)\n\n\n    Exact Wilcoxon signed rank test\n\ndata:  A and B\nV = 0, p-value = 0.0625\nalternative hypothesis: true mu is not equal to 0",
+    "text": "Mann-Whitney - Wilcoxon-Test in R\n\n\nA &lt;- c(1, 3, 4, 5, 7)\nB &lt;- c(6, 8, 9, 10, 11)\n\nwilcox.test(A, B) # für gepaarte Daten optionales Argument `paired = TRUE` verwenden\n\n\n    Wilcoxon rank sum exact test\n\ndata:  A and B\nW = 1, p-value = 0.01587\nalternative hypothesis: true location shift is not equal to 0\n\n\n\nMann-Whitney - Wilcoxon-Test mit Bindungskorrektur\n\nwird angewendet, wenn die Rangunterschiede doppelte Werte enthalten\n\n\nA &lt;- c(1, 3, 4, 5, 7)\nB &lt;- c(6, 8, 9, 10, 11)\n\n\nlibrary(\"exactRankTests\")\nwilcox.exact(A, B, paired=TRUE)\n\n\n    Exact Wilcoxon signed rank test\n\ndata:  A and B\nV = 0, p-value = 0.0625\nalternative hypothesis: true mu is not equal to 0",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2017,7 +2017,7 @@
     "href": "slides/05-classtests.html#permutationsmethoden",
     "title": "05-Klassische Tests",
     "section": "Permutationsmethoden",
-    "text": "Permutationsmethoden\n\nGrundprinzip: Schätzung einer Teststatistik \\(\\xi_{obs}\\) aus der Stichprobe,\nResampling: Simulieren vieler \\(\\xi_{i, sim}\\) aus zufällig permutiertem Datensatz (\\(n = 999\\) oder mehr)\nWo erscheint \\(\\xi_{est}\\) innerhalb der geordneten Reihe der simulierten Werte \\(\\xi_{i, sim}\\)?\n\n\nSei \\(\\xi_{obs}\\) in unserem Beispiel \\(4.5\\), dann sei \\(\\Rightarrow\\) \\(p= 0.97\\).",
+    "text": "Permutationsmethoden\n\nGrundprinzip: Schätzung einer Teststatistik \\(\\xi_{obs}\\) aus der Stichprobe,\nResampling: Simulieren vieler \\(\\xi_{i, sim}\\) aus zufällig permutiertem Datensatz (\\(n = 999\\) oder mehr)\nWie extrem ist \\(\\xi_{est}\\) innerhalb der geordneten Reihe der simulierten Werte \\(\\xi_{i, sim}\\)?\n\n\nSei \\(\\xi_{obs}\\) in unserem Beispiel \\(4.5\\), dann sei \\(\\Rightarrow\\) \\(p= 0.97\\).",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2028,7 +2028,7 @@
     "href": "slides/05-classtests.html#bestimmung-der-trennschärfe-von-statistischen-tests",
     "title": "05-Klassische Tests",
     "section": "Bestimmung der Trennschärfe von statistischen Tests",
-    "text": "Bestimmung der Trennschärfe von statistischen Tests\n\nWie viele Wiederholungen benötige ich?\n\nHängt ab von:\n\nder relativen Effektgröße \\(\\frac{\\mathrm{Effekt}}{\\mathrm{Standardabweichung}}\\)\n\n\\[\\delta=\\frac{(\\bar{x}_1-\\bar{x}_2)}{s}\\]\n\nder Stichprobenumfang \\(n\\)\nund das vordefinierte Signifikanzniveau \\(\\alpha\\)\nund die angewandte Methode\n\nJe kleiner \\(\\alpha\\), \\(n\\) und \\(\\delta\\), desto größer ist der Fehler zweiter Art (\\(\\beta\\)).\nDer \\(\\beta\\)-Fehler ist die Wahrscheinlichkeit, Effekte zu übersehen, obwohl sie vorhanden sind.\nDie Trennschärfe (\\(1-\\beta\\)) ist die Wahrscheinlichkeit, dass ein Test signifikant ist, wenn ein Effekt vorhanden ist.",
+    "text": "Bestimmung der Trennschärfe von statistischen Tests\n\nWie viele Wiederholungen benötige ich?\n\nHängt ab von:\n\nder relativen Effektstärke \\(\\frac{\\mathrm{Effekt}}{\\mathrm{Standardabweichung}}\\)\n\n\\[\\delta=\\frac{(\\bar{x}_1-\\bar{x}_2)}{s}\\]\n\ndem Stichprobenumfang \\(n\\)\ndem vordefinierten Signifikanzniveau \\(\\alpha\\)\nund der angewandten statistischen Methode\n\nJe kleiner \\(\\alpha\\), \\(n\\) und \\(\\delta\\), desto größer ist der Fehler zweiter Art (\\(\\beta\\)).\nDer \\(\\beta\\)-Fehler ist die Wahrscheinlichkeit, Effekte zu übersehen, obwohl sie vorhanden sind.\nDie Trennschärfe (Power) (\\(1-\\beta\\)) ist die Wahrscheinlichkeit, dass ein Test signifikant ist, wenn ein Effekt vorhanden ist.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2039,7 +2039,7 @@
     "href": "slides/05-classtests.html#poweranalyse-1",
     "title": "05-Klassische Tests",
     "section": "Poweranalyse",
-    "text": "Poweranalyse\n\nFormel für den Mindeststichprobenumfang im Einstichprobenfall:\n\\[\nn = \\bigg(\\frac{z_\\alpha + z_{1-\\beta}}{\\delta}\\bigg)^2\n\\]\n\n\\(z\\): die Quantile (qnorm) der Standardnormalverteilung für \\(\\alpha\\) und für \\(1-\\beta\\)\n\\(\\delta=\\Delta / s\\): relative Effektgröße.\n\nBeispiel\nZweiseitiger Test mit \\(\\alpha=0,025\\) und \\(\\beta=0,2\\)\n\\(\\rightarrow\\) \\(z_\\alpha = 1.96\\), \\(z_\\beta=0.84\\), dann:\n\\[\nn= (1.96 + 0.84)^2 \\cdot 1/\\delta^2 \\approx 8 /\\delta^2\n\\]\n\\(\\delta = 1.0\\cdot \\sigma\\) \\(\\qquad\\Rightarrow\\) n &gt; 8\n\\(\\delta = 0.5\\cdot \\sigma\\) \\(\\qquad\\Rightarrow\\) n &gt; 32",
+    "text": "Poweranalyse\n\nFormel für den Mindeststichprobenumfang im Einstichprobenfall:\n\\[\nn = \\bigg(\\frac{z_\\alpha + z_{1-\\beta}}{\\delta}\\bigg)^2\n\\]\n\n\\(z\\): die Quantile (qnorm) der Standardnormalverteilung für \\(\\alpha\\) und für \\(1-\\beta\\)\n\\(\\delta=\\Delta / s\\): relative Effektstärke.\n\nBeispiel\nZweiseitiger Test mit \\(\\alpha=0.025\\) und \\(\\beta=0.2\\)\n\\(\\rightarrow\\) \\(z_\\alpha = 1.96\\), \\(z_\\beta=0.84\\), dann:\n\\[\nn= (1.96 + 0.84)^2 \\cdot 1/\\delta^2 \\approx 8 /\\delta^2\n\\]\n\\(\\delta = 1.0\\cdot \\sigma\\) \\(\\qquad\\Rightarrow\\) n &gt; 8\n\\(\\delta = 0.5\\cdot \\sigma\\) \\(\\qquad\\Rightarrow\\) n &gt; 32",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2050,7 +2050,7 @@
     "href": "slides/05-classtests.html#trennschärfe-des-t-tests",
     "title": "05-Klassische Tests",
     "section": "Trennschärfe des t-Tests",
-    "text": "Trennschärfe des t-Tests\nDie Trennschärfe eines t-Tests bzw. der Mindeststichprobenumfang kann wie folgt berechnet werden: power.t.test():\n\npower.t.test(n=5, delta=0.5, sig.level=0.05)\n\n\n     Two-sample t test power calculation \n\n              n = 5\n          delta = 0.5\n             sd = 1\n      sig.level = 0.05\n          power = 0.1038399\n    alternative = two.sided\n\nNOTE: n is number in *each* group\n\n\n\\(\\rightarrow\\) ‘power’ = 0.10\n\nFür \\(n=5\\) wird ein vorhandener Effekt von \\(0,5\\sigma\\) nur in 1 von 10 Fällen entdeckt.\nFür eine Trennschärfe von 80% bei \\(n=5\\) benötigen wir eine Effektgröße von mindestens \\(2\\sigma\\):\n\n\npower.t.test(n=5, power=0.8, sig.level=0.05)\n\nFür einen schwachen Effekt von \\(0,5\\sigma\\) benötigen wir eine Stichprobengröße von \\(n\\ge64\\) in jeder Gruppe:\n\npower.t.test(delta=0.5,power=0.8,sig.level=0.05)\n\n\\(\\Rightarrow\\) wir brauchen entweder einen großen Stichprobenumfang oder einen starken Effekt.",
+    "text": "Trennschärfe des t-Tests\nDie Trennschärfe eines t-Tests bzw. der Mindeststichprobenumfang kann mit der Funktion power.t.test() geschätzt werden:\n\npower.t.test(n=5, delta=0.5, sig.level=0.05)\n\n\n     Two-sample t test power calculation \n\n              n = 5\n          delta = 0.5\n             sd = 1\n      sig.level = 0.05\n          power = 0.1038399\n    alternative = two.sided\n\nNOTE: n is number in *each* group\n\n\n\\(\\rightarrow\\) ‘power’ = 0.10\n\nFür \\(n=5\\) wird ein vorhandener Effekt von \\(0.5\\sigma\\) nur in 1 von 10 Fällen entdeckt.\nFür eine Trennschärfe von 80% bei \\(n=5\\) benötigen wir eine Effektstärke von mindestens \\(2\\sigma\\):\n\n\npower.t.test(n=5, power=0.8, sig.level=0.05)\n\nFür einen schwachen Effekt von \\(0.5\\sigma\\) benötigen wir eine Stichprobengröße von \\(n\\ge64\\) in jeder Gruppe:\n\npower.t.test(delta=0.5,power=0.8,sig.level=0.05)\n\n\\(\\Rightarrow\\) wir brauchen entweder einen großen Stichprobenumfang oder einen starken Effekt.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2061,7 +2061,7 @@
     "href": "slides/05-classtests.html#simulierte-trennschärfe-eines-t-tests",
     "title": "05-Klassische Tests",
     "section": "Simulierte Trennschärfe eines t-Tests",
-    "text": "Simulierte Trennschärfe eines t-Tests\n\n# Populationsparameter\nn      &lt;- 10\nxmean1 &lt;- 50; xmean2 &lt;- 55\nxsd1   &lt;- xsd2 &lt;- 10\nalpha  &lt;- 0.05\n\nnn &lt;- 1000   # Anzahl an Testläufen in der Simulation\na &lt;- b &lt;- 0  # initialisiere Zähler\nfor (i in 1:nn) {\n  # erstelle Zufallszahlen\n  x1 &lt;- rnorm(n, xmean1, xsd1)\n  x2 &lt;- rnorm(n, xmean2, xsd2)\n  # Ergebnisse des t-Tests\n  p &lt;- t.test(x1,x2,var.equal = TRUE)$p.value \n  if (p &lt; alpha) {\n     a &lt;- a+1\n   } else {\n     b &lt;- b+1\n  }\n}\nprint(paste(\"a=\", a, \", b=\", b, \", a/n=\", a/nn, \", b/n=\", b/nn))",
+    "text": "Simulierte Trennschärfe eines t-Tests\n\n# Grundgesamtheitsparameter\nn      &lt;- 10\nxmean1 &lt;- 50; xmean2 &lt;- 55\nxsd1   &lt;- xsd2 &lt;- 10\nalpha  &lt;- 0.05\n\nnn &lt;- 1000   # Anzahl an Testläufen der Simulation\na &lt;- b &lt;- 0  # initialisiere Zähler\nfor (i in 1:nn) {\n  # erstelle Zufallszahlen\n  x1 &lt;- rnorm(n, xmean1, xsd1)\n  x2 &lt;- rnorm(n, xmean2, xsd2)\n  # Ergebnisse des t-Tests\n  p &lt;- t.test(x1,x2,var.equal = TRUE)$p.value \n  if (p &lt; alpha) {\n     a &lt;- a+1\n   } else {\n     b &lt;- b+1\n  }\n}\nprint(paste(\"a=\", a, \", b=\", b, \", a/n=\", a/nn, \", b/n=\", b/nn))",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2083,7 +2083,7 @@
     "href": "slides/05-classtests.html#mehrfeldertafeln-für-nominale-variablen",
     "title": "05-Klassische Tests",
     "section": "Mehrfeldertafeln für nominale Variablen",
-    "text": "Mehrfeldertafeln für nominale Variablen\n\nWerden für nominale (d. h. kategoriale oder qualitative) Daten verwendet.\nBeispiele: Augen- und Haarfarbe, medizinische Behandlung und die Anzahl der geheilten/nicht geheilten Personen\nWichtig: Verwende absolute Messwerte (echte Zahlen!), keine Prozentsätze oder andere berechnete Daten (z. B. nicht so etwas wie Biomasse pro Fläche)\n\nBeispiel: Vorkommen von Daphnien (Wasserflöhen) in einem See:\n\n\n\nKlone\nObere Schicht\nTiefe Schicht\n\n\n\n\nA\n50\n87\n\n\nB\n37\n78\n\n\nC\n72\n45\n\n\n\n\nFutteralgen im sauerstoffarmen Tiefenwasser\ngenetisch weiterentwickelte Klone mit höherem Hämoglobingehalt können in tiefes Wasser tauchen",
+    "text": "Mehrfeldertafeln für nominale Variablen\n\nWerden für nominale (d. h. kategoriale oder qualitative) Daten verwendet.\nBeispiele: Augen- und Haarfarbe, medizinische Behandlung und Anzahl der geheilten/nicht geheilten Personen\nWichtig: Verwende absolute Messwerte (echte Zahlen!), keine Prozentsätze oder andere berechnete Daten (also nicht etwa Biomasse pro Fläche)\n\nBeispiel: Verteilung von Daphnien (Wasserflöhen) in den Wasserschichten eines Sees:\n\n\n\nKlon\nObere Schicht\nTiefe Schicht\n\n\n\n\nA\n50\n87\n\n\nB\n37\n78\n\n\nC\n72\n45\n\n\n\n\nIn der oberen Schicht wurden die Futteralgen bereits aufgefressen. Sie finden sich nur noch im sauerstoffarmen Tiefenwasser.\ngenetisch angepasste Klone mit höherem Hämoglobingehalt können in sauerstoffreies Wasser tauchen",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2138,7 +2138,7 @@
     "href": "slides/05-classtests.html#chi-quadrat-test",
     "title": "05-Klassische Tests",
     "section": "Chi-Quadrat-Test",
-    "text": "Chi-Quadrat-Test\n\n\n\nobsfreq &lt;- c(1, 1, 6, 2, 2, 5, 8, 6, 3)\nchisq.test(obsfreq)\n\n\n    Chi-squared test for given probabilities\n\ndata:  obsfreq\nX-squared = 13.647, df = 8, p-value = 0.09144\n\nchisq.test(obsfreq, simulate.p.value=TRUE, B=1000)\n\n\n    Chi-squared test for given probabilities with simulated p-value (based\n    on 1000 replicates)\n\ndata:  obsfreq\nX-squared = 13.647, df = NA, p-value = 0.0969\n\n\n\n\n\nEinstichproben \\(\\chi^2\\)-Test. Er testet auf Gleichheit der Häufigkeit in allen Klassen.\nDie simulationsbasierte Version des Tests (mit 1000 Wiederholungen) ist etwas genauer als der Standard-\\(\\chi^2\\)-Test, aber beide sind nicht signifikant.",
+    "text": "Chi-Quadrat-Test\n\n\n\nobsfreq &lt;- c(1, 1, 6, 2, 2, 5, 8, 6, 3)\nchisq.test(obsfreq)\n\n\n    Chi-squared test for given probabilities\n\ndata:  obsfreq\nX-squared = 13.647, df = 8, p-value = 0.09144\n\nchisq.test(obsfreq, simulate.p.value = TRUE, B = 1000)\n\n\n    Chi-squared test for given probabilities with simulated p-value (based\n    on 1000 replicates)\n\ndata:  obsfreq\nX-squared = 13.647, df = NA, p-value = 0.0969\n\n\n\n\n\nEinstichproben \\(\\chi^2\\)-Test. Er testet auf Gleichheit der Häufigkeit in allen Klassen.\nDie simulationsbasierte Version des Tests (mit 1000 Wiederholungen) ist etwas genauer als der Standard-\\(\\chi^2\\)-Test, aber beide sind nicht signifikant.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2160,7 +2160,7 @@
     "href": "slides/05-classtests.html#cramér-von-mises-test-in-r",
     "title": "05-Klassische Tests",
     "section": "Cramér-von-Mises-Test in R",
-    "text": "Cramér-von-Mises-Test in R\n\nlibrary(dgof)\nobsfreq &lt;- c(1, 1, 6, 2, 2, 5, 8, 6, 3)\n\n## CvM-Test benötigt Einzelwerte, nicht Klassenhäufigkeiten\nx &lt;- rep(1:length(obsfreq), obsfreq)\nx\n\n [1] 1 2 3 3 3 3 3 3 4 4 5 5 6 6 6 6 6 7 7 7 7 7 7 7 7 8 8 8 8 8 8 9 9 9\n\n\n\n\n## erstelle eine kumulative Funktion mit gleicher Wahrscheinlichkeit für alle Fälle\ncdf &lt;- stepfun(1:9, cumsum(c(0, rep(1/9, 9))))\ncdf &lt;- ecdf(1:9)\n\n## führe den Test durch\ncvm.test(x, cdf)\n\n\n    Cramer-von Mises - W2\n\ndata:  x\nW2 = 0.51658, p-value = 0.03665\nalternative hypothesis: Two.sided\n\n\n\nDer Cramér-von-Mises-Test arbeitet mit den ursprünglichen, nicht gebündelten Werten.\nVerwendung der kumulativen Verteilungsfunktion achtet auf die Reihenfolge der Klassen \\(\\rightarrow\\) leistungsfähiger als \\(\\chi^2\\)-Test.",
+    "text": "Cramér-von-Mises-Test in R\n\nlibrary(dgof)\nobsfreq &lt;- c(1, 1, 6, 2, 2, 5, 8, 6, 3)\n\n## CvM-Test benötigt Einzelwerte, nicht Klassenhäufigkeiten\nx &lt;- rep(1:length(obsfreq), obsfreq)\nx\n\n [1] 1 2 3 3 3 3 3 3 4 4 5 5 6 6 6 6 6 7 7 7 7 7 7 7 7 8 8 8 8 8 8 9 9 9\n\n\n\n\n## erstelle kumulative Verteilung mit identischer Wahrscheinlichkeit für alle Fälle\ncdf &lt;- stepfun(1:9, cumsum(c(0, rep(1/9, 9))))\ncdf &lt;- ecdf(1:9)\n\n## führe den Test durch\ncvm.test(x, cdf)\n\n\n    Cramer-von Mises - W2\n\ndata:  x\nW2 = 0.51658, p-value = 0.03665\nalternative hypothesis: Two.sided\n\n\n\nDer Cramér-von-Mises-Test arbeitet mit den ursprünglichen, nicht in klassen eingeteilten Werten.\nVerwendung der kumulativen Verteilungsfunktion berücksichtigt die Reihenfolge der Klassen \\(\\rightarrow\\) leistungsfähiger als \\(\\chi^2\\)-Test.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2171,7 +2171,7 @@
     "href": "slides/05-classtests.html#testen-oder-prüfen",
     "title": "05-Klassische Tests",
     "section": "Testen oder Prüfen?",
-    "text": "Testen oder Prüfen?\n\nPhilosophisches Problem: Wir wollen \\(H_0\\) behalten!\n\nGleichheit kann nicht getestet werden\nDeshalb: besser „Normalität prüfen“ sagen.\n\nVorab denken\n\nMacht die Normalverteilung für die Daten „Sinn“?\nSind die Daten metrisch (kontinuierlich)?\nWas ist der Prozess der Datenerzeugung? \\(\\rightarrow\\) * Kontextuelles Verständnis!\n\nInhärente Nicht-Normalität\n\nEinige Datentypen, wie z. B. Zähldaten (z. B. Anzahl der Vorkommnisse) und binäre Daten (z. B. Ja/Nein), sind von Natur aus nicht normal.\n\n\nBinäre Daten: Verwende Methoden für Binomialverteilung mit Rohdaten anstelle von Prozentsätzen\nZähldaten: Verwende Methoden für die Poisson-Verteilung",
+    "text": "Testen oder Prüfen?\n\nPhilosophisches Problem: Wir wollen \\(H_0\\) behalten!\n\nGleichheit kann nicht getestet werden\nDeshalb: besser „Normalität prüfen“ sagen.\n\nVorab denken\n\nMacht die Normalverteilung für die Daten „Sinn“?\nSind die Daten metrisch (kontinuierlich)?\nWas ist der Prozess der Datenerzeugung \\(\\rightarrow\\) fachlicher Kontext?\n\nIntrinsische Nicht-Normalität\n\nEinige Datentypen, wie z. B. Zähldaten (z. B. Anzahl der Vorkommnisse) oder binäre Daten (z. B. Ja/Nein), sind von Natur aus nicht normalverteilt.\n\n\nBinäre Daten: Verwende Methoden für Binomialverteilung mit den Rohdaten anstelle von Prozentsätzen\nZähldaten: Nutze Methoden für die Poisson-Verteilung",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2182,7 +2182,7 @@
     "href": "slides/05-classtests.html#shapiro-wilks-w-test",
     "title": "05-Klassische Tests",
     "section": "Shapiro-Wilks-W-Test ?",
-    "text": "Shapiro-Wilks-W-Test ?\n\\(\\rightarrow\\) Ziel: prüft, ob eine Stichprobe mit einer Normalverteilung übereinstimmt\n\nx &lt;- rnorm(100)\nshapiro.test(x)\n\n\n    Shapiro-Wilk normality test\n\ndata:  x\nW = 0.99064, p-value = 0.7165\n\n\n\n\\(\\rightarrow\\) der \\(p\\)-Wert ist größer als 0,05, also würden wir \\(H_0\\) behalten und schlussfolgern, dass nichts gegen die Annahme der Normalität spricht\n\nDie Interpretation des Shapiro-Wilks-Tests ist mit Vorsicht zu genießen:\n\nfür kleine \\(n\\) ist der Test nicht empfindlich genug\nbei großen \\(n\\) ist er überempfindlich\nDie Verwendung von Shapiro-Wilks zur Überprüfung der Normalität für t-Tests und ANOVA wird nicht mehr empfohlen\n\n\n\nAuch die \\(\\chi^2\\)- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für Normalitätstests nicht mehr empfohlen, sind aber für andere Testprobleme weiterhin wichtig.",
+    "text": "Shapiro-Wilks-W-Test ?\n\\(\\rightarrow\\) Ziel: prüft, ob eine Stichprobe aus einer Normalverteilung stammt\n\nx &lt;- rnorm(100)\nshapiro.test(x)\n\n\n    Shapiro-Wilk normality test\n\ndata:  x\nW = 0.99064, p-value = 0.7165\n\n\n\n\\(\\rightarrow\\) der \\(p\\)-Wert ist größer als 0.05, also würden wir \\(H_0\\) behalten und schlussfolgern, dass nichts gegen die Annahme der Normalität spricht\n\nDie Interpretation des Shapiro-Wilks-Tests ist mit Vorsicht zu betrachten:\n\nfür kleine \\(n\\) ist der Test nicht empfindlich genug\nbei großen \\(n\\) ist er überempfindlich\nDie Verwendung von Shapiro-Wilks zur Überprüfung der Normalität für t-Tests und ANOVA wird nicht mehr empfohlen\n\n\n\nAuch die \\(\\chi^2\\)- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für Normalitätstests nicht mehr empfohlen, sind aber für andere Testprobleme weiterhin wichtig.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2204,7 +2204,7 @@
     "href": "slides/05-classtests.html#grafische-überprüfung-der-normalität",
     "title": "05-Klassische Tests",
     "section": "Grafische Überprüfung der Normalität",
-    "text": "Grafische Überprüfung der Normalität\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(x\\): theoretische Quantile, in denen ein Wert bei Normalverteilung gefunden werden sollte\n\\(y\\): normalisierte und geordnete Messwerte (\\(z\\)-Werte)\nskaliert in der Einheit der Standardabweichungen\nNormalverteilung, wenn die Punkte einer Geraden folgen",
+    "text": "Grafische Überprüfung der Normalität\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(x\\): theoretische Quantile, wo die Werte bei Vorliegen einer Normalverteilung gefunden werden sollten\n\\(y\\): normalisierte und geordnete Messwerte (\\(z\\)-Werte)\nskaliert in der Einheit der Standardabweichungen\nNormalverteilung liegt vor, wenn die Punkte einer Geraden folgen",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2215,7 +2215,7 @@
     "href": "slides/05-classtests.html#transformationen",
     "title": "05-Klassische Tests",
     "section": "Transformationen",
-    "text": "Transformationen\n\nErmöglicht die Anwendung von Methoden, die für normalverteilte Daten entwickelt wurden, auf nicht-normalverteilte Fälle.\nin der Vergangenheit sehr verbreitet, manchmal immer noch nützlich\nModerne Methoden (z. B. verallgemeinerte lineare Modelle, GLM) können bestimmte Verteilungen direkt verarbeiten, wie die Binomial-, Gamma- oder Poisson-Verteilung.\n\nTransformationen für rechtsschiefe Daten\n\n\\(x'=\\log(x)\\)\n\\(x'=\\log(x + a)\\)\n\\(x'=(x+a)^c\\) (\\(a\\) zwischen 0,5 und 1)\n\\(x'=1/x\\) („sehr stark“, d.h. in den meisten Fällen zu extrem)\n\\(x'=a - 1/\\sqrt{x}\\) (um die Skalierung zu vereinfachen)\n\\(x'=1/\\sqrt{x}\\) (Kompromiss zwischen \\(\\ln\\) und \\(1/x\\))\n\\(x'=a+bx^c\\) (sehr allgemein, schließt Potenzen und Wurzeln ein)",
+    "text": "Transformationen\n\nErmöglicht die Anwendung von Methoden, die für normalverteilte Daten entwickelt wurden, auf nicht-normalverteilte Fälle.\nin der Vergangenheit sehr verbreitet, manchmal immer noch nützlich\nModerne Methoden (z. B. verallgemeinerte lineare Modelle, GLM) können bestimmte Verteilungen direkt verarbeiten, z.B. Binomial-, Gamma- oder Poisson-Verteilung.\n\nTransformationen für rechtsschiefe Daten\n\n\\(x'=\\log(x)\\)\n\\(x'=\\log(x + a)\\)\n\\(x'=(x+a)^c\\) (\\(a\\) zwischen 0,5 und 1)\n\\(x'=1/x\\) („sehr stark“, d.h. in den meisten Fällen zu extrem)\n\\(x'=a - 1/\\sqrt{x}\\) (um die Skalierung zu vereinfachen)\n\\(x'=1/\\sqrt{x}\\) (Kompromiss zwischen \\(\\ln\\) und \\(1/x\\))\n\\(x'=a+bx^c\\) (sehr allgemein, schließt Potenzen und Wurzeln ein)",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2237,7 +2237,7 @@
     "href": "slides/05-classtests.html#wie-findet-man-die-beste-transformation",
     "title": "05-Klassische Tests",
     "section": "Wie findet man die beste Transformation?",
-    "text": "Wie findet man die beste Transformation?\n\nBeispiel: Biovolumen von Kieselalgenzellen (Art Nitzschia acicularis).\n\n\n\n\ndat &lt;- read.csv(\"prk_nit.csv\")\n\nNit85 &lt;- dat$biovol[dat$group == \"nit85\"]\nNit90 &lt;- dat$biovol[dat$group == \"nit90\"]\n\nhist(Nit85, xlab=\"Biovolume (mm^3)\")\nhist(Nit90, xlab=\"Biovolume (mm^3)\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRechtsschiefe Verteilung.\nBerechnungen des Biovolumens, die für Studien zum Nahrungsnetz und zur Vorhersage von Algenblüten verwendet werden.\n\n\n\nMehr über Nitzschia in Wikipedia\nDatensatz prk_nit.csv und Metadaten prk_nit_info.txt verfügbar unter https://github.com/tpetzoldt/datasets.",
+    "text": "Wie findet man die beste Transformation?\n\nBeispiel: Biovolumen von Kieselalgenzellen (Art Nitzschia acicularis).\n\n\n\n\ndat &lt;- read.csv(\"prk_nit.csv\")\n\nNit85 &lt;- dat$biovol[dat$group == \"nit85\"]\nNit90 &lt;- dat$biovol[dat$group == \"nit90\"]\n\nhist(Nit85, xlab=\"Biovolume (mm^3)\")\nhist(Nit90, xlab=\"Biovolume (mm^3)\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRechtsschiefe Verteilung.\nBerechnungen des Biovolumens für Studien zum Nahrungsnetz und zur Vorhersage von Algenmassenentwicklungen.\n\n\n\nMehr über Nitzschia in Wikipedia\nDatensatz prk_nit.csv und Metadaten prk_nit_info.txt verfügbar unter https://github.com/tpetzoldt/datasets.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2259,7 +2259,7 @@
     "href": "slides/05-classtests.html#box-cox-methode-ergebnisse",
     "title": "05-Klassische Tests",
     "section": "Box-Cox Methode: Ergebnisse",
-    "text": "Box-Cox Methode: Ergebnisse\n\n\nInterpretation\n\n\nDie gepunkteten vertikalen Linien und die horizontale 95%-Linie zeigen die Vertrauensgrenzen für mögliche Transformationen.\nDie Zahlen sind angenähert \\(\\rightarrow\\) runde auf eine Dezimalstelle.\nHier können wir entweder eine log-Transformation (\\(\\lambda=0\\)) oder eine Potenz von \\(\\approx 0.5\\) verwenden.\n\n\n\n\nErmittel den Zahlenwert direkt:\n\nbc &lt;- boxcox(Nit90 ~ 1)\n\n\n\n\n\n\n\nstr(bc)\n\nList of 2\n $ x: num [1:100] -2 -1.96 -1.92 -1.88 -1.84 ...\n $ y: num [1:100] -237 -233 -230 -226 -223 ...\n\nbc$x[bc$y == max(bc$y)]\n\n[1] 0.1818182",
+    "text": "Box-Cox Methode: Ergebnisse\n\n\nInterpretation\n\n\nDie gepunkteten vertikalen Linien und die horizontale 95%-Linie zeigen die Vertrauensgrenzen für mögliche Transformationen.\nDie Zahlen sind angenähert \\(\\rightarrow\\) eine Dezimalstelle genügt.\nHier können wir entweder eine log-Transformation (\\(\\lambda=0\\)) oder eine Potenz von \\(\\approx 0.5\\) verwenden.\n\n\n\n\nDirekte Ermittlung des Zahlenwerts:\n\nbc &lt;- boxcox(Nit90 ~ 1)\n\n\n\n\n\n\n\nstr(bc)\n\nList of 2\n $ x: num [1:100] -2 -1.96 -1.92 -1.88 -1.84 ...\n $ y: num [1:100] -237 -233 -230 -226 -223 ...\n\nbc$x[bc$y == max(bc$y)]\n\n[1] 0.1818182",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2358,7 +2358,7 @@
     "href": "slides/05-classtests.html#anwendung-von-spearmans-r_s",
     "title": "05-Klassische Tests",
     "section": "Anwendung von Spearman’s-\\(r_s\\)",
-    "text": "Anwendung von Spearman’s-\\(r_s\\)\n\nVorteile\n\nverteilungsfrei (erfordert keine Normalverteilung),\nerkennt jegliche monotone Abhängigkeit,\nwird durch Ausreißer kaum beeinträchtigt.\n\nNachteile:\n\ngewisser Informationsverlust aufgrund der Rangfolge,\nkeine Informationen über die Art der Abhängigkeit,\nkeine direkte Beziehung zum Bestimmtheitsmaß.\n\nFazit: \\(r_s\\) ist dennoch sehr empfehlenswert!",
+    "text": "Anwendung von Spearman’s-\\(r_s\\)\n\nVorteile\n\nverteilungsfrei (erfordert keine Normalverteilung),\nerkennt jegliche monotone Abhängigkeit,\nwird durch Ausreißer kaum beeinträchtigt.\n\nNachteile:\n\ngewisser Informationsverlust aufgrund der Rangbildung,\nkeine Informationen über die Art der Abhängigkeit,\nkeine direkte Beziehung zum Bestimmtheitsmaß.\n\nFazit: \\(r_s\\) ist dennoch sehr empfehlenswert!",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2391,7 +2391,7 @@
     "href": "slides/05-classtests.html#ausblick-mehr-als-zwei-unabhängige-variablen",
     "title": "05-Klassische Tests",
     "section": "Ausblick: Mehr als zwei unabhängige Variablen",
-    "text": "Ausblick: Mehr als zwei unabhängige Variablen\n\nMehrfache Korrelation\n\nBeispiel: Chl-a=\\(f(x_1, x_2, x_3, \\dots)\\), wobei \\(x_i\\) = Biomasse der \\(i\\)-ten Phytoplanktonart.\nmultipler Korrelationskoeffizient\npartieller Korrelationskoeffizient\nAttraktive Methode \\(\\leftrightarrow\\), aber in der Praxis schwierig:\n\n„unabhängige“ Variablen können miteinander korrelieren (Multikollinearität) \\(\\Rightarrow\\) Verzerrung des Vielfachen \\(r\\).\nNichtlinearitäten sind noch schwieriger zu handhaben als im Fall von zwei Stichproben.\n\n\nEmpfehlung:\n\nVerwende multivariate Methoden (NMDS, PCA, …) für einen ersten Überblick,\nWende die multiple Regression mit Sorgfalt an und nutze Prozesswissen.",
+    "text": "Ausblick: Mehr als zwei unabhängige Variablen\n\nMultiple Korrelation\n\nBeispiel: Chl-a=\\(f(x_1, x_2, x_3, \\dots)\\), wobei \\(x_i\\) = Biomasse der \\(i\\)-ten Phytoplanktonart.\nmultipler Korrelationskoeffizient\npartieller Korrelationskoeffizient\nAttraktive Methode \\(\\leftrightarrow\\), aber in der Praxis schwierig:\n\n„unabhängige“ Variablen können miteinander korrelieren (Multikollinearität) \\(\\Rightarrow\\) Verzerrung des Vielfachen \\(r\\).\nNichtlinearitäten sind noch schwieriger zu handhaben als im Fall von zwei Stichproben.\n\n\nEmpfehlung:\n\nVerwende multivariate Methoden (NMDS, PCA, …) für einen ersten Überblick,\nWende die multiple Regression mit Sorgfalt an und nutze Prozesswissen.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -4587,5 +4587,93 @@
     "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
     "section": "Autor",
     "text": "Autor\nhomepage +++ github\n2025-04-03"
+  },
+  {
+    "objectID": "slides/05-classtests.html#effektstärke-und-signifikanz",
+    "href": "slides/05-classtests.html#effektstärke-und-signifikanz",
+    "title": "05-Klassische Tests",
+    "section": "Effektstärke und Signifikanz",
+    "text": "Effektstärke und Signifikanz\n\nFür Mittelwertdifferenzen ist die relative Effektstärke:\n\n\\[\n  \\delta = \\frac{\\bar{\\mu}_1-\\bar{\\mu}_2}{\\sigma}=\\frac{\\Delta}{\\sigma}\n\\]\n\nmit:\n\nMittelwerte von zwei Grundgesamtheiten \\(\\mu_1, \\mu_2\\)\nabsolute Effektstärke \\(\\Delta\\)\nrelative Effektstärke \\(\\delta\\) (auch Cohen’s d genannt)\nSignifikanz bedeutet, dass es unwahrscheinlich ist, dass ein beobachteter Effekt das Ergebnis einer reinen Zufallsvariation ist.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "05-Klassische Tests"
+    ]
+  },
+  {
+    "objectID": "slides/05-classtests.html#test-auf-varianzgleichheit-f-test",
+    "href": "slides/05-classtests.html#test-auf-varianzgleichheit-f-test",
+    "title": "05-Klassische Tests",
+    "section": "Test auf Varianzgleichheit: F-Test",
+    "text": "Test auf Varianzgleichheit: F-Test\n\n\\(H_0\\): \\(\\sigma_1^2 = \\sigma_2^2\\)\n\\(H_a\\): Varianzen ungleich\nTestkriterium:\n\\[F = \\frac{s_1^2}{s_2^2} \\]\n\ngrößere der beiden Varianzen im Zähler \\((s^2_1 &gt; s^2_2)\\)\nFreiheitsgrade (\\(n-1\\)) für Zähler und Nenner können verschieden sein\n\n\n\n\n\n\n\n\n\n\n\nBeispiel:\n\n\\(s_1=1\\), \\(s_2 =2\\), \\(n_1=5, n_2=10, F=\\frac{2^2}{1^2}=4\\)\nFreiheitsgrad: \\(9 \\atop 4\\)\n\n\\(\\Rightarrow\\) \\(F_{9, 4, \\alpha=0.975} = 8.9 &gt; 4 \\quad\\rightarrow\\) nicht signifikant",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "05-Klassische Tests"
+    ]
+  },
+  {
+    "objectID": "slides/05-classtests.html#mann-whitney-test-in-der-praxis",
+    "href": "slides/05-classtests.html#mann-whitney-test-in-der-praxis",
+    "title": "05-Klassische Tests",
+    "section": "Mann-Whitney-Test in der Praxis",
+    "text": "Mann-Whitney-Test in der Praxis\n\n\nWeise den beiden Stichproben \\(A\\) und \\(B\\) mit dem Stichprobenumfang \\(m\\) und \\(n\\) die Ränge \\(R_A\\) und \\(R_B\\) zu.\nBerechne die Anzahl der Inversionen \\(U\\):\n\n\\[\\begin{align*}\n     U_A &= m \\cdot n + \\frac{m (m + 1)}{2} - \\sum_{i=1}^m R_A \\\\\n     U_B &= m \\cdot n + \\frac{n (n + 1)}{2} - \\sum_{i=1}^n R_B \\\\\n     U   &= \\min(U_A, U_B)\n\\end{align*}\\]\n\nKritische Werte von \\(U\\) finden sich in gängigen Statistik-Lehrbüchern.\nIn R nicht notwendig, p-Wert wird direkt ausgegeben. Anmerkung: Verwende spezielle Version wilcox.exact mit Korrektur, wenn mehrfach gleiche Werte (Bindungen) vorliegen.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "05-Klassische Tests"
+    ]
+  },
+  {
+    "objectID": "slides/05-classtests.html#rechenschema-des-chi2-tests",
+    "href": "slides/05-classtests.html#rechenschema-des-chi2-tests",
+    "title": "05-Klassische Tests",
+    "section": "Rechenschema des \\(\\chi^2\\)-Tests",
+    "text": "Rechenschema des \\(\\chi^2\\)-Tests\n\nBeobachtete Häufigkeiten \\(O_{ij}\\)\n\n\n\n\n\nKlon A\nKlon B\nKlon C\nSumme \\(s_i\\)\n\n\n\n\nObere Schicht\n50\n37\n72\n159\n\n\nUntere Schicht\n87\n78\n45\n210\n\n\nSumme \\(s_j\\)\n137\n115\n117\n\\(n=369\\)\n\n\n\n\n\n\n\n\n\n\n\nErwartete Häufigkeiten \\(E_{ij} = s_i \\cdot s_j / n\\) (Gleichverteilung = Nullhypothese)\n\n\n\n\n\nKlon A\nKlon B\nKlon C\nSumme \\(s_i\\)\n\n\n\n\nObere Schicht\n59.0\n49.6\n50.4\n159\n\n\nUntere Schicht\n78.0\n65.4\n66.6\n210\n\n\nSumme \\(s_j\\)\n137\n115\n117\n\\(n=369\\)\n\n\n\n\n\n\n\n\n\n\n\nTeststatistik \\(\\hat{\\chi}^2 = \\sum_{i, j} \\frac{(O_{ij} - E_{ij})^2}{E_{ij}}\\)\nVergleich mit kritischem \\(\\chi^2\\) aus der Tabelle mit \\((n_{Zeile} - 1) \\cdot (n_{Spalte} - 1)\\) df.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "05-Klassische Tests"
+    ]
+  },
+  {
+    "objectID": "slides/05-classtests.html#lieblingszahlen-von-hse-studenten",
+    "href": "slides/05-classtests.html#lieblingszahlen-von-hse-studenten",
+    "title": "05-Klassische Tests",
+    "section": "Lieblingszahlen von HSE-Studenten",
+    "text": "Lieblingszahlen von HSE-Studenten\n\n\nZahlen von 1..9, \\(n=34\\)\n\\(H_0\\): gleiche Wahrscheinlichkeit für alle Zahlen \\(1/9\\) (diskrete Gleichverteilung)\n\\(H_A\\): einige Zahlen bevorzugt \\(\\rightarrow\\) weichen von diskreter Gleichverteilung ab",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "05-Klassische Tests"
+    ]
+  },
+  {
+    "objectID": "slides/05-classtests.html#test-von-gepoolten-stichproben-mit-unterschiedlichen-mittelwerten",
+    "href": "slides/05-classtests.html#test-von-gepoolten-stichproben-mit-unterschiedlichen-mittelwerten",
+    "title": "05-Klassische Tests",
+    "section": "Test von gepoolten Stichproben mit unterschiedlichen Mittelwerten",
+    "text": "Test von gepoolten Stichproben mit unterschiedlichen Mittelwerten\n\nboxcox(biovol ~ group, data = dat)\n\n\n\nUm die gemeinsame Verteilung aller Gruppen auf einmal zu testen, gibt man die Erklärungsvariablen auf der rechten Seite der Modellformel an: biovol ~ group\nDie optimale Transformation für beide Stichproben zusammen ist log.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "05-Klassische Tests"
+    ]
+  },
+  {
+    "objectID": "slides/05-classtests.html#welcher-korrelationskoeffizient-deutet-auf-eine-abhängigkeit-hin",
+    "href": "slides/05-classtests.html#welcher-korrelationskoeffizient-deutet-auf-eine-abhängigkeit-hin",
+    "title": "05-Klassische Tests",
+    "section": "Welcher Korrelationskoeffizient deutet auf eine Abhängigkeit hin?",
+    "text": "Welcher Korrelationskoeffizient deutet auf eine Abhängigkeit hin?\n\n\n\n\n\n\n\n\n\n\n\\(r=0.4, \\quad p=0.0039\\)\n\n\n\n\n\n\n\n\n\n\n\\(r=0.85, \\quad p=0.07\\)",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "05-Klassische Tests"
+    ]
+  },
+  {
+    "objectID": "slides/05-classtests.html#literatur",
+    "href": "slides/05-classtests.html#literatur",
+    "title": "05-Klassische Tests",
+    "section": "Literatur",
+    "text": "Literatur\n\n\n\n\n\nHubbard, R. (2004). Alphabet soup: Blurring the distinctions between p’s and a’s in psychological research. Theory & Psychology, 14(3), 295–327. https://doi.org/10.1177/0959354304043638\n\n\nZimmerman, D. W. (2004). A note on preliminary tests of equality of variances. British Journal of Mathematical and Statistical Psychology, 57(1), 173–181. https://doi.org/10.1348/000711004849222",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "05-Klassische Tests"
+    ]
   }
 ]
