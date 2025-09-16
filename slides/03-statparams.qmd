@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = TRUE, eval=TRUE, fig.align="center", comment="")
 
 <br>
 
-$\rightarrow$ Zur Erinnerung: Die Berechnung statistischer Parameter wird als [**Schätzung**] bezeichnet.{.blue}
+$\rightarrow$ Zur Erinnerung: Die Berechnung statistischer Parameter wird als [**Schätzung**]{.blue} bezeichnet.
 
 
 **Eigenschaften von statistischen Parametern**

@@ -292,7 +292,7 @@
     "section": "Markdown, RMarkdown and Quarto",
     "text": "Markdown, RMarkdown and Quarto\n\nMarkdown .md\n\n” … is a lightweight markup language for creating formatted text using a plain-text editor” (Wikipedia, 2022).\nCan be written with any text editor, less perfect than Latex, but much easier.\nMarkdown supported by many programs and services (e.g. Github, StackOverflow, Matrix, RStudio, …)\n\nRMarkdown .Rmd\n\nis an extension of markdown that can embed R code.\nsuperseeded by Quarto\n\nQuarto .qmd\n\nis an extension of Markdown that can embed R, Python, Julia and Observable code.\nimproved capabilities to create reports, slides, websites, papers, books.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -303,7 +303,7 @@
     "section": "Why Markdown or Quarto",
     "text": "Why Markdown or Quarto\n\n\nQuick note taking (documentation of ideas, experiments, SOPs, …)\nDocumentation of statistical analyses (Quarto + R)\nClearly structured documents (outline clearly visible)\nEasy literature referencing\nMuch easier than LaTeX \nWidely used technology, useful for Stackoverflow, Github or Matrix",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -314,7 +314,7 @@
     "section": "Software",
     "text": "Software\n\n\nYou can use any text editor, e.g. Notepad++, your mail client … or even Word\n\n\n\nBetter: use an editor with Markdown support\n\nRStudio\nPanWriter, a basic writing program with an almost empty screen \\(\\rightarrow\\) distraction free writing\nJoplin, a note taking program with cloud connectivity and encryption\nmany online services: Github, Gitlab, StackOverflow, Matrix\nand more",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -325,7 +325,7 @@
     "section": "Many Markdown Programs Available, e.g. Panwriter",
     "text": "Many Markdown Programs Available, e.g. Panwriter\n\nPanwriter with live preview",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -336,7 +336,7 @@
     "section": "Let’s use RStudio. Supports Markdown and Quarto",
     "text": "Let’s use RStudio. Supports Markdown and Quarto\n\nRStudio",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -347,7 +347,7 @@
     "section": "Example",
     "text": "Example\n\nSection titles are introduced with one or several hash symbols #, ##, praragraphs with empty lines, italic and bold face are indicated with one or two starts before and after a phrase, bullet points with a leading dash - or a star *. Weblinks are automatically activated. Here an example:\n    # First level\n\n    Text can be written with any editor, that can be formatted, e.g. *slanted*, **boldface**,\n    `verbatim text` weblinks: https://tu-dresden.de or bullet points:\n\n    * point 1\n    * point 2\n\n    Section titles start with one or more hash tags\n    \n    \n    ## Second level\n    \n    ### Third level\nThere are of course more formatting options, found in the docs or explained later.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -358,7 +358,7 @@
     "section": "YAML Header",
     "text": "YAML Header\n\nQuarto and markdown documents can have a few special lines on top, enclosed within three dashes ---. This so called “YAML header” is used to set text settings and formatting options:\n    ---\n    title: \"Test\"\n    author: \"Who wrote this\"\n    date: '2024-11-12'\n    format: html\n    ---\n    \n    # First Section\n\n    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy\n    eirmod tempor invidunt ut labore et dolore magna aliquyam erat.\n    \n    At vero eos et accusam et justo duo dolores et ea rebum.\n    \n    # Second Section\n     \n    Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum \n    dolor sit amet. \nYAML: yet another markup language. A list format coming from the python world.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -369,7 +369,7 @@
     "section": "Layout and format conversion",
     "text": "Layout and format conversion\n\nUser can concentrate on writing, formatting is done automatically.\nSeveral tools exist to convert markdown to other document formats.\nOne of the most popular is pandoc. It is built-in in Rstudio.\n\n\n\n\n\n\n\nRendering is done with the pandoc utility to convert Quarto or Markdown text to\nHTML for web pages, pdf for printing, or Word for further editing.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -380,7 +380,7 @@
     "section": "What is Pandoc?",
     "text": "What is Pandoc?\n\n\nPandoc is a universal text conversion tool\nIt is said to be the “swiss-army knife” to convert between formats\nOpen Source licensed: GPL 2.0 resp. MIT license\nAvailable from: https://pandoc.org/\n… or embedded in RStudio",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -391,7 +391,7 @@
     "section": "Exercise",
     "text": "Exercise\n\n\nWrite your first Quarto document in RStudio.\nRender it to HTML and Word\n\nOptional without warranty\n\nCreate PDF output\nNeeds LaTeX type setting system installed\nCan be done with R’s tinytex package:\n\n::: {.cell}\n\n:::\n… or by installing tinytex from the Terminal of RStudio\nquarto install tinytex\nand then include format: pdf in the YAML header\ntitle: \"My document\"\nformat: pdf\nSee more at: https://quarto.org/docs/output-formats/pdf-basics.html",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -402,7 +402,7 @@
     "section": "Section Titles",
     "text": "Section Titles\n\nSection titles can be formatted with hashtags or by underlining:\n# A Section\n\n## A subsection\nor:\nA Section\n=========\n\nA Subsection\n------------\nAutomatic numbering can optionally be enabled in the YAML header:\n---\ntitle: \"My document\"\nformat:\n  html:\n    toc: true\n    number-sections: true\n---",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -413,7 +413,7 @@
     "section": "Weblinks",
     "text": "Weblinks\n\nFormatted weblinks\n[further reading](https://rmarkdown.rstudio.com)\nis then formatted as: further reading\nExample\nThe [*Markdown Wikipedia page*](https://de.wikipedia.org/wiki/Markdown) contains examples.\nThe Markdown Wikipedia page contains examples.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -424,7 +424,7 @@
     "section": "Images",
     "text": "Images\nImages are similar to weblinks, but with a leading !\n![figure title](mushrooms.jpg)\n\nfigure title",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -435,7 +435,7 @@
     "section": "Verbatim Text",
     "text": "Verbatim Text\nVerbatim text can be created with several methods:\n\nInline: enclose text within single backticks `verbatim text` \\(\\rightarrow\\) verbatim text\nIndentation by 4 spaces\nUse so-called fencing with ``` before and after a tect or code block.\n\n```\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy\neirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam\nvoluptua.\n```\nappears as:\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy\neirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam\nvoluptua.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -446,7 +446,7 @@
     "section": "Tables",
     "text": "Tables\nSource code:\n| Right | Left | Default | Center |\n|------:|:-----|---------|:------:|\n|    12 | 34   |   56    |   78   |\n| this  | is   |   a     | table  |\nHTML Output:\n\n\n\nRight\nLeft\nDefault\nCenter\n\n\n\n\n12\n34\n56\n78\n\n\nthis\nis\na\ntable\n\n\n\nPDF output:\n\nStyle similar to a scientific paper.\n\nBigger or more complex tables: create the table in Excel or LibreOffice and add markdown formatting, or use R and kable to create the table from data.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -457,7 +457,7 @@
     "section": "Citations",
     "text": "Citations\n\nCreate database file in .bib-format, e.g. references.bib\n\ncan be exported from Zotero\nput bibliography file to the document folder\n\nUse @bib_key-syntax\n\ntextual citation: American Psychological Association (2020b) \\(\\leftarrow\\) @APA2020b\nparenthetical citation: (American Psychological Association, 2020a) \\(\\leftarrow\\) [@APA2020a]\n\n\nDeclare bibliography in YAML header\nbibliography: references.bib\ncsl: apa\n\nand optionally a .csl-style e.g. apa.csl, that is copied to the folder of the document\ncsl styles can be found here: https://citationstyles.org/authors/",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -468,7 +468,7 @@
     "section": "Mathematical Formulae",
     "text": "Mathematical Formulae\n\nMarkdown and Quarto support a subset of the LaTeX formula syntax\n\nInline formula\n$s_x = \\frac{\\sum_{i=1}^{N} (x_i - \\bar{x})^2}{N-1}$ \\(\\quad \\rightarrow \\qquad s_x = \\frac{\\sum_{i=1}^{N} (x_i - \\bar{x})^2}{N-1}\\)\n #### Display formula\n$$s_x = \\frac{\\sum_{i=1}^{N} (x_i - \\bar{x})^2}{N-1}$$\n\\[s_x = \\frac{\\sum_{i=1}^{N} (x_i - \\bar{x})^2}{N-1}\\]\nMathematical symbols\n\\(\\rightarrow, \\le, \\approx, \\mu, \\delta, \\int, \\infty, \\mathrm{m^3s^{-1}}\\)\n$\\rightarrow, \\le, \\approx, \\mu, \\delta, \\int, \\infty, \\mathrm{m^3s^{-1}}$",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -479,7 +479,7 @@
     "section": "More maths and chemistry",
     "text": "More maths and chemistry\n\n\\[\\begin{align}\n\\frac{dX_1}{dt} &=    k_1 \\cdot X_1 -  k_2 X_1 X_2 \\\\\n\\frac{dX_2}{dt} &=  - k_4 \\cdot X_2 + k_3 X_1 X_2 \\\\\n\\end{align}\\]\n\\begin{align}\n\\frac{dX_1}{dt} &=  k_1 \\cdot X_1 -  k_2 X_1 X_2 \\\\\n\\frac{dX_2}{dt} &=  k_3 X_1 X_2 - k_4 \\cdot X_2 \\\\\n\\end{align}\n\n\\[\\rm 6CO_2 + 6H_2O \\rightarrow C_6H_{12}O_6 + 6O_2\n\\quad \\Delta H^0 = +2870 kJ mol^{-1}\\]\n$$\\rm 6CO_2 + 6H_2O \\rightarrow C_6H_{12}O_6 + 6O_2 \\quad \\Delta H^0 = +2870 kJ mol^{-1}$$",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -490,7 +490,7 @@
     "section": "Embedding of R in Quarto Documents",
     "text": "Embedding of R in Quarto Documents\n\nCreate a Quarto template from the File menu in RStudio. Then make your changes and click the Render button. Then, a document will be generated that includes both content as well as the output of any embedded R code chunks.\n\nThen embed your own R code chunks like this:\n```{r iris_summary}\nsummary(iris)\n```\n To show both, the code and the output\n\n\n  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   \n Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  \n 1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  \n Median :5.800   Median :3.000   Median :4.350   Median :1.300  \n Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  \n 3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  \n Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  \n       Species  \n setosa    :50  \n versicolor:50  \n virginica :50",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -501,7 +501,7 @@
     "section": "Tables from R",
     "text": "Tables from R\n\nIf you want to include real tables, you can create the table in R and then format it with knitr::kable\n\n```{r iris_table}\nknitr::kable(iris[1:4, ])\n```\n\n\n\n\n\nSepal.Length\nSepal.Width\nPetal.Length\nPetal.Width\nSpecies\n\n\n\n\n5.1\n3.5\n1.4\n0.2\nsetosa\n\n\n4.9\n3.0\n1.4\n0.2\nsetosa\n\n\n4.7\n3.2\n1.3\n0.2\nsetosa\n\n\n4.6\n3.1\n1.5\n0.2\nsetosa\n\n\n\n\n\nThe kable function has several functions for configuring table layout, see kable help page for details.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -512,7 +512,7 @@
     "section": "Include Plots",
     "text": "Include Plots\nYou can also embed plots, for example:\n```{r iris_sepal}\nplot(Sepal.Width ~ Sepal.Length, data=iris, pch=16, col=Species)\n```",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -523,7 +523,7 @@
     "section": "Suppress Code",
     "text": "Suppress Code\nThe code chunks can be modified with additional options. In the following example the figure size is adjusted and an option echo = FALSE was added to prevent printing of the R code that generated the plot.\n```{r iris_sepal3, fig.width=3, fig.height=3, echo=FALSE}\nplot(Sepal.Width ~ Sepal.Length, data=iris, pch=16, col=Species)\n```\nShows the plot without the code:",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -534,7 +534,7 @@
     "section": "Flowcharts and graphs",
     "text": "Flowcharts and graphs\n\n… can be created with the DiagrammeR package that supports the graphviz language.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -545,7 +545,7 @@
     "section": "R code of the flowchart",
     "text": "R code of the flowchart\n\nlibrary(\"DiagrammeR\")\ngrViz(\"digraph pandoc {\n         graph [rankdir = LR]\n           node [shape = 'box']\n                Markdown HTML PDF Word\n           node [shape = cds]\n             pandoc\n           node [shape = oval]\n             figs bib\n           edge [penwidth=2]\n             Markdown -&gt; pandoc\n             {figs bib} -&gt; {pandoc}\n             pandoc -&gt; {HTML PDF Word}\n}\")\nMore at: https://graphviz.org/",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -556,7 +556,7 @@
     "section": "Further reading",
     "text": "Further reading\n\n\\(\\rightarrow\\) Quarto cheat sheetFor more details, see https://quarto.org and R Core Team (2024)“, RStudio Team (2021), Xie (2015) and The Quarto Dev Team (2024).\nThesis templates for Hydrobiology students at TU Dresden: https://github.com/tpetzoldt/hyb-tud-thesis-starterkit in Word, Latex and Quarto format. It may also be useful for you.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -567,7 +567,7 @@
     "section": "References",
     "text": "References\n\n\n\n\nAmerican Psychological Association. (2020a). Concise guide to APA style: The official APA style guide for students (7th ed.).\n\n\nAmerican Psychological Association. (2020b). Publication manual of the American Psychological Association: The official guide to APA style. (7th ed.).\n\n\nR Core Team. (2024). R: A language and environment for statistical computing. R Foundation for Statistical Computing. https://www.R-project.org/\n\n\nRStudio Team. (2021). RStudio: Integrated development environment for R. RStudio, PBC. http://www.rstudio.com/\n\n\nThe Quarto Dev Team. (2024). Quarto. An open-source scientific and technical publishing system. https://quarto.org\n\n\nWikipedia. (2022). Markdown. Wikipedia. https://en.wikipedia.org/w/index.php?title=Markdown&oldid=1079645429\n\n\nXie, Y. (2015). Dynamic documents with R and knitr (2nd ed.). Chapman; Hall/CRC. https://yihui.org/knitr/",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
     ]
   },
@@ -578,7 +578,7 @@
     "section": "Functions bring life to the R language",
     "text": "Functions bring life to the R language\n\nsin(x), log(x), plot(x, y), summary(x), anova(lm.object), mean(x), monod(S, vmax, ks), simulate_phytoplankton(N, P, T, Zoo, ...)\n\nFunctions in R\n\nhave a name, followed by parenthesis ()\ncan have 1, 2 or more arguments (or no argument)\nusually return something (an object)\ncan have side-effects (e.g. plotting)",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x3-Functions Everywhere"
     ]
   },
@@ -589,7 +589,7 @@
     "section": "What are functions",
     "text": "What are functions\n\nParentheses and arguments\n\nall functions are followed by parentheses and arguments\nfunctions: log(x) par()\npar &lt;- c(a=5, b=3)\n\n\\(\\rightarrow\\) here, par is a variable, c() a function\nReturn value and/or side effect\n\nsin(x), log(x), mean(x) are functions with return value\nprint(x), plot(x, y) are functions with side effect\nhist(x) is a function with both, side effect and return value\n\nPredefined and user-defined functions\n\npredefined: available in R\nuser defined: users become programmers",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x3-Functions Everywhere"
     ]
   },
@@ -600,7 +600,7 @@
     "section": "Arguments of functions",
     "text": "Arguments of functions\nUsage\n\ndnorm(x, mean = 0, sd = 1, log = FALSE)\npnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)\nqnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)\nrnorm(n, mean = 0, sd = 1)\n\n\n\n\n\n\n\n\nx, q\nvector of quantiles.\n\n\np\nvector of probabilities.\n\n\nn\nnumber of observations. If length(n) &gt; 1, the length is taken to be …\n\n\nlog.p\nif TRUE, probabilities p are given as log(p).\n\n\nlower.tail\nif TRUE (default), …\n\n\n\nArguments\n\nrequired arguments: have no default\noptional arguments: have default values\nnamed arguments: argument mathing with = allows to specify arguments in arbitrary order\nargument order: arguments can occur without names when in defined order\n“…”: dots-arguments are passed down to other called functions",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x3-Functions Everywhere"
     ]
   },
@@ -611,7 +611,7 @@
     "section": "Examples",
     "text": "Examples\n\n\n\nrnorm(10)                       # x given, other arguments = defaults\nrnorm(10, 0, 1)                 # order matters\nrnorm(n = 10, mean = 0, sd = 1) # use argument names\nrnorm(10, sd = 1, mean = 0)     # named arguments in arbitrary order\nrnorm(10, m = 5, s = 1)         # abbreviated arguments: = bad style\nargs(rnorm)                     # all arguments from rnorm",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x3-Functions Everywhere"
     ]
   },
@@ -622,7 +622,7 @@
     "section": "The ellipsis argument",
     "text": "The ellipsis argument\n\nplot(x, y, ...)\n\n\nSome functions have a … argument, called “ellipsis”.\nThis means that additional arguments are passed to other functions.\nMakes R flexible and extensible, but is sometimes tricky.\n\n\npar(mfrow=c(1, 3))\nx &lt;- 1:10; y &lt;- rnorm(10)\nplot(x, y)\nplot(x, y, type = \"h\")\nplot(x, y, type = \"s\", col=\"red\")",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x3-Functions Everywhere"
     ]
   },
@@ -633,7 +633,7 @@
     "section": "plot.default",
     "text": "plot.default\n\nplot(x, y = NULL, type = \"p\",  xlim = NULL, ylim = NULL,\n     log = \"\", main = NULL, sub = NULL, xlab = NULL, ylab = NULL,\n     ann = par(\"ann\"), axes = TRUE, frame.plot = axes,\n     panel.first = NULL, panel.last = NULL, asp = NA, ...)\n\nObject orientation\n\nplot is a generic function\nworks automagic differently for different classes of objects\nplot.default is the basic function\n... see ?par for additional graphical parameters, e.g.:\n\n\n\n\ncol\ncolor\n\n\nbg\nbackground color for two-color symbols\n\n\npch\nsymbol (plotting character)\n\n\ncex\nsize of symbol (character extension)\n\n\nlty\nline type\n\n\nlwd\nline width",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x3-Functions Everywhere"
     ]
   },
@@ -644,7 +644,7 @@
     "section": "A user-defined Monod function",
     "text": "A user-defined Monod function\n\n\ndescribes substrate dependence of biochemical turnover\nwidely used in biochemistry and in models\ne.g. organic matter turnover in wastewater treatment\n\n\\[\nv = \\frac{v_{max} \\cdot S}{k_S + S}\n\\]\n\npar(mar=c(4,4,1,1))\npar(mfrow=c(3, 1))\nmonod &lt;- function(S, vmax, ks) {\n  vmax * S / (ks + S)\n}\n\n\nS &lt;- 1:10\nP &lt;- seq(0, 20, 0.1)\nkP &lt;- 5; mumax &lt;- 1.2;\n\n## different ways to call the function\nplot(S, monod(S, 2, 2))                # simple call\nplot(P, monod(S=P, vmax=mumax, ks=kP)) # named arguments\nplot(P, monod(P, mumax, kP))           # argument position\n\n\nnames of caller and function can be different",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x3-Functions Everywhere"
     ]
   },
@@ -655,7 +655,7 @@
     "section": "Seasonal Light Intensity in Dresden",
     "text": "Seasonal Light Intensity in Dresden\n\n\\[\nI_t = 997 - 816 \\cos(2 \\pi t / 365) + 126 \\sin(2 \\pi t / 365)\n\\]\n\nFunctions as a knowledge base\n\nput knowledge in function and use it\nforget what is inside\n\n\n\nrad &lt;- function(t) {\n  ## fill equation in\n}\n\nt &lt;- 1:365\nplot(t, rad(t), type = \"l\")",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x3-Functions Everywhere"
     ]
   },
@@ -666,7 +666,7 @@
     "section": "Oxygen saturation in fresh and sea water",
     "text": "Oxygen saturation in fresh and sea water\n\\[\nc_{O_2, 100\\%} = ... ?\n\\]\n\no2sat &lt;- function(t) {\n  K &lt;- t + 273.15 # Celsius to Kelvin\n  exp(-139.34411 + (157570.1/K) - (66423080/K^2) +\n   (1.2438e+10/K^3) - (862194900000/K^4))\n}\n\no2sat(20)\n\n[1] 9.092426\n\n\n A more precise formula is found in package marelac\n\nlibrary(marelac)\ngas_O2sat(t = 20, S = 0, method = \"APHA\")\n\n[1] 9.092426\n\n\nconsult ?gas_O2sat for citations.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x3-Functions Everywhere"
     ]
   },
@@ -677,7 +677,7 @@
     "section": "Local and global variables",
     "text": "Local and global variables\n\nVariables in a function are local:\n\nnot visible from outside.\nno collisions with existing variables in the calling environment\n\nLexical Scoping\n\nfunctions can see variables of the calling function\nuseful for interactive work\ndangerous for (exported) functions in packages\nexcept in special cases, e.g. for functions within functions",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x3-Functions Everywhere"
     ]
   },
@@ -688,7 +688,7 @@
     "section": "Local and global variables II",
     "text": "Local and global variables II\n\n\nrm(list = ls()) # remove all objects\no2sat &lt;- function(t) {\n  K &lt;- t + 273.15 # Celsius to Kelvin\n  exp(-139.34411 + (157570.1/K) - (66423080/K^2) +\n   (1.2438e+10/K^3) - (862194900000/K^4))\n}\n\no2sat(20)\nK\n\nK &lt;- 0\no2sat(20)\n\nNow outcomment:\n\n# K &lt;- t + 273.15\n\nand try again.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x3-Functions Everywhere"
     ]
   },
@@ -699,7 +699,7 @@
     "section": "Logistic growth",
     "text": "Logistic growth\n\nThe logistic growth function describes saturated growth of a population abundance \\(N_t\\), dependent of an initial value \\(N_0\\), growth rate \\(r\\) and carrying capacity \\(K\\).\n\\[\nN_t = \\frac{K N_0 e^{rt}}{K + N_0 (e^{rt}-1)}\n\\]\n\nlogistic &lt;- function(t, r, K, N0) {\n  K*N0*exp(r*t)/(K+N0*(exp(r*t)-1))\n}\n\n\nmu &lt;- 0.1; K = 10; N0 = 0.1\ntimes &lt;- 1:100",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x3-Functions Everywhere"
     ]
   },
@@ -710,7 +710,7 @@
     "section": "Functional response types in Ecology",
     "text": "Functional response types in Ecology\n\nHolling type I \\(P = \\min(k \\cdot N, P_{max})\\)\nHolling type II \\(P = \\frac{\\alpha N}{1 + \\alpha H N}\\)\nHolling type III \\(P = \\frac{\\alpha N^b}{1 + \\alpha H N^b}\\)\n\nwith\n\n\n\n\\(P\\)\npredation rate\n\n\n\\(N\\)\nabundance of prey\n\n\n\\(P_{max}\\)\nmaximum predation rate\n\n\n\\(k\\)\na constant\n\n\n\\(\\alpha\\)\nattack rate\n\n\n\\(H\\)\nhandling time\n\n\n\\(b\\)\nexponent \\(&gt;1\\)\n\n\n\n\nWrite a function for each functional reponse type and plot it.\nWrite a universal function for all types.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x3-Functions Everywhere"
     ]
   },
@@ -721,7 +721,7 @@
     "section": "Further Reading",
     "text": "Further Reading\n\nMore presentations\n\nR Basics\nGraphics in R\n\nManuals\nMore details in the official R manuals, especially in An Introduction to R\nVideos\nMany videos can be found on Youtube, at the Posit webpage and somewhere else.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x3-Functions Everywhere"
     ]
   },
@@ -732,7 +732,7 @@
     "section": "R is more convenient with RStudio",
     "text": "R is more convenient with RStudio",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -743,7 +743,7 @@
     "section": "R and RStudio",
     "text": "R and RStudio\n\nEngine and Control\n\nR The main engine for computations and graphics.\nRstudio the IDE (integrated development environment) that embeds and controls R and provides additional facilities.\nR can also be used without RStudio.\n\n\nCitation\nCite R and optionally RStudio.\nR Core Team (2022). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. https://www.R-project.org/\nRStudio Team (2022). RStudio: Integrated Development Environment for R. RStudio, PBC, Boston, MA URL http://www.rstudio.com/",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -754,7 +754,7 @@
     "section": "Expressions and Assignments",
     "text": "Expressions and Assignments\n\n\nExpression\n\n\n1 - pi + exp(1.7)\n\n[1] 3.332355\n\n\n\n\nresult is printed to the screen\nthe [1] indicates that the value shown at the beginning of the line is the first (and here the only) element\n\n\nAssignment\n\n\na &lt;- 1 - pi + exp(1.7)\n\n\n\nThe expression on the left hand side is assigned to the variable on the right.\nThe arrow is spelled as “a gets …”\nTo avoid confusion: use &lt;- for assignment and let = for parameter matching",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -765,7 +765,7 @@
     "section": "Constants, variables and assignments",
     "text": "Constants, variables and assignments\nAssignment of constants and variables to a variable\n\n\nx &lt;- 1.3      # numeric constant\ny &lt;- \"hello\"  # character constant\na &lt;- x        # a and x both variables\n\nAssignment in opposite direction (rarely used)\n\nx -&gt; b\n\nMultiple assignment\n\nx &lt;- a &lt;- b\n\n\nDo not use the following constructs\n\n# Equal sign has two meanings: parameter matching and assignment\n# - Don't use it for assignment!\nx = a\n\n# Super assignment, useful for programmers in special cases\nx &lt;&lt;- 2",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -776,7 +776,7 @@
     "section": "Objects, constants, variables",
     "text": "Objects, constants, variables\n\nEverything stored in R’s memory is an object:\n\ncan be simple or complex\ncan be constants or variables\nconstants: 1, 123, 5.6, 5e7, “hello”\nvariables: can change their value, are referenced by variable names\n\n\n\nx &lt;- 2.0 # x is a variable, 2.0 is a constant\n\nA syntactically valid variable name consists of:\n\nletters, numbers, underline (_), dot (.)\nstarts with a letter or the dot\nif starting with the dot, not followed by a number\n\nSpecial characters, except _ and . (underscore and dot) are not allowed.\nInternational characters (e.g German umlauts ä, ö, ü, …) are possible, but not recommended.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -787,7 +787,7 @@
     "section": "Allowed and disallowed identifiers",
     "text": "Allowed and disallowed identifiers\n\ncorrect:\n\nx, y, X, x1, i, j, k\nvalue, test, myVariableName, do_something\n`.hidden, .x1``\n\nforbidden:\n\n1x, .1x (starts with a number)\n!, @, \\$, #, space, comma, semicolon and other special characters\n\nreserved words cannot be used as variable names:\n\nif, else, repeat, while, function, for, in, next, break\nTRUE, FALSE, NULL, Inf, NaN, NA, NA_integer_, NA_real_, NA_complex_, NA_character\\_\n..., ..1, ..2\n\nNote: R is case sensitive, x and X, value and Value are different.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -798,7 +798,7 @@
     "section": "Operators",
     "text": "Operators\n\n\n\n\n\n\noperator\nsymbol\n\n\n\n\nAddition\n+\n\n\nSubtraction\n-\n\n\nNegation\n-\n\n\nMultiplication\n*\n\n\nDivision\n/\n\n\nModulo\n%%\n\n\nInteger Divison\n%/%\n\n\nPower\n^\n\n\nMatrix product\n%*%\n\n\nOuter product\n%o%\n\n\n\n\n\n\n\n\n\n\n\noperator\nsymbol\n\n\n\n\nNegation\n!\n\n\nAnd\n&\n\n\nOr\n|\n\n\nEqual\n==\n\n\nUnequal\n!=\n\n\nLess than\n&lt;\n\n\nGreater than\n&gt;\n\n\nLess or equal\n&lt;=\n\n\nGreater or equal\n&gt;=\n\n\nAssignment\n&lt;-\n\n\nElement of a list\n$\n\n\nPipeline\n|&gt;\n\n\n\n\n\n… and more",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -809,7 +809,7 @@
     "section": "Functions",
     "text": "Functions\nPre-defined functions:\n\nwith return value: sin(x), log(x)\nwith side effect: plot(x), print(x)\nwith both return value and side efect: hist(x)\n\nArguments: mandatory or optional, un-named or named\n\nplot(1:4, c(3, 4, 3, 6), type = \"l\", col = \"red\")\nif named arguments are used (with the “=” sign), argument order does not matter\n\nUser-defined functions:\n\ncan be used to extend R\nwill be discussed later\n\n\\(\\rightarrow\\) Functions have always a name followed by arguments in round parentheses.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -820,7 +820,7 @@
     "section": "Parentheses",
     "text": "Parentheses",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -831,7 +831,7 @@
     "section": "Vectors, matrices and arrays",
     "text": "Vectors, matrices and arrays\n\nvectors = 1D, matrices = 2D and arrays = n-dimensional\ndata are arranged into rows, columns, layers, …\ndata filled in column-wise, can be changed\ncreate vector\n\n\nx &lt;- 1:20\nx\n\n [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20\n\n\n\nconvert it to matrix\n\n\ny &lt;- matrix(x, nrow = 5, ncol = 4)\ny\n\n     [,1] [,2] [,3] [,4]\n[1,]    1    6   11   16\n[2,]    2    7   12   17\n[3,]    3    8   13   18\n[4,]    4    9   14   19\n[5,]    5   10   15   20\n\n\n\nback-convert (flatten) to vector\n\n\nas.vector(y) # flattens the matrix to a vector\n\n [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -842,7 +842,7 @@
     "section": "Vectors, matrices and arrays II",
     "text": "Vectors, matrices and arrays II\n\nrecycling rule if the number of elements is too small\n\n\nx &lt;- matrix(0, nrow=5, ncol=4)\nx\n\n     [,1] [,2] [,3] [,4]\n[1,]    0    0    0    0\n[2,]    0    0    0    0\n[3,]    0    0    0    0\n[4,]    0    0    0    0\n[5,]    0    0    0    0\n\nx &lt;- matrix(1:4, nrow=5, ncol=4)\nx\n\n     [,1] [,2] [,3] [,4]\n[1,]    1    2    3    4\n[2,]    2    3    4    1\n[3,]    3    4    1    2\n[4,]    4    1    2    3\n[5,]    1    2    3    4",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -853,7 +853,7 @@
     "section": "Transpose rows and columns",
     "text": "Transpose rows and columns\n\nrow-wise creation of a matrix\n\n\nx &lt;- matrix(1:20, nrow = 5, ncol = 4, byrow = TRUE)\nx\n\n     [,1] [,2] [,3] [,4]\n[1,]    1    2    3    4\n[2,]    5    6    7    8\n[3,]    9   10   11   12\n[4,]   13   14   15   16\n[5,]   17   18   19   20\n\n\n\ntranspose of a matrix\n\n\nx &lt;- t(x)\nx\n\n     [,1] [,2] [,3] [,4] [,5]\n[1,]    1    5    9   13   17\n[2,]    2    6   10   14   18\n[3,]    3    7   11   15   19\n[4,]    4    8   12   16   20",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -864,7 +864,7 @@
     "section": "Access array elements",
     "text": "Access array elements\n\n\na three dimensional array\nrow, column, layer/page\nsub-matrices (slices)\n\n\nx &lt;- array(1:24, dim=c(3, 4, 2))\nx\n\n, , 1\n\n     [,1] [,2] [,3] [,4]\n[1,]    1    4    7   10\n[2,]    2    5    8   11\n[3,]    3    6    9   12\n\n, , 2\n\n     [,1] [,2] [,3] [,4]\n[1,]   13   16   19   22\n[2,]   14   17   20   23\n[3,]   15   18   21   24\n\n\n\n\n\n\nelements of a matrix or array\n\n\nx[1, 3, 1] # single element\n\n[1] 7\n\nx[ , 3, 1] # 3rd column of 1st layer\n\n[1] 7 8 9\n\nx[ ,  , 2] # second layer\n\n     [,1] [,2] [,3] [,4]\n[1,]   13   16   19   22\n[2,]   14   17   20   23\n[3,]   15   18   21   24\n\nx[1,  ,  ] # another slice\n\n     [,1] [,2]\n[1,]    1   13\n[2,]    4   16\n[3,]    7   19\n[4,]   10   22",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -875,7 +875,7 @@
     "section": "Reordering and indirect indexing",
     "text": "Reordering and indirect indexing\n\nOriginal matrix\n\n(x &lt;- matrix(1:20, nrow = 4))\n\n     [,1] [,2] [,3] [,4] [,5]\n[1,]    1    5    9   13   17\n[2,]    2    6   10   14   18\n[3,]    3    7   11   15   19\n[4,]    4    8   12   16   20\n\n\nInverted row order\n\nx[4:1, ]\n\n     [,1] [,2] [,3] [,4] [,5]\n[1,]    4    8   12   16   20\n[2,]    3    7   11   15   19\n[3,]    2    6   10   14   18\n[4,]    1    5    9   13   17\n\n\n\nIndirect index\n\nx[c(1, 2, 1, 2), c(1, 3, 2, 5, 4)]\n\n     [,1] [,2] [,3] [,4] [,5]\n[1,]    1    9    5   17   13\n[2,]    2   10    6   18   14\n[3,]    1    9    5   17   13\n[4,]    2   10    6   18   14\n\n\nLogical selection\n\nx[c(FALSE, TRUE, FALSE, TRUE), ]\n\n     [,1] [,2] [,3] [,4] [,5]\n[1,]    2    6   10   14   18\n[2,]    4    8   12   16   20\n\n\nSurprise?\n\nx[c(0, 1, 0, 1), ]\n\n     [,1] [,2] [,3] [,4] [,5]\n[1,]    1    5    9   13   17\n[2,]    1    5    9   13   17",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -886,7 +886,7 @@
     "section": "Matrix multiplication explained",
     "text": "Matrix multiplication explained\n\n\nTwo matrices: A and B\n\nA &lt;- matrix(c(1, 2, 3,\n              5, 4, 2), \n            nrow = 2, byrow = TRUE)\n\nB &lt;- matrix(c(1, 2, 3, 4,\n              6, 8, 4, 2,\n              3, 1, 3, 2), \n            nrow = 3, byrow = TRUE)\n\nMultiplication: \\(A \\cdot B\\)\n\nA %*% B\n\n     [,1] [,2] [,3] [,4]\n[1,]   22   21   20   14\n[2,]   35   44   37   32",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -897,7 +897,7 @@
     "section": "Transpose and inverse",
     "text": "Transpose and inverse\nMatrix\n\nX &lt;- matrix(c(1, 2, 3, \n              4, 3, 2, \n              5, 4, 6),\n            nrow = 3)\nX\n\n     [,1] [,2] [,3]\n[1,]    1    4    5\n[2,]    2    3    4\n[3,]    3    2    6\n\n\nTranspose\n\nt(X)\n\n     [,1] [,2] [,3]\n[1,]    1    2    3\n[2,]    4    3    2\n[3,]    5    4    6\n\n\nInverse (\\(X^{-1}\\))\n\nsolve(X)\n\n\n\n        [,1]    [,2]    [,3]\n[1,] -0.6667  0.9333 -0.0667\n[2,]  0.0000  0.6000 -0.4000\n[3,]  0.3333 -0.6667  0.3333",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -908,7 +908,7 @@
     "section": "Multiplication of a matrix with its inverse",
     "text": "Multiplication of a matrix with its inverse\n\n\n\\[X \\cdot X^{-1} = I\\]\n\nX %*% solve(X)\n\n     [,1] [,2] [,3]\n[1,]    1    0    0\n[2,]    0    1    0\n[3,]    0    0    1\n\n\n\n\n\\(I\\): identity matrix",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -919,7 +919,7 @@
     "section": "Linear system of equations",
     "text": "Linear system of equations\n\n\\[\\begin{align}\n3x && +  && 2y   && -  && z  && =  && 1 \\\\\n2x && -  && 2y   && +  && 4z && =  && -2 \\\\\n-x && +  && 1/2y && -  && z  && =  && 0\n\\end{align}\\]\n\n\nA &lt;- matrix(c(3,  2,   -1,\n             2,  -2,    4,\n            -1,   0.5, -1), nrow=3, byrow=TRUE)\nb &lt;- c(1, -2, 0)\n\n\n\\[\\begin{align}\nAx &= b\\\\\nx  &= A^{-1}b\n\\end{align}\\]\n\n\nsolve(A) %*% b\n\n     [,1]\n[1,]    1\n[2,]   -2\n[3,]   -2",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -930,7 +930,7 @@
     "section": "Data frames",
     "text": "Data frames\n\nrepresent tabular data\nsimilar to matrices, but different types of data in columns possible\ntypically imported from a file with read.table or read.csv\n\n\n\ncities &lt;- read.csv(\"cities.csv\")\ncities\n\n\n\n\n               Name    Country Population Latitude Longitude IsCapital\n1  Fürstenfeldbruck    Germany      34033  48.1690   11.2340     FALSE\n2             Dhaka Bangladesh   13000000  23.7500   90.3700      TRUE\n3       Ulaanbaatar   Mongolia    3010000  47.9170  106.8830      TRUE\n4           Shantou      China    5320000  23.3500  116.6700     FALSE\n5           Kampala     Uganda    1659000   0.3310   32.5830      TRUE\n6           Cottbus    Germany     100000  51.7650   14.3280     FALSE\n7           Nairobi      Kenya    3100000   1.2833   36.8167      TRUE\n8             Hanoi    Vietnam    1452055  21.0300  105.8400      TRUE\n9          Bacgiang    Vietnam      53739  21.2800  106.1900     FALSE\n10       Addis Abba   Ethiopia    2823167   9.0300   38.7400      TRUE\n11        Hyderabad      India    3632094  17.4000   78.4800     FALSE\n\n\n\\(\\rightarrow\\) download data set",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -941,7 +941,7 @@
     "section": "What is a CSV file?",
     "text": "What is a CSV file?\n\ncomma separated values.\nfirst line contains column names\ndecimal is dec=\".\", column separator is sep=\",\"\n\nExample CSV file (Data from Wikipedia, 2023)\n\nName,Country,Population,Latitude,Longitude\nDhaka,Bangladesh,10278882,23.75,90.37\nUlaanbaatar,Mongolia,1672627,47.917,106.883\nShantou,China,5502031,23.35,116.67\nKampala,Uganda,1680600,0.331,32.583\nBerlin,Germany,3850809,52.52,13.405\nNairobi,Kenya,4672000,1.2833,36.8167\nHanoi,Vietnam,8435700,21.03,105.84\nAddis Abba,Ethiopia,3945000,9.03,38.74\nHyderabad,India,9482000,17.4,78.48\n\nHints\n\nsome countries use dec = \",\" and sep = \";\"\nExcel may export mixed style with dec = \".\" and sep = \";\"\ncomments above the header line can be skipped",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -952,7 +952,7 @@
     "section": "Different read-Funktions",
     "text": "Different read-Funktions\n\nR contains several read-functions for different file types.\nSome are more flexible, some more automatic, some faster, some more robust …\n\nTo avoid confusion, we use only the following:\nBase R\n\nread.table(): this is the most flexible standard function, see help file for details\nread.csv(): default options for standard csv files (with dec=\".\" and sep=,)\n\nTidyverse readr-package\n\nread_delim(): similar to read.table() but more modern, automatic and faster\nread_csv(): similar to read.csv() with more automatism, e.g. date detection",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -963,7 +963,7 @@
     "section": "The most versatile: read.table()",
     "text": "The most versatile: read.table()\n\nread.table(file, header = FALSE, sep = \"\", quote = \"\\\"'\",\n           dec = \".\", numerals = c(\"allow.loss\", \"warn.loss\", \"no.loss\"),\n           row.names, col.names, as.is = !stringsAsFactors, tryLogical = TRUE,\n           na.strings = \"NA\", colClasses = NA, nrows = -1,\n           skip = 0, check.names = TRUE, fill = !blank.lines.skip,\n           strip.white = FALSE, blank.lines.skip = TRUE,\n           comment.char = \"#\",\n           allowEscapes = FALSE, flush = FALSE,\n           stringsAsFactors = FALSE,\n           fileEncoding = \"\", encoding = \"unknown\", text, skipNul = FALSE)\n\nExamples\n\nread.table(\"cities.csv\", sep = \",\",  dec = \".\")  # same as read.csv\nread.table(\"cities.txt\", sep = \"\\t\", dec = \".\")  # tab delimited\nread.table(\"cities.csv\", sep = \";\",  dec = \",\")  # German csv\n\nread.table(\"cities.csv\", sep = \",\", dec = \".\", skip = 5) # skip first 5 lines",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -974,7 +974,7 @@
     "section": "Recommendation",
     "text": "Recommendation\n\nMost of our course examples are plain CSV files, so we can use read.csv() or read_csv().\n\n\nlibrary(\"readr\")\ncities &lt;- read_csv(\"cities.csv\")\ncities\n\n\n\n\n# A tibble: 11 × 6\n   Name             Country    Population Latitude Longitude IsCapital\n   &lt;chr&gt;            &lt;chr&gt;           &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;lgl&gt;    \n 1 Fürstenfeldbruck Germany         34033   48.2        11.2 FALSE    \n 2 Dhaka            Bangladesh   13000000   23.8        90.4 TRUE     \n 3 Ulaanbaatar      Mongolia      3010000   47.9       107.  TRUE     \n 4 Shantou          China         5320000   23.4       117.  FALSE    \n 5 Kampala          Uganda        1659000    0.331      32.6 TRUE     \n 6 Cottbus          Germany        100000   51.8        14.3 FALSE    \n 7 Nairobi          Kenya         3100000    1.28       36.8 TRUE     \n 8 Hanoi            Vietnam       1452055   21.0       106.  TRUE     \n 9 Bacgiang         Vietnam         53739   21.3       106.  FALSE    \n10 Addis Abba       Ethiopia      2823167    9.03       38.7 TRUE     \n11 Hyderabad        India         3632094   17.4        78.5 FALSE",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -985,7 +985,7 @@
     "section": "Data import assistant of RStudio",
     "text": "Data import assistant of RStudio\n\nFile –&gt; Import Dataset\nSeveral options are available:\n\n“From text (base)” uses the classical R functions\n“From text (readr)” is more modern and uses an add-on package\n“From Excel” can read Excel files if (and only if) they have a clear tabular structure",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -996,7 +996,7 @@
     "section": "From text (base)",
     "text": "From text (base)",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -1007,7 +1007,7 @@
     "section": "From text (readr)",
     "text": "From text (readr)",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -1018,7 +1018,7 @@
     "section": "Save data to Excel-compatible format",
     "text": "Save data to Excel-compatible format\nEnglish number format (“.” as decimal):\n\nwrite.table(cities, \"output.csv\", row.names = FALSE, sep=\",\")\n\nGerman number format (“,” as decimal):\n\nwrite.table(cities, \"output.csv\", row.names = FALSE, sep=\";\", dec=\",\")\n\n ## Creation of data frames\n\n\ntypical: read data from external file, e.g. csv-files.\nsmall data frames can be created inline in a script\n\nInline creation of a data frame\n\nclem &lt;- data.frame(\n  brand = c(\"EP\", \"EB\", \"EB\", \"EB\", \"EB\", \"EB\", \"EB\", \"EB\", \"EB\", \"EB\", \"EB\", \n            \"EB\", \"EB\", \"EB\", \"EP\", \"EP\", \"EP\", \"EP\", \"EP\", \"EP\", \"EP\", \"EB\", \"EP\"),\n  weight = c(88, 96, 100, 96, 90, 100, 92, 92, 102, 99, 86, 89, 99, 89, 75, 80, \n             81, 96, 82, 98, 80, 107, 88)\n)",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -1029,7 +1029,7 @@
     "section": "Conversion between matrices and data frames",
     "text": "Conversion between matrices and data frames\n\nMatrix to data frame\n\nx &lt;- matrix(1:16, nrow=4)\ndf &lt;- as.data.frame(x)\ndf\n\n  V1 V2 V3 V4\n1  1  5  9 13\n2  2  6 10 14\n3  3  7 11 15\n4  4  8 12 16\n\n\n\nData frame to matrix\n\nas.matrix(df)\n\n     V1 V2 V3 V4\n[1,]  1  5  9 13\n[2,]  2  6 10 14\n[3,]  3  7 11 15\n[4,]  4  8 12 16\n\n\n\nAppend column\n\ndf2 &lt;- cbind(df,\n         id = c(\"first\", \"second\", \"third\", \"fourth\")\n       )\n\nOr simply\n\ndf2$id &lt;- c(\"first\", \"second\", \"third\", \"fourth\")\n\n\nData frame with character column\n\nas.matrix(df2)\n\n     V1  V2  V3   V4   id      \n[1,] \"1\" \"5\" \" 9\" \"13\" \"first\" \n[2,] \"2\" \"6\" \"10\" \"14\" \"second\"\n[3,] \"3\" \"7\" \"11\" \"15\" \"third\" \n[4,] \"4\" \"8\" \"12\" \"16\" \"fourth\"\n\n\n\nall columns are now character\nmatrix does not support mixed data",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -1040,7 +1040,7 @@
     "section": "Selection of data frame columns",
     "text": "Selection of data frame columns\nCreate a data frame from a matrix\n\nx &lt;- matrix(1:16, nrow=4)\ndf &lt;- as.data.frame(x)\ndf\n\n  V1 V2 V3 V4\n1  1  5  9 13\n2  2  6 10 14\n3  3  7 11 15\n4  4  8 12 16\n\n\nAdd names to the columns\n\nnames(df) &lt;- c(\"N\", \"P\", \"O2\", \"C\")\ndf\n\n  N P O2  C\n1 1 5  9 13\n2 2 6 10 14\n3 3 7 11 15\n4 4 8 12 16\n\n\nSelect 3 columns and change order\n\ndf2 &lt;- df[c(\"C\", \"N\", \"P\")]\ndf2\n\n   C N P\n1 13 1 5\n2 14 2 6\n3 15 3 7\n4 16 4 8",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -1051,7 +1051,7 @@
     "section": "Data frame indexing like a matrix",
     "text": "Data frame indexing like a matrix\n\nA data frame\n\ndf\n\n  N P O2  C\n1 1 5  9 13\n2 2 6 10 14\n3 3 7 11 15\n4 4 8 12 16\n\n\nA single value\n\ndf[2, 3]\n\n[1] 10\n\n\nComplete column\n\ndf[,1]\n\n[1] 1 2 3 4\n\n\nComplete row\n\ndf[2,]\n\n  N P O2  C\n2 2 6 10 14\n\n\n\nConditional selection of rows\n\ndf[df$P &gt; 6, ]\n\n  N P O2  C\n3 3 7 11 15\n4 4 8 12 16\n\n\n\nDifferences between [], [[]] and $\n\ndf[\"P\"]     # a single column data frame\n\n  P\n1 5\n2 6\n3 7\n4 8\n\ndf[[\"P\"]]   # a vector\n\n[1] 5 6 7 8\n\ndf$P        # a vector\n\n[1] 5 6 7 8",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -1060,9 +1060,9 @@
     "href": "slides/x1-r-basics.html#lists-1",
     "title": "x1-R Basics",
     "section": "Lists",
-    "text": "Lists\n\nmost flexible data type in R\ncan contain arbitrary data objects as elements of the list\nallows tree-like structure\n\nExamples\n\nOutput of many R functions, e.g. return value of hist:\n\n\nL &lt;- hist(rnorm(100), plot=FALSE)\nstr(L)\n\nList of 6\n $ breaks  : num [1:13] -3 -2.5 -2 -1.5 -1 -0.5 0 0.5 1 1.5 ...\n $ counts  : int [1:12] 1 2 4 6 15 20 20 15 11 4 ...\n $ density : num [1:12] 0.02 0.04 0.08 0.12 0.3 0.4 0.4 0.3 0.22 0.08 ...\n $ mids    : num [1:12] -2.75 -2.25 -1.75 -1.25 -0.75 -0.25 0.25 0.75 1.25 1.75 ...\n $ xname   : chr \"rnorm(100)\"\n $ equidist: logi TRUE\n - attr(*, \"class\")= chr \"histogram\"",
+    "text": "Lists\n\nmost flexible data type in R\ncan contain arbitrary data objects as elements of the list\nallows tree-like structure\n\nExamples\n\nOutput of many R functions, e.g. return value of hist:\n\n\nL &lt;- hist(rnorm(100), plot=FALSE)\nstr(L)\n\nList of 6\n $ breaks  : num [1:13] -3 -2.5 -2 -1.5 -1 -0.5 0 0.5 1 1.5 ...\n $ counts  : int [1:12] 1 1 3 13 12 14 23 19 4 7 ...\n $ density : num [1:12] 0.02 0.02 0.06 0.26 0.24 0.28 0.46 0.38 0.08 0.14 ...\n $ mids    : num [1:12] -2.75 -2.25 -1.75 -1.25 -0.75 -0.25 0.25 0.75 1.25 1.75 ...\n $ xname   : chr \"rnorm(100)\"\n $ equidist: logi TRUE\n - attr(*, \"class\")= chr \"histogram\"",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -1073,7 +1073,7 @@
     "section": "Creation of lists",
     "text": "Creation of lists\n\nL1 &lt;- list(a=1:10, b=c(1,2,3), x=\"hello\")\n\nNested list (lists within a list)\n\nL2 &lt;- list(a=5:7, b=L1)\n\nstr shows tree-like structure\n\nstr(L2)\n\nList of 2\n $ a: int [1:3] 5 6 7\n $ b:List of 3\n  ..$ a: int [1:10] 1 2 3 4 5 6 7 8 9 10\n  ..$ b: num [1:3] 1 2 3\n  ..$ x: chr \"hello\"\n\n\n\nAccess to list elements by names\n\nL2$a\n\n[1] 5 6 7\n\nL2$b$a\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\n\n\n\n\nor with indices\n\nL2[1]   # a list with 1 element\n\n$a\n[1] 5 6 7\n\nL2[[1]] # content of 1st element\n\n[1] 5 6 7",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -1084,7 +1084,7 @@
     "section": "Lists II",
     "text": "Lists II\n\nConvert list to vector\n\n\nL &lt;- unlist(L2)\nstr(L)\n\n Named chr [1:17] \"5\" \"6\" \"7\" \"1\" \"2\" \"3\" \"4\" \"5\" \"6\" \"7\" \"8\" \"9\" \"10\" \"1\" ...\n - attr(*, \"names\")= chr [1:17] \"a1\" \"a2\" \"a3\" \"b.a1\" ...\n\n\n\n\nFlatten list (remove only top level of list)\n\n\nL &lt;- unlist(L2, recursive = FALSE)\nstr(L)\n\nList of 6\n $ a1 : int 5\n $ a2 : int 6\n $ a3 : int 7\n $ b.a: int [1:10] 1 2 3 4 5 6 7 8 9 10\n $ b.b: num [1:3] 1 2 3\n $ b.x: chr \"hello\"",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -1095,7 +1095,7 @@
     "section": "Naming of list elements",
     "text": "Naming of list elements\nDuring creation\n\nx &lt;- c(a=1.2, b=2.3, c=6)\nL &lt;- list(a=1:3, b=\"hello\")\n\nWith names-function\nOriginal names:\n\nnames(L)\n\n[1] \"a\" \"b\"\n\n\nRename list elements:\n\nnames(L) &lt;- c(\"numbers\", \"text\")\nnames(L)\n\n[1] \"numbers\" \"text\"   \n\n\nThe names-functions works also with vectors. The pre-defined vectors letters contains lower case and LETTERS uppercase letters:\n\nx &lt;- 1:5\nnames(x) &lt;- letters[1:5]\nx\n\na b c d e \n1 2 3 4 5",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -1106,7 +1106,7 @@
     "section": "Apply a function to multiple rows and columns",
     "text": "Apply a function to multiple rows and columns\n\nExample data frame\n\ndf  # data frame of previous slide\n\n  N P O2  C\n1 1 5  9 13\n2 2 6 10 14\n3 3 7 11 15\n4 4 8 12 16\n\n\nApply a function to all elements of a list\n\nlapply(df, mean)  # returns list\n\n$N\n[1] 2.5\n\n$P\n[1] 6.5\n\n$O2\n[1] 10.5\n\n$C\n[1] 14.5\n\nsapply(df, mean)  # returns vector\n\n   N    P   O2    C \n 2.5  6.5 10.5 14.5 \n\n\n\n\n\nRow wise apply\n\napply(df, MARGIN = 1, sum)\n\n[1] 28 32 36 40\n\n\nColumn wise apply\n\napply(df, MARGIN = 2, sum)\n\n N  P O2  C \n10 26 42 58 \n\n\nApply user defined function\n\nse &lt;- function(x)\n  sd(x)/sqrt(length(x))\n\nsapply(df, se)\n\n\n\n     N      P     O2      C \n0.6455 0.6455 0.6455 0.6455",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -1117,7 +1117,7 @@
     "section": "for-loop",
     "text": "for-loop\nA simple for-loop\n\n\nfor (i in 1:4) {\n  cat(i, 2*i, \"\\n\")\n}\n\n1 2 \n2 4 \n3 6 \n4 8 \n\n\n\nNested for-loops\n\n\nfor (i in 1:3) {\n  for (j in c(1,3,5)) {\n    cat(i, i*j, \"\\n\")\n  }\n}\n\n1 1 \n1 3 \n1 5 \n2 2 \n2 6 \n2 10 \n3 3 \n3 9 \n3 15",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -1128,7 +1128,7 @@
     "section": "repeat and while-loops",
     "text": "repeat and while-loops\nRepeat until a break condition occurs\n\n\nx &lt;- 1\nrepeat {\n x &lt;- 0.1*x\n cat(x, \"\\n\")\n if (x &lt; 1e-4) break\n}\n\n0.1 \n0.01 \n0.001 \n1e-04 \n1e-05 \n\n\nLoop as long as a whilecondition is TRUE:\n\nj &lt;- 1; x &lt;- 0\nwhile (j &gt; 1e-3) {\n  j &lt;- 0.1 * j\n  x &lt;- x + j\n  cat(j, x, \"\\n\")\n}\n\n0.1 0.1 \n0.01 0.11 \n0.001 0.111 \n1e-04 0.1111 \n\n\n\nIn many cases, loops can be avoided by using vectors and matrices or apply.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -1139,7 +1139,7 @@
     "section": "Avoidable loops",
     "text": "Avoidable loops\n\nColumn means of a data frame\n\n## a data frame\ndf &lt;- data.frame(\n  N=1:4, P=5:8, O2=9:12, C=13:16\n)\n\n## loop\nm &lt;- numeric(4)\nfor(i in 1:4) {\n m[i] &lt;- mean(df[,i])\n}\nm\n\n[1]  2.5  6.5 10.5 14.5\n\n\n\\(\\rightarrow\\) easier without loop\n\nsapply(df, mean)\n\n   N    P   O2    C \n 2.5  6.5 10.5 14.5 \n\n\n… also possible colMeans\n\n\n\nAn infinite series:\n\\[\n\\sum_{k=1}^{\\infty}\\frac{(-1)^{k-1}}{2k-1} = 1 - \\frac{1}{3} + \\frac{1}{5} - \\frac{1}{7}\n\\]\n\nx &lt;- 0\nfor (k in seq(1, 1e5)) {\n  enum  &lt;- (-1)^(k-1)\n  denom &lt;- 2*k-1\n  x &lt;- x + enum/denom\n}\n4 * x\n\n[1] 3.141583\n\n\n\\(\\Rightarrow\\) Can you vectorize this?",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -1150,7 +1150,7 @@
     "section": "Unavoidable loop",
     "text": "Unavoidable loop\nThe same series:\n\\[\n\\sum_{k=1}^{\\infty}\\frac{(-1)^{k-1}}{2k-1} = 1 - \\frac{1}{3} + \\frac{1}{5} - \\frac{1}{7}\n\\]\n\nx &lt;- 0\nk &lt;- 0\nrepeat {\n  k &lt;- k + 1\n  enum  &lt;- (-1)^(k-1)\n  denom &lt;- 2*k-1\n  delta &lt;- enum/denom\n  x &lt;- x + delta\n  if (abs(delta) &lt; 1e-6) break\n}\n4 * x\n\n[1] 3.141595\n\n\n\nnumber of iterations not known in advance\nconvergence criterium, stop when required precision is reached\nno allocation of long vectors –&gt; less memory than for loop\n\n\n\nNote: there are more efficient methods to calculate \\(\\pi\\).",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -1161,7 +1161,7 @@
     "section": "if-clause",
     "text": "if-clause\n\nThe example before showed already an if-clause. The syntax is as follows:\n\nif (&lt;condition&gt;)\n  &lt;statement&gt;\nelse if (&lt;condition&gt;)\n  &lt;statement&gt;\nelse\n  &lt;statement&gt;\n\n\nProper indentation improves readability.\nRecommended: 2 characters\nProfessionals indent always.\nPlease do!\n\n\n\n\nUse of {} to group statements\n\nstatement can of be a compound statement with curly brackets {}\nto avoid common mistakes and be on the safe side, use always {}:\n\nExample:\n\nif (x == 0) {\n  print(\"x is Null\")\n} else if (x &lt; 0) {\n  print(\"x is negative\")\n} else {\n  print(\"x is positive\")\n}",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -1172,7 +1172,7 @@
     "section": "Vectorized if",
     "text": "Vectorized if\nOften, a vectorized ifelse is more appropropriate than an if-function.\nLet’s assume we have a data set of chemical measurements x with missing NA values, and “nondetects” that are encoded with -99. First we want to replace the nontetects with half of the detection limit (e.g. 0.5):\n\nx &lt;- c(3, 6, NA, 5, 4, -99, 7, NA,  8, -99, -99, 9)\nx2 &lt;- ifelse(x == -99, 0.5, x)\nx2\n\n [1] 3.0 6.0  NA 5.0 4.0 0.5 7.0  NA 8.0 0.5 0.5 9.0\n\n\nNow let’s remove the NAs:\n\nx3 &lt;- na.omit(x2)\nx3\n\n [1] 3.0 6.0 5.0 4.0 0.5 7.0 8.0 0.5 0.5 9.0\nattr(,\"na.action\")\n[1] 3 8\nattr(,\"class\")\n[1] \"omit\"",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -1183,7 +1183,7 @@
     "section": "Further reading",
     "text": "Further reading\n\nFollow-up presentations:\n\nFunctions everywhere\nGraphics in R\n\nMore details in the official R manuals, especially in “An Introduction to R”\nMany videos can be found on Youtube, at the Posit webpage and somewhere else.\nThis tutorial was made with Quarto\nAuthor: tpetzoldt +++ Homepage +++ Github page",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x1-R Basics"
     ]
   },
@@ -1771,11 +1771,11 @@
     ]
   },
   {
-    "objectID": "slides/05-classtests.html#effektgröße-und-signifikanz",
-    "href": "slides/05-classtests.html#effektgröße-und-signifikanz",
+    "objectID": "slides/05-classtests.html#effektstärke-und-signifikanz",
+    "href": "slides/05-classtests.html#effektstärke-und-signifikanz",
     "title": "05-Klassische Tests",
-    "section": "Effektgröße und Signifikanz",
-    "text": "Effektgröße und Signifikanz\n\nBei relativen Mittelwertdifferenzen ist die relative Effektgröße:\n\n\\[\n  \\delta = \\frac{\\bar{\\mu}_1-\\bar{\\mu}_2}{\\sigma}=\\frac{\\Delta}{\\sigma}\n\\]\n\nmit:\n\nMittelwerte von zwei Populationen \\(\\mu_1, \\mu_2\\)\nEffektgröße \\(\\Delta\\)\nrelative Effektgröße \\(\\delta\\) (auch Cohen’s d genannt)\nSignifikanz bedeutet, dass es unwahrscheinlich ist, dass ein beobachteter Effekt das Ergebnis einer reinen Zufallsvariation ist.",
+    "section": "Effektstärke und Signifikanz",
+    "text": "Effektstärke und Signifikanz\n\nFür Mittelwertdifferenzen ist die relative Effektstärke:\n\n\\[\n  \\delta = \\frac{\\bar{\\mu}_1-\\bar{\\mu}_2}{\\sigma}=\\frac{\\Delta}{\\sigma}\n\\]\n\nmit:\n\nMittelwerte von zwei Grundgesamtheiten \\(\\mu_1, \\mu_2\\)\nabsolute Effektstärke \\(\\Delta\\)\nrelative Effektstärke \\(\\delta\\) (auch Cohen’s d genannt)\nSignifikanz bedeutet, dass es unwahrscheinlich ist, dass ein beobachteter Effekt das Ergebnis einer reinen Zufallsvariation ist.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1936,11 +1936,11 @@
     ]
   },
   {
-    "objectID": "slides/05-classtests.html#gleichheit-der-varianz-f-test",
-    "href": "slides/05-classtests.html#gleichheit-der-varianz-f-test",
+    "objectID": "slides/05-classtests.html#test-auf-varianzgleichheit-f-test",
+    "href": "slides/05-classtests.html#test-auf-varianzgleichheit-f-test",
     "title": "05-Klassische Tests",
-    "section": "Gleichheit der Varianz: F-Test",
-    "text": "Gleichheit der Varianz: F-Test\n\n\\(H_0\\): \\(\\sigma_1^2 = \\sigma_2^2\\)\n\\(H_a\\): ungleiche Varianzen\nTestkriterium:\n\\[F = \\frac{s_1^2}{s_2^2} \\]\n\ngrößere der beiden Varianzen im Zähler \\((s^2_1 &gt; s^2_2)\\)\ngetrennte Freiheitsgrade (\\(n-1\\))\n\n\n\n\n\n\n\n\n\n\n\nBeispiel:\n\n\\(s_1=1\\), \\(s_2 =2\\), \\(n_1=5, n_2=10, F=\\frac{2^2}{1^2}=4\\)\nFreiheitsgrad: \\(9 \\atop 4\\)\n\n\\(\\Rightarrow\\) \\(F_{9, 4, \\alpha=0.975} = 8.9 &gt; 4 \\quad\\rightarrow\\) nicht signifikant",
+    "section": "Test auf Varianzgleichheit: F-Test",
+    "text": "Test auf Varianzgleichheit: F-Test\n\n\\(H_0\\): \\(\\sigma_1^2 = \\sigma_2^2\\)\n\\(H_a\\): Varianzen ungleich\nTestkriterium:\n\\[F = \\frac{s_1^2}{s_2^2} \\]\n\ngrößere der beiden Varianzen im Zähler \\((s^2_1 &gt; s^2_2)\\)\nFreiheitsgrade (\\(n-1\\)) für Zähler und Nenner können verschieden sein\n\n\n\n\n\n\n\n\n\n\n\nBeispiel:\n\n\\(s_1=1\\), \\(s_2 =2\\), \\(n_1=5, n_2=10, F=\\frac{2^2}{1^2}=4\\)\nFreiheitsgrad: \\(9 \\atop 4\\)\n\n\\(\\Rightarrow\\) \\(F_{9, 4, \\alpha=0.975} = 8.9 &gt; 4 \\quad\\rightarrow\\) nicht signifikant",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1991,11 +1991,11 @@
     ]
   },
   {
-    "objectID": "slides/05-classtests.html#mann-whitney-testverfahren-in-der-praxis",
-    "href": "slides/05-classtests.html#mann-whitney-testverfahren-in-der-praxis",
+    "objectID": "slides/05-classtests.html#mann-whitney-test-in-der-praxis",
+    "href": "slides/05-classtests.html#mann-whitney-test-in-der-praxis",
     "title": "05-Klassische Tests",
-    "section": "Mann-Whitney-Testverfahren in der Praxis",
-    "text": "Mann-Whitney-Testverfahren in der Praxis\n\n\nWeise den beiden Stichproben \\(A\\) und \\(B\\) mit dem Stichprobenumfang \\(m\\) und \\(n\\) die Ränge \\(R_A\\) und \\(R_B\\) zu.\nBerechne die Anzahl der Umkehrungen \\(U\\):\n\n\\[\\begin{align*}\n     U_A &= m \\cdot n + \\frac{m (m + 1)}{2} - \\sum_{i=1}^m R_A \\\\\n     U_B &= m \\cdot n + \\frac{n (n + 1)}{2} - \\sum_{i=1}^n R_B \\\\\n     U   &= \\min(U_A, U_B)\n\\end{align*}\\]\n\nKritische Werte von \\(U\\) finden sich in gängigen Statistik-Lehrbüchern.\nIn R nicht notwendig, p-Wert wird direkt ausgegeben. Anmerkung: Verwende spezielle Version wilcox.exact mit Korrektur, wenn die Stichprobe Bindungen hat.",
+    "section": "Mann-Whitney-Test in der Praxis",
+    "text": "Mann-Whitney-Test in der Praxis\n\n\nWeise den beiden Stichproben \\(A\\) und \\(B\\) mit dem Stichprobenumfang \\(m\\) und \\(n\\) die Ränge \\(R_A\\) und \\(R_B\\) zu.\nBerechne die Anzahl der Inversionen \\(U\\):\n\n\\[\\begin{align*}\n     U_A &= m \\cdot n + \\frac{m (m + 1)}{2} - \\sum_{i=1}^m R_A \\\\\n     U_B &= m \\cdot n + \\frac{n (n + 1)}{2} - \\sum_{i=1}^n R_B \\\\\n     U   &= \\min(U_A, U_B)\n\\end{align*}\\]\n\nKritische Werte von \\(U\\) finden sich in gängigen Statistik-Lehrbüchern.\nIn R nicht notwendig, p-Wert wird direkt ausgegeben. Anmerkung: Verwende spezielle Version wilcox.exact mit Korrektur, wenn mehrfach gleiche Werte (Bindungen) vorliegen.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2090,11 +2090,11 @@
     ]
   },
   {
-    "objectID": "slides/05-classtests.html#berechnung-des-chi2-tests",
-    "href": "slides/05-classtests.html#berechnung-des-chi2-tests",
+    "objectID": "slides/05-classtests.html#rechenschema-des-chi2-tests",
+    "href": "slides/05-classtests.html#rechenschema-des-chi2-tests",
     "title": "05-Klassische Tests",
-    "section": "Berechnung des \\(\\chi^2\\)-Tests",
-    "text": "Berechnung des \\(\\chi^2\\)-Tests\n\nBeobachtete Häufigkeiten \\(O_{ij}\\)\n\n\n\n\n\nKlon A\nKlon B\nKlon C\nSumme \\(s_i\\)\n\n\n\n\nObere Schicht\n50\n37\n72\n159\n\n\nUntere Schicht\n87\n78\n45\n210\n\n\nSumme \\(s_j\\)\n137\n115\n117\n\\(n=369\\)\n\n\n\n\n\n\n\n\n\n\n\nErwartete Häufigkeiten \\(E_{ij} = s_i \\cdot s_j / n\\) (Gleichverteilung = Nullhypothese)\n\n\n\n\n\nKlon A\nKlon B\nKlon C\nSumme \\(s_i\\)\n\n\n\n\nObere Schicht\n59.0\n49.6\n50.4\n159\n\n\nUntere Schicht\n78.0\n65.4\n66.6\n210\n\n\nSumme \\(s_j\\)\n137\n115\n117\n\\(n=369\\)\n\n\n\n\n\n\n\n\n\n\n\nTeststatistik \\(\\hat{\\chi}^2 = \\sum_{i, j} \\frac{(O_{ij} - E_{ij})^2}{E_{ij}}\\)\nVergleich mit kritischem \\(\\chi^2\\) aus der Tabelle mit \\((n_{Zeile} - 1) \\cdot (n_{Spalte} - 1)\\) df.",
+    "section": "Rechenschema des \\(\\chi^2\\)-Tests",
+    "text": "Rechenschema des \\(\\chi^2\\)-Tests\n\nBeobachtete Häufigkeiten \\(O_{ij}\\)\n\n\n\n\n\nKlon A\nKlon B\nKlon C\nSumme \\(s_i\\)\n\n\n\n\nObere Schicht\n50\n37\n72\n159\n\n\nUntere Schicht\n87\n78\n45\n210\n\n\nSumme \\(s_j\\)\n137\n115\n117\n\\(n=369\\)\n\n\n\n\n\n\n\n\n\n\n\nErwartete Häufigkeiten \\(E_{ij} = s_i \\cdot s_j / n\\) (Gleichverteilung = Nullhypothese)\n\n\n\n\n\nKlon A\nKlon B\nKlon C\nSumme \\(s_i\\)\n\n\n\n\nObere Schicht\n59.0\n49.6\n50.4\n159\n\n\nUntere Schicht\n78.0\n65.4\n66.6\n210\n\n\nSumme \\(s_j\\)\n137\n115\n117\n\\(n=369\\)\n\n\n\n\n\n\n\n\n\n\n\nTeststatistik \\(\\hat{\\chi}^2 = \\sum_{i, j} \\frac{(O_{ij} - E_{ij})^2}{E_{ij}}\\)\nVergleich mit kritischem \\(\\chi^2\\) aus der Tabelle mit \\((n_{Zeile} - 1) \\cdot (n_{Spalte} - 1)\\) df.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2123,11 +2123,11 @@
     ]
   },
   {
-    "objectID": "slides/05-classtests.html#lieblingszahlen-der-hse-studenten",
-    "href": "slides/05-classtests.html#lieblingszahlen-der-hse-studenten",
+    "objectID": "slides/05-classtests.html#lieblingszahlen-von-hse-studenten",
+    "href": "slides/05-classtests.html#lieblingszahlen-von-hse-studenten",
     "title": "05-Klassische Tests",
-    "section": "Lieblingszahlen der HSE-Studenten",
-    "text": "Lieblingszahlen der HSE-Studenten\n\n\nZahlen von 1..9, \\(n=34\\)\n\\(H_0\\): gleiche Wahrscheinlichkeit für alle Zahlen \\(1/9\\) (diskrete Gleichverteilung)\n\\(H_A\\): einige Zahlen bevorzugt \\(\\rightarrow\\) weichen von diskreter Gleichverteilung ab",
+    "section": "Lieblingszahlen von HSE-Studenten",
+    "text": "Lieblingszahlen von HSE-Studenten\n\n\nZahlen von 1..9, \\(n=34\\)\n\\(H_0\\): gleiche Wahrscheinlichkeit für alle Zahlen \\(1/9\\) (diskrete Gleichverteilung)\n\\(H_A\\): einige Zahlen bevorzugt \\(\\rightarrow\\) weichen von diskreter Gleichverteilung ab",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2266,11 +2266,11 @@
     ]
   },
   {
-    "objectID": "slides/05-classtests.html#test-von-sammelproben-mit-unterschiedlichen-mittelwerten",
-    "href": "slides/05-classtests.html#test-von-sammelproben-mit-unterschiedlichen-mittelwerten",
+    "objectID": "slides/05-classtests.html#test-von-gepoolten-stichproben-mit-unterschiedlichen-mittelwerten",
+    "href": "slides/05-classtests.html#test-von-gepoolten-stichproben-mit-unterschiedlichen-mittelwerten",
     "title": "05-Klassische Tests",
-    "section": "Test von Sammelproben mit unterschiedlichen Mittelwerten",
-    "text": "Test von Sammelproben mit unterschiedlichen Mittelwerten\n\nboxcox(biovol ~ group, data = dat)\n\n\n\nUm die gemeinsame Verteilung aller Gruppen auf einmal zu testen, gib die erklärenden Variablen auf der rechten Seite der Modellformel an: biovol ~ group\nDie optimale Transformation für beide Stichproben zusammen ist log.",
+    "section": "Test von gepoolten Stichproben mit unterschiedlichen Mittelwerten",
+    "text": "Test von gepoolten Stichproben mit unterschiedlichen Mittelwerten\n\nboxcox(biovol ~ group, data = dat)\n\n\n\nUm die gemeinsame Verteilung aller Gruppen auf einmal zu testen, gibt man die Erklärungsvariablen auf der rechten Seite der Modellformel an: biovol ~ group\nDie optimale Transformation für beide Stichproben zusammen ist log.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2310,11 +2310,11 @@
     ]
   },
   {
-    "objectID": "slides/05-classtests.html#welche-größe-der-korrelation-deutet-auf-eine-abhängigkeit-hin",
-    "href": "slides/05-classtests.html#welche-größe-der-korrelation-deutet-auf-eine-abhängigkeit-hin",
+    "objectID": "slides/05-classtests.html#welcher-korrelationskoeffizient-deutet-auf-eine-abhängigkeit-hin",
+    "href": "slides/05-classtests.html#welcher-korrelationskoeffizient-deutet-auf-eine-abhängigkeit-hin",
     "title": "05-Klassische Tests",
-    "section": "Welche Größe der Korrelation deutet auf eine Abhängigkeit hin?",
-    "text": "Welche Größe der Korrelation deutet auf eine Abhängigkeit hin?\n\n\n\n\n\n\n\n\n\n\n\\(r=0.4, \\quad p=0.0039\\)\n\n\n\n\n\n\n\n\n\n\n\\(r=0.85, \\quad p=0.07\\)",
+    "section": "Welcher Korrelationskoeffizient deutet auf eine Abhängigkeit hin?",
+    "text": "Welcher Korrelationskoeffizient deutet auf eine Abhängigkeit hin?\n\n\n\n\n\n\n\n\n\n\n\\(r=0.4, \\quad p=0.0039\\)\n\n\n\n\n\n\n\n\n\n\n\\(r=0.85, \\quad p=0.07\\)",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2398,11 +2398,11 @@
     ]
   },
   {
-    "objectID": "slides/05-classtests.html#referenzen",
-    "href": "slides/05-classtests.html#referenzen",
+    "objectID": "slides/05-classtests.html#literatur",
+    "href": "slides/05-classtests.html#literatur",
     "title": "05-Klassische Tests",
-    "section": "Referenzen",
-    "text": "Referenzen\n\n\n\n\n\nHubbard, R. (2004). Alphabet soup: Blurring the distinctions between p’s and a’s in psychological research. Theory & Psychology, 14(3), 295–327. https://doi.org/10.1177/0959354304043638\n\n\nZimmerman, D. W. (2004). A note on preliminary tests of equality of variances. British Journal of Mathematical and Statistical Psychology, 57(1), 173–181. https://doi.org/10.1348/000711004849222",
+    "section": "Literatur",
+    "text": "Literatur\n\n\n\n\n\nHubbard, R. (2004). Alphabet soup: Blurring the distinctions between p’s and a’s in psychological research. Theory & Psychology, 14(3), 295–327. https://doi.org/10.1177/0959354304043638\n\n\nZimmerman, D. W. (2004). A note on preliminary tests of equality of variances. British Journal of Mathematical and Statistical Psychology, 57(1), 173–181. https://doi.org/10.1348/000711004849222",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2413,7 +2413,7 @@
     "href": "slides/03-statparams.html#statistische-parameter",
     "title": "03-Statistische Parameter",
     "section": "Statistische Parameter",
-    "text": "Statistische Parameter\n\n\\(\\rightarrow\\) Zur Erinnerung: Die Berechnung statistischer Parameter wird als [Schätzung] bezeichnet.{.blue}\nEigenschaften von statistischen Parametern\n\nErwartungstreue: die Schätzung konvergiert mit zunehmendem \\(n\\) gegen den wahren Wert\nEffizienz für eine gute Schätzung ist ein relativ kleines \\(n\\) ausreichend\nRobustheit die Schätzung wird durch Ausreißer oder gewisse Verletzungen statistischer Annahmen nur wenig beeinflusst\n\nJe nach Fragestellung gibt es verschiedene Arten von Parametern, insbesondere Maße der Lage (z.B. Mittelwert, Median), der Variation (z. B. Varianz, Standardabweichung) oder der Abhängigkeit (z. B. Korrelation).",
+    "text": "Statistische Parameter\n\n\\(\\rightarrow\\) Zur Erinnerung: Die Berechnung statistischer Parameter wird als Schätzung bezeichnet.\nEigenschaften von statistischen Parametern\n\nErwartungstreue: die Schätzung konvergiert mit zunehmendem \\(n\\) gegen den wahren Wert\nEffizienz für eine gute Schätzung ist ein relativ kleines \\(n\\) ausreichend\nRobustheit die Schätzung wird durch Ausreißer oder gewisse Verletzungen statistischer Annahmen nur wenig beeinflusst\n\nJe nach Fragestellung gibt es verschiedene Arten von Parametern, insbesondere Maße der Lage (z.B. Mittelwert, Median), der Variation (z. B. Varianz, Standardabweichung) oder der Abhängigkeit (z. B. Korrelation).",
     "crumbs": [
       "Statistische Grundlagen",
       "03-Statistische Parameter"
@@ -2732,7 +2732,7 @@
     "href": "slides/01-introduction.html#welche-datenstruktur-ist-besser",
     "title": "01-Einführung",
     "section": "Welche Datenstruktur ist besser?",
-    "text": "Welche Datenstruktur ist besser?\n\n\nWide-Format\n\n\n\n\n\n\nstation\n2021\n2022\n2023\n\n\n\n\nA\n13\n2\n9\n\n\nB\n16\n9\n15\n\n\nC\n12\n2\n13\n\n\nD\n9\n1\n8\n\n\nE\n17\n18\n7\n\n\n\n\n\n\nLong-Format\n\n\n\n\n\n\nyear\nstation\nvalue\n\n\n\n\n2021\nA\n13\n\n\n2021\nB\n16\n\n\n2021\nC\n12\n\n\n2021\nD\n9\n\n\n2021\nE\n17\n\n\n2022\nA\n2\n\n\n2022\nB\n9\n\n\n2022\nC\n2\n\n\n2022\nD\n1\n\n\n2022\nE\n18\n\n\n2023\nA\n9\n\n\n2023\nB\n15\n\n\n2023\nC\n13\n\n\n2023\nD\n8\n\n\n2023\nE\n7",
+    "text": "Welche Datenstruktur ist besser?\n\n\nWide-Format\n\n\n\n\n\n\nstation\n2021\n2022\n2023\n\n\n\n\nA\n5\n6\n3\n\n\nB\n20\n1\n20\n\n\nC\n7\n20\n2\n\n\nD\n17\n4\n16\n\n\nE\n9\n2\n14\n\n\n\n\n\n\nLong-Format\n\n\n\n\n\n\nyear\nstation\nvalue\n\n\n\n\n2021\nA\n5\n\n\n2021\nB\n20\n\n\n2021\nC\n7\n\n\n2021\nD\n17\n\n\n2021\nE\n9\n\n\n2022\nA\n6\n\n\n2022\nB\n1\n\n\n2022\nC\n20\n\n\n2022\nD\n4\n\n\n2022\nE\n2\n\n\n2023\nA\n3\n\n\n2023\nB\n20\n\n\n2023\nC\n2\n\n\n2023\nD\n16\n\n\n2023\nE\n14",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -2996,7 +2996,7 @@
     "href": "slides/04-distributions.html#kontinuierliche-gleichverteilung-mathbfu0-1",
     "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)",
-    "text": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)\n\n\ngleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall\nz.B. \\([0, 1]\\)\nin R: runif, random, uniform\n\n\nrunif(10)\n\n [1] 0.94183720 0.67978714 0.16612390 0.92404223 0.96320447 0.36402175\n [7] 0.54582301 0.64181272 0.07355433 0.30045639\n\n\n \n\nKlassenbildung (Binning): Einteilung der Werte in Klassen",
+    "text": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)\n\n\ngleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall\nz.B. \\([0, 1]\\)\nin R: runif, random, uniform\n\n\nrunif(10)\n\n [1] 0.5939275 0.6677280 0.1806980 0.3810179 0.3978700 0.6503928 0.5872728\n [8] 0.4648498 0.7207632 0.3144976\n\n\n \n\nKlassenbildung (Binning): Einteilung der Werte in Klassen",
     "crumbs": [
       "Statistische Grundlagen",
       "04-Wahrscheinlichkeitsverteilungen"
@@ -3746,7 +3746,7 @@
     "section": "Table of Contents",
     "text": "Table of Contents\n\n\nThe easy way\nCustomizing graphics\nMultiple grapics on one page\nSaving and exporting graphics\nLattice\ngrid and gridbase\nggplot2",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3757,7 +3757,7 @@
     "section": "The Easy Way",
     "text": "The Easy Way\n\n\nplot(iris)\n\n\n\nR contains many graphics functions with convenient defaults.\niris is a built-in data set in R (see next slide)\nplot is a so-called generic function that automatically decides how to plot.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3768,7 +3768,7 @@
     "section": "The iris data set",
     "text": "The iris data set\n\nThe famous (Fisher’s or Anderson’s) iris data set contains measurements (in centimeter) of the variables sepal length, sepal width, petal length and petal width of 50 flowers from each of 3 species of iris, Iris setosa, I. versicolor, and I. virginica.\n\nsee ?iris in R’s online help.\nor: https://en.wikipedia.org/wiki/Iris_flower_data_set",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3779,7 +3779,7 @@
     "section": "Plotting colums of a data frame",
     "text": "Plotting colums of a data frame\n\n\nplot(iris$Sepal.Length, iris$Petal.Length)\n\n\n\n\n\n\n\n\n\n\nplot(iris$Sepal.Length, iris$Petal.Length,\n     col=iris$Species)\n\n\n\n\n\n\n\n\nA column of a data.frame is accessed with $.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3790,7 +3790,7 @@
     "section": "The use of with() saves dollars",
     "text": "The use of with() saves dollars\n\n\n\nplot(iris$Sepal.Length, iris$Petal.Length, \n     col=iris$Species)\n\n\n\n\n\n\n\n\n\n\nwith(iris, plot(Sepal.Length, Petal.Length, \n                col=Species))",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3801,7 +3801,7 @@
     "section": "Colors and plotting symbols in R",
     "text": "Colors and plotting symbols in R\nR allows to change style and color of plotting symbols:\n\ncol: color, can be one of 8 default colors or a user-defined color\npch: plotting character, can be one of 25 symbols or a quoted letter\ncex: character extension: size of a plotting character\n\n\nplot(1:25, col=1:25, pch=1:15, cex=2)",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3812,7 +3812,7 @@
     "section": "Special plotting symbols",
     "text": "Special plotting symbols\n\nsymbols 21..25 have an optional background color\nlwd: border width of the symbol\n\n\nplot(21:25, col=\"darkred\", pch=21:25, cex=2, bg=\"green\", lwd=2)",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3823,7 +3823,7 @@
     "section": "R as function plotter",
     "text": "R as function plotter\n\nx &lt;- seq(0, 20, length.out=100)\ny1 &lt;- sin(x)\ny2 &lt;- cos(x)\nplot(x, y1, type=\"l\", col=\"red\")\nlines(x, y2, col=\"blue\")\n\n\n\ntype: “p”: points, “l”: lines, “b”: both, points and lines, “c”: empty points joined by lines, “o”: overplotted points and lines, “s” and “S”: stair steps, “h” histogram-like vertical lines, “n”: no points or lines.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3834,7 +3834,7 @@
     "section": "Line styles",
     "text": "Line styles\n\nx &lt;- seq(0, 20, length.out=100)\nplot(x, sin(x), type=\"l\", col=\"red\", lwd=3, lty=\"dotted\")\nlines(x, cos(x), col=\"blue\", lwd=2, lty=\"dashed\")\n\n\n\nlty: line type (“blank”, “solid”, “dashed”, “dotted”, “dotdash”, “longdash”, “twodash”) or a number from 1…7, or a string with up to 8 numbers for drawing and skipping (e.g. “4224”).\nlwd: line width (a number, defaults to 1)",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3845,7 +3845,7 @@
     "section": "Coordinate axes and annotations",
     "text": "Coordinate axes and annotations\n\nplot(iris$Sepal.Length, iris$Petal.Length, xlim=c(0, 8), ylim=c(2,8),\n     col=iris$Species, pch=16,\n     xlab=\"Sepal Length (cm)\", ylab=\"Petal Length (cm)\", main=\"Iris Data\",\n     las = 1)\n\n\n\ncol=iris$Species: works because Species is a factor\nlas=1: numbers on y-axis upright (try: 0, 1, 2 or 3)\nlog: may be used to transform axes (e.g. log=“x”, log=“y”, log=“xy”)",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3856,7 +3856,7 @@
     "section": "Adding a legend",
     "text": "Adding a legend\n\nmycolors &lt;- c(\"blue\", \"red\", \"cyan\")\nplot(iris$Sepal.Length, iris$Petal.Length, xlim=c(0, 8), ylim=c(2,8),\n     col=mycolors[iris$Species], pch = 16,\n     xlab=\"Sepal Length (cm)\", ylab=\"Petal Length (cm)\", main=\"Iris Data\",\n     las = 1)\nlegend(\"topleft\", legend=c(\"Iris setosa\", \"Iris versicolor\", \"Iris virginica\"),\n  col=mycolors, pch=16)\n\n\n\nsee ?legend for more options (e.g. line styles, position of the legend)",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3867,7 +3867,7 @@
     "section": "Global parameters, font size, margins, …",
     "text": "Global parameters, font size, margins, …\n\n\nMany figure options can be specified globally with par()\npar(lwd=2) all lines have double width\npar(mfrow=c(2,2)) subdivides the graphics area in 2 x 2 fields\npar(las=1) numbers at y axis upright\npar(mar=c(5, 5, 0.5, 0.5)) changes figure margins (bottom, left, top, right)\npar(cex=2) increase font size\n\\(\\rightarrow\\) sometimes it is better to leave font size as is and change size of the figure instead\n\n\n\nRead the ?par help page!",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3878,7 +3878,7 @@
     "section": "Example",
     "text": "Example\n\n\n#\nplot(iris$Sepal.Length, iris$Petal.Length, \n     col=iris$Species)\n#\n\n\n\n\n\n\n\n\n\n\n\n\nopar &lt;- par(cex=2, mar=c(4,4,1,1), las=1)\nplot(iris$Sepal.Length, iris$Petal.Length, \n     col=iris$Species)\npar(opar)\n\n\n\n\n\n\n\n\n\n\n\nchange font size (cex), margins (mar) and axis label orientation (las)\nopar stores previuos parameter and allows resetting",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3889,7 +3889,7 @@
     "section": "Saving and exporting figures",
     "text": "Saving and exporting figures\n\nEasiest way ist to use the RStudio’s Export –&gt; Save as Image (or copy to clipboard)\nImportant: Select correct image format and image size!\n\n\n\n\n\n\n\n\n\n\nFormat\nType\nUsage\nNotes\n\n\n\n\nPNG\nbitmap\ngeneral purpose\nfixed size, use at least 300 pixels per inch\n\n\nJPEG\nbitmap\nphotographs\nnot good for R images\n\n\nTIFF\nbitmap\nPNG is easier\noutdated, required by some journals\n\n\nBMP\nbitmap\nnot recommended\noutdated, needs huge memory\n\n\nMetafile\nvector\nWindows standard format\neasy to use, quality varies\n\n\nSVG\nvector\ncan be edited\nallows editing with Inkscape\n\n\nEPS\nvector\nPDF is easier\nrequired by some journals\n\n\nPDF\nvector\nbest quality\nperfect for LaTex, RMarkdown and Quarto, MS Office requires conversion",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3900,7 +3900,7 @@
     "section": "Vector vs. Bitmap Graphics",
     "text": "Vector vs. Bitmap Graphics\nBitmap formats\n\njpg, png, tiff\nfixed resolution, cannot be magnified without loss\nretouching possible, but not editing\nwell suited for pictures or plots with huge number of data (color maps)\ncannot be converted to vector without complications and quality loss\n\nVector formats\n\nsvg, pdf, [wmf, emf]\ncan be up- and downscaled and edited\nwell suited drawings and diagrams (except if huge amount of data)\ncan always be converted to bitmap",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3911,7 +3911,7 @@
     "section": "Writing figures directly to PDF",
     "text": "Writing figures directly to PDF\n\n\n\npdf(\"myfile.pdf\", width=8, height=6)\npar(las=1)\nplot(iris$Sepal.Length, iris$Petal.Length, col=iris$Species)\ndev.off()\n\n\n\nwidth and height in inch (1 inch = 2.54cm)\nprofessional quality, size can be changed without quality loss\nconversion to PNG can be done later with free programs\n\n\\(\\rightarrow\\) Inkscape, SumatraPDF, ImageMagick",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3922,7 +3922,7 @@
     "section": "Writing figures directly to PNG",
     "text": "Writing figures directly to PNG\n\n\npng(\"myfile.png\", width=1600, height=1200, res=300)  # good for Word\n#png(\"myfile.png\", width=800, height=600, res=150)   # good for Powerpoint\npar(las=1)\npar(mar=c(5, 5, 1, 1))\nplot(iris$Sepal.Length, iris$Petal.Length)\ndev.off()\n\n\nwidth and height given in pixels\nHint: play with res to change nominal resolution and font size\nuse at least 300 dpi (dots per inch, i.e. number of pixels = 300/2.54 * width in cm)\nprofessionals use 600 or even 1200 pixels per inch, but then .docx and .pptx files will dramatically increase\n1600 x 1200px is good for 13.3 x 10 cm size in the printed document",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3933,7 +3933,7 @@
     "section": "Font size of ggplot figures",
     "text": "Font size of ggplot figures\n\nAppearance and font sizes of ggplot figures can be controlled with themes.\nIt makes sense to create a theme separately and then add it with “+”.\n\n\n\nlibrary(ggplot2)\ndata(iris) \n\n# define a theme with  user-specified font sizes\nfigure_theme &lt;- theme(\n  axis.text    = element_text(size = 12),\n  axis.title   = element_text(size = 12, face = \"bold\"),\n  legend.title = element_text(size = 12, face = \"bold\"),\n  legend.text  = element_text(size = 12))\n\n# ggplots can be stored in a variable\np &lt;- iris |&gt; \n  ggplot(aes(Petal.Length, Petal.Width, colour = Species)) +  \n  geom_point() + figure_theme\n\nPrint to a file:\n\npng(\"iris.png\", width=1600, height=1000, res=300)\nprint(p)\ndev.off()\n\n\nPrint to the screen:\n\n\n\n\n\n\n\n\n\nMore about themes can be found in the books of Chang (2024) and Wickham et al. (in press).",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3944,7 +3944,7 @@
     "section": "Example: Solar Radiation Data in Dresden",
     "text": "Example: Solar Radiation Data in Dresden\n\nradiation &lt;- read.csv(\"../data/radiation.csv\")\nradiation$Date &lt;- as.Date(radiation$date)\n\n\nplot(radiation$Date, radiation$rad)\n\n\nNote: The data set contains derived data from the German Weather Service (http://www.dwd.de), station Dresden. Missing data were interpolated.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3955,7 +3955,7 @@
     "section": "Date and time classes in R",
     "text": "Date and time classes in R\n\n\nMost important classes\n\nas.Date (dates only)\nas.POSIXct (date and time)\n\nformat and strptime\nextract day, month, year, Julian day\ntime series objects tseriesand zoo",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3966,7 +3966,7 @@
     "section": "format and strptime",
     "text": "format and strptime\n\nformat(x, format = \"\", tz = \"\", usetz = FALSE, ...)\n\n\n\n\n%Y\nyear with century\n\n\n%m\nmonth as decimal number\n\n\n%d\nday of the month\n\n\n%H\nhours as decimal number (00-23)\n\n\n%M\nminute as decimal number (00-59)\n\n\n%S\nsecond as decimal number (00-59)\n\n\n%j\nday of year (001-366)\n\n\n%u\nweekday, Monday is 1\n\n\n\n\nas.Date(\"11.03.2015\", format=\"%d.%m.%Y\")\n\n[1] \"2015-03-11\"",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3977,7 +3977,7 @@
     "section": "Date conversion for the solar radiation data set",
     "text": "Date conversion for the solar radiation data set\n\nradiation$year &lt;- format(radiation$Date, \"%Y\")\nradiation$month &lt;- format(radiation$Date, \"%m\")\nradiation$doy &lt;- format(radiation$Date, \"%j\")\nradiation$weekday &lt;- format(radiation$Date, \"%u\")\n\nhead(radiation)\n\n        date rad interpolated       Date year month doy weekday\n1 1981-01-01 197            0 1981-01-01 1981    01 001       4\n2 1981-01-02  89            0 1981-01-02 1981    01 002       5\n3 1981-01-03  49            0 1981-01-03 1981    01 003       6\n4 1981-01-04 111            0 1981-01-04 1981    01 004       7\n5 1981-01-05 161            0 1981-01-05 1981    01 005       1\n6 1981-01-06  55            0 1981-01-06 1981    01 006       2\n\n\n\nThe lubridate package has date and time functions that are easier to use.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3988,7 +3988,7 @@
     "section": "Summarize data with aggregate",
     "text": "Summarize data with aggregate\nSyntax\n\naggregate(x, by, FUN, ..., simplify = TRUE)\n\nExample\n\nyearmax &lt;- aggregate(\n  list(rad = radiation$rad),\n  list(year = radiation$year),\n  max)\n\nmonmean &lt;- aggregate(\n  list(radiation = radiation$rad),\n  list(year = radiation$year, month = radiation$month),\n  mean)\n\n\naggregate is essentially a wrapper to apply",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -3999,7 +3999,7 @@
     "section": "Plot aggregated radiation data",
     "text": "Plot aggregated radiation data\n\npar(mfrow=c(1,2), las=1)\nboxplot(rad ~ year, data = radiation)\nboxplot(rad ~ month, data = radiation)\n\n\nMost functions that support a formula argument (containing ~) allow to specify the data frame with a data argument.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -4010,7 +4010,7 @@
     "section": "Different plotting packages with different philosophies",
     "text": "Different plotting packages with different philosophies\n\n\nbase graphics\npackage lattice\npackage ggplot2\nManipulation of plots\n\nset size and fonts; save plots to disk\nuse pdf, svg or png – not jpg - except for photographs\n\nRelated software\n\nedit/convert svg (and pdf) with Inkscape\nconvert images with ImageMagick",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -4021,7 +4021,7 @@
     "section": "Base Graphics",
     "text": "Base Graphics\n\nx &lt;- rnorm(100)\npar(mfrow=c(2,2))\nplot(x)\nhist(x)\nqqnorm(x)\nboxplot(x)",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -4032,7 +4032,7 @@
     "section": "grid and gridBase",
     "text": "grid and gridBase\n\ncomplete freedom to organise plotting area\ninterface relatively raw\nbasis of other plotting packages",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -4043,7 +4043,7 @@
     "section": "Lattice Graphics",
     "text": "Lattice Graphics\n\nImplements “trellis graphics” (i.e. gridded graphics) in R\nSarkar, D. (2008). Lattice: multivariate data visualization with R. Springer Science & Business Media.\n\n\nrequire(lattice)\ndata(iris)\nxyplot(Sepal.Length ~ Sepal.Width|Species, data=iris, layout=c(3,1))",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -4054,7 +4054,7 @@
     "section": "ggplot2",
     "text": "ggplot2\n\n\nImplements the “Grammar of Graphics”\n\nLeland Wilkinson (2005) The Grammar of Graphics. 2nd edn. Springer\nHadley Wickham (2009, 2016) ggplot2: Elegant Graphics for Data Analysis. Springer.\n\nvery popular, part of the tidyverse family of packages\nhttps://ggplot2.tidyverse.org/",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -4065,7 +4065,7 @@
     "section": "ggplot-Example",
     "text": "ggplot-Example\n\nlibrary(ggplot2)\ndata(iris)\nggplot(iris, aes(Sepal.Length, Sepal.Width, color = factor(Species))) + \n  geom_point() + \n  stat_smooth(method = \"lm\")",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -4076,7 +4076,7 @@
     "section": "Pipelines and faceting in ggplot2",
     "text": "Pipelines and faceting in ggplot2\n\nlibrary(\"dplyr\")\nlibrary(\"lubridate\")\nlibrary(\"ggplot2\")\nread.csv(\"../data/radiation.csv\") |&gt;\n  mutate(year=year(date), doy=yday(date)) |&gt;\n  ggplot(aes(doy, rad)) + geom_line() + facet_wrap(. ~ year)",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -4087,7 +4087,7 @@
     "section": "Further Reading",
     "text": "Further Reading\n\nMore presentations\n\nR Basics\nFunctions everywhere\n\nBooks\n\nChang, W. (2024) R Graphics Cookbook. O’Reilly.\nWickham, H. Navarro, D. and Pedersen, T.L. (in press) ggplot2: Elegant Graphics for Data Analysis\n\nManuals\nMore details in the official R manuals, especially in An Introduction to R\nVideos\nMany videos can be found on Youtube, at the Posit webpage and somewhere else.\nThis tutorial was made with Quarto\nContact\nAuthor: tpetzoldt +++ Homepage +++ Github page",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x2-Graphics with R"
     ]
   },
@@ -4098,7 +4098,7 @@
     "section": "Prerequisites",
     "text": "Prerequisites\n\nThe examples in slis slide require the following R packages: packages, that must be installed and loaded.\n\nInstallation\n\ninstall.packages(c(\"dplyr\", \"tiryr\", \"lubridate\", \"readxl\", \"ggplot2\"))\n\n\nLoading\n\nlibrary(\"dplyr\")\nlibrary(\"tidyr\")\nlibrary(\"lubridate\")\nlibrary(\"readxl\")\nlibrary(\"ggplot2\")\n\n\nThe examples were tested with R 4.3.1 and RStudio 2023.06.1",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4109,7 +4109,7 @@
     "section": "An introductory example",
     "text": "An introductory example\n\nIn a statistics course, two samples of Maple (Acer platanoides) leaves were collected by two groups of students:\ngroup HSE: had the freedom to collect leaves individually from trees close to the institute\ngroup HYB: got a random sample from the supervisor\n\nHypothesis: sampling bias may affect statistical parameters, especially mean and variance.\n\nDownload the file leaves.csv, save it to a working directory and then read it with read.csv:\n\nleaves &lt;- read.csv(\"leaves.csv\") \n\n\nHave a look at the data:\n\nhead(leaves)\n\n  group no length width stalk\n1   HSE  1     83    87    74\n2   HSE  2    130   153   105\n3   HSE  3    140   148   135\n4   HSE  4    102   110    94\n5   HSE  5    190   151    89\n6   HSE  6    225   139    91",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4120,7 +4120,7 @@
     "section": "A boxplot",
     "text": "A boxplot\n\n\n\nboxplot(width ~ group, data=leaves)",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4131,7 +4131,7 @@
     "section": "Summary statistics",
     "text": "Summary statistics\n\n\nsummary(leaves)\n\n    group                 no             length           width      \n Length:126         Min.   :  1.00   Min.   : 37.00   Min.   : 44.0  \n Class :character   1st Qu.: 32.25   1st Qu.: 72.00   1st Qu.: 96.0  \n Mode  :character   Median : 63.50   Median : 90.00   Median :118.5  \n                    Mean   : 63.50   Mean   : 95.83   Mean   :117.4  \n                    3rd Qu.: 94.75   3rd Qu.:102.00   3rd Qu.:138.5  \n                    Max.   :126.00   Max.   :250.00   Max.   :199.0  \n     stalk       \n Min.   : 29.00  \n 1st Qu.: 62.00  \n Median : 82.00  \n Mean   : 81.89  \n 3rd Qu.:101.00  \n Max.   :175.00",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4142,7 +4142,7 @@
     "section": "Summary statistics per group",
     "text": "Summary statistics per group\n\n\ndifferent ways to calculate summary statistics\nclassical method with aggregate\n\nA few examples\n\naggregate(cbind(length, width, stalk) ~ group, mean, data=leaves)\n\n  group    length    width     stalk\n1   HSE 137.82857 139.0286 102.02857\n2   HYB  79.67033 109.1319  74.14286\n\naggregate(cbind(length, width, stalk) ~ group, sd, data=leaves)\n\n  group   length    width    stalk\n1   HSE 47.99356 26.07285 26.47917\n2   HYB 19.93771 30.90423 25.24087\n\naggregate(cbind(length, width, stalk) ~ group, min, data=leaves)\n\n  group length width stalk\n1   HSE     83    87    52\n2   HYB     37    44    29\n\n\n\naggregate is very powerful, but the modern “tidyverse” approach is easier to understand. This is explained in the following.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4153,7 +4153,7 @@
     "section": "Summary statistics with the dplyr-package",
     "text": "Summary statistics with the dplyr-package\nPackage dplyr contains two handy functions:\n\ngroup_by\nsummarize\n\nThe functions can be combined in different ways:\nA) Two separate code lines\n\nleaves_grouped &lt;- group_by(leaves, group)\nsummarize(leaves_grouped, mean = mean(width), sd = sd(width), min = min(width), max = max(width))\n\n\\(\\ominus\\) needs a temporary variable: leaves_grouped\n B) One line, group_by enclosed in parentheses\n\nsummarize(group_by(leaves, group), mean=mean(width), sd=sd(width), min=min(width), max=max(width))\n\n\\(\\oplus\\) no temporary variables necessary  \\(\\ominus\\) nested parentheses",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4164,7 +4164,7 @@
     "section": "More streamlined: pipelines",
     "text": "More streamlined: pipelines\n\nAim to make code easier to understand:\n\navoids nested parentheses\navoids temporary variables\n\nRecent versions of R (since 4.1) have built-in support for pipelines:\n\nNative pipeline operator |&gt;\n\nA predecessor was the so-called “magrittr” pipeline operator %&gt;%\n\nMost examples from these slides will work with both pipeline operators.\nThere are a few differences regarding use of so-called placeholders.\nI recommended to prefer native pipes |&gt;\n\n\n\nThe `%&gt;%-pipeline was introduced by the user-contributed magrittr package (Bache & Wickham, 2022) and became very popular. It is automatically loaded by the dplyr package (Wickham, François, et al., 2023). In his new book, Hadley Wickham recommends native pipes (Wickham, Çetinkaya-Rundel, et al., 2023).",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4175,7 +4175,7 @@
     "section": "Application of |>",
     "text": "Application of |&gt;\n\nThe output from the first function is piped to the next\n\ngroup_by(leaves, group) |&gt;\nsummarize(mean = mean(width), sd = sd(width), \n          min = min(width), max = max(width))\n\n\nOr, even more streamlined: start pipeline with the data frame\n\nleaves |&gt;\n  group_by(group) |&gt;\n  summarize(mean = mean(width), sd = sd(width), \n            min = min(width), max = max(width))\n\n# A tibble: 2 × 5\n  group  mean    sd   min   max\n  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt;\n1 HSE    139.  26.1    87   195\n2 HYB    109.  30.9    44   199",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4186,7 +4186,7 @@
     "section": "How it works",
     "text": "How it works\nThe pipe operator |&gt; inserts the output from one function into the first argument of the next function.\n\n\nClassical functional style\n\ngroup_by(leaves, group)\n\n\n\n\n\n\n\n\nPipeline style\n\nleaves |&gt; group_by(group)",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4197,7 +4197,7 @@
     "section": "Summary statistics for all variables",
     "text": "Summary statistics for all variables\n\nThe leaves dataset contains different variables length, width and stalk length.\nWe can now, in principle, extend summarize:\n\nAdd more code rows\n\nleaves |&gt;\n  group_by(group) |&gt;\n  summarize(mean_l=mean(width),  sd_l=sd(width),  min_l=min(width),  max_l=max(width),\n            mean_w=mean(length), sd_w=sd(length), min_w=min(length), max_w=max(length),\n            mean_s=mean(stalk),  sd_s=sd(stalk),  min_s=min(stalk),  max_s=max(stalk)\n  )\n\n\nIs copy and paste a good idea?\nNo, at least not in excess.\n\nCopy and paste can lead to errors.\n… and there are more compact and elegant ways.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4208,7 +4208,7 @@
     "section": "Tidy your data and use “long” data formats!",
     "text": "Tidy your data and use “long” data formats!\n\n\nLong data formats are more database like and more flexible.\n\nIf you are used to working with LibeOffiice or Excel, you will probably prefer “wide” tables that fit well on the computer screen. However, this is not such a good idea for data bases and scripted data science.\nModern data analysis packages like dplyr and ggplot2 mandatorily require the long format.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4219,7 +4219,7 @@
     "section": "Long data format (= tidy format)",
     "text": "Long data format (= tidy format)\n\nPut data from all 3 variables in one column: length, width, stalk \\(\\rightarrow\\) value\nIdentifier column for the variables: name\n\n\nWide format\n\n\n\n\n\ngroup\nno\nlength\nwidth\nstalk\n\n\n\n\nHSE\n1\n83\n87\n74\n\n\nHSE\n2\n130\n153\n105\n\n\nHSE\n3\n140\n148\n135\n\n\nHSE\n4\n102\n110\n94\n\n\nHSE\n5\n190\n151\n89\n\n\nHSE\n6\n225\n139\n91\n\n\nHSE\n7\n195\n165\n76\n\n\nHSE\n8\n216\n135\n113\n\n\nHSE\n9\n250\n195\n119\n\n\nHSE\n10\n152\n168\n158\n\n\n\n\n\n\nLong format\n\n\n\n\n\ngroup\nno\nname\nvalue\n\n\n\n\nHSE\n1\nlength\n83\n\n\nHSE\n1\nwidth\n87\n\n\nHSE\n1\nstalk\n74\n\n\nHSE\n2\nlength\n130\n\n\nHSE\n2\nwidth\n153\n\n\nHSE\n2\nstalk\n105\n\n\nHSE\n3\nlength\n140\n\n\nHSE\n3\nwidth\n148\n\n\nHSE\n3\nstalk\n135\n\n\nHSE\n4\nlength\n102\n\n\n\n\n\n… … …",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4230,7 +4230,7 @@
     "section": "Long data format with pivot_longer",
     "text": "Long data format with pivot_longer\n\n\n\nleaves |&gt; \n  pivot_longer(c(\"length\", \"width\", \"stalk\"))\n\n# A tibble: 378 × 4\n   group    no name   value\n   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;  &lt;int&gt;\n 1 HSE       1 length    83\n 2 HSE       1 width     87\n 3 HSE       1 stalk     74\n 4 HSE       2 length   130\n 5 HSE       2 width    153\n 6 HSE       2 stalk    105\n 7 HSE       3 length   140\n 8 HSE       3 width    148\n 9 HSE       3 stalk    135\n10 HSE       4 length   102\n# ℹ 368 more rows",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4241,7 +4241,7 @@
     "section": "Summary statistics for all variables groupwise",
     "text": "Summary statistics for all variables groupwise\n\n\n\nleaves |&gt; \n  pivot_longer(c(\"length\", \"width\", \"stalk\")) |&gt;\n  group_by(group, name) |&gt;\n  summarize(mean = mean(value), \n            sd   = sd(value), \n            min  = min(value),\n            max  = max(value))\n\n# A tibble: 6 × 6\n# Groups:   group [2]\n  group name    mean    sd   min   max\n  &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt;\n1 HSE   length 138.   48.0    83   250\n2 HSE   stalk  102.   26.5    52   175\n3 HSE   width  139.   26.1    87   195\n4 HYB   length  79.7  19.9    37   124\n5 HYB   stalk   74.1  25.2    29   144\n6 HYB   width  109.   30.9    44   199",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4252,7 +4252,7 @@
     "section": "Pipes and the assignment operator <-",
     "text": "Pipes and the assignment operator &lt;-\n\n\nIn the examples before, the pipe-output was directly printed to the screen\nIf we need the result in a subsequent operation, we assign it to a variable as usual with &lt;-\n\n\n\ntotals &lt;- \n  leaves |&gt; \n  pivot_longer(c(\"length\", \"width\", \"stalk\")) |&gt;\n  group_by(group, name) |&gt;\n  summarize(mean=mean(value), sd=sd(value), min=min(value), max=max(value))\n\n\nDon’t get confused!\n\nthe pipe starts with leaves in the second code line\nthe direction of the pipeline is from left \\(\\rightarrow\\) right\nthen the of the complete pipeline is assigned to totals\n\nIt follows the convention, that the result of an equation is assigned from right to the left.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4263,7 +4263,7 @@
     "section": "Reverse assignment?",
     "text": "Reverse assignment?\n\n“More logical”, but less common would be a consequent left to the right notation with -&gt;\n\n\nleaves |&gt; \n  pivot_longer(c(\"length\", \"width\", \"stalk\")) |&gt;\n  group_by(group, name) |&gt;\n  summarize(mean=mean(value), sd=sd(value), min=min(value), max=max(value)) -&gt;\n  totals\n\n\nAmelia McNamara used this style in her keynote talk at the 2020 use!R conference about Speaking R on youtube.\nBut, Headley Wickham discouraged this style, because the -&gt; breaks with mathematical convention and is difficult to spot in the code.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4274,7 +4274,7 @@
     "section": "Indentation",
     "text": "Indentation\n\n\ntotals &lt;- \n  leaves |&gt; \n  pivot_longer(c(\"length\", \"width\", \"stalk\")) |&gt;\n  group_by(group, name) |&gt;\n  summarize(mean=mean(value), sd=sd(value), min=min(value), max=max(value))\n\n\nThe pipeline above shows essentially one single line of code.\n\nTo improve readability, code lines should not be longer than 80 characters.\nRemember: Line breaks can be at any position, as long as a code line is not complete.\nCommon style: make a newline after &lt;- and |&gt; and use 2 characters for indentation.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4285,7 +4285,7 @@
     "section": "The Clementine orange data set",
     "text": "The Clementine orange data set",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4296,7 +4296,7 @@
     "section": "Clementine orange data set",
     "text": "Clementine orange data set\n\n\nSamples of clementine oranges, measured, weighed and consumed in a statistic course.\nExcel file with two tables:\n\nlong table with the fruits\nshorter table brands with meta data\n\nData can be downloaded from here.\n\n\nRead data directly from Excel file\n\nbrands  &lt;- read_excel(\"clementines_2019.xlsx\", \"Brands\")\nfruits  &lt;- read_excel(\"clementines_2019.xlsx\", \"Fruits\")",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4307,7 +4307,7 @@
     "section": "Clementine orange data set",
     "text": "Clementine orange data set\n\n\nTable “fruits”\n\n\n\n\n\nyear\nbrand\nweight\nwidth\nheight\n\n\n\n\n2019\nEB\n107\n61.0\n54\n\n\n2019\nEB\n100\n65.0\n55\n\n\n2019\nEB\n89\n58.0\n49\n\n\n2019\nEB\n99\n62.0\n52\n\n\n2019\nEB\n99\n64.0\n58\n\n\n2019\nEB\n96\n63.0\n59\n\n\n2019\nEB\n100\n54.0\n54\n\n\n2019\nEB\n89\n58.5\n47\n\n\n2019\nEB\n86\n66.0\n48\n\n\n2019\nEB\n92\n43.0\n33\n\n\n2019\nEB\n102\n48.0\n33\n\n\n2019\nEB\n92\n43.0\n32\n\n\n\n\n\n\nTable “brands”\n\n\n\n\n\nyear\nbrand\ntype\nkilogram\nprice\n\n\n\n\n2019\nEB\nBasic\n1.50\n2.99\n\n\n2019\nEP\nGold\n0.75\n1.49\n\n\n2019\nLB\nBasic\n1.00\n1.49\n\n\n2019\nLO\nBio\n0.50\n1.49\n\n\n2019\nNX\nBox\n2.30\n2.99\n\n\n2019\nNP\nPremium\n1.00\n2.29\n\n\n2019\nNB\nBasic\n1.00\n1.49\n\n\n2019\nNC\nBasic\n1.00\n1.49",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4318,7 +4318,7 @@
     "section": "Database join",
     "text": "Database join\n\njoin two tables to bring the information together\nIn case of left_join, the (larger) main table is at the left.\nThe tables have two key fields in common: year and brand.\nThe key fields can be automatically detected or explicitly specified or renamed \\(\\rightarrow\\) help page of left_join\n\n\n\nfruits2 &lt;- left_join(fruits, brands)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nno\nyear\nbrand\nweight\nwidth\nheight\ntaste\nshop\ntype\nquality\nkilogram\nprice\n\n\n\n\n1\n2019\nEB\n107\n61\n54\n6\nEdeka\nBasic\nBasic\n1.5\n2.99\n\n\n2\n2019\nEB\n100\n65\n55\n7\nEdeka\nBasic\nBasic\n1.5\n2.99\n\n\n3\n2019\nEB\n89\n58\n49\n10\nEdeka\nBasic\nBasic\n1.5\n2.99\n\n\n4\n2019\nEB\n99\n62\n52\n7\nEdeka\nBasic\nBasic\n1.5\n2.99\n\n\n5\n2019\nEB\n99\n64\n58\n8\nEdeka\nBasic\nBasic\n1.5\n2.99\n\n\n6\n2019\nEB\n96\n63\n59\n8\nEdeka\nBasic\nBasic\n1.5\n2.99\n\n\n7\n2019\nEB\n100\n54\n54\n7\nEdeka\nBasic\nBasic\n1.5\n2.99",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4329,7 +4329,7 @@
     "section": "Selection of columns and rows: select and filter",
     "text": "Selection of columns and rows: select and filter\n\n\nselect: select columns\nfilter: filters rows\n\n\n\n\nfruits2 |&gt;\n  select(brand, shop, type, weight, width) |&gt;\n  filter(shop %in% c(\"Edeka\", \"Lidl\"))\n\n# A tibble: 44 × 5\n   brand shop  type  weight width\n   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;\n 1 EB    Edeka Basic    107  61  \n 2 EB    Edeka Basic    100  65  \n 3 EB    Edeka Basic     89  58  \n 4 EB    Edeka Basic     99  62  \n 5 EB    Edeka Basic     99  64  \n 6 EB    Edeka Basic     96  63  \n 7 EB    Edeka Basic    100  54  \n 8 EB    Edeka Basic     89  58.5\n 9 EB    Edeka Basic     86  66  \n10 EB    Edeka Basic     92  43  \n# ℹ 34 more rows",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4340,7 +4340,7 @@
     "section": "Create or transform columns: mutate",
     "text": "Create or transform columns: mutate\n\nExample\nTransform a variable, e.g. weight by \\(x^{1/3}\\) into a theoretical mean diameter\n\nfruits2 &lt;- \n  fruits2 |&gt;\n  mutate(L_mean = weight^(1/3))\n\n\nShow results\nClassical boxplot\n\n\nboxplot(L_mean ~ brand, data=fruits2)",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4351,7 +4351,7 @@
     "section": "Plot in “tidyverse”-style with pipes and ggplot",
     "text": "Plot in “tidyverse”-style with pipes and ggplot\n\nfruits2 |&gt;\n  mutate(L_mean = weight^(1/3)) |&gt;\n  ggplot(aes(brand, L_mean)) + geom_boxplot()",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4362,7 +4362,7 @@
     "section": "Another mutate example",
     "text": "Another mutate example\nLet’s compare the measured weight of our fruits with a “theoretical volume” calculated from length and height using the formula of an ellipsoid. This is of course an approximation:\n\\[\nV = 4/3 \\pi \\cdot \\rm (length/2)^2 \\cdot height/2\n\\]\n\nfruits &lt;-\n  fruits |&gt;\n  mutate(V = 0.001 * 4/3 * pi * (width/2)^2 * height/2, index = weight / V)\n\n\n\n\nlibrary(ggplot2)\nfruits |&gt;\n  ggplot(aes(weight, index)) + \n  geom_point()\n\nThe “+” operator in ggplot looks like a pipeline, but works differently.\nIt adds elements to a plot.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4373,7 +4373,7 @@
     "section": "Color coded points",
     "text": "Color coded points\n\nlibrary(ggplot2)\nfruits |&gt; ggplot(aes(weight, index, color=brand)) + geom_point()",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4384,7 +4384,7 @@
     "section": "Categorial split (faceting) and regression line",
     "text": "Categorial split (faceting) and regression line\n\nfruits |&gt; \n  ggplot(aes(weight, V)) + \n  geom_point() + \n  geom_smooth(method=lm, se=FALSE) + \n  facet_wrap( ~ brand)",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4395,7 +4395,7 @@
     "section": "Modify font size",
     "text": "Modify font size\n\nfruits |&gt; \n  ggplot(aes(weight, V)) + \n  geom_point() + \n  geom_smooth(method=lm, se=FALSE) + \n  facet_wrap( ~ brand) +\n  theme(text = element_text(size=24))\n\n\n\\(\\rightarrow\\) themes allow to configure “almost everything” …",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4406,7 +4406,7 @@
     "section": "Discharge of the Elbe River",
     "text": "Discharge of the Elbe River\nElbe River in Dresden 2006-04-01",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4417,7 +4417,7 @@
     "section": "Read data to R",
     "text": "Read data to R\n\nThe example file elbe.csv contains daily discharge of the Elbe River in \\(\\mathrm{m^3 s^{-1}}\\) from gauging station Dresden, river km 55.6. The data are from the Federal Waterways and Shipping Administration (WSV) and where provided by the Federal Institute for Hydrology (BfG).\n\nWe can skip downloading and read the file directly from its internet location:\n\n\nelbe &lt;- read.csv(\"https://raw.githubusercontent.com/tpetzoldt/datasets/main/data/elbe.csv\")\n\n\nThe third column “validated” indicate whether the values were finally approved by WSV and BfG. Data of the 19th century are particularly uncertain. Please consult the file elbe_info.txt for details.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4428,7 +4428,7 @@
     "section": "Date and time conversion",
     "text": "Date and time conversion\n\nNow, let’s extend the elbe data frame by adding information about the day, month, year and day of year. Here function mutate adds additional columns.\nNote also that the day of year function in the date and time package lubridate is named yday.\nDetails about date and time conversion can be found in the lubridate cheatsheet.\n\n\nlibrary(lubridate) # a tidyverse package for dates\nelbe &lt;- mutate(elbe,\n               date  = as.POSIXct(date),\n               day   = day(date), \n               month = month(date), \n               year  = year(date), \n               doy   = yday(date))",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4439,7 +4439,7 @@
     "section": "Inspect data structure",
     "text": "Inspect data structure\nIf we work with RStudio, may have a look at the “Global Environment” pane and inspect the data structure of the elbe data frame.\n\n\n\n\n\ndate\ndischarge\nvalidated\nday\nmonth\nyear\ndoy\n\n\n\n\n1989-01-01\n765\nTRUE\n1\n1\n1989\n1\n\n\n1989-01-02\n713\nTRUE\n2\n1\n1989\n2\n\n\n1989-01-03\n684\nTRUE\n3\n1\n1989\n3\n\n\n1989-01-04\n612\nTRUE\n4\n1\n1989\n4\n\n\n1989-01-05\n565\nTRUE\n5\n1\n1989\n5\n\n\n1989-01-06\n519\nTRUE\n6\n1\n1989\n6\n\n\n1989-01-07\n522\nTRUE\n7\n1\n1989\n7\n\n\n1989-01-08\n524\nTRUE\n8\n1\n1989\n8\n\n\n1989-01-09\n544\nTRUE\n9\n1\n1989\n9\n\n\n1989-01-10\n539\nTRUE\n10\n1\n1989\n10\n\n\n1989-01-11\n606\nTRUE\n11\n1\n1989\n11\n\n\n1989-01-12\n606\nTRUE\n12\n1\n1989\n12",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4450,7 +4450,7 @@
     "section": "Annual summary statistics",
     "text": "Annual summary statistics\n\nSummarize data\n\n## calculate annual mean, minimum, maximum\ntotals &lt;- elbe |&gt;\n  group_by(year) |&gt;\n  summarize(mean = mean(discharge), \n            min = min(discharge), \n            max = max(discharge))\n\n\nShow table of summary statistics\n\nhead(totals)\n\n# A tibble: 6 × 4\n   year  mean   min   max\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1  1989  268.   122   765\n2  1990  217.    89   885\n3  1991  189.    97   634\n4  1992  267.    89  1090\n5  1993  256.    92  1610\n6  1994  317.    92  1030\n\n\n Exercise: Compute monthly discharge mean values and monthly sums.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4461,7 +4461,7 @@
     "section": "More about pivot tables",
     "text": "More about pivot tables\n\n\nIn a section before, we already used pivot_longer to reorganize data. Now we do the opposite and convert a data base table (long data format) into a cross-table (wide data format) and vice versa.\nR provides several function pairs for this, so you may see functions like melt and cast or gather and spread.\nRecently the two functions pivot_wider and pivot_longer were recommended for this purpose.\n\nThe first argument is a data base table, the other arguments define the structure of the desired crosstable.\nid_cols is the name of a column in a long table that will become the rows\nnames_from indicates where the names of the columns are taken from\nvalues_from is the column with the values for the cross table.\n\n\n\\(\\rightarrow\\) If more than one value exists for a row x column combination, an optional aggregation function values_fn can be given.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4472,7 +4472,7 @@
     "section": "Crosstable with one column per year",
     "text": "Crosstable with one column per year\n\n\nelbe_wide &lt;-  elbe |&gt;\n  pivot_wider(id_cols = doy, \n              names_from = year, \n              values_from = discharge, \n              values_fn = mean)\nelbe_wide\n\n\nExercise\n\nCreate a suitable crosstable elbe_wide.\nThen create a crosstable for monthly maximum discharge over all years.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4483,7 +4483,7 @@
     "section": "Back-conversion of a crosstable into a data base table",
     "text": "Back-conversion of a crosstable into a data base table\n\nThe inverse case is also possible, e.g. the conversion of a cross table into a data base table. It can be done with the function pivot_longer. The column of the id.vars variable(s) will become identifier(s) downwards.\n\n\npivot_longer(elbe_wide, names_to=\"year\", cols=as.character(1989:2019))\n\n\nExercise\nTry it yourself.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4494,7 +4494,7 @@
     "section": "Minimum-Maximum plot with summarize and ggplot2",
     "text": "Minimum-Maximum plot with summarize and ggplot2\n\nelbe |&gt; \n  mutate(doy = yday(date)) |&gt;\n  group_by(doy) |&gt;\n  summarize(max = max(discharge), \n            mean = mean(discharge), \n            min = min(discharge)) |&gt;\n  pivot_longer(cols = c(\"min\", \"mean\", \"max\"), \n               names_to = \"statistic\", \n               values_to = \"discharge\") |&gt;\n  ggplot(aes(doy, discharge, color = statistic)) + geom_line()\n\n\nExercise\n\nRead the code and try to understand it. Then add a dry and a wet year.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4505,7 +4505,7 @@
     "section": "Cumulative sums",
     "text": "Cumulative sums\nAnnual cumulative sum plots are a hydrological standard tool used by reservoir managers. We can use the R function cumsum, that by successive cumulation converts a sequence of:\n\\(x_1, x_2, x_3, x_4, \\dots\\)\ninto\n\\((x_1), (x_1+x_2), (x_1+x_2+x_3), (x_1+x_2+x_3+x_4), \\dots\\)\n\nExample\n\nx &lt;- c(1, 3, 2, 6, 4, 2, 3)\ncumsum(x)\n\n[1]  1  4  6 12 16 18 21",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4516,7 +4516,7 @@
     "section": "Cumulative sums of the Elbe River",
     "text": "Cumulative sums of the Elbe River\nCummulative sums allow to detect dry and wet years, or periods within years.\nIf we just use cumsum, we get a cumulative sum for all years:\n\nelbe |&gt; \n  mutate(doy = yday(date), year = year(date)) |&gt;\n  filter(year %in% 2000:2010) |&gt;\n  group_by(year = factor(year)) |&gt;\n  mutate(cum_discharge = cumsum(discharge) * 60*60*24) |&gt;\n  ggplot(aes(doy, cum_discharge, color = year)) + geom_line()\n\n\nThe multiplication with \\(60 \\cdot 60 \\cdot 24\\) converts \\(\\rm m^3 s^{-1}\\) in \\(\\rm m^3 d^{-1}\\).",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4527,7 +4527,7 @@
     "section": "Exercises",
     "text": "Exercises\n\n\nRepeat the same for other time periods (years).\nWhich year was the wettest, which one the driest year in total? Find a year with dry spring and wet summer.\nIdentify some (e.g. 3 or 5) large floods in the historical time series and plot it together.\nModify the commands so that the hydrological year is shown. Note that the German hydrological year goes from 1st November to 31st October of the following year. Other countries have different regulations.",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4538,7 +4538,7 @@
     "section": "Further reading",
     "text": "Further reading\n\nOnline material\n\n“Welcome to tidyverse: https://dplyr.tidyverse.org/.\n“ggplot Elegant Graphics for Data Analysis: https://ggplot2-book.org/\n“R for Data Science”: https://r4ds.had.co.nz/\nHadley Wickham’s homepage: https://hadley.nz/\n\n\nPrinted books\n\n“R for Data Science” (Wickham, Çetinkaya-Rundel, et al., 2023)\n“ggplot Elegant Graphics for Data Analysis” (Wickham, 2016)",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4549,7 +4549,7 @@
     "section": "References",
     "text": "References\n\n\n\n\nBache, S. M., & Wickham, H. (2022). Magrittr: A forward-pipe operator for r. https://CRAN.R-project.org/package=magrittr\n\n\nWickham, H. (2016). ggplot2: Elegant graphics for data analysis. Springer-Verlag New York. https://ggplot2.tidyverse.org\n\n\nWickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). R for data science (2nd ed.). O’Reiley. https://r4ds.hadley.nz/\n\n\nWickham, H., François, R., Henry, L., Müller, K., & Vaughan, D. (2023). Dplyr: A grammar of data manipulation. https://CRAN.R-project.org/package=dplyr",
     "crumbs": [
-      "R Topics",
+      "Selected Programming Topics",
       "x4-Pipelines in R"
     ]
   },
@@ -4587,93 +4587,5 @@
     "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
     "section": "Autor",
     "text": "Autor\nhomepage +++ github\n2025-04-03"
-  },
-  {
-    "objectID": "slides/05-classtests.html#effektstärke-und-signifikanz",
-    "href": "slides/05-classtests.html#effektstärke-und-signifikanz",
-    "title": "05-Klassische Tests",
-    "section": "Effektstärke und Signifikanz",
-    "text": "Effektstärke und Signifikanz\n\nFür Mittelwertdifferenzen ist die relative Effektstärke:\n\n\\[\n  \\delta = \\frac{\\bar{\\mu}_1-\\bar{\\mu}_2}{\\sigma}=\\frac{\\Delta}{\\sigma}\n\\]\n\nmit:\n\nMittelwerte von zwei Grundgesamtheiten \\(\\mu_1, \\mu_2\\)\nabsolute Effektstärke \\(\\Delta\\)\nrelative Effektstärke \\(\\delta\\) (auch Cohen’s d genannt)\nSignifikanz bedeutet, dass es unwahrscheinlich ist, dass ein beobachteter Effekt das Ergebnis einer reinen Zufallsvariation ist.",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "05-Klassische Tests"
-    ]
-  },
-  {
-    "objectID": "slides/05-classtests.html#test-auf-varianzgleichheit-f-test",
-    "href": "slides/05-classtests.html#test-auf-varianzgleichheit-f-test",
-    "title": "05-Klassische Tests",
-    "section": "Test auf Varianzgleichheit: F-Test",
-    "text": "Test auf Varianzgleichheit: F-Test\n\n\\(H_0\\): \\(\\sigma_1^2 = \\sigma_2^2\\)\n\\(H_a\\): Varianzen ungleich\nTestkriterium:\n\\[F = \\frac{s_1^2}{s_2^2} \\]\n\ngrößere der beiden Varianzen im Zähler \\((s^2_1 &gt; s^2_2)\\)\nFreiheitsgrade (\\(n-1\\)) für Zähler und Nenner können verschieden sein\n\n\n\n\n\n\n\n\n\n\n\nBeispiel:\n\n\\(s_1=1\\), \\(s_2 =2\\), \\(n_1=5, n_2=10, F=\\frac{2^2}{1^2}=4\\)\nFreiheitsgrad: \\(9 \\atop 4\\)\n\n\\(\\Rightarrow\\) \\(F_{9, 4, \\alpha=0.975} = 8.9 &gt; 4 \\quad\\rightarrow\\) nicht signifikant",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "05-Klassische Tests"
-    ]
-  },
-  {
-    "objectID": "slides/05-classtests.html#mann-whitney-test-in-der-praxis",
-    "href": "slides/05-classtests.html#mann-whitney-test-in-der-praxis",
-    "title": "05-Klassische Tests",
-    "section": "Mann-Whitney-Test in der Praxis",
-    "text": "Mann-Whitney-Test in der Praxis\n\n\nWeise den beiden Stichproben \\(A\\) und \\(B\\) mit dem Stichprobenumfang \\(m\\) und \\(n\\) die Ränge \\(R_A\\) und \\(R_B\\) zu.\nBerechne die Anzahl der Inversionen \\(U\\):\n\n\\[\\begin{align*}\n     U_A &= m \\cdot n + \\frac{m (m + 1)}{2} - \\sum_{i=1}^m R_A \\\\\n     U_B &= m \\cdot n + \\frac{n (n + 1)}{2} - \\sum_{i=1}^n R_B \\\\\n     U   &= \\min(U_A, U_B)\n\\end{align*}\\]\n\nKritische Werte von \\(U\\) finden sich in gängigen Statistik-Lehrbüchern.\nIn R nicht notwendig, p-Wert wird direkt ausgegeben. Anmerkung: Verwende spezielle Version wilcox.exact mit Korrektur, wenn mehrfach gleiche Werte (Bindungen) vorliegen.",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "05-Klassische Tests"
-    ]
-  },
-  {
-    "objectID": "slides/05-classtests.html#rechenschema-des-chi2-tests",
-    "href": "slides/05-classtests.html#rechenschema-des-chi2-tests",
-    "title": "05-Klassische Tests",
-    "section": "Rechenschema des \\(\\chi^2\\)-Tests",
-    "text": "Rechenschema des \\(\\chi^2\\)-Tests\n\nBeobachtete Häufigkeiten \\(O_{ij}\\)\n\n\n\n\n\nKlon A\nKlon B\nKlon C\nSumme \\(s_i\\)\n\n\n\n\nObere Schicht\n50\n37\n72\n159\n\n\nUntere Schicht\n87\n78\n45\n210\n\n\nSumme \\(s_j\\)\n137\n115\n117\n\\(n=369\\)\n\n\n\n\n\n\n\n\n\n\n\nErwartete Häufigkeiten \\(E_{ij} = s_i \\cdot s_j / n\\) (Gleichverteilung = Nullhypothese)\n\n\n\n\n\nKlon A\nKlon B\nKlon C\nSumme \\(s_i\\)\n\n\n\n\nObere Schicht\n59.0\n49.6\n50.4\n159\n\n\nUntere Schicht\n78.0\n65.4\n66.6\n210\n\n\nSumme \\(s_j\\)\n137\n115\n117\n\\(n=369\\)\n\n\n\n\n\n\n\n\n\n\n\nTeststatistik \\(\\hat{\\chi}^2 = \\sum_{i, j} \\frac{(O_{ij} - E_{ij})^2}{E_{ij}}\\)\nVergleich mit kritischem \\(\\chi^2\\) aus der Tabelle mit \\((n_{Zeile} - 1) \\cdot (n_{Spalte} - 1)\\) df.",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "05-Klassische Tests"
-    ]
-  },
-  {
-    "objectID": "slides/05-classtests.html#lieblingszahlen-von-hse-studenten",
-    "href": "slides/05-classtests.html#lieblingszahlen-von-hse-studenten",
-    "title": "05-Klassische Tests",
-    "section": "Lieblingszahlen von HSE-Studenten",
-    "text": "Lieblingszahlen von HSE-Studenten\n\n\nZahlen von 1..9, \\(n=34\\)\n\\(H_0\\): gleiche Wahrscheinlichkeit für alle Zahlen \\(1/9\\) (diskrete Gleichverteilung)\n\\(H_A\\): einige Zahlen bevorzugt \\(\\rightarrow\\) weichen von diskreter Gleichverteilung ab",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "05-Klassische Tests"
-    ]
-  },
-  {
-    "objectID": "slides/05-classtests.html#test-von-gepoolten-stichproben-mit-unterschiedlichen-mittelwerten",
-    "href": "slides/05-classtests.html#test-von-gepoolten-stichproben-mit-unterschiedlichen-mittelwerten",
-    "title": "05-Klassische Tests",
-    "section": "Test von gepoolten Stichproben mit unterschiedlichen Mittelwerten",
-    "text": "Test von gepoolten Stichproben mit unterschiedlichen Mittelwerten\n\nboxcox(biovol ~ group, data = dat)\n\n\n\nUm die gemeinsame Verteilung aller Gruppen auf einmal zu testen, gibt man die Erklärungsvariablen auf der rechten Seite der Modellformel an: biovol ~ group\nDie optimale Transformation für beide Stichproben zusammen ist log.",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "05-Klassische Tests"
-    ]
-  },
-  {
-    "objectID": "slides/05-classtests.html#welcher-korrelationskoeffizient-deutet-auf-eine-abhängigkeit-hin",
-    "href": "slides/05-classtests.html#welcher-korrelationskoeffizient-deutet-auf-eine-abhängigkeit-hin",
-    "title": "05-Klassische Tests",
-    "section": "Welcher Korrelationskoeffizient deutet auf eine Abhängigkeit hin?",
-    "text": "Welcher Korrelationskoeffizient deutet auf eine Abhängigkeit hin?\n\n\n\n\n\n\n\n\n\n\n\\(r=0.4, \\quad p=0.0039\\)\n\n\n\n\n\n\n\n\n\n\n\\(r=0.85, \\quad p=0.07\\)",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "05-Klassische Tests"
-    ]
-  },
-  {
-    "objectID": "slides/05-classtests.html#literatur",
-    "href": "slides/05-classtests.html#literatur",
-    "title": "05-Klassische Tests",
-    "section": "Literatur",
-    "text": "Literatur\n\n\n\n\n\nHubbard, R. (2004). Alphabet soup: Blurring the distinctions between p’s and a’s in psychological research. Theory & Psychology, 14(3), 295–327. https://doi.org/10.1177/0959354304043638\n\n\nZimmerman, D. W. (2004). A note on preliminary tests of equality of variances. British Journal of Mathematical and Statistical Psychology, 57(1), 173–181. https://doi.org/10.1348/000711004849222",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "05-Klassische Tests"
-    ]
   }
 ]
