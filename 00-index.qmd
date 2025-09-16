@@ -4,31 +4,20 @@
 #format: html
 ---
 
-![Elemente der Angewandten Statistik](img/titlepage-lecture-slides.svg){width=100%}
+![](img/titlepage-lecture-slides.svg){width=100% fig-alt="Titelseite: Elemente der Angewandten Statistik - ein Praxiskurs, Vorlesungsfolien, Thomas Petzoldt, Landschaftsfoto mit Bergen, die wie Verteilungen aussehen"}
 
 <!--
 ## Introduction
 -->
 
-Diese Website enthält eine Sammlung von Materialien für einführende Statistikkurse mit **R**. Das Ziel ist es, einen Einblick in grundlegende Prinzipien zu geben und einen Einstieg zu vermitteln, um weiterführende Fachbücher und Online-Materialien auswählen und verstehen zu können und so tiefer in das vielfältige und faszinierende Gebiet des "statistical Computings" einzusteigen.
+Diese Website enthält eine Sammlung von Materialien für einführende Statistikkurse mit **R**. Das Ziel ist es, einen Einblick in grundlegende Prinzipien zu geben und einen Einstieg zu vermitteln, um weiterführende Fachbücher und Online-Materialien auswählen und verstehen zu können und so tiefer in das vielfältige und faszinierende Gebiet des "Statistical Computing" einzusteigen.
 
 Die Auswahl der Themen spiegelt meine persönliche Erfahrung wider, als Türöffner zu Themen, die für die Ökologie und die Hydrowissenschaften nützlich sind. Es handelt sich um ein forlaufendes Projekt, basierend auf früheren PDF-Folien und anderem Kursmaterial. 
 
 Die deutschsprachige Version ist eine Übersetzung aus dem englischen. Für die Korrektheit wird keine Gewähr übernommen. Konstruktive Kommentare und Verbesserungsvorschläge sind willkommen.
 
-Die dazugehörigen Übungsaufgaben befinden sich unter:
+Die dazugehörigen **Übungsaufgaben** befinden sich unter:
 [https://tpetzoldt.github.io/element-labs/](https://tpetzoldt.github.io/element-labs/).
-
-## Status
-
-2025-04-03
-
-- Beginn der Überarbeitung, Fachbegriffe und Formulierungen
-
-2025-04-04
-
-- Initialer Commit der deutschen Übersetzung
-
 
 
 ## Weiterführende Literatur
@@ -38,21 +27,21 @@ Die dazugehörigen Übungsaufgaben befinden sich unter:
 - Kleiber, C and Zeileis, A, 2008: Applied Econometrics with R. Springer Verlag, New York. 
     [https://link.springer.com/book/10.1007/978-0-387-77318-6](https://link.springer.com/book/10.1007/978-0-387-77318-6)
 - Verzani, J, 2014: Using R for introductory statistics. CRC press. 
-      [Publisher](https://www.routledge.com/Using-R-for-Introductory-Statistics/Verzani/p/book/9781466590731)
+      [https://www.routledge.com/Using-R-for-Introductory-Statistics/Verzani/p/book/9781466590731](https://www.routledge.com/Using-R-for-Introductory-Statistics/Verzani/p/book/9781466590731)
 - Wickham, H., Çetinkaya-Rundel, M and Grolemund, G, 2023: R for Data Science.
       [https://r4ds.hadley.nz/](https://r4ds.hadley.nz/)
 
-## Related Pages
+## Querverweise
 
 
 * [**Elements of Data Analysis and Statistics**](../elements/) (englische Version)
-* [**Collection of lab exercises**](../element-labs/) (english)
-* [**Datasets**](../datasets/)
-* [Quelltexte der Folien](https://github.com/tpetzoldt/elements-de) (deutsche Version)
-* [Source code of the slides](https://github.com/tpetzoldt/elements) (englische Version)
+* Übungen: [**Collection of lab exercises**](../element-labs/) (englisch)
+* [**Datasets**](https://github.com/tpetzoldt/datasets/)
+* Quelltexte der Folien: [deutsch](https://github.com/tpetzoldt/elements-de),
+  [englisch](https://github.com/tpetzoldt/elements)
 
 ## Autor
 
 [homepage](https://tu-dresden.de/Members/thomas.petzoldt) +++ [github](https://github.com/tpetzoldt)
 
-2025-04-03
+2025-09-16

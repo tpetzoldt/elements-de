@@ -4558,7 +4558,7 @@
     "href": "00-index.html",
     "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
     "section": "",
-    "text": "Elemente der Angewandten Statistik\nDiese Website enthält eine Sammlung von Materialien für einführende Statistikkurse mit R. Das Ziel ist es, einen Einblick in grundlegende Prinzipien zu geben und einen Einstieg zu vermitteln, um weiterführende Fachbücher und Online-Materialien auswählen und verstehen zu können und so tiefer in das vielfältige und faszinierende Gebiet des “statistical Computings” einzusteigen.\nDie Auswahl der Themen spiegelt meine persönliche Erfahrung wider, als Türöffner zu Themen, die für die Ökologie und die Hydrowissenschaften nützlich sind. Es handelt sich um ein forlaufendes Projekt, basierend auf früheren PDF-Folien und anderem Kursmaterial.\nDie deutschsprachige Version ist eine Übersetzung aus dem englischen. Für die Korrektheit wird keine Gewähr übernommen. Konstruktive Kommentare und Verbesserungsvorschläge sind willkommen.\nDie dazugehörigen Übungsaufgaben befinden sich unter: https://tpetzoldt.github.io/element-labs/."
+    "text": "Diese Website enthält eine Sammlung von Materialien für einführende Statistikkurse mit R. Das Ziel ist es, einen Einblick in grundlegende Prinzipien zu geben und einen Einstieg zu vermitteln, um weiterführende Fachbücher und Online-Materialien auswählen und verstehen zu können und so tiefer in das vielfältige und faszinierende Gebiet des “Statistical Computing” einzusteigen.\nDie Auswahl der Themen spiegelt meine persönliche Erfahrung wider, als Türöffner zu Themen, die für die Ökologie und die Hydrowissenschaften nützlich sind. Es handelt sich um ein forlaufendes Projekt, basierend auf früheren PDF-Folien und anderem Kursmaterial.\nDie deutschsprachige Version ist eine Übersetzung aus dem englischen. Für die Korrektheit wird keine Gewähr übernommen. Konstruktive Kommentare und Verbesserungsvorschläge sind willkommen.\nDie dazugehörigen Übungsaufgaben befinden sich unter: https://tpetzoldt.github.io/element-labs/."
   },
   {
     "objectID": "00-index.html#status",
@@ -4572,20 +4572,27 @@
     "href": "00-index.html#weiterführende-literatur",
     "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
     "section": "Weiterführende Literatur",
-    "text": "Weiterführende Literatur\n\nDalgaard, P, 2008: Introductory Statistics with R. Springer Verlag, New York, 2nd edition. https://link.springer.com/book/10.1007/b97671\nKleiber, C and Zeileis, A, 2008: Applied Econometrics with R. Springer Verlag, New York. https://link.springer.com/book/10.1007/978-0-387-77318-6\nVerzani, J, 2014: Using R for introductory statistics. CRC press. Publisher\nWickham, H., Çetinkaya-Rundel, M and Grolemund, G, 2023: R for Data Science. https://r4ds.hadley.nz/"
+    "text": "Weiterführende Literatur\n\nDalgaard, P, 2008: Introductory Statistics with R. Springer Verlag, New York, 2nd edition. https://link.springer.com/book/10.1007/b97671\nKleiber, C and Zeileis, A, 2008: Applied Econometrics with R. Springer Verlag, New York. https://link.springer.com/book/10.1007/978-0-387-77318-6\nVerzani, J, 2014: Using R for introductory statistics. CRC press. https://www.routledge.com/Using-R-for-Introductory-Statistics/Verzani/p/book/9781466590731\nWickham, H., Çetinkaya-Rundel, M and Grolemund, G, 2023: R for Data Science. https://r4ds.hadley.nz/"
   },
   {
     "objectID": "00-index.html#related-pages",
     "href": "00-index.html#related-pages",
     "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
     "section": "Related Pages",
-    "text": "Related Pages\n\nElements of Data Analysis and Statistics (englische Version)\nCollection of lab exercises (english)\nDatasets\nQuelltexte der Folien (deutsche Version)\nSource code of the slides (englische Version)"
+    "text": "Related Pages\n\nElements of Data Analysis and Statistics (englische Version)\nCollection of lab exercises (english)\nDatasets\nQuelltexte der Folien: deutsch, englisch"
   },
   {
     "objectID": "00-index.html#autor",
     "href": "00-index.html#autor",
     "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
     "section": "Autor",
-    "text": "Autor\nhomepage +++ github\n2025-04-03"
+    "text": "Autor\nhomepage +++ github\n2025-09-16"
+  },
+  {
+    "objectID": "00-index.html#querverweise",
+    "href": "00-index.html#querverweise",
+    "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
+    "section": "Querverweise",
+    "text": "Querverweise\n\nElements of Data Analysis and Statistics (englische Version)\nÜbungen: Collection of lab exercises (englisch)\nDatasets\nQuelltexte der Folien: deutsch, englisch"
   }
 ]
