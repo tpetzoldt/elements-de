@@ -1060,7 +1060,7 @@
     "href": "slides/x1-r-basics.html#lists-1",
     "title": "x1-R Basics",
     "section": "Lists",
-    "text": "Lists\n\nmost flexible data type in R\ncan contain arbitrary data objects as elements of the list\nallows tree-like structure\n\nExamples\n\nOutput of many R functions, e.g. return value of hist:\n\n\nL &lt;- hist(rnorm(100), plot=FALSE)\nstr(L)\n\nList of 6\n $ breaks  : num [1:9] -2 -1.5 -1 -0.5 0 0.5 1 1.5 2\n $ counts  : int [1:8] 3 17 16 20 16 20 4 4\n $ density : num [1:8] 0.06 0.34 0.32 0.4 0.32 0.4 0.08 0.08\n $ mids    : num [1:8] -1.75 -1.25 -0.75 -0.25 0.25 0.75 1.25 1.75\n $ xname   : chr \"rnorm(100)\"\n $ equidist: logi TRUE\n - attr(*, \"class\")= chr \"histogram\"",
+    "text": "Lists\n\nmost flexible data type in R\ncan contain arbitrary data objects as elements of the list\nallows tree-like structure\n\nExamples\n\nOutput of many R functions, e.g. return value of hist:\n\n\nL &lt;- hist(rnorm(100), plot=FALSE)\nstr(L)\n\nList of 6\n $ breaks  : num [1:8] -4 -3 -2 -1 0 1 2 3\n $ counts  : int [1:7] 2 1 12 36 30 17 2\n $ density : num [1:7] 0.02 0.01 0.12 0.36 0.3 0.17 0.02\n $ mids    : num [1:7] -3.5 -2.5 -1.5 -0.5 0.5 1.5 2.5\n $ xname   : chr \"rnorm(100)\"\n $ equidist: logi TRUE\n - attr(*, \"class\")= chr \"histogram\"",
     "crumbs": [
       "Selected Programming Topics",
       "x1-R Basics"
@@ -2464,6 +2464,17 @@
     ]
   },
   {
+    "objectID": "slides/03-statparams.html#pseudomedian-hodges-lehmann-schätzer",
+    "href": "slides/03-statparams.html#pseudomedian-hodges-lehmann-schätzer",
+    "title": "03-Statistische Parameter",
+    "section": "Pseudomedian (Hodges-Lehmann-Schätzer)",
+    "text": "Pseudomedian (Hodges-Lehmann-Schätzer)\n\nDer Pseudomedian (\\(\\tilde{x}^*\\)) ist ein robuster und effizienter Schätzer für den Lageparameter. Er wird als Median aller möglichen Mittelwerte von je zwei Beobachtungen berechnet.\n\\[\\tilde{x}^* = \\text{median}\\left(M_{ij}\\right) \\text{ mit } M_{ij} = \\frac{x_i + x_j}{2} \\text{ für } 1 \\le i \\le j \\le n\\]\nBeispiel\n\nlibrary(Hmisc) \n\n# Verwenden der gleichen Stichprobe wie für den Median\nset.seed(123)\nx &lt;- round(runif(7, max = 10), 1)\n\n# Sortierung für bessere Lesbarkeit des Beispiels (nicht Teil der pMedian-Berechnung)\nsort(x) \n\n[1] 0.5 2.9 4.1 5.3 7.9 8.8 9.4\n\n# arithmetisches Mittel, Median, Pseudomedian\nc(mean(x), median(x), pMedian(x))\n\n[1] 5.557143 5.300000 5.625000\n\n\nBeachte: Strengenommen wird der Grundgesamtheitsparameter als “Pseudomedian” bezeichnet, der Stichprobenparameter als “Hodges-Lehmann-Schätzer”.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "03-Statistische Parameter"
+    ]
+  },
+  {
     "objectID": "slides/03-statparams.html#modus-modalwert",
     "href": "slides/03-statparams.html#modus-modalwert",
     "title": "03-Statistische Parameter",
@@ -2523,7 +2534,7 @@
     "href": "slides/03-statparams.html#variationskoeffizient-cv",
     "title": "03-Statistische Parameter",
     "section": "Variationskoeffizient (\\(cv\\))",
-    "text": "Variationskoeffizient (\\(cv\\))\nIst die relative Standardabweichung:\n\n\\[\n  cv=\\frac{s}{\\bar{x}}\n\\]\n\n\nNützlich für den Vergleich der Streuung verschiedener Variablen, unabhängig von ihrer Maßeinheit\nnur anwendbar für Daten mit Verhältnisskala, d.h. mit einem absoluten Nullpunkt (wie Meter)\nnicht für Variablen wie Celsius-Temperatur oder pH-Wert.\n\nBeispiel\nNehmen wir an, wir haben den Abfluss von zwei Flüssen, einer mit \\(cv=0,3\\), der andere mit \\(cv=0,8\\). Wir sehen, dass der 2. eine extremere Schwankung aufweist.",
+    "text": "Variationskoeffizient (\\(cv\\))\nIst die relative Standardabweichung:\n\n\\[\n  cv=\\frac{s}{\\bar{x}}\n\\]\n\n\nVergleich der Streuung verschiedener Variablen, unabhängig von ihrer Maßeinheit\nNur für Daten mit Verhältnisskala, d.h. mit einem absoluten Nullpunkt (wie Meter)\nnicht für Variablen wie Celsius-Temperatur oder pH-Wert.\n\nBeispiel\nNehmen wir an, wir haben den Abfluss von zwei Flüssen, einer mit \\(cv=0.3\\), der andere mit \\(cv=0.8\\). Wir sehen, dass der 2. eine extremere Schwankung aufweist.",
     "crumbs": [
       "Statistische Grundlagen",
       "03-Statistische Parameter"
@@ -2556,7 +2567,18 @@
     "href": "slides/03-statparams.html#median-absolute-abweichung",
     "title": "03-Statistische Parameter",
     "section": "Median absolute Abweichung",
-    "text": "Median absolute Abweichung\n\nDer Median der absoluten Differenzen zwischen dem Median und den Einzelwerten.\n\\[\n  MAD = \\text{median}(|\\text{median} - x_i|)\n\\]\n\nin einigen Communities häufig verwendet, in unserem Bereich selten\nEinige Programme skalieren den MAD mit einem Faktor \\(1,4826\\) neu, um die Standardabweichung anzunähern.\n\n\\(\\rightarrow\\) Sei vorsichtig und prüfe die Software-Dokumente!",
+    "text": "Median absolute Abweichung\n\nDer Median der absoluten Differenzen zwischen dem Median und den Einzelwerten.\n\\[\n  MAD = \\text{median}(|\\tilde{x} - x_i|) \\quad\\text{wobei}\\quad \\tilde{x} = \\text{median}(x)\n\\]\n\nsehr robuster Schätzer\nin einigen Communities häufig verwendet, in unserem Bereich noch selten\nOft als praktisches Skalenmaß mit dem Hodges-Lehmann (HL)-Schätzer.\n\nAchtung: Skalierung\n\nDer “echte” MAD ist unskaliert (Konstante \\(1\\)).\nViele Programme (z.B. R) verwenden eine Skalierung mit dem Faktor \\(1.4826\\).\nDieser korrigierte Wert (cMAD) ist konsistent zur Standardabweichung \\(\\sigma\\) bei normalverteilten Daten.\n\n\\(\\longrightarrow\\) Sei vorsichtig und prüfe die Software-Dokumentation!\n\nUnskalierter MAD in R: mad(x, constant = 1)",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "03-Statistische Parameter"
+    ]
+  },
+  {
+    "objectID": "slides/03-statparams.html#anwendung-in-r",
+    "href": "slides/03-statparams.html#anwendung-in-r",
+    "title": "03-Statistische Parameter",
+    "section": "Anwendung in R",
+    "text": "Anwendung in R\n\nDie Maßzahlen der Streuung können wie folgt berechnet werden:\n\n\n x &lt;- rnorm(100, mean=50, sd=10)  # 100 Zufallszahlen\n\n var(x)                           # Varianz\n sd(x)                            # Standardabweichung\n range(x)                         # Spannweite\n quantile(x, c(0.25, 0.75))       # Quartile\n IQR(x)                           # Interquartilbereich\n diff(quantile(x, c(0.25, 0.75))) # ebenso, aus den Quartilen geschätzt\n mad(x)                           # Median absolute Abweichung, skaliert (cMAD)\n mad(x, constant = 1)             # MAD, unskaliert",
     "crumbs": [
       "Statistische Grundlagen",
       "03-Statistische Parameter"
@@ -2589,7 +2611,7 @@
     "href": "slides/01-introduction.html#themen",
     "title": "01-Einführung",
     "section": "Themen",
-    "text": "Themen\n\n\nGrundlegende Konzepte der Statistik\nEine Einführung in R\nStatistische Parameter und Verteilungen\nLineare Modelle\nVarianzanalyse\nNichtlineare Regression\nZeitreihenanalyse\nMultivariate Statistik",
+    "text": "Themen\n\n\nGrundlegende Konzepte der Statistik\nEine Einführung in R\nStatistische Parameter und Verteilungen\nAusgewählte Klassische Tests\nLineare Modelle\nVarianzanalyse\nNichtlineare Regression\ngrundlagen der Zeitreihenanalyse (optional)\nMultivariate Statistik",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -2600,7 +2622,7 @@
     "href": "slides/01-introduction.html#material",
     "title": "01-Einführung",
     "section": "Material",
-    "text": "Material\n\n\nFolien, Tutorien: tpetzoldt.github.io/elements\nÜbungen: tpetzoldt.github.io/element-labs\n\n\n\\(\\rightarrow\\) Folien und Übungen werden regelmäßig aktualisiert, je nach Fortschritt des Kurses. Kommentare sind willkommen.\n\n\n\nSchriftliche Klausur am Ende des Semesters\n\\(\\rightarrow\\) &gt; 50% praktische Fragen\n\\(\\rightarrow\\) Nehmt an den Übungen teil!\n\n\n\nFragen?",
+    "text": "Material\n\n\nFolien, Tutorien: tpetzoldt.github.io/elements-de\nÜbungen: tpetzoldt.github.io/element-labs\nDaten: tpetzoldt.github.io/datasets\n\n\n\\(\\rightarrow\\) Folien und Übungen werden regelmäßig aktualisiert, je nach Fortschritt des Kurses. Kommentare sind willkommen.\n\nPrüfung\n\nVorlesungsbegleitende Präsentationen zu den Übungen\n\nSchriftliche Klausur am Ende des Semesters\n\n\n\nFragen?",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -2611,7 +2633,7 @@
     "href": "slides/01-introduction.html#ein-einführendes-beispiel",
     "title": "01-Einführung",
     "section": "Ein einführendes Beispiel",
-    "text": "Ein einführendes Beispiel\nTäglicher mittlerer Abfluss der Elbe, Pegel Dresden, Fluss km 55,6\ndate,       discharge\n1806-01-01,  472\n1806-01-02, 1050\n1806-01-03, 1310\n1806-01-04, 1020\n1806-01-05,  767\n1806-01-06,  616\n...\n2020-10-11,  216\n2020-10-12,  204\n2020-10-13,  217\n2020-10-14,  288\n2020-10-15,  440\n2020-10-16,  601\n2020-10-17,  570\n2020-10-18,  516\n2020-10-19,  450\n2020-10-20,  422\n2020-10-21,  396\n2020-10-22,  372\n2020-10-23,  356\n2020-10-24,  357\n2020-10-25,  332\n2020-10-26,  303\n2020-10-27,  302\n2020-10-28,  316\n2020-10-29,  321\n2020-10-30,  331\n2020-10-31,  353\n2020-11-01,  395\n\\(&gt;\\) 70.000 Messungen. Wie können wir das analysieren und was bedeutet das?\nDatenquelle: Bundesanstalt für Gewässerkunde",
+    "text": "Ein einführendes Beispiel\nTäglicher mittlerer Abfluss der Elbe, Pegel Dresden, Flusskilometer 55,6\ndate,       discharge\n1806-01-01,  472\n1806-01-02, 1050\n1806-01-03, 1310\n1806-01-04, 1020\n1806-01-05,  767\n1806-01-06,  616\n...\n2020-10-11,  216\n2020-10-12,  204\n2020-10-13,  217\n2020-10-14,  288\n2020-10-15,  440\n2020-10-16,  601\n2020-10-17,  570\n2020-10-18,  516\n2020-10-19,  450\n2020-10-20,  422\n2020-10-21,  396\n2020-10-22,  372\n2020-10-23,  356\n2020-10-24,  357\n2020-10-25,  332\n2020-10-26,  303\n2020-10-27,  302\n2020-10-28,  316\n2020-10-29,  321\n2020-10-30,  331\n2020-10-31,  353\n2020-11-01,  395\n\\(&gt;\\) 70.000 Messungen. Wie können wir das analysieren und was bedeutet das?\nDatenquelle: Bundesanstalt für Gewässerkunde",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -2688,7 +2710,7 @@
     "href": "slides/01-introduction.html#statistische-hypothesentests",
     "title": "01-Einführung",
     "section": "Statistische Hypothesentests",
-    "text": "Statistische Hypothesentests\n\nWie wahrscheinlich ist es, dass unsere Hypothese untersützt wird?\n\n\nUmwandlung einer wissenschaftlichen in eine statistische Hypothese\nSchätzung der Wahrscheinlichkeit (p-Wert) einer bestimmten Hypothese\n\nBeispiele\n\nIst eine medizinische Behandlung erfolgreich oder nicht? → \\(\\chi^2\\)-Test\nErhöht eine spezielle Nahrung den Ertrag einer Fischzucht? → t-Test\nWelche Faktoren (z. B. Futter, Temperatur, pH-Wert) einer kombinierten Behandlung beeinflussen das Wachstum von Wasserlebewesen? → ANOVA\n(Wie) hängt die beobachtete Algenbiomasse vom Phosphor ab? → Korrelation und Regression",
+    "text": "Statistische Hypothesentests\n\nWie wahrscheinlich ist es, dass unsere Hypothese untersützt wird?\n\n\nUmwandlung einer wissenschaftlichen in eine statistische Hypothese\nSchätzung der Irrtumswahrscheinlichkeit (p-Wert) einer Hypothese\n\nBeispiele\n\nIst eine medizinische Behandlung erfolgreich oder nicht? → \\(\\chi^2\\)-Test\nErhöht eine spezielle Nahrung den Ertrag einer Fischzucht? → t-Test\nWelche Faktoren (z. B. Futter, Temperatur, pH-Wert) einer kombinierten Behandlung beeinflussen das Wachstum von Wasserorganismen? → ANOVA\n(Wie) hängt die beobachtete Algenbiomasse vom Phosphor ab? → Korrelation und Regression",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -2699,7 +2721,7 @@
     "href": "slides/01-introduction.html#statistische-modellierung",
     "title": "01-Einführung",
     "section": "Statistische Modellierung",
-    "text": "Statistische Modellierung\n\nAnpassung eines statistischen Modells an beobachtete Daten\n\nWahl einer geeigneten Modellierungsstrategie\nSpezifizierung statistischer Modelle\nMessung der Effektgrößen\nAuswahl eines optimalen Modells aus verschiedenen Modellkandidaten\n\nBeispiele\n\nAnpassung einer Verteilung an jährliche Abflussdaten, um das 100-jährige Hochwasser zu schätzen.\nAnpassen eines ANOVA-Modells an experimentelle Daten -&gt; welcher Faktor beeinflusst das Ergebnis am stärksten?\nAnpassen eines multiplen linearen Modells an Klimadaten -&gt; wie stark unterscheiden sich Klimatrends zwischen geografischen Standorten?",
+    "text": "Statistische Modellierung\n\nAnpassung eines statistischen Modells an beobachtete Daten\n\nWahl einer geeigneten Modellierungsstrategie\nSpezifizierung statistischer Modelle\nMessung der Effektgrößen\nAuswahl eines optimalen Modells aus verschiedenen Modellkandidaten\n\nBeispiele\n\nAnpassung einer Verteilung an jährliche Abflussdaten, um das 100-jährige Hochwasser zu schätzen.\nAnpassen eines ANOVA-Modells an experimentelle Daten → welcher Faktor beeinflusst das Ergebnis am stärksten?\nAnpassen eines multiplen linearen Modells an Klimadaten → wie stark unterscheiden sich Klimatrends zwischen geografischen Standorten?",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -2710,7 +2732,7 @@
     "href": "slides/01-introduction.html#beispiel-vergleich-zweier-mittelwerte",
     "title": "01-Einführung",
     "section": "Beispiel: Vergleich zweier Mittelwerte",
-    "text": "Beispiel: Vergleich zweier Mittelwerte\n\n\nEin gegebener Datensatz (Dobson, 1983) enthält das Geburtsgewicht (in g) von 12 Jungen und 12 Mädchen.\nHat der Gewichtsunterschied etwas mit dem Geschlecht der Babys zu tun oder handelt es sich um Zufall?",
+    "text": "Beispiel: Vergleich zweier Mittelwerte\n\n\nEin gegebener Datensatz (Dobson, 1983) enthält das Geburtsgewicht (in g) von 12 Jungen und 12 Mädchen.\nHat der Unterschied etwas mit dem Geschlecht der Babys zu tun oder handelt es sich um Zufall?",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -2732,7 +2754,7 @@
     "href": "slides/01-introduction.html#welche-datenstruktur-ist-besser",
     "title": "01-Einführung",
     "section": "Welche Datenstruktur ist besser?",
-    "text": "Welche Datenstruktur ist besser?\n\n\nWide-Format\n\n\n\n\n\n\nstation\n2021\n2022\n2023\n\n\n\n\nA\n3\n6\n13\n\n\nB\n16\n16\n5\n\n\nC\n9\n5\n15\n\n\nD\n5\n18\n10\n\n\nE\n19\n17\n18\n\n\n\n\n\n\nLong-Format\n\n\n\n\n\n\nyear\nstation\nvalue\n\n\n\n\n2021\nA\n3\n\n\n2021\nB\n16\n\n\n2021\nC\n9\n\n\n2021\nD\n5\n\n\n2021\nE\n19\n\n\n2022\nA\n6\n\n\n2022\nB\n16\n\n\n2022\nC\n5\n\n\n2022\nD\n18\n\n\n2022\nE\n17\n\n\n2023\nA\n13\n\n\n2023\nB\n5\n\n\n2023\nC\n15\n\n\n2023\nD\n10\n\n\n2023\nE\n18",
+    "text": "Welche Datenstruktur ist besser?\n\n\nWide-Format\n\n\n\n\n\n\nstation\n2021\n2022\n2023\n\n\n\n\nA\n17\n16\n16\n\n\nB\n5\n13\n10\n\n\nC\n2\n12\n8\n\n\nD\n4\n20\n12\n\n\nE\n9\n11\n15\n\n\n\n\n\n\nLong-Format\n\n\n\n\n\n\nyear\nstation\nvalue\n\n\n\n\n2021\nA\n17\n\n\n2021\nB\n5\n\n\n2021\nC\n2\n\n\n2021\nD\n4\n\n\n2021\nE\n9\n\n\n2022\nA\n16\n\n\n2022\nB\n13\n\n\n2022\nC\n12\n\n\n2022\nD\n20\n\n\n2022\nE\n11\n\n\n2023\nA\n16\n\n\n2023\nB\n10\n\n\n2023\nC\n8\n\n\n2023\nD\n12\n\n\n2023\nE\n15",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -2765,7 +2787,7 @@
     "href": "slides/01-introduction.html#warum-das-long-format",
     "title": "01-Einführung",
     "section": "Warum das Long-Format?",
-    "text": "Warum das Long-Format?\n\n\nKlar und konsistent:\n\nvermeidet Duplikationen\nDatenstruktur einfacher zu verstehen\n\nFlexibel:\n\nfür verschiedene statistische Analysen, z.B. ANOVA, multiple Regression, Zeitreihen\nbei Bedarf leicht in breite Formate zu transformieren\n\nKompatibel:\n\nmoderne Datenanalysetools wie R und Python bevorzugen das long-Format\nkompatibel mit Datenbanksystemen\n\n\nDeshalb:\n\nVersuche das wide-Format zu vermeiden! Es kann zu Inkonsistenz und Verkomplizierung der Analyse führen.\nBereinige die Daten vor der Analyse und konvertiere Tabellen aus dem wide-Format in das long-Format.\n\n\n\\(\\rightarrow\\) Übung mit Zeitreihen der Elbe.",
+    "text": "Warum das Long-Format?\n\n\nKlar und konsistent:\n\nvermeidet Duplikate\nDatenstruktur einfacher zu verstehen\n\nFlexibel:\n\nfür verschiedene statistische Analysen, z.B. ANOVA, multiple Regression, Zeitreihen\nbei Bedarf leicht in breite Formate zu transformieren\n\nKompatibel:\n\nmoderne Datenanalysetools wie R und Python bevorzugen das long-Format\nkompatibel mit Datenbanksystemen\n\n\nDeshalb:\n\nVersuche das wide-Format zu vermeiden! Es führt zu Inkonsistenz und Verkomplizierung der Analyse.\nBereinige die Daten vor der Analyse und konvertiere Tabellen aus dem wide-Format in das long-Format.\n\n\n\\(\\rightarrow\\) Übung mit Zeitreihen der Elbe.",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -2776,7 +2798,7 @@
     "href": "slides/01-introduction.html#mathematik",
     "title": "01-Einführung",
     "section": "Mathematik",
-    "text": "Mathematik\n\n\nLineare Algebra: Die Grundlage für viele statistische Methoden, insbesondere Matrizen und Vektoren.\nCalculus: Optimierungsprobleme, Ableitung statistischer Formeln, Verständnis des Verhaltens von Funktionen.\nNumerische Analyse: Implementierung von statistischen Methoden auf Computern, insbesondere bei großen oder komplexen Datensätzen.\nWahrscheinlichkeitstheorie: Stichprobenziehung und Modellierung von Daten, Verständnis statistischer Schlussfolgerungen, Entwicklung von Algorithmen.\nStatistische Modellierung: Regressionsanalyse, Zeitreihenanalyse, bayesianische Modellierung, maschinelles Lernen.\n\n\n\\(\\rightarrow\\) Die richtige Verwendung fertiger Software erfordert grundlegendes Verständnis.",
+    "text": "Mathematik\n\n\nLineare Algebra: Die Grundlage für viele statistische Methoden, insbesondere Matrizen und Vektoren.\nCalculus: Optimierungsprobleme, Ableitung statistischer Formeln, Verständnis des Verhaltens von Funktionen.\nNumerische Analysis: Implementierung von statistischen Methoden auf Computern, insbesondere bei großen oder komplexen Datensätzen.\nWahrscheinlichkeitstheorie: Stichprobenziehung und Modellierung von Daten, Verständnis statistischer Schlussfolgerungen, Entwicklung von Algorithmen.\nStatistische Modellierung: Regressionsanalyse, Zeitreihenanalyse, bayesianische Modellierung, maschinelles Lernen.\n\n\n\\(\\rightarrow\\) Die richtige Verwendung fertiger Software erfordert grundlegendes Verständnis.",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -2798,7 +2820,7 @@
     "href": "slides/01-introduction.html#warum-r",
     "title": "01-Einführung",
     "section": "Warum R?",
-    "text": "Warum R?\n\n\nStatistiker bezeichnen es als „lingua franca of computational statistics“.\n\nÄußerst leistungsfähig\nKein anderes System verfügt über so viele statistische Methoden\nWird in der statistischen Forschung verwendet\n\nFrei (OpenSource)\n\nFrei zu benutzen\nFrei zu modifizieren\nFrei, etwas beizutragen\n\nWeniger kompliziert als es auf den ersten Blick erscheint:\n\nJa, man braucht Kommandozeilenprogrammierung\naber: schon eine einzige Zeile kann viel bewirken\ngroße Anzahl Bücher und Online-Skripte\n\n\n\n\nIm Gegensatz zu anderen Systemen ist Copy & Paste erlaubt – aber bitte zitieren.",
+    "text": "Warum R?\n\n\n“lingua franca of computational statistics”.\n\nÄußerst leistungsfähig\nKein anderes System verfügt über so viele statistische Methoden\nWird in der statistischen Forschung verwendet\n\nFrei (OpenSource)\n\nFrei zu benutzen\nFrei zu modifizieren\nFrei, etwas beizutragen\n\nWeniger kompliziert als man denkt:\n\nJa, man braucht Kommandozeilenprogrammierung\naber: schon eine einzige Zeile kann viel bewirken\ngroße Anzahl Bücher und Online-Skripte\n\n\n\n\nIm Gegensatz zu anderen Systemen ist Copy & Paste erlaubt – aber bitte zitieren.",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -2809,7 +2831,7 @@
     "href": "slides/01-introduction.html#bücher",
     "title": "01-Einführung",
     "section": "Bücher",
-    "text": "Bücher\nStatistische Methoden\n\nSehr gut lesbare Einführungen\n\nDalgaard, P., 2008: Introductory Statistics with R. Springer, New York, 2nd edition. (Volltext der 1. Auflage frei verfügbar)\nVerzani, J. (2019). Using R for introductory statistics. CRC press.\n\nSehr gut verständliche Einführung, insbesondere in die Regressions- und Zeitreihenanalyse:\n\nKleiber, C. and Zeileis, A., 2008: Applied Econometrics with R, Springer Verlag, New York. https://link.springer.com/book/10.1007/978-0-387-77318-6\n\n\nR Programmierung\n\nEinführung in die Datenwissenschaft mit dem modernen „Tidyverse“-Ansatz:\n\nWickham, H., Çetinkaya-Rundel, M and Grolemund, G, 2023: R for Data Science. Free ebook: https://r4ds.hadley.nz/\n\n\n\n\n\n\nUnd jede Menge frei verfügbares Material im Internet …",
+    "text": "Bücher\nStatistische Methoden\n\nSehr gut lesbare Einführungen\n\nDalgaard, P., 2008: Introductory Statistics with R. Springer, New York, 2nd edition. (Volltext der 1. Auflage frei verfügbar)\nVerzani, J. (2019). Using R for introductory statistics. CRC press.\n\nSehr gut verständlich, insbesondere für Regressions- und Zeitreihenanalyse:\n\nKleiber, C. and Zeileis, A., 2008: Applied Econometrics with R, Springer Verlag, New York. https://link.springer.com/book/10.1007/978-0-387-77318-6\n\n\nR Programmierung\n\nEinführung in die Datenwissenschaft mit dem modernen „Tidyverse“-Ansatz:\n\nWickham, H., Çetinkaya-Rundel, M and Grolemund, G, 2023: R for Data Science. Free ebook: https://r4ds.hadley.nz/\n\n\n\n\n\n\nUnd jede Menge frei verfügbares Material im Internet …",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -2886,7 +2908,7 @@
     "href": "slides/02-terminology.html#umwandlung-von-skalen",
     "title": "02-Grundbegriffe",
     "section": "Umwandlung von Skalen",
-    "text": "Umwandlung von Skalen\n\nDas Niveau der Variablen steigt von der binären zur Verhältnis-Skala. Es ist immer möglich, ein höheres in ein niedrigeres Niveau umzuwandeln:\n\nmetrisch \\(\\rightarrow\\) ordinal: Rangbildung\nmetrisch oder ordinal \\(\\rightarrow\\) binär: Vergleich mit Schwellenwert\nnominal \\(\\rightarrow\\) binär: Zuordnung zu zwei Gruppen\n\nDie Umwandlung in eine niedrigere Skala führt zu einem gewissen Informationsverlust, ermöglicht aber die Verwendung zusätzlicher Methoden aus der untergeordneten Skala.\nErklärung: Wenn wir die Rangkorrelation auf metrische Daten anwenden, wenden wir im Wesentlichen eine Methode für die Ordinalskala auf metrische Daten an. In diesem Fall verlieren wir Informationen über die Unterschiede zwischen den Werten, verringern aber auch den Einfluss von Extremwerten und Ausreißern.\nDie Umwandlung von metrischen in binäre Daten kann sinnvoll sein, wenn die metrischen Daten nicht genau genug sind. So kann beispielsweise die Zählung von Tieren (z. B. Wölfen) in einem bestimmten Gebiet von zu vielen Faktoren abhängen (Struktur der Landschaft, Erfahrung der Menschen, Jahreszeit usw.), so dass die genauen Zahlen (Häufigkeiten) fraglich sind. In solchen Fällen ist eine Umwandlung in eine binäre Skala (vorhanden/abwesend) und die Anwendung eines entsprechenden Tests (z. B. logistische Regression oder Fisher’s exakter Test) zuverlässiger.\nAndere Beispiele sind der Vergleich von Hochwasser zwischen verschiedenen Flüssen, z.B. einem großen und einem kleinen Fluss, oder das Vorkommen von Genen in einer molekularbiologischen Analyse.",
+    "text": "Umwandlung von Skalen\n\nDas Niveau der Variablen steigt von der binären zur Verhältnis-Skala. Es ist immer möglich, ein höheres in ein niedrigeres Niveau umzuwandeln:\n\nmetrisch \\(\\rightarrow\\) ordinal: Rangbildung\nmetrisch oder ordinal \\(\\rightarrow\\) binär: Vergleich mit Schwellenwert\nnominal \\(\\rightarrow\\) binär: Zuordnung zu zwei Gruppen\n\nDie Umwandlung in eine niedrigere Skala führt zu einem gewissen Informationsverlust, ermöglicht aber die Verwendung zusätzlicher Methoden aus der untergeordneten Skala.\nErklärung: Wenn wir die Rangkorrelation auf metrische Daten anwenden, wenden wir im Wesentlichen eine Methode für die Ordinalskala auf metrische Daten an. In diesem Fall verlieren wir Informationen über die Unterschiede zwischen den Werten, verringern aber auch den Einfluss von Extremwerten und Ausreißern.\nDie Umwandlung von metrischen in binäre Daten kann sinnvoll sein, wenn die metrischen Daten nicht genau genug sind. So kann beispielsweise die Zählung von Tieren (z. B. Wölfen) in einem bestimmten Gebiet von zu vielen Faktoren abhängen (Struktur der Landschaft, Erfahrung der Menschen, Jahreszeit usw.), so dass die genauen Zahlen (Häufigkeiten) fraglich sind. In solchen Fällen ist eine Umwandlung in eine binäre Skala (vorhanden/abwesend) und die Anwendung eines entsprechenden Tests (z. B. logistische Regression oder Fisher’s exakter Test) zuverlässiger.",
     "crumbs": [
       "Statistische Grundlagen",
       "02-Grundbegriffe"
@@ -2952,7 +2974,7 @@
     "href": "slides/02-terminology.html#erwartungswert",
     "title": "02-Grundbegriffe",
     "section": "Erwartungswert",
-    "text": "Erwartungswert\n\nEine einzelne Messung \\(x_i\\) einer Zufallsvariablen \\(X\\) kann als Summe des Erwartungswertes \\(\\mathbf{E}(X)\\) der Zufallsvariablen und eines Zufallsfehlers \\(\\varepsilon_i\\) formuliert werden.\n\\[\\begin{align}\n  x_i &= \\mathbf{E}(X) + \\varepsilon_i\\\\\n  \\mathbf{E}(\\varepsilon)&=0\n\\end{align}\\]\nBeispiel:\n\nfür einen fairen Würfel mit 6 Augen sollte der wahre Mittelwert \\(\\mu\\) 3,5 sein\nIn Wirklichkeit ist nicht genau bekannt, ob ein realer Würfel perfekt symmetrisch ist.\n\nBeispiel: 3 Personen mit 5 Versuchen:\n\n\n\nsample 1:  3 3 2 4 1  mean: 2.6\n\n\nsample 2:  6 1 1 6 1  mean: 3\n\n\nsample 3:  6 5 6 6 5  mean: 5.6\n\n\n\nGesamtmittelwert: \\(\\bar{x} = 3.73\\) liegt nahe an \\(\\mu = 3,5\\).",
+    "text": "Erwartungswert\n\nEine einzelne Messung \\(x_i\\) einer Zufallsvariablen \\(X\\) kann als Summe des Erwartungswertes \\(\\mathbf{E}(X)\\) der Zufallsvariablen und eines Zufallsfehlers \\(\\varepsilon_i\\) formuliert werden.\n\\[\\begin{align}\n  x_i &= \\mathbf{E}(X) + \\varepsilon_i\\\\\n  \\mathbf{E}(\\varepsilon)&=0\n\\end{align}\\]\nBeispiel:\n\nfür einen fairen Würfel mit 6 Augen sollte der wahre Mittelwert \\(\\mu =3.5\\) sein\nIn Wirklichkeit ist nicht genau bekannt, ob ein realer Würfel perfekt symmetrisch ist.\n\nBeispiel: 3 Personen mit 5 Versuchen:\n\n\n\nsample 1:  3 3 2 4 1  mean: 2.6\n\n\nsample 2:  6 1 1 6 1  mean: 3\n\n\nsample 3:  6 5 6 6 5  mean: 5.6\n\n\n\nGesamtmittelwert: \\(\\bar{x} = 3.73\\) liegt nahe an \\(\\mu = 3.5\\).",
     "crumbs": [
       "Statistische Grundlagen",
       "02-Grundbegriffe"
@@ -2996,7 +3018,7 @@
     "href": "slides/04-distributions.html#kontinuierliche-gleichverteilung-mathbfu0-1",
     "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)",
-    "text": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)\n\n\ngleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall\nz.B. \\([0, 1]\\)\nin R: runif, random, uniform\n\n\nrunif(10)\n\n [1] 0.81938713 0.79185617 0.07212257 0.74034251 0.76590566 0.05365209\n [7] 0.59850890 0.39667108 0.04754277 0.10264472\n\n\n \n\nKlassenbildung (Binning): Einteilung der Werte in Klassen",
+    "text": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)\n\n\ngleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall\nz.B. \\([0, 1]\\)\nin R: runif, random, uniform\n\n\nrunif(10)\n\n [1] 0.03385101 0.19381460 0.79870531 0.44095483 0.69595668 0.90098235\n [7] 0.46517777 0.43924926 0.15884211 0.75755505\n\n\n \n\nKlassenbildung (Binning): Einteilung der Werte in Klassen",
     "crumbs": [
       "Statistische Grundlagen",
       "04-Wahrscheinlichkeitsverteilungen"
@@ -4554,18 +4576,11 @@
     ]
   },
   {
-    "objectID": "00-index.html#einführung",
-    "href": "00-index.html#einführung",
+    "objectID": "00-index.html",
+    "href": "00-index.html",
     "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
-    "section": "Einführung",
-    "text": "Einführung\nDiese Website enthält eine Sammlung von Materialien für einführende Statistikkurse mit R. Das Ziel ist es, einen Einblick in grundlegende Prinzipien zu geben und einen Einstieg zu vermitteln, um weiterführende Fachbücher und Online-Materialien auswählen und verstehen zu können und so tiefer in das vielfältige und faszinierende Gebiet des “Statistical Computing” einzusteigen.\nDie Auswahl der Themen spiegelt meine persönliche Erfahrung wider, als Türöffner zu Themen, die für die Ökologie und die Hydrowissenschaften nützlich sind. Es handelt sich um ein fortlaufendes Projekt, basierend auf früheren PDF-Folien und anderem Kursmaterial.\nDie deutschsprachige Version ist eine Übersetzung aus dem englischen. Für die Korrektheit wird keine Gewähr übernommen. Konstruktive Kommentare und Verbesserungsvorschläge sind willkommen.\nDie dazugehörigen Übungsaufgaben befinden sich unter: https://tpetzoldt.github.io/element-labs/."
-  },
-  {
-    "objectID": "00-index.html#pdf-version",
-    "href": "00-index.html#pdf-version",
-    "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
-    "section": "PDF-Version",
-    "text": "PDF-Version\nFalls Sie eine PDF-Version der Folien benötigen, können Sie diese wie folgt erzeugen:\n\nÖffnen Sie zunächst das “Hamburger-Menü” unten links\nWählen Sie Tools - PDF Export Mode\nNutzen sie nun die Druck-Funktion Ihres Browsers und drucken Sie den Inhalt in eine PDF-Datei.\n\nDie Ergebnisse unterscheiden sich etwas, je nach Browser. Sie haben die Möglichkeit, mit weißem statt farbigem Hintergrund zu drucken. Wenn Sie mit dem Ergebnis nicht zufrieden sind, nutzen Sie einen anderen Browser."
+    "section": "",
+    "text": "Diese Website enthält eine Sammlung von Materialien für einführende Statistikkurse mit R. Das Ziel ist es, einen Einblick in grundlegende Prinzipien zu geben und einen Einstieg zu vermitteln, um weiterführende Fachbücher und Online-Materialien auswählen und verstehen zu können und so tiefer in das vielfältige und faszinierende Gebiet des “Statistical Computing” einzusteigen.\nDie Auswahl der Themen spiegelt meine persönliche Erfahrung wider, als Türöffner zu Themen, die für die Ökologie und die Hydrowissenschaften nützlich sind. Es handelt sich um ein forlaufendes Projekt, basierend auf früheren PDF-Folien und anderem Kursmaterial.\nDie deutschsprachige Version ist eine Übersetzung aus dem englischen. Für die Korrektheit wird keine Gewähr übernommen. Konstruktive Kommentare und Verbesserungsvorschläge sind willkommen.\nDie dazugehörigen Übungsaufgaben befinden sich unter: https://tpetzoldt.github.io/element-labs/."
   },
   {
     "objectID": "00-index.html#weiterführende-literatur",
@@ -4586,6 +4601,6 @@
     "href": "00-index.html#autor",
     "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
     "section": "Autor",
-    "text": "Autor\nhomepage +++ github\n2025-09-29"
+    "text": "Autor\nhomepage +++ github\n2025-09-16"
   }
 ]

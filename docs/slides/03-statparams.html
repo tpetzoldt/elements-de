@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Thomas Petzoldt">
-  <meta name="dcterms.date" content="2025-09-29">
+  <meta name="dcterms.date" content="2025-10-15">
   <title>Elemente der statistischen Datenanalyse und Statistik mit R – 03-Statistische Parameter</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -29,6 +29,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-cb13c09ad5a7270edb89df8c4c84031f.css">
   <link rel="stylesheet" href="../thpe.css">
@@ -147,7 +212,7 @@ Thomas Petzoldt
 </div>
 </div>
 
-  <p class="date">2025-09-29</p>
+  <p class="date">2025-10-15</p>
 </section>
 <section id="statistische-parameter" class="slide level2">
 <h2>Statistische Parameter</h2>
@@ -236,6 +301,32 @@ Thomas Petzoldt
 <li>aber etwas weniger effizient</li>
 </ul>
 </section>
+<section id="pseudomedian-hodges-lehmann-schätzer" class="slide level2">
+<h2>Pseudomedian (Hodges-Lehmann-Schätzer)</h2>
+<p><br></p>
+<p>Der Pseudomedian (<span class="math inline">\(\tilde{x}^*\)</span>) ist ein robuster und effizienter Schätzer für den Lageparameter. Er wird als Median aller möglichen Mittelwerte von je zwei Beobachtungen berechnet.</p>
+<p><span class="math display">\[\tilde{x}^* = \text{median}\left(M_{ij}\right) \text{ mit } M_{ij} = \frac{x_i + x_j}{2} \text{ für } 1 \le i \le j \le n\]</span></p>
+<p><strong>Beispiel</strong></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Hmisc) </span>
+<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Verwenden der gleichen Stichprobe wie für den Median</span></span>
+<span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">7</span>, <span class="at">max =</span> <span class="dv">10</span>), <span class="dv">1</span>)</span>
+<span id="cb1-6"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Sortierung für bessere Lesbarkeit des Beispiels (nicht Teil der pMedian-Berechnung)</span></span>
+<span id="cb1-8"><a aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(x) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5 2.9 4.1 5.3 7.9 8.8 9.4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># arithmetisches Mittel, Median, Pseudomedian</span></span>
+<span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">mean</span>(x), <span class="fu">median</span>(x), <span class="fu">pMedian</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.557143 5.300000 5.625000</code></pre>
+</div>
+</div>
+<p><span class="smallfont">Beachte: Strengenommen wird der Grundgesamtheitsparameter als “Pseudomedian” bezeichnet, der Stichprobenparameter als “Hodges-Lehmann-Schätzer”.</span></p>
+</section>
 <section id="modus-modalwert" class="slide level2">
 <h2>Modus (Modalwert)</h2>
 
@@ -296,12 +387,12 @@ Thomas Petzoldt
 \]</span></p>
 </div>
 <ul>
-<li>Nützlich für den Vergleich der Streuung verschiedener Variablen, unabhängig von ihrer Maßeinheit</li>
-<li>nur anwendbar für Daten mit <span class="blue">Verhältnisskala</span>, d.h. mit einem absoluten Nullpunkt (wie Meter)</li>
+<li>Vergleich der Streuung verschiedener Variablen, unabhängig von ihrer Maßeinheit</li>
+<li>Nur für Daten mit <span class="blue">Verhältnisskala</span>, d.h. mit einem absoluten Nullpunkt (wie Meter)</li>
 <li>nicht für Variablen wie Celsius-Temperatur oder pH-Wert.</li>
 </ul>
 <p><strong>Beispiel</strong></p>
-<p>Nehmen wir an, wir haben den Abfluss von zwei Flüssen, einer mit <span class="math inline">\(cv=0,3\)</span>, der andere mit <span class="math inline">\(cv=0,8\)</span>. Wir sehen, dass der 2. eine extremere Schwankung aufweist.</p>
+<p>Nehmen wir an, wir haben den Abfluss von zwei Flüssen, einer mit <span class="math inline">\(cv=0.3\)</span>, der andere mit <span class="math inline">\(cv=0.8\)</span>. Wir sehen, dass der 2. eine extremere Schwankung aufweist.</p>
 </section>
 <section id="spannweite" class="slide level2">
 <h2>Spannweite</h2>
@@ -355,122 +446,41 @@ Thomas Petzoldt
 <p><br></p>
 <p>Der Median der absoluten Differenzen zwischen dem Median und den Einzelwerten.</p>
 <p><span class="math display">\[
-  MAD = \text{median}(|\text{median} - x_i|)
+  MAD = \text{median}(|\tilde{x} - x_i|) \quad\text{wobei}\quad \tilde{x} = \text{median}(x)
 \]</span></p>
 <ul>
-<li>in einigen Communities häufig verwendet, in unserem Bereich selten</li>
-<li>Einige Programme skalieren den MAD mit einem Faktor <span class="math inline">\(1,4826\)</span> neu, um die Standardabweichung anzunähern.</li>
+<li>sehr robuster Schätzer</li>
+<li>in einigen Communities häufig verwendet, in unserem Bereich noch selten</li>
+<li>Oft als praktisches Skalenmaß mit dem Hodges-Lehmann (HL)-Schätzer.</li>
 </ul>
-<p><span class="math inline">\(\rightarrow\)</span> Sei vorsichtig und <span class="red">prüfe die Software-Dokumente!</span></p>
-<!--
-
-## Application in **R**
-
-All measures of variation can be easily calculated in **R**:
-
-
-
-
-::: {.cell layout-align="center" fig='false'}
-
-```{.r .cell-code}
- x <- rnorm(100, mean=50, sd=10)  # 100 random numbers
- var(x)                           # variance
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-[1] 133.113
-```
-
-
-:::
-
-```{.r .cell-code}
- sd(x)                            # standard deviation
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-[1] 11.53746
-```
-
-
-:::
-
-```{.r .cell-code}
- range(x)                         # range
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-[1] 26.17312 75.24584
-```
-
-
-:::
-
-```{.r .cell-code}
- quantile(x, c(0.25, 0.75))       # quartiles
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-     25%      75% 
-41.76257 58.69550 
-```
-
-
-:::
-
-```{.r .cell-code}
- IQR(x)                           # interquartile range
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-[1] 16.93293
-```
-
-
-:::
-
-```{.r .cell-code}
- diff(quantile(x, c(0.25, 0.75))) # same, calculated from quartiles
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-     75% 
-16.93293 
-```
-
-
-:::
-
-```{.r .cell-code}
- mad(x)                           # median absolute deviation
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-[1] 12.73052
-```
-
-
-:::
-:::
-
-
-
--->
+<p><strong>Achtung: Skalierung</strong></p>
+<ul>
+<li>Der <strong>“echte” MAD ist unskaliert</strong> (Konstante <span class="math inline">\(1\)</span>).</li>
+<li>Viele Programme (z.B. <strong>R</strong>) verwenden eine Skalierung mit dem Faktor <strong><span class="math inline">\(1.4826\)</span></strong>.</li>
+<li>Dieser korrigierte Wert (<strong>cMAD</strong>) ist konsistent zur <strong>Standardabweichung <span class="math inline">\(\sigma\)</span></strong> bei normalverteilten Daten.</li>
+</ul>
+<p><span class="red"><span class="math inline">\(\longrightarrow\)</span></span> <strong>Sei vorsichtig und prüfe die Software-Dokumentation!</strong></p>
+<ul>
+<li>Unskalierter MAD in <strong>R</strong>: <code>mad(x, constant = 1)</code></li>
+</ul>
+</section>
+<section id="anwendung-in-r" class="slide level2">
+<h2>Anwendung in <strong>R</strong></h2>
+<p><br></p>
+<p>Die Maßzahlen der Streuung können wie folgt berechnet werden:</p>
+<p><br></p>
+<div class="cell" data-layout-align="center" data-fig="false">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a> x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="dv">50</span>, <span class="at">sd=</span><span class="dv">10</span>)  <span class="co"># 100 Zufallszahlen</span></span>
+<span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a> <span class="fu">var</span>(x)                           <span class="co"># Varianz</span></span>
+<span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a> <span class="fu">sd</span>(x)                            <span class="co"># Standardabweichung</span></span>
+<span id="cb5-5"><a aria-hidden="true" tabindex="-1"></a> <span class="fu">range</span>(x)                         <span class="co"># Spannweite</span></span>
+<span id="cb5-6"><a aria-hidden="true" tabindex="-1"></a> <span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))       <span class="co"># Quartile</span></span>
+<span id="cb5-7"><a aria-hidden="true" tabindex="-1"></a> <span class="fu">IQR</span>(x)                           <span class="co"># Interquartilbereich</span></span>
+<span id="cb5-8"><a aria-hidden="true" tabindex="-1"></a> <span class="fu">diff</span>(<span class="fu">quantile</span>(x, <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))) <span class="co"># ebenso, aus den Quartilen geschätzt</span></span>
+<span id="cb5-9"><a aria-hidden="true" tabindex="-1"></a> <span class="fu">mad</span>(x)                           <span class="co"># Median absolute Abweichung, skaliert (cMAD)</span></span>
+<span id="cb5-10"><a aria-hidden="true" tabindex="-1"></a> <span class="fu">mad</span>(x, <span class="at">constant =</span> <span class="dv">1</span>)             <span class="co"># MAD, unskaliert</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="standardfehler-des-mittelwerts" class="slide level2">
 <h2>Standardfehler des Mittelwerts</h2>

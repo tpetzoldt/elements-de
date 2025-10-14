@@ -40,33 +40,33 @@ $\rightarrow$ Wichtiger als auswendig gelernte Fakten.
 1.  Grundlegende Konzepte der Statistik
 2.  Eine Einführung in R
 3.  Statistische Parameter und Verteilungen
-4.  Lineare Modelle
-5.  Varianzanalyse
-6.  Nichtlineare Regression
-7.  Zeitreihenanalyse
-8.  Multivariate Statistik
+4.  Ausgewählte Klassische Tests
+5.  Lineare Modelle
+6.  Varianzanalyse
+7.  Nichtlineare Regression
+8.  grundlagen der Zeitreihenanalyse (optional)
+9.  Multivariate Statistik
 
 ## Material
 
 <br>
 
 -   Folien, Tutorien:
-    [tpetzoldt.github.io/elements](https://tpetzoldt.github.io/elements-de)
+    [tpetzoldt.github.io/elements-de](https://tpetzoldt.github.io/elements-de)
 -   Übungen:
     [tpetzoldt.github.io/element-labs](https://tpetzoldt.github.io/element-labs)
+-   Daten:
+    [tpetzoldt.github.io/datasets](https://tpetzoldt.github.io/datasets)
 
 ::: smallfont
 $\rightarrow$ Folien und Übungen werden regelmäßig aktualisiert, je nach
 Fortschritt des Kurses. Kommentare sind willkommen.
 :::
 
-<br>
+**Prüfung**
 
+-   Vorlesungsbegleitende Präsentationen zu den Übungen  
 -   Schriftliche Klausur am Ende des Semesters
-
-    $\rightarrow$ [\> 50% praktische Fragen]{.blue}
-
-    $\rightarrow$ [Nehmt an den Übungen teil!]{.red}
 
 <br>
 
@@ -80,7 +80,7 @@ $\rightarrow$ ein paar Beispiele, bevor wir anfangen
 
 ## Ein einführendes Beispiel
 
-Täglicher mittlerer Abfluss der Elbe, Pegel Dresden, Fluss km 55,6
+Täglicher mittlerer Abfluss der Elbe, Pegel Dresden, Flusskilometer 55,6
 
 ```         
 date,       discharge
@@ -220,7 +220,7 @@ with(dat, boxplot(discharge, ylab=expression(m^3~s^{-1}), las=2, main="", log="y
 <br>
 
 -   Umwandlung einer wissenschaftlichen in eine statistische Hypothese
--   Schätzung der Wahrscheinlichkeit (p-Wert) einer bestimmten Hypothese
+-   Schätzung der Irrtumswahrscheinlichkeit (p-Wert) einer Hypothese
 
 **Beispiele**
 
@@ -229,7 +229,7 @@ with(dat, boxplot(discharge, ylab=expression(m^3~s^{-1}), las=2, main="", log="y
 -   Erhöht eine spezielle Nahrung den Ertrag einer Fischzucht? → t-Test
 -   Welche Faktoren (z. B. Futter, Temperatur, pH-Wert) einer
     kombinierten Behandlung beeinflussen das Wachstum von
-    Wasserlebewesen? → ANOVA
+    Wasserorganismen? → ANOVA
 -   (Wie) hängt die beobachtete Algenbiomasse vom Phosphor ab?  → Korrelation und Regression
 
 ## Statistische Modellierung
@@ -248,9 +248,9 @@ with(dat, boxplot(discharge, ylab=expression(m^3~s^{-1}), las=2, main="", log="y
 -   Anpassung einer Verteilung an jährliche Abflussdaten, um das
     100-jährige Hochwasser zu schätzen.
 -   Anpassen eines ANOVA-Modells an experimentelle Daten<br>
-    -> welcher Faktor beeinflusst das Ergebnis am stärksten?
+    → welcher Faktor beeinflusst das Ergebnis am stärksten?
 -   Anpassen eines multiplen linearen Modells an Klimadaten<br>
-    -> wie stark unterscheiden sich Klimatrends zwischen geografischen Standorten?
+    → wie stark unterscheiden sich Klimatrends zwischen geografischen Standorten?
 
 ## Beispiel: Vergleich zweier Mittelwerte
 
@@ -267,7 +267,7 @@ with(dobson, boxplot(weight ~ gender, las=1, main="Geburtsgewicht von Babies (g)
 ```
 
 -   Ein gegebener Datensatz (Dobson, 1983) enthält das Geburtsgewicht (in g) von 12 Jungen und 12 Mädchen.
--   Hat der Gewichtsunterschied etwas mit dem Geschlecht der Babys zu tun oder handelt es sich um Zufall?
+-   Hat der Unterschied etwas mit dem Geschlecht der Babys zu tun oder handelt es sich um Zufall?
 
 ## Beispiel: Korrelation und Regression
 
@@ -402,7 +402,7 @@ algae |>
 <br>
 
 -   **Klar und konsistent:**
-    -   vermeidet Duplikationen
+    -   vermeidet Duplikate
     -   Datenstruktur einfacher zu verstehen
 -   **Flexibel:**
     -   für verschiedene statistische Analysen, z.B. ANOVA, multiple Regression, Zeitreihen
@@ -413,7 +413,7 @@ algae |>
 
 **Deshalb:**
 
--   **Versuche das wide-Format zu vermeiden!** Es kann zu Inkonsistenz und Verkomplizierung der Analyse führen.
+-   **Versuche das wide-Format zu vermeiden!** Es führt zu Inkonsistenz und Verkomplizierung der Analyse.
 -   **Bereinige die Daten vor der Analyse** und konvertiere Tabellen aus dem wide-Format in das long-Format.
 
 <br>
@@ -426,7 +426,7 @@ $\rightarrow$ Übung mit Zeitreihen der Elbe.
 
 1.  **Lineare Algebra:** Die Grundlage für viele statistische Methoden, insbesondere Matrizen und Vektoren.
 2.  **Calculus:** Optimierungsprobleme, Ableitung statistischer Formeln, Verständnis des Verhaltens von Funktionen.
-3.  **Numerische Analyse:** Implementierung von statistischen Methoden auf Computern, insbesondere bei großen oder komplexen Datensätzen.
+3.  **Numerische Analysis:** Implementierung von statistischen Methoden auf Computern, insbesondere bei großen oder komplexen Datensätzen.
 4.  **Wahrscheinlichkeitstheorie:** Stichprobenziehung und Modellierung von Daten, Verständnis statistischer Schlussfolgerungen, Entwicklung von Algorithmen.
 5.  **Statistische Modellierung:** Regressionsanalyse, Zeitreihenanalyse, bayesianische Modellierung, maschinelles Lernen.
 
@@ -450,7 +450,7 @@ $\rightarrow$ Übung mit Zeitreihen der Elbe.
 ## Warum R?
 
 ::: {.column width="58%"}
-1.  Statistiker bezeichnen es als „lingua franca of computational statistics“.
+1.  "lingua franca of computational statistics".
     - Äußerst leistungsfähig
     - Kein anderes System verfügt über so viele statistische Methoden
     - Wird in der statistischen Forschung verwendet
@@ -458,7 +458,7 @@ $\rightarrow$ Übung mit Zeitreihen der Elbe.
     - Frei zu benutzen
     - Frei zu modifizieren
     - Frei, etwas beizutragen
-3.  Weniger kompliziert als es auf den ersten Blick erscheint:
+3.  Weniger kompliziert als man denkt:
     - Ja, man braucht Kommandozeilenprogrammierung
     - aber: schon eine einzige Zeile kann viel bewirken
     - große Anzahl Bücher und Online-Skripte
@@ -480,7 +480,7 @@ Im Gegensatz zu anderen Systemen ist Copy & Paste erlaubt -- aber bitte zitieren
         [frei verfügbar](https://link.springer.com/book/10.1007/b97671))
     -   Verzani, J. (2019). Using R for introductory statistics. CRC
         press.
--   Sehr gut verständliche Einführung, insbesondere in die Regressions- und Zeitreihenanalyse:
+-   Sehr gut verständlich, insbesondere für Regressions- und Zeitreihenanalyse:
     -   Kleiber, C. and Zeileis, A., 2008: Applied Econometrics with R,
         Springer Verlag, New York.
         <https://link.springer.com/book/10.1007/978-0-387-77318-6>

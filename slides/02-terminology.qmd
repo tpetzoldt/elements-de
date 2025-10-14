@@ -135,11 +135,11 @@ Das Niveau der Variablen steigt von der binären zur Verhältnis-Skala. Es ist i
 
 Die Umwandlung in eine niedrigere Skala führt zu einem gewissen Informationsverlust,  ermöglicht aber die Verwendung zusätzlicher Methoden aus der untergeordneten Skala.
 
+
 [**Erklärung**: Wenn wir die Rangkorrelation auf metrische Daten anwenden, wenden wir im Wesentlichen eine Methode für die Ordinalskala auf metrische Daten an. In diesem Fall verlieren wir Informationen über die Unterschiede zwischen den Werten, verringern aber auch den Einfluss von Extremwerten und Ausreißern.]{.smallfont}
 
 [Die Umwandlung von metrischen in binäre Daten kann sinnvoll sein, wenn die metrischen Daten nicht genau genug sind. So kann beispielsweise die Zählung von Tieren (z. B. Wölfen) in einem bestimmten Gebiet von zu vielen Faktoren abhängen (Struktur der Landschaft, Erfahrung der Menschen, Jahreszeit usw.), so dass die genauen Zahlen (Häufigkeiten) fraglich sind. In solchen Fällen ist eine Umwandlung in eine binäre Skala (vorhanden/abwesend) und die Anwendung eines entsprechenden Tests (z. B. logistische Regression oder Fisher's exakter Test) zuverlässiger.]{.smallfont}
 
-[Andere Beispiele sind der Vergleich von Hochwasser zwischen verschiedenen Flüssen, z.B. einem großen und einem kleinen Fluss, oder das Vorkommen von Genen in einer molekularbiologischen Analyse.]{.smallfont}
 
 ## Wahrscheinlichkeit
 
@@ -251,7 +251,7 @@ Eine einzelne Messung $x_i$ einer Zufallsvariablen $X$ kann als Summe des Erwart
 
 Beispiel: 
 
-* für einen fairen Würfel mit 6 Augen sollte der wahre Mittelwert $\mu$ 3,5 sein
+* für einen fairen Würfel mit 6 Augen sollte der wahre Mittelwert $\mu =3.5$ sein
 * In Wirklichkeit ist nicht genau bekannt, ob ein realer Würfel perfekt symmetrisch ist.
 
 **Beispiel:** 3 Personen mit 5 Versuchen:
@@ -268,4 +268,4 @@ cat("sample 3: ", x3, " mean:", round(mean(x3), 2))
 ```
 :::
 
-Gesamtmittelwert: $\bar{x} = `r round(mean(c(x1, x2, x3)), 2)`$ liegt nahe an $\mu = 3,5$.
+Gesamtmittelwert: $\bar{x} = `r round(mean(c(x1, x2, x3)), 2)`$ liegt nahe an $\mu = 3.5$.

@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Thomas Petzoldt">
-  <meta name="dcterms.date" content="2025-09-29">
+  <meta name="dcterms.date" content="2025-10-15">
   <title>Elemente der statistischen Datenanalyse und Statistik mit R – 01-Einführung</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -151,7 +151,7 @@ Thomas Petzoldt
 </div>
 </div>
 
-  <p class="date">2025-09-29</p>
+  <p class="date">2025-10-15</p>
 </section>
 <section>
 <section id="vorbemerkungen" class="title-slide slide level1 center" data-background-color="#006ab2">
@@ -187,10 +187,11 @@ Thomas Petzoldt
 <li>Grundlegende Konzepte der Statistik</li>
 <li>Eine Einführung in R</li>
 <li>Statistische Parameter und Verteilungen</li>
+<li>Ausgewählte Klassische Tests</li>
 <li>Lineare Modelle</li>
 <li>Varianzanalyse</li>
 <li>Nichtlineare Regression</li>
-<li>Zeitreihenanalyse</li>
+<li>grundlagen der Zeitreihenanalyse (optional)</li>
 <li>Multivariate Statistik</li>
 </ol>
 </section>
@@ -198,17 +199,18 @@ Thomas Petzoldt
 <h2>Material</h2>
 <p><br></p>
 <ul>
-<li>Folien, Tutorien: <a href="https://tpetzoldt.github.io/elements-de">tpetzoldt.github.io/elements</a></li>
+<li>Folien, Tutorien: <a href="https://tpetzoldt.github.io/elements-de">tpetzoldt.github.io/elements-de</a></li>
 <li>Übungen: <a href="https://tpetzoldt.github.io/element-labs">tpetzoldt.github.io/element-labs</a></li>
+<li>Daten: <a href="https://tpetzoldt.github.io/datasets">tpetzoldt.github.io/datasets</a></li>
 </ul>
 <div class="smallfont">
 <p><span class="math inline">\(\rightarrow\)</span> Folien und Übungen werden regelmäßig aktualisiert, je nach Fortschritt des Kurses. Kommentare sind willkommen.</p>
 </div>
-<p><br></p>
+<p><strong>Prüfung</strong></p>
 <ul>
-<li><p>Schriftliche Klausur am Ende des Semesters</p>
-<p><span class="math inline">\(\rightarrow\)</span> <span class="blue">&gt; 50% praktische Fragen</span></p>
-<p><span class="math inline">\(\rightarrow\)</span> <span class="red">Nehmt an den Übungen teil!</span></p></li>
+<li>Vorlesungsbegleitende Präsentationen zu den Übungen<br>
+</li>
+<li>Schriftliche Klausur am Ende des Semesters</li>
 </ul>
 <p><br></p>
 <div class="bigfont fragment highlight-red">
@@ -222,7 +224,7 @@ Thomas Petzoldt
 </section>
 <section id="ein-einführendes-beispiel" class="slide level2">
 <h2>Ein einführendes Beispiel</h2>
-<p>Täglicher mittlerer Abfluss der Elbe, Pegel Dresden, Fluss km 55,6</p>
+<p>Täglicher mittlerer Abfluss der Elbe, Pegel Dresden, Flusskilometer 55,6</p>
 <pre><code>date,       discharge
 1806-01-01,  472
 1806-01-02, 1050
@@ -323,13 +325,13 @@ Thomas Petzoldt
 <p><br></p>
 <ul>
 <li>Umwandlung einer wissenschaftlichen in eine statistische Hypothese</li>
-<li>Schätzung der Wahrscheinlichkeit (p-Wert) einer bestimmten Hypothese</li>
+<li>Schätzung der Irrtumswahrscheinlichkeit (p-Wert) einer Hypothese</li>
 </ul>
 <p><strong>Beispiele</strong></p>
 <ul>
 <li>Ist eine medizinische Behandlung erfolgreich oder nicht? → <span class="math inline">\(\chi^2\)</span>-Test</li>
 <li>Erhöht eine spezielle Nahrung den Ertrag einer Fischzucht? → t-Test</li>
-<li>Welche Faktoren (z. B. Futter, Temperatur, pH-Wert) einer kombinierten Behandlung beeinflussen das Wachstum von Wasserlebewesen? → ANOVA</li>
+<li>Welche Faktoren (z. B. Futter, Temperatur, pH-Wert) einer kombinierten Behandlung beeinflussen das Wachstum von Wasserorganismen? → ANOVA</li>
 <li>(Wie) hängt die beobachtete Algenbiomasse vom Phosphor ab? → Korrelation und Regression</li>
 </ul>
 </section>
@@ -346,8 +348,8 @@ Thomas Petzoldt
 <p><strong>Beispiele</strong></p>
 <ul>
 <li>Anpassung einer Verteilung an jährliche Abflussdaten, um das 100-jährige Hochwasser zu schätzen.</li>
-<li>Anpassen eines ANOVA-Modells an experimentelle Daten<br> -&gt; welcher Faktor beeinflusst das Ergebnis am stärksten?</li>
-<li>Anpassen eines multiplen linearen Modells an Klimadaten<br> -&gt; wie stark unterscheiden sich Klimatrends zwischen geografischen Standorten?</li>
+<li>Anpassen eines ANOVA-Modells an experimentelle Daten<br> → welcher Faktor beeinflusst das Ergebnis am stärksten?</li>
+<li>Anpassen eines multiplen linearen Modells an Klimadaten<br> → wie stark unterscheiden sich Klimatrends zwischen geografischen Standorten?</li>
 </ul>
 </section>
 <section id="beispiel-vergleich-zweier-mittelwerte" class="slide level2">
@@ -355,7 +357,7 @@ Thomas Petzoldt
 
 <img data-src="01-introduction_files/figure-revealjs/dobson-boxplot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
 <li>Ein gegebener Datensatz (Dobson, 1983) enthält das Geburtsgewicht (in g) von 12 Jungen und 12 Mädchen.</li>
-<li>Hat der Gewichtsunterschied etwas mit dem Geschlecht der Babys zu tun oder handelt es sich um Zufall?</li>
+<li>Hat der Unterschied etwas mit dem Geschlecht der Babys zu tun oder handelt es sich um Zufall?</li>
 </ul>
 </section>
 <section id="beispiel-korrelation-und-regression" class="slide level2">
@@ -411,33 +413,33 @@ Thomas Petzoldt
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">A</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">13</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">16</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">B</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">16</td>
 <td style="text-align: right;">5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">C</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">15</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">D</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">18</td>
+<td style="text-align: right;">13</td>
 <td style="text-align: right;">10</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">C</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">E</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">17</td>
-<td style="text-align: right;">18</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">15</td>
 </tr>
 </tbody>
 </table>
@@ -460,77 +462,77 @@ Thomas Petzoldt
 <tr class="odd">
 <td style="text-align: right;">2021</td>
 <td style="text-align: left;">A</td>
-<td style="text-align: right;">3</td>
+<td style="text-align: right;">17</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2021</td>
 <td style="text-align: left;">B</td>
-<td style="text-align: right;">16</td>
+<td style="text-align: right;">5</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2021</td>
 <td style="text-align: left;">C</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2021</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2021</td>
+<td style="text-align: left;">E</td>
 <td style="text-align: right;">9</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">2021</td>
-<td style="text-align: left;">D</td>
-<td style="text-align: right;">5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2021</td>
-<td style="text-align: left;">E</td>
-<td style="text-align: right;">19</td>
-</tr>
-<tr class="even">
 <td style="text-align: right;">2022</td>
 <td style="text-align: left;">A</td>
-<td style="text-align: right;">6</td>
+<td style="text-align: right;">16</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2022</td>
 <td style="text-align: left;">B</td>
-<td style="text-align: right;">16</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2022</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: right;">5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2022</td>
-<td style="text-align: left;">D</td>
-<td style="text-align: right;">18</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2022</td>
-<td style="text-align: left;">E</td>
-<td style="text-align: right;">17</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2023</td>
-<td style="text-align: left;">A</td>
 <td style="text-align: right;">13</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">2023</td>
-<td style="text-align: left;">B</td>
-<td style="text-align: right;">5</td>
+<td style="text-align: right;">2022</td>
+<td style="text-align: left;">C</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2022</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2022</td>
+<td style="text-align: left;">E</td>
+<td style="text-align: right;">11</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2023</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: right;">15</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">16</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2023</td>
-<td style="text-align: left;">D</td>
+<td style="text-align: left;">B</td>
 <td style="text-align: right;">10</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2023</td>
+<td style="text-align: left;">C</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2023</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2023</td>
 <td style="text-align: left;">E</td>
-<td style="text-align: right;">18</td>
+<td style="text-align: right;">15</td>
 </tr>
 </tbody>
 </table>
@@ -711,7 +713,7 @@ Table&nbsp;1: Vermehrung einer Algenpopulation innerhalb von 4 Tagen (relative E
 <ul>
 <li><strong>Klar und konsistent:</strong>
 <ul>
-<li>vermeidet Duplikationen</li>
+<li>vermeidet Duplikate</li>
 <li>Datenstruktur einfacher zu verstehen</li>
 </ul></li>
 <li><strong>Flexibel:</strong>
@@ -727,7 +729,7 @@ Table&nbsp;1: Vermehrung einer Algenpopulation innerhalb von 4 Tagen (relative E
 </ul>
 <p><strong>Deshalb:</strong></p>
 <ul>
-<li><strong>Versuche das wide-Format zu vermeiden!</strong> Es kann zu Inkonsistenz und Verkomplizierung der Analyse führen.</li>
+<li><strong>Versuche das wide-Format zu vermeiden!</strong> Es führt zu Inkonsistenz und Verkomplizierung der Analyse.</li>
 <li><strong>Bereinige die Daten vor der Analyse</strong> und konvertiere Tabellen aus dem wide-Format in das long-Format.</li>
 </ul>
 <p><br></p>
@@ -739,7 +741,7 @@ Table&nbsp;1: Vermehrung einer Algenpopulation innerhalb von 4 Tagen (relative E
 <ol type="1">
 <li><strong>Lineare Algebra:</strong> Die Grundlage für viele statistische Methoden, insbesondere Matrizen und Vektoren.</li>
 <li><strong>Calculus:</strong> Optimierungsprobleme, Ableitung statistischer Formeln, Verständnis des Verhaltens von Funktionen.</li>
-<li><strong>Numerische Analyse:</strong> Implementierung von statistischen Methoden auf Computern, insbesondere bei großen oder komplexen Datensätzen.</li>
+<li><strong>Numerische Analysis:</strong> Implementierung von statistischen Methoden auf Computern, insbesondere bei großen oder komplexen Datensätzen.</li>
 <li><strong>Wahrscheinlichkeitstheorie:</strong> Stichprobenziehung und Modellierung von Daten, Verständnis statistischer Schlussfolgerungen, Entwicklung von Algorithmen.</li>
 <li><strong>Statistische Modellierung:</strong> Regressionsanalyse, Zeitreihenanalyse, bayesianische Modellierung, maschinelles Lernen.</li>
 </ol>
@@ -760,7 +762,7 @@ Table&nbsp;1: Vermehrung einer Algenpopulation innerhalb von 4 Tagen (relative E
 <h2>Warum R?</h2>
 <div class="column" style="width:58%;">
 <ol type="1">
-<li>Statistiker bezeichnen es als „lingua franca of computational statistics“.
+<li>“lingua franca of computational statistics”.
 <ul>
 <li>Äußerst leistungsfähig</li>
 <li>Kein anderes System verfügt über so viele statistische Methoden</li>
@@ -772,7 +774,7 @@ Table&nbsp;1: Vermehrung einer Algenpopulation innerhalb von 4 Tagen (relative E
 <li>Frei zu modifizieren</li>
 <li>Frei, etwas beizutragen</li>
 </ul></li>
-<li>Weniger kompliziert als es auf den ersten Blick erscheint:
+<li>Weniger kompliziert als man denkt:
 <ul>
 <li>Ja, man braucht Kommandozeilenprogrammierung</li>
 <li>aber: schon eine einzige Zeile kann viel bewirken</li>
@@ -792,7 +794,7 @@ Table&nbsp;1: Vermehrung einer Algenpopulation innerhalb von 4 Tagen (relative E
 <li>Dalgaard, P., 2008: Introductory Statistics with <strong>R</strong>. Springer, New York, 2nd edition. (Volltext der 1. Auflage <a href="https://link.springer.com/book/10.1007/b97671">frei verfügbar</a>)</li>
 <li>Verzani, J. (2019). Using R for introductory statistics. CRC press.</li>
 </ul></li>
-<li>Sehr gut verständliche Einführung, insbesondere in die Regressions- und Zeitreihenanalyse:
+<li>Sehr gut verständlich, insbesondere für Regressions- und Zeitreihenanalyse:
 <ul>
 <li>Kleiber, C. and Zeileis, A., 2008: Applied Econometrics with R, Springer Verlag, New York. <a href="https://link.springer.com/book/10.1007/978-0-387-77318-6" class="uri">https://link.springer.com/book/10.1007/978-0-387-77318-6</a></li>
 </ul></li>

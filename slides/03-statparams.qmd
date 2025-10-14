@@ -137,9 +137,33 @@ $\rightarrow$ Getrimmter Mittelwert: $\bar{x}_{t, 0.1}=`r mean(x, trim = 0.1)`$
 * Median und getrimmter Mittelwert werden weniger von Ausreißern und Schiefe der Verteilung beeinflusst $\rightarrow$ [robuster]{.blue}
 * aber etwas weniger effizient
 
+## Pseudomedian (Hodges-Lehmann-Schätzer)
+
+<br>
+
+Der Pseudomedian ($\tilde{x}^*$) ist ein robuster und effizienter Schätzer für den Lageparameter. Er wird als Median aller möglichen Mittelwerte von je zwei Beobachtungen berechnet.
+
+$$\tilde{x}^* = \text{median}\left(M_{ij}\right) \text{ mit } M_{ij} = \frac{x_i + x_j}{2} \text{ für } 1 \le i \le j \le n$$
+
+**Beispiel**
+
+```{r eval=TRUE, echo=TRUE, message=FALSE, warning=FALSE}
+library(Hmisc) 
+
+# Verwenden der gleichen Stichprobe wie für den Median
+set.seed(123)
+x <- round(runif(7, max = 10), 1)
+
+# Sortierung für bessere Lesbarkeit des Beispiels (nicht Teil der pMedian-Berechnung)
+sort(x) 
+
+# arithmetisches Mittel, Median, Pseudomedian
+c(mean(x), median(x), pMedian(x))
+```
+[Beachte: Strengenommen wird der Grundgesamtheitsparameter als "Pseudomedian" bezeichnet, der Stichprobenparameter als "Hodges-Lehmann-Schätzer".]{.smallfont}
+
 
 ## Modus (Modalwert)
-
 
 
 ```{r modal-value, echo=FALSE, fig.height=4}
@@ -254,13 +278,13 @@ $$
 $$
 :::
 
-* Nützlich für den Vergleich der Streuung verschiedener Variablen, unabhängig von ihrer Maßeinheit
-* nur anwendbar für Daten mit [Verhältnisskala]{.blue}, d.h. mit einem absoluten Nullpunkt (wie Meter) 
+* Vergleich der Streuung verschiedener Variablen, unabhängig von ihrer Maßeinheit
+* Nur für Daten mit [Verhältnisskala]{.blue}, d.h. mit einem absoluten Nullpunkt (wie Meter) 
 * nicht für Variablen wie Celsius-Temperatur oder pH-Wert.
 
 **Beispiel**
 
-Nehmen wir an, wir haben den Abfluss von zwei Flüssen, einer mit $cv=0,3$, der andere mit $cv=0,8$. Wir sehen, dass der 2. eine extremere Schwankung aufweist.
+Nehmen wir an, wir haben den Abfluss von zwei Flüssen, einer mit $cv=0.3$, der andere mit $cv=0.8$. Wir sehen, dass der 2. eine extremere Schwankung aufweist.
 
 ## Spannweite
 
@@ -330,33 +354,50 @@ wobei $\Phi^{-1}$ die Quantilfunktion der Normalverteilung ist.
 Der Median der absoluten Differenzen zwischen dem Median und den Einzelwerten.
 
 $$
-  MAD = \text{median}(|\text{median} - x_i|)
+  MAD = \text{median}(|\tilde{x} - x_i|) \quad\text{wobei}\quad \tilde{x} = \text{median}(x)
 $$
 
-* in einigen Communities häufig verwendet, in unserem Bereich selten 
-* Einige Programme skalieren den MAD mit einem Faktor $1,4826$ neu, um die Standardabweichung anzunähern. 
+* sehr robuster Schätzer
+* in einigen Communities häufig verwendet, in unserem Bereich noch selten 
+* Oft als praktisches Skalenmaß mit dem Hodges-Lehmann (HL)-Schätzer.
 
-$\rightarrow$ Sei vorsichtig und [prüfe die Software-Dokumente!]{.red}
+**Achtung: Skalierung**
+
+* Der **"echte" MAD ist unskaliert** (Konstante $1$).
+* Viele Programme (z.B. **R**) verwenden eine Skalierung mit dem Faktor **$1.4826$**.
+* Dieser korrigierte Wert (**cMAD**) ist konsistent zur **Standardabweichung $\sigma$** bei normalverteilten Daten.
+
+[$\longrightarrow$]{.red} **Sei vorsichtig und prüfe die Software-Dokumentation!**
+
+* Unskalierter MAD in **R**: `mad(x, constant = 1)`
 
 
 
-<!--
 
-## Application in **R**
 
-All measures of variation can be easily calculated in **R**:
 
-```{r fig=FALSE,echo=TRUE}
- x <- rnorm(100, mean=50, sd=10)  # 100 random numbers
- var(x)                           # variance
- sd(x)                            # standard deviation
- range(x)                         # range
- quantile(x, c(0.25, 0.75))       # quartiles
- IQR(x)                           # interquartile range
- diff(quantile(x, c(0.25, 0.75))) # same, calculated from quartiles
- mad(x)                           # median absolute deviation
+## Anwendung in **R**
+
+<br>
+
+Die Maßzahlen der Streuung können wie folgt berechnet werden:
+
+<br>
+
+
+```{r fig=FALSE, echo=TRUE, eval=FALSE}
+ x <- rnorm(100, mean=50, sd=10)  # 100 Zufallszahlen
+
+ var(x)                           # Varianz
+ sd(x)                            # Standardabweichung
+ range(x)                         # Spannweite
+ quantile(x, c(0.25, 0.75))       # Quartile
+ IQR(x)                           # Interquartilbereich
+ diff(quantile(x, c(0.25, 0.75))) # ebenso, aus den Quartilen geschätzt
+ mad(x)                           # Median absolute Abweichung, skaliert (cMAD)
+ mad(x, constant = 1)             # MAD, unskaliert
 ```
--->
+
 
 ## Standardfehler des Mittelwerts
 

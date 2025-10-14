@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Thomas Petzoldt">
-  <meta name="dcterms.date" content="2025-09-29">
+  <meta name="dcterms.date" content="2025-10-15">
   <title>Elemente der statistischen Datenanalyse und Statistik mit R – 02-Grundbegriffe</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -147,7 +147,7 @@ Thomas Petzoldt
 </div>
 </div>
 
-  <p class="date">2025-09-29</p>
+  <p class="date">2025-10-15</p>
 </section>
 <section id="grundlagen-und-terminologie" class="slide level2">
 <h2>Grundlagen und Terminologie</h2>
@@ -283,7 +283,6 @@ Thomas Petzoldt
 <p>Die Umwandlung in eine niedrigere Skala führt zu einem gewissen Informationsverlust, ermöglicht aber die Verwendung zusätzlicher Methoden aus der untergeordneten Skala.</p>
 <p><span class="smallfont"><strong>Erklärung</strong>: Wenn wir die Rangkorrelation auf metrische Daten anwenden, wenden wir im Wesentlichen eine Methode für die Ordinalskala auf metrische Daten an. In diesem Fall verlieren wir Informationen über die Unterschiede zwischen den Werten, verringern aber auch den Einfluss von Extremwerten und Ausreißern.</span></p>
 <p><span class="smallfont">Die Umwandlung von metrischen in binäre Daten kann sinnvoll sein, wenn die metrischen Daten nicht genau genug sind. So kann beispielsweise die Zählung von Tieren (z. B. Wölfen) in einem bestimmten Gebiet von zu vielen Faktoren abhängen (Struktur der Landschaft, Erfahrung der Menschen, Jahreszeit usw.), so dass die genauen Zahlen (Häufigkeiten) fraglich sind. In solchen Fällen ist eine Umwandlung in eine binäre Skala (vorhanden/abwesend) und die Anwendung eines entsprechenden Tests (z. B. logistische Regression oder Fisher’s exakter Test) zuverlässiger.</span></p>
-<p><span class="smallfont">Andere Beispiele sind der Vergleich von Hochwasser zwischen verschiedenen Flüssen, z.B. einem großen und einem kleinen Fluss, oder das Vorkommen von Genen in einer molekularbiologischen Analyse.</span></p>
 </section>
 <section id="wahrscheinlichkeit" class="slide level2">
 <h2>Wahrscheinlichkeit</h2>
@@ -381,7 +380,7 @@ p = \frac{\text{Anzahl der ausgewählten Fälle}}{\text{Anzahl aller möglichen 
 \end{align}\]</span></p>
 <p>Beispiel:</p>
 <ul>
-<li>für einen fairen Würfel mit 6 Augen sollte der wahre Mittelwert <span class="math inline">\(\mu\)</span> 3,5 sein</li>
+<li>für einen fairen Würfel mit 6 Augen sollte der wahre Mittelwert <span class="math inline">\(\mu =3.5\)</span> sein</li>
 <li>In Wirklichkeit ist nicht genau bekannt, ob ein realer Würfel perfekt symmetrisch ist.</li>
 </ul>
 <p><strong>Beispiel:</strong> 3 Personen mit 5 Versuchen:</p>
@@ -398,7 +397,7 @@ p = \frac{\text{Anzahl der ausgewählten Fälle}}{\text{Anzahl aller möglichen 
 </div>
 </div>
 </div>
-<p>Gesamtmittelwert: <span class="math inline">\(\bar{x} = 3.73\)</span> liegt nahe an <span class="math inline">\(\mu = 3,5\)</span>.</p>
+<p>Gesamtmittelwert: <span class="math inline">\(\bar{x} = 3.73\)</span> liegt nahe an <span class="math inline">\(\mu = 3.5\)</span>.</p>
 
 
 </section>
