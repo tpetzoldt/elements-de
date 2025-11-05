@@ -688,7 +688,7 @@ lines(xnew, dgamma(xnew, rate=rate, shape=shape), col="red")
 
 -->
 
-## Tests für die Verteilung
+## Tests auf Verteilung
 
 <br>
 
@@ -698,18 +698,19 @@ Art von Verteilung gehört. Das klingt einfach, ist aber aus theoretischen Grün
 * statistische Tests prüfen auf Abweichungen von der Nullhypothese
 * hier wollen wir aber das Gegenteil testen, ob $H_0$ wahr ist
 
-Das ist in der Tat unmöglich, denn „nicht signifikant“ bedeutet nur, dass ein potenzieller Effekt entweder nicht vorhanden oder einfach zu klein ist, um entdeckt zu werden. Im Gegensatz dazu beinhaltet „signifikant anders“ eine gewisse Wahrscheinlichkeit von falsch-positiven Ergebnissen.
+Dies ist in der Tat unmöglich, denn „nicht signifikant“ bedeutet lediglich, dass kein ausreichender Beweis gegen H0​ gefunden wurde.
+Ein potenzieller Effekt könnte entweder nicht vorhanden oder zu klein sein, um entdeckt zu werden.
 
 
 Die meisten statistischen Tests erfordern jedoch keine perfekte Übereinstimmung mit einer bestimmten Verteilung:
 
-* t-Test und ANOVA setzen Normalität der Residuen voraus
-* aufgrund des CLT konvergiert die Verteilung der Summen und Mittelwerte zur Normalverteilung 
+* t-Test und ANOVA setzen zwar Normalität der Residuen voraus
+* aber: aufgrund des CLT konvergiert die Verteilung der **Summen und Mittelwerte** zur Normalverteilung 
 
 
-## Shapiro-Wilks-W-Test [?]{.red}
+## Shapiro-Wilks-W-Test als Vortest [?]{.red}
 
-$\rightarrow$ Ziel: Prüfung, ob eine Stichprobe aus einer Normalverteilung stammt
+$\rightarrow$ Ziel: Prüfung der Normalverteilungs-Annahme für einen nachfolgenden Test
 
 ```{r, include=FALSE}
 set.seed(734)
@@ -734,9 +735,11 @@ Die Interpretation des Shapiro-Wilks-Tests ist mit Vorsicht zu genießen:
 * bei großen $n$ ist er überempfindlich
 * [Die Verwendung von Shapiro-Wilks zur Überprüfung der Normalität für t-Tests und ANOVA wird nicht mehr empfohlen]{.red}
 
+
 ::: aside
 Auch die $\chi^2$- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für Normalitätstests nicht mehr empfohlen, sind aber für andere Testprobleme weiterhin wichtig.
 :::
+
 
 ## Grafische Prüfung der Normalität
 
@@ -769,6 +772,25 @@ qqnorm(x3, main = "lognormal"); qqline(x3, col="red")
 
 [Empfehlung: Verwende eine grafische Prüfung. Vertraue nicht auf Shapiro Wilks!]{.red}
 
+
+## Prüfung der Verteilung für deskriptive Zwecke
+
+<br>
+
+In manchen Disziplinen, z.B. in der Hydrologie, möchte man gelegentlich wissen, welcher Verteilungstyp einen Datensatz am besten beschreibt. Das ist besonders wichtig für die Extremwertanalyse (z.B. 100-jähriges Hochwasser), da hier das Central Limit Theorem (CLT) nicht greift.
+
+**Vorgehensweise**
+
+1. Visuelle Prüfung (besonders auf die tails achten)
+    * Histogramm (erster Eindruck)
+    * Q-Q-Plots (genauere Passform)
+2. Formale Tests zur Ergänzung (Ausschlussprinzip)
+    * Tests: Kolmogorov-Smirnov, Cramér-von Mises oder Anderson-Darling
+    * Ablehnung des verteilungstyps bei signifikantem $p < 0.05$.
+3. Modellselektion
+    * Nutzung von AIC/BIC zur Identifikation des optimalen Modells
+    * Berücksichtigung der physikalischen Plausibilität der parameter
+    
 
 ## Transformation
 

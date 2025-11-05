@@ -136,11 +136,9 @@ Psychological Research, Theory Psychology 14(3),
 
 <br>
 
-Die Signifikanz ist nicht das einzig Wichtige. Achte auch auf Effektstärke und Relevanz!
+* Statistische **Signifikanz**: die Nullhypothese $H_0$ ist im statistischen Sinne unwahrscheinlich.
 
-* Statistische **Signifikanz** bedeutet, dass die Nullhypothese $H_0$ im statistischen Sinne unwahrscheinlich ist.
-
-* Praktische **Relevanz** (manchmal auch „praktische Signifikanz“ genannt) bedeutet, dass die Effektstärke groß genug ist, um in der Praxis eine Rolle zu spielen. 
+* Praktische **Relevanz** (manchmal auch „praktische Signifikanz“ genannt): die Effektstärke ist groß genug, um in der Praxis eine Rolle zu spielen. 
 
 Ob ein Effekt relevant sein kann oder nicht, hängt also von seiner **Effektstärke** und dem Anwendungsbereich ab.
 
@@ -161,7 +159,7 @@ Andererseits können auch kleine Wirkungen von Bedeutung sein. Wenn also eine to
 * **Nicht signifikant** bedeutet nicht „kein Effekt“.
 
 * Nicht signifikante Ergebnisse deuten auf die Notwendigkeit weiterer 
-  Untersuchungen hin, z. B.:
+  Untersuchungen hin:
     - Vergrößerung der Stichprobe
     - Erhöhung des experimentellen Effekts
     - Reduzierung des experimentellen Fehlers
