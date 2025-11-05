@@ -302,8 +302,8 @@ Thomas Petzoldt
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.92008126 0.36882399 0.38479805 0.01346121 0.69852901 0.75784076
- [7] 0.29959233 0.69646791 0.50097883 0.60751678</code></pre>
+<pre><code> [1] 0.539759953 0.684814359 0.009029229 0.026411867 0.302024529 0.513838710
+ [7] 0.782507297 0.718125087 0.191710405 0.508540877</code></pre>
 </div>
 </div>
 <p><br> <br></p>
@@ -869,7 +869,7 @@ W = 0.99064, p-value = 0.7165</code></pre>
 <section id="prüfung-der-verteilung-für-deskriptive-zwecke" class="slide level2">
 <h2>Prüfung der Verteilung für deskriptive Zwecke</h2>
 <p><br></p>
-<p>In manchen Disziplinen, z.B. in der Hydrologie, möchte man gelegentlich wissen, welcher Verteilungstyp einen Datensatz am besten beschreibt. Das ist besonders wichtig für die Extremwertanalyse (z.B. 100-jähriges Hochwasser), da hier das Central Limit Theorem (CLT) nicht greift.</p>
+<p>In manchen Disziplinen, z.B. in der Hydrologie, möchte man gelegentlich wissen, welcher Verteilungstyp einen Datensatz am besten beschreibt. Ein Beispiel ist die Extremwertanalyse (z.B. 100-jähriges Hochwasser), da hier das Central Limit Theorem (CLT) nicht greift.</p>
 <p><strong>Vorgehensweise</strong></p>
 <ol type="1">
 <li>Visuelle Prüfung (besonders auf die tails achten)
@@ -880,12 +880,12 @@ W = 0.99064, p-value = 0.7165</code></pre>
 <li>Formale Tests zur Ergänzung (Ausschlussprinzip)
 <ul>
 <li>Tests: Kolmogorov-Smirnov, Cramér-von Mises oder Anderson-Darling</li>
-<li>Ablehnung des verteilungstyps bei signifikantem <span class="math inline">\(p &lt; 0.05\)</span>.</li>
+<li>Ablehnung des Verteilungstyps bei signifikantem <span class="math inline">\(p &lt; 0.05\)</span>.</li>
 </ul></li>
 <li>Modellselektion
 <ul>
 <li>Nutzung von AIC/BIC zur Identifikation des optimalen Modells</li>
-<li>Berücksichtigung der physikalischen Plausibilität der parameter</li>
+<li>Berücksichtigung der physikalischen Plausibilität der Parameter</li>
 </ul></li>
 </ol>
 </section>

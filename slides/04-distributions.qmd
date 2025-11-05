@@ -777,7 +777,8 @@ qqnorm(x3, main = "lognormal"); qqline(x3, col="red")
 
 <br>
 
-In manchen Disziplinen, z.B. in der Hydrologie, möchte man gelegentlich wissen, welcher Verteilungstyp einen Datensatz am besten beschreibt. Das ist besonders wichtig für die Extremwertanalyse (z.B. 100-jähriges Hochwasser), da hier das Central Limit Theorem (CLT) nicht greift.
+In manchen Disziplinen, z.B. in der Hydrologie, möchte man gelegentlich wissen, welcher Verteilungstyp einen Datensatz am besten beschreibt.
+Ein Beispiel ist die Extremwertanalyse (z.B. 100-jähriges Hochwasser), da hier das Central Limit Theorem (CLT) nicht greift.
 
 **Vorgehensweise**
 
@@ -786,10 +787,10 @@ In manchen Disziplinen, z.B. in der Hydrologie, möchte man gelegentlich wissen,
     * Q-Q-Plots (genauere Passform)
 2. Formale Tests zur Ergänzung (Ausschlussprinzip)
     * Tests: Kolmogorov-Smirnov, Cramér-von Mises oder Anderson-Darling
-    * Ablehnung des verteilungstyps bei signifikantem $p < 0.05$.
+    * Ablehnung des Verteilungstyps bei signifikantem $p < 0.05$.
 3. Modellselektion
     * Nutzung von AIC/BIC zur Identifikation des optimalen Modells
-    * Berücksichtigung der physikalischen Plausibilität der parameter
+    * Berücksichtigung der physikalischen Plausibilität der Parameter
     
 
 ## Transformation
