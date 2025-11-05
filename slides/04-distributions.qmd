@@ -162,7 +162,7 @@ $$
 <br>
 
 ::: {.column width="59%"}
-Die **cdf** (cumulative density function) ist das Integral der Dichtefunktion:
+Die **cdf** (cumulative distribution function) ist das Integral der Dichtefunktion:
 
 
 $$
@@ -201,7 +201,7 @@ box()
 :::
 
 
-## Quantilsfunktion
+## Quantilfunktion
 
 <br>
 
@@ -211,7 +211,7 @@ box()
 
 ```{r uniform-cdf, fig.width=4, fig.height=4}
 ```
-[Kumulative Dichtefunktion]{.blue}
+[Kumulative Verteilungsfunktion]{.blue}
 :::
 
 ::: {.column width="49%"}
