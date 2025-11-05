@@ -974,7 +974,7 @@ mit $z_{1-\alpha/2} = z_{0.975} =$ [$1.96$]{.red}.
 
 <br>
 
-* **Stichprobenintervall:** charakterisiert die Verteilung der Daten aus den Parametern der Stichprobe (z.B. Mittelwert, Standardabweichung)
+* **Vorhersageintervall:** Charakterisiert die Verteilung der Daten anhand der Parameter der Stichprobe (z. B. Mittelwert, Standardabweichung). Es schätzt den Bereich, in den eine einzelne zukünftige Beobachtung wahrscheinlich fallen wird.
 
 * Standardabweichung $s_x$ misst die Variabilität der ursprünglichen Daten
 * rekonstruiert die ursprüngliche Verteilung, wenn ihr Typ bekannt ist (z. B. normal, lognormal)
