@@ -776,6 +776,8 @@ print(paste("a=", a, ", b=", b, ", a/n=", a/nn, ", b/n=", b/nn))
 
 ## Testen auf Verteilungen
 
+<br>
+
 **Nominale Variablen**
 
 * $\chi^2$-Test
@@ -969,24 +971,23 @@ cvm.test(x, cdf)
 
 ## Testen oder Prüfen?
 
-<br>
-
 **Philosophisches Problem:** Wir wollen $H_0$ [behalten]{.red}!
 
-* Gleichheit kann nicht getestet werden
-* Deshalb: besser „Normalität prüfen“ sagen.
+* Gleichheit kann nicht getestet werden $\rightarrow$ deshalb graphisch prüfen
 
-**Vorab denken**
+**Plausibilitätsprüfung:** Vor der Analyse nachdenken!
 
+* Was ist der Prozess der Datenerzeugung $\rightarrow$ fachlicher Kontext?
 * Macht die Normalverteilung für die Daten „Sinn“?
 * Sind die Daten metrisch (kontinuierlich)?
-* Was ist der Prozess der Datenerzeugung $\rightarrow$ fachlicher Kontext?
+* Ist der Variationskoeffizient $cv=s/\bar{x}$ < 0.33 (oder zumindest < 0.5)?<br>
+[Wenn die Daten zu nahe an der Null liegen: rechtsschiefe Verteilung wahrscheinlich.]{.smallfont}
+
 
 **Intrinsische Nicht-Normalität**
 
 > Einige Datentypen, wie z. B. Zähldaten (z. B. Anzahl der Vorkommnisse) oder
 binäre Daten (z. B. Ja/Nein), sind von Natur aus nicht normalverteilt.
-
 
 * Binäre Daten: Arbeite mit Originaldaten und Binomialverteilung statt Prozentzahlen.
 * Zähldaten: Nutze Methoden für die Poisson-Verteilung.
@@ -1015,14 +1016,9 @@ und schlussfolgern, dass nichts gegen die Annahme der Normalität spricht
 Die Interpretation des Shapiro-Wilk-Tests ist mit Vorsicht zu betrachten:
 
 * für kleine $n$ nicht empfindlich genug
-* bei großen $n$ überempfindlich
-* [Formale Tests wie Shapiro-Wilk werden zur Überprüfung der Normalitätsannahme für t-Tests und ANOVA nicht mehr empfohlen].{.red}
-
-::: aside
-Die $\chi^2$- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für 
-Normalitätstests ebenfalls nicht mehr empfohlen, sind aber für andere Testprobleme 
-wichtig.
-:::
+* bei großem $n$ überempfindlich
+* Formale Tests, wie Shapiro-Wilk, $\chi^2$- (Chi-Quadrat-) oder Kolmogorov-Smirnov, werden zur Überprüfung der Normalitätsannahme für t-Tests und ANOVA [nicht mehr empfohlen]{.red}.
+* für andere Testprobleme durchaus nützlich.
 
 
 ## Alternative: Verwendung grafischer Methoden
@@ -1041,7 +1037,6 @@ boxplot(x, col="wheat", main="Boxplot")
 
 * Histogramm, Boxplot, QQ-Plot (=Quantil-Quantil-Plot)
 * siehe auch: Box-Cox-Methode
-
 
 
 ## Grafische Überprüfung der Normalität

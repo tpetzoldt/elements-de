@@ -1060,7 +1060,7 @@
     "href": "slides/x1-r-basics.html#lists-1",
     "title": "x1-R Basics",
     "section": "Lists",
-    "text": "Lists\n\nmost flexible data type in R\ncan contain arbitrary data objects as elements of the list\nallows tree-like structure\n\nExamples\n\nOutput of many R functions, e.g. return value of hist:\n\n\nL &lt;- hist(rnorm(100), plot=FALSE)\nstr(L)\n\nList of 6\n $ breaks  : num [1:11] -3 -2.5 -2 -1.5 -1 -0.5 0 0.5 1 1.5 ...\n $ counts  : int [1:10] 1 1 6 14 15 17 20 12 10 4\n $ density : num [1:10] 0.02 0.02 0.12 0.28 0.3 0.34 0.4 0.24 0.2 0.08\n $ mids    : num [1:10] -2.75 -2.25 -1.75 -1.25 -0.75 -0.25 0.25 0.75 1.25 1.75\n $ xname   : chr \"rnorm(100)\"\n $ equidist: logi TRUE\n - attr(*, \"class\")= chr \"histogram\"",
+    "text": "Lists\n\nmost flexible data type in R\ncan contain arbitrary data objects as elements of the list\nallows tree-like structure\n\nExamples\n\nOutput of many R functions, e.g. return value of hist:\n\n\nL &lt;- hist(rnorm(100), plot=FALSE)\nstr(L)\n\nList of 6\n $ breaks  : num [1:12] -3 -2.5 -2 -1.5 -1 -0.5 0 0.5 1 1.5 ...\n $ counts  : int [1:11] 1 1 1 5 14 18 19 26 11 3 ...\n $ density : num [1:11] 0.02 0.02 0.02 0.1 0.28 0.36 0.38 0.52 0.22 0.06 ...\n $ mids    : num [1:11] -2.75 -2.25 -1.75 -1.25 -0.75 -0.25 0.25 0.75 1.25 1.75 ...\n $ xname   : chr \"rnorm(100)\"\n $ equidist: logi TRUE\n - attr(*, \"class\")= chr \"histogram\"",
     "crumbs": [
       "Selected Programming Topics",
       "x1-R Basics"
@@ -2083,7 +2083,7 @@
     "href": "slides/05-classtests.html#testen-auf-verteilungen",
     "title": "05-Klassische Tests",
     "section": "Testen auf Verteilungen",
-    "text": "Testen auf Verteilungen\nNominale Variablen\n\n\\(\\chi^2\\)-Test\nExakter Test von Fisher\n\nOrdinale Variablen\n\nCramér-von-Mises-Test\n\\(\\rightarrow\\) stärker als \\(\\chi^2\\) oder KS-Test\n\nMetrische Skalen\n\nKolmogorov-Smirnov-Test (KS-Test)\nShapiro-Wilk-Test (für Normalverteilung)\nGrafische Prüfungen",
+    "text": "Testen auf Verteilungen\n\nNominale Variablen\n\n\\(\\chi^2\\)-Test\nExakter Test von Fisher\n\nOrdinale Variablen\n\nCramér-von-Mises-Test\n\\(\\rightarrow\\) stärker als \\(\\chi^2\\) oder KS-Test\n\nMetrische Skalen\n\nKolmogorov-Smirnov-Test (KS-Test)\nShapiro-Wilk-Test (für Normalverteilung)\nGrafische Prüfungen",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2182,18 +2182,18 @@
     "href": "slides/05-classtests.html#testen-oder-prüfen",
     "title": "05-Klassische Tests",
     "section": "Testen oder Prüfen?",
-    "text": "Testen oder Prüfen?\n\nPhilosophisches Problem: Wir wollen \\(H_0\\) behalten!\n\nGleichheit kann nicht getestet werden\nDeshalb: besser „Normalität prüfen“ sagen.\n\nVorab denken\n\nMacht die Normalverteilung für die Daten „Sinn“?\nSind die Daten metrisch (kontinuierlich)?\nWas ist der Prozess der Datenerzeugung \\(\\rightarrow\\) fachlicher Kontext?\n\nIntrinsische Nicht-Normalität\n\nEinige Datentypen, wie z. B. Zähldaten (z. B. Anzahl der Vorkommnisse) oder binäre Daten (z. B. Ja/Nein), sind von Natur aus nicht normalverteilt.\n\n\nBinäre Daten: Arbeite mit Originaldaten und Binomialverteilung statt Prozentzahlen.\nZähldaten: Nutze Methoden für die Poisson-Verteilung.",
+    "text": "Testen oder Prüfen?\nPhilosophisches Problem: Wir wollen \\(H_0\\) behalten!\n\nGleichheit kann nicht getestet werden \\(\\rightarrow\\) deshalb graphisch prüfen\n\nPlausibilitätsprüfung: Vor der Analyse nachdenken!\n\nWas ist der Prozess der Datenerzeugung \\(\\rightarrow\\) fachlicher Kontext?\nMacht die Normalverteilung für die Daten „Sinn“?\nSind die Daten metrisch (kontinuierlich)?\nIst der Variationskoeffizient \\(cv=s/\\bar{x}\\) &lt; 0.33 (oder zumindest &lt; 0.5)? Wenn die Daten zu nahe an der Null liegen: rechtsschiefe Verteilung wahrscheinlich.\n\nIntrinsische Nicht-Normalität\n\nEinige Datentypen, wie z. B. Zähldaten (z. B. Anzahl der Vorkommnisse) oder binäre Daten (z. B. Ja/Nein), sind von Natur aus nicht normalverteilt.\n\n\nBinäre Daten: Arbeite mit Originaldaten und Binomialverteilung statt Prozentzahlen.\nZähldaten: Nutze Methoden für die Poisson-Verteilung.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
     ]
   },
   {
-    "objectID": "slides/05-classtests.html#shapiro-wilks-w-test",
-    "href": "slides/05-classtests.html#shapiro-wilks-w-test",
+    "objectID": "slides/05-classtests.html#shapiro-wilk-w-test",
+    "href": "slides/05-classtests.html#shapiro-wilk-w-test",
     "title": "05-Klassische Tests",
-    "section": "Shapiro-Wilks-W-Test ?",
-    "text": "Shapiro-Wilks-W-Test ?\n\\(\\rightarrow\\) Ziel: prüft, ob eine Stichprobe aus einer Normalverteilung stammt\n\nx &lt;- rnorm(100)\nshapiro.test(x)\n\n\n    Shapiro-Wilk normality test\n\ndata:  x\nW = 0.99064, p-value = 0.7165\n\n\n\n\\(\\rightarrow\\) der \\(p\\)-Wert ist größer als 0.05, also würden wir \\(H_0\\) behalten und schlussfolgern, dass nichts gegen die Annahme der Normalität spricht\n\nDie Interpretation des Shapiro-Wilks-Tests ist mit Vorsicht zu betrachten:\n\nfür kleine \\(n\\) ist der Test nicht empfindlich genug\nbei großen \\(n\\) ist er überempfindlich\nDie Verwendung von Shapiro-Wilks zur Überprüfung der Normalität für t-Tests und ANOVA wird nicht mehr empfohlen\n\n\n\nAuch die \\(\\chi^2\\)- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für Normalitätstests nicht mehr empfohlen, sind aber für andere Testprobleme weiterhin wichtig.",
+    "section": "Shapiro-Wilk-W-Test ?",
+    "text": "Shapiro-Wilk-W-Test ?\n\\(\\rightarrow\\) Ziel: prüft, ob eine Stichprobe aus einer Normalverteilung stammt\n\nx &lt;- rnorm(100)\nshapiro.test(x)\n\n\n    Shapiro-Wilk normality test\n\ndata:  x\nW = 0.99064, p-value = 0.7165\n\n\n\n\\(\\rightarrow\\) der \\(p\\)-Wert ist größer als 0.05, also würden wir \\(H_0\\) behalten und schlussfolgern, dass nichts gegen die Annahme der Normalität spricht\n\nDie Interpretation des Shapiro-Wilk-Tests ist mit Vorsicht zu betrachten:\n\nfür kleine \\(n\\) nicht empfindlich genug\nbei großem \\(n\\) überempfindlich\nFormale Tests, wie Shapiro-Wilk, \\(\\chi^2\\)- (Chi-Quadrat-) oder Kolmogorov-Smirnov, werden zur Überprüfung der Normalitätsannahme für t-Tests und ANOVA nicht mehr empfohlen.\nfür andere Testprobleme durchaus nützlich.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2776,7 +2776,7 @@
     "href": "slides/01-introduction.html#welche-datenstruktur-ist-besser",
     "title": "01-Einführung",
     "section": "Welche Datenstruktur ist besser?",
-    "text": "Welche Datenstruktur ist besser?\n\n\nWide-Format\n\n\n\n\n\n\nstation\n2021\n2022\n2023\n\n\n\n\nA\n10\n13\n18\n\n\nB\n8\n1\n17\n\n\nC\n13\n14\n9\n\n\nD\n2\n5\n19\n\n\nE\n17\n2\n10\n\n\n\n\n\n\nLong-Format\n\n\n\n\n\n\nyear\nstation\nvalue\n\n\n\n\n2021\nA\n10\n\n\n2021\nB\n8\n\n\n2021\nC\n13\n\n\n2021\nD\n2\n\n\n2021\nE\n17\n\n\n2022\nA\n13\n\n\n2022\nB\n1\n\n\n2022\nC\n14\n\n\n2022\nD\n5\n\n\n2022\nE\n2\n\n\n2023\nA\n18\n\n\n2023\nB\n17\n\n\n2023\nC\n9\n\n\n2023\nD\n19\n\n\n2023\nE\n10",
+    "text": "Welche Datenstruktur ist besser?\n\n\nWide-Format\n\n\n\n\n\n\nstation\n2021\n2022\n2023\n\n\n\n\nA\n6\n20\n8\n\n\nB\n9\n1\n18\n\n\nC\n14\n16\n16\n\n\nD\n8\n20\n2\n\n\nE\n13\n5\n14\n\n\n\n\n\n\nLong-Format\n\n\n\n\n\n\nyear\nstation\nvalue\n\n\n\n\n2021\nA\n6\n\n\n2021\nB\n9\n\n\n2021\nC\n14\n\n\n2021\nD\n8\n\n\n2021\nE\n13\n\n\n2022\nA\n20\n\n\n2022\nB\n1\n\n\n2022\nC\n16\n\n\n2022\nD\n20\n\n\n2022\nE\n5\n\n\n2023\nA\n8\n\n\n2023\nB\n18\n\n\n2023\nC\n16\n\n\n2023\nD\n2\n\n\n2023\nE\n14",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -3040,7 +3040,7 @@
     "href": "slides/04-distributions.html#kontinuierliche-gleichverteilung-mathbfu0-1",
     "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)",
-    "text": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)\n\n\ngleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall\nz.B. \\([0, 1]\\)\nin R: runif, random, uniform\n\n\nrunif(10)\n\n [1] 0.50776341 0.84530023 0.11758184 0.17743664 0.65554698 0.86826580\n [7] 0.84999413 0.04312942 0.58220316 0.15802466\n\n\n \n\nKlassenbildung (Binning): Einteilung der Werte in Klassen",
+    "text": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)\n\n\ngleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall\nz.B. \\([0, 1]\\)\nin R: runif, random, uniform\n\n\nrunif(10)\n\n [1] 0.829975819 0.082188891 0.002092706 0.392128511 0.390446015 0.363470901\n [7] 0.081870791 0.116082502 0.296399114 0.130358771\n\n\n \n\nKlassenbildung (Binning): Einteilung der Werte in Klassen",
     "crumbs": [
       "Statistische Grundlagen",
       "04-Wahrscheinlichkeitsverteilungen"
@@ -4558,16 +4558,5 @@
     "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
     "section": "Autor",
     "text": "Autor\nhomepage +++ github\n2025-11-05"
-  },
-  {
-    "objectID": "slides/05-classtests.html#shapiro-wilk-w-test",
-    "href": "slides/05-classtests.html#shapiro-wilk-w-test",
-    "title": "05-Klassische Tests",
-    "section": "Shapiro-Wilk-W-Test ?",
-    "text": "Shapiro-Wilk-W-Test ?\n\\(\\rightarrow\\) Ziel: prüft, ob eine Stichprobe aus einer Normalverteilung stammt\n\nx &lt;- rnorm(100)\nshapiro.test(x)\n\n\n    Shapiro-Wilk normality test\n\ndata:  x\nW = 0.99064, p-value = 0.7165\n\n\n\n\\(\\rightarrow\\) der \\(p\\)-Wert ist größer als 0.05, also würden wir \\(H_0\\) behalten und schlussfolgern, dass nichts gegen die Annahme der Normalität spricht\n\nDie Interpretation des Shapiro-Wilk-Tests ist mit Vorsicht zu betrachten:\n\nfür kleine \\(n\\) nicht empfindlich genug\nbei großen \\(n\\) überempfindlich\n[Formale Tests wie Shapiro-Wilk werden zur Überprüfung der Normalitätsannahme für t-Tests und ANOVA nicht mehr empfohlen].{.red}\n\n\n\nDie \\(\\chi^2\\)- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für Normalitätstests ebenfalls nicht mehr empfohlen, sind aber für andere Testprobleme wichtig.",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "05-Klassische Tests"
-    ]
   }
 ]

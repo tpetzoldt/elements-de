@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Thomas Petzoldt">
-  <meta name="dcterms.date" content="2025-11-11">
+  <meta name="dcterms.date" content="2025-11-12">
   <title>Elemente der statistischen Datenanalyse und Statistik mit R – 05-Klassische Tests</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -232,7 +232,7 @@ Thomas Petzoldt
 </div>
 </div>
 
-  <p class="date">2025-11-11</p>
+  <p class="date">2025-11-12</p>
 </section>
 <section>
 <section id="hypothesen-fehler-und-der-p-wert" class="title-slide slide level1 center">
@@ -1001,6 +1001,7 @@ NOTE: n is number in *each* group</code></pre>
 </section>
 <section id="testen-auf-verteilungen" class="slide level2">
 <h2>Testen auf Verteilungen</h2>
+<p><br></p>
 <p><strong>Nominale Variablen</strong></p>
 <ul>
 <li><span class="math inline">\(\chi^2\)</span>-Test</li>
@@ -1303,17 +1304,16 @@ alternative hypothesis: Two.sided</code></pre>
 </section>
 <section id="testen-oder-prüfen" class="slide level2">
 <h2>Testen oder Prüfen?</h2>
-<p><br></p>
 <p><strong>Philosophisches Problem:</strong> Wir wollen <span class="math inline">\(H_0\)</span> <span class="red">behalten</span>!</p>
 <ul>
-<li>Gleichheit kann nicht getestet werden</li>
-<li>Deshalb: besser „Normalität prüfen“ sagen.</li>
+<li>Gleichheit kann nicht getestet werden <span class="math inline">\(\rightarrow\)</span> deshalb graphisch prüfen</li>
 </ul>
-<p><strong>Vorab denken</strong></p>
+<p><strong>Plausibilitätsprüfung:</strong> Vor der Analyse nachdenken!</p>
 <ul>
+<li>Was ist der Prozess der Datenerzeugung <span class="math inline">\(\rightarrow\)</span> fachlicher Kontext?</li>
 <li>Macht die Normalverteilung für die Daten „Sinn“?</li>
 <li>Sind die Daten metrisch (kontinuierlich)?</li>
-<li>Was ist der Prozess der Datenerzeugung <span class="math inline">\(\rightarrow\)</span> fachlicher Kontext?</li>
+<li>Ist der Variationskoeffizient <span class="math inline">\(cv=s/\bar{x}\)</span> &lt; 0.33 (oder zumindest &lt; 0.5)?<br> <span class="smallfont">Wenn die Daten zu nahe an der Null liegen: rechtsschiefe Verteilung wahrscheinlich.</span></li>
 </ul>
 <p><strong>Intrinsische Nicht-Normalität</strong></p>
 <blockquote>
@@ -1344,13 +1344,11 @@ W = 0.99064, p-value = 0.7165</code></pre>
 <p>Die Interpretation des Shapiro-Wilk-Tests ist mit Vorsicht zu betrachten:</p>
 <ul>
 <li>für kleine <span class="math inline">\(n\)</span> nicht empfindlich genug</li>
-<li>bei großen <span class="math inline">\(n\)</span> überempfindlich</li>
-<li>[Formale Tests wie Shapiro-Wilk werden zur Überprüfung der Normalitätsannahme für t-Tests und ANOVA nicht mehr empfohlen].{.red}</li>
+<li>bei großem <span class="math inline">\(n\)</span> überempfindlich</li>
+<li>Formale Tests, wie Shapiro-Wilk, <span class="math inline">\(\chi^2\)</span>- (Chi-Quadrat-) oder Kolmogorov-Smirnov, werden zur Überprüfung der Normalitätsannahme für t-Tests und ANOVA <span class="red">nicht mehr empfohlen</span>.</li>
+<li>für andere Testprobleme durchaus nützlich.</li>
 </ul>
-
-<aside><div>
-<p>Die <span class="math inline">\(\chi^2\)</span>- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für Normalitätstests ebenfalls nicht mehr empfohlen, sind aber für andere Testprobleme wichtig.</p>
-</div></aside></section>
+</section>
 <section id="alternative-verwendung-grafischer-methoden" class="slide level2">
 <h2>Alternative: Verwendung grafischer Methoden</h2>
 

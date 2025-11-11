@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Thomas Petzoldt">
-  <meta name="dcterms.date" content="2025-11-11">
+  <meta name="dcterms.date" content="2025-11-12">
   <title>Elemente der statistischen Datenanalyse und Statistik mit R – x05-Creation of Reports with Quarto</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -177,7 +177,7 @@ Thomas Petzoldt
 </div>
 </div>
 
-  <p class="date">2025-11-11</p>
+  <p class="date">2025-11-12</p>
 </section>
 <section class="slide level2">
 
@@ -310,8 +310,8 @@ Thomas Petzoldt
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-2b049d615fefc22b3ba4" style="width:100%;height:384px;"></div>
-<script type="application/json" data-for="htmlwidget-2b049d615fefc22b3ba4">{"x":{"diagram":"digraph pandoc {\n         graph [rankdir = \"LR\"]\n           node [shape = \"box\", penwidth=1, fontname = \"Helvetica\", \n                color=\"dodgerblue\", style=\"filled\", fontcolor=\"#006ab2\" fillcolor=\"wheat\"]\n                Quarto HTML PDF Word\n           node [shape = cds, style=\"filled\", fontsize=18, fontcolor=\"tomato\", fillcolor=\"wheat\"]\n             render\n           node [shape = oval, penwidth=0.5, style=\"cds\" fixedsize=20 \n                 fontsize=10 fontcolor=\"#93107d\" style=\"filled\", fillcolor=\"wheat\"]\n             figs bib\n           edge [penwidth=1.5]\n             Quarto -> render\n             {figs bib} -> {render}\n             render -> {HTML PDF Word}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-274b2aee2f39d375b335" style="width:100%;height:384px;"></div>
+<script type="application/json" data-for="htmlwidget-274b2aee2f39d375b335">{"x":{"diagram":"digraph pandoc {\n         graph [rankdir = \"LR\"]\n           node [shape = \"box\", penwidth=1, fontname = \"Helvetica\", \n                color=\"dodgerblue\", style=\"filled\", fontcolor=\"#006ab2\" fillcolor=\"wheat\"]\n                Quarto HTML PDF Word\n           node [shape = cds, style=\"filled\", fontsize=18, fontcolor=\"tomato\", fillcolor=\"wheat\"]\n             render\n           node [shape = oval, penwidth=0.5, style=\"cds\" fixedsize=20 \n                 fontsize=10 fontcolor=\"#93107d\" style=\"filled\", fillcolor=\"wheat\"]\n             figs bib\n           edge [penwidth=1.5]\n             Quarto -> render\n             {figs bib} -> {render}\n             render -> {HTML PDF Word}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>Rendering is done with the pandoc utility to convert Quarto or Markdown text to<br>
@@ -509,8 +509,8 @@ Markdown extension with embedded R, Python, Julia or Observable.
 
 
 ```{=html}
-<div class="grViz html-widget html-fill-item" id="htmlwidget-6e50e6809f902ad15631" style="width:100%;height:528px;"></div>
-<script type="application/json" data-for="htmlwidget-6e50e6809f902ad15631">{"x":{"diagram":"digraph pandoc {\n         graph [rankdir = \"LR\"]\n           node [shape = \"box\", penwidth=1, fontname = \"Helvetica\", \n                color=\"dodgerblue\", style=\"filled\", fontcolor=\"#006ab2\" fillcolor=\"wheat\"]\n             Quarto Markdown HTML PDF Tex Word\n      \n           node [shape = cds, style=\"filled\", fontsize=18, fontcolor=\"tomato\", fillcolor=\"wheat\"]\n             knitr pandoc pdflatex\n      \n           node [shape = oval, penwidth=0.5, style=\"cds\" fixedsize=22\n                 fontsize=10 fontcolor=\"#93107d\" style=\"filled\", fillcolor=\"wheat\"]\n             R_Output figs R_figs bib csl\n      \n           edge [penwidth=1.5]\n             Quarto -> knitr -> Markdown -> pandoc\n             R_Output -> Markdown\n             knitr -> {R_Output R_figs}\n             {R_figs} -> {pandoc}\n             pandoc -> {HTML Word Tex}\n             Tex -> pdflatex -> PDF\n           edge [minlen=4 penwidth=1]\n             {figs bib csl} -> pandoc\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-cf8522c9abbf82d9f8d7" style="width:100%;height:528px;"></div>
+<script type="application/json" data-for="htmlwidget-cf8522c9abbf82d9f8d7">{"x":{"diagram":"digraph pandoc {\n         graph [rankdir = \"LR\"]\n           node [shape = \"box\", penwidth=1, fontname = \"Helvetica\", \n                color=\"dodgerblue\", style=\"filled\", fontcolor=\"#006ab2\" fillcolor=\"wheat\"]\n             Quarto Markdown HTML PDF Tex Word\n      \n           node [shape = cds, style=\"filled\", fontsize=18, fontcolor=\"tomato\", fillcolor=\"wheat\"]\n             knitr pandoc pdflatex\n      \n           node [shape = oval, penwidth=0.5, style=\"cds\" fixedsize=22\n                 fontsize=10 fontcolor=\"#93107d\" style=\"filled\", fillcolor=\"wheat\"]\n             R_Output figs R_figs bib csl\n      \n           edge [penwidth=1.5]\n             Quarto -> knitr -> Markdown -> pandoc\n             R_Output -> Markdown\n             knitr -> {R_Output R_figs}\n             {R_figs} -> {pandoc}\n             pandoc -> {HTML Word Tex}\n             Tex -> pdflatex -> PDF\n           edge [minlen=4 penwidth=1]\n             {figs bib csl} -> pandoc\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 ```
 
 
@@ -629,8 +629,8 @@ plot(Sepal.Width ~ Sepal.Length, data=iris, pch=16, col=Species)
 <p><br></p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-06ad35f52e599e5c46f2" style="width:100%;height:384px;"></div>
-<script type="application/json" data-for="htmlwidget-06ad35f52e599e5c46f2">{"x":{"diagram":"digraph quarto {\n         graph [rankdir = LR]\n           node [shape = \"box\"]\n                Quarto HTML PDF Word\n           node [shape = cds]\n             render\n           node [shape = oval]\n             figs bib\n           edge [penwidth=2]\n             Quarto -> render\n             {figs bib} -> {render}\n             render -> {HTML PDF Word}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-ecc8906614f714b010db" style="width:100%;height:384px;"></div>
+<script type="application/json" data-for="htmlwidget-ecc8906614f714b010db">{"x":{"diagram":"digraph quarto {\n         graph [rankdir = LR]\n           node [shape = \"box\"]\n                Quarto HTML PDF Word\n           node [shape = cds]\n             render\n           node [shape = oval]\n             figs bib\n           edge [penwidth=2]\n             Quarto -> render\n             {figs bib} -> {render}\n             render -> {HTML PDF Word}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
