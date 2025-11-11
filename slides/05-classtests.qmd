@@ -789,7 +789,7 @@ print(paste("a=", a, ", b=", b, ", a/n=", a/nn, ", b/n=", b/nn))
 **Metrische Skalen**
 
 * Kolmogorov-Smirnov-Test (KS-Test)
-* Shapiro-Wilks-Test (für Normalverteilung)
+* Shapiro-Wilk-Test (für Normalverteilung)
 * Grafische Prüfungen
 
 ## Mehrfeldertafeln für nominale Variablen
@@ -988,11 +988,10 @@ cvm.test(x, cdf)
 binäre Daten (z. B. Ja/Nein), sind von Natur aus nicht normalverteilt.
 
 
-* Binäre Daten: Verwende Methoden für Binomialverteilung mit den Rohdaten 
-  anstelle von Prozentsätzen
-* Zähldaten: Nutze Methoden für die Poisson-Verteilung
+* Binäre Daten: Arbeite mit Originaldaten und Binomialverteilung statt Prozentzahlen.
+* Zähldaten: Nutze Methoden für die Poisson-Verteilung.
 
-## Shapiro-Wilks-W-Test [?]{.red}
+## Shapiro-Wilk-W-Test [?]{.red}
 
 $\rightarrow$ Ziel: prüft, ob eine Stichprobe aus einer Normalverteilung stammt
 
@@ -1013,17 +1012,16 @@ und schlussfolgern, dass nichts gegen die Annahme der Normalität spricht
 
 <br>
 
-Die Interpretation des Shapiro-Wilks-Tests ist mit Vorsicht zu betrachten:
+Die Interpretation des Shapiro-Wilk-Tests ist mit Vorsicht zu betrachten:
 
-* für kleine $n$ ist der Test nicht empfindlich genug
-* bei großen $n$ ist er überempfindlich
-* [Die Verwendung von Shapiro-Wilks zur Überprüfung der Normalität für t-Tests 
-und ANOVA wird nicht mehr empfohlen]{.red}
+* für kleine $n$ nicht empfindlich genug
+* bei großen $n$ überempfindlich
+* [Formale Tests wie Shapiro-Wilk werden zur Überprüfung der Normalitätsannahme für t-Tests und ANOVA nicht mehr empfohlen].{.red}
 
 ::: aside
-Auch die $\chi^2$- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für 
-Normalitätstests nicht mehr empfohlen, sind aber für andere Testprobleme 
-weiterhin wichtig.
+Die $\chi^2$- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für 
+Normalitätstests ebenfalls nicht mehr empfohlen, sind aber für andere Testprobleme 
+wichtig.
 :::
 
 

@@ -1014,7 +1014,7 @@ NOTE: n is number in *each* group</code></pre>
 <p><strong>Metrische Skalen</strong></p>
 <ul>
 <li>Kolmogorov-Smirnov-Test (KS-Test)</li>
-<li>Shapiro-Wilks-Test (für Normalverteilung)</li>
+<li>Shapiro-Wilk-Test (für Normalverteilung)</li>
 <li>Grafische Prüfungen</li>
 </ul>
 </section>
@@ -1320,12 +1320,12 @@ alternative hypothesis: Two.sided</code></pre>
 <p>Einige Datentypen, wie z. B. Zähldaten (z. B. Anzahl der Vorkommnisse) oder binäre Daten (z. B. Ja/Nein), sind von Natur aus nicht normalverteilt.</p>
 </blockquote>
 <ul>
-<li>Binäre Daten: Verwende Methoden für Binomialverteilung mit den Rohdaten anstelle von Prozentsätzen</li>
-<li>Zähldaten: Nutze Methoden für die Poisson-Verteilung</li>
+<li>Binäre Daten: Arbeite mit Originaldaten und Binomialverteilung statt Prozentzahlen.</li>
+<li>Zähldaten: Nutze Methoden für die Poisson-Verteilung.</li>
 </ul>
 </section>
-<section id="shapiro-wilks-w-test" class="slide level2">
-<h2>Shapiro-Wilks-W-Test <span class="red">?</span></h2>
+<section id="shapiro-wilk-w-test" class="slide level2">
+<h2>Shapiro-Wilk-W-Test <span class="red">?</span></h2>
 <p><span class="math inline">\(\rightarrow\)</span> Ziel: prüft, ob eine Stichprobe aus einer Normalverteilung stammt</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
@@ -1341,15 +1341,15 @@ W = 0.99064, p-value = 0.7165</code></pre>
 <p><br></p>
 <p><span class="math inline">\(\rightarrow\)</span> der <span class="math inline">\(p\)</span>-Wert ist größer als 0.05, also würden wir <span class="math inline">\(H_0\)</span> behalten und schlussfolgern, dass nichts gegen die Annahme der Normalität spricht</p>
 <p><br></p>
-<p>Die Interpretation des Shapiro-Wilks-Tests ist mit Vorsicht zu betrachten:</p>
+<p>Die Interpretation des Shapiro-Wilk-Tests ist mit Vorsicht zu betrachten:</p>
 <ul>
-<li>für kleine <span class="math inline">\(n\)</span> ist der Test nicht empfindlich genug</li>
-<li>bei großen <span class="math inline">\(n\)</span> ist er überempfindlich</li>
-<li><span class="red">Die Verwendung von Shapiro-Wilks zur Überprüfung der Normalität für t-Tests und ANOVA wird nicht mehr empfohlen</span></li>
+<li>für kleine <span class="math inline">\(n\)</span> nicht empfindlich genug</li>
+<li>bei großen <span class="math inline">\(n\)</span> überempfindlich</li>
+<li>[Formale Tests wie Shapiro-Wilk werden zur Überprüfung der Normalitätsannahme für t-Tests und ANOVA nicht mehr empfohlen].{.red}</li>
 </ul>
 
 <aside><div>
-<p>Auch die <span class="math inline">\(\chi^2\)</span>- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für Normalitätstests nicht mehr empfohlen, sind aber für andere Testprobleme weiterhin wichtig.</p>
+<p>Die <span class="math inline">\(\chi^2\)</span>- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für Normalitätstests ebenfalls nicht mehr empfohlen, sind aber für andere Testprobleme wichtig.</p>
 </div></aside></section>
 <section id="alternative-verwendung-grafischer-methoden" class="slide level2">
 <h2>Alternative: Verwendung grafischer Methoden</h2>

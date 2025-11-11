@@ -2083,7 +2083,7 @@
     "href": "slides/05-classtests.html#testen-auf-verteilungen",
     "title": "05-Klassische Tests",
     "section": "Testen auf Verteilungen",
-    "text": "Testen auf Verteilungen\nNominale Variablen\n\n\\(\\chi^2\\)-Test\nExakter Test von Fisher\n\nOrdinale Variablen\n\nCramér-von-Mises-Test\n\\(\\rightarrow\\) stärker als \\(\\chi^2\\) oder KS-Test\n\nMetrische Skalen\n\nKolmogorov-Smirnov-Test (KS-Test)\nShapiro-Wilks-Test (für Normalverteilung)\nGrafische Prüfungen",
+    "text": "Testen auf Verteilungen\nNominale Variablen\n\n\\(\\chi^2\\)-Test\nExakter Test von Fisher\n\nOrdinale Variablen\n\nCramér-von-Mises-Test\n\\(\\rightarrow\\) stärker als \\(\\chi^2\\) oder KS-Test\n\nMetrische Skalen\n\nKolmogorov-Smirnov-Test (KS-Test)\nShapiro-Wilk-Test (für Normalverteilung)\nGrafische Prüfungen",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2182,7 +2182,7 @@
     "href": "slides/05-classtests.html#testen-oder-prüfen",
     "title": "05-Klassische Tests",
     "section": "Testen oder Prüfen?",
-    "text": "Testen oder Prüfen?\n\nPhilosophisches Problem: Wir wollen \\(H_0\\) behalten!\n\nGleichheit kann nicht getestet werden\nDeshalb: besser „Normalität prüfen“ sagen.\n\nVorab denken\n\nMacht die Normalverteilung für die Daten „Sinn“?\nSind die Daten metrisch (kontinuierlich)?\nWas ist der Prozess der Datenerzeugung \\(\\rightarrow\\) fachlicher Kontext?\n\nIntrinsische Nicht-Normalität\n\nEinige Datentypen, wie z. B. Zähldaten (z. B. Anzahl der Vorkommnisse) oder binäre Daten (z. B. Ja/Nein), sind von Natur aus nicht normalverteilt.\n\n\nBinäre Daten: Verwende Methoden für Binomialverteilung mit den Rohdaten anstelle von Prozentsätzen\nZähldaten: Nutze Methoden für die Poisson-Verteilung",
+    "text": "Testen oder Prüfen?\n\nPhilosophisches Problem: Wir wollen \\(H_0\\) behalten!\n\nGleichheit kann nicht getestet werden\nDeshalb: besser „Normalität prüfen“ sagen.\n\nVorab denken\n\nMacht die Normalverteilung für die Daten „Sinn“?\nSind die Daten metrisch (kontinuierlich)?\nWas ist der Prozess der Datenerzeugung \\(\\rightarrow\\) fachlicher Kontext?\n\nIntrinsische Nicht-Normalität\n\nEinige Datentypen, wie z. B. Zähldaten (z. B. Anzahl der Vorkommnisse) oder binäre Daten (z. B. Ja/Nein), sind von Natur aus nicht normalverteilt.\n\n\nBinäre Daten: Arbeite mit Originaldaten und Binomialverteilung statt Prozentzahlen.\nZähldaten: Nutze Methoden für die Poisson-Verteilung.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -4558,5 +4558,16 @@
     "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
     "section": "Autor",
     "text": "Autor\nhomepage +++ github\n2025-11-05"
+  },
+  {
+    "objectID": "slides/05-classtests.html#shapiro-wilk-w-test",
+    "href": "slides/05-classtests.html#shapiro-wilk-w-test",
+    "title": "05-Klassische Tests",
+    "section": "Shapiro-Wilk-W-Test ?",
+    "text": "Shapiro-Wilk-W-Test ?\n\\(\\rightarrow\\) Ziel: prüft, ob eine Stichprobe aus einer Normalverteilung stammt\n\nx &lt;- rnorm(100)\nshapiro.test(x)\n\n\n    Shapiro-Wilk normality test\n\ndata:  x\nW = 0.99064, p-value = 0.7165\n\n\n\n\\(\\rightarrow\\) der \\(p\\)-Wert ist größer als 0.05, also würden wir \\(H_0\\) behalten und schlussfolgern, dass nichts gegen die Annahme der Normalität spricht\n\nDie Interpretation des Shapiro-Wilk-Tests ist mit Vorsicht zu betrachten:\n\nfür kleine \\(n\\) nicht empfindlich genug\nbei großen \\(n\\) überempfindlich\n[Formale Tests wie Shapiro-Wilk werden zur Überprüfung der Normalitätsannahme für t-Tests und ANOVA nicht mehr empfohlen].{.red}\n\n\n\nDie \\(\\chi^2\\)- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für Normalitätstests ebenfalls nicht mehr empfohlen, sind aber für andere Testprobleme wichtig.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "05-Klassische Tests"
+    ]
   }
 ]
