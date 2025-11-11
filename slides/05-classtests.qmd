@@ -130,7 +130,7 @@ Psychological Research, Theory Psychology 14(3),
 * übliche Konvention in den Umweltwissenschaften: $\alpha=0.05$, muss vorher 
   festgelegt werden
 * $\beta=f(\alpha, \text{Effektstärke}, \text{Stichprobengröße}, 
-   \text{Art des Tests})$, sollte $\le 0,2$ sein
+   \text{Art des Tests})$, sollte $\le 0.2$ sein
 
 ## Signifikanz und Relevanz
 
@@ -153,8 +153,7 @@ Andererseits können auch kleine Wirkungen von Bedeutung sein. Wenn also eine to
   gleich groß oder größer ist als ein beobachteter Effekt, **wenn die 
   Nullhypothese wahr ist**.
 
-* **Signifikant** bedeutet, dass die Ergebnisse unwahrscheinlich sind, wenn es 
-  keinen echten Effekt gäbe.
+* **Signifikant**, die Ergebnisse sind unwahrscheinlich, wenn es keinen echten Effekt gäbe.
 
 * **Nicht signifikant** bedeutet nicht „kein Effekt“.
 
@@ -172,9 +171,6 @@ Andererseits können auch kleine Wirkungen von Bedeutung sein. Wenn also eine to
     - Statistisch signifikante Ergebnisse können leicht auch für sehr kleine 
       und praktisch irrelevante Effekte erzielt werden.
     - $\rightarrow$ Effektstärke und Relevanz werden wichtiger als p-Werte.
-
-Der p-Wert ist nach wie vor ein wichtiges Instrument der Statistik, aber ein 
-falscher Gebrauch kann zu Fehlinterpretationen führen.
 
 
 # Differenzen zwischen Mittelwerten
@@ -424,7 +420,9 @@ $$
 \text{df} = \frac{\frac{s^2_1}{n_1} + \frac{s^2_2}{n_2}}{\frac{s^4_1}{n^2_1(n_1-1)} + \frac{s^4_2}{n^2_2(n_2-1)}}
 $$
 
-# Welch-Test in R
+## Welch-Test in R
+
+<br>
 
 :::{.bigfont}
 ```{r f-test, echo=TRUE}
@@ -471,7 +469,7 @@ lines(x, dnorm(x, mean=5, sd=2), col="blue", lwd=2)
 
 
 
-## Homogenität der Varianzen bei > 2 Stichproben
+## Homogenität der Varianz bei > 2 Stichproben
 
 <br>
 
@@ -566,8 +564,7 @@ t.test(x1, x2, paired=TRUE)
 p=0.016, signifikant
 :::
 
-Es ist zu erkennen, dass der gepaarte t-Test in diesem Fall eine größere 
-Power (Trennschärfe) aufweist.
+Der gepaarte t-Test besitzt in diesem Fall eine größere Power (Trennschärfe).
 
 
 ## Mann-Whitney- und Wilcoxon-Test
@@ -606,7 +603,7 @@ oft sich die Reihenfolge der Stichproben überschneidet
 
 * Kritische Werte von $U$ finden sich in gängigen Statistik-Lehrbüchern.
 * In **R** nicht notwendig, p-Wert wird direkt ausgegeben.
-**Anmerkung:** Verwende spezielle Version `wilcox.exact` mit Korrektur, wenn 
+* **Anmerkung:** Verwende spezielle Version `wilcox.exact` mit Korrektur, wenn 
 mehrfach gleiche Werte (Bindungen) vorliegen.
 
 
@@ -664,7 +661,7 @@ Sei $\xi_{obs}$ in unserem Beispiel $`r xx`$, dann sei $\Rightarrow$ $p= `r roun
 
 # Poweranalyse
 
-## Bestimmung der Trennschärfe von statistischen Tests
+## Bestimmung der Power von statistischen Tests
 
 <br>
 
@@ -716,7 +713,7 @@ $\delta = 1.0\cdot \sigma$ $\qquad\Rightarrow$ [n > 8 ]{.red}
 
 $\delta = 0.5\cdot \sigma$ $\qquad\Rightarrow$ [n > 32]{.red}
 
-## Trennschärfe des t-Tests
+## Power des t-Tests
 
 
 Die Trennschärfe eines t-Tests bzw. der Mindeststichprobenumfang kann mit der 
@@ -728,24 +725,25 @@ power.t.test(n=5, delta=0.5, sig.level=0.05)
 
 $\rightarrow$ 'power' = 0.10
 
-* Für $n=5$ wird ein vorhandener Effekt von $0.5\sigma$ nur in 1 von 10 Fällen entdeckt.
-* Für eine Trennschärfe von 80% bei $n=5$ benötigen wir eine Effektstärke von mindestens $2\sigma$:
+* Für $n=5$ wird ein vorhandener Effekt von $0.5 \sigma$ nur in 1 von 10 Fällen entdeckt.
+* Für eine Power von 80% bei $n=5$ wird Effektstärke von mindestens $2\sigma$ benötigt:
 
 ```{r, echo=TRUE,eval=FALSE}
 power.t.test(n=5, power=0.8, sig.level=0.05)
 ```
 
-Für einen schwachen Effekt von $0.5\sigma$ benötigen wir eine Stichprobengröße
-von $n\ge64$ in jeder Gruppe:
+Für einen schwachen Effekt von $0.5\sigma$ wird $n\ge 64$ in jeder Gruppe benötig:
 
 ```{r, echo=TRUE,eval=FALSE}
 power.t.test(delta=0.5,power=0.8,sig.level=0.05)
 ```
 
-[$\Rightarrow$ wir brauchen entweder einen großen Stichprobenumfang oder einen 
-starken Effekt.]{.darkred}
+[$\Rightarrow$ Man braucht entweder einen großen Stichprobenumfang oder einen starken Effekt.]{.darkred}
 
-## Simulierte Trennschärfe eines t-Tests
+
+## Simulierte Power eines t-Tests
+
+<br>
 
 ```{r, echo=TRUE, eval=FALSE}
 # Grundgesamtheitsparameter
@@ -771,6 +769,7 @@ for (i in 1:nn) {
 print(paste("a=", a, ", b=", b, ", a/n=", a/nn, ", b/n=", b/nn))
 ```
 
+* allgemeingültiges Verfahren, auch für andere Tests geeignet.
 
 # Test auf Verteilungen
 
@@ -1083,13 +1082,32 @@ qqnorm(x4, main = "heavy tailed"); qqline(x4, col="red")
 * skaliert in der Einheit der Standardabweichungen
 * Normalverteilung liegt vor, wenn die Punkte einer Geraden folgen
 
+## Prüfung der Verteilung für deskriptive Zwecke
+
+<br>
+
+In manchen Disziplinen, z.B. in der Hydrologie, möchte man gelegentlich wissen, welcher Verteilungstyp einen Datensatz am besten beschreibt.
+Ein Beispiel ist die Extremwertanalyse (z.B. 100-jähriges Hochwasser), da hier das Central Limit Theorem (CLT) nicht greift.
+
+**Vorgehensweise**
+
+1. Visuelle Prüfung (besonders auf die tails achten)
+    * Histogramm (erster Eindruck)
+    * Q-Q-Plots (genauere Passform)
+2. Formale Tests zur Ergänzung (Ausschlussprinzip)
+    * Tests: Kolmogorov-Smirnov, Cramér-von Mises oder Anderson-Darling
+    * Ablehnung des Verteilungstyps bei signifikantem $p < 0.05$.
+3. Modellselektion
+    * Nutzung von AIC/BIC zur Identifikation des optimalen Modells
+    * Berücksichtigung der physikalischen Plausibilität der Parameter
+
+# Transformationen
 
 ## Transformationen
 
 * Ermöglicht die Anwendung von Methoden, die für normalverteilte Daten entwickelt 
   wurden, auf nicht-normalverteilte Fälle.
-* in der Vergangenheit sehr verbreitet, manchmal immer noch nützlich
-* Moderne Methoden (z. B. verallgemeinerte lineare Modelle, GLM) können bestimmte 
+* Einige moderne Methoden (z. B. verallgemeinerte lineare Modelle, GLM) können bestimmte 
   Verteilungen direkt verarbeiten, z.B. Binomial-, Gamma- oder Poisson-Verteilung.
 
 **Transformationen für rechtsschiefe Daten**
@@ -1110,14 +1128,14 @@ qqnorm(x4, main = "heavy tailed"); qqline(x4, col="red")
 * $x'=\lg(x+3/8)$
 * $x'=\log(\log(x))$ [für riesige Zahlen]{.gray}
 
-[$\rightarrow$ stattdessen ein GLM mit der Familie Poisson oder Quasi-Poisson in Betracht ziehen]{.blue}
+[$\rightarrow$ besser: ein GLM der Familien Poisson oder Quasi-Poisson in Betracht ziehen]{.blue}
 
 **Verhältnisse und Prozentsätze**
 
 * $x'=\arcsin \sqrt{x/n}$
 * $x'=\arcsin \sqrt{\frac{x+3/8}{n+3/4}}$
 
-[$\rightarrow$ stattdessen ein GLM mit Binomialfamilie in Betracht ziehen]{.blue}
+[$\rightarrow$ besser: ein GLM mit Binomialverteilung in Betracht ziehen]{.blue}
 <!-----------------------------------------------------------------------------/ -->
 
 ## Wie findet man die beste Transformation?
@@ -1168,15 +1186,14 @@ Datensatz [`prk_nit.csv`]("https://github.com/tpetzoldt/datasets/blob/main/data/
 
 ## Box-Cox Methode
 
+Abschätzung der optimalen Transformation aus der Klasse der Potenzen und Logarithmen:
+
 $$
-y' = 
-\begin{cases}
-y^\lambda & | & \lambda \ne 0\\
-\log(y) & | & \lambda =0 
-\end{cases}
+y' = \begin{cases} \frac{y^\lambda - 1}{\lambda} & \text{wenn } \lambda \neq 0 \\ \ln(y) & \text{wenn } \lambda = 0 \end{cases}
 $$
 
-Abschätzung der optimalen Transformation aus der Klasse der Potenzen und Logarithmen
+In vielen praktischen Fällen kann man statt $\frac{y^\lambda - 1}{\lambda}$ vereinfacht $y^\lambda$ verwenden.
+
 
 <br>
 
@@ -1428,7 +1445,7 @@ $$
 r_s=1-\frac{6 \sum d^2_i}{n(n^2-1)}
 $$
 
-* oder, alternativ: Pearson-Korrelation der geordneten Daten (notwendig bei Gleichheit).
+* alternativ: Pearson-Korrelation der rang-transformierten Daten (notwendig bei Bindungen).
 * Test: für $n < 10$ $\rightarrow$ Tabelle der kritischen Werte
 
 für $10 \leq n$ $\rightarrow$ $t$-Verteilung

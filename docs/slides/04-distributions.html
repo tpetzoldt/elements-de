@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Thomas Petzoldt">
-  <meta name="dcterms.date" content="2025-11-05">
+  <meta name="dcterms.date" content="2025-11-11">
   <title>Elemente der statistischen Datenanalyse und Statistik mit R – 04-Wahrscheinlichkeitsverteilungen</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -212,7 +212,7 @@ Thomas Petzoldt
 </div>
 </div>
 
-  <p class="date">2025-11-05</p>
+  <p class="date">2025-11-11</p>
 </section>
 <section id="wahrscheinlichkeitsverteilungen" class="slide level2">
 <h2>Wahrscheinlichkeitsverteilungen</h2>
@@ -302,8 +302,8 @@ Thomas Petzoldt
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.539759953 0.684814359 0.009029229 0.026411867 0.302024529 0.513838710
- [7] 0.782507297 0.718125087 0.191710405 0.508540877</code></pre>
+<pre><code> [1] 0.50776341 0.84530023 0.11758184 0.17743664 0.65554698 0.86826580
+ [7] 0.84999413 0.04312942 0.58220316 0.15802466</code></pre>
 </div>
 </div>
 <p><br> <br></p>
@@ -350,7 +350,7 @@ f(x) = \begin{cases}
 <h2>Kumulative Verteilungsfunktion von <span class="math inline">\(\mathbf{U}(x_{min}, x_{max})\)</span></h2>
 <p><br></p>
 <div class="column" style="width:59%;">
-<p>Die <strong>cdf</strong> (cumulative density function) ist das Integral der Dichtefunktion:</p>
+<p>Die <strong>cdf</strong> (cumulative distribution function) ist das Integral der Dichtefunktion:</p>
 <p><span class="math display">\[
 F(x) =\int_{-\infty}^{x} f(x) dx
 \]</span> Die Gesamtfläche <span class="gray">(Gesamtwahrscheinlichkeit)</span> ist <span class="math inline">\(1.0\)</span>:</p>
@@ -376,8 +376,8 @@ F(x) = \begin{cases}
 </div>
 </div>
 </div></section>
-<section id="quantilsfunktion" class="slide level2">
-<h2>Quantilsfunktion</h2>
+<section id="quantilfunktion" class="slide level2">
+<h2>Quantilfunktion</h2>
 <p><br></p>
 <p>… die Umkehrung der kumulativen Verteilungsfunktion.</p>
 <div class="column" style="width:49%;">
@@ -390,7 +390,7 @@ F(x) = \begin{cases}
 </div>
 </div>
 </div>
-<p><span class="blue">Kumulative Dichtefunktion</span></p>
+<p><span class="blue">Kumulative Verteilungsfunktion</span></p>
 </div><div class="column" style="width:49%;">
 <div class="cell">
 <div class="cell-output-display">
@@ -793,185 +793,244 @@ moments (fig-prknit1):
 
 
 -->
-</section>
-<section id="tests-auf-verteilung" class="slide level2">
-<h2>Tests auf Verteilung</h2>
-<p><br></p>
-<p>Manchmal möchte man wissen, ob ein Datensatz zu einer bestimmten Art von Verteilung gehört. Das klingt einfach, ist aber aus theoretischen Gründen ziemlich schwierig:</p>
-<ul>
-<li>statistische Tests prüfen auf Abweichungen von der Nullhypothese</li>
-<li>hier wollen wir aber das Gegenteil testen, ob <span class="math inline">\(H_0\)</span> wahr ist</li>
-</ul>
-<p>Dies ist in der Tat unmöglich, denn „nicht signifikant“ bedeutet lediglich, dass kein ausreichender Beweis gegen H0​ gefunden wurde. Ein potenzieller Effekt könnte entweder nicht vorhanden oder zu klein sein, um entdeckt zu werden.</p>
-<p>Die meisten statistischen Tests erfordern jedoch keine perfekte Übereinstimmung mit einer bestimmten Verteilung:</p>
-<ul>
-<li>t-Test und ANOVA setzen zwar Normalität der Residuen voraus</li>
-<li>aber: aufgrund des CLT konvergiert die Verteilung der <strong>Summen und Mittelwerte</strong> zur Normalverteilung</li>
-</ul>
-</section>
-<section id="shapiro-wilks-w-test-als-vortest" class="slide level2">
-<h2>Shapiro-Wilks-W-Test als Vortest <span class="red">?</span></h2>
-<p><span class="math inline">\(\rightarrow\)</span> Ziel: Prüfung der Normalverteilungs-Annahme für einen nachfolgenden Test</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Shapiro-Wilk normality test
+<!---- Die folgenden Inhalte wurden größtenteils ins Kapitel "Tests" verschoben --->
+<!---
 
-data:  x
-W = 0.99064, p-value = 0.7165</code></pre>
-</div>
-</div>
-<p><br></p>
-<p><span class="math inline">\(\rightarrow\)</span> der <span class="math inline">\(p\)</span>-Wert ist größer als 0,05, also würden wir <span class="math inline">\(H_0\)</span> behalten und schlussfolgern, dass nichts gegen die Annahme der Normalität spricht</p>
-<p><br></p>
-<p>Die Interpretation des Shapiro-Wilks-Tests ist mit Vorsicht zu genießen:</p>
-<ul>
-<li>für kleine <span class="math inline">\(n\)</span> ist der Test nicht empfindlich genug</li>
-<li>bei großen <span class="math inline">\(n\)</span> ist er überempfindlich</li>
-<li><span class="red">Die Verwendung von Shapiro-Wilks zur Überprüfung der Normalität für t-Tests und ANOVA wird nicht mehr empfohlen</span></li>
-</ul>
+## Tests auf Verteilung
 
-<aside><div>
-<p>Auch die <span class="math inline">\(\chi^2\)</span>- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für Normalitätstests nicht mehr empfohlen, sind aber für andere Testprobleme weiterhin wichtig.</p>
-</div></aside></section>
-<section id="grafische-prüfung-der-normalität" class="slide level2">
-<h2>Grafische Prüfung der Normalität</h2>
-<div class="column" style="width:49%;">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="04-distributions_files/figure-revealjs/distrbox-examples-1.png" width="480"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:49%;">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="04-distributions_files/figure-revealjs/qqnorm-examples-1.png" width="480"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><ul>
-<li><span class="math inline">\(x\)</span>: theoretische Quantile, bei denen ein Wert bei Normalverteilung gefunden werden sollte</li>
-<li><span class="math inline">\(y\)</span>: normalisierte und geordnete Messwerte (<span class="math inline">\(z\)</span>- Scores)</li>
-<li>skaliert in der Einheit der Standardabweichungen</li>
-<li>Normalverteilung, wenn die Punkte einer Geraden folgen</li>
-</ul>
-<p><span class="red">Empfehlung: Verwende eine grafische Prüfung. Vertraue nicht auf Shapiro Wilks!</span></p>
-</section>
-<section id="prüfung-der-verteilung-für-deskriptive-zwecke" class="slide level2">
-<h2>Prüfung der Verteilung für deskriptive Zwecke</h2>
-<p><br></p>
-<p>In manchen Disziplinen, z.B. in der Hydrologie, möchte man gelegentlich wissen, welcher Verteilungstyp einen Datensatz am besten beschreibt. Ein Beispiel ist die Extremwertanalyse (z.B. 100-jähriges Hochwasser), da hier das Central Limit Theorem (CLT) nicht greift.</p>
-<p><strong>Vorgehensweise</strong></p>
-<ol type="1">
-<li>Visuelle Prüfung (besonders auf die tails achten)
-<ul>
-<li>Histogramm (erster Eindruck)</li>
-<li>Q-Q-Plots (genauere Passform)</li>
-</ul></li>
-<li>Formale Tests zur Ergänzung (Ausschlussprinzip)
-<ul>
-<li>Tests: Kolmogorov-Smirnov, Cramér-von Mises oder Anderson-Darling</li>
-<li>Ablehnung des Verteilungstyps bei signifikantem <span class="math inline">\(p &lt; 0.05\)</span>.</li>
-</ul></li>
-<li>Modellselektion
-<ul>
-<li>Nutzung von AIC/BIC zur Identifikation des optimalen Modells</li>
-<li>Berücksichtigung der physikalischen Plausibilität der Parameter</li>
-</ul></li>
-</ol>
-</section>
-<section id="transformation" class="slide level2">
-<h2>Transformation</h2>
-<ul>
-<li>ermöglicht die Anwendung von Methoden, die für normalverteilte Daten entwickelt wurden, auf nicht-normalverteilte Fälle</li>
-<li>in der Vergangenheit sehr verbreitet, manchmal immer noch nützlich</li>
-<li>Moderne Methoden können bestimmte Verteilungen direkt verarbeiten, z. B. Binomial-, Gamma- oder Poisson-Verteilung.</li>
-</ul>
-<p><strong>Transformationen für rechtsschiefe Daten</strong></p>
-<ul>
-<li><span class="math inline">\(x'=\log(x)\)</span></li>
-<li><span class="red"><span class="math inline">\(x'=\log(x + a)\)</span></span></li>
-<li><span class="math inline">\(x'=(x+a)^c\)</span> <span class="gray">(<span class="math inline">\(a\)</span> zwischen 0.5 und 1)</span></li>
-<li><span class="math inline">\(x'=1/x\)</span> <span class="gray">(“sehr stark”, d.&nbsp;h. in den meisten Fällen zu extrem)</span></li>
-<li><span class="math inline">\(x'=a - 1/\sqrt{x}\)</span> <span class="gray">(um die Skala bequemer zu gestalten)</span></li>
-<li><span class="math inline">\(x'=1/\sqrt{x}\)</span> <span class="gray">(Kompromiss zwischen <span class="math inline">\(\ln\)</span> und <span class="math inline">\(1/x\)</span>)</span></li>
-<li><span class="math inline">\(x'=a+bx^c\)</span> <span class="gray">(sehr allgemein, enthält Potenzen und Wurzeln)</span></li>
-</ul>
-</section>
-<section id="transformationen-ii" class="slide level2">
-<h2>Transformationen II</h2>
-<p><strong>Transformationen für Zähldaten</strong></p>
-<ul>
-<li><span class="math inline">\(x'=\sqrt{3/8+x}\)</span> <span class="gray">(Zählungen: 1, 2, 3 <span class="math inline">\(\rightarrow\)</span> 0.61, 1.17, 1.54, 1.84, )</span></li>
-<li><span class="math inline">\(x'=\lg(x+3/8)\)</span></li>
-<li><span class="math inline">\(x'=\log(\log(x))\)</span> <span class="gray">für riesige Zahlen</span></li>
-</ul>
-<p><span class="blue"><span class="math inline">\(\rightarrow\)</span> stattdessen ein GLM mit der Familie Poisson oder Quasi-Poisson in Betracht ziehen</span></p>
-<p><strong>Verhältnisse und Prozentsätze</strong></p>
-<ul>
-<li><span class="math inline">\(x'=\arcsin \sqrt{x/n}\)</span></li>
-<li><span class="math inline">\(x'=\arcsin \sqrt{\frac{x+3/8}{n+3/4}}\)</span></li>
-</ul>
-<p><span class="blue"><span class="math inline">\(\rightarrow\)</span> stattdessen ein GLM mit Familie Binomial in Betracht ziehen</span> <!------------------------------------------------------------------------------
+<br>
 
-## Box-Cox transformation
+Manchmal möchte man wissen, ob ein Datensatz zu einer bestimmten
+Art von Verteilung gehört. Das klingt einfach, ist aber aus theoretischen Gründen ziemlich schwierig:
 
-Estimate optimal transformation from the class of powers and logarithms
+* statistische Tests prüfen auf Abweichungen von der Nullhypothese
+* hier wollen wir aber das Gegenteil testen, ob $H_0$ wahr ist
 
-$$
-y' = y^\lambda
-$$
+Dies ist in der Tat unmöglich, denn „nicht signifikant“ bedeutet lediglich, dass kein ausreichender Beweis gegen H0​ gefunden wurde.
+Ein potenzieller Effekt könnte entweder nicht vorhanden oder zu klein sein, um entdeckt zu werden.
 
-* $\lambda=0$ means that a logarithmic transformation would be
-appropriate.  Function `boxcox` requires a so-called "model
-formula" or the outcome of a linear model (`lm`) as the
-argument. For testing a single sample, we can use the model formula of a "null
-model" to test the full data set without explanation variables
-(`~ 1`). More about model formulas can be found later, in
-the ANOVA chapter.
+
+Die meisten statistischen Tests erfordern jedoch keine perfekte Übereinstimmung mit einer bestimmten Verteilung:
+
+* t-Test und ANOVA setzen zwar Normalität der Residuen voraus
+* aber: aufgrund des CLT konvergiert die Verteilung der **Summen und Mittelwerte** zur Normalverteilung 
+
+
+## Shapiro-Wilks-W-Test als Vortest [?]{.red}
+
+$\rightarrow$ Ziel: Prüfung der Normalverteilungs-Annahme für einen nachfolgenden Test
+
+
 
 
 
 
 ::: {.cell}
+
+```{.r .cell-code}
+x <- rnorm(100)
+shapiro.test(x)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+
+    Shapiro-Wilk normality test
+
+data:  x
+W = 0.99064, p-value = 0.7165
+```
+
+
+:::
+:::
+
+
+
+
+<br>
+
+$\rightarrow$ der $p$-Wert ist größer als 0,05, also würden wir $H_0$ behalten 
+und schlussfolgern, dass nichts gegen die Annahme der Normalität spricht
+
+<br>
+
+Die Interpretation des Shapiro-Wilks-Tests ist mit Vorsicht zu genießen:
+
+* für kleine $n$ ist der Test nicht empfindlich genug
+* bei großen $n$ ist er überempfindlich
+* [Die Verwendung von Shapiro-Wilks zur Überprüfung der Normalität für t-Tests und ANOVA wird nicht mehr empfohlen]{.red}
+
+
+::: aside
+Auch die $\chi^2$- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für Normalitätstests nicht mehr empfohlen, sind aber für andere Testprobleme weiterhin wichtig.
+:::
+
+
+## Grafische Prüfung der Normalität
+
+
+::: {.column width="49%"}
+
+
+
+::: {.cell}
 ::: {.cell-output-display}
-![](04-distributions_files/figure-revealjs/boxcox-1.png){width=960}
+![](04-distributions_files/figure-revealjs/distrbox-examples-1.png){width=480}
+:::
+:::
+
+
+
+:::
+
+::: {.column width="49%"}
+
+
+
+::: {.cell}
+::: {.cell-output-display}
+![](04-distributions_files/figure-revealjs/qqnorm-examples-1.png){width=480}
+:::
+:::
+
+
+
+:::
+
+* $x$: theoretische Quantile, bei denen ein Wert bei Normalverteilung gefunden werden sollte
+* $y$: normalisierte und geordnete Messwerte ($z$- Scores)
+* skaliert in der Einheit der Standardabweichungen
+* Normalverteilung, wenn die Punkte einer Geraden folgen
+
+[Empfehlung: Verwende eine grafische Prüfung. Vertraue nicht auf Shapiro Wilks!]{.red}
+
+
+## Prüfung der Verteilung für deskriptive Zwecke
+
+<br>
+
+In manchen Disziplinen, z.B. in der Hydrologie, möchte man gelegentlich wissen, welcher Verteilungstyp einen Datensatz am besten beschreibt.
+Ein Beispiel ist die Extremwertanalyse (z.B. 100-jähriges Hochwasser), da hier das Central Limit Theorem (CLT) nicht greift.
+
+**Vorgehensweise**
+
+1. Visuelle Prüfung (besonders auf die tails achten)
+    * Histogramm (erster Eindruck)
+    * Q-Q-Plots (genauere Passform)
+2. Formale Tests zur Ergänzung (Ausschlussprinzip)
+    * Tests: Kolmogorov-Smirnov, Cramér-von Mises oder Anderson-Darling
+    * Ablehnung des Verteilungstyps bei signifikantem $p < 0.05$.
+3. Modellselektion
+    * Nutzung von AIC/BIC zur Identifikation des optimalen Modells
+    * Berücksichtigung der physikalischen Plausibilität der Parameter
+    
+
+# Transformationen
+
+* ermöglichen die Anwendung von Methoden, die für normalverteilte Daten entwickelt wurden, auf nicht-normalverteilte Fälle
+* viele moderne Methoden können bestimmte Verteilungen direkt verarbeiten
+* Beispiel: Binomial-, Gamma- oder Poisson-Verteilung.
+
+## Transformationen für rechtsschiefe Daten
+
+<br>
+
+* $x'=\log(x)$
+* [$x'=\log(x + a)$]{.red}
+* $x'=(x+a)^c$ [($a$ zwischen 0.5 und 1)]{.gray}
+* $x'=1/x$ [("sehr stark", d. h. in den meisten Fällen zu extrem)]{.gray}
+* $x'=a - 1/\sqrt{x}$ [(um die Skala bequemer zu gestalten)]{.gray}
+* $x'=1/\sqrt{x}$ [(Kompromiss zwischen $\ln$ und $1/x$)]{.gray}
+* $x'=a+bx^c$ [(sehr allgemein, enthält Potenzen und Wurzeln)]{.gray}
+
+## Zähldaten und Verhältnisse
+
+<br>
+
+**Transformationen von Zähldaten**
+
+* $x'=\sqrt{3/8+x}$ [(Zählungen: 1, 2, 3 $\rightarrow$ 0.61, 1.17, 1.54,  1.84, \dots)]{.gray}
+* $x'=\lg(x+3/8)$
+* $x'=\log(\log(x))$ [für riesige Zahlen]{.gray}
+
+[$\rightarrow$ besser: ein GLM mit der Familie Poisson oder Quasi-Poisson in Betracht ziehen]{.blue}
+
+<br>
+
+**Verhältnisse und Prozentsätze**
+
+* $x'=\arcsin \sqrt{x/n}$
+* $x'=\arcsin \sqrt{\frac{x+3/8}{n+3/4}}$
+
+[$\rightarrow$ stattdessen ein GLM mit Familie Binomial in Betracht ziehen]{.blue}
+
+## Box-Cox-Transformation
+
+* Schätzung einer optimalen Transformation aus der Klasse der Potenzen und Logarithmen:
+
+$$
+y' = \begin{cases} \frac{y^\lambda - 1}{\lambda} & \text{wenn } \lambda \neq 0 \\ \ln(y) & \text{wenn } \lambda = 0 \end{cases}
+$$
+
+
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+library(MASS)
+dat <- read.csv("https://tpetzoldt.github.io/datasets/data/prk_nit.csv")
+Nit90 <- dat$biovol[dat$group == "nit90"]
+boxcox(Nit90 ~ 1)
+```
+
+::: {.cell-output-display}
+![](04-distributions_files/figure-revealjs/boxcox-1.png){fig-align='center' width=1536}
+:::
+:::
+
+
+
+In vielen praktischen Fällen kann man statt $\frac{y^\lambda - 1}{\lambda}$ auch $y^\lambda$ verwenden.
+
+## Box-Cox-Transformation II
+
+
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+boxcox(Nit90 ~ 1)
+```
+
+::: {.cell-output-display}
+![](04-distributions_files/figure-revealjs/boxcox1-1.png){fig-align='center' width=960}
 :::
 :::
 
 
 
 
-The dotted vertical lines and the horizontal 95\,\%-line show the
-confidence limits for possible transformations. Here we see that
-either a logarithmic transformation ($\lambda=0$) or a power of
-approximately 0.5 are suitable.
 
-It is also possible to obtain the numerical value directly:
+* Gepunktete 95\%-Linien: Konfidenzgrenzen für mögliche Transformationen.
+* Beispiel: logarithmische Transformation ($\lambda=0$) oder Potenz $\approx 0.5$
+
+Es ist auch möglich, den numerischen Wert direkt zu erhalten:
+
 
 
 
 
 ::: {.cell fig='false'}
-::: {.cell-output .cell-output-stdout}
 
+```{.r .cell-code}
+bc <- boxcox(Nit90 ~ 1, plotit = FALSE)
+#str(bc)                # zeigt die Struktur der Variable bc
+bc$x[bc$y == max(bc$y)] # zeige das x für das y, bei dem y maximal ist
 ```
-List of 2
- $ x: num [1:41] -2 -1.9 -1.8 -1.7 -1.6 -1.5 -1.4 -1.3 -1.2 -1.1 ...
- $ y: num [1:41] -237 -228 -220 -212 -204 ...
-```
-
-
-:::
 
 ::: {.cell-output .cell-output-stdout}
 
@@ -986,70 +1045,156 @@ List of 2
 
 
 
-We should keep in mind that these are approximate numbers so that
-it makes not much sense to use more than one decimal.
+Hinweis: Ungefähre Zahlen! Maximal eine Dezimalstelle sinnvoll.
 
-It is also possible to test for joint distribution of all groups at once by
-using explanatory variables (here `group`) on the right hand side of
-the model formula:
+## Box-Cox-Transformation III
+
+<br>
+
+Bei mehreren Gruppen (z.B. für eine ANOVA) erhält man eine gemeinsame 
+Transformation für die gesamte Verteilung (pooled data) über eine geeignete Modellformel.
+
+Beispiel: Datensatz von Biovolumina einer Kieselalgenart mit 2 Gruppen:
+
+
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+dat <- read.csv("https://tpetzoldt.github.io/datasets/data/prk_nit.csv")
+boxcox(biovol ~ group, data=dat)
+```
+
+::: {.cell-output-display}
+![](04-distributions_files/figure-revealjs/boxcox3-1.png){fig-align='center' width=960}
+:::
+:::
+
+
+
+
+
+
+## Rangtransformation
+
+**Beispiel:** Spearman-Korrelation
+
+::: {.column width="49%"}
+<br>
+Datensatz
+
 
 
 
 
 ::: {.cell}
+
+```{.r .cell-code}
+x <- c(1, 2, 3, 5, 4, 5 ,6,  7)
+y <- c(1, 2, 4, 3, 4, 6, 8, 20)
+```
+:::
+
+
+
+
+Ränge
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+rank(x)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] 1.0 2.0 3.0 5.5 4.0 5.5 7.0 8.0
+```
+
+
+:::
+
+```{.r .cell-code}
+rank(y)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] 1.0 2.0 4.5 3.0 4.5 6.0 7.0 8.0
+```
+
+
+:::
+:::
+
+
+
+
+Zwei Berechnungsmöglichkeiten
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+cor(x, y, method = "spearman")
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] 0.8915663
+```
+
+
+:::
+
+```{.r .cell-code}
+cor(rank(x), rank(y))
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] 0.8915663
+```
+
+
+:::
+:::
+
+
+
+:::
+
+:::{.column width="49%"}
+<br><br><br>
+
+
+
+::: {.cell layout-align="right"}
 ::: {.cell-output-display}
-![Log-Likelihood profile of a Box-Cox-transformation for the pooled data sets Nit85 and Nit90.](04-distributions_files/figure-revealjs/fig-boxcox2-1.png){#fig-boxcox2 width=960}
+![](04-distributions_files/figure-revealjs/rank-spearman-1.png){fig-align='right' width=384}
 :::
 :::
 
 
 
+:::
 
--------------------------------------------------------------------------------></p>
+--->
+</section></section>
+<section>
+<section id="konfidenzintervalle" class="title-slide slide level1 center">
+<h1>Konfidenzintervalle</h1>
+
 </section>
-<section id="rangtransformation" class="slide level2">
-<h2>Rangtransformation</h2>
-<p><strong>Beispiel:</strong> Spearman-Korrelation</p>
-<div class="column" style="width:49%;">
-<p><br> Datensatz</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">5</span> ,<span class="dv">6</span>,  <span class="dv">7</span>)</span>
-<span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Ränge</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">rank</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.0 2.0 3.0 5.5 4.0 5.5 7.0 8.0</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">rank</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.0 2.0 4.5 3.0 4.5 6.0 7.0 8.0</code></pre>
-</div>
-</div>
-<p>Zwei Berechnungsmöglichkeiten</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(x, y, <span class="at">method =</span> <span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.8915663</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(<span class="fu">rank</span>(x), <span class="fu">rank</span>(y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.8915663</code></pre>
-</div>
-</div>
-</div><div class="column" style="width:49%;">
-<p><br><br><br></p>
-<div class="cell" data-layout-align="right">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-right">
-<figure>
-<p><img data-src="04-distributions_files/figure-revealjs/rank-spearman-1.png" class="quarto-figure quarto-figure-right" width="384"></p>
-</figure>
-</div>
-</div>
-</div>
-</div></section>
 <section id="zur-erinnerung-der-zentrale-grenzwertsatz-zgws" class="slide level2">
 <h2>Zur Erinnerung: Der zentrale Grenzwertsatz (ZGWS)</h2>
 <blockquote>
@@ -1094,7 +1239,7 @@ CI_{95\%} = \bigg(\bar{x} - z_{0.975} \cdot \frac{s}{\sqrt{n}},
 <h2>Unterschied zwischen Stichprobe und Konfidenzintervall</h2>
 <p><br></p>
 <ul>
-<li><p><strong>Stichprobenintervall:</strong> charakterisiert die Verteilung der Daten aus den Parametern der Stichprobe (z.B. Mittelwert, Standardabweichung)</p></li>
+<li><p><strong>Vorhersageintervall:</strong> Charakterisiert die Verteilung der Daten anhand der Parameter der Stichprobe (z. B. Mittelwert, Standardabweichung). Es schätzt den Bereich, in den eine einzelne zukünftige Beobachtung wahrscheinlich fallen wird.</p></li>
 <li><p>Standardabweichung <span class="math inline">\(s_x\)</span> misst die Variabilität der ursprünglichen Daten</p></li>
 <li><p>rekonstruiert die ursprüngliche Verteilung, wenn ihr Typ bekannt ist (z. B. normal, lognormal)</p></li>
 </ul>
@@ -1118,13 +1263,13 @@ CI_{95\%} = \bigg(\bar{x} - t_{0.975, n-1} \cdot \frac{s}{\sqrt{n}},
 </ul>
 <p>Beispiel mit <span class="math inline">\(\mu=50\)</span> und <span class="math inline">\(\sigma=10\)</span>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb15-3"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">50</span>, <span class="dv">10</span>)</span>
-<span id="cb15-4"><a aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x); s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
-<span id="cb15-5"><a aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> s<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
-<span id="cb15-6"><a aria-hidden="true" tabindex="-1"></a><span class="co"># lower and upper confidence limits</span></span>
-<span id="cb15-7"><a aria-hidden="true" tabindex="-1"></a>m <span class="sc">+</span> <span class="fu">qt</span>(<span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>), n<span class="dv">-1</span>) <span class="sc">*</span> se</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">50</span>, <span class="dv">10</span>)</span>
+<span id="cb4-4"><a aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x); s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span>
+<span id="cb4-5"><a aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> s<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
+<span id="cb4-6"><a aria-hidden="true" tabindex="-1"></a><span class="co"># lower and upper confidence limits</span></span>
+<span id="cb4-7"><a aria-hidden="true" tabindex="-1"></a>m <span class="sc">+</span> <span class="fu">qt</span>(<span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>), n<span class="dv">-1</span>) <span class="sc">*</span> se</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 43.92330 57.56922</code></pre>
 </div>
@@ -1155,15 +1300,15 @@ CI_{95\%} = \bigg(\bar{x} - t_{0.975, n-1} \cdot \frac{s}{\sqrt{n}},
 <li>Für lineare Modelle und GLMs können wir den Bonferroni-Ausreißertest aus dem Paket <strong>car</strong> verwenden.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb17-2"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>), <span class="dv">12</span>) <span class="co"># the 21st value (=12) is an outlier</span></span>
-<span id="cb17-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">outlierTest</span>(<span class="fu">lm</span>(x<span class="sc">~</span><span class="dv">1</span>))  <span class="co"># x ~ 1 is the null model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>), <span class="dv">12</span>)   <span class="co"># der 21. Wert (=12) ist ein Ausreißer</span></span>
+<span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">outlierTest</span>(<span class="fu">lm</span>(x <span class="sc">~</span> <span class="dv">1</span>))  <span class="co"># x ~ 1 ist das "Nullmodell"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   rstudent unadjusted p-value Bonferroni p
 21 11.66351         4.1822e-10   8.7826e-09</code></pre>
 </div>
 </div>
-<p><span class="math inline">\(\rightarrow\)</span> Der 21. Wert wird als Ausreißer identifiziert:</p>
+<p><span class="math inline">\(\rightarrow\)</span> Der 21. Wert wird als Ausreißer identifiziert.</p>
 <p><br> <strong>Alternative zu Ausreißertests</strong></p>
 <ul>
 <li>Verwendung robuster Parameter und Methoden,
@@ -1179,34 +1324,35 @@ CI_{95\%} = \bigg(\bar{x} - t_{0.975, n-1} \cdot \frac{s}{\sqrt{n}},
 <h2>Extremwerte in Boxplots</h2>
 <p><br></p>
 <ul>
-<li><p>Extremwerte außerhalb der Whiskers, wenn sie mehr als das 1,5-fache der Breite der Interquartilsbox von den Boxgrenzen entfernt sind.</p></li>
-<li><p>Manchmal auch „Ausreißer“ genannt.</p></li>
-<li><p>Ich bevorzuge den Begriff „Extremwert“, da es sich um regelmäßige Beobachtungen aus einer schiefen oder ‘heavy tailed’ Verteilung handeln kann.</p></li>
+<li>Extremwerte außerhalb der Whiskers, wenn sie mehr als das 1,5-fache der Breite der Interquartilsbox von den Boxgrenzen entfernt sind.<br>
+</li>
+<li>Manchmal auch „Ausreißer“ genannt.</li>
+<li>Ich bevorzuge den Begriff „Extremwert“, da es sich um regelmäßige Beobachtungen aus einer schiefen oder einer ‘heavy tailed’ Verteilung handeln kann.</li>
 </ul>
 
 <img data-src="04-distributions_files/figure-revealjs/no-outliers-1.png" class="quarto-figure quarto-figure-center r-stretch" width="864"></section>
 <section id="beispiel" class="slide level2">
 <h2>Beispiel</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="at">las=</span><span class="dv">1</span>)</span>
-<span id="cb19-2"><a aria-hidden="true" tabindex="-1"></a>elbe <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://tpetzoldt.github.io/datasets/data/elbe.csv"</span>)</span>
-<span id="cb19-3"><a aria-hidden="true" tabindex="-1"></a>discharge <span class="ot">&lt;-</span> elbe<span class="sc">$</span>discharge</span>
-<span id="cb19-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(discharge, <span class="at">main=</span><span class="st">"Boxplot des Abflusses"</span>)</span>
-<span id="cb19-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(discharge)</span>
-<span id="cb19-6"><a aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log</span>(discharge <span class="sc">-</span> <span class="dv">70</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="at">las=</span><span class="dv">1</span>)</span>
+<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>elbe <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://tpetzoldt.github.io/datasets/data/elbe.csv"</span>)</span>
+<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>discharge <span class="ot">&lt;-</span> elbe<span class="sc">$</span>discharge</span>
+<span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(discharge, <span class="at">main=</span><span class="st">"Boxplot des Abflusses"</span>)</span>
+<span id="cb8-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(discharge)</span>
+<span id="cb8-6"><a aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log</span>(discharge <span class="sc">-</span> <span class="dv">70</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="04-distributions_files/figure-revealjs/elbe-boxplot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="864"><p>Abflussdaten der Elbe in Dresden in <span class="math inline">\(\mathrm m^3 s^{-1}\)</span>, Datenquelle: Bundesanstalt für Gewässerkunde (BFG), siehe <a href="https://github.com/tpetzoldt/datasets/blob/main/data/elbe_info.txt">terms and conditions</a>.</p>
+<img data-src="04-distributions_files/figure-revealjs/elbe-boxplot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="864"><p>Abflussdaten der Elbe in Dresden in <span class="math inline">\(\mathrm m^3 s^{-1}\)</span>, Datenquelle: Bundesanstalt für Gewässerkunde (BFG), siehe <a href="https://github.com/tpetzoldt/datasets/blob/main/data/elbe_info.txt">Nutzungshinweise</a>.</p>
 <ul>
 <li><strong>Links:</strong> große Anzahl von Extremwerten, sind das Ausreißer?</li>
 <li><strong>Mitte:</strong> Verteilung ist rechtsschief.</li>
-<li><strong>Rechts:</strong> Transformation (3-parametrische Lognormalverteilung) <span class="math inline">\(\rightarrow\)</span> symmetrische Verteilung, keine Ausreißer!</li>
+<li><strong>Rechts:</strong> Transformation (3-parametrische Lognormalverteilung) <br> <span class="math inline">\(\rightarrow\)</span> symmetrische Verteilung, keine Ausreißer!</li>
 </ul>
 </section>
 <section id="mehr-in-den-übungen" class="slide level2">
 <h2>Mehr in den Übungen …</h2>
 <p><br></p>
-<p><a href="../element-labs">https://tpetzoldt.github.io/element-labs/</a></p>
+<p><a href="https://tpetzoldt.github.io/element-labs/">https://tpetzoldt.github.io/element-labs/</a></p>
 
 
 </section></section>

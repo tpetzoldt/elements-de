@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Thomas Petzoldt">
-  <meta name="dcterms.date" content="2025-11-05">
+  <meta name="dcterms.date" content="2025-11-11">
   <title>Elemente der statistischen Datenanalyse und Statistik mit R – 05-Klassische Tests</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -232,7 +232,7 @@ Thomas Petzoldt
 </div>
 </div>
 
-  <p class="date">2025-11-05</p>
+  <p class="date">2025-11-11</p>
 </section>
 <section>
 <section id="hypothesen-fehler-und-der-p-wert" class="title-slide slide level1 center">
@@ -366,7 +366,7 @@ ToDo: insert formulae and algorithms from the slides
 <ul>
 <li>übliche Konvention in den Umweltwissenschaften: <span class="math inline">\(\alpha=0.05\)</span>, muss vorher festgelegt werden</li>
 <li><span class="math inline">\(\beta=f(\alpha, \text{Effektstärke}, \text{Stichprobengröße},
-\text{Art des Tests})\)</span>, sollte <span class="math inline">\(\le 0,2\)</span> sein</li>
+\text{Art des Tests})\)</span>, sollte <span class="math inline">\(\le 0.2\)</span> sein</li>
 </ul>
 </section>
 <section id="signifikanz-und-relevanz" class="slide level2">
@@ -384,7 +384,7 @@ ToDo: insert formulae and algorithms from the slides
 <h2>Take home messages</h2>
 <ul>
 <li><p>Ein p-Wert misst die Wahrscheinlichkeit, dass ein rein zufälliger Effekt gleich groß oder größer ist als ein beobachteter Effekt, <strong>wenn die Nullhypothese wahr ist</strong>.</p></li>
-<li><p><strong>Signifikant</strong> bedeutet, dass die Ergebnisse unwahrscheinlich sind, wenn es keinen echten Effekt gäbe.</p></li>
+<li><p><strong>Signifikant</strong>, die Ergebnisse sind unwahrscheinlich, wenn es keinen echten Effekt gäbe.</p></li>
 <li><p><strong>Nicht signifikant</strong> bedeutet nicht „kein Effekt“.</p></li>
 <li><p>Nicht signifikante Ergebnisse deuten auf die Notwendigkeit weiterer Untersuchungen hin:</p>
 <ul>
@@ -401,7 +401,6 @@ ToDo: insert formulae and algorithms from the slides
 <li><span class="math inline">\(\rightarrow\)</span> Effektstärke und Relevanz werden wichtiger als p-Werte.</li>
 </ul></li>
 </ul>
-<p>Der p-Wert ist nach wie vor ein wichtiges Instrument der Statistik, aber ein falscher Gebrauch kann zu Fehlinterpretationen führen.</p>
 </section></section>
 <section>
 <section id="differenzen-zwischen-mittelwerten" class="title-slide slide level1 center">
@@ -634,10 +633,10 @@ s_{\bar{x}_i} = \frac{s_i}{\sqrt{n_i}}
 <p><span class="math display">\[
 \text{df} = \frac{\frac{s^2_1}{n_1} + \frac{s^2_2}{n_2}}{\frac{s^4_1}{n^2_1(n_1-1)} + \frac{s^4_2}{n^2_2(n_2-1)}}
 \]</span></p>
-</section></section>
-<section>
-<section id="welch-test-in-r" class="title-slide slide level1 center">
-<h1>Welch-Test in R</h1>
+</section>
+<section id="welch-test-in-r" class="slide level2">
+<h2>Welch-Test in R</h2>
+<p><br></p>
 <div class="bigfont">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x1, x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -686,8 +685,8 @@ mean of x mean of y
 </ul>
 <p><span class="darkred"><span class="math inline">\(\Rightarrow\)</span> <span class="math inline">\(F_{9, 4, \alpha=0.975} = 8.9 &gt; 4 \quad\rightarrow\)</span> nicht signifikant</span></p>
 </section>
-<section id="homogenität-der-varianzen-bei-2-stichproben" class="slide level2">
-<h2>Homogenität der Varianzen bei &gt; 2 Stichproben</h2>
+<section id="homogenität-der-varianz-bei-2-stichproben" class="slide level2">
+<h2>Homogenität der Varianz bei &gt; 2 Stichproben</h2>
 <p><br></p>
 <div class="column" style="width:59%;">
 <p><strong>Bartlett’s Test:</strong></p>
@@ -798,7 +797,7 @@ mean difference
 </div>
 </div>
 <p>p=0.016, signifikant</p>
-</div><p>Es ist zu erkennen, dass der gepaarte t-Test in diesem Fall eine größere Power (Trennschärfe) aufweist.</p>
+</div><p>Der gepaarte t-Test besitzt in diesem Fall eine größere Power (Trennschärfe).</p>
 </section>
 <section id="mann-whitney--und-wilcoxon-test" class="slide level2">
 <h2>Mann-Whitney- und Wilcoxon-Test</h2>
@@ -834,7 +833,8 @@ mean difference
 \end{align*}\]</span></p>
 <ul>
 <li>Kritische Werte von <span class="math inline">\(U\)</span> finden sich in gängigen Statistik-Lehrbüchern.</li>
-<li>In <strong>R</strong> nicht notwendig, p-Wert wird direkt ausgegeben. <strong>Anmerkung:</strong> Verwende spezielle Version <code>wilcox.exact</code> mit Korrektur, wenn mehrfach gleiche Werte (Bindungen) vorliegen.</li>
+<li>In <strong>R</strong> nicht notwendig, p-Wert wird direkt ausgegeben.</li>
+<li><strong>Anmerkung:</strong> Verwende spezielle Version <code>wilcox.exact</code> mit Korrektur, wenn mehrfach gleiche Werte (Bindungen) vorliegen.</li>
 </ul>
 </section>
 <section id="mann-whitney---wilcoxon-test-in-r" class="slide level2">
@@ -891,8 +891,8 @@ alternative hypothesis: true mu is not equal to 0</code></pre>
 <h1>Poweranalyse</h1>
 
 </section>
-<section id="bestimmung-der-trennschärfe-von-statistischen-tests" class="slide level2">
-<h2>Bestimmung der Trennschärfe von statistischen Tests</h2>
+<section id="bestimmung-der-power-von-statistischen-tests" class="slide level2">
+<h2>Bestimmung der Power von statistischen Tests</h2>
 <p><br></p>
 <p><strong>Wie viele Wiederholungen benötige ich?</strong></p>
 <ul>
@@ -931,8 +931,8 @@ n= (1.96 + 0.84)^2 \cdot 1/\delta^2 \approx 8 /\delta^2
 <p><span class="math inline">\(\delta = 1.0\cdot \sigma\)</span> <span class="math inline">\(\qquad\Rightarrow\)</span> <span class="red">n &gt; 8</span></p>
 <p><span class="math inline">\(\delta = 0.5\cdot \sigma\)</span> <span class="math inline">\(\qquad\Rightarrow\)</span> <span class="red">n &gt; 32</span></p>
 </section>
-<section id="trennschärfe-des-t-tests" class="slide level2">
-<h2>Trennschärfe des t-Tests</h2>
+<section id="power-des-t-tests" class="slide level2">
+<h2>Power des t-Tests</h2>
 <p>Die Trennschärfe eines t-Tests bzw. der Mindeststichprobenumfang kann mit der Funktion <code>power.t.test()</code> geschätzt werden:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">power.t.test</span>(<span class="at">n=</span><span class="dv">5</span>, <span class="at">delta=</span><span class="fl">0.5</span>, <span class="at">sig.level=</span><span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -952,20 +952,21 @@ NOTE: n is number in *each* group</code></pre>
 </div>
 <p><span class="math inline">\(\rightarrow\)</span> ‘power’ = 0.10</p>
 <ul>
-<li>Für <span class="math inline">\(n=5\)</span> wird ein vorhandener Effekt von <span class="math inline">\(0.5\sigma\)</span> nur in 1 von 10 Fällen entdeckt.</li>
-<li>Für eine Trennschärfe von 80% bei <span class="math inline">\(n=5\)</span> benötigen wir eine Effektstärke von mindestens <span class="math inline">\(2\sigma\)</span>:</li>
+<li>Für <span class="math inline">\(n=5\)</span> wird ein vorhandener Effekt von <span class="math inline">\(0.5 \sigma\)</span> nur in 1 von 10 Fällen entdeckt.</li>
+<li>Für eine Power von 80% bei <span class="math inline">\(n=5\)</span> wird Effektstärke von mindestens <span class="math inline">\(2\sigma\)</span> benötigt:</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">power.t.test</span>(<span class="at">n=</span><span class="dv">5</span>, <span class="at">power=</span><span class="fl">0.8</span>, <span class="at">sig.level=</span><span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Für einen schwachen Effekt von <span class="math inline">\(0.5\sigma\)</span> benötigen wir eine Stichprobengröße von <span class="math inline">\(n\ge64\)</span> in jeder Gruppe:</p>
+<p>Für einen schwachen Effekt von <span class="math inline">\(0.5\sigma\)</span> wird <span class="math inline">\(n\ge 64\)</span> in jeder Gruppe benötig:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">power.t.test</span>(<span class="at">delta=</span><span class="fl">0.5</span>,<span class="at">power=</span><span class="fl">0.8</span>,<span class="at">sig.level=</span><span class="fl">0.05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><span class="darkred"><span class="math inline">\(\Rightarrow\)</span> wir brauchen entweder einen großen Stichprobenumfang oder einen starken Effekt.</span></p>
+<p><span class="darkred"><span class="math inline">\(\Rightarrow\)</span> Man braucht entweder einen großen Stichprobenumfang oder einen starken Effekt.</span></p>
 </section>
-<section id="simulierte-trennschärfe-eines-t-tests" class="slide level2">
-<h2>Simulierte Trennschärfe eines t-Tests</h2>
+<section id="simulierte-power-eines-t-tests" class="slide level2">
+<h2>Simulierte Power eines t-Tests</h2>
+<p><br></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Grundgesamtheitsparameter</span></span>
 <span id="cb30-2"><a aria-hidden="true" tabindex="-1"></a>n      <span class="ot">&lt;-</span> <span class="dv">10</span></span>
@@ -989,6 +990,9 @@ NOTE: n is number in *each* group</code></pre>
 <span id="cb30-20"><a aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb30-21"><a aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"a="</span>, a, <span class="st">", b="</span>, b, <span class="st">", a/n="</span>, a<span class="sc">/</span>nn, <span class="st">", b/n="</span>, b<span class="sc">/</span>nn))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ul>
+<li>allgemeingültiges Verfahren, auch für andere Tests geeignet.</li>
+</ul>
 </section></section>
 <section>
 <section id="test-auf-verteilungen" class="title-slide slide level1 center">
@@ -1386,12 +1390,39 @@ W = 0.99064, p-value = 0.7165</code></pre>
 <li>Normalverteilung liegt vor, wenn die Punkte einer Geraden folgen</li>
 </ul>
 </section>
-<section id="transformationen" class="slide level2">
+<section id="prüfung-der-verteilung-für-deskriptive-zwecke" class="slide level2">
+<h2>Prüfung der Verteilung für deskriptive Zwecke</h2>
+<p><br></p>
+<p>In manchen Disziplinen, z.B. in der Hydrologie, möchte man gelegentlich wissen, welcher Verteilungstyp einen Datensatz am besten beschreibt. Ein Beispiel ist die Extremwertanalyse (z.B. 100-jähriges Hochwasser), da hier das Central Limit Theorem (CLT) nicht greift.</p>
+<p><strong>Vorgehensweise</strong></p>
+<ol type="1">
+<li>Visuelle Prüfung (besonders auf die tails achten)
+<ul>
+<li>Histogramm (erster Eindruck)</li>
+<li>Q-Q-Plots (genauere Passform)</li>
+</ul></li>
+<li>Formale Tests zur Ergänzung (Ausschlussprinzip)
+<ul>
+<li>Tests: Kolmogorov-Smirnov, Cramér-von Mises oder Anderson-Darling</li>
+<li>Ablehnung des Verteilungstyps bei signifikantem <span class="math inline">\(p &lt; 0.05\)</span>.</li>
+</ul></li>
+<li>Modellselektion
+<ul>
+<li>Nutzung von AIC/BIC zur Identifikation des optimalen Modells</li>
+<li>Berücksichtigung der physikalischen Plausibilität der Parameter</li>
+</ul></li>
+</ol>
+</section></section>
+<section>
+<section id="transformationen" class="title-slide slide level1 center">
+<h1>Transformationen</h1>
+
+</section>
+<section id="transformationen-1" class="slide level2">
 <h2>Transformationen</h2>
 <ul>
 <li>Ermöglicht die Anwendung von Methoden, die für normalverteilte Daten entwickelt wurden, auf nicht-normalverteilte Fälle.</li>
-<li>in der Vergangenheit sehr verbreitet, manchmal immer noch nützlich</li>
-<li>Moderne Methoden (z. B. verallgemeinerte lineare Modelle, GLM) können bestimmte Verteilungen direkt verarbeiten, z.B. Binomial-, Gamma- oder Poisson-Verteilung.</li>
+<li>Einige moderne Methoden (z. B. verallgemeinerte lineare Modelle, GLM) können bestimmte Verteilungen direkt verarbeiten, z.B. Binomial-, Gamma- oder Poisson-Verteilung.</li>
 </ul>
 <p><strong>Transformationen für rechtsschiefe Daten</strong></p>
 <ul>
@@ -1412,13 +1443,13 @@ W = 0.99064, p-value = 0.7165</code></pre>
 <li><span class="math inline">\(x'=\lg(x+3/8)\)</span></li>
 <li><span class="math inline">\(x'=\log(\log(x))\)</span> <span class="gray">für riesige Zahlen</span></li>
 </ul>
-<p><span class="blue"><span class="math inline">\(\rightarrow\)</span> stattdessen ein GLM mit der Familie Poisson oder Quasi-Poisson in Betracht ziehen</span></p>
+<p><span class="blue"><span class="math inline">\(\rightarrow\)</span> besser: ein GLM der Familien Poisson oder Quasi-Poisson in Betracht ziehen</span></p>
 <p><strong>Verhältnisse und Prozentsätze</strong></p>
 <ul>
 <li><span class="math inline">\(x'=\arcsin \sqrt{x/n}\)</span></li>
 <li><span class="math inline">\(x'=\arcsin \sqrt{\frac{x+3/8}{n+3/4}}\)</span></li>
 </ul>
-<p><span class="blue"><span class="math inline">\(\rightarrow\)</span> stattdessen ein GLM mit Binomialfamilie in Betracht ziehen</span> <!-----------------------------------------------------------------------------/ --></p>
+<p><span class="blue"><span class="math inline">\(\rightarrow\)</span> besser: ein GLM mit Binomialverteilung in Betracht ziehen</span> <!-----------------------------------------------------------------------------/ --></p>
 </section>
 <section id="wie-findet-man-die-beste-transformation" class="slide level2">
 <h2>Wie findet man die beste Transformation?</h2>
@@ -1459,14 +1490,11 @@ W = 0.99064, p-value = 0.7165</code></pre>
 </div></aside></section>
 <section id="box-cox-methode" class="slide level2">
 <h2>Box-Cox Methode</h2>
+<p>Abschätzung der optimalen Transformation aus der Klasse der Potenzen und Logarithmen:</p>
 <p><span class="math display">\[
-y' =
-\begin{cases}
-y^\lambda &amp; | &amp; \lambda \ne 0\\
-\log(y) &amp; | &amp; \lambda =0
-\end{cases}
+y' = \begin{cases} \frac{y^\lambda - 1}{\lambda} &amp; \text{wenn } \lambda \neq 0 \\ \ln(y) &amp; \text{wenn } \lambda = 0 \end{cases}
 \]</span></p>
-<p>Abschätzung der optimalen Transformation aus der Klasse der Potenzen und Logarithmen</p>
+<p>In vielen praktischen Fällen kann man statt <span class="math inline">\(\frac{y^\lambda - 1}{\lambda}\)</span> vereinfacht <span class="math inline">\(y^\lambda\)</span> verwenden.</p>
 <p><br></p>
 <div class="column" style="width:42%;">
 <p><br></p>
@@ -1750,7 +1778,7 @@ r_p=\frac {\sum xy - \sum y \sum y / n}
 r_s=1-\frac{6 \sum d^2_i}{n(n^2-1)}
 \]</span></p>
 <ul>
-<li>oder, alternativ: Pearson-Korrelation der geordneten Daten (notwendig bei Gleichheit).</li>
+<li>alternativ: Pearson-Korrelation der rang-transformierten Daten (notwendig bei Bindungen).</li>
 <li>Test: für <span class="math inline">\(n &lt; 10\)</span> <span class="math inline">\(\rightarrow\)</span> Tabelle der kritischen Werte</li>
 </ul>
 <p>für <span class="math inline">\(10 \leq n\)</span> <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(t\)</span>-Verteilung</p>

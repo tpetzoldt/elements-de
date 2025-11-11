@@ -1060,7 +1060,7 @@
     "href": "slides/x1-r-basics.html#lists-1",
     "title": "x1-R Basics",
     "section": "Lists",
-    "text": "Lists\n\nmost flexible data type in R\ncan contain arbitrary data objects as elements of the list\nallows tree-like structure\n\nExamples\n\nOutput of many R functions, e.g. return value of hist:\n\n\nL &lt;- hist(rnorm(100), plot=FALSE)\nstr(L)\n\nList of 6\n $ breaks  : num [1:10] -2 -1.5 -1 -0.5 0 0.5 1 1.5 2 2.5\n $ counts  : int [1:9] 3 11 24 17 17 13 8 5 2\n $ density : num [1:9] 0.06 0.22 0.48 0.34 0.34 0.26 0.16 0.1 0.04\n $ mids    : num [1:9] -1.75 -1.25 -0.75 -0.25 0.25 0.75 1.25 1.75 2.25\n $ xname   : chr \"rnorm(100)\"\n $ equidist: logi TRUE\n - attr(*, \"class\")= chr \"histogram\"",
+    "text": "Lists\n\nmost flexible data type in R\ncan contain arbitrary data objects as elements of the list\nallows tree-like structure\n\nExamples\n\nOutput of many R functions, e.g. return value of hist:\n\n\nL &lt;- hist(rnorm(100), plot=FALSE)\nstr(L)\n\nList of 6\n $ breaks  : num [1:11] -3 -2.5 -2 -1.5 -1 -0.5 0 0.5 1 1.5 ...\n $ counts  : int [1:10] 1 1 6 14 15 17 20 12 10 4\n $ density : num [1:10] 0.02 0.02 0.12 0.28 0.3 0.34 0.4 0.24 0.2 0.08\n $ mids    : num [1:10] -2.75 -2.25 -1.75 -1.25 -0.75 -0.25 0.25 0.75 1.25 1.75\n $ xname   : chr \"rnorm(100)\"\n $ equidist: logi TRUE\n - attr(*, \"class\")= chr \"histogram\"",
     "crumbs": [
       "Selected Programming Topics",
       "x1-R Basics"
@@ -1808,7 +1808,7 @@
     "href": "slides/05-classtests.html#alpha--und-beta-fehler",
     "title": "05-Klassische Tests",
     "section": "Alpha- und Beta-Fehler",
-    "text": "Alpha- und Beta-Fehler\n\n\n\n\n\n\n\n\n\nRealität\nEntscheidung des Tests\nRichtig?\nWahrscheinlichkeit\n\n\n\n\n\\(H_0\\) = wahr\nsignifikant\nnein\n\\(\\alpha\\)-Fehler\n\n\n\\(H_0\\) = falsch\nnicht signifikant\nnein\n\\(\\beta\\)-Fehler\n\n\n\\(H_0\\) = wahr\nnicht signifikant\nja\n\\(1-\\alpha\\)\n\n\n\\(H_0\\) = falsch\nsignifikant\nja\n\\(1-\\beta\\) (Trennschärfe)\n\n\n\n\n\n\n\n\n\n1.\\(H_0\\) fälschlicherweise abgelehnt (Fehler erster Art oder \\(\\alpha\\)-Fehler)\n\nes wird ein Effekt behauptet, den es nicht gibt, z.B. ein Medikament, das keine Wirkung hat\n\n2.\\(H_0\\) fälschlicherweise beibehalten (Fehler zweiter Art oder \\(\\beta\\)-Fehler)\n\ntypischer Fall in kleinen Studien, bei denen die Wirkung nicht ausreicht, um vorhandene Effekte zu erkennen\n\nVerwendung in der Praxis\n\nübliche Konvention in den Umweltwissenschaften: \\(\\alpha=0.05\\), muss vorher festgelegt werden\n\\(\\beta=f(\\alpha, \\text{Effektstärke}, \\text{Stichprobengröße},\n\\text{Art des Tests})\\), sollte \\(\\le 0,2\\) sein",
+    "text": "Alpha- und Beta-Fehler\n\n\n\n\n\n\n\n\n\nRealität\nEntscheidung des Tests\nRichtig?\nWahrscheinlichkeit\n\n\n\n\n\\(H_0\\) = wahr\nsignifikant\nnein\n\\(\\alpha\\)-Fehler\n\n\n\\(H_0\\) = falsch\nnicht signifikant\nnein\n\\(\\beta\\)-Fehler\n\n\n\\(H_0\\) = wahr\nnicht signifikant\nja\n\\(1-\\alpha\\)\n\n\n\\(H_0\\) = falsch\nsignifikant\nja\n\\(1-\\beta\\) (Trennschärfe)\n\n\n\n\n\n\n\n\n\n1.\\(H_0\\) fälschlicherweise abgelehnt (Fehler erster Art oder \\(\\alpha\\)-Fehler)\n\nes wird ein Effekt behauptet, den es nicht gibt, z.B. ein Medikament, das keine Wirkung hat\n\n2.\\(H_0\\) fälschlicherweise beibehalten (Fehler zweiter Art oder \\(\\beta\\)-Fehler)\n\ntypischer Fall in kleinen Studien, bei denen die Wirkung nicht ausreicht, um vorhandene Effekte zu erkennen\n\nVerwendung in der Praxis\n\nübliche Konvention in den Umweltwissenschaften: \\(\\alpha=0.05\\), muss vorher festgelegt werden\n\\(\\beta=f(\\alpha, \\text{Effektstärke}, \\text{Stichprobengröße},\n\\text{Art des Tests})\\), sollte \\(\\le 0.2\\) sein",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1830,7 +1830,7 @@
     "href": "slides/05-classtests.html#take-home-messages",
     "title": "05-Klassische Tests",
     "section": "Take home messages",
-    "text": "Take home messages\n\nEin p-Wert misst die Wahrscheinlichkeit, dass ein rein zufälliger Effekt gleich groß oder größer ist als ein beobachteter Effekt, wenn die Nullhypothese wahr ist.\nSignifikant bedeutet, dass die Ergebnisse unwahrscheinlich sind, wenn es keinen echten Effekt gäbe.\nNicht signifikant bedeutet nicht „kein Effekt“.\nNicht signifikante Ergebnisse deuten auf die Notwendigkeit weiterer Untersuchungen hin:\n\nVergrößerung der Stichprobe\nErhöhung des experimentellen Effekts\nReduzierung des experimentellen Fehlers\nWahl eines leistungsfähigeren statistischen Verfahrens\n\nWichtig: Konzentriere Dich nicht nur auf p-Werte und Signifikanz!\nVergiss nie, Stichprobengröße, Effektstärke und Relevanz anzugeben.\nBei großen Datensätzen:\n\nStatistisch signifikante Ergebnisse können leicht auch für sehr kleine und praktisch irrelevante Effekte erzielt werden.\n\\(\\rightarrow\\) Effektstärke und Relevanz werden wichtiger als p-Werte.\n\n\nDer p-Wert ist nach wie vor ein wichtiges Instrument der Statistik, aber ein falscher Gebrauch kann zu Fehlinterpretationen führen.",
+    "text": "Take home messages\n\nEin p-Wert misst die Wahrscheinlichkeit, dass ein rein zufälliger Effekt gleich groß oder größer ist als ein beobachteter Effekt, wenn die Nullhypothese wahr ist.\nSignifikant, die Ergebnisse sind unwahrscheinlich, wenn es keinen echten Effekt gäbe.\nNicht signifikant bedeutet nicht „kein Effekt“.\nNicht signifikante Ergebnisse deuten auf die Notwendigkeit weiterer Untersuchungen hin:\n\nVergrößerung der Stichprobe\nErhöhung des experimentellen Effekts\nReduzierung des experimentellen Fehlers\nWahl eines leistungsfähigeren statistischen Verfahrens\n\nWichtig: Konzentriere Dich nicht nur auf p-Werte und Signifikanz!\nVergiss nie, Stichprobengröße, Effektstärke und Relevanz anzugeben.\nBei großen Datensätzen:\n\nStatistisch signifikante Ergebnisse können leicht auch für sehr kleine und praktisch irrelevante Effekte erzielt werden.\n\\(\\rightarrow\\) Effektstärke und Relevanz werden wichtiger als p-Werte.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1936,6 +1936,17 @@
     ]
   },
   {
+    "objectID": "slides/05-classtests.html#welch-test-in-r",
+    "href": "slides/05-classtests.html#welch-test-in-r",
+    "title": "05-Klassische Tests",
+    "section": "Welch-Test in R",
+    "text": "Welch-Test in R\n\n\n\nt.test(x1, x2)\n\n\n    Welch Two Sample t-test\n\ndata:  x1 and x2\nt = -3.7185, df = 21.611, p-value = 0.001224\nalternative hypothesis: true difference in means is not equal to 0\n95 percent confidence interval:\n -2.3504462 -0.6662205\nsample estimates:\nmean of x mean of y \n 5.475000  6.983333 \n\n\n\n… das ist die Standardmethode der t.test-Funktion.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "05-Klassische Tests"
+    ]
+  },
+  {
     "objectID": "slides/05-classtests.html#test-auf-varianzgleichheit-f-test",
     "href": "slides/05-classtests.html#test-auf-varianzgleichheit-f-test",
     "title": "05-Klassische Tests",
@@ -1947,11 +1958,11 @@
     ]
   },
   {
-    "objectID": "slides/05-classtests.html#homogenität-der-varianzen-bei-2-stichproben",
-    "href": "slides/05-classtests.html#homogenität-der-varianzen-bei-2-stichproben",
+    "objectID": "slides/05-classtests.html#homogenität-der-varianz-bei-2-stichproben",
+    "href": "slides/05-classtests.html#homogenität-der-varianz-bei-2-stichproben",
     "title": "05-Klassische Tests",
-    "section": "Homogenität der Varianzen bei > 2 Stichproben",
-    "text": "Homogenität der Varianzen bei &gt; 2 Stichproben\n\n\nBartlett’s Test:\n\nbartlett.test(list(x1, x2, x3))\n\n\n    Bartlett test of homogeneity of variances\n\ndata:  list(x1, x2, x3)\nBartlett's K-squared = 7.7136, df = 2, p-value = 0.02114\n\n\n Fligner-Killeen Test (empfohlen):\n\nfligner.test(list(x1, x2, x3))\n\n\n    Fligner-Killeen test of homogeneity of variances\n\ndata:  list(x1, x2, x3)\nFligner-Killeen:med chi-squared = 2.2486, df = 2, p-value = 0.3249\n\n\n\n\n\n\n\n\n\n\n\n\n\nTests werden häufig verwendet, um die Annahmen für eine ANOVA zu überprüfen.",
+    "section": "Homogenität der Varianz bei > 2 Stichproben",
+    "text": "Homogenität der Varianz bei &gt; 2 Stichproben\n\n\nBartlett’s Test:\n\nbartlett.test(list(x1, x2, x3))\n\n\n    Bartlett test of homogeneity of variances\n\ndata:  list(x1, x2, x3)\nBartlett's K-squared = 7.7136, df = 2, p-value = 0.02114\n\n\n Fligner-Killeen Test (empfohlen):\n\nfligner.test(list(x1, x2, x3))\n\n\n    Fligner-Killeen test of homogeneity of variances\n\ndata:  list(x1, x2, x3)\nFligner-Killeen:med chi-squared = 2.2486, df = 2, p-value = 0.3249\n\n\n\n\n\n\n\n\n\n\n\n\n\nTests werden häufig verwendet, um die Annahmen für eine ANOVA zu überprüfen.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1973,7 +1984,7 @@
     "href": "slides/05-classtests.html#gepaarter-t-test",
     "title": "05-Klassische Tests",
     "section": "Gepaarter t-Test",
-    "text": "Gepaarter t-Test\n\nmanchmal auch „t-Test für abhängige Stichproben“ genannt\n\nder Begriff „abhängig“ kann irreführend sein, „gepaart“ ist eindeutiger\ndie Werte innerhalb der Stichproben müssen immer noch unabhängig sein\n\nBeispiele: linker Arm / rechter Arm; vorher / nachher\nist im Wesentlichen ein Einstichproben-t-Test von paarweisen Unterschieden gegen \\(\\mu=0\\)\n\nReduziert den Einfluss individueller Unterschiede („Kovariate“) dank Fokussierung auf die paarweisen Unterschiede\n\n\n\nx1 &lt;- c(2, 3, 4, 5, 6)\nx2 &lt;- c(3, 4, 7, 6, 8)\nt.test(x1, x2, var.equal=TRUE)\n\n\n    Two Sample t-test\n\ndata:  x1 and x2\nt = -1.372, df = 8, p-value = 0.2073\nalternative hypothesis: true difference in means is not equal to 0\n95 percent confidence interval:\n -4.28924  1.08924\nsample estimates:\nmean of x mean of y \n      4.0       5.6 \n\n\np=0.20, nicht signifikant\n\n\nx1 &lt;- c(2, 3, 4, 5, 6)\nx2 &lt;- c(3, 4, 7, 6, 8)\nt.test(x1, x2, paired=TRUE)\n\n\n    Paired t-test\n\ndata:  x1 and x2\nt = -4, df = 4, p-value = 0.01613\nalternative hypothesis: true mean difference is not equal to 0\n95 percent confidence interval:\n -2.710578 -0.489422\nsample estimates:\nmean difference \n           -1.6 \n\n\np=0.016, signifikant\nEs ist zu erkennen, dass der gepaarte t-Test in diesem Fall eine größere Power (Trennschärfe) aufweist.",
+    "text": "Gepaarter t-Test\n\nmanchmal auch „t-Test für abhängige Stichproben“ genannt\n\nder Begriff „abhängig“ kann irreführend sein, „gepaart“ ist eindeutiger\ndie Werte innerhalb der Stichproben müssen immer noch unabhängig sein\n\nBeispiele: linker Arm / rechter Arm; vorher / nachher\nist im Wesentlichen ein Einstichproben-t-Test von paarweisen Unterschieden gegen \\(\\mu=0\\)\n\nReduziert den Einfluss individueller Unterschiede („Kovariate“) dank Fokussierung auf die paarweisen Unterschiede\n\n\n\nx1 &lt;- c(2, 3, 4, 5, 6)\nx2 &lt;- c(3, 4, 7, 6, 8)\nt.test(x1, x2, var.equal=TRUE)\n\n\n    Two Sample t-test\n\ndata:  x1 and x2\nt = -1.372, df = 8, p-value = 0.2073\nalternative hypothesis: true difference in means is not equal to 0\n95 percent confidence interval:\n -4.28924  1.08924\nsample estimates:\nmean of x mean of y \n      4.0       5.6 \n\n\np=0.20, nicht signifikant\n\n\nx1 &lt;- c(2, 3, 4, 5, 6)\nx2 &lt;- c(3, 4, 7, 6, 8)\nt.test(x1, x2, paired=TRUE)\n\n\n    Paired t-test\n\ndata:  x1 and x2\nt = -4, df = 4, p-value = 0.01613\nalternative hypothesis: true mean difference is not equal to 0\n95 percent confidence interval:\n -2.710578 -0.489422\nsample estimates:\nmean difference \n           -1.6 \n\n\np=0.016, signifikant\nDer gepaarte t-Test besitzt in diesem Fall eine größere Power (Trennschärfe).",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -1995,7 +2006,7 @@
     "href": "slides/05-classtests.html#mann-whitney-test-in-der-praxis",
     "title": "05-Klassische Tests",
     "section": "Mann-Whitney-Test in der Praxis",
-    "text": "Mann-Whitney-Test in der Praxis\n\n\nWeise den beiden Stichproben \\(A\\) und \\(B\\) mit dem Stichprobenumfang \\(m\\) und \\(n\\) die Ränge \\(R_A\\) und \\(R_B\\) zu.\nBerechne die Anzahl der Inversionen \\(U\\):\n\n\\[\\begin{align*}\n     U_A &= m \\cdot n + \\frac{m (m + 1)}{2} - \\sum_{i=1}^m R_A \\\\\n     U_B &= m \\cdot n + \\frac{n (n + 1)}{2} - \\sum_{i=1}^n R_B \\\\\n     U   &= \\min(U_A, U_B)\n\\end{align*}\\]\n\nKritische Werte von \\(U\\) finden sich in gängigen Statistik-Lehrbüchern.\nIn R nicht notwendig, p-Wert wird direkt ausgegeben. Anmerkung: Verwende spezielle Version wilcox.exact mit Korrektur, wenn mehrfach gleiche Werte (Bindungen) vorliegen.",
+    "text": "Mann-Whitney-Test in der Praxis\n\n\nWeise den beiden Stichproben \\(A\\) und \\(B\\) mit dem Stichprobenumfang \\(m\\) und \\(n\\) die Ränge \\(R_A\\) und \\(R_B\\) zu.\nBerechne die Anzahl der Inversionen \\(U\\):\n\n\\[\\begin{align*}\n     U_A &= m \\cdot n + \\frac{m (m + 1)}{2} - \\sum_{i=1}^m R_A \\\\\n     U_B &= m \\cdot n + \\frac{n (n + 1)}{2} - \\sum_{i=1}^n R_B \\\\\n     U   &= \\min(U_A, U_B)\n\\end{align*}\\]\n\nKritische Werte von \\(U\\) finden sich in gängigen Statistik-Lehrbüchern.\nIn R nicht notwendig, p-Wert wird direkt ausgegeben.\nAnmerkung: Verwende spezielle Version wilcox.exact mit Korrektur, wenn mehrfach gleiche Werte (Bindungen) vorliegen.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2024,11 +2035,11 @@
     ]
   },
   {
-    "objectID": "slides/05-classtests.html#bestimmung-der-trennschärfe-von-statistischen-tests",
-    "href": "slides/05-classtests.html#bestimmung-der-trennschärfe-von-statistischen-tests",
+    "objectID": "slides/05-classtests.html#bestimmung-der-power-von-statistischen-tests",
+    "href": "slides/05-classtests.html#bestimmung-der-power-von-statistischen-tests",
     "title": "05-Klassische Tests",
-    "section": "Bestimmung der Trennschärfe von statistischen Tests",
-    "text": "Bestimmung der Trennschärfe von statistischen Tests\n\nWie viele Wiederholungen benötige ich?\n\nHängt ab von:\n\nder relativen Effektstärke \\(\\frac{\\mathrm{Effekt}}{\\mathrm{Standardabweichung}}\\)\n\n\\[\\delta=\\frac{(\\bar{x}_1-\\bar{x}_2)}{s}\\]\n\ndem Stichprobenumfang \\(n\\)\ndem vordefinierten Signifikanzniveau \\(\\alpha\\)\nund der angewandten statistischen Methode\n\nJe kleiner \\(\\alpha\\), \\(n\\) und \\(\\delta\\), desto größer ist der Fehler zweiter Art (\\(\\beta\\)).\nDer \\(\\beta\\)-Fehler ist die Wahrscheinlichkeit, Effekte zu übersehen, obwohl sie vorhanden sind.\nDie Trennschärfe (Power) (\\(1-\\beta\\)) ist die Wahrscheinlichkeit, dass ein Test signifikant ist, wenn ein Effekt vorhanden ist.",
+    "section": "Bestimmung der Power von statistischen Tests",
+    "text": "Bestimmung der Power von statistischen Tests\n\nWie viele Wiederholungen benötige ich?\n\nHängt ab von:\n\nder relativen Effektstärke \\(\\frac{\\mathrm{Effekt}}{\\mathrm{Standardabweichung}}\\)\n\n\\[\\delta=\\frac{(\\bar{x}_1-\\bar{x}_2)}{s}\\]\n\ndem Stichprobenumfang \\(n\\)\ndem vordefinierten Signifikanzniveau \\(\\alpha\\)\nund der angewandten statistischen Methode\n\nJe kleiner \\(\\alpha\\), \\(n\\) und \\(\\delta\\), desto größer ist der Fehler zweiter Art (\\(\\beta\\)).\nDer \\(\\beta\\)-Fehler ist die Wahrscheinlichkeit, Effekte zu übersehen, obwohl sie vorhanden sind.\nDie Trennschärfe (Power) (\\(1-\\beta\\)) ist die Wahrscheinlichkeit, dass ein Test signifikant ist, wenn ein Effekt vorhanden ist.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2046,22 +2057,22 @@
     ]
   },
   {
-    "objectID": "slides/05-classtests.html#trennschärfe-des-t-tests",
-    "href": "slides/05-classtests.html#trennschärfe-des-t-tests",
+    "objectID": "slides/05-classtests.html#power-des-t-tests",
+    "href": "slides/05-classtests.html#power-des-t-tests",
     "title": "05-Klassische Tests",
-    "section": "Trennschärfe des t-Tests",
-    "text": "Trennschärfe des t-Tests\nDie Trennschärfe eines t-Tests bzw. der Mindeststichprobenumfang kann mit der Funktion power.t.test() geschätzt werden:\n\npower.t.test(n=5, delta=0.5, sig.level=0.05)\n\n\n     Two-sample t test power calculation \n\n              n = 5\n          delta = 0.5\n             sd = 1\n      sig.level = 0.05\n          power = 0.1038399\n    alternative = two.sided\n\nNOTE: n is number in *each* group\n\n\n\\(\\rightarrow\\) ‘power’ = 0.10\n\nFür \\(n=5\\) wird ein vorhandener Effekt von \\(0.5\\sigma\\) nur in 1 von 10 Fällen entdeckt.\nFür eine Trennschärfe von 80% bei \\(n=5\\) benötigen wir eine Effektstärke von mindestens \\(2\\sigma\\):\n\n\npower.t.test(n=5, power=0.8, sig.level=0.05)\n\nFür einen schwachen Effekt von \\(0.5\\sigma\\) benötigen wir eine Stichprobengröße von \\(n\\ge64\\) in jeder Gruppe:\n\npower.t.test(delta=0.5,power=0.8,sig.level=0.05)\n\n\\(\\Rightarrow\\) wir brauchen entweder einen großen Stichprobenumfang oder einen starken Effekt.",
+    "section": "Power des t-Tests",
+    "text": "Power des t-Tests\nDie Trennschärfe eines t-Tests bzw. der Mindeststichprobenumfang kann mit der Funktion power.t.test() geschätzt werden:\n\npower.t.test(n=5, delta=0.5, sig.level=0.05)\n\n\n     Two-sample t test power calculation \n\n              n = 5\n          delta = 0.5\n             sd = 1\n      sig.level = 0.05\n          power = 0.1038399\n    alternative = two.sided\n\nNOTE: n is number in *each* group\n\n\n\\(\\rightarrow\\) ‘power’ = 0.10\n\nFür \\(n=5\\) wird ein vorhandener Effekt von \\(0.5 \\sigma\\) nur in 1 von 10 Fällen entdeckt.\nFür eine Power von 80% bei \\(n=5\\) wird Effektstärke von mindestens \\(2\\sigma\\) benötigt:\n\n\npower.t.test(n=5, power=0.8, sig.level=0.05)\n\nFür einen schwachen Effekt von \\(0.5\\sigma\\) wird \\(n\\ge 64\\) in jeder Gruppe benötig:\n\npower.t.test(delta=0.5,power=0.8,sig.level=0.05)\n\n\\(\\Rightarrow\\) Man braucht entweder einen großen Stichprobenumfang oder einen starken Effekt.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
     ]
   },
   {
-    "objectID": "slides/05-classtests.html#simulierte-trennschärfe-eines-t-tests",
-    "href": "slides/05-classtests.html#simulierte-trennschärfe-eines-t-tests",
+    "objectID": "slides/05-classtests.html#simulierte-power-eines-t-tests",
+    "href": "slides/05-classtests.html#simulierte-power-eines-t-tests",
     "title": "05-Klassische Tests",
-    "section": "Simulierte Trennschärfe eines t-Tests",
-    "text": "Simulierte Trennschärfe eines t-Tests\n\n# Grundgesamtheitsparameter\nn      &lt;- 10\nxmean1 &lt;- 50; xmean2 &lt;- 55\nxsd1   &lt;- xsd2 &lt;- 10\nalpha  &lt;- 0.05\n\nnn &lt;- 1000   # Anzahl an Testläufen der Simulation\na &lt;- b &lt;- 0  # initialisiere Zähler\nfor (i in 1:nn) {\n  # erstelle Zufallszahlen\n  x1 &lt;- rnorm(n, xmean1, xsd1)\n  x2 &lt;- rnorm(n, xmean2, xsd2)\n  # Ergebnisse des t-Tests\n  p &lt;- t.test(x1,x2,var.equal = TRUE)$p.value \n  if (p &lt; alpha) {\n     a &lt;- a+1\n   } else {\n     b &lt;- b+1\n  }\n}\nprint(paste(\"a=\", a, \", b=\", b, \", a/n=\", a/nn, \", b/n=\", b/nn))",
+    "section": "Simulierte Power eines t-Tests",
+    "text": "Simulierte Power eines t-Tests\n\n\n# Grundgesamtheitsparameter\nn      &lt;- 10\nxmean1 &lt;- 50; xmean2 &lt;- 55\nxsd1   &lt;- xsd2 &lt;- 10\nalpha  &lt;- 0.05\n\nnn &lt;- 1000   # Anzahl an Testläufen der Simulation\na &lt;- b &lt;- 0  # initialisiere Zähler\nfor (i in 1:nn) {\n  # erstelle Zufallszahlen\n  x1 &lt;- rnorm(n, xmean1, xsd1)\n  x2 &lt;- rnorm(n, xmean2, xsd2)\n  # Ergebnisse des t-Tests\n  p &lt;- t.test(x1,x2,var.equal = TRUE)$p.value \n  if (p &lt; alpha) {\n     a &lt;- a+1\n   } else {\n     b &lt;- b+1\n  }\n}\nprint(paste(\"a=\", a, \", b=\", b, \", a/n=\", a/nn, \", b/n=\", b/nn))\n\n\nallgemeingültiges Verfahren, auch für andere Tests geeignet.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2211,11 +2222,22 @@
     ]
   },
   {
-    "objectID": "slides/05-classtests.html#transformationen",
-    "href": "slides/05-classtests.html#transformationen",
+    "objectID": "slides/05-classtests.html#prüfung-der-verteilung-für-deskriptive-zwecke",
+    "href": "slides/05-classtests.html#prüfung-der-verteilung-für-deskriptive-zwecke",
+    "title": "05-Klassische Tests",
+    "section": "Prüfung der Verteilung für deskriptive Zwecke",
+    "text": "Prüfung der Verteilung für deskriptive Zwecke\n\nIn manchen Disziplinen, z.B. in der Hydrologie, möchte man gelegentlich wissen, welcher Verteilungstyp einen Datensatz am besten beschreibt. Ein Beispiel ist die Extremwertanalyse (z.B. 100-jähriges Hochwasser), da hier das Central Limit Theorem (CLT) nicht greift.\nVorgehensweise\n\nVisuelle Prüfung (besonders auf die tails achten)\n\nHistogramm (erster Eindruck)\nQ-Q-Plots (genauere Passform)\n\nFormale Tests zur Ergänzung (Ausschlussprinzip)\n\nTests: Kolmogorov-Smirnov, Cramér-von Mises oder Anderson-Darling\nAblehnung des Verteilungstyps bei signifikantem \\(p &lt; 0.05\\).\n\nModellselektion\n\nNutzung von AIC/BIC zur Identifikation des optimalen Modells\nBerücksichtigung der physikalischen Plausibilität der Parameter",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "05-Klassische Tests"
+    ]
+  },
+  {
+    "objectID": "slides/05-classtests.html#transformationen-1",
+    "href": "slides/05-classtests.html#transformationen-1",
     "title": "05-Klassische Tests",
     "section": "Transformationen",
-    "text": "Transformationen\n\nErmöglicht die Anwendung von Methoden, die für normalverteilte Daten entwickelt wurden, auf nicht-normalverteilte Fälle.\nin der Vergangenheit sehr verbreitet, manchmal immer noch nützlich\nModerne Methoden (z. B. verallgemeinerte lineare Modelle, GLM) können bestimmte Verteilungen direkt verarbeiten, z.B. Binomial-, Gamma- oder Poisson-Verteilung.\n\nTransformationen für rechtsschiefe Daten\n\n\\(x'=\\log(x)\\)\n\\(x'=\\log(x + a)\\)\n\\(x'=(x+a)^c\\) (\\(a\\) zwischen 0,5 und 1)\n\\(x'=1/x\\) („sehr stark“, d.h. in den meisten Fällen zu extrem)\n\\(x'=a - 1/\\sqrt{x}\\) (um die Skalierung zu vereinfachen)\n\\(x'=1/\\sqrt{x}\\) (Kompromiss zwischen \\(\\ln\\) und \\(1/x\\))\n\\(x'=a+bx^c\\) (sehr allgemein, schließt Potenzen und Wurzeln ein)",
+    "text": "Transformationen\n\nErmöglicht die Anwendung von Methoden, die für normalverteilte Daten entwickelt wurden, auf nicht-normalverteilte Fälle.\nEinige moderne Methoden (z. B. verallgemeinerte lineare Modelle, GLM) können bestimmte Verteilungen direkt verarbeiten, z.B. Binomial-, Gamma- oder Poisson-Verteilung.\n\nTransformationen für rechtsschiefe Daten\n\n\\(x'=\\log(x)\\)\n\\(x'=\\log(x + a)\\)\n\\(x'=(x+a)^c\\) (\\(a\\) zwischen 0,5 und 1)\n\\(x'=1/x\\) („sehr stark“, d.h. in den meisten Fällen zu extrem)\n\\(x'=a - 1/\\sqrt{x}\\) (um die Skalierung zu vereinfachen)\n\\(x'=1/\\sqrt{x}\\) (Kompromiss zwischen \\(\\ln\\) und \\(1/x\\))\n\\(x'=a+bx^c\\) (sehr allgemein, schließt Potenzen und Wurzeln ein)",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2226,7 +2248,7 @@
     "href": "slides/05-classtests.html#transformationen-ii",
     "title": "05-Klassische Tests",
     "section": "Transformationen II",
-    "text": "Transformationen II\nTransformationen für Zähldaten\n\n\\(x'=\\sqrt{3/8+x}\\) (Zählungen: 1, 2, 3 \\(\\rightarrow\\) 0.61, 1.17, 1.54, 1.84, )\n\\(x'=\\lg(x+3/8)\\)\n\\(x'=\\log(\\log(x))\\) für riesige Zahlen\n\n\\(\\rightarrow\\) stattdessen ein GLM mit der Familie Poisson oder Quasi-Poisson in Betracht ziehen\nVerhältnisse und Prozentsätze\n\n\\(x'=\\arcsin \\sqrt{x/n}\\)\n\\(x'=\\arcsin \\sqrt{\\frac{x+3/8}{n+3/4}}\\)\n\n\\(\\rightarrow\\) stattdessen ein GLM mit Binomialfamilie in Betracht ziehen",
+    "text": "Transformationen II\nTransformationen für Zähldaten\n\n\\(x'=\\sqrt{3/8+x}\\) (Zählungen: 1, 2, 3 \\(\\rightarrow\\) 0.61, 1.17, 1.54, 1.84, )\n\\(x'=\\lg(x+3/8)\\)\n\\(x'=\\log(\\log(x))\\) für riesige Zahlen\n\n\\(\\rightarrow\\) besser: ein GLM der Familien Poisson oder Quasi-Poisson in Betracht ziehen\nVerhältnisse und Prozentsätze\n\n\\(x'=\\arcsin \\sqrt{x/n}\\)\n\\(x'=\\arcsin \\sqrt{\\frac{x+3/8}{n+3/4}}\\)\n\n\\(\\rightarrow\\) besser: ein GLM mit Binomialverteilung in Betracht ziehen",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2248,7 +2270,7 @@
     "href": "slides/05-classtests.html#box-cox-methode",
     "title": "05-Klassische Tests",
     "section": "Box-Cox Methode",
-    "text": "Box-Cox Methode\n\\[\ny' =\n\\begin{cases}\ny^\\lambda & | & \\lambda \\ne 0\\\\\n\\log(y) & | & \\lambda =0\n\\end{cases}\n\\]\nAbschätzung der optimalen Transformation aus der Klasse der Potenzen und Logarithmen\n\n\n\n\nlibrary(MASS)\n\nboxcox(Nit90 ~ 1)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nArgument von boxcox ist eine sogenannte „Modellformel“ oder das Ergebnis eines linearen Modells (lm)\nDie einfachste Form ist das „Nullmodell“ ohne Erklärungsvariablen (~ 1).\nMehr über Modellformeln, siehe ANOVA Kapitel.",
+    "text": "Box-Cox Methode\nAbschätzung der optimalen Transformation aus der Klasse der Potenzen und Logarithmen:\n\\[\ny' = \\begin{cases} \\frac{y^\\lambda - 1}{\\lambda} & \\text{wenn } \\lambda \\neq 0 \\\\ \\ln(y) & \\text{wenn } \\lambda = 0 \\end{cases}\n\\]\nIn vielen praktischen Fällen kann man statt \\(\\frac{y^\\lambda - 1}{\\lambda}\\) vereinfacht \\(y^\\lambda\\) verwenden.\n\n\n\n\nlibrary(MASS)\n\nboxcox(Nit90 ~ 1)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nArgument von boxcox ist eine sogenannte „Modellformel“ oder das Ergebnis eines linearen Modells (lm)\nDie einfachste Form ist das „Nullmodell“ ohne Erklärungsvariablen (~ 1).\nMehr über Modellformeln, siehe ANOVA Kapitel.",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2336,7 +2358,7 @@
     "href": "slides/05-classtests.html#rangkorrelation-nach-spearman",
     "title": "05-Klassische Tests",
     "section": "Rangkorrelation nach Spearman",
-    "text": "Rangkorrelation nach Spearman\n\n\nmisst monotone (und nicht unbedingt lineare) Abhängigkeiten\nSchätzung aus Rangunterschieden:\n\n\\[\nr_s=1-\\frac{6 \\sum d^2_i}{n(n^2-1)}\n\\]\n\noder, alternativ: Pearson-Korrelation der geordneten Daten (notwendig bei Gleichheit).\nTest: für \\(n &lt; 10\\) \\(\\rightarrow\\) Tabelle der kritischen Werte\n\nfür \\(10 \\leq n\\) \\(\\rightarrow\\) \\(t\\)-Verteilung\n\\[\n   \\hat{t}_{1-\\frac{\\alpha}{2};n-2}\n      =\\frac{|r_s|}{\\sqrt{1-r^2_S}} \\sqrt{n-2}\n\\]\n\n\nComputerstatistikpakete verwenden einen speziellen Algorithmus (Algorithmus AS 89 nach Best und Roberts, 1975).",
+    "text": "Rangkorrelation nach Spearman\n\n\nmisst monotone (und nicht unbedingt lineare) Abhängigkeiten\nSchätzung aus Rangunterschieden:\n\n\\[\nr_s=1-\\frac{6 \\sum d^2_i}{n(n^2-1)}\n\\]\n\nalternativ: Pearson-Korrelation der rang-transformierten Daten (notwendig bei Bindungen).\nTest: für \\(n &lt; 10\\) \\(\\rightarrow\\) Tabelle der kritischen Werte\n\nfür \\(10 \\leq n\\) \\(\\rightarrow\\) \\(t\\)-Verteilung\n\\[\n   \\hat{t}_{1-\\frac{\\alpha}{2};n-2}\n      =\\frac{|r_s|}{\\sqrt{1-r^2_S}} \\sqrt{n-2}\n\\]\n\n\nComputerstatistikpakete verwenden einen speziellen Algorithmus (Algorithmus AS 89 nach Best und Roberts, 1975).",
     "crumbs": [
       "Statistische Grundlagen",
       "05-Klassische Tests"
@@ -2754,7 +2776,7 @@
     "href": "slides/01-introduction.html#welche-datenstruktur-ist-besser",
     "title": "01-Einführung",
     "section": "Welche Datenstruktur ist besser?",
-    "text": "Welche Datenstruktur ist besser?\n\n\nWide-Format\n\n\n\n\n\n\nstation\n2021\n2022\n2023\n\n\n\n\nA\n18\n8\n15\n\n\nB\n9\n18\n17\n\n\nC\n4\n13\n14\n\n\nD\n12\n18\n20\n\n\nE\n13\n12\n9\n\n\n\n\n\n\nLong-Format\n\n\n\n\n\n\nyear\nstation\nvalue\n\n\n\n\n2021\nA\n18\n\n\n2021\nB\n9\n\n\n2021\nC\n4\n\n\n2021\nD\n12\n\n\n2021\nE\n13\n\n\n2022\nA\n8\n\n\n2022\nB\n18\n\n\n2022\nC\n13\n\n\n2022\nD\n18\n\n\n2022\nE\n12\n\n\n2023\nA\n15\n\n\n2023\nB\n17\n\n\n2023\nC\n14\n\n\n2023\nD\n20\n\n\n2023\nE\n9",
+    "text": "Welche Datenstruktur ist besser?\n\n\nWide-Format\n\n\n\n\n\n\nstation\n2021\n2022\n2023\n\n\n\n\nA\n10\n13\n18\n\n\nB\n8\n1\n17\n\n\nC\n13\n14\n9\n\n\nD\n2\n5\n19\n\n\nE\n17\n2\n10\n\n\n\n\n\n\nLong-Format\n\n\n\n\n\n\nyear\nstation\nvalue\n\n\n\n\n2021\nA\n10\n\n\n2021\nB\n8\n\n\n2021\nC\n13\n\n\n2021\nD\n2\n\n\n2021\nE\n17\n\n\n2022\nA\n13\n\n\n2022\nB\n1\n\n\n2022\nC\n14\n\n\n2022\nD\n5\n\n\n2022\nE\n2\n\n\n2023\nA\n18\n\n\n2023\nB\n17\n\n\n2023\nC\n9\n\n\n2023\nD\n19\n\n\n2023\nE\n10",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -3018,7 +3040,7 @@
     "href": "slides/04-distributions.html#kontinuierliche-gleichverteilung-mathbfu0-1",
     "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)",
-    "text": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)\n\n\ngleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall\nz.B. \\([0, 1]\\)\nin R: runif, random, uniform\n\n\nrunif(10)\n\n [1] 0.539759953 0.684814359 0.009029229 0.026411867 0.302024529 0.513838710\n [7] 0.782507297 0.718125087 0.191710405 0.508540877\n\n\n \n\nKlassenbildung (Binning): Einteilung der Werte in Klassen",
+    "text": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)\n\n\ngleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall\nz.B. \\([0, 1]\\)\nin R: runif, random, uniform\n\n\nrunif(10)\n\n [1] 0.50776341 0.84530023 0.11758184 0.17743664 0.65554698 0.86826580\n [7] 0.84999413 0.04312942 0.58220316 0.15802466\n\n\n \n\nKlassenbildung (Binning): Einteilung der Werte in Klassen",
     "crumbs": [
       "Statistische Grundlagen",
       "04-Wahrscheinlichkeitsverteilungen"
@@ -3040,18 +3062,18 @@
     "href": "slides/04-distributions.html#kumulative-verteilungsfunktion-von-mathbfux_min-x_max",
     "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Kumulative Verteilungsfunktion von \\(\\mathbf{U}(x_{min}, x_{max})\\)",
-    "text": "Kumulative Verteilungsfunktion von \\(\\mathbf{U}(x_{min}, x_{max})\\)\n\n\nDie cdf (cumulative density function) ist das Integral der Dichtefunktion:\n\\[\nF(x) =\\int_{-\\infty}^{x} f(x) dx\n\\] Die Gesamtfläche (Gesamtwahrscheinlichkeit) ist \\(1.0\\):\n\\[\nF(x) =\\int_{-\\infty}^{+\\infty} f(x) dx = 1\n\\]\nFür die Verteilungsfunktion der Gleichverteilung gilt somit:\n\\[\nF(x) = \\begin{cases}\n         0                     & \\text{für } x &lt; x_{min} \\\\\n         \\frac{x-x_{min}}{x_{max}-x_{min}} & \\text{für } x \\in [x_{min},x_{max}] \\\\\n         1                     & \\text{für } x &gt; x_{max}\n       \\end{cases}\n\\]",
+    "text": "Kumulative Verteilungsfunktion von \\(\\mathbf{U}(x_{min}, x_{max})\\)\n\n\nDie cdf (cumulative distribution function) ist das Integral der Dichtefunktion:\n\\[\nF(x) =\\int_{-\\infty}^{x} f(x) dx\n\\] Die Gesamtfläche (Gesamtwahrscheinlichkeit) ist \\(1.0\\):\n\\[\nF(x) =\\int_{-\\infty}^{+\\infty} f(x) dx = 1\n\\]\nFür die Verteilungsfunktion der Gleichverteilung gilt somit:\n\\[\nF(x) = \\begin{cases}\n         0                     & \\text{für } x &lt; x_{min} \\\\\n         \\frac{x-x_{min}}{x_{max}-x_{min}} & \\text{für } x \\in [x_{min},x_{max}] \\\\\n         1                     & \\text{für } x &gt; x_{max}\n       \\end{cases}\n\\]",
     "crumbs": [
       "Statistische Grundlagen",
       "04-Wahrscheinlichkeitsverteilungen"
     ]
   },
   {
-    "objectID": "slides/04-distributions.html#quantilsfunktion",
-    "href": "slides/04-distributions.html#quantilsfunktion",
+    "objectID": "slides/04-distributions.html#quantilfunktion",
+    "href": "slides/04-distributions.html#quantilfunktion",
     "title": "04-Wahrscheinlichkeitsverteilungen",
-    "section": "Quantilsfunktion",
-    "text": "Quantilsfunktion\n\n… die Umkehrung der kumulativen Verteilungsfunktion.\n\n\n\n\n\n\n\n\n\n\nKumulative Dichtefunktion\n\n\n\n\n\n\n\n\n\n\nQuantilsfunktion\nBeispiel: In welchem Bereich kann man 95% einer Gleichverteilung \\(\\mathbf{U}(40,60)\\) finden?",
+    "section": "Quantilfunktion",
+    "text": "Quantilfunktion\n\n… die Umkehrung der kumulativen Verteilungsfunktion.\n\n\n\n\n\n\n\n\n\n\nKumulative Verteilungsfunktion\n\n\n\n\n\n\n\n\n\n\nQuantilsfunktion\nBeispiel: In welchem Bereich kann man 95% einer Gleichverteilung \\(\\mathbf{U}(40,60)\\) finden?",
     "crumbs": [
       "Statistische Grundlagen",
       "04-Wahrscheinlichkeitsverteilungen"
@@ -3245,83 +3267,6 @@
     ]
   },
   {
-    "objectID": "slides/04-distributions.html#tests-auf-verteilung",
-    "href": "slides/04-distributions.html#tests-auf-verteilung",
-    "title": "04-Wahrscheinlichkeitsverteilungen",
-    "section": "Tests auf Verteilung",
-    "text": "Tests auf Verteilung\n\nManchmal möchte man wissen, ob ein Datensatz zu einer bestimmten Art von Verteilung gehört. Das klingt einfach, ist aber aus theoretischen Gründen ziemlich schwierig:\n\nstatistische Tests prüfen auf Abweichungen von der Nullhypothese\nhier wollen wir aber das Gegenteil testen, ob \\(H_0\\) wahr ist\n\nDies ist in der Tat unmöglich, denn „nicht signifikant“ bedeutet lediglich, dass kein ausreichender Beweis gegen H0​ gefunden wurde. Ein potenzieller Effekt könnte entweder nicht vorhanden oder zu klein sein, um entdeckt zu werden.\nDie meisten statistischen Tests erfordern jedoch keine perfekte Übereinstimmung mit einer bestimmten Verteilung:\n\nt-Test und ANOVA setzen zwar Normalität der Residuen voraus\naber: aufgrund des CLT konvergiert die Verteilung der Summen und Mittelwerte zur Normalverteilung",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "04-Wahrscheinlichkeitsverteilungen"
-    ]
-  },
-  {
-    "objectID": "slides/04-distributions.html#shapiro-wilks-w-test-als-vortest",
-    "href": "slides/04-distributions.html#shapiro-wilks-w-test-als-vortest",
-    "title": "04-Wahrscheinlichkeitsverteilungen",
-    "section": "Shapiro-Wilks-W-Test als Vortest ?",
-    "text": "Shapiro-Wilks-W-Test als Vortest ?\n\\(\\rightarrow\\) Ziel: Prüfung der Normalverteilungs-Annahme für einen nachfolgenden Test\n\nx &lt;- rnorm(100)\nshapiro.test(x)\n\n\n    Shapiro-Wilk normality test\n\ndata:  x\nW = 0.99064, p-value = 0.7165\n\n\n\n\\(\\rightarrow\\) der \\(p\\)-Wert ist größer als 0,05, also würden wir \\(H_0\\) behalten und schlussfolgern, dass nichts gegen die Annahme der Normalität spricht\n\nDie Interpretation des Shapiro-Wilks-Tests ist mit Vorsicht zu genießen:\n\nfür kleine \\(n\\) ist der Test nicht empfindlich genug\nbei großen \\(n\\) ist er überempfindlich\nDie Verwendung von Shapiro-Wilks zur Überprüfung der Normalität für t-Tests und ANOVA wird nicht mehr empfohlen\n\n\n\nAuch die \\(\\chi^2\\)- (Chi-Quadrat-) oder Kolmogorov-Smirnov-Tests werden für Normalitätstests nicht mehr empfohlen, sind aber für andere Testprobleme weiterhin wichtig.",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "04-Wahrscheinlichkeitsverteilungen"
-    ]
-  },
-  {
-    "objectID": "slides/04-distributions.html#grafische-prüfung-der-normalität",
-    "href": "slides/04-distributions.html#grafische-prüfung-der-normalität",
-    "title": "04-Wahrscheinlichkeitsverteilungen",
-    "section": "Grafische Prüfung der Normalität",
-    "text": "Grafische Prüfung der Normalität\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(x\\): theoretische Quantile, bei denen ein Wert bei Normalverteilung gefunden werden sollte\n\\(y\\): normalisierte und geordnete Messwerte (\\(z\\)- Scores)\nskaliert in der Einheit der Standardabweichungen\nNormalverteilung, wenn die Punkte einer Geraden folgen\n\nEmpfehlung: Verwende eine grafische Prüfung. Vertraue nicht auf Shapiro Wilks!",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "04-Wahrscheinlichkeitsverteilungen"
-    ]
-  },
-  {
-    "objectID": "slides/04-distributions.html#prüfung-der-verteilung-für-deskriptive-zwecke",
-    "href": "slides/04-distributions.html#prüfung-der-verteilung-für-deskriptive-zwecke",
-    "title": "04-Wahrscheinlichkeitsverteilungen",
-    "section": "Prüfung der Verteilung für deskriptive Zwecke",
-    "text": "Prüfung der Verteilung für deskriptive Zwecke\n\nIn manchen Disziplinen, z.B. in der Hydrologie, möchte man gelegentlich wissen, welcher Verteilungstyp einen Datensatz am besten beschreibt. Ein Beispiel ist die Extremwertanalyse (z.B. 100-jähriges Hochwasser), da hier das Central Limit Theorem (CLT) nicht greift.\nVorgehensweise\n\nVisuelle Prüfung (besonders auf die tails achten)\n\nHistogramm (erster Eindruck)\nQ-Q-Plots (genauere Passform)\n\nFormale Tests zur Ergänzung (Ausschlussprinzip)\n\nTests: Kolmogorov-Smirnov, Cramér-von Mises oder Anderson-Darling\nAblehnung des Verteilungstyps bei signifikantem \\(p &lt; 0.05\\).\n\nModellselektion\n\nNutzung von AIC/BIC zur Identifikation des optimalen Modells\nBerücksichtigung der physikalischen Plausibilität der Parameter",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "04-Wahrscheinlichkeitsverteilungen"
-    ]
-  },
-  {
-    "objectID": "slides/04-distributions.html#transformation",
-    "href": "slides/04-distributions.html#transformation",
-    "title": "04-Wahrscheinlichkeitsverteilungen",
-    "section": "Transformation",
-    "text": "Transformation\n\nermöglicht die Anwendung von Methoden, die für normalverteilte Daten entwickelt wurden, auf nicht-normalverteilte Fälle\nin der Vergangenheit sehr verbreitet, manchmal immer noch nützlich\nModerne Methoden können bestimmte Verteilungen direkt verarbeiten, z. B. Binomial-, Gamma- oder Poisson-Verteilung.\n\nTransformationen für rechtsschiefe Daten\n\n\\(x'=\\log(x)\\)\n\\(x'=\\log(x + a)\\)\n\\(x'=(x+a)^c\\) (\\(a\\) zwischen 0.5 und 1)\n\\(x'=1/x\\) (“sehr stark”, d. h. in den meisten Fällen zu extrem)\n\\(x'=a - 1/\\sqrt{x}\\) (um die Skala bequemer zu gestalten)\n\\(x'=1/\\sqrt{x}\\) (Kompromiss zwischen \\(\\ln\\) und \\(1/x\\))\n\\(x'=a+bx^c\\) (sehr allgemein, enthält Potenzen und Wurzeln)",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "04-Wahrscheinlichkeitsverteilungen"
-    ]
-  },
-  {
-    "objectID": "slides/04-distributions.html#transformationen-ii",
-    "href": "slides/04-distributions.html#transformationen-ii",
-    "title": "04-Wahrscheinlichkeitsverteilungen",
-    "section": "Transformationen II",
-    "text": "Transformationen II\nTransformationen für Zähldaten\n\n\\(x'=\\sqrt{3/8+x}\\) (Zählungen: 1, 2, 3 \\(\\rightarrow\\) 0.61, 1.17, 1.54, 1.84, )\n\\(x'=\\lg(x+3/8)\\)\n\\(x'=\\log(\\log(x))\\) für riesige Zahlen\n\n\\(\\rightarrow\\) stattdessen ein GLM mit der Familie Poisson oder Quasi-Poisson in Betracht ziehen\nVerhältnisse und Prozentsätze\n\n\\(x'=\\arcsin \\sqrt{x/n}\\)\n\\(x'=\\arcsin \\sqrt{\\frac{x+3/8}{n+3/4}}\\)\n\n\\(\\rightarrow\\) stattdessen ein GLM mit Familie Binomial in Betracht ziehen",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "04-Wahrscheinlichkeitsverteilungen"
-    ]
-  },
-  {
-    "objectID": "slides/04-distributions.html#rangtransformation",
-    "href": "slides/04-distributions.html#rangtransformation",
-    "title": "04-Wahrscheinlichkeitsverteilungen",
-    "section": "Rangtransformation",
-    "text": "Rangtransformation\nBeispiel: Spearman-Korrelation\n\n Datensatz\n\nx &lt;- c(1, 2, 3, 5, 4, 5 ,6,  7)\ny &lt;- c(1, 2, 4, 3, 4, 6, 8, 20)\n\nRänge\n\nrank(x)\n\n[1] 1.0 2.0 3.0 5.5 4.0 5.5 7.0 8.0\n\nrank(y)\n\n[1] 1.0 2.0 4.5 3.0 4.5 6.0 7.0 8.0\n\n\nZwei Berechnungsmöglichkeiten\n\ncor(x, y, method = \"spearman\")\n\n[1] 0.8915663\n\ncor(rank(x), rank(y))\n\n[1] 0.8915663",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "04-Wahrscheinlichkeitsverteilungen"
-    ]
-  },
-  {
     "objectID": "slides/04-distributions.html#zur-erinnerung-der-zentrale-grenzwertsatz-zgws",
     "href": "slides/04-distributions.html#zur-erinnerung-der-zentrale-grenzwertsatz-zgws",
     "title": "04-Wahrscheinlichkeitsverteilungen",
@@ -3348,7 +3293,7 @@
     "href": "slides/04-distributions.html#unterschied-zwischen-stichprobe-und-konfidenzintervall",
     "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Unterschied zwischen Stichprobe und Konfidenzintervall",
-    "text": "Unterschied zwischen Stichprobe und Konfidenzintervall\n\n\nStichprobenintervall: charakterisiert die Verteilung der Daten aus den Parametern der Stichprobe (z.B. Mittelwert, Standardabweichung)\nStandardabweichung \\(s_x\\) misst die Variabilität der ursprünglichen Daten\nrekonstruiert die ursprüngliche Verteilung, wenn ihr Typ bekannt ist (z. B. normal, lognormal)\n\n\n\nKonfidenzintervall: charakterisiert die Genauigkeit eines statistischen Parameters, basierend auf seinem Standardfehler\nSchätzt anhand von \\(\\bar{x}\\) und \\(s_\\bar{x}\\) das Intervall, in dem \\(\\mu\\) mit einer bestimmten Wahrscheinlichkeit gefunden wird\nweniger abhängig von der ursprünglichen Verteilung der Daten aufgrund des ZGWS",
+    "text": "Unterschied zwischen Stichprobe und Konfidenzintervall\n\n\nVorhersageintervall: Charakterisiert die Verteilung der Daten anhand der Parameter der Stichprobe (z. B. Mittelwert, Standardabweichung). Es schätzt den Bereich, in den eine einzelne zukünftige Beobachtung wahrscheinlich fallen wird.\nStandardabweichung \\(s_x\\) misst die Variabilität der ursprünglichen Daten\nrekonstruiert die ursprüngliche Verteilung, wenn ihr Typ bekannt ist (z. B. normal, lognormal)\n\n\n\nKonfidenzintervall: charakterisiert die Genauigkeit eines statistischen Parameters, basierend auf seinem Standardfehler\nSchätzt anhand von \\(\\bar{x}\\) und \\(s_\\bar{x}\\) das Intervall, in dem \\(\\mu\\) mit einer bestimmten Wahrscheinlichkeit gefunden wird\nweniger abhängig von der ursprünglichen Verteilung der Daten aufgrund des ZGWS",
     "crumbs": [
       "Statistische Grundlagen",
       "04-Wahrscheinlichkeitsverteilungen"
@@ -3381,7 +3326,7 @@
     "href": "slides/04-distributions.html#ausreißertest-für-lineare-modelle-mit-bonferroni-korrektur",
     "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Ausreißertest für lineare Modelle mit Bonferroni-Korrektur",
-    "text": "Ausreißertest für lineare Modelle mit Bonferroni-Korrektur\n\nFür lineare Modelle und GLMs können wir den Bonferroni-Ausreißertest aus dem Paket car verwenden.\n\n\nlibrary(car)\nx &lt;- c(rnorm(20), 12) # the 21st value (=12) is an outlier\noutlierTest(lm(x~1))  # x ~ 1 is the null model\n\n   rstudent unadjusted p-value Bonferroni p\n21 11.66351         4.1822e-10   8.7826e-09\n\n\n\\(\\rightarrow\\) Der 21. Wert wird als Ausreißer identifiziert:\n Alternative zu Ausreißertests\n\nVerwendung robuster Parameter und Methoden,\n\nz.B. Median oder getrimmter Mittelwert anstelle des arithmetischen Mittels,\nrobuste lineare Regression „rlm“ anstelle von „lm”\nRangbasierte Methoden wie die Spearman-Korrelation\n\nWichtig Ausreißer können in einer Analyse weggelassen werden, aber die Anzahl und das Ausmaß der Ausreißer müssen erwähnt werden!",
+    "text": "Ausreißertest für lineare Modelle mit Bonferroni-Korrektur\n\nFür lineare Modelle und GLMs können wir den Bonferroni-Ausreißertest aus dem Paket car verwenden.\n\n\nlibrary(car)\nx &lt;- c(rnorm(20), 12)   # der 21. Wert (=12) ist ein Ausreißer\noutlierTest(lm(x ~ 1))  # x ~ 1 ist das \"Nullmodell\"\n\n   rstudent unadjusted p-value Bonferroni p\n21 11.66351         4.1822e-10   8.7826e-09\n\n\n\\(\\rightarrow\\) Der 21. Wert wird als Ausreißer identifiziert.\n Alternative zu Ausreißertests\n\nVerwendung robuster Parameter und Methoden,\n\nz.B. Median oder getrimmter Mittelwert anstelle des arithmetischen Mittels,\nrobuste lineare Regression „rlm“ anstelle von „lm”\nRangbasierte Methoden wie die Spearman-Korrelation\n\nWichtig Ausreißer können in einer Analyse weggelassen werden, aber die Anzahl und das Ausmaß der Ausreißer müssen erwähnt werden!",
     "crumbs": [
       "Statistische Grundlagen",
       "04-Wahrscheinlichkeitsverteilungen"
@@ -3392,7 +3337,7 @@
     "href": "slides/04-distributions.html#extremwerte-in-boxplots",
     "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Extremwerte in Boxplots",
-    "text": "Extremwerte in Boxplots\n\n\nExtremwerte außerhalb der Whiskers, wenn sie mehr als das 1,5-fache der Breite der Interquartilsbox von den Boxgrenzen entfernt sind.\nManchmal auch „Ausreißer“ genannt.\nIch bevorzuge den Begriff „Extremwert“, da es sich um regelmäßige Beobachtungen aus einer schiefen oder ‘heavy tailed’ Verteilung handeln kann.",
+    "text": "Extremwerte in Boxplots\n\n\nExtremwerte außerhalb der Whiskers, wenn sie mehr als das 1,5-fache der Breite der Interquartilsbox von den Boxgrenzen entfernt sind.\n\nManchmal auch „Ausreißer“ genannt.\nIch bevorzuge den Begriff „Extremwert“, da es sich um regelmäßige Beobachtungen aus einer schiefen oder einer ‘heavy tailed’ Verteilung handeln kann.",
     "crumbs": [
       "Statistische Grundlagen",
       "04-Wahrscheinlichkeitsverteilungen"
@@ -3403,7 +3348,7 @@
     "href": "slides/04-distributions.html#beispiel",
     "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Beispiel",
-    "text": "Beispiel\n\npar(mfrow=c(1, 3), las=1)\nelbe &lt;- read.csv(\"https://tpetzoldt.github.io/datasets/data/elbe.csv\")\ndischarge &lt;- elbe$discharge\nboxplot(discharge, main=\"Boxplot des Abflusses\")\nhist(discharge)\nhist(log(discharge - 70))\n\n\nAbflussdaten der Elbe in Dresden in \\(\\mathrm m^3 s^{-1}\\), Datenquelle: Bundesanstalt für Gewässerkunde (BFG), siehe terms and conditions.\n\nLinks: große Anzahl von Extremwerten, sind das Ausreißer?\nMitte: Verteilung ist rechtsschief.\nRechts: Transformation (3-parametrische Lognormalverteilung) \\(\\rightarrow\\) symmetrische Verteilung, keine Ausreißer!",
+    "text": "Beispiel\n\npar(mfrow=c(1, 3), las=1)\nelbe &lt;- read.csv(\"https://tpetzoldt.github.io/datasets/data/elbe.csv\")\ndischarge &lt;- elbe$discharge\nboxplot(discharge, main=\"Boxplot des Abflusses\")\nhist(discharge)\nhist(log(discharge - 70))\n\n\nAbflussdaten der Elbe in Dresden in \\(\\mathrm m^3 s^{-1}\\), Datenquelle: Bundesanstalt für Gewässerkunde (BFG), siehe Nutzungshinweise.\n\nLinks: große Anzahl von Extremwerten, sind das Ausreißer?\nMitte: Verteilung ist rechtsschief.\nRechts: Transformation (3-parametrische Lognormalverteilung)  \\(\\rightarrow\\) symmetrische Verteilung, keine Ausreißer!",
     "crumbs": [
       "Statistische Grundlagen",
       "04-Wahrscheinlichkeitsverteilungen"
@@ -4612,6 +4557,6 @@
     "href": "index.html#autor",
     "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
     "section": "Autor",
-    "text": "Autor\nhomepage +++ github\n2025-09-16"
+    "text": "Autor\nhomepage +++ github\n2025-11-05"
   }
 ]

@@ -688,6 +688,10 @@ lines(xnew, dgamma(xnew, rate=rate, shape=shape), col="red")
 
 -->
 
+<!---- Die folgenden Inhalte wurden größtenteils ins Kapitel "Tests" verschoben --->
+
+<!---
+
 ## Tests auf Verteilung
 
 <br>
@@ -793,13 +797,15 @@ Ein Beispiel ist die Extremwertanalyse (z.B. 100-jähriges Hochwasser), da hier 
     * Berücksichtigung der physikalischen Plausibilität der Parameter
     
 
-## Transformation
+# Transformationen
 
-* ermöglicht die Anwendung von Methoden, die für normalverteilte Daten entwickelt wurden, auf nicht-normalverteilte Fälle
-* in der Vergangenheit sehr verbreitet, manchmal immer noch nützlich
-* Moderne Methoden können bestimmte Verteilungen direkt verarbeiten, z. B. Binomial-, Gamma- oder Poisson-Verteilung.
+* ermöglichen die Anwendung von Methoden, die für normalverteilte Daten entwickelt wurden, auf nicht-normalverteilte Fälle
+* viele moderne Methoden können bestimmte Verteilungen direkt verarbeiten
+* Beispiel: Binomial-, Gamma- oder Poisson-Verteilung.
 
-**Transformationen für rechtsschiefe Daten**
+## Transformationen für rechtsschiefe Daten
+
+<br>
 
 * $x'=\log(x)$
 * [$x'=\log(x + a)$]{.red}
@@ -809,15 +815,19 @@ Ein Beispiel ist die Extremwertanalyse (z.B. 100-jähriges Hochwasser), da hier 
 * $x'=1/\sqrt{x}$ [(Kompromiss zwischen $\ln$ und $1/x$)]{.gray}
 * $x'=a+bx^c$ [(sehr allgemein, enthält Potenzen und Wurzeln)]{.gray}
 
-## Transformationen II
+## Zähldaten und Verhältnisse
 
-**Transformationen für Zähldaten**
+<br>
+
+**Transformationen von Zähldaten**
 
 * $x'=\sqrt{3/8+x}$ [(Zählungen: 1, 2, 3 $\rightarrow$ 0.61, 1.17, 1.54,  1.84, \dots)]{.gray}
 * $x'=\lg(x+3/8)$
 * $x'=\log(\log(x))$ [für riesige Zahlen]{.gray}
 
-[$\rightarrow$ stattdessen ein GLM mit der Familie Poisson oder Quasi-Poisson in Betracht ziehen]{.blue}
+[$\rightarrow$ besser: ein GLM mit der Familie Poisson oder Quasi-Poisson in Betracht ziehen]{.blue}
+
+<br>
 
 **Verhältnisse und Prozentsätze**
 
@@ -825,59 +835,59 @@ Ein Beispiel ist die Extremwertanalyse (z.B. 100-jähriges Hochwasser), da hier 
 * $x'=\arcsin \sqrt{\frac{x+3/8}{n+3/4}}$
 
 [$\rightarrow$ stattdessen ein GLM mit Familie Binomial in Betracht ziehen]{.blue}
-<!------------------------------------------------------------------------------
 
-## Box-Cox transformation
+## Box-Cox-Transformation
 
-Estimate optimal transformation from the class of powers and logarithms
+* Schätzung einer optimalen Transformation aus der Klasse der Potenzen und Logarithmen:
 
 $$
-y' = y^\lambda
+y' = \begin{cases} \frac{y^\lambda - 1}{\lambda} & \text{wenn } \lambda \neq 0 \\ \ln(y) & \text{wenn } \lambda = 0 \end{cases}
 $$
 
-* $\lambda=0$ means that a logarithmic transformation would be
-appropriate.  Function `boxcox` requires a so-called "model
-formula" or the outcome of a linear model (`lm`) as the
-argument. For testing a single sample, we can use the model formula of a "null
-model" to test the full data set without explanation variables
-(`~ 1`). More about model formulas can be found later, in
-the ANOVA chapter.
-
-```{r boxcox}
+```{r boxcox, echo = TRUE, fig.width=16, fig.height=5, fig.align='center'}
 library(MASS)
 dat <- read.csv("https://tpetzoldt.github.io/datasets/data/prk_nit.csv")
 Nit90 <- dat$biovol[dat$group == "nit90"]
 boxcox(Nit90 ~ 1)
 ```
+In vielen praktischen Fällen kann man statt $\frac{y^\lambda - 1}{\lambda}$ auch $y^\lambda$ verwenden.
 
-The dotted vertical lines and the horizontal 95\,\%-line show the
-confidence limits for possible transformations. Here we see that
-either a logarithmic transformation ($\lambda=0$) or a power of
-approximately 0.5 are suitable.
+## Box-Cox-Transformation II
 
-It is also possible to obtain the numerical value directly:
-
-```{r fig=FALSE}
-bc <- boxcox(Nit90 ~ 1, plotit = FALSE)
-str(bc)
-bc$x[bc$y == max(bc$y)]
+```{r boxcox1, echo = TRUE, fig.width=10, fig.height=5, fig.align='center'}
+boxcox(Nit90 ~ 1)
 ```
 
-We should keep in mind that these are approximate numbers so that
-it makes not much sense to use more than one decimal.
 
-It is also possible to test for joint distribution of all groups at once by
-using explanatory variables (here `group`) on the right hand side of
-the model formula:
+* Gepunktete 95\%-Linien: Konfidenzgrenzen für mögliche Transformationen.
+* Beispiel: logarithmische Transformation ($\lambda=0$) oder Potenz $\approx 0.5$
 
-```{r boxcox2}
-#| label: fig-boxcox2
-#| fig-cap: "Log-Likelihood profile of a Box-Cox-transformation for the pooled data sets Nit85 and Nit90."
+Es ist auch möglich, den numerischen Wert direkt zu erhalten:
+
+
+```{r boxcox2, echo=TRUE, fig=FALSE}
+bc <- boxcox(Nit90 ~ 1, plotit = FALSE)
+#str(bc)                # zeigt die Struktur der Variable bc
+bc$x[bc$y == max(bc$y)] # zeige das x für das y, bei dem y maximal ist
+```
+
+Hinweis: Ungefähre Zahlen! Maximal eine Dezimalstelle sinnvoll.
+
+## Box-Cox-Transformation III
+
+<br>
+
+Bei mehreren Gruppen (z.B. für eine ANOVA) erhält man eine gemeinsame 
+Transformation für die gesamte Verteilung (pooled data) über eine geeignete Modellformel.
+
+Beispiel: Datensatz von Biovolumina einer Kieselalgenart mit 2 Gruppen:
+
+```{r boxcox3, echo=TRUE, fig.width=10, fig.height=6, fig.align='center'}
 dat <- read.csv("https://tpetzoldt.github.io/datasets/data/prk_nit.csv")
 boxcox(biovol ~ group, data=dat)
 ```
 
-------------------------------------------------------------------------------->
+
 
 ## Rangtransformation
 
@@ -914,6 +924,10 @@ par(mar=c(4.1, 4.1, 1, 1), las=1)
 plot(x, y, pch=16)
 ```
 :::
+
+--->
+
+# Konfidenzintervalle
 
 
 ## Zur Erinnerung: Der zentrale Grenzwertsatz (ZGWS)
@@ -1042,11 +1056,11 @@ $\rightarrow$ Versuche, den Grund zu finden, warum Werte extrem sind!
 
 ```{r, echo=TRUE}
 library(car)
-x <- c(rnorm(20), 12) # the 21st value (=12) is an outlier
-outlierTest(lm(x~1))  # x ~ 1 is the null model
+x <- c(rnorm(20), 12)   # der 21. Wert (=12) ist ein Ausreißer
+outlierTest(lm(x ~ 1))  # x ~ 1 ist das "Nullmodell"
 ```
 
-$\rightarrow$ Der 21. Wert wird als Ausreißer identifiziert:
+$\rightarrow$ Der 21. Wert wird als Ausreißer identifiziert.
 
 <br>
 **Alternative zu Ausreißertests** 
@@ -1063,9 +1077,8 @@ $\rightarrow$ Der 21. Wert wird als Ausreißer identifiziert:
 <br>
 
 * Extremwerte außerhalb der Whiskers, wenn sie mehr als das 1,5-fache der Breite der Interquartilsbox von den Boxgrenzen entfernt sind.  
-
 * Manchmal auch „Ausreißer“ genannt. 
-* Ich bevorzuge den Begriff „Extremwert“, da es sich um regelmäßige Beobachtungen aus einer schiefen oder 'heavy tailed' Verteilung handeln kann.
+* Ich bevorzuge den Begriff „Extremwert“, da es sich um regelmäßige Beobachtungen aus einer schiefen oder einer 'heavy tailed' Verteilung handeln kann.
 
 ```{r no-outliers, fig.width=9, fig.height=3, fig.align='center'}
 set.seed(123)
@@ -1089,15 +1102,15 @@ hist(log(discharge - 70))
 ```
 
 Abflussdaten der Elbe in Dresden in $\mathrm m^3 s^{-1}$,
-Datenquelle: Bundesanstalt für Gewässerkunde (BFG), siehe [terms and conditions](https://github.com/tpetzoldt/datasets/blob/main/data/elbe_info.txt).
+Datenquelle: Bundesanstalt für Gewässerkunde (BFG), siehe [Nutzungshinweise](https://github.com/tpetzoldt/datasets/blob/main/data/elbe_info.txt).
 
 * **Links:** große Anzahl von Extremwerten, sind das Ausreißer?
 * **Mitte:** Verteilung ist rechtsschief.
-* **Rechts:** Transformation (3-parametrische Lognormalverteilung) 
+* **Rechts:** Transformation (3-parametrische Lognormalverteilung) <br>
 $\rightarrow$ symmetrische Verteilung, keine Ausreißer!
 
 ## Mehr in den Übungen ...
 
 <br>
 
-[https://tpetzoldt.github.io/element-labs/](../element-labs)
+[https://tpetzoldt.github.io/element-labs/](https://tpetzoldt.github.io/element-labs/)
