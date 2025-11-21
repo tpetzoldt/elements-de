@@ -1,6 +1,5 @@
 ---
 title: "07-ANOVA und ANCOVA"
-subtitle: "Applied Statistics -- A Practical Course" 
 date:   "`r Sys.Date()`"
 ---
 
@@ -17,33 +16,33 @@ mypar <- list(las=1, cex.lab=1.4, cex.axis=1.4, lwd=2)
 ```
 
 
-## ANOVA - Analyse der Varianzen
+## ANOVA - Varianzanalyse
 
 <br>
 
 * Prüfung komplexer Hypothesen als Ganzes, z.B.:
-    * mehr als zwei Stichproben (Problem des Mehrfachtests),
-    * mehrere multiple Faktoren (multiway ANOVA)
+    * mehr als zwei Stichproben (Mehrfachtestproblem),
+    * mehrere multiple Faktoren (Mehrfach- ANOVA)
     * Eliminierung von Kovariaten (ANCOVA)
     * feste und/oder zufällige Effekte
-    (Varianzzerlegungsmethoden, Modelle mit gemischten Effekten)
-* Verschiedene Anwendungsszenarien:
+    (Varianzzerlegung, Modelle mit gemischten Effekten)
+* Unterschiedliche Anwendungsszenarien:
     * explorative Anwendung: Welche Einflussfaktoren sind wichtig?
-    * deskriptive Anwendung: Anpassen von Modellen zur Prozessbeschreibung und Vorhersage.
-    * Signifikanztests.
-* ANOVA-Methoden basieren (in den meisten Fällen) auf linearen Modellen.
+    * Signifikanztests
+    * statistische Modellierung: Quantifizierung von Effekten und Abhängigkeiten.
+* ANOVA-Verfahren basieren (meistens) auf linearen Modellen.
 
 
-
-## Ein praxisbezogenes Beispiel
+## Ein Praxisbeispiel
 
 
 ::: {.column width="49%"}
 
 [Suche nach einem geeigneten Medium für Wachstumsexperimente mit Grünalgen]{.darkred}
 
-* billig, einfach zu handhaben
-* geeignet für Schülerkurse und Experimente im Unterricht
+* Schulprojekt aus "Jugend Forscht"
+* geeignet für Kurse in Schule und Studium
+* preisgünstig, einfach zu handhaben
 
 :::
 
@@ -56,7 +55,7 @@ mypar <- list(las=1, cex.lab=1.4, cex.axis=1.4, lwd=2)
 
 * Verwendung eines kommerziellen Düngers mit den Hauptnährstoffen N und P
 * Mineralwasser mit Spurenelementen
-* Enthält Mineralwasser ohne Kohlensäure genügend $\mathrm{CO_2}$?
+* Enthält stilles Mineralwasser genügend $\mathrm{CO_2}$?
 * testen, wie man die Verfügbarkeit von $\mathrm{CO_2}$ für die Photosynthese verbessern kann
 
 
@@ -72,21 +71,20 @@ mypar <- list(las=1, cex.lab=1.4, cex.axis=1.4, lwd=2)
 2. Düngemittellösung in offenen Flaschen ($\mathrm{CO_2}$ aus der Luft)
 3. Düngemittel + Zucker (organische C-Quelle)
 4. Dünger + zusätzliches $\mathrm{HCO_3^-}$ (Zusatz von $\mathrm{CaCO_3}$ zu sprudelndem Mineralwasser)
-5. ein Standard-Algenwachstumsmedium („Basalmedium“) zum Vergleich
-6. deionisiertes („destilliertes“) Wasser und 
+5. Standard-Algenwachstumsmedium („Basalmedium“) zum Vergleich
+6. Deionisiertes („destilliertes“) Wasser und 
 7. Leitungswasser zum Vergleich
 
 
 ## Versuchsaufbau
 
 
-
-![](../img/ruettler.jpg){fig-align="center" fig-alt="bottles with algae on a shaker"}
+![](../img/ruettler.jpg){fig-align="center" fig-alt="Flaschen mit Algenkulturen auf einem Schüttler"}
 
 * jede Behandlung mit 3 Wiederholungen
-* zufällige Platzierung auf einem Schüttler
+* randomisierte Platzierung auf dem Schüttler
 * 16:8 Licht:Dunkel-Zyklus
-* Messung direkt in den Flaschen mit einem selbstgebauten [Trübungsmessgerät](https://tpetzoldt.github.io/growthlab/doc/versuchsaufbau.html)
+* Transmissionsmessung direkt in den Flaschen mit einem selbstgebauten [Messgerät](https://tpetzoldt.github.io/growthlab/doc/versuchsaufbau.html)
 
 ## Ergebnisse
 
@@ -94,7 +92,7 @@ mypar <- list(las=1, cex.lab=1.4, cex.axis=1.4, lwd=2)
 <div class="vbox"></div>
 <div class="hbox">
 ![](../img/ansaetze2.jpg)
-Dünger -- Offene Flasche-- D. + Zucker -- D. + CaCO3 -- Basalmedium -- A. dest -- Leitungswasser
+Dünger -- D. offene Flasche -- D. + Zucker -- D. + CaCO3 -- Basalmedium -- A. dest -- Leitungswasser
 </div>
 
 
@@ -134,11 +132,11 @@ xalgae |>
 ```
 
 * [NA]{.red} bedeutet „nicht verfügbar“, d.h. ein fehlender Wert
-* Die Crosstable-Struktur ist kompakt und leicht zu lesen, aber nicht ideal für die Datenanalyse.
-* $\Rightarrow$ konvertiere sie in ein Long-Format
+* Die Kruztabellenstruktur ist kompakt und übersichtlich, jedoch nicht ideal für die Datenanalyse.
+* $\Rightarrow$ Konvertierung sie in das Langformat
 
 
-## Daten im Long-Format
+## Daten im Langformat
 
 ::: {.column width="59%"}
 
@@ -146,7 +144,7 @@ xalgae |>
 
 ### Vorteile
 
-* sieht „blöd“ aus, ist aber besser für die Datenanalyse
+* sieht „unpraktisch“ aus, ist aber besser für die Datenanalyse
 * abhängige Variable **Wachstum** und <br>Erklärungsvariable **Behandlung** deutlich sichtbar
 * Modellformel: `growth ~ treat`
 * leicht erweiterbar auf $>1$ Erklärungsvariable
@@ -185,7 +183,7 @@ algae <- data.frame(
 )
 ```
 
-... können direkt in den Code eingegeben werden. Eine csv-Datei im Long-Format ist ebenfalls möglich.
+... können direkt in den Code eingegeben werden. Eine csv-Datei im Langformat ist ebenfalls möglich.
 
 ## Boxplot
 
@@ -211,6 +209,7 @@ Besser, denn wir haben nur 2-3 Wiederholungen. Boxplot braucht mehr.
 * Sind die Behandlungen unterschiedlich?
 * Welches Medium ist das beste?
 * Ist das beste Medium signifikant besser als die anderen?
+* Wieviel besser ist das beste Medium (Efektstärke)?
 
 <br>
 **Statistische Hypothesen**
@@ -218,33 +217,35 @@ Besser, denn wir haben nur 2-3 Wiederholungen. Boxplot braucht mehr.
 * $H_0$: das Wachstum ist bei allen Behandlungen gleich
 * $H_A$: Unterschiede zwischen den Medien
 
-## Warum können wir nicht einfach mehrere t-Tests anwenden?
+## Warum nicht einfach mehrere t-Tests?
 
 <br>
 
-* Wenn wir 7 Behandlungen haben und alle gegeneinander testen wollen, brauchen wir:
+* Wenn wir bei 7 Behandlungen jede gegen jede testen wollen, brauchen wir:
 
 $$7 \cdot (7 - 1) / 2 = 21 \qquad\text{Tests.}$$
 
-* Wenn wir $\alpha = 0,05$ setzen, erhalten wir 5% falsch positive Ergebnisse. $\Rightarrow$ [Einer]{.red} von 20 Tests ist im Durchschnitt ein [falsch positiver]{.red}
-* Wenn wir $N$ Tests durchführen, erhöht sich der Gesamtfehler von $\alpha$ im schlimmsten Fall auf $N\cdot\alpha$.
-* Dies wird **alpha-Fehler-Inflation** oder das **Bonferroni-Gesetz** genannt:
+* Bei $\alpha = 0.05$, erhält man 5% falsch positive Ergebnisse.<br> $\Rightarrow$ [Einer]{.red} von 20 Tests ist im Durchschnitt [falsch positiv]{.red}
+* Bei $N$ Tests erhöht sich der Gesamtfehler von $\alpha$ im schlimmsten Fall auf $N\cdot\alpha$.
+* Dies wird **alpha-Fehler-Inflation** oder **Bonferroni-Ungleichung** genannt:
 
 $$
 \alpha_{total} \le \sum_{i=1}^{N} \alpha_i = N \cdot \alpha
 $$
 
 
-Wenn wir das Bonferroni-Gesetz ignorieren, landen wir beim **statistischen Fischen** und erhalten zufällige falsche Ergebnisse.
+Wird die Regel ignoriert, erhält man zufällige falsch-positive Ergebnisse (*statistical fishing*).
 
-# Lösungen
+# Lösungsansätze
 
 :::{.bigfont}
-1. Korrigiere die Alpha-Fehler nach unten, so dass $\alpha_{total} = 0,05$. $\rightarrow$ Bonferroni-Regel.
-2. Verwende eine Methode, die alle Tests gleichzeitig durchführt: die ANOVA.
+1. Korrektur der Alpha-Fehler, so dass $\alpha_{total} = 0.05$ bleibt;<br>
+$\rightarrow$ Bonferroni-Regel.
+2. Verfahren, das das Gesamtproblem behandelt:<br>
+$\rightarrow$ ANOVA.
 :::
 
-## ANOVA: Analyse der Varianzen
+## ANOVA: Varianzanalyse
 
 <br>
 
@@ -259,16 +260,16 @@ s_y^2 = s^2_\mathrm{effect} + s^2_{\varepsilon}
 $$
 :::
 
-* Etwas überraschend: Wir verwenden Varianzen, um Mittelwerte zu vergleichen. 
+* Etwas überraschend: Analyse von Varianzen, um Mittelwerte zu vergleichen. 
 * **Erklärung:** Mittelwertunterschiede tragen zur Gesamtvarianz der ganzen Stichprobe bei. 
 * Die Varianzkomponenten können als **Varianz innerhalb** ($s^2_\varepsilon$) und **Varianz zwischen** Stichproben bezeichnet werden.
-* Die Art und Weise, wie man die Varianzen trennt, ist ein [lineares Modell]{.blue}.
+* Die Varianzentrennung erfolgt über ein [lineares Modell]{.blue}.
 
 ## Beispiel
 
 <br>
 
-Zwei Marken von Clementinenfrüchten aus einem Geschäft „E“, die wir als „EB“ und „EP“ kodieren.
+Zwei Marken von Clementinen aus einem Geschäft „E“, die wir als „EB“ und „EP“ bezeichnen.
 Wir wollen wissen, ob die Premiummarke („P“) und die Basismarke („B“) ein unterschiedliches Gewicht haben.
 
 
@@ -289,7 +290,7 @@ clem$code <- as.numeric(factor(clem$brand))
 clem$code
 ```
 
-## Dann wird eine lineare Regression angewandt:
+## Dann wird eine lineare Regression angewandt
 
 
 ```{r eb-ep-linear, echo=TRUE, eval=TRUE}
@@ -302,11 +303,10 @@ abline(m, col = "blue")
 
 
 
-## Varianzkomponenten
+## Lineares Modell und Varianzkomponenten
 
 <br>
 
-Wir passen ein lineares Modell an und vergleichen die Varianzen:
 
 ```{r eval=FALSE, echo=TRUE}
 m <- lm(weight ~ code, data = clem)
@@ -319,22 +319,56 @@ m <- lm(weight ~ code, data = clem)
 (var_tot <- var(clem$weight))
 ```
 
-**Restvarianz (= innere Varianz)**
+**Restvarianz** (= Varianz innerhalb der Behandlungen)
 
 ```{r, echo=TRUE}
 (var_res <- var(residuals(m)))
 ```
 
-**Erklärte Varianz (= Zwischenvarianz)**
+**Erklärte Varianz** (= Varianz zwischen den Behandlungen)
 
 ```{r, echo=TRUE}
 var_tot - var_res
 ```
-Nun können wir analysieren, ob die Zwischenvarianz groß genug ist, um einen signifikanten Effekt zu begründen. 
+<br>
 
-Dies nennt man eine ANOVA.
+* Das Beispiel zeigt das Grundprinzip.
+* **Aber:**  Die „erklärte Varianz“ ist nicht für den F-Test der ANOVA geeignet, weil die [Freiheitsgrade]{.red} nicht berücksichtigt sind.
 
-## ANOVA
+## Korrekte Berechnung mit Freiheitsgraden
+
+```{r, echo=TRUE}
+# Freiheitsgrade
+n <- nrow(clem)
+k <- length(unique(clem$brand))
+
+df_total     <- n - 1      # -1 df für den Gesamtmittelwert (Intercept)
+df_between   <- k - 1      # df für Gruppenunterschiede (nach Berücksichtigung des Gesamtmittelwerts)
+df_residuals <- n - k      # -1 df pro Gruppe (insgesamt k Gruppen)
+# Prüfung: df_total sollte gleich df_between + df_residuals sein
+c(n = n, k = k, df_total = df_total, df_between = df_between, df_residuals = df_residuals)
+
+
+
+# Sums of squares
+SS_total     <- var_tot * df_total
+SS_residuals <- var_res * df_total  # var(residuals) nutzt n−1
+SS_between   <- SS_total - SS_residuals
+
+# Mean sums of squares
+MS_between   <- SS_between / df_between
+MS_residuals <- SS_residuals / df_residuals
+c(MS_between = MS_between, MS_residuals = MS_residuals)
+
+# F-Test
+F_stat <- MS_between / MS_residuals
+p_val  <- pf(F_stat, df1 = df_between, df2 = df_residuals, lower.tail = FALSE)
+
+c(F = round(F_stat, 3), p = round(p_val, 4))
+```
+[Die ANOVA arbeitet direkt mit den Summen der Quadrate, ohne den Umweg über die Varianzen.]{.gray .smallfont}
+
+## ANOVA in einem Schritt
 
 ```{r, echo=TRUE}
 anova(m)
@@ -348,41 +382,42 @@ anova(m)
 t.test(weight ~ code, data = clem, var.equal=TRUE)
 ```
 
-$\Rightarrow$ die p-Werte sind genau gleich.
+$\Rightarrow$ Die p-Werte sind identisch.
+
+* Bei zwei Gruppen ist die ANOVA (F-Test) äquivalent zum t-Test mit gleichen Varianzen.
+* $F = t^2$, $p$ gleich.
 
 
 
 ## ANOVA mit mehr als 2 Stichproben
 
 
-Zurück zu den Daten über das Algenwachstum. Nennen wir das lineare Modell „m“:
+<br>
+Zurück zu den Daten über das Algenwachstum.
 
 ```{r echo=TRUE}
 m <- lm(growth ~ treat, data = algae)
 ```
 
-<br>
 
-* Wir können die Koeffizienten des linearen Modells mit `summary(m)` ausgeben.
-* Wir interessieren uns aber für den Gesamteffekt und verwenden `anova`.
+* Wir können die Koeffizienten mit `summary(m)` ausgeben.
+* Zunächst interessiert uns der Gesamteffekt, daher verwenden wir `anova(m)`.
 
 ```{r echo=TRUE}
 anova(m)
 ```
 
-* Die ANOVA-Tabelle zeigt F-Tests, die die Signifikanz aller Faktoren prüfen.
-* In der obigen Tabelle haben wir nur einen einzigen Faktor.
+* zeigt den F-Test für den Gesamteffekt des Faktors `treat`.
 
-$\Rightarrow$ Wir sehen, dass die Behandlung einen signifikanten Effekt hat.
+$\Rightarrow$ Der p-Wert ist sehr klein → der Behandlungseffekt ist signifikant.
 
 
 ## Posthoc-Tests
 
-
-* Der Test zeigte, dass der **Faktor** „Behandlung“ einen signifikanten Effekt hatte.
-* Wir wissen noch nicht, welche **Faktorlevel** unterschiedlich waren. 
-
-Der **Tukey-HSD-Test** ist der häufigste.
+* Der F-Test zeigte, dass der Faktor „Behandlung“ einen signifikanten Effekt hat.
+* Wir wissen jedoch noch nicht, **welche spezifischen Gruppen** sich unterscheiden.
+* **Tukey-HSD-Test** (HSD = Honest Significant Difference): am häufigsten verwendeter Post-hoc-Test für ANOVA.  
+* vergleicht alle Paare von Gruppen und berücksichtigt die *family-wise error rate*.
 
 ```{r, echo=TRUE}
 tk <- TukeyHSD(aov(m))
@@ -392,15 +427,14 @@ tk
 ## Grafische Darstellung
 
 ```{r algae-tukey, echo=TRUE}
-par(las = 1)             # las = 1 macht y-Anmerkung horizontal
-par(mar = c(4, 10, 3, 1)) # mehr Platz auf der linken Seite für Achsenbeschriftungen
+par(las = 1)              # Achsenbeschriftungen horizontal
+par(mar = c(4, 10, 3, 1)) # mehr Platz für lange Gruppenbezeichnungen
 plot(tk)
 ```
 
 
 
-## ANOVA Annahmen und Diagnosen
-
+## ANOVA Annahmen und Diagnostik
 
 
 ::: {.column width="49%"}
@@ -409,11 +443,11 @@ Für die ANOVA gelten dieselben Annahmen wie für das lineare Modell.
 
 <br>
 
-1. Unabhängigkeit von Fehlern
-2. Homogenität der Varianz
-3. Annähernde Normalität der Fehler
+1. Unabhängigkeit der Fehler
+2. Homogenität der Varianzen  (Homoskedastizität)
+3. Annähernde Normalverteilung der Fehler
 
-Grafische Überprüfungen werden bevorzugt.
+Grafische Diagnostik wird bevorzugt – sie ist robuster als numerische Tests.
 
 :::
 
@@ -424,51 +458,81 @@ plot(m)
 ```
 :::
 
-## Numerische Tests
 
-<br><br>
 
-::: {.column width="49%"}
+## Test der Varianzhomogenität
 
-**Test der Varianzhomogenität**
+<br>
 
-* Der F-Test vergleicht nur zwei Varianzen.
-* Verschiedene Tests für multiple Varianzen, z.B. Bartlett, Levene, Fligner-Killeen
-* Empfohlen: Fligner-Killeen-Test
+* Der F-Test ist nur für zwei Gruppen geeignet.
+* Für mehr als zwei Gruppen: Bartlett-, Levene- oder Fligner-Killeen-Test.
+* **Empfohlen:** Fligner-Killeen-Test - robust gegenüber Abweichung von Normalverteilung.
+
 
 ```{r, echo=TRUE}
 fligner.test(growth ~ treat, 
              data = algae)
 ```
 
-:::
 
-::: {.column width="49%"}
-**Test der Normalverteilung**
 
-* Der Shapiro-Wilks-Test kann irreführend sein.
-* Verwende eine grafische Methode!
+## Test auf Normalverteilung
 
-```{r algae-qqnorm, echo=TRUE, fig.width=6, fig.height=3}
+* Teste die **Residuen**, nicht die Rohdaten!
+* Der Shapiro-Wilk-Test wird nicht mehr empfohlen:
+    - Bei kleinen Stichproben: hohe Wahrscheinlichkeit für Fehlertyp II<br>
+    [(keine Ablehnung, obwohl Unterschiede existieren).]{.gray}
+    - Bei großen Stichproben: hohe Wahrscheinlichkeit für Fehlertyp I<br>
+    [(Ablehnung, obwohl Unterschiede vernachlässigbar sind.)]{.gray}
+* **Empfohlen**: Grafische Methoden – insbesondere der **QQ-Plot**.
+
+```{r algae-qqnorm, echo=TRUE, fig.width=6, fig.height=5, fig.align='center'}
 qqnorm(residuals(m))
 qqline(residuals(m))
 ```
 
-:::
+
+## Moderne Sichtweise: Keine Vortests mehr!
+
+<br>
+
+Die traditionelle Praxis – Residuen zu testen, bevor man ANOVA durchführt – <br>
+ist nicht mehr zeitgemäß und führt zu gravierenden Problemen:
+
+- Residuen sind erst nach Modellanpassung verfügbar.
+- Bei Vortests müsste man sie „irgendwie vorher“ schätzen, oft durch Pooling.
+- Häufig wurden **Rohdaten** statt Residuen getestet - **Kardinalfehler**.
+- Die Methode stammt aus der Ära manueller Berechnungen.
+
+**Empfohlene Vorgehensweise:**
+
+1. Prüfe, ob ANOVA grundsätzlich angemessen ist:
+    - Fragestellung, 
+    - Unabhängigkeit, 
+    - mögliche Nichtnormalität auf Grund des Versuchsdesigns
+2. **Führe die ANOVA durch** – ohne Vortests.
+3. **Dokumentiere die Diagnostik** – grafisch und kritisch (QQ-Plot, Residuals vs. Fitted).
 
 
-## Einseitige ANOVA mit heterogenen Varianzen
 
-<br><br>
+## Einfache ANOVA mit heterogenen Varianzen
+
+<br>
 
 * Erweiterung des Welch-Tests für $\ge 2$ Stichproben
-* in R genannt `oneway.test`
+* in R `oneway.test` genannt.
 
 ```{r, echo=TRUE}
 oneway.test(growth ~ treat, data = algae)
 ```
 
+Der `oneway.test` berücksichtigt ungleiche Varianzen durch gewichtete Mittelwerte und eine angepasste F-Statistik.
 
+<br>
+
+Die Varianzhomogenität ist wichtiger als die Normalverteilung – insbesondere bei unbalancierten Designs.
+
+ 
 ## Zweiseitige ANOVA
 
 
@@ -501,7 +565,7 @@ plants <- data.frame(No=1:12,
    - keine Wiederholungen pro Faktorkombination
    - dies ist möglich, erlaubt aber keine Identifizierung von Wechselwirkungen
 
-## Daten im Long-Format eingeben
+## Daten im Langformat eingeben
 
 ::: {.column width="59%"}
 

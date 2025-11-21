@@ -1214,7 +1214,7 @@
     "href": "slides/07-anova.html#anwendung",
     "title": "07-ANOVA und ANCOVA",
     "section": "Anwendung",
-    "text": "Anwendung\n\n7 Verschiedene Behandlungen\n\n\nDüngemittellösung in geschlossenen Flaschen\nDüngemittellösung in offenen Flaschen (\\(\\mathrm{CO_2}\\) aus der Luft)\nDüngemittel + Zucker (organische C-Quelle)\nDünger + zusätzliches \\(\\mathrm{HCO_3^-}\\) (Zusatz von \\(\\mathrm{CaCO_3}\\) zu sprudelndem Mineralwasser)\nein Standard-Algenwachstumsmedium („Basalmedium“) zum Vergleich\ndeionisiertes („destilliertes“) Wasser und\nLeitungswasser zum Vergleich",
+    "text": "Anwendung\n\n7 Verschiedene Behandlungen\n\n\nDüngemittellösung in geschlossenen Flaschen\nDüngemittellösung in offenen Flaschen (\\(\\mathrm{CO_2}\\) aus der Luft)\nDüngemittel + Zucker (organische C-Quelle)\nDünger + zusätzliches \\(\\mathrm{HCO_3^-}\\) (Zusatz von \\(\\mathrm{CaCO_3}\\) zu sprudelndem Mineralwasser)\nStandard-Algenwachstumsmedium („Basalmedium“) zum Vergleich\nDeionisiertes („destilliertes“) Wasser und\nLeitungswasser zum Vergleich",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1225,7 +1225,7 @@
     "href": "slides/07-anova.html#versuchsaufbau",
     "title": "07-ANOVA und ANCOVA",
     "section": "Versuchsaufbau",
-    "text": "Versuchsaufbau\n\n\njede Behandlung mit 3 Wiederholungen\nzufällige Platzierung auf einem Schüttler\n16:8 Licht:Dunkel-Zyklus\nMessung direkt in den Flaschen mit einem selbstgebauten Trübungsmessgerät",
+    "text": "Versuchsaufbau\n\n\njede Behandlung mit 3 Wiederholungen\nrandomisierte Platzierung auf dem Schüttler\n16:8 Licht:Dunkel-Zyklus\nTransmissionsmessung direkt in den Flaschen mit einem selbstgebauten Messgerät",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1236,7 +1236,7 @@
     "href": "slides/07-anova.html#ergebnisse",
     "title": "07-ANOVA und ANCOVA",
     "section": "Ergebnisse",
-    "text": "Ergebnisse\n\n\n\n\n Dünger – Offene Flasche– D. + Zucker – D. + CaCO3 – Basalmedium – A. dest – Leitungswasser",
+    "text": "Ergebnisse\n\n\n\n\n Dünger – D. offene Flasche – D. + Zucker – D. + CaCO3 – Basalmedium – A. dest – Leitungswasser",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1247,7 +1247,7 @@
     "href": "slides/07-anova.html#der-datensatz",
     "title": "07-ANOVA und ANCOVA",
     "section": "Der Datensatz",
-    "text": "Der Datensatz\n\n\n\n\n\nTable 1: Wachstum von Tag 2 bis Tag 6 (relative Einheiten)\n\n\n\n\n\n\ntreat\nreplicate 1\nreplicate 2\nreplicate 3\n\n\n\n\nFertilizer\n0.020\n-0.217\n-0.273\n\n\nF. open\n0.940\n0.780\n0.555\n\n\nF.+sugar\n0.188\n-0.100\n0.020\n\n\nF.+CaCO3\n0.245\n0.236\n0.456\n\n\nBas.med.\n0.699\n0.727\n0.656\n\n\nA.dest\n-0.010\n0.000\n-0.010\n\n\nTap water\n0.030\n-0.070\nNA\n\n\n\n\n\n\n\n\n\n\n\nNA bedeutet „nicht verfügbar“, d.h. ein fehlender Wert\nDie Crosstable-Struktur ist kompakt und leicht zu lesen, aber nicht ideal für die Datenanalyse.\n\\(\\Rightarrow\\) konvertiere sie in ein Long-Format",
+    "text": "Der Datensatz\n\n\n\n\n\nTable 1: Wachstum von Tag 2 bis Tag 6 (relative Einheiten)\n\n\n\n\n\n\ntreat\nreplicate 1\nreplicate 2\nreplicate 3\n\n\n\n\nFertilizer\n0.020\n-0.217\n-0.273\n\n\nF. open\n0.940\n0.780\n0.555\n\n\nF.+sugar\n0.188\n-0.100\n0.020\n\n\nF.+CaCO3\n0.245\n0.236\n0.456\n\n\nBas.med.\n0.699\n0.727\n0.656\n\n\nA.dest\n-0.010\n0.000\n-0.010\n\n\nTap water\n0.030\n-0.070\nNA\n\n\n\n\n\n\n\n\n\n\n\nNA bedeutet „nicht verfügbar“, d.h. ein fehlender Wert\nDie Kruztabellenstruktur ist kompakt und übersichtlich, jedoch nicht ideal für die Datenanalyse.\n\\(\\Rightarrow\\) Konvertierung sie in das Langformat",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1269,7 +1269,7 @@
     "href": "slides/07-anova.html#die-daten-in-r",
     "title": "07-ANOVA und ANCOVA",
     "section": "Die Daten in R",
-    "text": "Die Daten in R\n\n\nalgae &lt;- data.frame(\n  treat  = factor(c(\"Fertilizer\", \"Fertilizer\", \"Fertilizer\", \n             \"F. open\", \"F. open\", \"F. open\", \n             \"F.+sugar\", \"F.+sugar\", \"F.+sugar\", \n             \"F.+CaCO3\", \"F.+CaCO3\", \"F.+CaCO3\", \n             \"Bas.med.\", \"Bas.med.\", \"Bas.med.\", \n             \"A.dest\", \"A.dest\", \"A.dest\", \n             \"Tap water\", \"Tap water\"),\n             levels=c(\"Fertilizer\", \"F. open\", \"F.+sugar\", \n                    \"F.+CaCO3\", \"Bas.med.\", \"A.dest\", \"Tap water\")),\n  rep   = c(1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2), \n  growth = c(0.02, -0.217, -0.273, 0.94, 0.78, 0.555, 0.188, -0.1, 0.02, \n             0.245, 0.236, 0.456, 0.699, 0.727, 0.656, -0.01, 0, -0.01, 0.03, -0.07)\n)\n\n… können direkt in den Code eingegeben werden. Eine csv-Datei im Long-Format ist ebenfalls möglich.",
+    "text": "Die Daten in R\n\n\nalgae &lt;- data.frame(\n  treat  = factor(c(\"Fertilizer\", \"Fertilizer\", \"Fertilizer\", \n             \"F. open\", \"F. open\", \"F. open\", \n             \"F.+sugar\", \"F.+sugar\", \"F.+sugar\", \n             \"F.+CaCO3\", \"F.+CaCO3\", \"F.+CaCO3\", \n             \"Bas.med.\", \"Bas.med.\", \"Bas.med.\", \n             \"A.dest\", \"A.dest\", \"A.dest\", \n             \"Tap water\", \"Tap water\"),\n             levels=c(\"Fertilizer\", \"F. open\", \"F.+sugar\", \n                    \"F.+CaCO3\", \"Bas.med.\", \"A.dest\", \"Tap water\")),\n  rep   = c(1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2), \n  growth = c(0.02, -0.217, -0.273, 0.94, 0.78, 0.555, 0.188, -0.1, 0.02, \n             0.245, 0.236, 0.456, 0.699, 0.727, 0.656, -0.01, 0, -0.01, 0.03, -0.07)\n)\n\n… können direkt in den Code eingegeben werden. Eine csv-Datei im Langformat ist ebenfalls möglich.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1302,7 +1302,7 @@
     "href": "slides/07-anova.html#umwandlung-einer-wissenschaftlichen-frage-in-eine-statistische-hypothese",
     "title": "07-ANOVA und ANCOVA",
     "section": "Umwandlung einer wissenschaftlichen Frage in eine statistische Hypothese",
-    "text": "Umwandlung einer wissenschaftlichen Frage in eine statistische Hypothese\n\nWissenschaftliche Fragen\n\nSind die Behandlungen unterschiedlich?\nWelches Medium ist das beste?\nIst das beste Medium signifikant besser als die anderen?\n\n Statistische Hypothesen\n\n\\(H_0\\): das Wachstum ist bei allen Behandlungen gleich\n\\(H_A\\): Unterschiede zwischen den Medien",
+    "text": "Umwandlung einer wissenschaftlichen Frage in eine statistische Hypothese\n\nWissenschaftliche Fragen\n\nSind die Behandlungen unterschiedlich?\nWelches Medium ist das beste?\nIst das beste Medium signifikant besser als die anderen?\nWieviel besser ist das beste Medium (Efektstärke)?\n\n Statistische Hypothesen\n\n\\(H_0\\): das Wachstum ist bei allen Behandlungen gleich\n\\(H_A\\): Unterschiede zwischen den Medien",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1335,7 +1335,7 @@
     "href": "slides/07-anova.html#beispiel",
     "title": "07-ANOVA und ANCOVA",
     "section": "Beispiel",
-    "text": "Beispiel\n\nZwei Marken von Clementinenfrüchten aus einem Geschäft „E“, die wir als „EB“ und „EP“ kodieren. Wir wollen wissen, ob die Premiummarke („P“) und die Basismarke („B“) ein unterschiedliches Gewicht haben.\n\nclem &lt;- data.frame(\n  brand = c(\"EP\", \"EB\", \"EB\", \"EB\", \"EB\", \"EB\", \"EB\", \"EB\", \"EB\", \"EB\", \"EB\", \n            \"EB\", \"EB\", \"EB\", \"EP\", \"EP\", \"EP\", \"EP\", \"EP\", \"EP\", \"EP\", \"EB\", \"EP\"),\n  weight = c(88, 96, 100, 96, 90, 100, 92, 92, 102, 99, 86, 89, 99, 89, 75, 80, \n             81, 96, 82, 98, 80, 107, 88))\n\n Wir kodieren eine Stichprobe („EB“) mit 1 und die andere Stichprobe („EP“) mit 2:\n\nclem$code &lt;- as.numeric(factor(clem$brand))\nclem$code\n\n [1] 2 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 1 2",
+    "text": "Beispiel\n\nZwei Marken von Clementinen aus einem Geschäft „E“, die wir als „EB“ und „EP“ bezeichnen. Wir wollen wissen, ob die Premiummarke („P“) und die Basismarke („B“) ein unterschiedliches Gewicht haben.\n\nclem &lt;- data.frame(\n  brand = c(\"EP\", \"EB\", \"EB\", \"EB\", \"EB\", \"EB\", \"EB\", \"EB\", \"EB\", \"EB\", \"EB\", \n            \"EB\", \"EB\", \"EB\", \"EP\", \"EP\", \"EP\", \"EP\", \"EP\", \"EP\", \"EP\", \"EB\", \"EP\"),\n  weight = c(88, 96, 100, 96, 90, 100, 92, 92, 102, 99, 86, 89, 99, 89, 75, 80, \n             81, 96, 82, 98, 80, 107, 88))\n\n Wir kodieren eine Stichprobe („EB“) mit 1 und die andere Stichprobe („EP“) mit 2:\n\nclem$code &lt;- as.numeric(factor(clem$brand))\nclem$code\n\n [1] 2 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 1 2",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1345,8 +1345,8 @@
     "objectID": "slides/07-anova.html#dann-wird-eine-lineare-regression-angewandt",
     "href": "slides/07-anova.html#dann-wird-eine-lineare-regression-angewandt",
     "title": "07-ANOVA und ANCOVA",
-    "section": "Dann wird eine lineare Regression angewandt:",
-    "text": "Dann wird eine lineare Regression angewandt:\n\nplot(weight ~ code, data = clem, axes = FALSE)\nm &lt;- lm(weight ~ code, data = clem)\naxis(1, at = c(1,2), labels = c(\"EB\", \"EP\")); axis(2); box()\nabline(m, col = \"blue\")",
+    "section": "Dann wird eine lineare Regression angewandt",
+    "text": "Dann wird eine lineare Regression angewandt\n\nplot(weight ~ code, data = clem, axes = FALSE)\nm &lt;- lm(weight ~ code, data = clem)\naxis(1, at = c(1,2), labels = c(\"EB\", \"EP\")); axis(2); box()\nabline(m, col = \"blue\")",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1379,7 +1379,7 @@
     "href": "slides/07-anova.html#anova-mit-mehr-als-2-stichproben",
     "title": "07-ANOVA und ANCOVA",
     "section": "ANOVA mit mehr als 2 Stichproben",
-    "text": "ANOVA mit mehr als 2 Stichproben\nZurück zu den Daten über das Algenwachstum. Nennen wir das lineare Modell „m“:\n\nm &lt;- lm(growth ~ treat, data = algae)\n\n\n\nWir können die Koeffizienten des linearen Modells mit summary(m) ausgeben.\nWir interessieren uns aber für den Gesamteffekt und verwenden anova.\n\n\nanova(m)\n\nAnalysis of Variance Table\n\nResponse: growth\n          Df  Sum Sq Mean Sq F value    Pr(&gt;F)    \ntreat      6 2.35441 0.39240  25.045 1.987e-06 ***\nResiduals 13 0.20368 0.01567                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nDie ANOVA-Tabelle zeigt F-Tests, die die Signifikanz aller Faktoren prüfen.\nIn der obigen Tabelle haben wir nur einen einzigen Faktor.\n\n\\(\\Rightarrow\\) Wir sehen, dass die Behandlung einen signifikanten Effekt hat.",
+    "text": "ANOVA mit mehr als 2 Stichproben\n Zurück zu den Daten über das Algenwachstum.\n\nm &lt;- lm(growth ~ treat, data = algae)\n\n\nWir können die Koeffizienten mit summary(m) ausgeben.\nZunächst interessiert uns der Gesamteffekt, daher verwenden wir anova(m).\n\n\nanova(m)\n\nAnalysis of Variance Table\n\nResponse: growth\n          Df  Sum Sq Mean Sq F value    Pr(&gt;F)    \ntreat      6 2.35441 0.39240  25.045 1.987e-06 ***\nResiduals 13 0.20368 0.01567                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nzeigt den F-Test für den Gesamteffekt des Faktors treat.\n\n\\(\\Rightarrow\\) Der p-Wert ist sehr klein → der Behandlungseffekt ist signifikant.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1390,7 +1390,7 @@
     "href": "slides/07-anova.html#posthoc-tests",
     "title": "07-ANOVA und ANCOVA",
     "section": "Posthoc-Tests",
-    "text": "Posthoc-Tests\n\nDer Test zeigte, dass der Faktor „Behandlung“ einen signifikanten Effekt hatte.\nWir wissen noch nicht, welche Faktorlevel unterschiedlich waren.\n\nDer Tukey-HSD-Test ist der häufigste.\n\ntk &lt;- TukeyHSD(aov(m))\ntk\n\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = m)\n\n$treat\n                            diff         lwr         upr     p adj\nF. open-Fertilizer    0.91500000  0.56202797  1.26797203 0.0000103\nF.+sugar-Fertilizer   0.19266667 -0.16030537  0.54563870 0.5211198\nF.+CaCO3-Fertilizer   0.46900000  0.11602797  0.82197203 0.0069447\nBas.med.-Fertilizer   0.85066667  0.49769463  1.20363870 0.0000231\nA.dest-Fertilizer     0.15000000 -0.20297203  0.50297203 0.7579063\nTap water-Fertilizer  0.13666667 -0.25796806  0.53130140 0.8837597\nF.+sugar-F. open     -0.72233333 -1.07530537 -0.36936130 0.0001312\nF.+CaCO3-F. open     -0.44600000 -0.79897203 -0.09302797 0.0102557\nBas.med.-F. open     -0.06433333 -0.41730537  0.28863870 0.9943994\nA.dest-F. open       -0.76500000 -1.11797203 -0.41202797 0.0000721\nTap water-F. open    -0.77833333 -1.17296806 -0.38369860 0.0001913\nF.+CaCO3-F.+sugar     0.27633333 -0.07663870  0.62930537 0.1727182\nBas.med.-F.+sugar     0.65800000  0.30502797  1.01097203 0.0003363\nA.dest-F.+sugar      -0.04266667 -0.39563870  0.31030537 0.9994197\nTap water-F.+sugar   -0.05600000 -0.45063473  0.33863473 0.9985686\nBas.med.-F.+CaCO3     0.38166667  0.02869463  0.73463870 0.0307459\nA.dest-F.+CaCO3      -0.31900000 -0.67197203  0.03397203 0.0879106\nTap water-F.+CaCO3   -0.33233333 -0.72696806  0.06230140 0.1247914\nA.dest-Bas.med.      -0.70066667 -1.05363870 -0.34769463 0.0001792\nTap water-Bas.med.   -0.71400000 -1.10863473 -0.31936527 0.0004507\nTap water-A.dest     -0.01333333 -0.40796806  0.38130140 0.9999997",
+    "text": "Posthoc-Tests\n\nDer F-Test zeigte, dass der Faktor „Behandlung“ einen signifikanten Effekt hat.\nWir wissen jedoch noch nicht, welche spezifischen Gruppen sich unterscheiden.\nTukey-HSD-Test (HSD = Honest Significant Difference): am häufigsten verwendeter Post-hoc-Test für ANOVA.\n\nvergleicht alle Paare von Gruppen und berücksichtigt die family-wise error rate.\n\n\ntk &lt;- TukeyHSD(aov(m))\ntk\n\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = m)\n\n$treat\n                            diff         lwr         upr     p adj\nF. open-Fertilizer    0.91500000  0.56202797  1.26797203 0.0000103\nF.+sugar-Fertilizer   0.19266667 -0.16030537  0.54563870 0.5211198\nF.+CaCO3-Fertilizer   0.46900000  0.11602797  0.82197203 0.0069447\nBas.med.-Fertilizer   0.85066667  0.49769463  1.20363870 0.0000231\nA.dest-Fertilizer     0.15000000 -0.20297203  0.50297203 0.7579063\nTap water-Fertilizer  0.13666667 -0.25796806  0.53130140 0.8837597\nF.+sugar-F. open     -0.72233333 -1.07530537 -0.36936130 0.0001312\nF.+CaCO3-F. open     -0.44600000 -0.79897203 -0.09302797 0.0102557\nBas.med.-F. open     -0.06433333 -0.41730537  0.28863870 0.9943994\nA.dest-F. open       -0.76500000 -1.11797203 -0.41202797 0.0000721\nTap water-F. open    -0.77833333 -1.17296806 -0.38369860 0.0001913\nF.+CaCO3-F.+sugar     0.27633333 -0.07663870  0.62930537 0.1727182\nBas.med.-F.+sugar     0.65800000  0.30502797  1.01097203 0.0003363\nA.dest-F.+sugar      -0.04266667 -0.39563870  0.31030537 0.9994197\nTap water-F.+sugar   -0.05600000 -0.45063473  0.33863473 0.9985686\nBas.med.-F.+CaCO3     0.38166667  0.02869463  0.73463870 0.0307459\nA.dest-F.+CaCO3      -0.31900000 -0.67197203  0.03397203 0.0879106\nTap water-F.+CaCO3   -0.33233333 -0.72696806  0.06230140 0.1247914\nA.dest-Bas.med.      -0.70066667 -1.05363870 -0.34769463 0.0001792\nTap water-Bas.med.   -0.71400000 -1.10863473 -0.31936527 0.0004507\nTap water-A.dest     -0.01333333 -0.40796806  0.38130140 0.9999997",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1401,7 +1401,7 @@
     "href": "slides/07-anova.html#grafische-darstellung",
     "title": "07-ANOVA und ANCOVA",
     "section": "Grafische Darstellung",
-    "text": "Grafische Darstellung\n\npar(las = 1)             # las = 1 macht y-Anmerkung horizontal\npar(mar = c(4, 10, 3, 1)) # mehr Platz auf der linken Seite für Achsenbeschriftungen\nplot(tk)",
+    "text": "Grafische Darstellung\n\npar(las = 1)              # Achsenbeschriftungen horizontal\npar(mar = c(4, 10, 3, 1)) # mehr Platz für lange Gruppenbezeichnungen\nplot(tk)",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -4558,5 +4558,159 @@
     "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
     "section": "Autor",
     "text": "Autor\nhomepage +++ github\n2025-11-05"
+  },
+  {
+    "objectID": "slides/07-anova.html#anova---varianzanalyse",
+    "href": "slides/07-anova.html#anova---varianzanalyse",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "ANOVA - Varianzanalyse",
+    "text": "ANOVA - Varianzanalyse\n\n\nPrüfung komplexer Hypothesen als Ganzes, z.B.:\n\nmehr als zwei Stichproben (Mehrfachtestproblem),\nmehrere multiple Faktoren (Mehrfach- ANOVA)\nEliminierung von Kovariaten (ANCOVA)\nfeste und/oder zufällige Effekte (Varianzzerlegung, Modelle mit gemischten Effekten)\n\nUnterschiedliche Anwendungsszenarien:\n\nexplorative Anwendung: Welche Einflussfaktoren sind wichtig?\nSignifikanztests\nstatistische Modellierung: Quantifizierung von Effekten und Abhängigkeiten.\n\nANOVA-Verfahren basieren (meistens) auf linearen Modellen.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#ein-praxisbeispiel",
+    "href": "slides/07-anova.html#ein-praxisbeispiel",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Ein Praxisbeispiel",
+    "text": "Ein Praxisbeispiel\n\nSuche nach einem geeigneten Medium für Wachstumsexperimente mit Grünalgen\n\nSchulprojekt aus “Jugend Forscht”\ngeeignet für Kurse in Schule und Studium\npreisgünstig, einfach zu handhaben\n\n\n\nIdee\n\nVerwendung eines kommerziellen Düngers mit den Hauptnährstoffen N und P\nMineralwasser mit Spurenelementen\nEnthält stilles Mineralwasser genügend \\(\\mathrm{CO_2}\\)?\ntesten, wie man die Verfügbarkeit von \\(\\mathrm{CO_2}\\) für die Photosynthese verbessern kann",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#daten-im-langformat",
+    "href": "slides/07-anova.html#daten-im-langformat",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Daten im Langformat",
+    "text": "Daten im Langformat\n\n\nVorteile\n\nsieht „unpraktisch“ aus, ist aber besser für die Datenanalyse\nabhängige Variable Wachstum und Erklärungsvariable Behandlung deutlich sichtbar\nModellformel: growth ~ treat\nleicht erweiterbar auf \\(&gt;1\\) Erklärungsvariable\n\n\n\n\n\n\n\ntreat\nrep\ngrowth\n\n\n\n\nFertilizer\n1\n0.020\n\n\nFertilizer\n2\n-0.217\n\n\nFertilizer\n3\n-0.273\n\n\nF. open\n1\n0.940\n\n\nF. open\n2\n0.780\n\n\nF. open\n3\n0.555\n\n\nF.+sugar\n1\n0.188\n\n\nF.+sugar\n2\n-0.100\n\n\nF.+sugar\n3\n0.020\n\n\nF.+CaCO3\n1\n0.245\n\n\nF.+CaCO3\n2\n0.236\n\n\nF.+CaCO3\n3\n0.456",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#warum-nicht-einfach-mehrere-t-tests",
+    "href": "slides/07-anova.html#warum-nicht-einfach-mehrere-t-tests",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Warum nicht einfach mehrere t-Tests?",
+    "text": "Warum nicht einfach mehrere t-Tests?\n\n\nWenn wir bei 7 Behandlungen jede gegen jede testen wollen, brauchen wir:\n\n\\[7 \\cdot (7 - 1) / 2 = 21 \\qquad\\text{Tests.}\\]\n\nBei \\(\\alpha = 0.05\\), erhält man 5% falsch positive Ergebnisse. \\(\\Rightarrow\\) Einer von 20 Tests ist im Durchschnitt falsch positiv\nBei \\(N\\) Tests erhöht sich der Gesamtfehler von \\(\\alpha\\) im schlimmsten Fall auf \\(N\\cdot\\alpha\\).\nDies wird alpha-Fehler-Inflation oder Bonferroni-Ungleichung genannt:\n\n\\[\n\\alpha_{total} \\le \\sum_{i=1}^{N} \\alpha_i = N \\cdot \\alpha\n\\]\nWird die Regel ignoriert, erhält man zufällige falsch-positive Ergebnisse (statistical fishing).",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#anova-varianzanalyse",
+    "href": "slides/07-anova.html#anova-varianzanalyse",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "ANOVA: Varianzanalyse",
+    "text": "ANOVA: Varianzanalyse\n\nGrundgedanke\n\nAufteilung der Gesamtvarianz in Wirkung(en) und Fehler:\n\n\n\\[\ns_y^2 = s^2_\\mathrm{effect} + s^2_{\\varepsilon}\n\\]\n\n\nEtwas überraschend: Analyse von Varianzen, um Mittelwerte zu vergleichen.\nErklärung: Mittelwertunterschiede tragen zur Gesamtvarianz der ganzen Stichprobe bei.\nDie Varianzkomponenten können als Varianz innerhalb (\\(s^2_\\varepsilon\\)) und Varianz zwischen Stichproben bezeichnet werden.\nDie Varianzentrennung erfolgt über ein lineares Modell.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#lineares-modell-und-varianzkomponenten",
+    "href": "slides/07-anova.html#lineares-modell-und-varianzkomponenten",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Lineares Modell und Varianzkomponenten",
+    "text": "Lineares Modell und Varianzkomponenten\n\n\nm &lt;- lm(weight ~ code, data = clem)\n\nGesamtvarianz\n\n(var_tot &lt;- var(clem$weight))\n\n[1] 68.98814\n\n\nRestvarianz (= Varianz innerhalb der Behandlungen)\n\n(var_res &lt;- var(residuals(m)))\n\n[1] 43.25\n\n\nErklärte Varianz (= Varianz zwischen den Behandlungen)\n\nvar_tot - var_res\n\n[1] 25.73814\n\n\n\n\nDas Beispiel zeigt das Grundprinzip.\nAber: Die „erklärte Varianz“ ist nicht für den F-Test der ANOVA geeignet, weil die Freiheitsgrade nicht berücksichtigt sind.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#korrekte-berechnung-mit-freiheitsgraden",
+    "href": "slides/07-anova.html#korrekte-berechnung-mit-freiheitsgraden",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Korrekte Berechnung mit Freiheitsgraden",
+    "text": "Korrekte Berechnung mit Freiheitsgraden\n\n# Freiheitsgrade\nn &lt;- nrow(clem)\nk &lt;- length(unique(clem$brand))\n\ndf_total     &lt;- n - 1      # -1 df für den Gesamtmittelwert (Intercept)\ndf_between   &lt;- k - 1      # df für Gruppenunterschiede (nach Berücksichtigung des Gesamtmittelwerts)\ndf_residuals &lt;- n - k      # -1 df pro Gruppe (insgesamt k Gruppen)\n# Prüfung: df_total sollte gleich df_between + df_residuals sein\nc(n = n, k = k, df_total = df_total, df_between = df_between, df_residuals = df_residuals)\n\n           n            k     df_total   df_between df_residuals \n          23            2           22            1           21 \n\n# Sums of squares\nSS_total     &lt;- var_tot * df_total\nSS_residuals &lt;- var_res * df_total  # var(residuals) nutzt n−1\nSS_between   &lt;- SS_total - SS_residuals\n\n# Mean sums of squares\nMS_between   &lt;- SS_between / df_between\nMS_residuals &lt;- SS_residuals / df_residuals\nc(MS_between = MS_between, MS_residuals = MS_residuals)\n\n  MS_between MS_residuals \n   566.23913     45.30952 \n\n# F-Test\nF_stat &lt;- MS_between / MS_residuals\np_val  &lt;- pf(F_stat, df1 = df_between, df2 = df_residuals, lower.tail = FALSE)\n\nc(F = round(F_stat, 3), p = round(p_val, 4))\n\n     F      p \n12.497  0.002 \n\n\nDie ANOVA arbeitet direkt mit den Summen der Quadrate, ohne den Umweg über die Varianzen.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#daten-im-langformat-eingeben",
+    "href": "slides/07-anova.html#daten-im-langformat-eingeben",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Daten im Langformat eingeben",
+    "text": "Daten im Langformat eingeben\n\n\n\nplants &lt;- data.frame(No = 1:12,\n                    growth = c(6.6, 7.2, 6.9, 8.3, 7.9, 9.2,\n                               8.3, 8.7, 8.1, 8.5, 9.1, 9.0),\n                    fert   = rep(c(\"A\", \"B\", \"C\"), each=2),\n                    light   = rep(c(\"low\", \"high\"), each=6)\n          )\n\n\n\n\n\n\n\nNo\ngrowth\nfert\nlight\n\n\n\n\n1\n6.6\nA\nlow\n\n\n2\n7.2\nA\nlow\n\n\n3\n6.9\nB\nlow\n\n\n4\n8.3\nB\nlow\n\n\n5\n7.9\nC\nlow\n\n\n6\n9.2\nC\nlow\n\n\n7\n8.3\nA\nhigh\n\n\n8\n8.7\nA\nhigh\n\n\n9\n8.1\nB\nhigh\n\n\n10\n8.5\nB\nhigh\n\n\n11\n9.1\nC\nhigh\n\n\n12\n9.0\nC\nhigh",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#anova-in-einem-schritt",
+    "href": "slides/07-anova.html#anova-in-einem-schritt",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "ANOVA in einem Schritt",
+    "text": "ANOVA in einem Schritt\n\nanova(m)\n\nAnalysis of Variance Table\n\nResponse: weight\n          Df Sum Sq Mean Sq F value   Pr(&gt;F)   \ncode       1 566.24  566.24  12.497 0.001963 **\nResiduals 21 951.50   45.31                    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nEin t-Test zum Vergleich\n\nt.test(weight ~ code, data = clem, var.equal=TRUE)\n\n\n    Two Sample t-test\n\ndata:  weight by code\nt = 3.5351, df = 21, p-value = 0.001963\nalternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0\n95 percent confidence interval:\n  4.185911 16.147423\nsample estimates:\nmean in group 1 mean in group 2 \n       95.50000        85.33333 \n\n\n\\(\\Rightarrow\\) Die p-Werte sind identisch.\n\nBei zwei Gruppen ist die ANOVA (F-Test) äquivalent zum t-Test mit gleichen Varianzen.\n\\(F = t^2\\), \\(p\\) gleich.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#anova-annahmen-und-diagnostik",
+    "href": "slides/07-anova.html#anova-annahmen-und-diagnostik",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "ANOVA Annahmen und Diagnostik",
+    "text": "ANOVA Annahmen und Diagnostik\n\nFür die ANOVA gelten dieselben Annahmen wie für das lineare Modell.\n\n\nUnabhängigkeit der Fehler\nHomogenität der Varianzen (Homoskedastizität)\nAnnähernde Normalverteilung der Fehler\n\nGrafische Diagnostik wird bevorzugt – sie ist robuster als numerische Tests.\n\n\npar(mfrow=c(2, 2))\nplot(m)",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#test-der-varianzhomogenität",
+    "href": "slides/07-anova.html#test-der-varianzhomogenität",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Test der Varianzhomogenität",
+    "text": "Test der Varianzhomogenität\n\n\nDer F-Test ist nur für zwei Gruppen geeignet.\nFür mehr als zwei Gruppen: Bartlett-, Levene- oder Fligner-Killeen-Test.\nEmpfohlen: Fligner-Killeen-Test - robust gegenüber Abweichung von Normalverteilung.\n\n\nfligner.test(growth ~ treat, \n             data = algae)\n\n\n    Fligner-Killeen test of homogeneity of variances\n\ndata:  growth by treat\nFligner-Killeen:med chi-squared = 4.2095, df = 6, p-value = 0.6483",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#test-auf-normalverteilung",
+    "href": "slides/07-anova.html#test-auf-normalverteilung",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Test auf Normalverteilung",
+    "text": "Test auf Normalverteilung\n\nTeste die Residuen, nicht die Rohdaten!\nDer Shapiro-Wilk-Test wird nicht mehr empfohlen:\n\nBei kleinen Stichproben: hohe Wahrscheinlichkeit für Fehlertyp II (keine Ablehnung, obwohl Unterschiede existieren).\nBei großen Stichproben: hohe Wahrscheinlichkeit für Fehlertyp I (Ablehnung, obwohl Unterschiede vernachlässigbar sind.)\n\nEmpfohlen: Grafische Methoden – insbesondere der QQ-Plot.\n\n\nqqnorm(residuals(m))\nqqline(residuals(m))",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#moderne-sichtweise-keine-vortests-mehr",
+    "href": "slides/07-anova.html#moderne-sichtweise-keine-vortests-mehr",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Moderne Sichtweise: Keine Vortests mehr!",
+    "text": "Moderne Sichtweise: Keine Vortests mehr!\n\nDie traditionelle Praxis – Residuen zu testen, bevor man ANOVA durchführt –  ist nicht mehr zeitgemäß und führt zu gravierenden Problemen:\n\nResiduen sind erst nach Modellanpassung verfügbar.\nBei Vortests müsste man sie „irgendwie vorher“ schätzen, oft durch Pooling.\nHäufig wurden Rohdaten statt Residuen getestet - Kardinalfehler.\nDie Methode stammt aus der Ära manueller Berechnungen.\n\nEmpfohlene Vorgehensweise:\n\nPrüfe, ob ANOVA grundsätzlich angemessen ist:\n\nFragestellung,\nUnabhängigkeit,\nmögliche Nichtnormalität auf Grund des Versuchsdesigns\n\nFühre die ANOVA durch – ohne Vortests.\nDokumentiere die Diagnostik – grafisch und kritisch (QQ-Plot, Residuals vs. Fitted).",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#einfache-anova-mit-heterogenen-varianzen",
+    "href": "slides/07-anova.html#einfache-anova-mit-heterogenen-varianzen",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Einfache ANOVA mit heterogenen Varianzen",
+    "text": "Einfache ANOVA mit heterogenen Varianzen\n Die Varianzhomogenität ist wichtiger als die Normalverteilung – insbesondere bei unbalancierten Designs. \n\nErweiterung des Welch-Tests für \\(\\ge 2\\) Stichproben\nin R oneway.test genannt.\n\n\noneway.test(growth ~ treat, data = algae)\n\n\n    One-way analysis of means (not assuming equal variances)\n\ndata:  growth and treat\nF = 115.09, num df = 6.0000, denom df = 4.6224, p-value = 6.57e-05\n\n\nDer oneway.test berücksichtigt ungleiche Varianzen durch gewichtete Mittelwerte und eine angepasste F-Statistik – ideal für unbalancierte oder heterogene Daten.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
   }
 ]

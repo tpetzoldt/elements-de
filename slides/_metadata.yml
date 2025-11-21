@@ -35,6 +35,7 @@ format:
     data-transition-speed: fast
     navigation-mode: linear
     code-line-numbers: false
+    emoji: true
     footer: "<span style='color: white; font-size: small; font-weight:400; float: right; margin-top: 40px; margin-right: 4%;'> [&#x1F3E0; Home](../) </span>"
 bibliography: ../bib.bib
 csl: ../apa.csl
