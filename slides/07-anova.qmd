@@ -3,6 +3,7 @@ title: "07-ANOVA und ANCOVA"
 date:   "`r Sys.Date()`"
 ---
 
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library("dplyr")
