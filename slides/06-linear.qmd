@@ -3,7 +3,6 @@ title: "06-Lineare Regression"
 date:   "`r Sys.Date()`"
 --- 
 
-# Achtung: deutsche Übersetzung muss noch geprüft werden
 
 <style>
 .add-space{
@@ -30,14 +29,14 @@ abline(lm(y~x), col="red")
 **Grundlegend für viele statistische Methoden**
 
 * Lineare Regression einschließlich einiger (auf den ersten Blick) „nichtlinearer“ Funktionen
-* ANOVA, ANCOVA, GLM (gleichzeitiges Testen von mehreren Stichproben oder mehreren Faktoren)
+* Tests für zwei oder mehr Stichproben oder Faktoren: ANOVA, ANCOVA, GLM...
 * Multivariate Statistik (z. B. PCA)
 * Zeitreihenanalyse (z. B. ARIMA)
 * Imputation (Schätzung von fehlenden Werten)
 
 
 
-## Method of least squares
+## Methode der kleinsten Quadrate
 
 $$
 RSS = \sum_{i=1}^n (y_i - \hat{y}_i)^2 = \sum_{i=1}^n  \varepsilon^2 \qquad \text{(residual sum of squares)}
@@ -74,38 +73,40 @@ text(8,4, substitute(s[epsilon]^2 == xxx, list(xxx=round(var(yres),1))), cex=2)
 :::
 
 \begin{align}
-  \text{Gesamtvarianz} &= \text{Varianzaufklärung} &+& \text{Restvarianz}\\
-                    s^2_y &= s^2_{y|x}               &+& s^2_{\varepsilon}
+  \text{Gesamtvarianz} &= \text{erklärte Varianz} & + & \text{Restvarianz}\\
+                  ^2_y &= s^2_{y|x}               & + & s^2_{\varepsilon}
 \end{align}
 
 
 ## Das Bestimmtheitsmaß
 
 \begin{align}
-     r^2 & = \frac{\text{Varianzaufklärung}}{\text{Gesamtvarianz}}\\
+     r^2 & = \frac{\text{erklärte Varianz}}{\text{Gesamtvarianz}}\\
          & = \frac{s^2_{y|x}}{s^2_y}\\
 \end{align}
 
-Sie kann auch als Verhältnis zwischen der Summe der Quadrate der Residuen (RSS) und der Gesamtsumme (TSS = total sum of squares) ausgedrückt werden:
+... kann als Verhältnis zwischen der Summe der Residuenquadrate (RSS) und der Gesamtsumme (TSS = total sum of squares) ausgedrückt werden:
 
 $$
     r^2 = 1-\frac{s^2_{\varepsilon}}{s^2_{y}} = 1-\frac{RSS}{TSS} =  1- \frac{\sum(y_i -\hat{y}_i)^2}{\sum(y_i - \bar{y})^2}
 $$
 
-* abgeleitet von der „Summe der Quadrate“, skaliert als relative Varianz
+* „Summe der Quadrate“, skaliert als relative Varianz
 * identisch mit der quadrierten Pearson-Korrelation $r^2$ (im linearen Fall)
-* Sehr nützliche Interpretation: Prozentsatz der Varianz der Rohdaten, der durch das Modell erklärt wird.
+* Sehr nützliche Interpretation:<br>
+  $\rightarrow$ Prozentsatz der Varianz der Rohdaten, der durch das Modell erklärt wird.
 
 
-Zum Beispiel: [$r^2= 1-$ `r round(var(yres),1)` $/$ `r round(var(y),1)`
+Im Beispiel: [$r^2 = 1-$ `r round(var(yres),1)` $/$ `r round(var(y),1)`
 $=$ `r 1-round(var(yres),1)/round(var(y),1)`]{.blue}
 
 
-## Minimierung der RSS
+## Analytische Lösung
 
-* Analytische Lösung: Minimierung der Summe der Quadrate ($\sum \varepsilon^2$)
+* Minimierung der Summe der Quadrate ($\sum \varepsilon^2$)
+* Minimale RSS $\longleftarrow$ partielle 1. Ableitungen aller Parameter ($\partial p = 0$)
 * Lineares Gleichungssystem
-* Minimale RSS $\longleftarrow$ partielle 1. Ableitungen ($\partial$)
+
     
 **Für $y=a \cdot x + b$ mit 2 Parametern:** $\frac{\partial\sum \varepsilon^2}{\partial{a}}=0$, $\frac{\partial\sum \varepsilon^2}{\partial{b}}=0$:
 
@@ -118,12 +119,12 @@ $=$ `r 1-round(var(yres),1)/round(var(y),1)`]{.blue}
 
 Lösung des linearen Gleichungssystems:
 
-\begin{align}
-b &=\frac {\sum x_iy_i - \frac{1}{n}(\sum x_i \sum y_i)} {\sum x_i^2 - \frac{1}{n}(\sum x_i)^2}\\
-a &=\frac {\sum y_i - b \sum x_i}{n}
-\end{align}
+$$
+b =\frac {\sum x_iy_i - \frac{1}{n}(\sum x_i \sum y_i)} {\sum x_i^2 - \frac{1}{n}(\sum x_i)^2}, \quad
+a =\frac {\sum y_i - b \sum x_i}{n}
+$$
 
-* Lösung für eine beliebige Anzahl von Parametern mit Matrixalgebra
+* Lösung für eine beliebige Anzahl von Parametern mit Matrixalgebra.
 
 
 
@@ -170,12 +171,12 @@ plot(m, which=2)
 * Plot der Residuen vs. gefittet: gibt es noch irgendwelche **Restmuster**?
 * Q-Q- Plot, Histogramm: Ist die Verteilung der Residuen **näherungsweise** normal?
 
-Verwende grafische Methoden für die Normalität, vertraue in diesem Fall nicht auf Shapiro-Wilks.
+Prüfe annähernde Normalität grafisch, vertraue nicht auf Shapiro-Wilks.
 
 
 ## Konfidenzintervalle der Parameter
 
-* Basierend auf Standardfehlern und der t-Verteilung, ähnlich wie beim KI des Mittelwerts
+* Basierend auf Standardfehlern und t-Verteilung, ähnlich wie beim CI des Mittelwerts
 
 \begin{align}
 a & \pm t_{1-\alpha/2, n-2} \cdot s_a\\
@@ -187,7 +188,7 @@ summary(m)
 ```
 
 <br>
-[Beispiel: KI von a: $a \pm t_{1-\alpha/2, n-2} \cdot s_a = `r round(coef(m)[1], 5)` \pm 
+[Beispiel: CI von a: $a \pm t_{1-\alpha/2, n-2} \cdot s_a = `r round(coef(m)[1], 5)` \pm 
 `r round(qt(0.975, length(residuals(m))-1), 2)` \cdot `r round(summary(m)$coefficients[1,2], 5)`$]{.blue}
 
 ## Konfidenzintervall und Vorhersageintervall
@@ -212,11 +213,11 @@ lines(newdata$x, predlim[,3], col="red")
 
 * [**Konfidenzintervall:**]{.blue}
     - Zeigt den Bereich, in dem die „wahre Regressionslinie“ zu 95 % erwartet wird.
-    - Die Breite dieses Bereichs nimmt mit zunehmendem $n$ ab
+    - Die Breite dieses Bereichs nimmt mit zunehmendem $n$ ab.
     - analog zum Standardfehler
 * [**Vorhersageintervall:**]{.red}
-    - Zeigt den Bereich an, in dem die Vorhersage für einen einzelnen Wert (zu 95%) erwartet wird.
-    - Die Breite ist unabhängig vom Stichprobenumfang $n$
+    - Zeigt den Bereich, in dem die Vorhersage für einen einzelnen Wert (zu 95%) erwartet wird.
+    - Die Breite ist unabhängig vom Stichprobenumfang $n$.
     - analog zur Standardabweichung
 
 
@@ -247,8 +248,8 @@ lines(newdata$x, predlim[,3], col = "red")
 ```
 
 * Die Variable `newdata`:
-    - überspannt den Bereich der `x`-Werte in kleinen Schritten, um eine glatte Kurve zu erhalten
-    - eine einzige Spalte mit genau demselben Namen `x` wie in der Modellformel
+    - überspannt den Bereich der `x`-Werte in kleinen Schritten für eine glatte Kurve
+    - hier: eine einzige Spalte mit genau demselben Namen `x` wie in der Modellformel
     - bei multipler Regression: eine Spalte pro Erklärungsvariable
 
 
@@ -260,22 +261,22 @@ par(mfrow=c(2,2))
 par(mar=c(4.1, 5.1, 3.1, 1.1))
 set.seed(123)
 x <- exp(rmvnorm(n=100, mean=c(5,5), sigma=matrix(c(1,0.8,0.8,1), ncol=2)))
-plot(x, xlab="x", ylab="y", las=1, pch=16, cex=0.5, main="a) fan-shaped pattern")
+plot(x, xlab="x", ylab="y", las=1, pch=16, cex=0.5, main="a) Sprühdosenmuster")
 abline(lm(x[,2]~x[,1]), col="red")
 
 x <- seq(1, 10, length=100)
 y <- exp(0.3*x) + rnorm(x, mean=5, sd=1)
-plot(x, y, xlab="x", ylab="y", las=1, pch=16, cex=0.5, main="b) nonlinear dependency")
+plot(x, y, xlab="x", ylab="y", las=1, pch=16, cex=0.5, main="b) Nichtlinearität")
 abline(lm(y~x), col="red")
 
 x <- rmvnorm(n=100, mean=c(5,5), sigma=matrix(c(1,0.8,0.8,1), ncol=2))
 x[,2] <- exp(x[,2])
-plot(x, xlab="x", ylab="y", las=1, pch=16, cex=0.5, main="c) variance of x depends on x")
+plot(x, xlab="x", ylab="y", las=1, pch=16, cex=0.5, main="c) Varianz hängt von x ab")
 abline(lm(x[,2] ~ x[,1]), col="red")
 
 x <- rmvnorm(n=20, mean=c(5,5), sigma=matrix(c(0.3,0.0,0.0,0.3), ncol=2))
 x[1,] <- c(8,8)
-plot(x, xlab="x", ylab="y", las=1, pch=16, cex=0.5, xlim=c(0,10), ylim=c(0,10), main="d) contains outlier")
+plot(x, xlab="x", ylab="y", las=1, pch=16, cex=0.5, xlim=c(0,10), ylim=c(0,10), main="d) Ausreißer")
 abline(lm(x[,2]~x[,1]), col="red")
 ```
 
@@ -317,7 +318,7 @@ bptest(y~x)
 * Ausreißer [(abhängig vom Muster)]{.gray}
    * Verwendung von Transformationen (z.B. Doppellog)
    * Verwendung von Ausreißer-Tests, z.B. `outlierTest` aus Paket **car** 
-   * robuste Regression mit IWLS (iteratively re-weighted least squares) aus dem Paket **MASS**
+   * robuste Regression mit IWLS aus dem Paket **MASS**
 
 
 ## Robuste Regression mit IWLS
@@ -345,12 +346,14 @@ legend("topleft", c("OLS", "IWLS-M", "IWLS-MM"),
        lty = c("dashed", "solid", "solid"))
 ```
 
-* IWLS: iterierte, neu gewichtete kleinste Quadrate (engl. iterated re-weighted least squares)
-* OLS (gewöhnliche kleinste Quadrate, engl. ordinary least squares) ist eine „normale“ lineare Regression.
-* M-Schätzung und MM-Schätzung sind zwei verschiedene Ansätze, Details in @venables_modern_2013
+* OLS (gewöhnliche kleinste Quadrate, engl. ordinary least squares) ist die „normale“ Regression.
+* IWLS: iterated re-weighted least squares
+* M- bzw. MM-Schätzung: zwei verschiedene Ansätze, Details in @venables_modern_2013
 * robuste Regression ist dem Ausschluss von Ausreißern vorzuziehen
 
 ## Code der IWLS-Regression
+
+<br>
 
 
 ```{r iwls-plot, echo=TRUE, eval=FALSE}
@@ -366,6 +369,6 @@ legend("topleft", c("OLS", "IWLS-M", "IWLS-MM"),
  * @gelman_data_2007 Data analysis using regression and multilevel hierarchical models (Vol. 1).
    Cambridge University Press, New York.
 
-## Referenzen
+## Literaturverzeichnis
 
 <br>
