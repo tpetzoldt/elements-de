@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Thomas Petzoldt">
-  <meta name="dcterms.date" content="2025-11-12">
+  <meta name="dcterms.date" content="2025-11-22">
   <title>Elemente der statistischen Datenanalyse und Statistik mit R – 06-Lineare Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -232,17 +232,16 @@ Thomas Petzoldt
 </div>
 </div>
 
-  <p class="date">2025-11-12</p>
+  <p class="date">2025-11-22</p>
 </section>
-<section id="achtung-deutsche-übersetzung-muss-noch-geprüft-werden" class="title-slide slide level1 center">
-<h1>Achtung: deutsche Übersetzung muss noch geprüft werden</h1>
+<section class="slide level2">
+
 <style>
 .add-space{
   padding-right: 5%;
 }
 </style>
 </section>
-
 <section>
 <section id="lineare-regression" class="title-slide slide level1 center">
 <h1>Lineare Regression</h1>
@@ -254,17 +253,17 @@ Thomas Petzoldt
 y_i = \alpha + \beta_1 x_{i,1} + \beta_2 x_{i,2} + \cdots + \beta_p x_{i,p} + \varepsilon_i
 \]</span></p>
 
-<img data-src="06-linear_files/figure-revealjs/linear-model-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"><p><strong>Grundlegend für viele statistische Methoden</strong></p>
+<img data-src="06-linear_files/figure-revealjs/linear-model-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"><p><strong>Grundlage vieler statistischer Verfahren</strong></p>
 <ul>
 <li>Lineare Regression einschließlich einiger (auf den ersten Blick) „nichtlinearer“ Funktionen</li>
-<li>ANOVA, ANCOVA, GLM (gleichzeitiges Testen von mehreren Stichproben oder mehreren Faktoren)</li>
+<li>Tests für zwei oder mehr Stichproben oder Faktoren: ANOVA, ANCOVA, GLM…</li>
 <li>Multivariate Statistik (z. B. PCA)</li>
 <li>Zeitreihenanalyse (z. B. ARIMA)</li>
 <li>Imputation (Schätzung von fehlenden Werten)</li>
 </ul>
 </section>
-<section id="method-of-least-squares" class="slide level2">
-<h2>Method of least squares</h2>
+<section id="methode-der-kleinsten-quadrate" class="slide level2">
+<h2>Methode der kleinsten Quadrate</h2>
 <p><span class="math display">\[
 RSS = \sum_{i=1}^n (y_i - \hat{y}_i)^2 = \sum_{i=1}^n  \varepsilon^2 \qquad \text{(residual sum of squares)}
 \]</span></p>
@@ -289,33 +288,33 @@ RSS = \sum_{i=1}^n (y_i - \hat{y}_i)^2 = \sum_{i=1}^n  \varepsilon^2 \qquad \tex
 </div>
 </div>
 </div><p><span class="math display">\[\begin{align}
-  \text{Gesamtvarianz} &amp;= \text{Varianzaufklärung} &amp;+&amp; \text{Restvarianz}\\
-                    s^2_y &amp;= s^2_{y|x}               &amp;+&amp; s^2_{\varepsilon}
+  \text{Gesamtvarianz} &amp;= \text{erklärte Varianz} &amp; + &amp; \text{Restvarianz}\\
+                  ^2_y &amp;= s^2_{y|x}               &amp; + &amp; s^2_{\varepsilon}
 \end{align}\]</span></p>
 </section>
 <section id="das-bestimmtheitsmaß" class="slide level2">
 <h2>Das Bestimmtheitsmaß</h2>
 <p><span class="math display">\[\begin{align}
-     r^2 &amp; = \frac{\text{Varianzaufklärung}}{\text{Gesamtvarianz}}\\
+     r^2 &amp; = \frac{\text{erklärte Varianz}}{\text{Gesamtvarianz}}\\
          &amp; = \frac{s^2_{y|x}}{s^2_y}\\
 \end{align}\]</span></p>
-<p>Sie kann auch als Verhältnis zwischen der Summe der Quadrate der Residuen (RSS) und der Gesamtsumme (TSS = total sum of squares) ausgedrückt werden:</p>
+<p>… kann als Verhältnis zwischen der Summe der Residuenquadrate (RSS) und der Gesamtsumme (TSS = total sum of squares) ausgedrückt werden:</p>
 <p><span class="math display">\[
     r^2 = 1-\frac{s^2_{\varepsilon}}{s^2_{y}} = 1-\frac{RSS}{TSS} =  1- \frac{\sum(y_i -\hat{y}_i)^2}{\sum(y_i - \bar{y})^2}
 \]</span></p>
 <ul>
-<li>abgeleitet von der „Summe der Quadrate“, skaliert als relative Varianz</li>
+<li>„Summe der Quadrate“, skaliert als relative Varianz</li>
 <li>identisch mit der quadrierten Pearson-Korrelation <span class="math inline">\(r^2\)</span> (im linearen Fall)</li>
-<li>Sehr nützliche Interpretation: Prozentsatz der Varianz der Rohdaten, der durch das Modell erklärt wird.</li>
+<li>Sehr nützliche Interpretation:<br> <span class="math inline">\(\rightarrow\)</span> Prozentsatz der Varianz der Rohdaten, der durch das Modell erklärt wird.</li>
 </ul>
-<p>Zum Beispiel: <span class="blue"><span class="math inline">\(r^2= 1-\)</span> 15.3 <span class="math inline">\(/\)</span> 40.8 <span class="math inline">\(=\)</span> 0.625</span></p>
+<p>Im Beispiel: <span class="blue"><span class="math inline">\(r^2 = 1-\)</span> 15.3 <span class="math inline">\(/\)</span> 40.8 <span class="math inline">\(=\)</span> 0.625</span></p>
 </section>
-<section id="minimierung-der-rss" class="slide level2">
-<h2>Minimierung der RSS</h2>
+<section id="analytische-lösung" class="slide level2">
+<h2>Analytische Lösung</h2>
 <ul>
-<li>Analytische Lösung: Minimierung der Summe der Quadrate (<span class="math inline">\(\sum \varepsilon^2\)</span>)</li>
+<li>Minimierung der Summe der Quadrate (<span class="math inline">\(\sum \varepsilon^2\)</span>)</li>
+<li>Minimale RSS <span class="math inline">\(\longleftarrow\)</span> partielle 1. Ableitungen aller Parameter (<span class="math inline">\(\partial p = 0\)</span>)</li>
 <li>Lineares Gleichungssystem</li>
-<li>Minimale RSS <span class="math inline">\(\longleftarrow\)</span> partielle 1. Ableitungen (<span class="math inline">\(\partial\)</span>)</li>
 </ul>
 <p><strong>Für <span class="math inline">\(y=a \cdot x + b\)</span> mit 2 Parametern:</strong> <span class="math inline">\(\frac{\partial\sum \varepsilon^2}{\partial{a}}=0\)</span>, <span class="math inline">\(\frac{\partial\sum \varepsilon^2}{\partial{b}}=0\)</span>:</p>
 <p><br></p>
@@ -324,12 +323,12 @@ RSS = \sum_{i=1}^n (y_i - \hat{y}_i)^2 = \sum_{i=1}^n  \varepsilon^2 \qquad \tex
       \frac{\partial \sum(\hat{y_i} - y_i)^2}{\partial b} &amp;= \frac{\partial \sum(a + b \cdot x_i - y_i)^2}{\partial b} = 0
 \end{align}\]</span></p>
 <p>Lösung des linearen Gleichungssystems:</p>
-<p><span class="math display">\[\begin{align}
-b &amp;=\frac {\sum x_iy_i - \frac{1}{n}(\sum x_i \sum y_i)} {\sum x_i^2 - \frac{1}{n}(\sum x_i)^2}\\
-a &amp;=\frac {\sum y_i - b \sum x_i}{n}
-\end{align}\]</span></p>
+<p><span class="math display">\[
+b =\frac {\sum x_iy_i - \frac{1}{n}(\sum x_i \sum y_i)} {\sum x_i^2 - \frac{1}{n}(\sum x_i)^2}, \quad
+a =\frac {\sum y_i - b \sum x_i}{n}
+\]</span></p>
 <ul>
-<li>Lösung für eine beliebige Anzahl von Parametern mit Matrixalgebra</li>
+<li>Lösung für eine beliebige Anzahl von Parametern mit Matrixalgebra.</li>
 </ul>
 </section>
 <section id="signifikanz-der-regression" class="slide level2">
@@ -347,7 +346,7 @@ a &amp;=\frac {\sum y_i - b \sum x_i}{n}
 <li><strong>Gleiche Varianz der Fehler:</strong> Residuen sind homogen um die Regressionsgerade verteilt</li>
 <li><strong>Normalität der Fehler:</strong> die „Annahme, die im Allgemeinen <span class="blue">am wenigsten wichtig ist</span>“</li>
 </ol>
-<p>Siehe: <span class="citation" data-cites="gelman_data_2007">Gelman &amp; Hill (<a href="#/referenzen" role="doc-biblioref" onclick="">2007</a>)</span> : Data analysis using regression …</p>
+<p>Siehe: <span class="citation" data-cites="gelman_data_2007">Gelman &amp; Hill (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2007</a>)</span> : Data analysis using regression …</p>
 </section>
 <section id="diagnostik" class="slide level2">
 <h2>Diagnostik</h2>
@@ -360,12 +359,12 @@ a &amp;=\frac {\sum y_i - b \sum x_i}{n}
 <li>Plot der Residuen vs.&nbsp;gefittet: gibt es noch irgendwelche <strong>Restmuster</strong>?</li>
 <li>Q-Q- Plot, Histogramm: Ist die Verteilung der Residuen <strong>näherungsweise</strong> normal?</li>
 </ul>
-<p>Verwende grafische Methoden für die Normalität, vertraue in diesem Fall nicht auf Shapiro-Wilks.</p>
+<p>Prüfe annähernde Normalität grafisch, vertraue nicht auf Shapiro-Wilks.</p>
 </section>
 <section id="konfidenzintervalle-der-parameter" class="slide level2">
 <h2>Konfidenzintervalle der Parameter</h2>
 <ul>
-<li>Basierend auf Standardfehlern und der t-Verteilung, ähnlich wie beim KI des Mittelwerts</li>
+<li>Basierend auf Standardfehlern und t-Verteilung, ähnlich wie beim CI des Mittelwerts</li>
 </ul>
 <p><span class="math display">\[\begin{align}
 a &amp; \pm t_{1-\alpha/2, n-2} \cdot s_a\\
@@ -394,7 +393,7 @@ Multiple R-squared:  0.9769,    Adjusted R-squared:  0.9756
 F-statistic: 761.1 on 1 and 18 DF,  p-value: 3.514e-16</code></pre>
 </div>
 </div>
-<p><br> <span class="blue">Beispiel: KI von a: <span class="math inline">\(a \pm t_{1-\alpha/2, n-2} \cdot s_a = 2.5074 \pm
+<p><br> <span class="blue">Beispiel: CI von a: <span class="math inline">\(a \pm t_{1-\alpha/2, n-2} \cdot s_a = 2.5074 \pm
 2.09 \cdot 0.87338\)</span></span></p>
 </section>
 <section id="konfidenzintervall-und-vorhersageintervall" class="slide level2">
@@ -404,13 +403,13 @@ F-statistic: 761.1 on 1 and 18 DF,  p-value: 3.514e-16</code></pre>
 <li><span class="blue"><strong>Konfidenzintervall:</strong></span>
 <ul>
 <li>Zeigt den Bereich, in dem die „wahre Regressionslinie“ zu 95 % erwartet wird.</li>
-<li>Die Breite dieses Bereichs nimmt mit zunehmendem <span class="math inline">\(n\)</span> ab</li>
+<li>Die Breite dieses Bereichs nimmt mit zunehmendem <span class="math inline">\(n\)</span> ab.</li>
 <li>analog zum Standardfehler</li>
 </ul></li>
 <li><span class="red"><strong>Vorhersageintervall:</strong></span>
 <ul>
-<li>Zeigt den Bereich an, in dem die Vorhersage für einen einzelnen Wert (zu 95%) erwartet wird.</li>
-<li>Die Breite ist unabhängig vom Stichprobenumfang <span class="math inline">\(n\)</span></li>
+<li>Zeigt den Bereich, in dem die Vorhersage für einen einzelnen Wert (zu 95%) erwartet wird.</li>
+<li>Die Breite ist unabhängig vom Stichprobenumfang <span class="math inline">\(n\)</span>.</li>
 <li>analog zur Standardabweichung</li>
 </ul></li>
 </ul>
@@ -443,8 +442,8 @@ F-statistic: 761.1 on 1 and 18 DF,  p-value: 3.514e-16</code></pre>
 <ul>
 <li>Die Variable <code>newdata</code>:
 <ul>
-<li>überspannt den Bereich der <code>x</code>-Werte in kleinen Schritten, um eine glatte Kurve zu erhalten</li>
-<li>eine einzige Spalte mit genau demselben Namen <code>x</code> wie in der Modellformel</li>
+<li>überspannt den Bereich der <code>x</code>-Werte in kleinen Schritten für eine glatte Kurve</li>
+<li>hier: eine einzige Spalte mit genau demselben Namen <code>x</code> wie in der Modellformel</li>
 <li>bei multipler Regression: eine Spalte pro Erklärungsvariable</li>
 </ul></li>
 </ul>
@@ -502,7 +501,7 @@ BP = 3.3989, df = 1, p-value = 0.06524</code></pre>
 <ul>
 <li>Verwendung von Transformationen (z.B. Doppellog)</li>
 <li>Verwendung von Ausreißer-Tests, z.B. <code>outlierTest</code> aus Paket <strong>car</strong></li>
-<li>robuste Regression mit IWLS (iteratively re-weighted least squares) aus dem Paket <strong>MASS</strong></li>
+<li>robuste Regression mit IWLS aus dem Paket <strong>MASS</strong></li>
 </ul></li>
 </ul>
 </section>
@@ -510,14 +509,15 @@ BP = 3.3989, df = 1, p-value = 0.06524</code></pre>
 <h2>Robuste Regression mit IWLS</h2>
 
 <img data-src="06-linear_files/figure-revealjs/iwls-plot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
-<li>IWLS: iterierte, neu gewichtete kleinste Quadrate (engl. iterated re-weighted least squares)</li>
-<li>OLS (gewöhnliche kleinste Quadrate, engl. ordinary least squares) ist eine „normale“ lineare Regression.</li>
-<li>M-Schätzung und MM-Schätzung sind zwei verschiedene Ansätze, Details in <span class="citation" data-cites="venables_modern_2013">Venables &amp; Ripley (<a href="#/referenzen" role="doc-biblioref" onclick="">2013</a>)</span></li>
+<li>OLS (gewöhnliche kleinste Quadrate, engl. ordinary least squares) ist die „normale“ Regression.</li>
+<li>IWLS: iterated re-weighted least squares</li>
+<li>M- bzw. MM-Schätzung: zwei verschiedene Ansätze, Details in <span class="citation" data-cites="venables_modern_2013">Venables &amp; Ripley (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2013</a>)</span></li>
 <li>robuste Regression ist dem Ausschluss von Ausreißern vorzuziehen</li>
 </ul>
 </section>
 <section id="code-der-iwls-regression" class="slide level2">
 <h2>Code der IWLS-Regression</h2>
+<p><br></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"MASS"</span>)</span>
 <span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a></span>
@@ -545,14 +545,14 @@ BP = 3.3989, df = 1, p-value = 0.06524</code></pre>
 <section id="weiterführende-literatur" class="title-slide slide level1 center">
 <h1>Weiterführende Literatur</h1>
 <ul>
-<li><span class="citation" data-cites="kleiber_applied_2008">Kleiber &amp; Zeileis (<a href="#/referenzen" role="doc-biblioref" onclick="">2008</a>)</span> Applied econometrics with R. Springer Verlag.</li>
-<li><span class="citation" data-cites="venables_modern_2013">Venables &amp; Ripley (<a href="#/referenzen" role="doc-biblioref" onclick="">2013</a>)</span> Modern applied statistics with S-PLUS (3rd ed.). Springer Science &amp; Business Media.</li>
-<li><span class="citation" data-cites="fox_r_2018">Fox &amp; Weisberg (<a href="#/referenzen" role="doc-biblioref" onclick="">2018</a>)</span> An R companion to applied regression. Sage publications.</li>
-<li><span class="citation" data-cites="gelman_data_2007">Gelman &amp; Hill (<a href="#/referenzen" role="doc-biblioref" onclick="">2007</a>)</span> Data analysis using regression and multilevel hierarchical models (Vol. 1). Cambridge University Press, New York.</li>
+<li><span class="citation" data-cites="kleiber_applied_2008">Kleiber &amp; Zeileis (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2008</a>)</span> Applied econometrics with R. Springer Verlag.</li>
+<li><span class="citation" data-cites="venables_modern_2013">Venables &amp; Ripley (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2013</a>)</span> Modern applied statistics with S-PLUS (3rd ed.). Springer Science &amp; Business Media.</li>
+<li><span class="citation" data-cites="fox_r_2018">Fox &amp; Weisberg (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2018</a>)</span> An R companion to applied regression. Sage publications.</li>
+<li><span class="citation" data-cites="gelman_data_2007">Gelman &amp; Hill (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2007</a>)</span> Data analysis using regression and multilevel hierarchical models (Vol. 1). Cambridge University Press, New York.</li>
 </ul>
 </section>
-<section id="referenzen" class="slide level2 smaller scrollable">
-<h2>Referenzen</h2>
+<section id="literaturverzeichnis" class="slide level2 smaller scrollable">
+<h2>Literaturverzeichnis</h2>
 <p><br></p>
 
 

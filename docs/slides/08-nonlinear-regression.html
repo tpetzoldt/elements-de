@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.42">
 
   <meta name="author" content="Thomas Petzoldt">
-  <meta name="dcterms.date" content="2025-11-12">
+  <meta name="dcterms.date" content="2025-11-22">
   <title>Elemente der statistischen Datenanalyse und Statistik mit R – 08-Nichtlineare Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -232,29 +232,24 @@ Thomas Petzoldt
 </div>
 </div>
 
-  <p class="date">2025-11-12</p>
+  <p class="date">2025-11-22</p>
 </section>
-<section>
-<section id="achtung-deutsche-übersetzung-muss-noch-geprüft-werden" class="title-slide slide level1 center">
-<h1>Achtung: deutsche Übersetzung muss noch geprüft werden</h1>
-
-</section>
-<section id="nichtlineare-regression" class="slide level2">
-<h2>Nichtlineare Regression</h2>
-<p>Viele Phänomene in der Natur sind nichtlinear!</p>
+<section id="viele-phänomene-in-der-natur-sind-nichtlinear." class="slide level2">
+<h2>Viele Phänomene in der Natur sind nichtlinear.</h2>
+<p><br></p>
 <p><strong>Linear oder nichtlinear?</strong></p>
 <ul>
-<li>Einige nichtlineare Probleme können mit linearen Methoden gelöst werden</li>
-<li>z.B. Polynome oder periodische (Sinus- und Cosinus-) Funktionen</li>
-<li>andere können durch Transformationen angepasst werden</li>
+<li>Einige nichtlineare Probleme können mit linearen Methoden gelöst werden:
+<ul>
+<li>z.B. Polynome oder periodische (Sinus- und Cosinus-) Funktionen,</li>
+</ul></li>
+<li>andere können durch Transformationen angepasst werden.</li>
 </ul>
 <p><strong>Beispiel</strong></p>
-<p><span class="math display">\[y = a \cdot x^b\]</span> kann umgewandelt werden in:</p>
+<p><span class="math display">\[y = a \cdot x^b\]</span> kann umgeformt werden in:</p>
 <p><span class="math display">\[\ln(y) = \ln(a) + b \cdot \ln(x)\]</span></p>
 <ul>
-<li>aber: Linearisierung transformiert auch die Residuen</li>
-<li>die Transformation ist manchmal richtig und manchmal falsch</li>
-<li>Homogenität der Varianzen</li>
+<li>Aber: Eine Linearisierung transformiert auch die Residuen. → Das kann zu verzerrten (biased) Schätzungen führen</li>
 </ul>
 </section>
 <section id="linearisierung-oder-direkte-nichtlineare-anpassung" class="slide level2">
@@ -264,65 +259,88 @@ Thomas Petzoldt
 <ul>
 <li>Logarithmus, Quadratwurzel, Kehrwerte …</li>
 <li>können angewandt werden, wenn die Restvarianz homogen bleibt (oder wird).</li>
-<li>aber in einigen Fällen führen die Transformationen zu Heteroskedastizität<br> <span class="math inline">\(\Rightarrow\)</span> <strong>verfälschte</strong> Regressionsparameter.</li>
+<li>In einigen Fällen wird die Residuenvarianz sogar stabilisiert,</li>
+<li>in anderen Fällen führt eine Transformation zu Heteroskedastizität<br> <span class="math inline">\(\Rightarrow\)</span> <strong>verzerrte</strong> (biased) Regressionsparameter.</li>
 </ul>
 <p><strong>Nichtlineare Regression</strong></p>
 <ul>
-<li>sehr flexible, benutzerdefinierte Funktionen</li>
+<li>sehr flexible, fast beliebige benutzerdefinierte Funktionen</li>
 <li>keine Transformation erforderlich</li>
 <li>aber: erfordert <strong>iterative</strong> Optimierungsmethoden</li>
 <li>theoretisch können nur lokale Optima gefunden werden</li>
 <li>Parameter sind nicht in allen Fällen <strong>identifizierbar</strong></li>
 </ul>
 </section>
-<section id="nichtlineare-regression-1" class="slide level2">
+<section id="nichtlineare-regression" class="slide level2">
 <h2>Nichtlineare Regression</h2>
 <p><br></p>
-<p><strong>Iterative Suche nach dem Minimum der Summe der Quadrate</strong></p>
+<p><strong>Iterative Suche nach dem Minimum der Summe der kleinsten Quadrate</strong></p>
 
 <img data-src="../img/optimization.png" class="r-stretch"></section>
 <section id="wie-lässt-sich-das-globale-minimum-finden" class="slide level2">
 <h2>Wie lässt sich das globale Minimum finden?</h2>
 <p><br></p>
-<p><strong>Anpassungsgüte:</strong> Residuensumme der quadrierten Differenzen <span class="math inline">\(RSS\)</span>:</p>
+<p><strong>Anpassungsgüte:</strong> Summe der Residuenquadrate <span class="math inline">\(\mathbf{RSS}\)</span>:</p>
 <p><span class="math display">\[
-RSS = \sum_{i=1}^n\left(y_i- f(\mathbf x_i, \mathbf p)\right)^2 = \min !
+\mathbf{RSS} = \sum_{i=1}^n\left(y_i- f(\mathbf x_i, \mathbf p)\right)^2 = \min !
 \]</span></p>
-<p>mit <span class="math inline">\(y\)</span>: abhängige Variable, <span class="math inline">\(\mathbf x\)</span>: Matrix der unabhängigen Variablen,<span class="math inline">\(\mathbf p\)</span>: Parametervektor, <span class="math inline">\(n\)</span>: Stichprobenumfang</p>
-<p><strong>Verwendung eines iterativen Lösers</strong> <span class="math inline">\(\rightarrow\)</span> siehe nächste Folien</p>
-<p><strong>Nichtlinearer Bestimmungskoeffizient <span class="math inline">\(R^2\)</span></strong></p>
+<p>mit</p>
 <ul>
-<li>steht in keinem Zusammenhang mit dem (linearen) Korrelationskoeffizienten</li>
-<li>kann aus den Rest- und Gesamtvarianzen berechnet werden</li>
+<li><span class="math inline">\(y\)</span>: abhängige Variable,</li>
+<li><span class="math inline">\(\mathbf x\)</span>: Matrix der unabhängigen Variablen</li>
+<li><span class="math inline">\(\mathbf p\)</span>: Parametervektor</li>
+<li><span class="math inline">\(n\)</span>: Stichprobenumfang</li>
+</ul>
+<p><strong>Verwendung eines iterativen Lösers</strong> <span class="math inline">\(\rightarrow\)</span> siehe nächste Folien</p>
+</section>
+<section id="nichtlineares-bestimmtheitsmaß-r2" class="slide level2">
+<h2>Nichtlineares Bestimmtheitsmaß <span class="math inline">\(r^2\)</span></h2>
+<p><br></p>
+<ul>
+<li>misst den Anteil der erklärten Varianz</li>
+<li>kann aus den Rest- und Gesamtvarianz berechnet werden</li>
 </ul>
 <p><span class="math display">\[
-R^2 = 1 - \frac{\text{Varianz der Residuen}}{\text{Varianz der y-Daten}} = 1- \frac{s^2_\varepsilon}{s^2_y}
+r^2 = 1 - \frac{\text{Varianz der Residuen}}{\text{Varianz der } y\text{-Werte}} = 1 - \frac{s^2_\varepsilon}{s^2_y}
 \]</span></p>
 <ul>
-<li>nichtlinear <span class="math inline">\(r^2\)</span> misst den Anteil der erklärten Varianz</li>
-<li>… andere Indizes können zusätzlich verwendet werden, z.B. MSE, RMSE, NSE, …</li>
+<li>identisch mit der Nash-Sutcliffe-Effizienz (NSE), einem Standard-Gütemaß der Hydrologie</li>
+<li>Nichtlineares <span class="math inline">\(r^2\)</span> steht in keinem Zusammenhang mit dem Korrelationskoeffizienten.</li>
+<li>Weitere Gütemaße: MSE, RMSE, bias, <span class="math inline">\(r_P\)</span>, <span class="math inline">\(r_S\)</span></li>
+</ul>
+<p><strong>Verwechslungsgefahr</strong></p>
+<ul>
+<li>Manchmal wird <span class="math inline">\(r^2\)</span> als Quadrat der Korrelation zwischen beobachteten und modellierten Werten definiert.</li>
+<li>Diese Version ignoriert einen möglichen <strong>bias</strong> <span class="math inline">\(\rightarrow\)</span> keine Aussage zu erklärten Varianz!</li>
 </ul>
 </section>
 <section id="allgemeines-prinzip-von-optimierungsalgorithmen" class="slide level2">
 <h2>Allgemeines Prinzip von Optimierungsalgorithmen</h2>
 <p><br></p>
-<p>Das Minimum der quadrierten Residuen (RSS) wird durch <span class="blue">Iteration</span> gesucht.:</p>
-<p><br></p>
+<p>Das Minimum der Residuenquadrate (RSS) wird durch <span class="blue">Iteration</span> gesucht.</p>
 <ol type="1">
 <li>Beginne mit einer Anfangsschätzung für den Parametersatz.</li>
 <li>Versuche, einen Parametersatz mit niedrigerer RSS zu finden.</li>
 <li>Ist der neue Parametersatz besser?
 <ul>
 <li>Nein: Verwerfe die neuen Parameter und gehe zu 2</li>
-<li>Ja: Akzeptiere die neuen Parameter und springe zu 4</li>
+<li>Ja: Akzeptiere die neuen Parameter und gehe zu 4</li>
 </ul></li>
 <li>Ist der neue Parametersatz gut genug?
 <ul>
-<li>Nein: Springe zu 2</li>
-<li>Ja: Springe zu 5</li>
+<li>Nein: gehe zu 2</li>
+<li>Ja: gehe zu 5</li>
 </ul></li>
 <li>Parametersatz gefunden.</li>
 </ol>
+<p><strong>Hinweise</strong></p>
+<ul>
+<li>Oft wird ein <strong>Konvergenzkriterium</strong> verwendet (z.B. nur noch kleine Änderung der RSS).<br>
+</li>
+<li>Der Algorithmus kann in ein <strong>lokales Minimum</strong> laufen.<br>
+</li>
+<li>Die <strong>Anfangsschätzung</strong> ist entscheidend!</li>
+</ul>
 </section>
 <section id="deterministische-methoden" class="slide level2">
 <h2>Deterministische Methoden</h2>
@@ -338,7 +356,7 @@ R^2 = 1 - \frac{\text{Varianz der Residuen}}{\text{Varianz der y-Daten}} = 1- \f
 <ul>
 <li>quadratische Approximation der RSS-Funktion</li>
 <li>Versuche, das Minimum zu schätzen</li>
-<li><span class="math inline">\(\rightarrow\)</span> berücksichtigt die Krümmung</li>
+<li><span class="math inline">\(\rightarrow\)</span> berücksichtigt die Krümmung (Hesse-Matrix)</li>
 <li><span class="math inline">\(\rightarrow\)</span> ist schneller für „gut funktionierende“ Probleme</li>
 <li>mehrere Versionen:<br> quasi-Newton, Gauss-Newton, L-BFGS, …</li>
 </ul>
@@ -355,7 +373,7 @@ R^2 = 1 - \frac{\text{Varianz der Residuen}}{\text{Varianz der y-Daten}} = 1- \f
 <p>Anwendung statistischer Prinzipien (Zufallssuche)</p>
 <p><strong>Klassische Methoden</strong></p>
 <ul>
-<li>Simuliertes Glühen: simuliert die Erwärmung und Abkühlung von Materie <span class="math inline">\(\rightarrow\)</span> „Kristallisationsprozess“.</li>
+<li>Simulated Annealing: simuliert die Erwärmung und Abkühlung von Materie <span class="math inline">\(\rightarrow\)</span> „Kristallisationsprozess“.</li>
 <li>Kontrollierte Zufallssuche <span class="citation" data-cites="Price1977">Price (<a href="#/referenzen" role="doc-biblioref" onclick="">1983</a>)</span></li>
 </ul>
 <p><strong>Evolutionäre Algorithmen</strong></p>
@@ -366,37 +384,58 @@ R^2 = 1 - \frac{\text{Varianz der Residuen}}{\text{Varianz der y-Daten}} = 1- \f
 <li><span class="math inline">\(\rightarrow\)</span> für komplizierte Probleme mit einer großen Anzahl von Parametern</li>
 <li>heutzutage in Microsoft Excel und LibreOffice Calc eingebaut</li>
 </ul>
-<p>… und vieles mehr.</p>
-</section></section>
+<p>Stochastische Methoden sind besonders nützlich, wenn das Optimierungsproblem <strong>nicht glatt</strong> oder <strong>nicht konvex</strong> ist oder <strong>viele lokale Minima</strong> besitzt.</p>
+</section>
 <section>
-<section id="beispiele" class="title-slide slide level1 center">
-<h1>Beispiele</h1>
+<section id="beispiele-für-nichtlineare-regression" class="title-slide slide level1 center">
+<h1>Beispiele für nichtlineare Regression</h1>
+
+</section>
+<section id="beispiele" class="slide level2">
+<h2>Beispiele</h2>
+<p><br></p>
 <ul>
-<li>Enzymkinetik</li>
-<li>Wachstum von Organismen</li>
-<li>Kalibrierung von komplexen Modellen
+<li><strong>Enzymkinetik</strong>
 <ul>
-<li>in Chemie, Biologie, Ingenieurwesen, Finanzwirtschaft und Sozialwissenschaften</li>
-<li>Wasser: Hydrologie, Hydrophysik, Grundwasser, Abwasser, Wasserqualität …</li>
+<li>Michaelis-Menten-Gleichung: <span class="math inline">\(V = \frac{V_{\max} \cdot S}{K_m + S}\)</span></li>
+<li>Beschreibt die Reaktionsgeschwindigkeit in Abhängigkeit von der Substratkonzentration</li>
+</ul></li>
+<li><strong>Wachstum von Organismen</strong>
+<ul>
+<li>Logistisches Wachstum: <span class="math inline">\(N(t) = \frac{K}{1 + A \cdot e^{-rt}}\)</span></li>
+<li>Beschreibt S-förmiges Wachstum mit Sättigung</li>
+</ul></li>
+<li><strong>Kalibrierung komplexer Modelle</strong> in vielen Disziplinen:
+<ul>
+<li>Chemie, Biologie, Ingenieurwesen, Finanzwirtschaft, Sozialwissenschaften<br>
+</li>
+<li>Hydrologie, Hydrophysik, Grundwasser, Abwasser, Wasserqualität</li>
 </ul></li>
 </ul>
 </section>
 <section id="enzymkinetik" class="slide level2">
 <h2>Enzymkinetik</h2>
 <p><br></p>
-<p>… kann mit der bekannten Michaelis-Menten-Funktion beschrieben werden:</p>
+<p>Michaelis-Menten-Funktion:</p>
 <p><span class="math display">\[
 v = v_{max} \frac{S}{k_m + S}
 \]</span></p>
 
 <img data-src="08-nonlinear-regression_files/figure-revealjs/enzymekinetics-1.png" width="960" class="r-stretch"></section>
-<section id="linearisierung-vs.-echte-nichtlineare-regression" class="slide level2">
-<h2>Linearisierung vs.&nbsp;(echte) nichtlineare Regression</h2>
+<section id="linearisierung-oder-echte-nichtlineare-regression" class="slide level2">
+<h2>Linearisierung oder (echte) nichtlineare Regression?</h2>
 <p><br></p>
 <p><strong>Linearisierende Transformation</strong></p>
-<p>[&gt;] Angemessen, wenn die Transformation die Homogenität der Varianzen verbessert.<br> [+] Schnell, einfach und leicht.<br> [+] Analytische Lösung liefert das globale Optimum.<br> [-] Nur eine begrenzte Anzahl von Funktionen kann angepasst werden.<br> [-] Kann zu einer falsch transformierten Fehlerstruktur und verzerrten Ergebnissen führen.</p>
+<p>[&gt;] Angemessen, wenn die Transformation die Homogenität der Varianzen verbessert.<br> [+] Schnell, einfach und leicht zu implementieren.<br> [+] Analytische Lösung liefert das globale Optimum.<br> [-] Nur eine begrenzte Anzahl von Funktionen kann angepasst werden.<br> [-] Kann zu einer falsch transformierten Fehlerstruktur und verzerrten Ergebnissen führen.</p>
 <p><strong>Nichtlineare Regression</strong></p>
-<p>[&gt;] Geeignet, wenn die Fehlerstruktur bereits homogen ist und/oder keine analytische Lösung existiert.<br> [+] Kann zur Anpassung beliebiger Funktionen verwendet werden, sofern die Parameter identifizierbar sind.<br> [-] Benötigt Startwerte und beträchtliche Berechnungszeit.<br> [-] Beste Lösung (globales Optimum) ist nicht garantiert.</p>
+<p>[&gt;] Geeignet, wenn die Fehlerstruktur homogen ist oder keine analytische Lösung existiert.<br> [+] Ermöglicht Anpassung beliebiger Funktionen – sofern die Parameter identifizierbar sind.<br> [-] Erfordert sorgfältige Auswahl von Startwerten. <br> [-] Rechenintensiv – hoher Zeitaufwand. <br> [-] Globales Optimum ist <strong>nicht garantiert</strong> – nur lokales Optimum möglich.</p>
+<p><br></p>
+<p><strong>Empfehlung</strong></p>
+<ul>
+<li>Verwende <strong>nichtlineare Regression</strong>, wenn möglich – sie ist <strong>robuster und realistischer</strong>.<br>
+</li>
+<li>Nutze Linearisierung nur, wenn sie <strong>wirklich sinnvoll</strong> ist (z.B. Varianzstabilisierung).</li>
+</ul>
 </section>
 <section id="nichtlineare-regression-in-r-einfache-exponentielle-regression" class="slide level2">
 <h2>Nichtlineare Regression in R: einfache exponentielle Regression</h2>
@@ -471,11 +510,12 @@ Achieved convergence tolerance: 5.956e-08</code></pre>
 </div>
 <ul>
 <li><strong>Estimate:</strong> die angepassten Parameter</li>
-<li><strong>Std. Error:</strong> <span class="math inline">\(s_{\bar{x}}\)</span>: zeigt die Zuverlässigkeit der Schätzung an</li>
-<li>t- und p-Werte: keine Überinterpretation!</li>
-<li>In der nichtlinearen Welt können „nicht-signifikante“ Parameter strukturell notwendig sein.</li>
+<li><strong>Std. Error:</strong> <span class="math inline">\(s_{\bar{x}}\)</span>: zeigt die Zuverlässigkeit der Parameter</li>
+<li>t- und p-Werte: Vorsicht bei der Interpretation!</li>
+<li>In der nichtlinearen Regression sind p-Werte nicht verlässlich – sie basieren auf Approximationen.</li>
+<li>Ein „nicht-signifikanter“ Parameter kann strukturrelevant sein.</li>
 </ul>
-<p><strong>Bestimmungskoeffizient <span class="math inline">\(r^2 = 1-\frac{s^2_\varepsilon}{s^2_y}\)</span></strong></p>
+<p><strong>Bestimmtheitsmaß <span class="math inline">\(r^2 = 1-\frac{s^2_\varepsilon}{s^2_y}\)</span></strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>(Rsquared <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">var</span>(<span class="fu">residuals</span>(fit))<span class="sc">/</span><span class="fu">var</span>(y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -488,7 +528,6 @@ Achieved convergence tolerance: 5.956e-08</code></pre>
 <p><br></p>
 <div class="column add-space" style="width:46%;">
 <p><strong>Code</strong></p>
-<div class="smallfont">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">25</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="fl">2.5</span>, <span class="fl">2.5</span>, <span class="fl">1.25</span>, <span class="fl">1.25</span>)</span>
 <span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>V <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="fl">0.0998</span>, <span class="fl">0.0948</span>, <span class="fl">0.076</span>, <span class="fl">0.0724</span>, <span class="fl">0.0557</span>,</span>
@@ -505,8 +544,7 @@ Achieved convergence tolerance: 5.956e-08</code></pre>
 <span id="cb7-13"><a aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">25</span>, <span class="at">length =</span> <span class="dv">100</span>)</span>
 <span id="cb7-14"><a aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x1, <span class="fu">predict</span>(model_fit, <span class="fu">data.frame</span>(<span class="at">S =</span> x1)), <span class="at">col =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p><br> <strong>Bestimmungskoeffizient</strong></p>
+<p><br> <strong>Bestimmtheitsmaß</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">var</span>(<span class="fu">residuals</span>(model_fit))<span class="sc">/</span><span class="fu">var</span>(V))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -514,7 +552,7 @@ Achieved convergence tolerance: 5.956e-08</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:46%;">
-<p><strong>Ergebnisse</strong></p>
+<p><strong>Ergebnis</strong></p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -549,7 +587,6 @@ Achieved convergence tolerance: 6.678e-06</code></pre>
 </ul>
 <div class="column" style="width:49%;">
 <p><strong>Code</strong></p>
-<div class="smallfont">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">25</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="fl">2.5</span>, <span class="fl">2.5</span>, <span class="fl">1.25</span>, <span class="fl">1.25</span>)</span>
 <span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>V <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.0998</span>, <span class="fl">0.0948</span>, <span class="fl">0.076</span>, <span class="fl">0.0724</span>, <span class="fl">0.0557</span>,</span>
@@ -560,7 +597,6 @@ Achieved convergence tolerance: 6.678e-06</code></pre>
 <span id="cb11-7"><a aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(S, V, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(S)), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(V)))</span>
 <span id="cb11-8"><a aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">25</span>, <span class="at">length =</span> <span class="dv">100</span>)</span>
 <span id="cb11-9"><a aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x1, <span class="fu">predict</span>(model_fit, <span class="fu">data.frame</span>(<span class="at">S =</span> x1)), <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </div>
 <p><strong>Ergebnisse</strong></p>
 <div class="smallfont">
@@ -612,14 +648,25 @@ Achieved convergence tolerance: 6.678e-06</code></pre>
 </div></section>
 <section id="praktische-hinweise" class="slide level2">
 <h2>Praktische Hinweise</h2>
-<p><br></p>
 <ol type="1">
-<li>Daten plotten</li>
-<li>Finde gute Ausgangswerte durch Nachdenken oder durch Trial and Error</li>
-<li>Vermeide sehr kleine und/oder sehr große Zahlen <span class="math inline">\(\longrightarrow\)</span> skaliere das Problem auf Werte zwischen etwa 0,001 und 1000 um</li>
-<li>Beginne mit einer einfachen Funktion und füge nach und nach Terme und Parameter hinzu</li>
-<li>Nimm die Signifikanz von Parametern nicht zu ernst. Ein nicht signifikanter Parameter kann für die Struktur des Modells notwendig sein, sein Wegfall macht das gesamte Modell ungültig.</li>
+<li><p><strong>Daten immer plotten!</strong><br>
+→ Visuelle Inspektion hilft, die Struktur zu erkennen und Startwerte zu finden.</p></li>
+<li><p><strong>Finde gute Ausgangswerte</strong><br>
+→ Durch Nachdenken über die Biologie/Physik des Problems<br>
+→ Oder durch Probieren (z.B. mit <code>plot(S, V)</code> und schätzen der Kurve)</p></li>
+<li><p><strong>Vermeide extrem kleine oder große Zahlen</strong><br>
+→ Reskaliere die Variablen auf Werte zwischen etwa <strong>0.001 und 1000</strong><br>
+→ Verbessert Stabilität und Konvergenz der Optimierung</p></li>
+<li><p><strong>Beginne einfach</strong><br>
+→ Starte mit einer einfachen Funktion<br>
+→ Füge nach und nach Terme und Parameter hinzu – Schritt für Schritt</p></li>
+<li><p><strong>Interpretiere Signifikanz vorsichtig</strong><br>
+→ p-Werte in nichtlinearen Modellen sind <strong>nicht verlässlich</strong><br>
+→ Ein „nicht signifikanter“ Parameter kann <strong>strukturrelevant</strong> sein<br>
+→ Sein Wegfall macht das Modell ungültig – <strong>nicht ausschließen!</strong></p></li>
 </ol>
+<p><strong>Wichtig:</strong></p>
+<p>Die Qualität eines Modells hängt nicht von p-Werten ab – sondern von <strong>Plausibilität, Anpassungsgüte und Vorhersagekraft</strong>.</p>
 </section>
 <section id="weiterführende-literatur" class="slide level2">
 <h2>Weiterführende Literatur</h2>

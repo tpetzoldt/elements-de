@@ -4,28 +4,28 @@ title: "08-Nichtlineare Regression"
 date:   "`r Sys.Date()`"
 --- 
 
-# Achtung: deutsche Übersetzung muss noch geprüft werden
 
-## Nichtlineare Regression
+## Viele Phänomene in der Natur sind nichtlinear.
 
-Viele Phänomene in der Natur sind nichtlinear!
+<br>
+
 
 **Linear oder nichtlinear?**
 
-* Einige nichtlineare Probleme können mit linearen Methoden gelöst werden
-* z.B. Polynome oder periodische (Sinus- und Cosinus-) Funktionen
-* andere können durch Transformationen angepasst werden
+* Einige nichtlineare Probleme können mit linearen Methoden gelöst werden:
+    * z.B. Polynome oder periodische (Sinus- und Cosinus-) Funktionen,
+* andere können durch Transformationen angepasst werden.
 
 **Beispiel**
 
 $$y = a \cdot x^b$$
-kann umgewandelt werden in:
+kann umgeformt werden in:
 
 $$\ln(y) = \ln(a) + b \cdot \ln(x)$$
 
-* aber: Linearisierung transformiert auch die Residuen
-* die Transformation ist manchmal richtig und manchmal falsch
-* Homogenität der Varianzen
+* Aber: Eine Linearisierung transformiert auch die Residuen. 
+  → Das kann zu verzerrten (biased) Schätzungen führen
+
 
 
 ## Linearisierung oder direkte nichtlineare Anpassung?
@@ -36,12 +36,13 @@ $$\ln(y) = \ln(a) + b \cdot \ln(x)$$
 
 * Logarithmus, Quadratwurzel, Kehrwerte ...
 * können angewandt werden, wenn die Restvarianz homogen bleibt (oder wird).
-* aber in einigen Fällen führen die Transformationen zu Heteroskedastizität<br>
-  $\Rightarrow$ **verfälschte** Regressionsparameter.
+* In einigen Fällen wird die Residuenvarianz sogar stabilisiert,
+* in anderen Fällen führt eine Transformation zu Heteroskedastizität<br>
+  $\Rightarrow$ **verzerrte** (biased) Regressionsparameter.
 
 **Nichtlineare Regression**
 
-* sehr flexible, benutzerdefinierte Funktionen
+* sehr flexible, fast beliebige benutzerdefinierte Funktionen
 * keine Transformation erforderlich
 * aber: erfordert **iterative** Optimierungsmethoden
 * theoretisch können nur lokale Optima gefunden werden
@@ -52,7 +53,7 @@ $$\ln(y) = \ln(a) + b \cdot \ln(x)$$
 
 <br>
 
-**Iterative Suche nach dem Minimum der Summe der Quadrate**
+**Iterative Suche nach dem Minimum der Summe der kleinsten Quadrate**
 
 ![](../img/optimization.png)
 
@@ -60,45 +61,65 @@ $$\ln(y) = \ln(a) + b \cdot \ln(x)$$
 
 <br>
 
-**Anpassungsgüte:** Residuensumme der quadrierten Differenzen $RSS$:
+**Anpassungsgüte:** Summe der Residuenquadrate $\mathbf{RSS}$:
 
 $$
-RSS = \sum_{i=1}^n\left(y_i- f(\mathbf x_i, \mathbf p)\right)^2 = \min !
+\mathbf{RSS} = \sum_{i=1}^n\left(y_i- f(\mathbf x_i, \mathbf p)\right)^2 = \min !
 $$
 
-mit $y$: abhängige Variable, $\mathbf x$: Matrix der unabhängigen Variablen,$\mathbf p$: Parametervektor, $n$: Stichprobenumfang
+mit 
+
+* $y$: abhängige Variable, 
+* $\mathbf x$: Matrix der unabhängigen Variablen
+* $\mathbf p$: Parametervektor
+* $n$: Stichprobenumfang
 
 **Verwendung eines iterativen Lösers** $\rightarrow$ siehe nächste Folien
 
-**Nichtlinearer Bestimmungskoeffizient $R^2$**
 
-* steht in keinem Zusammenhang mit dem (linearen) Korrelationskoeffizienten
-* kann aus den Rest- und Gesamtvarianzen berechnet werden
+
+## Nichtlineares Bestimmtheitsmaß $r^2$
+
+<br>
+
+* misst den Anteil der erklärten Varianz
+* kann aus den Rest- und Gesamtvarianz berechnet werden
 
 $$
-R^2 = 1 - \frac{\text{Varianz der Residuen}}{\text{Varianz der y-Daten}} = 1- \frac{s^2_\varepsilon}{s^2_y}
+r^2 = 1 - \frac{\text{Varianz der Residuen}}{\text{Varianz der } y\text{-Werte}} = 1 - \frac{s^2_\varepsilon}{s^2_y}
 $$
 
-* nichtlinear $r^2$ misst den Anteil der erklärten Varianz
-* ... andere Indizes können zusätzlich verwendet werden, z.B. MSE, RMSE, NSE, ...
+
+* identisch mit der Nash-Sutcliffe-Effizienz (NSE), einem Standard-Gütemaß der Hydrologie
+* Nichtlineares $r^2$ steht in keinem Zusammenhang mit dem Korrelationskoeffizienten.
+* Weitere Gütemaße: MSE, RMSE, bias, $r_P$, $r_S$
+
+**Verwechslungsgefahr** 
+
+* Manchmal wird $r^2$ als Quadrat der Korrelation zwischen beobachteten und modellierten Werten definiert.
+* Diese Version ignoriert einen möglichen **bias** $\rightarrow$ keine Aussage zu erklärten Varianz!
 
 ## Allgemeines Prinzip von Optimierungsalgorithmen
 
 <br>
 
-Das Minimum der quadrierten Residuen (RSS) wird durch [Iteration]{.blue} gesucht.:
-
-<br>
+Das Minimum der Residuenquadrate (RSS) wird durch [Iteration]{.blue} gesucht.
 
 1. Beginne mit einer Anfangsschätzung für den Parametersatz.
 2. Versuche, einen Parametersatz mit niedrigerer RSS zu finden.
 3. Ist der neue Parametersatz besser?
     * Nein: Verwerfe die neuen Parameter und gehe zu 2
-    * Ja: Akzeptiere die neuen Parameter und springe zu 4
+    * Ja: Akzeptiere die neuen Parameter und gehe zu 4
 4. Ist der neue Parametersatz gut genug?
-    * Nein: Springe zu 2
-    * Ja: Springe zu 5
+    * Nein: gehe zu 2
+    * Ja: gehe zu 5
 5. Parametersatz gefunden.
+
+**Hinweise**
+
+* Oft wird ein **Konvergenzkriterium** verwendet (z.B. nur noch kleine Änderung der RSS).  
+* Der Algorithmus kann in ein **lokales Minimum** laufen.  
+* Die **Anfangsschätzung** ist entscheidend!
 
 ## Deterministische Methoden
 
@@ -115,7 +136,7 @@ Das Minimum der quadrierten Residuen (RSS) wird durch [Iteration]{.blue} gesucht
 
 * quadratische Approximation der RSS-Funktion
 * Versuche, das Minimum zu schätzen
-* $\rightarrow$ berücksichtigt die Krümmung
+* $\rightarrow$ berücksichtigt die Krümmung (Hesse-Matrix)
 * $\rightarrow$ ist schneller für „gut funktionierende“ Probleme
 * mehrere Versionen:<br> quasi-Newton, Gauss-Newton, L-BFGS, ...
 
@@ -143,7 +164,7 @@ Anwendung statistischer Prinzipien (Zufallssuche)
 
 **Klassische Methoden**
 
-* Simuliertes Glühen: simuliert die Erwärmung und Abkühlung von Materie $\rightarrow$ „Kristallisationsprozess“.
+* Simulated Annealing: simuliert die Erwärmung und Abkühlung von Materie $\rightarrow$ „Kristallisationsprozess“.
 * Kontrollierte Zufallssuche [@Price1977, @Price1983]
 
 **Evolutionäre Algorithmen**
@@ -154,24 +175,34 @@ Anwendung statistischer Prinzipien (Zufallssuche)
 * $\rightarrow$ für komplizierte Probleme mit einer großen Anzahl von Parametern
 * heutzutage in Microsoft Excel und LibreOffice Calc eingebaut
 
-... und vieles mehr.
+Stochastische Methoden sind besonders nützlich, wenn das Optimierungsproblem **nicht glatt** oder **nicht konvex** ist oder **viele lokale Minima** besitzt.
 
 
-# Beispiele
+# Beispiele für nichtlineare Regression
 
 
-* Enzymkinetik
-* Wachstum von Organismen
-* Kalibrierung von komplexen Modellen
-   - in Chemie, Biologie, Ingenieurwesen, Finanzwirtschaft und Sozialwissenschaften
-   - Wasser: Hydrologie, Hydrophysik, Grundwasser, Abwasser, Wasserqualität ...
+## Beispiele
 
+
+<br>
+
+* **Enzymkinetik**  
+  - Michaelis-Menten-Gleichung: $V = \frac{V_{\max} \cdot S}{K_m + S}$
+  - Beschreibt die Reaktionsgeschwindigkeit in Abhängigkeit von der Substratkonzentration
+
+* **Wachstum von Organismen**  
+  - Logistisches Wachstum: $N(t) = \frac{K}{1 + A \cdot e^{-rt}}$
+  - Beschreibt S-förmiges Wachstum mit Sättigung
+
+* **Kalibrierung komplexer Modelle** in vielen Disziplinen:  
+  - Chemie, Biologie, Ingenieurwesen, Finanzwirtschaft, Sozialwissenschaften  
+  - Hydrologie, Hydrophysik, Grundwasser, Abwasser, Wasserqualität
 
 ## Enzymkinetik
 
 <br>
 
-... kann mit der bekannten Michaelis-Menten-Funktion beschrieben werden:
+Michaelis-Menten-Funktion:
 
 $$
 v = v_{max} \frac{S}{k_m + S}
@@ -210,27 +241,33 @@ text(15, 0.04, "V = S * vmax / (km + S)")
 ```
 
 
-## Linearisierung vs. (echte) nichtlineare Regression
+## Linearisierung oder (echte) nichtlineare Regression?
 
 <br>
 
 **Linearisierende Transformation**
 
 [>] Angemessen, wenn die Transformation die Homogenität der Varianzen verbessert.<br>
-[+] Schnell, einfach und leicht.<br>
+[+] Schnell, einfach und leicht zu implementieren.<br>
 [+] Analytische Lösung liefert das globale Optimum.<br>
 [-] Nur eine begrenzte Anzahl von Funktionen kann angepasst werden.<br>
 [-] Kann zu einer falsch transformierten Fehlerstruktur und verzerrten Ergebnissen führen.
 
 
-
 **Nichtlineare Regression**
 
-[>] Geeignet, wenn die Fehlerstruktur bereits homogen ist und/oder keine analytische Lösung existiert.<br>
-[+] Kann zur Anpassung beliebiger Funktionen verwendet werden, sofern die Parameter identifizierbar sind.<br>
-[-] Benötigt Startwerte und beträchtliche Berechnungszeit.<br>
-[-] Beste Lösung (globales Optimum) ist nicht garantiert.
+[>] Geeignet, wenn die Fehlerstruktur homogen ist oder keine analytische Lösung existiert.<br>
+[+] Ermöglicht Anpassung beliebiger Funktionen -- sofern die Parameter identifizierbar sind.<br>
+[-] Erfordert sorgfältige Auswahl von Startwerten. <br>
+[-] Rechenintensiv – hoher Zeitaufwand. <br>
+[-] Globales Optimum ist **nicht garantiert** – nur lokales Optimum möglich.
 
+<br>
+
+**Empfehlung**  
+ 
+* Verwende **nichtlineare Regression**, wenn möglich – sie ist **robuster und realistischer**.  
+* Nutze Linearisierung nur, wenn sie **wirklich sinnvoll** ist (z.B. Varianzstabilisierung).
 
 
 ## Nichtlineare Regression in R: einfache exponentielle Regression
@@ -277,12 +314,14 @@ summary(fit)
 ```
 
 * **Estimate:** die angepassten Parameter
-* **Std. Error:** $s_{\bar{x}}$: zeigt die Zuverlässigkeit der Schätzung an
-* t- und p-Werte: keine Überinterpretation! 
-* In der nichtlinearen Welt können „nicht-signifikante“ Parameter strukturell notwendig sein.
+* **Std. Error:** $s_{\bar{x}}$: zeigt die Zuverlässigkeit der Parameter
+* t- und p-Werte: Vorsicht bei der Interpretation! 
+* In der nichtlinearen Regression sind p-Werte nicht verlässlich – sie basieren auf Approximationen.
+* Ein „nicht-signifikanter“ Parameter kann strukturrelevant sein.
 
 
-**Bestimmungskoeffizient $r^2 = 1-\frac{s^2_\varepsilon}{s^2_y}$**
+
+**Bestimmtheitsmaß $r^2 = 1-\frac{s^2_\varepsilon}{s^2_y}$**
 
 ```{r echo=TRUE}
 (Rsquared <- 1 - var(residuals(fit))/var(y))
@@ -297,7 +336,6 @@ summary(fit)
 
 **Code**
 
-:::{.smallfont}
 ```{r mmenten, echo=TRUE, eval = FALSE}
 S <-c(25, 25, 10, 10, 5, 5, 2.5, 2.5, 1.25, 1.25)
 V <-c(0.0998, 0.0948, 0.076, 0.0724, 0.0557,
@@ -314,10 +352,9 @@ plot(S, V, xlim = c(0, max(S)), ylim = c(0, max(V)))
 x1 <-seq(0, 25, length = 100)
 lines(x1, predict(model_fit, data.frame(S = x1)), col = "red")
 ```
-:::
 
 <br>
-**Bestimmungskoeffizient**
+**Bestimmtheitsmaß**
 
 ```{r echo=TRUE}
 (1 - var(residuals(model_fit))/var(V))
@@ -328,7 +365,7 @@ lines(x1, predict(model_fit, data.frame(S = x1)), col = "red")
 
 
 :::{.column width="46%"}
-**Ergebnisse**
+**Ergebnis**
 ```{r mmenten, fig.width=6, fig.height=4}
 ```
 :::
@@ -342,7 +379,7 @@ lines(x1, predict(model_fit, data.frame(S = x1)), col = "red")
 ::::{.column width="49%"}
 **Code**
 
-:::{.smallfont}
+
 ```{r mmselfstart, echo=TRUE, eval = FALSE}
 S <- c(25, 25, 10, 10, 5, 5, 2.5, 2.5, 1.25, 1.25)
 V <- c(0.0998, 0.0948, 0.076, 0.0724, 0.0557,
@@ -354,7 +391,6 @@ plot(S, V, xlim = c(0, max(S)), ylim = c(0, max(V)))
 x1 <-seq(0, 25, length = 100)
 lines(x1, predict(model_fit, data.frame(S = x1)), col="red")
 ```
-:::
 
 **Ergebnisse**
 
@@ -387,14 +423,30 @@ summary(model_fit, correlation=TRUE)
 
 ## Praktische Hinweise
 
-<br>
+1. **Daten immer plotten!**  
+   → Visuelle Inspektion hilft, die Struktur zu erkennen und Startwerte zu finden.
 
-1. Daten plotten
-2. Finde gute Ausgangswerte durch Nachdenken oder durch Trial and Error
-3. Vermeide sehr kleine und/oder sehr große Zahlen
-  $\longrightarrow$ skaliere das Problem auf Werte zwischen etwa 0,001 und 1000 um
-4. Beginne mit einer einfachen Funktion und füge nach und nach Terme und Parameter hinzu
-5. Nimm die Signifikanz von Parametern nicht zu ernst. Ein nicht signifikanter Parameter kann für die Struktur des Modells notwendig sein, sein Wegfall macht das gesamte Modell ungültig.
+2. **Finde gute Ausgangswerte**  
+   → Durch Nachdenken über die Biologie/Physik des Problems  
+   → Oder durch Probieren (z.B. mit `plot(S, V)` und schätzen der Kurve)
+
+3. **Vermeide extrem kleine oder große Zahlen**  
+   → Reskaliere die Variablen auf Werte zwischen etwa **0.001 und 1000**  
+   → Verbessert Stabilität und Konvergenz der Optimierung
+
+4. **Beginne einfach**  
+   → Starte mit einer einfachen Funktion  
+   → Füge nach und nach Terme und Parameter hinzu – Schritt für Schritt
+
+5. **Interpretiere Signifikanz vorsichtig**  
+   → p-Werte in nichtlinearen Modellen sind **nicht verlässlich**  
+   → Ein „nicht signifikanter“ Parameter kann **strukturrelevant** sein  
+   → Sein Wegfall macht das Modell ungültig – **nicht ausschließen!**
+
+**Wichtig:**  
+
+Die Qualität eines Modells hängt nicht von p-Werten ab – sondern von **Plausibilität, Anpassungsgüte und Vorhersagekraft**.
+
 
 
 ## Weiterführende Literatur

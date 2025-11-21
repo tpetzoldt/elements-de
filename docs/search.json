@@ -1060,7 +1060,7 @@
     "href": "slides/x1-r-basics.html#lists-1",
     "title": "x1-R Basics",
     "section": "Lists",
-    "text": "Lists\n\nmost flexible data type in R\ncan contain arbitrary data objects as elements of the list\nallows tree-like structure\n\nExamples\n\nOutput of many R functions, e.g. return value of hist:\n\n\nL &lt;- hist(rnorm(100), plot=FALSE)\nstr(L)\n\nList of 6\n $ breaks  : num [1:12] -3 -2.5 -2 -1.5 -1 -0.5 0 0.5 1 1.5 ...\n $ counts  : int [1:11] 1 1 1 5 14 18 19 26 11 3 ...\n $ density : num [1:11] 0.02 0.02 0.02 0.1 0.28 0.36 0.38 0.52 0.22 0.06 ...\n $ mids    : num [1:11] -2.75 -2.25 -1.75 -1.25 -0.75 -0.25 0.25 0.75 1.25 1.75 ...\n $ xname   : chr \"rnorm(100)\"\n $ equidist: logi TRUE\n - attr(*, \"class\")= chr \"histogram\"",
+    "text": "Lists\n\nmost flexible data type in R\ncan contain arbitrary data objects as elements of the list\nallows tree-like structure\n\nExamples\n\nOutput of many R functions, e.g. return value of hist:\n\n\nL &lt;- hist(rnorm(100), plot=FALSE)\nstr(L)\n\nList of 6\n $ breaks  : num [1:10] -2.5 -2 -1.5 -1 -0.5 0 0.5 1 1.5 2\n $ counts  : int [1:9] 1 4 10 22 22 19 11 8 3\n $ density : num [1:9] 0.02 0.08 0.2 0.44 0.44 0.38 0.22 0.16 0.06\n $ mids    : num [1:9] -2.25 -1.75 -1.25 -0.75 -0.25 0.25 0.75 1.25 1.75\n $ xname   : chr \"rnorm(100)\"\n $ equidist: logi TRUE\n - attr(*, \"class\")= chr \"histogram\"",
     "crumbs": [
       "Selected Programming Topics",
       "x1-R Basics"
@@ -1188,22 +1188,22 @@
     ]
   },
   {
-    "objectID": "slides/07-anova.html#anova---analyse-der-varianzen",
-    "href": "slides/07-anova.html#anova---analyse-der-varianzen",
+    "objectID": "slides/07-anova.html#anova---varianzanalyse",
+    "href": "slides/07-anova.html#anova---varianzanalyse",
     "title": "07-ANOVA und ANCOVA",
-    "section": "ANOVA - Analyse der Varianzen",
-    "text": "ANOVA - Analyse der Varianzen\n\n\nPrüfung komplexer Hypothesen als Ganzes, z.B.:\n\nmehr als zwei Stichproben (Problem des Mehrfachtests),\nmehrere multiple Faktoren (multiway ANOVA)\nEliminierung von Kovariaten (ANCOVA)\nfeste und/oder zufällige Effekte (Varianzzerlegungsmethoden, Modelle mit gemischten Effekten)\n\nVerschiedene Anwendungsszenarien:\n\nexplorative Anwendung: Welche Einflussfaktoren sind wichtig?\ndeskriptive Anwendung: Anpassen von Modellen zur Prozessbeschreibung und Vorhersage.\nSignifikanztests.\n\nANOVA-Methoden basieren (in den meisten Fällen) auf linearen Modellen.",
+    "section": "ANOVA - Varianzanalyse",
+    "text": "ANOVA - Varianzanalyse\n\n\nPrüfung komplexer Hypothesen als Ganzes, z.B.:\n\nmehr als zwei Stichproben (Mehrfachtestproblem),\nmehrere multiple Faktoren (Mehrfach- ANOVA)\nEliminierung von Kovariaten (ANCOVA)\nfeste und/oder zufällige Effekte (Varianzzerlegung, Modelle mit gemischten Effekten)\n\nUnterschiedliche Anwendungsszenarien:\n\nexplorative Anwendung: Welche Einflussfaktoren sind wichtig?\nSignifikanztests\nstatistische Modellierung: Quantifizierung von Effekten und Abhängigkeiten.\n\nANOVA-Verfahren basieren (meistens) auf linearen Modellen.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
     ]
   },
   {
-    "objectID": "slides/07-anova.html#ein-praxisbezogenes-beispiel",
-    "href": "slides/07-anova.html#ein-praxisbezogenes-beispiel",
+    "objectID": "slides/07-anova.html#ein-praxisbeispiel",
+    "href": "slides/07-anova.html#ein-praxisbeispiel",
     "title": "07-ANOVA und ANCOVA",
-    "section": "Ein praxisbezogenes Beispiel",
-    "text": "Ein praxisbezogenes Beispiel\n\nSuche nach einem geeigneten Medium für Wachstumsexperimente mit Grünalgen\n\nbillig, einfach zu handhaben\ngeeignet für Schülerkurse und Experimente im Unterricht\n\n\n\nIdee\n\nVerwendung eines kommerziellen Düngers mit den Hauptnährstoffen N und P\nMineralwasser mit Spurenelementen\nEnthält Mineralwasser ohne Kohlensäure genügend \\(\\mathrm{CO_2}\\)?\ntesten, wie man die Verfügbarkeit von \\(\\mathrm{CO_2}\\) für die Photosynthese verbessern kann",
+    "section": "Ein Praxisbeispiel",
+    "text": "Ein Praxisbeispiel\n\nSuche nach einem geeigneten Medium für Wachstumsexperimente mit Grünalgen\n\nSchulprojekt aus “Jugend Forscht”\ngeeignet für Kurse in Schule und Studium\npreisgünstig, einfach zu handhaben\n\n\n\nIdee\n\nVerwendung eines kommerziellen Düngers mit den Hauptnährstoffen N und P\nMineralwasser mit Spurenelementen\nEnthält stilles Mineralwasser genügend \\(\\mathrm{CO_2}\\)?\ntesten, wie man die Verfügbarkeit von \\(\\mathrm{CO_2}\\) für die Photosynthese verbessern kann",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1254,11 +1254,11 @@
     ]
   },
   {
-    "objectID": "slides/07-anova.html#daten-im-long-format",
-    "href": "slides/07-anova.html#daten-im-long-format",
+    "objectID": "slides/07-anova.html#daten-im-langformat",
+    "href": "slides/07-anova.html#daten-im-langformat",
     "title": "07-ANOVA und ANCOVA",
-    "section": "Daten im Long-Format",
-    "text": "Daten im Long-Format\n\n\nVorteile\n\nsieht „blöd“ aus, ist aber besser für die Datenanalyse\nabhängige Variable Wachstum und Erklärungsvariable Behandlung deutlich sichtbar\nModellformel: growth ~ treat\nleicht erweiterbar auf \\(&gt;1\\) Erklärungsvariable\n\n\n\n\n\n\n\ntreat\nrep\ngrowth\n\n\n\n\nFertilizer\n1\n0.020\n\n\nFertilizer\n2\n-0.217\n\n\nFertilizer\n3\n-0.273\n\n\nF. open\n1\n0.940\n\n\nF. open\n2\n0.780\n\n\nF. open\n3\n0.555\n\n\nF.+sugar\n1\n0.188\n\n\nF.+sugar\n2\n-0.100\n\n\nF.+sugar\n3\n0.020\n\n\nF.+CaCO3\n1\n0.245\n\n\nF.+CaCO3\n2\n0.236\n\n\nF.+CaCO3\n3\n0.456",
+    "section": "Daten im Langformat",
+    "text": "Daten im Langformat\n\n\nVorteile\n\nsieht „unpraktisch“ aus, ist aber viel besser für die Datenanalyse\nabhängige Variable Wachstum und Erklärungsvariable Behandlung deutlich sichtbar\nModellformel: growth ~ treat\nleicht erweiterbar auf \\(&gt;1\\) Erklärungsvariable\n\n\n\n\n\n\n\ntreat\nrep\ngrowth\n\n\n\n\nFertilizer\n1\n0.020\n\n\nFertilizer\n2\n-0.217\n\n\nFertilizer\n3\n-0.273\n\n\nF. open\n1\n0.940\n\n\nF. open\n2\n0.780\n\n\nF. open\n3\n0.555\n\n\nF.+sugar\n1\n0.188\n\n\nF.+sugar\n2\n-0.100\n\n\nF.+sugar\n3\n0.020\n\n\nF.+CaCO3\n1\n0.245\n\n\nF.+CaCO3\n2\n0.236\n\n\nF.+CaCO3\n3\n0.456",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1309,22 +1309,22 @@
     ]
   },
   {
-    "objectID": "slides/07-anova.html#warum-können-wir-nicht-einfach-mehrere-t-tests-anwenden",
-    "href": "slides/07-anova.html#warum-können-wir-nicht-einfach-mehrere-t-tests-anwenden",
+    "objectID": "slides/07-anova.html#warum-nicht-einfach-mehrere-t-tests",
+    "href": "slides/07-anova.html#warum-nicht-einfach-mehrere-t-tests",
     "title": "07-ANOVA und ANCOVA",
-    "section": "Warum können wir nicht einfach mehrere t-Tests anwenden?",
-    "text": "Warum können wir nicht einfach mehrere t-Tests anwenden?\n\n\nWenn wir 7 Behandlungen haben und alle gegeneinander testen wollen, brauchen wir:\n\n\\[7 \\cdot (7 - 1) / 2 = 21 \\qquad\\text{Tests.}\\]\n\nWenn wir \\(\\alpha = 0,05\\) setzen, erhalten wir 5% falsch positive Ergebnisse. \\(\\Rightarrow\\) Einer von 20 Tests ist im Durchschnitt ein falsch positiver\nWenn wir \\(N\\) Tests durchführen, erhöht sich der Gesamtfehler von \\(\\alpha\\) im schlimmsten Fall auf \\(N\\cdot\\alpha\\).\nDies wird alpha-Fehler-Inflation oder das Bonferroni-Gesetz genannt:\n\n\\[\n\\alpha_{total} \\le \\sum_{i=1}^{N} \\alpha_i = N \\cdot \\alpha\n\\]\nWenn wir das Bonferroni-Gesetz ignorieren, landen wir beim statistischen Fischen und erhalten zufällige falsche Ergebnisse.",
+    "section": "Warum nicht einfach mehrere t-Tests?",
+    "text": "Warum nicht einfach mehrere t-Tests?\n\n\nWenn wir bei 7 Behandlungen jede gegen jede testen wollen, brauchen wir:\n\n\\[7 \\cdot (7 - 1) / 2 = 21 \\qquad\\text{Tests.}\\]\n\nBei \\(\\alpha = 0.05\\), erhält man 5% falsch positive Ergebnisse. \\(\\Rightarrow\\) Einer von 20 Tests ist im Durchschnitt falsch positiv.\nBei \\(N\\) Tests erhöht sich der Gesamtfehler von \\(\\alpha\\) im schlimmsten Fall auf \\(N\\cdot\\alpha\\).\nDies wird alpha-Fehler-Inflation oder Bonferroni-Ungleichung genannt:\n\n\\[\n\\alpha_{total} \\le \\sum_{i=1}^{N} \\alpha_i = N \\cdot \\alpha\n\\]\nWird die Regel ignoriert, erhält man zufällige falsch-positive Ergebnisse (statistical fishing).",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
     ]
   },
   {
-    "objectID": "slides/07-anova.html#anova-analyse-der-varianzen",
-    "href": "slides/07-anova.html#anova-analyse-der-varianzen",
+    "objectID": "slides/07-anova.html#anova-varianzanalyse",
+    "href": "slides/07-anova.html#anova-varianzanalyse",
     "title": "07-ANOVA und ANCOVA",
-    "section": "ANOVA: Analyse der Varianzen",
-    "text": "ANOVA: Analyse der Varianzen\n\nGrundgedanke\n\nAufteilung der Gesamtvarianz in Wirkung(en) und Fehler:\n\n\n\\[\ns_y^2 = s^2_\\mathrm{effect} + s^2_{\\varepsilon}\n\\]\n\n\nEtwas überraschend: Wir verwenden Varianzen, um Mittelwerte zu vergleichen.\nErklärung: Mittelwertunterschiede tragen zur Gesamtvarianz der ganzen Stichprobe bei.\nDie Varianzkomponenten können als Varianz innerhalb (\\(s^2_\\varepsilon\\)) und Varianz zwischen Stichproben bezeichnet werden.\nDie Art und Weise, wie man die Varianzen trennt, ist ein lineares Modell.",
+    "section": "ANOVA: Varianzanalyse",
+    "text": "ANOVA: Varianzanalyse\n\nGrundgedanke\n\nAufteilung der Gesamtvarianz in Wirkung(en) und Fehler:\n\n\n\\[\ns_y^2 = s^2_\\mathrm{effect} + s^2_{\\varepsilon}\n\\]\n\n\nEtwas überraschend: Analyse von Varianzen, um Mittelwerte zu vergleichen.\nErklärung: Mittelwertunterschiede tragen zur Gesamtvarianz der ganzen Stichprobe bei.\nDie Varianzkomponenten können als Varianz innerhalb (\\(s^2_\\varepsilon\\)) und Varianz zwischen Stichproben bezeichnet werden.\nDie Varianz-Zerlegung erfolgt über ein lineares Modell.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1353,22 +1353,33 @@
     ]
   },
   {
-    "objectID": "slides/07-anova.html#varianzkomponenten",
-    "href": "slides/07-anova.html#varianzkomponenten",
+    "objectID": "slides/07-anova.html#lineares-modell-und-varianzkomponenten",
+    "href": "slides/07-anova.html#lineares-modell-und-varianzkomponenten",
     "title": "07-ANOVA und ANCOVA",
-    "section": "Varianzkomponenten",
-    "text": "Varianzkomponenten\n\nWir passen ein lineares Modell an und vergleichen die Varianzen:\n\nm &lt;- lm(weight ~ code, data = clem)\n\nGesamtvarianz\n\n(var_tot &lt;- var(clem$weight))\n\n[1] 68.98814\n\n\nRestvarianz (= innere Varianz)\n\n(var_res &lt;- var(residuals(m)))\n\n[1] 43.25\n\n\nErklärte Varianz (= Zwischenvarianz)\n\nvar_tot - var_res\n\n[1] 25.73814\n\n\nNun können wir analysieren, ob die Zwischenvarianz groß genug ist, um einen signifikanten Effekt zu begründen.\nDies nennt man eine ANOVA.",
+    "section": "Lineares Modell und Varianzkomponenten",
+    "text": "Lineares Modell und Varianzkomponenten\n\n\nm &lt;- lm(weight ~ code, data = clem)\n\nGesamtvarianz\n\n(var_tot &lt;- var(clem$weight))\n\n[1] 68.98814\n\n\nRestvarianz (= Varianz innerhalb der Behandlungen)\n\n(var_res &lt;- var(residuals(m)))\n\n[1] 43.25\n\n\nErklärte Varianz (= Varianz zwischen den Behandlungen)\n\nvar_tot - var_res\n\n[1] 25.73814\n\n\n\n\nDas Beispiel zeigt das Grundprinzip.\nAber: Die „erklärte Varianz“ ist nicht für den F-Test der ANOVA geeignet, weil die Freiheitsgrade nicht berücksichtigt sind.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
     ]
   },
   {
-    "objectID": "slides/07-anova.html#anova",
-    "href": "slides/07-anova.html#anova",
+    "objectID": "slides/07-anova.html#korrekte-berechnung-mit-freiheitsgraden",
+    "href": "slides/07-anova.html#korrekte-berechnung-mit-freiheitsgraden",
     "title": "07-ANOVA und ANCOVA",
-    "section": "ANOVA",
-    "text": "ANOVA\n\nanova(m)\n\nAnalysis of Variance Table\n\nResponse: weight\n          Df Sum Sq Mean Sq F value   Pr(&gt;F)   \ncode       1 566.24  566.24  12.497 0.001963 **\nResiduals 21 951.50   45.31                    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nEin t-Test zum Vergleich\n\nt.test(weight ~ code, data = clem, var.equal=TRUE)\n\n\n    Two Sample t-test\n\ndata:  weight by code\nt = 3.5351, df = 21, p-value = 0.001963\nalternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0\n95 percent confidence interval:\n  4.185911 16.147423\nsample estimates:\nmean in group 1 mean in group 2 \n       95.50000        85.33333 \n\n\n\\(\\Rightarrow\\) die p-Werte sind genau gleich.",
+    "section": "Korrekte Berechnung mit Freiheitsgraden",
+    "text": "Korrekte Berechnung mit Freiheitsgraden\n\n# Freiheitsgrade\nn &lt;- nrow(clem)\nk &lt;- length(unique(clem$brand))\n\ndf_total     &lt;- n - 1      # -1 df für den Gesamtmittelwert (Intercept)\ndf_between   &lt;- k - 1      # df für Gruppenunterschiede (nach Berücksichtigung des Gesamtmittelwerts)\ndf_residuals &lt;- n - k      # -1 df pro Gruppe (insgesamt k Gruppen)\n# Prüfung: df_total sollte gleich df_between + df_residuals sein\nc(n = n, k = k, df_total = df_total, df_between = df_between, df_residuals = df_residuals)\n\n           n            k     df_total   df_between df_residuals \n          23            2           22            1           21 \n\n# Sums of squares\nSS_total     &lt;- var_tot * df_total\nSS_residuals &lt;- var_res * df_total  # var(residuals) nutzt n−1\nSS_between   &lt;- SS_total - SS_residuals\n\n# Mean sums of squares\nMS_between   &lt;- SS_between / df_between\nMS_residuals &lt;- SS_residuals / df_residuals\nc(MS_between = MS_between, MS_residuals = MS_residuals)\n\n  MS_between MS_residuals \n   566.23913     45.30952 \n\n# F-Test\nF_stat &lt;- MS_between / MS_residuals\np_val  &lt;- pf(F_stat, df1 = df_between, df2 = df_residuals, lower.tail = FALSE)\n\nc(F = round(F_stat, 3), p = round(p_val, 4))\n\n     F      p \n12.497  0.002 \n\n\nDie ANOVA arbeitet direkt mit den Summen der Quadrate, ohne den Umweg über die Varianzen.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#anova-in-einem-schritt",
+    "href": "slides/07-anova.html#anova-in-einem-schritt",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "ANOVA in einem Schritt",
+    "text": "ANOVA in einem Schritt\n\nanova(m)\n\nAnalysis of Variance Table\n\nResponse: weight\n          Df Sum Sq Mean Sq F value   Pr(&gt;F)   \ncode       1 566.24  566.24  12.497 0.001963 **\nResiduals 21 951.50   45.31                    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nEin t-Test zum Vergleich\n\nt.test(weight ~ code, data = clem, var.equal=TRUE)\n\n\n    Two Sample t-test\n\ndata:  weight by code\nt = 3.5351, df = 21, p-value = 0.001963\nalternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0\n95 percent confidence interval:\n  4.185911 16.147423\nsample estimates:\nmean in group 1 mean in group 2 \n       95.50000        85.33333 \n\n\n\\(\\Rightarrow\\) Die p-Werte sind identisch.\n\nBei zwei Gruppen ist die ANOVA (F-Test) äquivalent zum t-Test mit gleichen Varianzen.\n\\(F = t^2\\), \\(p\\) gleich.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1408,55 +1419,77 @@
     ]
   },
   {
-    "objectID": "slides/07-anova.html#anova-annahmen-und-diagnosen",
-    "href": "slides/07-anova.html#anova-annahmen-und-diagnosen",
+    "objectID": "slides/07-anova.html#anova-annahmen-und-diagnostik",
+    "href": "slides/07-anova.html#anova-annahmen-und-diagnostik",
     "title": "07-ANOVA und ANCOVA",
-    "section": "ANOVA Annahmen und Diagnosen",
-    "text": "ANOVA Annahmen und Diagnosen\n\nFür die ANOVA gelten dieselben Annahmen wie für das lineare Modell.\n\n\nUnabhängigkeit von Fehlern\nHomogenität der Varianz\nAnnähernde Normalität der Fehler\n\nGrafische Überprüfungen werden bevorzugt.\n\n\npar(mfrow=c(2, 2))\nplot(m)",
+    "section": "ANOVA Annahmen und Diagnostik",
+    "text": "ANOVA Annahmen und Diagnostik\n\nFür die ANOVA gelten dieselben Annahmen wie für das lineare Modell.\n\n\nUnabhängigkeit der Fehler\nHomogenität der Varianzen (Homoskedastizität)\nAnnähernde Normalverteilung der Fehler\n\nGrafische Diagnostik wird bevorzugt – sie ist robuster als numerische Tests.\n\n\npar(mfrow=c(2, 2))\nplot(m)",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
     ]
   },
   {
-    "objectID": "slides/07-anova.html#numerische-tests",
-    "href": "slides/07-anova.html#numerische-tests",
+    "objectID": "slides/07-anova.html#test-der-varianzhomogenität",
+    "href": "slides/07-anova.html#test-der-varianzhomogenität",
     "title": "07-ANOVA und ANCOVA",
-    "section": "Numerische Tests",
-    "text": "Numerische Tests\n\n\nTest der Varianzhomogenität\n\nDer F-Test vergleicht nur zwei Varianzen.\nVerschiedene Tests für multiple Varianzen, z.B. Bartlett, Levene, Fligner-Killeen\nEmpfohlen: Fligner-Killeen-Test\n\n\nfligner.test(growth ~ treat, \n             data = algae)\n\n\n    Fligner-Killeen test of homogeneity of variances\n\ndata:  growth by treat\nFligner-Killeen:med chi-squared = 4.2095, df = 6, p-value = 0.6483\n\n\n\nTest der Normalverteilung\n\nDer Shapiro-Wilks-Test kann irreführend sein.\nVerwende eine grafische Methode!\n\n\nqqnorm(residuals(m))\nqqline(residuals(m))",
+    "section": "Test der Varianzhomogenität",
+    "text": "Test der Varianzhomogenität\n\n\nDer F-Test ist nur für zwei Gruppen geeignet.\nFür mehr als zwei Gruppen: Bartlett-, Levene- oder Fligner-Killeen-Test.\nEmpfohlen: Fligner-Killeen-Test - robust gegenüber Abweichung von Normalverteilung.\n\n\nfligner.test(growth ~ treat, \n             data = algae)\n\n\n    Fligner-Killeen test of homogeneity of variances\n\ndata:  growth by treat\nFligner-Killeen:med chi-squared = 4.2095, df = 6, p-value = 0.6483",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
     ]
   },
   {
-    "objectID": "slides/07-anova.html#einseitige-anova-mit-heterogenen-varianzen",
-    "href": "slides/07-anova.html#einseitige-anova-mit-heterogenen-varianzen",
+    "objectID": "slides/07-anova.html#test-auf-normalverteilung",
+    "href": "slides/07-anova.html#test-auf-normalverteilung",
     "title": "07-ANOVA und ANCOVA",
-    "section": "Einseitige ANOVA mit heterogenen Varianzen",
-    "text": "Einseitige ANOVA mit heterogenen Varianzen\n\n\nErweiterung des Welch-Tests für \\(\\ge 2\\) Stichproben\nin R genannt oneway.test\n\n\noneway.test(growth ~ treat, data = algae)\n\n\n    One-way analysis of means (not assuming equal variances)\n\ndata:  growth and treat\nF = 115.09, num df = 6.0000, denom df = 4.6224, p-value = 6.57e-05",
+    "section": "Test auf Normalverteilung",
+    "text": "Test auf Normalverteilung\n\nTeste die Residuen, nicht die Rohdaten!\nDer Shapiro-Wilk-Test wird nicht mehr empfohlen:\n\nBei kleinen Stichproben: hohe Wahrscheinlichkeit für Fehlertyp II (keine Ablehnung, obwohl Unterschiede existieren).\nBei großen Stichproben: hohe Wahrscheinlichkeit für Fehlertyp I (Ablehnung, obwohl Unterschiede vernachlässigbar sind.)\n\nEmpfohlen: Grafische Methoden – insbesondere der QQ-Plot.\n\n\nqqnorm(residuals(m))\nqqline(residuals(m))",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
     ]
   },
   {
-    "objectID": "slides/07-anova.html#zweiseitige-anova",
-    "href": "slides/07-anova.html#zweiseitige-anova",
+    "objectID": "slides/07-anova.html#moderne-sichtweise-keine-vortests-mehr",
+    "href": "slides/07-anova.html#moderne-sichtweise-keine-vortests-mehr",
     "title": "07-ANOVA und ANCOVA",
-    "section": "Zweiseitige ANOVA",
-    "text": "Zweiseitige ANOVA\n\nBeispiel aus einem Statistik-Lehrbuch (Crawley, 2002), angewandt auf einen neuen Kontext\nAuswirkungen von Dünger und Lichtregime auf das Wachstum der Pflanzenhöhe in cm pro Zeit\n\n\n\n\nDünger\nhelles Licht\nschwaches Licht\n\n\n\n\nA\n8.3\n6.6\n\n\nA\n8.7\n7.2\n\n\nB\n8.1\n6.9\n\n\nB\n8.5\n8.3\n\n\nC\n9.1\n7.9\n\n\nC\n9.0\n9.2\n\n\n\n\n\n\n\n\n\nfaktorielles Experiment (mit Wiederholungen): jede Faktorkombination hat mehr als eine Beobachtung.\nohne Wiederholungen:\n\nkeine Wiederholungen pro Faktorkombination\ndies ist möglich, erlaubt aber keine Identifizierung von Wechselwirkungen",
+    "section": "Moderne Sichtweise: Keine Vortests mehr!",
+    "text": "Moderne Sichtweise: Keine Vortests mehr!\n\nDie traditionelle Praxis – Residuen zu testen, bevor man ANOVA durchführt –  ist nicht mehr zeitgemäß und führt zu gravierenden Problemen:\n\nResiduen sind erst nach Modellanpassung verfügbar.\nBei Vortests müsste man sie „irgendwie vorher“ schätzen, oft durch Pooling.\nHäufig wurden Rohdaten statt Residuen getestet - Kardinalfehler.\nDie Methode stammt aus der Ära manueller Berechnungen.\n\nEmpfohlene Vorgehensweise:\n\nPrüfe, ob ANOVA grundsätzlich angemessen ist:\n\nFragestellung,\nUnabhängigkeit,\nmögliche Nichtnormalität auf Grund des Versuchsdesigns\n\nFühre die ANOVA durch – ohne Vortests.\nDiagnostik im Anschluss – grafisch und kritisch (QQ-Plot, Residuals vs. Fitted).",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
     ]
   },
   {
-    "objectID": "slides/07-anova.html#daten-im-long-format-eingeben",
-    "href": "slides/07-anova.html#daten-im-long-format-eingeben",
+    "objectID": "slides/07-anova.html#einfache-anova-mit-heterogenen-varianzen",
+    "href": "slides/07-anova.html#einfache-anova-mit-heterogenen-varianzen",
     "title": "07-ANOVA und ANCOVA",
-    "section": "Daten im Long-Format eingeben",
-    "text": "Daten im Long-Format eingeben\n\n\n\nplants &lt;- data.frame(No = 1:12,\n                    growth = c(6.6, 7.2, 6.9, 8.3, 7.9, 9.2,\n                               8.3, 8.7, 8.1, 8.5, 9.1, 9.0),\n                    fert   = rep(c(\"A\", \"B\", \"C\"), each=2),\n                    light   = rep(c(\"low\", \"high\"), each=6)\n          )\n\n\n\n\n\n\n\nNo\ngrowth\nfert\nlight\n\n\n\n\n1\n6.6\nA\nlow\n\n\n2\n7.2\nA\nlow\n\n\n3\n6.9\nB\nlow\n\n\n4\n8.3\nB\nlow\n\n\n5\n7.9\nC\nlow\n\n\n6\n9.2\nC\nlow\n\n\n7\n8.3\nA\nhigh\n\n\n8\n8.7\nA\nhigh\n\n\n9\n8.1\nB\nhigh\n\n\n10\n8.5\nB\nhigh\n\n\n11\n9.1\nC\nhigh\n\n\n12\n9.0\nC\nhigh",
+    "section": "Einfache ANOVA mit heterogenen Varianzen",
+    "text": "Einfache ANOVA mit heterogenen Varianzen\n\n\nErweiterung des Welch-Tests für \\(\\ge 2\\) Stichproben\nin R oneway.test genannt.\n\n\noneway.test(growth ~ treat, data = algae)\n\n\n    One-way analysis of means (not assuming equal variances)\n\ndata:  growth and treat\nF = 115.09, num df = 6.0000, denom df = 4.6224, p-value = 6.57e-05\n\n\n\n\nDer oneway.test berücksichtigt ungleiche Varianzen durch gewichtete Mittelwerte und Freiheitsgrade und eine angepasste F-Statistik.\nDie Varianzhomogenität ist wichtiger als die Normalverteilung – insbesondere bei unbalancierten Designs.\nEin Varianzunterschied kann den F-Test stärker verzerren als leichte Abweichungen von der Normalverteilung.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#zweifache-anova",
+    "href": "slides/07-anova.html#zweifache-anova",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Zweifache ANOVA",
+    "text": "Zweifache ANOVA\n\nBeispiel aus einem Statistik-Lehrbuch (Crawley, 2002), angewandt auf einen neuen Kontext\nAuswirkungen von Dünger und Licht auf das Wachstum der Pflanzenhöhe in cm pro Zeit\n\n\n\n\nDünger\nhelles Licht\nschwaches Licht\n\n\n\n\nA\n8.3\n6.6\n\n\nA\n8.7\n7.2\n\n\nB\n8.1\n6.9\n\n\nB\n8.5\n8.3\n\n\nC\n9.1\n7.9\n\n\nC\n9.0\n9.2\n\n\n\n\n\n\n\n\n\nfaktorielles Experiment (mit Wiederholungen)\nfür jede Faktorkombination mehr als eine Beobachtung\nEs können Wechselwirkungen identifiziert werden\n\nFalls keine Wiederholungen: Keine Schätzung des Fehlers für Interaktionen - keine Identifizierung von Wechselwirkungen möglich.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#daten-im-langformat-eingeben",
+    "href": "slides/07-anova.html#daten-im-langformat-eingeben",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Daten im Langformat eingeben",
+    "text": "Daten im Langformat eingeben\n\n\n\nplants &lt;- data.frame(No = 1:12,\n                    growth = c(6.6, 7.2, 6.9, 8.3, 7.9, 9.2,\n                               8.3, 8.7, 8.1, 8.5, 9.1, 9.0),\n                    fert   = rep(c(\"A\", \"B\", \"C\"), each=2),\n                    light  = rep(c(\"low\", \"high\"), each=6)\n          )\n\n\n\n\n\n\n\nNo\ngrowth\nfert\nlight\n\n\n\n\n1\n6.6\nA\nlow\n\n\n2\n7.2\nA\nlow\n\n\n3\n6.9\nB\nlow\n\n\n4\n8.3\nB\nlow\n\n\n5\n7.9\nC\nlow\n\n\n6\n9.2\nC\nlow\n\n\n7\n8.3\nA\nhigh\n\n\n8\n8.7\nA\nhigh\n\n\n9\n8.1\nB\nhigh\n\n\n10\n8.5\nB\nhigh\n\n\n11\n9.1\nC\nhigh\n\n\n12\n9.0\nC\nhigh",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1551,11 +1584,11 @@
     ]
   },
   {
-    "objectID": "slides/07-anova.html#ansatz-1-einseitige-anova",
-    "href": "slides/07-anova.html#ansatz-1-einseitige-anova",
+    "objectID": "slides/07-anova.html#ansatz-1-einfache-anova",
+    "href": "slides/07-anova.html#ansatz-1-einfache-anova",
     "title": "07-ANOVA und ANCOVA",
-    "section": "Ansatz 1: einseitige ANOVA",
-    "text": "Ansatz 1: einseitige ANOVA\n\npar(mar=c(4, 8, 2, 1), las=1)\nm &lt;- lm(mu ~ treat, data=mcyst)\nanova(m)\n\nAnalysis of Variance Table\n\nResponse: mu\n          Df     Sum Sq    Mean Sq F value   Pr(&gt;F)   \ntreat      2 0.00053293 2.6647e-04   8.775 0.004485 **\nResiduals 12 0.00036440 3.0367e-05                    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nplot(TukeyHSD(aov(m)))",
+    "section": "Ansatz 1: einfache ANOVA",
+    "text": "Ansatz 1: einfache ANOVA\n\npar(mar=c(4, 8, 2, 1), las=1)\nm &lt;- lm(mu ~ treat, data=mcyst)\nanova(m)\n\nAnalysis of Variance Table\n\nResponse: mu\n          Df     Sum Sq    Mean Sq F value   Pr(&gt;F)   \ntreat      2 0.00053293 2.6647e-04   8.775 0.004485 **\nResiduals 12 0.00036440 3.0367e-05                    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nplot(TukeyHSD(aov(m)))",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1606,22 +1639,22 @@
     ]
   },
   {
-    "objectID": "slides/07-anova.html#anette-dobsons-daten-zum-geburtsgewicht",
-    "href": "slides/07-anova.html#anette-dobsons-daten-zum-geburtsgewicht",
+    "objectID": "slides/07-anova.html#warum-nicht-einfach-einen-t-test-durchführen",
+    "href": "slides/07-anova.html#warum-nicht-einfach-einen-t-test-durchführen",
     "title": "07-ANOVA und ANCOVA",
-    "section": "Anette Dobsons Daten zum Geburtsgewicht",
-    "text": "Anette Dobsons Daten zum Geburtsgewicht\nWarum nicht einfach einen t-Test durchführen?\n\nboxplot(weight ~ gender,data = dobson, ylab = \"weight\")\n\nt.test(weight ~ gender, data = dobson, var.equal = TRUE)\n\n\n    Two Sample t-test\n\ndata:  weight by gender\nt = 0.97747, df = 22, p-value = 0.339\nalternative hypothesis: true difference in means between group M and group F is not equal to 0\n95 percent confidence interval:\n -126.3753  351.7086\nsample estimates:\nmean in group M mean in group F \n       3024.000        2911.333 \n\n\nDer Boxplot zeigt viele Überschneidungen, und der Unterschied ist nicht signifikant, weil der t-Test wichtige Informationen außer Acht lässt: die Schwangerschaftswoche.",
+    "section": "Warum nicht einfach einen t-Test durchführen?",
+    "text": "Warum nicht einfach einen t-Test durchführen?\n\nboxplot(weight ~ gender,data = dobson, ylab = \"weight\")\n\nt.test(weight ~ gender, data = dobson, var.equal = TRUE)\n\n\n    Two Sample t-test\n\ndata:  weight by gender\nt = 0.97747, df = 22, p-value = 0.339\nalternative hypothesis: true difference in means between group M and group F is not equal to 0\n95 percent confidence interval:\n -126.3753  351.7086\nsample estimates:\nmean in group M mean in group F \n       3024.000        2911.333 \n\n\n\nDer t-Test zeigt keine signifikante Differenz und der Boxplot zeigt starke Überlappung.\nAber: Der t-Test ignoriert die Schwangerschaftswoche, eine wichtige Kovariate.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
     ]
   },
   {
-    "objectID": "slides/07-anova.html#ancova-verwendet-kovariaten",
-    "href": "slides/07-anova.html#ancova-verwendet-kovariaten",
+    "objectID": "slides/07-anova.html#ancova-berücksichtigung-der-kovariate",
+    "href": "slides/07-anova.html#ancova-berücksichtigung-der-kovariate",
     "title": "07-ANOVA und ANCOVA",
-    "section": "ANCOVA verwendet Kovariaten",
-    "text": "ANCOVA verwendet Kovariaten\n\nm &lt;- lm(weight ~ week * gender, data = dobson)\nanova(m)\n\nAnalysis of Variance Table\n\nResponse: weight\n            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    \nweek         1 1013799 1013799 31.0779 1.862e-05 ***\ngender       1  157304  157304  4.8221   0.04006 *  \nweek:gender  1    6346    6346  0.1945   0.66389    \nResiduals   20  652425   32621                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1",
+    "section": "ANCOVA: Berücksichtigung der Kovariate",
+    "text": "ANCOVA: Berücksichtigung der Kovariate\n\nm &lt;- lm(weight ~ week * gender, data = dobson)\nanova(m)\n\nAnalysis of Variance Table\n\nResponse: weight\n            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    \nweek         1 1013799 1013799 31.0779 1.862e-05 ***\ngender       1  157304  157304  4.8221   0.04006 *  \nweek:gender  1    6346    6346  0.1945   0.66389    \nResiduals   20  652425   32621                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nBeispiel: Aus Gründen, die wir später besprechen, muss die Kovariate week als erstes in der Modellformel stehen.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1661,11 +1694,11 @@
     ]
   },
   {
-    "objectID": "slides/07-anova.html#auswahl-eines-optimalen-modells-aus-einer-menge-von-kandidaten",
-    "href": "slides/07-anova.html#auswahl-eines-optimalen-modells-aus-einer-menge-von-kandidaten",
+    "objectID": "slides/07-anova.html#modellkandidaten-und-auswahl-eines-optimalen-modells",
+    "href": "slides/07-anova.html#modellkandidaten-und-auswahl-eines-optimalen-modells",
     "title": "07-ANOVA und ANCOVA",
-    "section": "Auswahl eines optimalen Modells aus einer Menge von Kandidaten",
-    "text": "Auswahl eines optimalen Modells aus einer Menge von Kandidaten\n\nProblem:\n\nBei komplexen ANOVA-Modellen hängen die p-Werte von der Anzahl (und manchmal von der Reihenfolge) der einbezogenen Faktoren und Wechselwirkungen ab.\nDer \\(H_0\\)-basierte Ansatz wird verwirrend, z.B. wegen widersprüchlicher p-Werte.\n\nAlternativer Ansatz:\n\nNutzt das Prinzip der Parsimonie\n\nAnstelle von p-Wert-basierten Tests werden verschiedene Modellkandidaten verglichen:\n\nModell mit allen potentiellen Effekten → vollständiges Modell\nWeglassen einzelner Faktoren → reduzierte Modelle (mehrere!)\nKeine Einflussfaktoren (nur Mittelwert) → Nullmodell\nWelches Modell ist das beste → minimales adäquates Modell?",
+    "section": "Modellkandidaten und Auswahl eines optimalen Modells",
+    "text": "Modellkandidaten und Auswahl eines optimalen Modells\n\nProblem:\n\nBei komplexen ANOVA-Modellen hängen die p-Werte von der Anzahl (und manchmal von der Reihenfolge) der einbezogenen Faktoren und Wechselwirkungen ab.\nDer H0-basierte Ansatz wird eventuell verwirrend, z.B. wegen widersprüchlicher p-Werte.\n\nAlternativer Ansatz:\n\nModellselektion – nutzt das Prinzip der Parsimonie\n\nEs werden verschiedene Modellkandidaten verglichen:\n\nModell mit allen potentiellen Effekten → vollständiges Modell\nWeglassen einzelner Faktoren → reduzierte Modelle (mehrere!)\nKeine Einflussfaktoren (nur Mittelwert) → Nullmodell\nWelches Modell ist das beste? → minimales adäquates Modell",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1683,44 +1716,44 @@
     ]
   },
   {
-    "objectID": "slides/07-anova.html#modellauswahl-und-likelihood-ratio-tests",
-    "href": "slides/07-anova.html#modellauswahl-und-likelihood-ratio-tests",
+    "objectID": "slides/07-anova.html#modellselektion-und-likelihood-ratio-tests",
+    "href": "slides/07-anova.html#modellselektion-und-likelihood-ratio-tests",
     "title": "07-ANOVA und ANCOVA",
-    "section": "Modellauswahl und Likelihood-Ratio-Tests",
-    "text": "Modellauswahl und Likelihood-Ratio-Tests\nAnsatz\n\nMehrere Modelle einzeln anpassen\nVergleiche die Modelle paarweise mit ANOVA (Likelihood Ratio Test)\n\nDaten und Beispiel\n\nplants &lt;- data.frame(No=1:12,\n                   growth=c(6.6, 7.2, 6.9, 8.3, 7.9, 9.2,\n                            8.3, 8.7, 8.1, 8.5, 9.1, 9.0),\n                   fert= rep(c(\"A\", \"B\", \"C\"), each=2),\n                   light= rep(c(\"low\", \"high\"), each=6)\n                   )\n\n\nm3 &lt;- lm(growth ~ fert * light, data=plants)  # f1 + f2 + f1:f2\nm2 &lt;- lm(growth ~ fert + light, data=plants)  # f1 + f2\nanova(m3, m2)\n\nAnalysis of Variance Table\n\nModel 1: growth ~ fert * light\nModel 2: growth ~ fert + light\n  Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)\n1      6 2.1700                           \n2      8 2.8567 -2  -0.68667 0.9493 0.4383\n\n\n\nLikelihood-Ratio-Test vergleicht zwei Modelle (anova mit &gt; 1 Modell)\nModell mit Interaktion (m3) nicht signifikant besser als Modell ohne Interaktion (m2).",
+    "section": "Modellselektion und Likelihood-Ratio-Tests",
+    "text": "Modellselektion und Likelihood-Ratio-Tests\n\nAnsatz\n\nMehrere Modelle einzeln anpassen\nModelle paarweise mit ANOVA (Likelihood Ratio Test) vergleichen\n\nDaten und Beispiel\n\nplants &lt;- data.frame(No=1:12,\n                   growth=c(6.6, 7.2, 6.9, 8.3, 7.9, 9.2,\n                            8.3, 8.7, 8.1, 8.5, 9.1, 9.0),\n                   fert= rep(c(\"A\", \"B\", \"C\"), each=2),\n                   light= rep(c(\"low\", \"high\"), each=6)\n                   )\n\n\nm3 &lt;- lm(growth ~ fert * light, data=plants)  # f1 + f2 + f1:f2\nm2 &lt;- lm(growth ~ fert + light, data=plants)  # f1 + f2\nanova(m3, m2)\n\nAnalysis of Variance Table\n\nModel 1: growth ~ fert * light\nModel 2: growth ~ fert + light\n  Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)\n1      6 2.1700                           \n2      8 2.8567 -2  -0.68667 0.9493 0.4383\n\n\n\nLikelihood-Ratio-Test vergleicht zwei Modelle (anova in R mit &gt; 1 Modell)\nModell mit Interaktion (m3) nicht signifikant besser als Modell ohne Interaktion (m2).",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
     ]
   },
   {
-    "objectID": "slides/07-anova.html#aic-basierte-modellauswahl",
-    "href": "slides/07-anova.html#aic-basierte-modellauswahl",
+    "objectID": "slides/07-anova.html#aic-basierte-modellselektion",
+    "href": "slides/07-anova.html#aic-basierte-modellselektion",
     "title": "07-ANOVA und ANCOVA",
-    "section": "AIC-basierte Modellauswahl",
-    "text": "AIC-basierte Modellauswahl\n\nDer paarweise Modellvergleich ist umständlich, insbesondere bei einer großen Anzahl von Modellen.\nLösung: Erstelle eine Menge von Kandidatenmodellen\nVerwende kleinstes AIC, um das minimal angemessene Modell auszuwählen.\n\n\nm3  &lt;- lm(growth ~ light * fert, data = plants) # Gesamtmodell\nm2  &lt;- lm(growth ~ light + fert, data = plants)\nm1a &lt;- lm(growth ~ fert, data = plants)\nm1b &lt;- lm(growth ~ light, data = plants)\nm0  &lt;- lm(growth ~ 1, data = plants)            # Nullmodell\n\nAIC(m0, m1a, m1b, m2, m3)\n\n    df      AIC\nm0   2 33.38238\nm1a  4 32.62699\nm1b  3 30.72893\nm2   5 26.83151\nm3   7 27.53237\n\n\nAnmerkungen\n\nAIC-Werte sind bis zu einer additiven Konstante definiert\n\\(\\rightarrow\\) Absolute Werte können je nach Software oder Methode variieren.\n\\(\\Rightarrow\\) Betrachte die Differenzen, nicht die absoluten Werte.\nFaustregel: die „AIC-Einheit“ ist 2, Unterschiede \\(\\approx 2.0\\rightarrow\\) geringe Bedeutung",
+    "section": "AIC-basierte Modellselektion",
+    "text": "AIC-basierte Modellselektion\n\nDer paarweise Modellvergleich ist umständlich, insbesondere bei einer großen Anzahl von Modellen.\nLösung: Erstelle eine Menge von Kandidatenmodellen\nVerwende kleinstes AIC, um das minimal angemessene Modell auszuwählen.\n\n\nm3  &lt;- lm(growth ~ light * fert, data = plants) # Gesamtmodell\nm2  &lt;- lm(growth ~ light + fert, data = plants)\nm1a &lt;- lm(growth ~ fert, data = plants)\nm1b &lt;- lm(growth ~ light, data = plants)\nm0  &lt;- lm(growth ~ 1, data = plants)            # Nullmodell\n\nAIC(m0, m1a, m1b, m2, m3)\n\n    df      AIC\nm0   2 33.38238\nm1a  4 32.62699\nm1b  3 30.72893\nm2   5 26.83151\nm3   7 27.53237\n\n\nAnmerkungen\n\nAIC-Werte sind bis zu einer additiven Konstante definiert\n\\(\\rightarrow\\) Absolute Werte können je nach Software oder Methode variieren.\n\\(\\Rightarrow\\) Betrachte die Differenzen, nicht die absoluten Werte.\nFaustregel: die „AIC-Einheit“ ist 2, Unterschiede \\(\\approx\\) 2.0 \\(\\rightarrow\\) geringe Bedeutung",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
     ]
   },
   {
-    "objectID": "slides/07-anova.html#schrittweise-modellauswahl-automatisch",
-    "href": "slides/07-anova.html#schrittweise-modellauswahl-automatisch",
+    "objectID": "slides/07-anova.html#schrittweise-modellselektion-automatisch",
+    "href": "slides/07-anova.html#schrittweise-modellselektion-automatisch",
     "title": "07-ANOVA und ANCOVA",
-    "section": "Schrittweise Modellauswahl (automatisch)",
-    "text": "Schrittweise Modellauswahl (automatisch)\n\nAutomatische Modellselektion\n\nm1 &lt;- lm(growth ~ fert * light, data=plants)\nopt &lt;- step(m1)\n\nStart:  AIC=-8.52\ngrowth ~ fert * light\n\n             Df Sum of Sq    RSS     AIC\n- fert:light  2   0.68667 2.8567 -9.2230\n&lt;none&gt;                    2.1700 -8.5222\n\nStep:  AIC=-9.22\ngrowth ~ fert + light\n\n        Df Sum of Sq    RSS     AIC\n&lt;none&gt;               2.8567 -9.2230\n- fert   2    2.6600 5.5167 -5.3256\n- light  1    2.6133 5.4700 -3.4275\n\n\nModell mit dem kleinsten AIC \\(\\rightarrow\\) optimales Modell.\n\n\n\nZum Vergleich: klassische ANOVA\n\nanova(opt)\n\nAnalysis of Variance Table\n\nResponse: growth\n          Df Sum Sq Mean Sq F value  Pr(&gt;F)  \nfert       2 2.6600 1.33000  3.7246 0.07190 .\nlight      1 2.6133 2.61333  7.3186 0.02685 *\nResiduals  8 2.8567 0.35708                  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nErgebnisse des Beispiels:\n\noptimales Modell (opt), enthält beide Faktoren (fert, light), aber keine Interaktion.\nDie Modellauswahl identifiziert fert und light als wichtige Erklärungsvariablen.\nim Gegensatz zur klassischen ANOVA-Tabelle, in der nur light signifikant war, zeigt die Modellselektion, dass auch fert zur Erklärung beiträgt.",
+    "section": "Schrittweise Modellselektion (automatisch)",
+    "text": "Schrittweise Modellselektion (automatisch)\n\nAutomatische Modellselektion\n\nm1 &lt;- lm(growth ~ fert * light, data=plants)\nopt &lt;- step(m1)\n\nStart:  AIC=-8.52\ngrowth ~ fert * light\n\n             Df Sum of Sq    RSS     AIC\n- fert:light  2   0.68667 2.8567 -9.2230\n&lt;none&gt;                    2.1700 -8.5222\n\nStep:  AIC=-9.22\ngrowth ~ fert + light\n\n        Df Sum of Sq    RSS     AIC\n&lt;none&gt;               2.8567 -9.2230\n- fert   2    2.6600 5.5167 -5.3256\n- light  1    2.6133 5.4700 -3.4275\n\n\nModell mit dem kleinsten AIC \\(\\rightarrow\\) optimales Modell.\n\n\n\nZum Vergleich: klassische ANOVA\n\nanova(opt)\n\nAnalysis of Variance Table\n\nResponse: growth\n          Df Sum Sq Mean Sq F value  Pr(&gt;F)  \nfert       2 2.6600 1.33000  3.7246 0.07190 .\nlight      1 2.6133 2.61333  7.3186 0.02685 *\nResiduals  8 2.8567 0.35708                  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nErgebnisse des Beispiels:\n\noptimales Modell (opt), enthält beide Faktoren (fert, light), aber keine Interaktion.\nDie Modellselektion identifiziert fert und light als wichtige Erklärungsvariablen.\nim Gegensatz zur klassischen ANOVA-Tabelle, in der nur light signifikant war, zeigt die Modellselektion, dass auch fert zur Erklärung beiträgt.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
     ]
   },
   {
-    "objectID": "slides/07-anova.html#signifikanztests",
-    "href": "slides/07-anova.html#signifikanztests",
+    "objectID": "slides/07-anova.html#signifikanztests-vs.-modellselektion",
+    "href": "slides/07-anova.html#signifikanztests-vs.-modellselektion",
     "title": "07-ANOVA und ANCOVA",
-    "section": "Signifikanztests?",
-    "text": "Signifikanztests?\n\n\nDas Konzept der Modellselektion ersetzt die p-Wert-basierte Statistik mindestens teilweise.\nEinige Autoren raten generell davon ab, p-Werte in diesem Kontext zu verwenden.\nAndere empfehlen einen Kompromiss: p-Werte nur als Hilfsmittel, nicht als Entscheidungskriterium.\nWenn du p-Werte dennoch benötigst, vergleiche das optimale Modell mit reduzierten Modellen:\n\n\nanova(m2, m1a) # fert\nanova(m2, m1b) # light\n\n\nInterpretiere p-Werte mit Vorsicht:\n\nSie sind abhängig von der Modellstruktur.\nSie können irreführend sein, wenn das Modell nicht optimal ist.\n\nKonzentriere dich auf die praktischen Implikationen und gib Effektstärken an – nicht nur p-Werte.",
+    "section": "Signifikanztests vs. Modellselektion",
+    "text": "Signifikanztests vs. Modellselektion\n\n\nDas Konzept der Modellselektion ersetzt die p-Wert-basierte Statistik, zumindest teilweise.\nEinige Autoren raten davon ab, p-Werte in diesem Kontext noch zu verwenden.\nAndere empfehlen einen Kompromiss: p-Werte als Hilfsmittel, nicht als Entscheidungskriterium.\n\nDerzeitige Empfehlung\nWenn p-Werte benötigt werden, vergleiche das optimale Modell mit reduzierten Modellen:\n\nanova(m2, m1a) # fert\nanova(m2, m1b) # light\n\n\nInterpretiere p-Werte mit Vorsicht:\n\nSie sind abhängig von der Modellstruktur.\nSie können irreführend sein, wenn das Modell nicht optimal ist.\n\nGib auch Effektstärken und Vertrauensintervalle an!",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1743,6 +1776,17 @@
     "title": "07-ANOVA und ANCOVA",
     "section": "Vermeide Manipulation von p-Werten",
     "text": "Vermeide Manipulation von p-Werten\n\nExperimente NICHT wiederholen, bis ein signifikanter p-Wert gefunden wird!\n\nLeek et al. (2017) in Nature:\n\n“… Nature asked influential statisticians to recommend one change to improve science. The common theme? The problem is not our maths, but ourselves.”:\n\nFive ways to fix statistics. Comment on Nature\n\nJeff Leek: Adjust for human cognition\nBlakeley B. McShane & Andrew Gelman: Abandon statistical significance\nDavid Colquhoun: State false-positive risk, too\nMichèle B. Nuijten: Share analysis plans and results\nSteven N. Goodman: Change norms from within",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#the-asa-statement",
+    "href": "slides/07-anova.html#the-asa-statement",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "The “ASA Statement …”",
+    "text": "The “ASA Statement …”\n\nDas ASA Statement on Statistical Significance and P-Values der American Statistical Association (Wasserstein & Lazar, 2016) befasst sich mit der Bedeutung des p-Werts, ohne ihn komplett in Frage zu stellen. Es definiert 6 Prinzipien:\n\n\nP-values can indicate how incompatible the data are with a specified statistical model.\nP-values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone.\nScientific conclusions and business or policy decisions should not be based only on whether a p-value passes a specific threshold.\nProper inference requires full reporting and transparency.\nA p-value, or statistical significance, does not measure the size of an effect or the importance of a result.\nBy itself, a p-value does not provide a good measure of evidence regarding a model or hypothesis.\n\n\nDie Details sind im Statement weiter ausgeführt.\nSelbststudium: Lies dazu neben Wasserstein & Lazar (2016) auch Hurlbert et al. (2019).",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -2776,7 +2820,7 @@
     "href": "slides/01-introduction.html#welche-datenstruktur-ist-besser",
     "title": "01-Einführung",
     "section": "Welche Datenstruktur ist besser?",
-    "text": "Welche Datenstruktur ist besser?\n\n\nWide-Format\n\n\n\n\n\n\nstation\n2021\n2022\n2023\n\n\n\n\nA\n6\n20\n8\n\n\nB\n9\n1\n18\n\n\nC\n14\n16\n16\n\n\nD\n8\n20\n2\n\n\nE\n13\n5\n14\n\n\n\n\n\n\nLong-Format\n\n\n\n\n\n\nyear\nstation\nvalue\n\n\n\n\n2021\nA\n6\n\n\n2021\nB\n9\n\n\n2021\nC\n14\n\n\n2021\nD\n8\n\n\n2021\nE\n13\n\n\n2022\nA\n20\n\n\n2022\nB\n1\n\n\n2022\nC\n16\n\n\n2022\nD\n20\n\n\n2022\nE\n5\n\n\n2023\nA\n8\n\n\n2023\nB\n18\n\n\n2023\nC\n16\n\n\n2023\nD\n2\n\n\n2023\nE\n14",
+    "text": "Welche Datenstruktur ist besser?\n\n\nWide-Format\n\n\n\n\n\n\nstation\n2021\n2022\n2023\n\n\n\n\nA\n13\n19\n14\n\n\nB\n15\n10\n17\n\n\nC\n11\n19\n17\n\n\nD\n15\n18\n5\n\n\nE\n17\n14\n19\n\n\n\n\n\n\nLong-Format\n\n\n\n\n\n\nyear\nstation\nvalue\n\n\n\n\n2021\nA\n13\n\n\n2021\nB\n15\n\n\n2021\nC\n11\n\n\n2021\nD\n15\n\n\n2021\nE\n17\n\n\n2022\nA\n19\n\n\n2022\nB\n10\n\n\n2022\nC\n19\n\n\n2022\nD\n18\n\n\n2022\nE\n14\n\n\n2023\nA\n14\n\n\n2023\nB\n17\n\n\n2023\nC\n17\n\n\n2023\nD\n5\n\n\n2023\nE\n19",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -3040,7 +3084,7 @@
     "href": "slides/04-distributions.html#kontinuierliche-gleichverteilung-mathbfu0-1",
     "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)",
-    "text": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)\n\n\ngleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall\nz.B. \\([0, 1]\\)\nin R: runif, random, uniform\n\n\nrunif(10)\n\n [1] 0.829975819 0.082188891 0.002092706 0.392128511 0.390446015 0.363470901\n [7] 0.081870791 0.116082502 0.296399114 0.130358771\n\n\n \n\nKlassenbildung (Binning): Einteilung der Werte in Klassen",
+    "text": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)\n\n\ngleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall\nz.B. \\([0, 1]\\)\nin R: runif, random, uniform\n\n\nrunif(10)\n\n [1] 0.3878149 0.1474093 0.1270229 0.1482189 0.2070467 0.9665356 0.2667545\n [8] 0.5472155 0.8764302 0.8463079\n\n\n \n\nKlassenbildung (Binning): Einteilung der Werte in Klassen",
     "crumbs": [
       "Statistische Grundlagen",
       "04-Wahrscheinlichkeitsverteilungen"
@@ -3370,18 +3414,18 @@
     "href": "slides/06-linear.html#das-lineare-modell",
     "title": "06-Lineare Regression",
     "section": "Das lineare Modell",
-    "text": "Das lineare Modell\n\\[\ny_i = \\alpha + \\beta_1 x_{i,1} + \\beta_2 x_{i,2} + \\cdots + \\beta_p x_{i,p} + \\varepsilon_i\n\\]\n\nGrundlegend für viele statistische Methoden\n\nLineare Regression einschließlich einiger (auf den ersten Blick) „nichtlinearer“ Funktionen\nANOVA, ANCOVA, GLM (gleichzeitiges Testen von mehreren Stichproben oder mehreren Faktoren)\nMultivariate Statistik (z. B. PCA)\nZeitreihenanalyse (z. B. ARIMA)\nImputation (Schätzung von fehlenden Werten)",
+    "text": "Das lineare Modell\n\\[\ny_i = \\alpha + \\beta_1 x_{i,1} + \\beta_2 x_{i,2} + \\cdots + \\beta_p x_{i,p} + \\varepsilon_i\n\\]\n\nGrundlage vieler statistischer Verfahren\n\nLineare Regression einschließlich einiger (auf den ersten Blick) „nichtlinearer“ Funktionen\nTests für zwei oder mehr Stichproben oder Faktoren: ANOVA, ANCOVA, GLM…\nMultivariate Statistik (z. B. PCA)\nZeitreihenanalyse (z. B. ARIMA)\nImputation (Schätzung von fehlenden Werten)",
     "crumbs": [
       "Statistische Grundlagen",
       "06-Lineare Regression"
     ]
   },
   {
-    "objectID": "slides/06-linear.html#method-of-least-squares",
-    "href": "slides/06-linear.html#method-of-least-squares",
+    "objectID": "slides/06-linear.html#methode-der-kleinsten-quadrate",
+    "href": "slides/06-linear.html#methode-der-kleinsten-quadrate",
     "title": "06-Lineare Regression",
-    "section": "Method of least squares",
-    "text": "Method of least squares\n\\[\nRSS = \\sum_{i=1}^n (y_i - \\hat{y}_i)^2 = \\sum_{i=1}^n  \\varepsilon^2 \\qquad \\text{(residual sum of squares)}\n\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\\begin{align}\n  \\text{Gesamtvarianz} &= \\text{Varianzaufklärung} &+& \\text{Restvarianz}\\\\\n                    s^2_y &= s^2_{y|x}               &+& s^2_{\\varepsilon}\n\\end{align}\\]",
+    "section": "Methode der kleinsten Quadrate",
+    "text": "Methode der kleinsten Quadrate\n\\[\nRSS = \\sum_{i=1}^n (y_i - \\hat{y}_i)^2 = \\sum_{i=1}^n  \\varepsilon^2 \\qquad \\text{(residual sum of squares)}\n\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\\begin{align}\n  \\text{Gesamtvarianz} &= \\text{erklärte Varianz} & + & \\text{Restvarianz}\\\\\n                  ^2_y &= s^2_{y|x}               & + & s^2_{\\varepsilon}\n\\end{align}\\]",
     "crumbs": [
       "Statistische Grundlagen",
       "06-Lineare Regression"
@@ -3392,18 +3436,18 @@
     "href": "slides/06-linear.html#das-bestimmtheitsmaß",
     "title": "06-Lineare Regression",
     "section": "Das Bestimmtheitsmaß",
-    "text": "Das Bestimmtheitsmaß\n\\[\\begin{align}\n     r^2 & = \\frac{\\text{Varianzaufklärung}}{\\text{Gesamtvarianz}}\\\\\n         & = \\frac{s^2_{y|x}}{s^2_y}\\\\\n\\end{align}\\]\nSie kann auch als Verhältnis zwischen der Summe der Quadrate der Residuen (RSS) und der Gesamtsumme (TSS = total sum of squares) ausgedrückt werden:\n\\[\n    r^2 = 1-\\frac{s^2_{\\varepsilon}}{s^2_{y}} = 1-\\frac{RSS}{TSS} =  1- \\frac{\\sum(y_i -\\hat{y}_i)^2}{\\sum(y_i - \\bar{y})^2}\n\\]\n\nabgeleitet von der „Summe der Quadrate“, skaliert als relative Varianz\nidentisch mit der quadrierten Pearson-Korrelation \\(r^2\\) (im linearen Fall)\nSehr nützliche Interpretation: Prozentsatz der Varianz der Rohdaten, der durch das Modell erklärt wird.\n\nZum Beispiel: \\(r^2= 1-\\) 15.3 \\(/\\) 40.8 \\(=\\) 0.625",
+    "text": "Das Bestimmtheitsmaß\n\\[\\begin{align}\n     r^2 & = \\frac{\\text{erklärte Varianz}}{\\text{Gesamtvarianz}}\\\\\n         & = \\frac{s^2_{y|x}}{s^2_y}\\\\\n\\end{align}\\]\n… kann als Verhältnis zwischen der Summe der Residuenquadrate (RSS) und der Gesamtsumme (TSS = total sum of squares) ausgedrückt werden:\n\\[\n    r^2 = 1-\\frac{s^2_{\\varepsilon}}{s^2_{y}} = 1-\\frac{RSS}{TSS} =  1- \\frac{\\sum(y_i -\\hat{y}_i)^2}{\\sum(y_i - \\bar{y})^2}\n\\]\n\n„Summe der Quadrate“, skaliert als relative Varianz\nidentisch mit der quadrierten Pearson-Korrelation \\(r^2\\) (im linearen Fall)\nSehr nützliche Interpretation: \\(\\rightarrow\\) Prozentsatz der Varianz der Rohdaten, der durch das Modell erklärt wird.\n\nIm Beispiel: \\(r^2 = 1-\\) 15.3 \\(/\\) 40.8 \\(=\\) 0.625",
     "crumbs": [
       "Statistische Grundlagen",
       "06-Lineare Regression"
     ]
   },
   {
-    "objectID": "slides/06-linear.html#minimierung-der-rss",
-    "href": "slides/06-linear.html#minimierung-der-rss",
+    "objectID": "slides/06-linear.html#analytische-lösung",
+    "href": "slides/06-linear.html#analytische-lösung",
     "title": "06-Lineare Regression",
-    "section": "Minimierung der RSS",
-    "text": "Minimierung der RSS\n\nAnalytische Lösung: Minimierung der Summe der Quadrate (\\(\\sum \\varepsilon^2\\))\nLineares Gleichungssystem\nMinimale RSS \\(\\longleftarrow\\) partielle 1. Ableitungen (\\(\\partial\\))\n\nFür \\(y=a \\cdot x + b\\) mit 2 Parametern: \\(\\frac{\\partial\\sum \\varepsilon^2}{\\partial{a}}=0\\), \\(\\frac{\\partial\\sum \\varepsilon^2}{\\partial{b}}=0\\):\n\n\\[\\begin{align}\n  \\frac{\\partial \\sum(\\hat{y_i} - y_i)^2}{\\partial a}     &= \\frac{\\partial \\sum(a + b \\cdot x_i - y_i)^2}{\\partial a} = 0\\\\\n      \\frac{\\partial \\sum(\\hat{y_i} - y_i)^2}{\\partial b} &= \\frac{\\partial \\sum(a + b \\cdot x_i - y_i)^2}{\\partial b} = 0\n\\end{align}\\]\nLösung des linearen Gleichungssystems:\n\\[\\begin{align}\nb &=\\frac {\\sum x_iy_i - \\frac{1}{n}(\\sum x_i \\sum y_i)} {\\sum x_i^2 - \\frac{1}{n}(\\sum x_i)^2}\\\\\na &=\\frac {\\sum y_i - b \\sum x_i}{n}\n\\end{align}\\]\n\nLösung für eine beliebige Anzahl von Parametern mit Matrixalgebra",
+    "section": "Analytische Lösung",
+    "text": "Analytische Lösung\n\nMinimierung der Summe der Quadrate (\\(\\sum \\varepsilon^2\\))\nMinimale RSS \\(\\longleftarrow\\) partielle 1. Ableitungen aller Parameter (\\(\\partial p = 0\\))\nLineares Gleichungssystem\n\nFür \\(y=a \\cdot x + b\\) mit 2 Parametern: \\(\\frac{\\partial\\sum \\varepsilon^2}{\\partial{a}}=0\\), \\(\\frac{\\partial\\sum \\varepsilon^2}{\\partial{b}}=0\\):\n\n\\[\\begin{align}\n  \\frac{\\partial \\sum(\\hat{y_i} - y_i)^2}{\\partial a}     &= \\frac{\\partial \\sum(a + b \\cdot x_i - y_i)^2}{\\partial a} = 0\\\\\n      \\frac{\\partial \\sum(\\hat{y_i} - y_i)^2}{\\partial b} &= \\frac{\\partial \\sum(a + b \\cdot x_i - y_i)^2}{\\partial b} = 0\n\\end{align}\\]\nLösung des linearen Gleichungssystems:\n\\[\nb =\\frac {\\sum x_iy_i - \\frac{1}{n}(\\sum x_i \\sum y_i)} {\\sum x_i^2 - \\frac{1}{n}(\\sum x_i)^2}, \\quad\na =\\frac {\\sum y_i - b \\sum x_i}{n}\n\\]\n\nLösung für eine beliebige Anzahl von Parametern mit Matrixalgebra.",
     "crumbs": [
       "Statistische Grundlagen",
       "06-Lineare Regression"
@@ -3425,7 +3469,7 @@
     "href": "slides/06-linear.html#diagnostik",
     "title": "06-Lineare Regression",
     "section": "Diagnostik",
-    "text": "Diagnostik\n\n\n\nKeine Regressionsanalyse ohne grafische Diagnostik!\n\nx-y-Plot mit Regressionsgerade: ist die Varianz homogen?\nPlot der Residuen vs. gefittet: gibt es noch irgendwelche Restmuster?\nQ-Q- Plot, Histogramm: Ist die Verteilung der Residuen näherungsweise normal?\n\nVerwende grafische Methoden für die Normalität, vertraue in diesem Fall nicht auf Shapiro-Wilks.",
+    "text": "Diagnostik\n\n\n\nKeine Regressionsanalyse ohne grafische Diagnostik!\n\nx-y-Plot mit Regressionsgerade: ist die Varianz homogen?\nPlot der Residuen vs. gefittet: gibt es noch irgendwelche Restmuster?\nQ-Q- Plot, Histogramm: Ist die Verteilung der Residuen näherungsweise normal?\n\nPrüfe annähernde Normalität grafisch, vertraue nicht auf Shapiro-Wilks.",
     "crumbs": [
       "Statistische Grundlagen",
       "06-Lineare Regression"
@@ -3436,7 +3480,7 @@
     "href": "slides/06-linear.html#konfidenzintervalle-der-parameter",
     "title": "06-Lineare Regression",
     "section": "Konfidenzintervalle der Parameter",
-    "text": "Konfidenzintervalle der Parameter\n\nBasierend auf Standardfehlern und der t-Verteilung, ähnlich wie beim KI des Mittelwerts\n\n\\[\\begin{align}\na & \\pm t_{1-\\alpha/2, n-2} \\cdot s_a\\\\\nb & \\pm t_{1-\\alpha/2, n-2} \\cdot s_b\n\\end{align}\\]\n\nsummary(m)\n\n\nCall:\nlm(formula = y ~ x)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-3.4451 -1.0894 -0.4784  1.5065  3.1933 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  2.50740    0.87338   2.871   0.0102 *  \nx            2.04890    0.07427  27.589 3.51e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.885 on 18 degrees of freedom\nMultiple R-squared:  0.9769,    Adjusted R-squared:  0.9756 \nF-statistic: 761.1 on 1 and 18 DF,  p-value: 3.514e-16\n\n\n Beispiel: KI von a: \\(a \\pm t_{1-\\alpha/2, n-2} \\cdot s_a = 2.5074 \\pm\n2.09 \\cdot 0.87338\\)",
+    "text": "Konfidenzintervalle der Parameter\n\nBasierend auf Standardfehlern und t-Verteilung, ähnlich wie beim CI des Mittelwerts\n\n\\[\\begin{align}\na & \\pm t_{1-\\alpha/2, n-2} \\cdot s_a\\\\\nb & \\pm t_{1-\\alpha/2, n-2} \\cdot s_b\n\\end{align}\\]\n\nsummary(m)\n\n\nCall:\nlm(formula = y ~ x)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-3.4451 -1.0894 -0.4784  1.5065  3.1933 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  2.50740    0.87338   2.871   0.0102 *  \nx            2.04890    0.07427  27.589 3.51e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.885 on 18 degrees of freedom\nMultiple R-squared:  0.9769,    Adjusted R-squared:  0.9756 \nF-statistic: 761.1 on 1 and 18 DF,  p-value: 3.514e-16\n\n\n Beispiel: CI von a: \\(a \\pm t_{1-\\alpha/2, n-2} \\cdot s_a = 2.5074 \\pm\n2.09 \\cdot 0.87338\\)",
     "crumbs": [
       "Statistische Grundlagen",
       "06-Lineare Regression"
@@ -3447,7 +3491,7 @@
     "href": "slides/06-linear.html#konfidenzintervall-und-vorhersageintervall",
     "title": "06-Lineare Regression",
     "section": "Konfidenzintervall und Vorhersageintervall",
-    "text": "Konfidenzintervall und Vorhersageintervall\n\n\nKonfidenzintervall:\n\nZeigt den Bereich, in dem die „wahre Regressionslinie“ zu 95 % erwartet wird.\nDie Breite dieses Bereichs nimmt mit zunehmendem \\(n\\) ab\nanalog zum Standardfehler\n\nVorhersageintervall:\n\nZeigt den Bereich an, in dem die Vorhersage für einen einzelnen Wert (zu 95%) erwartet wird.\nDie Breite ist unabhängig vom Stichprobenumfang \\(n\\)\nanalog zur Standardabweichung",
+    "text": "Konfidenzintervall und Vorhersageintervall\n\n\nKonfidenzintervall:\n\nZeigt den Bereich, in dem die „wahre Regressionslinie“ zu 95 % erwartet wird.\nDie Breite dieses Bereichs nimmt mit zunehmendem \\(n\\) ab.\nanalog zum Standardfehler\n\nVorhersageintervall:\n\nZeigt den Bereich, in dem die Vorhersage für einen einzelnen Wert (zu 95%) erwartet wird.\nDie Breite ist unabhängig vom Stichprobenumfang \\(n\\).\nanalog zur Standardabweichung",
     "crumbs": [
       "Statistische Grundlagen",
       "06-Lineare Regression"
@@ -3458,7 +3502,7 @@
     "href": "slides/06-linear.html#konfidenzintervalle-für-die-lineare-regression-code",
     "title": "06-Lineare Regression",
     "section": "Konfidenzintervalle für die lineare Regression: Code",
-    "text": "Konfidenzintervalle für die lineare Regression: Code\n\n## generiere Beispiel Daten\nx &lt;- 1:10\ny &lt;- 2 + 0.5 * x + 0.5 * rnorm(x)\n\n## fitte Modell\nreg &lt;- lm(y ~ x)\nsummary(reg)\n\n## Daten und Regressionslinie plotten\nplot(x,y, xlim = c(0, 10), ylim = c(0, 10), pch = 16)\nabline(reg, lwd = 2)\n\n## Intervalle berechnen und plotten\nnewdata &lt;- data.frame(x=seq(-1, 11, length=100))\nconflim &lt;- predict(reg, newdata=newdata, interval = \"confidence\")\npredlim &lt;- predict(reg, newdata=newdata, interval = \"prediction\")\n\nlines(newdata$x, conflim[,2], col = \"blue\")\nlines(newdata$x, conflim[,3], col = \"blue\")\nlines(newdata$x, predlim[,2], col = \"red\")\nlines(newdata$x, predlim[,3], col = \"red\")\n\n\nDie Variable newdata:\n\nüberspannt den Bereich der x-Werte in kleinen Schritten, um eine glatte Kurve zu erhalten\neine einzige Spalte mit genau demselben Namen x wie in der Modellformel\nbei multipler Regression: eine Spalte pro Erklärungsvariable",
+    "text": "Konfidenzintervalle für die lineare Regression: Code\n\n## generiere Beispiel Daten\nx &lt;- 1:10\ny &lt;- 2 + 0.5 * x + 0.5 * rnorm(x)\n\n## fitte Modell\nreg &lt;- lm(y ~ x)\nsummary(reg)\n\n## Daten und Regressionslinie plotten\nplot(x,y, xlim = c(0, 10), ylim = c(0, 10), pch = 16)\nabline(reg, lwd = 2)\n\n## Intervalle berechnen und plotten\nnewdata &lt;- data.frame(x=seq(-1, 11, length=100))\nconflim &lt;- predict(reg, newdata=newdata, interval = \"confidence\")\npredlim &lt;- predict(reg, newdata=newdata, interval = \"prediction\")\n\nlines(newdata$x, conflim[,2], col = \"blue\")\nlines(newdata$x, conflim[,3], col = \"blue\")\nlines(newdata$x, predlim[,2], col = \"red\")\nlines(newdata$x, predlim[,3], col = \"red\")\n\n\nDie Variable newdata:\n\nüberspannt den Bereich der x-Werte in kleinen Schritten für eine glatte Kurve\nhier: eine einzige Spalte mit genau demselben Namen x wie in der Modellformel\nbei multipler Regression: eine Spalte pro Erklärungsvariable",
     "crumbs": [
       "Statistische Grundlagen",
       "06-Lineare Regression"
@@ -3491,7 +3535,7 @@
     "href": "slides/06-linear.html#nicht-normalität-und-ausreißer",
     "title": "06-Lineare Regression",
     "section": "Nicht-Normalität und Ausreißer",
-    "text": "Nicht-Normalität und Ausreißer\n\n\nNicht-Normalität\n\nweniger wichtig, als viele Leute denken ( aufgrund des CLTs)\nTransformationen (z. B. Box-Cox), Polynome, periodische Funktionen\nVerwendung von GLM’s (generalized linear models)\n\n\n\n\nAusreißer (abhängig vom Muster)\n\nVerwendung von Transformationen (z.B. Doppellog)\nVerwendung von Ausreißer-Tests, z.B. outlierTest aus Paket car\nrobuste Regression mit IWLS (iteratively re-weighted least squares) aus dem Paket MASS",
+    "text": "Nicht-Normalität und Ausreißer\n\n\nNicht-Normalität\n\nweniger wichtig, als viele Leute denken ( aufgrund des CLTs)\nTransformationen (z. B. Box-Cox), Polynome, periodische Funktionen\nVerwendung von GLM’s (generalized linear models)\n\n\n\n\nAusreißer (abhängig vom Muster)\n\nVerwendung von Transformationen (z.B. Doppellog)\nVerwendung von Ausreißer-Tests, z.B. outlierTest aus Paket car\nrobuste Regression mit IWLS aus dem Paket MASS",
     "crumbs": [
       "Statistische Grundlagen",
       "06-Lineare Regression"
@@ -3502,7 +3546,7 @@
     "href": "slides/06-linear.html#robuste-regression-mit-iwls",
     "title": "06-Lineare Regression",
     "section": "Robuste Regression mit IWLS",
-    "text": "Robuste Regression mit IWLS\n\n\nIWLS: iterierte, neu gewichtete kleinste Quadrate (engl. iterated re-weighted least squares)\nOLS (gewöhnliche kleinste Quadrate, engl. ordinary least squares) ist eine „normale“ lineare Regression.\nM-Schätzung und MM-Schätzung sind zwei verschiedene Ansätze, Details in Venables & Ripley (2013)\nrobuste Regression ist dem Ausschluss von Ausreißern vorzuziehen",
+    "text": "Robuste Regression mit IWLS\n\n\nOLS (gewöhnliche kleinste Quadrate, engl. ordinary least squares) ist die „normale“ Regression.\nIWLS: iterated re-weighted least squares\nM- bzw. MM-Schätzung: zwei verschiedene Ansätze, Details in Venables & Ripley (2013)\nrobuste Regression ist dem Ausschluss von Ausreißern vorzuziehen",
     "crumbs": [
       "Statistische Grundlagen",
       "06-Lineare Regression"
@@ -3513,29 +3557,29 @@
     "href": "slides/06-linear.html#code-der-iwls-regression",
     "title": "06-Lineare Regression",
     "section": "Code der IWLS-Regression",
-    "text": "Code der IWLS-Regression\n\nlibrary(\"MASS\")\n\n## Testdaten mit 2 „Ausreißern“\nx &lt;- c(1, 2, 3, 3, 4, 5, 7, 7, 7, 8, 8, 9, 10, 14, 15, 15, 16, 17, 18, 18)\ny &lt;- c(8.1, 20, 10.9, 8.4, 9.6, 16.1, 17.3, 15.3, 16, 15.9, 19.3, \n       21.3, 24.8, 31.3, 4, 31.9, 33.7, 36.5, 42.4, 38.5)\n\n## Fitten der Modelle\nssq    &lt;- lm(y ~ x)\niwls   &lt;- rlm(y ~ x)\niwlsmm &lt;- rlm(y ~ x, method = \"MM\")\n\n## Plotten der Modelle\nplot(x, y, pch = 16, las = 1)\nabline(ssq, col = \"blue\", lty = \"dashed\")\nabline(iwls, col = \"red\")\nabline(iwlsmm, col = \"green\")\nlegend(\"topleft\", c(\"OLS\", \"IWLS-M\", \"IWLS-MM\"),\n       col = c(\"blue\", \"red\", \"green\"),\n       lty = c(\"dashed\", \"solid\", \"solid\"))",
+    "text": "Code der IWLS-Regression\n\n\nlibrary(\"MASS\")\n\n## Testdaten mit 2 „Ausreißern“\nx &lt;- c(1, 2, 3, 3, 4, 5, 7, 7, 7, 8, 8, 9, 10, 14, 15, 15, 16, 17, 18, 18)\ny &lt;- c(8.1, 20, 10.9, 8.4, 9.6, 16.1, 17.3, 15.3, 16, 15.9, 19.3, \n       21.3, 24.8, 31.3, 4, 31.9, 33.7, 36.5, 42.4, 38.5)\n\n## Fitten der Modelle\nssq    &lt;- lm(y ~ x)\niwls   &lt;- rlm(y ~ x)\niwlsmm &lt;- rlm(y ~ x, method = \"MM\")\n\n## Plotten der Modelle\nplot(x, y, pch = 16, las = 1)\nabline(ssq, col = \"blue\", lty = \"dashed\")\nabline(iwls, col = \"red\")\nabline(iwlsmm, col = \"green\")\nlegend(\"topleft\", c(\"OLS\", \"IWLS-M\", \"IWLS-MM\"),\n       col = c(\"blue\", \"red\", \"green\"),\n       lty = c(\"dashed\", \"solid\", \"solid\"))",
     "crumbs": [
       "Statistische Grundlagen",
       "06-Lineare Regression"
     ]
   },
   {
-    "objectID": "slides/06-linear.html#referenzen",
-    "href": "slides/06-linear.html#referenzen",
+    "objectID": "slides/06-linear.html#literaturverzeichnis",
+    "href": "slides/06-linear.html#literaturverzeichnis",
     "title": "06-Lineare Regression",
-    "section": "Referenzen",
-    "text": "Referenzen\n\n\n\n\n\nFox, J., & Weisberg, S. (2018). An R companion to applied regression. Sage publications.\n\n\nGelman, A., & Hill, J. (2007). Data analysis using regression and multilevelhierarchical models (Vol. 1). Cambridge University Press New York, NY, USA.\n\n\nKleiber, C., & Zeileis, A. (2008). Applied econometrics with R. Springer.\n\n\nVenables, W. N., & Ripley, B. D. (2013). Modern applied statistics with S-PLUS (3rd ed.). Springer Science; Business Media.",
+    "section": "Literaturverzeichnis",
+    "text": "Literaturverzeichnis\n\n\n\n\n\nFox, J., & Weisberg, S. (2018). An R companion to applied regression. Sage publications.\n\n\nGelman, A., & Hill, J. (2007). Data analysis using regression and multilevelhierarchical models (Vol. 1). Cambridge University Press New York, NY, USA.\n\n\nKleiber, C., & Zeileis, A. (2008). Applied econometrics with R. Springer.\n\n\nVenables, W. N., & Ripley, B. D. (2013). Modern applied statistics with S-PLUS (3rd ed.). Springer Science; Business Media.",
     "crumbs": [
       "Statistische Grundlagen",
       "06-Lineare Regression"
     ]
   },
   {
-    "objectID": "slides/08-nonlinear-regression.html#nichtlineare-regression",
-    "href": "slides/08-nonlinear-regression.html#nichtlineare-regression",
+    "objectID": "slides/08-nonlinear-regression.html#viele-phänomene-in-der-natur-sind-nichtlinear.",
+    "href": "slides/08-nonlinear-regression.html#viele-phänomene-in-der-natur-sind-nichtlinear.",
     "title": "08-Nichtlineare Regression",
-    "section": "Nichtlineare Regression",
-    "text": "Nichtlineare Regression\nViele Phänomene in der Natur sind nichtlinear!\nLinear oder nichtlinear?\n\nEinige nichtlineare Probleme können mit linearen Methoden gelöst werden\nz.B. Polynome oder periodische (Sinus- und Cosinus-) Funktionen\nandere können durch Transformationen angepasst werden\n\nBeispiel\n\\[y = a \\cdot x^b\\] kann umgewandelt werden in:\n\\[\\ln(y) = \\ln(a) + b \\cdot \\ln(x)\\]\n\naber: Linearisierung transformiert auch die Residuen\ndie Transformation ist manchmal richtig und manchmal falsch\nHomogenität der Varianzen",
+    "section": "Viele Phänomene in der Natur sind nichtlinear.",
+    "text": "Viele Phänomene in der Natur sind nichtlinear.\n\nLinear oder nichtlinear?\n\nEinige nichtlineare Probleme können mit linearen Methoden gelöst werden:\n\nz.B. Polynome oder periodische (Sinus- und Cosinus-) Funktionen,\n\nandere können durch Transformationen angepasst werden.\n\nBeispiel\n\\[y = a \\cdot x^b\\] kann umgeformt werden in:\n\\[\\ln(y) = \\ln(a) + b \\cdot \\ln(x)\\]\n\nAber: Eine Linearisierung transformiert auch die Residuen. → Das kann zu verzerrten (biased) Schätzungen führen",
     "crumbs": [
       "Statistische Grundlagen",
       "08-Nichtlineare Regression"
@@ -3546,18 +3590,18 @@
     "href": "slides/08-nonlinear-regression.html#linearisierung-oder-direkte-nichtlineare-anpassung",
     "title": "08-Nichtlineare Regression",
     "section": "Linearisierung oder direkte nichtlineare Anpassung?",
-    "text": "Linearisierung oder direkte nichtlineare Anpassung?\n\nLinearisierende Transformationen\n\nLogarithmus, Quadratwurzel, Kehrwerte …\nkönnen angewandt werden, wenn die Restvarianz homogen bleibt (oder wird).\naber in einigen Fällen führen die Transformationen zu Heteroskedastizität \\(\\Rightarrow\\) verfälschte Regressionsparameter.\n\nNichtlineare Regression\n\nsehr flexible, benutzerdefinierte Funktionen\nkeine Transformation erforderlich\naber: erfordert iterative Optimierungsmethoden\ntheoretisch können nur lokale Optima gefunden werden\nParameter sind nicht in allen Fällen identifizierbar",
+    "text": "Linearisierung oder direkte nichtlineare Anpassung?\n\nLinearisierende Transformationen\n\nLogarithmus, Quadratwurzel, Kehrwerte …\nkönnen angewandt werden, wenn die Restvarianz homogen bleibt (oder wird).\nIn einigen Fällen wird die Residuenvarianz sogar stabilisiert,\nin anderen Fällen führt eine Transformation zu Heteroskedastizität \\(\\Rightarrow\\) verzerrte (biased) Regressionsparameter.\n\nNichtlineare Regression\n\nsehr flexible, fast beliebige benutzerdefinierte Funktionen\nkeine Transformation erforderlich\naber: erfordert iterative Optimierungsmethoden\ntheoretisch können nur lokale Optima gefunden werden\nParameter sind nicht in allen Fällen identifizierbar",
     "crumbs": [
       "Statistische Grundlagen",
       "08-Nichtlineare Regression"
     ]
   },
   {
-    "objectID": "slides/08-nonlinear-regression.html#nichtlineare-regression-1",
-    "href": "slides/08-nonlinear-regression.html#nichtlineare-regression-1",
+    "objectID": "slides/08-nonlinear-regression.html#nichtlineare-regression",
+    "href": "slides/08-nonlinear-regression.html#nichtlineare-regression",
     "title": "08-Nichtlineare Regression",
     "section": "Nichtlineare Regression",
-    "text": "Nichtlineare Regression\n\nIterative Suche nach dem Minimum der Summe der Quadrate",
+    "text": "Nichtlineare Regression\n\nIterative Suche nach dem Minimum der Summe der kleinsten Quadrate",
     "crumbs": [
       "Statistische Grundlagen",
       "08-Nichtlineare Regression"
@@ -3568,7 +3612,18 @@
     "href": "slides/08-nonlinear-regression.html#wie-lässt-sich-das-globale-minimum-finden",
     "title": "08-Nichtlineare Regression",
     "section": "Wie lässt sich das globale Minimum finden?",
-    "text": "Wie lässt sich das globale Minimum finden?\n\nAnpassungsgüte: Residuensumme der quadrierten Differenzen \\(RSS\\):\n\\[\nRSS = \\sum_{i=1}^n\\left(y_i- f(\\mathbf x_i, \\mathbf p)\\right)^2 = \\min !\n\\]\nmit \\(y\\): abhängige Variable, \\(\\mathbf x\\): Matrix der unabhängigen Variablen,\\(\\mathbf p\\): Parametervektor, \\(n\\): Stichprobenumfang\nVerwendung eines iterativen Lösers \\(\\rightarrow\\) siehe nächste Folien\nNichtlinearer Bestimmungskoeffizient \\(R^2\\)\n\nsteht in keinem Zusammenhang mit dem (linearen) Korrelationskoeffizienten\nkann aus den Rest- und Gesamtvarianzen berechnet werden\n\n\\[\nR^2 = 1 - \\frac{\\text{Varianz der Residuen}}{\\text{Varianz der y-Daten}} = 1- \\frac{s^2_\\varepsilon}{s^2_y}\n\\]\n\nnichtlinear \\(r^2\\) misst den Anteil der erklärten Varianz\n… andere Indizes können zusätzlich verwendet werden, z.B. MSE, RMSE, NSE, …",
+    "text": "Wie lässt sich das globale Minimum finden?\n\nAnpassungsgüte: Summe der Residuenquadrate \\(\\mathbf{RSS}\\):\n\\[\n\\mathbf{RSS} = \\sum_{i=1}^n\\left(y_i- f(\\mathbf x_i, \\mathbf p)\\right)^2 = \\min !\n\\]\nmit\n\n\\(y\\): abhängige Variable,\n\\(\\mathbf x\\): Matrix der unabhängigen Variablen\n\\(\\mathbf p\\): Parametervektor\n\\(n\\): Stichprobenumfang\n\nVerwendung eines iterativen Lösers \\(\\rightarrow\\) siehe nächste Folien",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "08-Nichtlineare Regression"
+    ]
+  },
+  {
+    "objectID": "slides/08-nonlinear-regression.html#nichtlineares-bestimmtheitsmaß-r2",
+    "href": "slides/08-nonlinear-regression.html#nichtlineares-bestimmtheitsmaß-r2",
+    "title": "08-Nichtlineare Regression",
+    "section": "Nichtlineares Bestimmtheitsmaß \\(r^2\\)",
+    "text": "Nichtlineares Bestimmtheitsmaß \\(r^2\\)\n\n\nmisst den Anteil der erklärten Varianz\nkann aus den Rest- und Gesamtvarianz berechnet werden\n\n\\[\nr^2 = 1 - \\frac{\\text{Varianz der Residuen}}{\\text{Varianz der } y\\text{-Werte}} = 1 - \\frac{s^2_\\varepsilon}{s^2_y}\n\\]\n\nidentisch mit der Nash-Sutcliffe-Effizienz (NSE), einem Standard-Gütemaß der Hydrologie\nNichtlineares \\(r^2\\) steht in keinem Zusammenhang mit dem Korrelationskoeffizienten.\nWeitere Gütemaße: MSE, RMSE, bias, \\(r_P\\), \\(r_S\\)\n\nVerwechslungsgefahr\n\nManchmal wird \\(r^2\\) als Quadrat der Korrelation zwischen beobachteten und modellierten Werten definiert.\nDiese Version ignoriert einen möglichen bias \\(\\rightarrow\\) keine Aussage zu erklärten Varianz!",
     "crumbs": [
       "Statistische Grundlagen",
       "08-Nichtlineare Regression"
@@ -3579,7 +3634,7 @@
     "href": "slides/08-nonlinear-regression.html#allgemeines-prinzip-von-optimierungsalgorithmen",
     "title": "08-Nichtlineare Regression",
     "section": "Allgemeines Prinzip von Optimierungsalgorithmen",
-    "text": "Allgemeines Prinzip von Optimierungsalgorithmen\n\nDas Minimum der quadrierten Residuen (RSS) wird durch Iteration gesucht.:\n\n\nBeginne mit einer Anfangsschätzung für den Parametersatz.\nVersuche, einen Parametersatz mit niedrigerer RSS zu finden.\nIst der neue Parametersatz besser?\n\nNein: Verwerfe die neuen Parameter und gehe zu 2\nJa: Akzeptiere die neuen Parameter und springe zu 4\n\nIst der neue Parametersatz gut genug?\n\nNein: Springe zu 2\nJa: Springe zu 5\n\nParametersatz gefunden.",
+    "text": "Allgemeines Prinzip von Optimierungsalgorithmen\n\nDas Minimum der Residuenquadrate (RSS) wird durch Iteration gesucht.\n\nBeginne mit einer Anfangsschätzung für den Parametersatz.\nVersuche, einen Parametersatz mit niedrigerer RSS zu finden.\nIst der neue Parametersatz besser?\n\nNein: Verwerfe die neuen Parameter und gehe zu 2\nJa: Akzeptiere die neuen Parameter und gehe zu 4\n\nIst der neue Parametersatz gut genug?\n\nNein: gehe zu 2\nJa: gehe zu 5\n\nParametersatz gefunden.\n\nHinweise\n\nOft wird ein Konvergenzkriterium verwendet (z.B. nur noch kleine Änderung der RSS).\n\nDer Algorithmus kann in ein lokales Minimum laufen.\n\nDie Anfangsschätzung ist entscheidend!",
     "crumbs": [
       "Statistische Grundlagen",
       "08-Nichtlineare Regression"
@@ -3590,7 +3645,7 @@
     "href": "slides/08-nonlinear-regression.html#deterministische-methoden",
     "title": "08-Nichtlineare Regression",
     "section": "Deterministische Methoden",
-    "text": "Deterministische Methoden\n\n\nGradient Descent\n\neinen Schritt in die Richtung des steilsten Abstiegs gehen\n\\(\\rightarrow\\) relativ einfach\n\\(\\rightarrow\\) relativ robust für „kompliziertere“ Probleme\n\nNewton-Methode\n\nquadratische Approximation der RSS-Funktion\nVersuche, das Minimum zu schätzen\n\\(\\rightarrow\\) berücksichtigt die Krümmung\n\\(\\rightarrow\\) ist schneller für „gut funktionierende“ Probleme\nmehrere Versionen: quasi-Newton, Gauss-Newton, L-BFGS, …\n\nLevenberg-Marquardt\n\ninterpoliert zwischen Gauß-Newton und Gradient Descent.\n\n\n  Die Newton-Methode (rot) nutzt Krümmungsinformationen, um schneller zu konvergieren als der Gradient Descent (grün). Quelle: Wikipedia.",
+    "text": "Deterministische Methoden\n\n\nGradient Descent\n\neinen Schritt in die Richtung des steilsten Abstiegs gehen\n\\(\\rightarrow\\) relativ einfach\n\\(\\rightarrow\\) relativ robust für „kompliziertere“ Probleme\n\nNewton-Methode\n\nquadratische Approximation der RSS-Funktion\nVersuche, das Minimum zu schätzen\n\\(\\rightarrow\\) berücksichtigt die Krümmung (Hesse-Matrix)\n\\(\\rightarrow\\) ist schneller für „gut funktionierende“ Probleme\nmehrere Versionen: quasi-Newton, Gauss-Newton, L-BFGS, …\n\nLevenberg-Marquardt\n\ninterpoliert zwischen Gauß-Newton und Gradient Descent.\n\n\n  Die Newton-Methode (rot) nutzt Krümmungsinformationen, um schneller zu konvergieren als der Gradient Descent (grün). Quelle: Wikipedia.",
     "crumbs": [
       "Statistische Grundlagen",
       "08-Nichtlineare Regression"
@@ -3601,7 +3656,18 @@
     "href": "slides/08-nonlinear-regression.html#stochastische-methoden",
     "title": "08-Nichtlineare Regression",
     "section": "Stochastische Methoden",
-    "text": "Stochastische Methoden\n\nAnwendung statistischer Prinzipien (Zufallssuche)\nKlassische Methoden\n\nSimuliertes Glühen: simuliert die Erwärmung und Abkühlung von Materie \\(\\rightarrow\\) „Kristallisationsprozess“.\nKontrollierte Zufallssuche Price (1983)\n\nEvolutionäre Algorithmen\n\nAnalogie zur Genetik: Mutation und Selektion\nverfolgt eine „Population“ von mehreren Parametersätzen parallel\nInformationsaustausch („Crossover“) zwischen Parametersätzen\n\\(\\rightarrow\\) für komplizierte Probleme mit einer großen Anzahl von Parametern\nheutzutage in Microsoft Excel und LibreOffice Calc eingebaut\n\n… und vieles mehr.",
+    "text": "Stochastische Methoden\n\nAnwendung statistischer Prinzipien (Zufallssuche)\nKlassische Methoden\n\nSimulated Annealing: simuliert die Erwärmung und Abkühlung von Materie \\(\\rightarrow\\) „Kristallisationsprozess“.\nKontrollierte Zufallssuche Price (1983)\n\nEvolutionäre Algorithmen\n\nAnalogie zur Genetik: Mutation und Selektion\nverfolgt eine „Population“ von mehreren Parametersätzen parallel\nInformationsaustausch („Crossover“) zwischen Parametersätzen\n\\(\\rightarrow\\) für komplizierte Probleme mit einer großen Anzahl von Parametern\nheutzutage in Microsoft Excel und LibreOffice Calc eingebaut\n\nStochastische Methoden sind besonders nützlich, wenn das Optimierungsproblem nicht glatt oder nicht konvex ist oder viele lokale Minima besitzt.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "08-Nichtlineare Regression"
+    ]
+  },
+  {
+    "objectID": "slides/08-nonlinear-regression.html#beispiele",
+    "href": "slides/08-nonlinear-regression.html#beispiele",
+    "title": "08-Nichtlineare Regression",
+    "section": "Beispiele",
+    "text": "Beispiele\n\n\nEnzymkinetik\n\nMichaelis-Menten-Gleichung: \\(V = \\frac{V_{\\max} \\cdot S}{K_m + S}\\)\nBeschreibt die Reaktionsgeschwindigkeit in Abhängigkeit von der Substratkonzentration\n\nWachstum von Organismen\n\nLogistisches Wachstum: \\(N(t) = \\frac{K}{1 + A \\cdot e^{-rt}}\\)\nBeschreibt S-förmiges Wachstum mit Sättigung\n\nKalibrierung komplexer Modelle in vielen Disziplinen:\n\nChemie, Biologie, Ingenieurwesen, Finanzwirtschaft, Sozialwissenschaften\n\nHydrologie, Hydrophysik, Grundwasser, Abwasser, Wasserqualität",
     "crumbs": [
       "Statistische Grundlagen",
       "08-Nichtlineare Regression"
@@ -3612,18 +3678,18 @@
     "href": "slides/08-nonlinear-regression.html#enzymkinetik",
     "title": "08-Nichtlineare Regression",
     "section": "Enzymkinetik",
-    "text": "Enzymkinetik\n\n… kann mit der bekannten Michaelis-Menten-Funktion beschrieben werden:\n\\[\nv = v_{max} \\frac{S}{k_m + S}\n\\]",
+    "text": "Enzymkinetik\n\nMichaelis-Menten-Funktion:\n\\[\nv = v_{max} \\frac{S}{k_m + S}\n\\]",
     "crumbs": [
       "Statistische Grundlagen",
       "08-Nichtlineare Regression"
     ]
   },
   {
-    "objectID": "slides/08-nonlinear-regression.html#linearisierung-vs.-echte-nichtlineare-regression",
-    "href": "slides/08-nonlinear-regression.html#linearisierung-vs.-echte-nichtlineare-regression",
+    "objectID": "slides/08-nonlinear-regression.html#linearisierung-oder-echte-nichtlineare-regression",
+    "href": "slides/08-nonlinear-regression.html#linearisierung-oder-echte-nichtlineare-regression",
     "title": "08-Nichtlineare Regression",
-    "section": "Linearisierung vs. (echte) nichtlineare Regression",
-    "text": "Linearisierung vs. (echte) nichtlineare Regression\n\nLinearisierende Transformation\n[&gt;] Angemessen, wenn die Transformation die Homogenität der Varianzen verbessert. [+] Schnell, einfach und leicht. [+] Analytische Lösung liefert das globale Optimum. [-] Nur eine begrenzte Anzahl von Funktionen kann angepasst werden. [-] Kann zu einer falsch transformierten Fehlerstruktur und verzerrten Ergebnissen führen.\nNichtlineare Regression\n[&gt;] Geeignet, wenn die Fehlerstruktur bereits homogen ist und/oder keine analytische Lösung existiert. [+] Kann zur Anpassung beliebiger Funktionen verwendet werden, sofern die Parameter identifizierbar sind. [-] Benötigt Startwerte und beträchtliche Berechnungszeit. [-] Beste Lösung (globales Optimum) ist nicht garantiert.",
+    "section": "Linearisierung oder (echte) nichtlineare Regression?",
+    "text": "Linearisierung oder (echte) nichtlineare Regression?\n\nLinearisierende Transformation\n[&gt;] Angemessen, wenn die Transformation die Homogenität der Varianzen verbessert. [+] Schnell, einfach und leicht zu implementieren. [+] Analytische Lösung liefert das globale Optimum. [-] Nur eine begrenzte Anzahl von Funktionen kann angepasst werden. [-] Kann zu einer falsch transformierten Fehlerstruktur und verzerrten Ergebnissen führen.\nNichtlineare Regression\n[&gt;] Geeignet, wenn die Fehlerstruktur homogen ist oder keine analytische Lösung existiert. [+] Ermöglicht Anpassung beliebiger Funktionen – sofern die Parameter identifizierbar sind. [-] Erfordert sorgfältige Auswahl von Startwerten.  [-] Rechenintensiv – hoher Zeitaufwand.  [-] Globales Optimum ist nicht garantiert – nur lokales Optimum möglich.\n\nEmpfehlung\n\nVerwende nichtlineare Regression, wenn möglich – sie ist robuster und realistischer.\n\nNutze Linearisierung nur, wenn sie wirklich sinnvoll ist (z.B. Varianzstabilisierung).",
     "crumbs": [
       "Statistische Grundlagen",
       "08-Nichtlineare Regression"
@@ -3645,7 +3711,7 @@
     "href": "slides/08-nonlinear-regression.html#angepasste-parameter",
     "title": "08-Nichtlineare Regression",
     "section": "Angepasste Parameter",
-    "text": "Angepasste Parameter\n\n\n\n\nFormula: y ~ a * exp(b * x)\n\nParameters:\n  Estimate Std. Error t value Pr(&gt;|t|)    \na 1.263586   0.049902   25.32 6.34e-09 ***\nb 0.194659   0.004716   41.27 1.31e-10 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.1525 on 8 degrees of freedom\n\nNumber of iterations to convergence: 13 \nAchieved convergence tolerance: 5.956e-08\n\n\n\nEstimate: die angepassten Parameter\nStd. Error: \\(s_{\\bar{x}}\\): zeigt die Zuverlässigkeit der Schätzung an\nt- und p-Werte: keine Überinterpretation!\nIn der nichtlinearen Welt können „nicht-signifikante“ Parameter strukturell notwendig sein.\n\nBestimmungskoeffizient \\(r^2 = 1-\\frac{s^2_\\varepsilon}{s^2_y}\\)\n\n(Rsquared &lt;- 1 - var(residuals(fit))/var(y))\n\n[1] 0.9965644",
+    "text": "Angepasste Parameter\n\n\n\n\nFormula: y ~ a * exp(b * x)\n\nParameters:\n  Estimate Std. Error t value Pr(&gt;|t|)    \na 1.263586   0.049902   25.32 6.34e-09 ***\nb 0.194659   0.004716   41.27 1.31e-10 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.1525 on 8 degrees of freedom\n\nNumber of iterations to convergence: 13 \nAchieved convergence tolerance: 5.956e-08\n\n\n\nEstimate: die angepassten Parameter\nStd. Error: \\(s_{\\bar{x}}\\): zeigt die Zuverlässigkeit der Parameter\nt- und p-Werte: Vorsicht bei der Interpretation!\nIn der nichtlinearen Regression sind p-Werte nicht verlässlich – sie basieren auf Approximationen.\nEin „nicht-signifikanter“ Parameter kann strukturrelevant sein.\n\nBestimmtheitsmaß \\(r^2 = 1-\\frac{s^2_\\varepsilon}{s^2_y}\\)\n\n(Rsquared &lt;- 1 - var(residuals(fit))/var(y))\n\n[1] 0.9965644",
     "crumbs": [
       "Statistische Grundlagen",
       "08-Nichtlineare Regression"
@@ -3656,7 +3722,7 @@
     "href": "slides/08-nonlinear-regression.html#michaelis-menten-kinetik",
     "title": "08-Nichtlineare Regression",
     "section": "Michaelis-Menten-Kinetik",
-    "text": "Michaelis-Menten-Kinetik\n\n\nCode\n\n\nS &lt;-c(25, 25, 10, 10, 5, 5, 2.5, 2.5, 1.25, 1.25)\nV &lt;-c(0.0998, 0.0948, 0.076, 0.0724, 0.0557,\n      0.0575, 0.0399, 0.0381, 0.017, 0.0253)\n\n## Michaelis-Menten-Kinetik\nf &lt;- function(S, Vm, K) { Vm * S/(K + S) }\n\npstart &lt;- c(Vm = 0.1, K = 5)\nmodel_fit &lt;- nls(V ~ f(S, Vm, K), start = pstart)\nsummary(model_fit)\n\nplot(S, V, xlim = c(0, max(S)), ylim = c(0, max(V)))\nx1 &lt;-seq(0, 25, length = 100)\nlines(x1, predict(model_fit, data.frame(S = x1)), col = \"red\")\n\n\n Bestimmungskoeffizient\n\n(1 - var(residuals(model_fit))/var(V))\n\n[1] 0.9895147\n\n\n\nErgebnisse\n\n\n\nFormula: V ~ f(S, Vm, K)\n\nParameters:\n   Estimate Std. Error t value Pr(&gt;|t|)    \nVm  0.11713    0.00381   30.74 1.36e-09 ***\nK   5.38277    0.46780   11.51 2.95e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.003053 on 8 degrees of freedom\n\nNumber of iterations to convergence: 3 \nAchieved convergence tolerance: 6.678e-06",
+    "text": "Michaelis-Menten-Kinetik\n\n\nCode\n\nS &lt;-c(25, 25, 10, 10, 5, 5, 2.5, 2.5, 1.25, 1.25)\nV &lt;-c(0.0998, 0.0948, 0.076, 0.0724, 0.0557,\n      0.0575, 0.0399, 0.0381, 0.017, 0.0253)\n\n## Michaelis-Menten-Kinetik\nf &lt;- function(S, Vm, K) { Vm * S/(K + S) }\n\npstart &lt;- c(Vm = 0.1, K = 5)\nmodel_fit &lt;- nls(V ~ f(S, Vm, K), start = pstart)\nsummary(model_fit)\n\nplot(S, V, xlim = c(0, max(S)), ylim = c(0, max(V)))\nx1 &lt;-seq(0, 25, length = 100)\nlines(x1, predict(model_fit, data.frame(S = x1)), col = \"red\")\n\n Bestimmtheitsmaß\n\n(1 - var(residuals(model_fit))/var(V))\n\n[1] 0.9895147\n\n\n\nErgebnis\n\n\n\nFormula: V ~ f(S, Vm, K)\n\nParameters:\n   Estimate Std. Error t value Pr(&gt;|t|)    \nVm  0.11713    0.00381   30.74 1.36e-09 ***\nK   5.38277    0.46780   11.51 2.95e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.003053 on 8 degrees of freedom\n\nNumber of iterations to convergence: 3 \nAchieved convergence tolerance: 6.678e-06",
     "crumbs": [
       "Statistische Grundlagen",
       "08-Nichtlineare Regression"
@@ -3667,7 +3733,7 @@
     "href": "slides/08-nonlinear-regression.html#michaelis-menten-kinetik-mit-selbststart",
     "title": "08-Nichtlineare Regression",
     "section": "Michaelis-Menten-Kinetik mit Selbststart",
-    "text": "Michaelis-Menten-Kinetik mit Selbststart\n\nFunktion SSmicmen bestimmt Startparameter automatisch.\nNur wenige Selbststartfunktionen in R verfügbar.\n\n\nCode\n\n\nS &lt;- c(25, 25, 10, 10, 5, 5, 2.5, 2.5, 1.25, 1.25)\nV &lt;- c(0.0998, 0.0948, 0.076, 0.0724, 0.0557,\n       0.0575, 0.0399, 0.0381, 0.017, 0.0253)\n\nmodel_fit &lt;- nls(V ~ SSmicmen(S, Vm, K))\n\nplot(S, V, xlim = c(0, max(S)), ylim = c(0, max(V)))\nx1 &lt;-seq(0, 25, length = 100)\nlines(x1, predict(model_fit, data.frame(S = x1)), col=\"red\")\n\n\nErgebnisse\n\n\nsummary(model_fit, correlation=TRUE)\n\n\nFormula: V ~ f(S, Vm, K)\n\nParameters:\n   Estimate Std. Error t value Pr(&gt;|t|)    \nVm  0.11713    0.00381   30.74 1.36e-09 ***\nK   5.38277    0.46780   11.51 2.95e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.003053 on 8 degrees of freedom\n\nCorrelation of Parameter Estimates:\n  Vm  \nK 0.88\n\nNumber of iterations to convergence: 3 \nAchieved convergence tolerance: 6.678e-06\n\n\n\n\n\n\nPlot\n\n\n\n\n\n\n\n\n\n\nAnmerkung: Korrelation der Parameter\n\nHohe absolute Korrelationswerte deuten auf die Nichtidentifizierbarkeit von Parametern hin.\nkritischer Wert hängt von den Daten ab\nmanchmal können bessere Startwerte oder ein anderer Optimierungsalgorithmus helfen",
+    "text": "Michaelis-Menten-Kinetik mit Selbststart\n\nFunktion SSmicmen bestimmt Startparameter automatisch.\nNur wenige Selbststartfunktionen in R verfügbar.\n\n\nCode\n\nS &lt;- c(25, 25, 10, 10, 5, 5, 2.5, 2.5, 1.25, 1.25)\nV &lt;- c(0.0998, 0.0948, 0.076, 0.0724, 0.0557,\n       0.0575, 0.0399, 0.0381, 0.017, 0.0253)\n\nmodel_fit &lt;- nls(V ~ SSmicmen(S, Vm, K))\n\nplot(S, V, xlim = c(0, max(S)), ylim = c(0, max(V)))\nx1 &lt;-seq(0, 25, length = 100)\nlines(x1, predict(model_fit, data.frame(S = x1)), col=\"red\")\n\nErgebnisse\n\n\nsummary(model_fit, correlation=TRUE)\n\n\nFormula: V ~ f(S, Vm, K)\n\nParameters:\n   Estimate Std. Error t value Pr(&gt;|t|)    \nVm  0.11713    0.00381   30.74 1.36e-09 ***\nK   5.38277    0.46780   11.51 2.95e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 0.003053 on 8 degrees of freedom\n\nCorrelation of Parameter Estimates:\n  Vm  \nK 0.88\n\nNumber of iterations to convergence: 3 \nAchieved convergence tolerance: 6.678e-06\n\n\n\n\n\n\nPlot\n\n\n\n\n\n\n\n\n\n\nAnmerkung: Korrelation der Parameter\n\nHohe absolute Korrelationswerte deuten auf die Nichtidentifizierbarkeit von Parametern hin.\nkritischer Wert hängt von den Daten ab\nmanchmal können bessere Startwerte oder ein anderer Optimierungsalgorithmus helfen",
     "crumbs": [
       "Statistische Grundlagen",
       "08-Nichtlineare Regression"
@@ -3678,7 +3744,7 @@
     "href": "slides/08-nonlinear-regression.html#praktische-hinweise",
     "title": "08-Nichtlineare Regression",
     "section": "Praktische Hinweise",
-    "text": "Praktische Hinweise\n\n\nDaten plotten\nFinde gute Ausgangswerte durch Nachdenken oder durch Trial and Error\nVermeide sehr kleine und/oder sehr große Zahlen \\(\\longrightarrow\\) skaliere das Problem auf Werte zwischen etwa 0,001 und 1000 um\nBeginne mit einer einfachen Funktion und füge nach und nach Terme und Parameter hinzu\nNimm die Signifikanz von Parametern nicht zu ernst. Ein nicht signifikanter Parameter kann für die Struktur des Modells notwendig sein, sein Wegfall macht das gesamte Modell ungültig.",
+    "text": "Praktische Hinweise\n\nDaten immer plotten!\n→ Visuelle Inspektion hilft, die Struktur zu erkennen und Startwerte zu finden.\nFinde gute Ausgangswerte\n→ Durch Nachdenken über die Biologie/Physik des Problems\n→ Oder durch Probieren (z.B. mit plot(S, V) und schätzen der Kurve)\nVermeide extrem kleine oder große Zahlen\n→ Reskaliere die Variablen auf Werte zwischen etwa 0.001 und 1000\n→ Verbessert Stabilität und Konvergenz der Optimierung\nBeginne einfach\n→ Starte mit einer einfachen Funktion\n→ Füge nach und nach Terme und Parameter hinzu – Schritt für Schritt\nInterpretiere Signifikanz vorsichtig\n→ p-Werte in nichtlinearen Modellen sind nicht verlässlich\n→ Ein „nicht signifikanter“ Parameter kann strukturrelevant sein\n→ Sein Wegfall macht das Modell ungültig – nicht ausschließen!\n\nWichtig:\nDie Qualität eines Modells hängt nicht von p-Werten ab – sondern von Plausibilität, Anpassungsgüte und Vorhersagekraft.",
     "crumbs": [
       "Statistische Grundlagen",
       "08-Nichtlineare Regression"
@@ -4558,280 +4624,5 @@
     "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
     "section": "Autor",
     "text": "Autor\nhomepage +++ github\n2025-11-05"
-  },
-  {
-    "objectID": "slides/07-anova.html#anova---varianzanalyse",
-    "href": "slides/07-anova.html#anova---varianzanalyse",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "ANOVA - Varianzanalyse",
-    "text": "ANOVA - Varianzanalyse\n\n\nPrüfung komplexer Hypothesen als Ganzes, z.B.:\n\nmehr als zwei Stichproben (Mehrfachtestproblem),\nmehrere multiple Faktoren (Mehrfach- ANOVA)\nEliminierung von Kovariaten (ANCOVA)\nfeste und/oder zufällige Effekte (Varianzzerlegung, Modelle mit gemischten Effekten)\n\nUnterschiedliche Anwendungsszenarien:\n\nexplorative Anwendung: Welche Einflussfaktoren sind wichtig?\nSignifikanztests\nstatistische Modellierung: Quantifizierung von Effekten und Abhängigkeiten.\n\nANOVA-Verfahren basieren (meistens) auf linearen Modellen.",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#ein-praxisbeispiel",
-    "href": "slides/07-anova.html#ein-praxisbeispiel",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "Ein Praxisbeispiel",
-    "text": "Ein Praxisbeispiel\n\nSuche nach einem geeigneten Medium für Wachstumsexperimente mit Grünalgen\n\nSchulprojekt aus “Jugend Forscht”\ngeeignet für Kurse in Schule und Studium\npreisgünstig, einfach zu handhaben\n\n\n\nIdee\n\nVerwendung eines kommerziellen Düngers mit den Hauptnährstoffen N und P\nMineralwasser mit Spurenelementen\nEnthält stilles Mineralwasser genügend \\(\\mathrm{CO_2}\\)?\ntesten, wie man die Verfügbarkeit von \\(\\mathrm{CO_2}\\) für die Photosynthese verbessern kann",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#daten-im-langformat",
-    "href": "slides/07-anova.html#daten-im-langformat",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "Daten im Langformat",
-    "text": "Daten im Langformat\n\n\nVorteile\n\nsieht „unpraktisch“ aus, ist aber viel besser für die Datenanalyse\nabhängige Variable Wachstum und Erklärungsvariable Behandlung deutlich sichtbar\nModellformel: growth ~ treat\nleicht erweiterbar auf \\(&gt;1\\) Erklärungsvariable\n\n\n\n\n\n\n\ntreat\nrep\ngrowth\n\n\n\n\nFertilizer\n1\n0.020\n\n\nFertilizer\n2\n-0.217\n\n\nFertilizer\n3\n-0.273\n\n\nF. open\n1\n0.940\n\n\nF. open\n2\n0.780\n\n\nF. open\n3\n0.555\n\n\nF.+sugar\n1\n0.188\n\n\nF.+sugar\n2\n-0.100\n\n\nF.+sugar\n3\n0.020\n\n\nF.+CaCO3\n1\n0.245\n\n\nF.+CaCO3\n2\n0.236\n\n\nF.+CaCO3\n3\n0.456",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#warum-nicht-einfach-mehrere-t-tests",
-    "href": "slides/07-anova.html#warum-nicht-einfach-mehrere-t-tests",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "Warum nicht einfach mehrere t-Tests?",
-    "text": "Warum nicht einfach mehrere t-Tests?\n\n\nWenn wir bei 7 Behandlungen jede gegen jede testen wollen, brauchen wir:\n\n\\[7 \\cdot (7 - 1) / 2 = 21 \\qquad\\text{Tests.}\\]\n\nBei \\(\\alpha = 0.05\\), erhält man 5% falsch positive Ergebnisse. \\(\\Rightarrow\\) Einer von 20 Tests ist im Durchschnitt falsch positiv.\nBei \\(N\\) Tests erhöht sich der Gesamtfehler von \\(\\alpha\\) im schlimmsten Fall auf \\(N\\cdot\\alpha\\).\nDies wird alpha-Fehler-Inflation oder Bonferroni-Ungleichung genannt:\n\n\\[\n\\alpha_{total} \\le \\sum_{i=1}^{N} \\alpha_i = N \\cdot \\alpha\n\\]\nWird die Regel ignoriert, erhält man zufällige falsch-positive Ergebnisse (statistical fishing).",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#anova-varianzanalyse",
-    "href": "slides/07-anova.html#anova-varianzanalyse",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "ANOVA: Varianzanalyse",
-    "text": "ANOVA: Varianzanalyse\n\nGrundgedanke\n\nAufteilung der Gesamtvarianz in Wirkung(en) und Fehler:\n\n\n\\[\ns_y^2 = s^2_\\mathrm{effect} + s^2_{\\varepsilon}\n\\]\n\n\nEtwas überraschend: Analyse von Varianzen, um Mittelwerte zu vergleichen.\nErklärung: Mittelwertunterschiede tragen zur Gesamtvarianz der ganzen Stichprobe bei.\nDie Varianzkomponenten können als Varianz innerhalb (\\(s^2_\\varepsilon\\)) und Varianz zwischen Stichproben bezeichnet werden.\nDie Varianz-Zerlegung erfolgt über ein lineares Modell.",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#lineares-modell-und-varianzkomponenten",
-    "href": "slides/07-anova.html#lineares-modell-und-varianzkomponenten",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "Lineares Modell und Varianzkomponenten",
-    "text": "Lineares Modell und Varianzkomponenten\n\n\nm &lt;- lm(weight ~ code, data = clem)\n\nGesamtvarianz\n\n(var_tot &lt;- var(clem$weight))\n\n[1] 68.98814\n\n\nRestvarianz (= Varianz innerhalb der Behandlungen)\n\n(var_res &lt;- var(residuals(m)))\n\n[1] 43.25\n\n\nErklärte Varianz (= Varianz zwischen den Behandlungen)\n\nvar_tot - var_res\n\n[1] 25.73814\n\n\n\n\nDas Beispiel zeigt das Grundprinzip.\nAber: Die „erklärte Varianz“ ist nicht für den F-Test der ANOVA geeignet, weil die Freiheitsgrade nicht berücksichtigt sind.",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#korrekte-berechnung-mit-freiheitsgraden",
-    "href": "slides/07-anova.html#korrekte-berechnung-mit-freiheitsgraden",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "Korrekte Berechnung mit Freiheitsgraden",
-    "text": "Korrekte Berechnung mit Freiheitsgraden\n\n# Freiheitsgrade\nn &lt;- nrow(clem)\nk &lt;- length(unique(clem$brand))\n\ndf_total     &lt;- n - 1      # -1 df für den Gesamtmittelwert (Intercept)\ndf_between   &lt;- k - 1      # df für Gruppenunterschiede (nach Berücksichtigung des Gesamtmittelwerts)\ndf_residuals &lt;- n - k      # -1 df pro Gruppe (insgesamt k Gruppen)\n# Prüfung: df_total sollte gleich df_between + df_residuals sein\nc(n = n, k = k, df_total = df_total, df_between = df_between, df_residuals = df_residuals)\n\n           n            k     df_total   df_between df_residuals \n          23            2           22            1           21 \n\n# Sums of squares\nSS_total     &lt;- var_tot * df_total\nSS_residuals &lt;- var_res * df_total  # var(residuals) nutzt n−1\nSS_between   &lt;- SS_total - SS_residuals\n\n# Mean sums of squares\nMS_between   &lt;- SS_between / df_between\nMS_residuals &lt;- SS_residuals / df_residuals\nc(MS_between = MS_between, MS_residuals = MS_residuals)\n\n  MS_between MS_residuals \n   566.23913     45.30952 \n\n# F-Test\nF_stat &lt;- MS_between / MS_residuals\np_val  &lt;- pf(F_stat, df1 = df_between, df2 = df_residuals, lower.tail = FALSE)\n\nc(F = round(F_stat, 3), p = round(p_val, 4))\n\n     F      p \n12.497  0.002 \n\n\nDie ANOVA arbeitet direkt mit den Summen der Quadrate, ohne den Umweg über die Varianzen.",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#daten-im-langformat-eingeben",
-    "href": "slides/07-anova.html#daten-im-langformat-eingeben",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "Daten im Langformat eingeben",
-    "text": "Daten im Langformat eingeben\n\n\n\nplants &lt;- data.frame(No = 1:12,\n                    growth = c(6.6, 7.2, 6.9, 8.3, 7.9, 9.2,\n                               8.3, 8.7, 8.1, 8.5, 9.1, 9.0),\n                    fert   = rep(c(\"A\", \"B\", \"C\"), each=2),\n                    light  = rep(c(\"low\", \"high\"), each=6)\n          )\n\n\n\n\n\n\n\nNo\ngrowth\nfert\nlight\n\n\n\n\n1\n6.6\nA\nlow\n\n\n2\n7.2\nA\nlow\n\n\n3\n6.9\nB\nlow\n\n\n4\n8.3\nB\nlow\n\n\n5\n7.9\nC\nlow\n\n\n6\n9.2\nC\nlow\n\n\n7\n8.3\nA\nhigh\n\n\n8\n8.7\nA\nhigh\n\n\n9\n8.1\nB\nhigh\n\n\n10\n8.5\nB\nhigh\n\n\n11\n9.1\nC\nhigh\n\n\n12\n9.0\nC\nhigh",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#anova-in-einem-schritt",
-    "href": "slides/07-anova.html#anova-in-einem-schritt",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "ANOVA in einem Schritt",
-    "text": "ANOVA in einem Schritt\n\nanova(m)\n\nAnalysis of Variance Table\n\nResponse: weight\n          Df Sum Sq Mean Sq F value   Pr(&gt;F)   \ncode       1 566.24  566.24  12.497 0.001963 **\nResiduals 21 951.50   45.31                    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nEin t-Test zum Vergleich\n\nt.test(weight ~ code, data = clem, var.equal=TRUE)\n\n\n    Two Sample t-test\n\ndata:  weight by code\nt = 3.5351, df = 21, p-value = 0.001963\nalternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0\n95 percent confidence interval:\n  4.185911 16.147423\nsample estimates:\nmean in group 1 mean in group 2 \n       95.50000        85.33333 \n\n\n\\(\\Rightarrow\\) Die p-Werte sind identisch.\n\nBei zwei Gruppen ist die ANOVA (F-Test) äquivalent zum t-Test mit gleichen Varianzen.\n\\(F = t^2\\), \\(p\\) gleich.",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#anova-annahmen-und-diagnostik",
-    "href": "slides/07-anova.html#anova-annahmen-und-diagnostik",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "ANOVA Annahmen und Diagnostik",
-    "text": "ANOVA Annahmen und Diagnostik\n\nFür die ANOVA gelten dieselben Annahmen wie für das lineare Modell.\n\n\nUnabhängigkeit der Fehler\nHomogenität der Varianzen (Homoskedastizität)\nAnnähernde Normalverteilung der Fehler\n\nGrafische Diagnostik wird bevorzugt – sie ist robuster als numerische Tests.\n\n\npar(mfrow=c(2, 2))\nplot(m)",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#test-der-varianzhomogenität",
-    "href": "slides/07-anova.html#test-der-varianzhomogenität",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "Test der Varianzhomogenität",
-    "text": "Test der Varianzhomogenität\n\n\nDer F-Test ist nur für zwei Gruppen geeignet.\nFür mehr als zwei Gruppen: Bartlett-, Levene- oder Fligner-Killeen-Test.\nEmpfohlen: Fligner-Killeen-Test - robust gegenüber Abweichung von Normalverteilung.\n\n\nfligner.test(growth ~ treat, \n             data = algae)\n\n\n    Fligner-Killeen test of homogeneity of variances\n\ndata:  growth by treat\nFligner-Killeen:med chi-squared = 4.2095, df = 6, p-value = 0.6483",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#test-auf-normalverteilung",
-    "href": "slides/07-anova.html#test-auf-normalverteilung",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "Test auf Normalverteilung",
-    "text": "Test auf Normalverteilung\n\nTeste die Residuen, nicht die Rohdaten!\nDer Shapiro-Wilk-Test wird nicht mehr empfohlen:\n\nBei kleinen Stichproben: hohe Wahrscheinlichkeit für Fehlertyp II (keine Ablehnung, obwohl Unterschiede existieren).\nBei großen Stichproben: hohe Wahrscheinlichkeit für Fehlertyp I (Ablehnung, obwohl Unterschiede vernachlässigbar sind.)\n\nEmpfohlen: Grafische Methoden – insbesondere der QQ-Plot.\n\n\nqqnorm(residuals(m))\nqqline(residuals(m))",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#moderne-sichtweise-keine-vortests-mehr",
-    "href": "slides/07-anova.html#moderne-sichtweise-keine-vortests-mehr",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "Moderne Sichtweise: Keine Vortests mehr!",
-    "text": "Moderne Sichtweise: Keine Vortests mehr!\n\nDie traditionelle Praxis – Residuen zu testen, bevor man ANOVA durchführt –  ist nicht mehr zeitgemäß und führt zu gravierenden Problemen:\n\nResiduen sind erst nach Modellanpassung verfügbar.\nBei Vortests müsste man sie „irgendwie vorher“ schätzen, oft durch Pooling.\nHäufig wurden Rohdaten statt Residuen getestet - Kardinalfehler.\nDie Methode stammt aus der Ära manueller Berechnungen.\n\nEmpfohlene Vorgehensweise:\n\nPrüfe, ob ANOVA grundsätzlich angemessen ist:\n\nFragestellung,\nUnabhängigkeit,\nmögliche Nichtnormalität auf Grund des Versuchsdesigns\n\nFühre die ANOVA durch – ohne Vortests.\nDiagnostik im Anschluss – grafisch und kritisch (QQ-Plot, Residuals vs. Fitted).",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#einfache-anova-mit-heterogenen-varianzen",
-    "href": "slides/07-anova.html#einfache-anova-mit-heterogenen-varianzen",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "Einfache ANOVA mit heterogenen Varianzen",
-    "text": "Einfache ANOVA mit heterogenen Varianzen\n\n\nErweiterung des Welch-Tests für \\(\\ge 2\\) Stichproben\nin R oneway.test genannt.\n\n\noneway.test(growth ~ treat, data = algae)\n\n\n    One-way analysis of means (not assuming equal variances)\n\ndata:  growth and treat\nF = 115.09, num df = 6.0000, denom df = 4.6224, p-value = 6.57e-05\n\n\n\n\nDer oneway.test berücksichtigt ungleiche Varianzen durch gewichtete Mittelwerte und Freiheitsgrade und eine angepasste F-Statistik.\nDie Varianzhomogenität ist wichtiger als die Normalverteilung – insbesondere bei unbalancierten Designs.\nEin Varianzunterschied kann den F-Test stärker verzerren als leichte Abweichungen von der Normalverteilung.",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#zweifache-anova",
-    "href": "slides/07-anova.html#zweifache-anova",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "Zweifache ANOVA",
-    "text": "Zweifache ANOVA\n\nBeispiel aus einem Statistik-Lehrbuch (Crawley, 2002), angewandt auf einen neuen Kontext\nAuswirkungen von Dünger und Licht auf das Wachstum der Pflanzenhöhe in cm pro Zeit\n\n\n\n\nDünger\nhelles Licht\nschwaches Licht\n\n\n\n\nA\n8.3\n6.6\n\n\nA\n8.7\n7.2\n\n\nB\n8.1\n6.9\n\n\nB\n8.5\n8.3\n\n\nC\n9.1\n7.9\n\n\nC\n9.0\n9.2\n\n\n\n\n\n\n\n\n\nfaktorielles Experiment (mit Wiederholungen)\nfür jede Faktorkombination mehr als eine Beobachtung\nEs können Wechselwirkungen identifiziert werden\n\nFalls keine Wiederholungen: Keine Schätzung des Fehlers für Interaktionen - keine Identifizierung von Wechselwirkungen möglich.",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#warum-nicht-einfach-einen-t-test-durchführen",
-    "href": "slides/07-anova.html#warum-nicht-einfach-einen-t-test-durchführen",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "Warum nicht einfach einen t-Test durchführen?",
-    "text": "Warum nicht einfach einen t-Test durchführen?\n\nboxplot(weight ~ gender,data = dobson, ylab = \"weight\")\n\nt.test(weight ~ gender, data = dobson, var.equal = TRUE)\n\n\n    Two Sample t-test\n\ndata:  weight by gender\nt = 0.97747, df = 22, p-value = 0.339\nalternative hypothesis: true difference in means between group M and group F is not equal to 0\n95 percent confidence interval:\n -126.3753  351.7086\nsample estimates:\nmean in group M mean in group F \n       3024.000        2911.333 \n\n\n\nDer t-Test zeigt keine signifikante Differenz und der Boxplot zeigt starke Überlappung.\nAber: Der t-Test ignoriert die Schwangerschaftswoche, eine wichtige Kovariate.",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#ancova-berücksichtigung-der-kovariate",
-    "href": "slides/07-anova.html#ancova-berücksichtigung-der-kovariate",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "ANCOVA: Berücksichtigung der Kovariate",
-    "text": "ANCOVA: Berücksichtigung der Kovariate\n\nm &lt;- lm(weight ~ week * gender, data = dobson)\nanova(m)\n\nAnalysis of Variance Table\n\nResponse: weight\n            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    \nweek         1 1013799 1013799 31.0779 1.862e-05 ***\ngender       1  157304  157304  4.8221   0.04006 *  \nweek:gender  1    6346    6346  0.1945   0.66389    \nResiduals   20  652425   32621                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nBeispiel: Aus Gründen, die wir später besprechen, muss die Kovariate week als erstes in der Modellformel stehen.",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#modellselektion-und-likelihood-ratio-tests",
-    "href": "slides/07-anova.html#modellselektion-und-likelihood-ratio-tests",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "Modellselektion und Likelihood-Ratio-Tests",
-    "text": "Modellselektion und Likelihood-Ratio-Tests\n\nAnsatz\n\nMehrere Modelle einzeln anpassen\nModelle paarweise mit ANOVA (Likelihood Ratio Test) vergleichen\n\nDaten und Beispiel\n\nplants &lt;- data.frame(No=1:12,\n                   growth=c(6.6, 7.2, 6.9, 8.3, 7.9, 9.2,\n                            8.3, 8.7, 8.1, 8.5, 9.1, 9.0),\n                   fert= rep(c(\"A\", \"B\", \"C\"), each=2),\n                   light= rep(c(\"low\", \"high\"), each=6)\n                   )\n\n\nm3 &lt;- lm(growth ~ fert * light, data=plants)  # f1 + f2 + f1:f2\nm2 &lt;- lm(growth ~ fert + light, data=plants)  # f1 + f2\nanova(m3, m2)\n\nAnalysis of Variance Table\n\nModel 1: growth ~ fert * light\nModel 2: growth ~ fert + light\n  Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)\n1      6 2.1700                           \n2      8 2.8567 -2  -0.68667 0.9493 0.4383\n\n\n\nLikelihood-Ratio-Test vergleicht zwei Modelle (anova in R mit &gt; 1 Modell)\nModell mit Interaktion (m3) nicht signifikant besser als Modell ohne Interaktion (m2).",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#aic-basierte-modellselektion",
-    "href": "slides/07-anova.html#aic-basierte-modellselektion",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "AIC-basierte Modellselektion",
-    "text": "AIC-basierte Modellselektion\n\nDer paarweise Modellvergleich ist umständlich, insbesondere bei einer großen Anzahl von Modellen.\nLösung: Erstelle eine Menge von Kandidatenmodellen\nVerwende kleinstes AIC, um das minimal angemessene Modell auszuwählen.\n\n\nm3  &lt;- lm(growth ~ light * fert, data = plants) # Gesamtmodell\nm2  &lt;- lm(growth ~ light + fert, data = plants)\nm1a &lt;- lm(growth ~ fert, data = plants)\nm1b &lt;- lm(growth ~ light, data = plants)\nm0  &lt;- lm(growth ~ 1, data = plants)            # Nullmodell\n\nAIC(m0, m1a, m1b, m2, m3)\n\n    df      AIC\nm0   2 33.38238\nm1a  4 32.62699\nm1b  3 30.72893\nm2   5 26.83151\nm3   7 27.53237\n\n\nAnmerkungen\n\nAIC-Werte sind bis zu einer additiven Konstante definiert\n\\(\\rightarrow\\) Absolute Werte können je nach Software oder Methode variieren.\n\\(\\Rightarrow\\) Betrachte die Differenzen, nicht die absoluten Werte.\nFaustregel: die „AIC-Einheit“ ist 2, Unterschiede \\(\\approx\\) 2.0 \\(\\rightarrow\\) geringe Bedeutung",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#schrittweise-modellselektion-automatisch",
-    "href": "slides/07-anova.html#schrittweise-modellselektion-automatisch",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "Schrittweise Modellselektion (automatisch)",
-    "text": "Schrittweise Modellselektion (automatisch)\n\nAutomatische Modellselektion\n\nm1 &lt;- lm(growth ~ fert * light, data=plants)\nopt &lt;- step(m1)\n\nStart:  AIC=-8.52\ngrowth ~ fert * light\n\n             Df Sum of Sq    RSS     AIC\n- fert:light  2   0.68667 2.8567 -9.2230\n&lt;none&gt;                    2.1700 -8.5222\n\nStep:  AIC=-9.22\ngrowth ~ fert + light\n\n        Df Sum of Sq    RSS     AIC\n&lt;none&gt;               2.8567 -9.2230\n- fert   2    2.6600 5.5167 -5.3256\n- light  1    2.6133 5.4700 -3.4275\n\n\nModell mit dem kleinsten AIC \\(\\rightarrow\\) optimales Modell.\n\n\n\nZum Vergleich: klassische ANOVA\n\nanova(opt)\n\nAnalysis of Variance Table\n\nResponse: growth\n          Df Sum Sq Mean Sq F value  Pr(&gt;F)  \nfert       2 2.6600 1.33000  3.7246 0.07190 .\nlight      1 2.6133 2.61333  7.3186 0.02685 *\nResiduals  8 2.8567 0.35708                  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nErgebnisse des Beispiels:\n\noptimales Modell (opt), enthält beide Faktoren (fert, light), aber keine Interaktion.\nDie Modellselektion identifiziert fert und light als wichtige Erklärungsvariablen.\nim Gegensatz zur klassischen ANOVA-Tabelle, in der nur light signifikant war, zeigt die Modellselektion, dass auch fert zur Erklärung beiträgt.",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#signifikanztests-vs.-modellselektion",
-    "href": "slides/07-anova.html#signifikanztests-vs.-modellselektion",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "Signifikanztests vs. Modellselektion",
-    "text": "Signifikanztests vs. Modellselektion\n\n\nDas Konzept der Modellselektion ersetzt die p-Wert-basierte Statistik, zumindest teilweise.\nEinige Autoren raten davon ab, p-Werte in diesem Kontext noch zu verwenden.\nAndere empfehlen einen Kompromiss: p-Werte als Hilfsmittel, nicht als Entscheidungskriterium.\n\nDerzeitige Empfehlung\nWenn p-Werte benötigt werden, vergleiche das optimale Modell mit reduzierten Modellen:\n\nanova(m2, m1a) # fert\nanova(m2, m1b) # light\n\n\nInterpretiere p-Werte mit Vorsicht:\n\nSie sind abhängig von der Modellstruktur.\nSie können irreführend sein, wenn das Modell nicht optimal ist.\n\nGib auch Effektstärken und Vertrauensintervalle an!",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#the-asa-statement-on-statistical-significance-and-p-values",
-    "href": "slides/07-anova.html#the-asa-statement-on-statistical-significance-and-p-values",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "The “ASA Statement on Statistical Significance and P-Values”",
-    "text": "The “ASA Statement on Statistical Significance and P-Values”\nDas Statement der American Statistical Association (Wasserstein & Lazar, 2016) befasst sich mit Definition und Bedeutung des p-Werts, ohne das Konzept komplett in Frage zu stellen. Es definiiert 6 Prinzipien:\n\n\\(P\\)-values can indicate how incompatible the data are with a specified statistical model.\n\\(P\\)-values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone.\nScientific conclusions and business or policy decisions should not be based only on whether a \\(p\\)-value passes a specific threshold.\nProper inference requires full reporting and transparency.\nA \\(p\\)-value, or statistical significance, does not measure the size of an effect or the importance of a result.\nBy itself, a \\(p\\)-value does not provide a good measure of evidence regarding a model or hypothesis.\n\nDie Prinzipien sind im Artikel weiter ausgeführt.\nSelbststudium: Setze Dich kritisch mit den Konzepten von p-Wert und Signifikanz auseinander und lies dazu neben Wasserstein & Lazar (2016) auch Hurlbert et al. (2019).",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#the-asa-statement",
-    "href": "slides/07-anova.html#the-asa-statement",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "The “ASA Statement …”",
-    "text": "The “ASA Statement …”\n\nDas ASA Statement on Statistical Significance and P-Values der American Statistical Association (Wasserstein & Lazar, 2016) befasst sich mit der Bedeutung des p-Werts, ohne ihn komplett in Frage zu stellen. Es definiert 6 Prinzipien:\n\n\nP-values can indicate how incompatible the data are with a specified statistical model.\nP-values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone.\nScientific conclusions and business or policy decisions should not be based only on whether a p-value passes a specific threshold.\nProper inference requires full reporting and transparency.\nA p-value, or statistical significance, does not measure the size of an effect or the importance of a result.\nBy itself, a p-value does not provide a good measure of evidence regarding a model or hypothesis.\n\n\nDie Details sind im Statement weiter ausgeführt.\nSelbststudium: Lies dazu neben Wasserstein & Lazar (2016) auch Hurlbert et al. (2019).",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#modellkandidaten-und-auswahl-eines-optimalen-modells",
-    "href": "slides/07-anova.html#modellkandidaten-und-auswahl-eines-optimalen-modells",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "Modellkandidaten und Auswahl eines optimalen Modells",
-    "text": "Modellkandidaten und Auswahl eines optimalen Modells\n\nProblem:\n\nBei komplexen ANOVA-Modellen hängen die p-Werte von der Anzahl (und manchmal von der Reihenfolge) der einbezogenen Faktoren und Wechselwirkungen ab.\nDer H0-basierte Ansatz wird eventuell verwirrend, z.B. wegen widersprüchlicher p-Werte.\n\nAlternativer Ansatz:\n\nModellselektion – nutzt das Prinzip der Parsimonie\n\nEs werden verschiedene Modellkandidaten verglichen:\n\nModell mit allen potentiellen Effekten → vollständiges Modell\nWeglassen einzelner Faktoren → reduzierte Modelle (mehrere!)\nKeine Einflussfaktoren (nur Mittelwert) → Nullmodell\nWelches Modell ist das beste? → minimales adäquates Modell",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
-  },
-  {
-    "objectID": "slides/07-anova.html#ansatz-1-einfache-anova",
-    "href": "slides/07-anova.html#ansatz-1-einfache-anova",
-    "title": "07-ANOVA und ANCOVA",
-    "section": "Ansatz 1: einfache ANOVA",
-    "text": "Ansatz 1: einfache ANOVA\n\npar(mar=c(4, 8, 2, 1), las=1)\nm &lt;- lm(mu ~ treat, data=mcyst)\nanova(m)\n\nAnalysis of Variance Table\n\nResponse: mu\n          Df     Sum Sq    Mean Sq F value   Pr(&gt;F)   \ntreat      2 0.00053293 2.6647e-04   8.775 0.004485 **\nResiduals 12 0.00036440 3.0367e-05                    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nplot(TukeyHSD(aov(m)))",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "07-ANOVA und ANCOVA"
-    ]
   }
 ]
