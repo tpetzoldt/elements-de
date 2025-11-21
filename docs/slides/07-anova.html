@@ -313,21 +313,15 @@ Thomas Petzoldt
 
 </div>
 <div class="hbox">
-<p><img data-src="../img/ansaetze2.jpg"> Dünger – D. offene Flasche – D. + Zucker – D. + CaCO3 – Basalmedium – A. dest – Leitungswasser</p>
+<p><img data-src="../img/ansaetze2.jpg"> Dünger – offene Flasche – + Zucker – + CaCO3 – Basalmedium – A. dest – Leitungswasser</p>
 </div>
 </section>
 <section id="der-datensatz" class="slide level2">
 <h2>Der Datensatz</h2>
 <p><br></p>
-<div class="cell">
-<div id="tbl-algae-growth" class="cell quarto-float quarto-figure quarto-figure-center">
-<figure class="quarto-float quarto-float-tbl">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-algae-growth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Wachstum von Tag 2 bis Tag 6 (relative Einheiten)
-</figcaption>
-<div aria-describedby="tbl-algae-growth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="tbl-algae-growth" class="cell">
 <div class="cell-output-display">
-<table class="table table-striped do-not-create-environment cell caption-top" data-quarto-postprocess="true" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table table-striped caption-top" data-quarto-postprocess="true" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">treat</th>
@@ -385,13 +379,11 @@ Table&nbsp;1: Wachstum von Tag 2 bis Tag 6 (relative Einheiten)
 
 </div>
 </div>
-</figure>
-</div>
-</div>
 <ul>
+<li>Wachstum von Tag 2 bis Tag 6 (relative Einheiten)</li>
 <li><span class="red">NA</span> bedeutet „nicht verfügbar“, d.h. ein fehlender Wert</li>
-<li>Die Kruztabellenstruktur ist kompakt und übersichtlich, jedoch nicht ideal für die Datenanalyse.</li>
-<li><span class="math inline">\(\Rightarrow\)</span> Konvertierung sie in das Langformat</li>
+<li>Die Kruztabelle ist kompakt und übersichtlich, jedoch nicht ideal für die Datenanalyse.</li>
+<li><span class="math inline">\(\Rightarrow\)</span> Konvertierung in das Langformat</li>
 </ul>
 </section>
 <section id="daten-im-langformat" class="slide level2">
@@ -400,7 +392,7 @@ Table&nbsp;1: Wachstum von Tag 2 bis Tag 6 (relative Einheiten)
 <p><br></p>
 <h3 id="vorteile">Vorteile</h3>
 <ul>
-<li>sieht „unpraktisch“ aus, ist aber besser für die Datenanalyse</li>
+<li>sieht „unpraktisch“ aus, ist aber viel besser für die Datenanalyse</li>
 <li>abhängige Variable <strong>Wachstum</strong> und <br>Erklärungsvariable <strong>Behandlung</strong> deutlich sichtbar</li>
 <li>Modellformel: <code>growth ~ treat</code></li>
 <li>leicht erweiterbar auf <span class="math inline">\(&gt;1\)</span> Erklärungsvariable</li>
@@ -486,7 +478,7 @@ Table&nbsp;1: Wachstum von Tag 2 bis Tag 6 (relative Einheiten)
 </div></section>
 <section id="die-daten-in-r" class="slide level2">
 <h2>Die Daten in R</h2>
-<p><br><br></p>
+<p><br></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a>algae <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">treat  =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Fertilizer"</span>, <span class="st">"Fertilizer"</span>, <span class="st">"Fertilizer"</span>, </span>
@@ -503,7 +495,13 @@ Table&nbsp;1: Wachstum von Tag 2 bis Tag 6 (relative Einheiten)
 <span id="cb1-13"><a aria-hidden="true" tabindex="-1"></a>             <span class="fl">0.245</span>, <span class="fl">0.236</span>, <span class="fl">0.456</span>, <span class="fl">0.699</span>, <span class="fl">0.727</span>, <span class="fl">0.656</span>, <span class="sc">-</span><span class="fl">0.01</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="fl">0.01</span>, <span class="fl">0.03</span>, <span class="sc">-</span><span class="fl">0.07</span>)</span>
 <span id="cb1-14"><a aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>… können direkt in den Code eingegeben werden. Eine csv-Datei im Langformat ist ebenfalls möglich.</p>
+<p><br></p>
+<ul>
+<li>Kleine Datensätze können direkt in den Code eingebunden werden.</li>
+<li>Eine csv-Datei im Langformat ist ebenfalls möglich.</li>
+<li>Wichtig: <code>treat</code> als Faktor (nominale Variable).</li>
+<li>Mit <code>levels</code> kann man die Reihenfolge fixieren.</li>
+</ul>
 </section>
 <section id="boxplot" class="slide level2">
 <h2>Boxplot</h2>
@@ -519,7 +517,7 @@ Table&nbsp;1: Wachstum von Tag 2 bis Tag 6 (relative Einheiten)
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">stripchart</span>(growth <span class="sc">~</span> treat, <span class="at">data =</span> algae, <span class="at">vertical =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="07-anova_files/figure-revealjs/algae-stripchart-1.png" width="960" class="r-stretch"><p>Besser, denn wir haben nur 2-3 Wiederholungen. Boxplot braucht mehr.</p>
+<img data-src="07-anova_files/figure-revealjs/algae-stripchart-1.png" width="960" class="r-stretch"><p>Besser als Boxplot, denn wir haben nur 2-3 Wiederholungen. Boxplot braucht mehr.</p>
 </section>
 <section id="umwandlung-einer-wissenschaftlichen-frage-in-eine-statistische-hypothese" class="slide level2">
 <h2>Umwandlung einer wissenschaftlichen Frage in eine statistische Hypothese</h2>
@@ -545,7 +543,7 @@ Table&nbsp;1: Wachstum von Tag 2 bis Tag 6 (relative Einheiten)
 </ul>
 <p><span class="math display">\[7 \cdot (7 - 1) / 2 = 21 \qquad\text{Tests.}\]</span></p>
 <ul>
-<li>Bei <span class="math inline">\(\alpha = 0.05\)</span>, erhält man 5% falsch positive Ergebnisse.<br> <span class="math inline">\(\Rightarrow\)</span> <span class="red">Einer</span> von 20 Tests ist im Durchschnitt <span class="red">falsch positiv</span></li>
+<li>Bei <span class="math inline">\(\alpha = 0.05\)</span>, erhält man 5% falsch positive Ergebnisse.<br> <span class="math inline">\(\Rightarrow\)</span> <span class="red">Einer</span> von 20 Tests ist im Durchschnitt <span class="red">falsch positiv</span>.</li>
 <li>Bei <span class="math inline">\(N\)</span> Tests erhöht sich der Gesamtfehler von <span class="math inline">\(\alpha\)</span> im schlimmsten Fall auf <span class="math inline">\(N\cdot\alpha\)</span>.</li>
 <li>Dies wird <strong>alpha-Fehler-Inflation</strong> oder <strong>Bonferroni-Ungleichung</strong> genannt:</li>
 </ul>
@@ -580,7 +578,7 @@ s_y^2 = s^2_\mathrm{effect} + s^2_{\varepsilon}
 <li>Etwas überraschend: Analyse von Varianzen, um Mittelwerte zu vergleichen.</li>
 <li><strong>Erklärung:</strong> Mittelwertunterschiede tragen zur Gesamtvarianz der ganzen Stichprobe bei.</li>
 <li>Die Varianzkomponenten können als <strong>Varianz innerhalb</strong> (<span class="math inline">\(s^2_\varepsilon\)</span>) und <strong>Varianz zwischen</strong> Stichproben bezeichnet werden.</li>
-<li>Die Varianzentrennung erfolgt über ein <span class="blue">lineares Modell</span>.</li>
+<li>Die Varianz-Zerlegung erfolgt über ein <span class="blue">lineares Modell</span>.</li>
 </ul>
 </section>
 <section id="beispiel" class="slide level2">
@@ -728,12 +726,13 @@ mean in group 1 mean in group 2
 </section>
 <section id="anova-mit-mehr-als-2-stichproben" class="slide level2">
 <h2>ANOVA mit mehr als 2 Stichproben</h2>
-<p><br> Zurück zu den Daten über das Algenwachstum.</p>
+<p><br> Zurück zum Algenwachstums-Experiment:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(growth <span class="sc">~</span> treat, <span class="at">data =</span> algae)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><br></p>
 <ul>
-<li>Wir können die Koeffizienten mit <code>summary(m)</code> ausgeben.</li>
+<li>Wir könnten die Koeffizienten mit <code>summary(m)</code> ausgeben.</li>
 <li>Zunächst interessiert uns der Gesamteffekt, daher verwenden wir <code>anova(m)</code>.</li>
 </ul>
 <div class="cell">
@@ -871,7 +870,7 @@ Fligner-Killeen:med chi-squared = 4.2095, df = 6, p-value = 0.6483</code></pre>
 <section id="moderne-sichtweise-keine-vortests-mehr" class="slide level2">
 <h2>Moderne Sichtweise: Keine Vortests mehr!</h2>
 <p><br></p>
-<p>Die traditionelle Praxis – Residuen zu testen, bevor man ANOVA durchführt – <br> ist nicht mehr zeitgemäß und führt zu gravierenden Problemen:</p>
+<p>Die traditionelle Praxis – Residuen zu testen, <strong>bevor</strong> man ANOVA durchführt – <br> ist nicht mehr zeitgemäß und führt zu gravierenden Problemen:</p>
 <ul>
 <li>Residuen sind erst nach Modellanpassung verfügbar.</li>
 <li>Bei Vortests müsste man sie „irgendwie vorher“ schätzen, oft durch Pooling.</li>
@@ -886,13 +885,13 @@ Fligner-Killeen:med chi-squared = 4.2095, df = 6, p-value = 0.6483</code></pre>
 <li>Unabhängigkeit,</li>
 <li>mögliche Nichtnormalität auf Grund des Versuchsdesigns</li>
 </ul></li>
-<li><strong>Führe die ANOVA durch</strong> – ohne Vortests.</li>
-<li><strong>Dokumentiere die Diagnostik</strong> – grafisch und kritisch (QQ-Plot, Residuals vs.&nbsp;Fitted).</li>
+<li>Führe die ANOVA durch – ohne Vortests.</li>
+<li><strong>Diagnostik im Anschluss</strong> – grafisch und kritisch (QQ-Plot, Residuals vs.&nbsp;Fitted).</li>
 </ol>
 </section>
 <section id="einfache-anova-mit-heterogenen-varianzen" class="slide level2">
 <h2>Einfache ANOVA mit heterogenen Varianzen</h2>
-<p><br> Die Varianzhomogenität ist wichtiger als die Normalverteilung – insbesondere bei unbalancierten Designs. <br></p>
+<p><br></p>
 <ul>
 <li>Erweiterung des Welch-Tests für <span class="math inline">\(\ge 2\)</span> Stichproben</li>
 <li>in R <code>oneway.test</code> genannt.</li>
@@ -907,13 +906,18 @@ data:  growth and treat
 F = 115.09, num df = 6.0000, denom df = 4.6224, p-value = 6.57e-05</code></pre>
 </div>
 </div>
-<p>Der <code>oneway.test</code> berücksichtigt ungleiche Varianzen durch gewichtete Mittelwerte und eine angepasste F-Statistik – ideal für unbalancierte oder heterogene Daten.</p>
+<p><br></p>
+<ul>
+<li>Der <code>oneway.test</code> berücksichtigt ungleiche Varianzen durch gewichtete Mittelwerte und Freiheitsgrade und eine angepasste F-Statistik.</li>
+<li>Die Varianzhomogenität ist wichtiger als die Normalverteilung – insbesondere bei unbalancierten Designs.</li>
+<li>Ein Varianzunterschied kann den F-Test stärker verzerren als leichte Abweichungen von der Normalverteilung.</li>
+</ul>
 </section>
-<section id="zweiseitige-anova" class="slide level2">
-<h2>Zweiseitige ANOVA</h2>
+<section id="zweifache-anova" class="slide level2">
+<h2>Zweifache ANOVA</h2>
 <ul>
 <li>Beispiel aus einem Statistik-Lehrbuch <span class="citation" data-cites="Crawley2002">(<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">Crawley, 2002</a>)</span>, angewandt auf einen neuen Kontext</li>
-<li>Auswirkungen von Dünger und Lichtregime auf das Wachstum der Pflanzenhöhe in cm pro Zeit</li>
+<li>Auswirkungen von Dünger und Licht auf das Wachstum der Pflanzenhöhe in cm pro Zeit</li>
 </ul>
 <table class="caption-top">
 <thead>
@@ -962,13 +966,11 @@ F = 115.09, num df = 6.0000, denom df = 4.6224, p-value = 6.57e-05</code></pre>
 </tbody>
 </table>
 <ul>
-<li>faktorielles Experiment (<strong>mit Wiederholungen</strong>): jede Faktorkombination hat mehr als eine Beobachtung.</li>
-<li>ohne Wiederholungen:
-<ul>
-<li>keine Wiederholungen pro Faktorkombination</li>
-<li>dies ist möglich, erlaubt aber keine Identifizierung von Wechselwirkungen</li>
-</ul></li>
+<li>faktorielles Experiment (<strong>mit Wiederholungen</strong>)</li>
+<li>für jede Faktorkombination mehr als eine Beobachtung</li>
+<li>Es können Wechselwirkungen identifiziert werden</li>
 </ul>
+<p><span class="gray smallfont">Falls keine Wiederholungen: Keine Schätzung des Fehlers für Interaktionen - keine Identifizierung von Wechselwirkungen möglich.</span></p>
 </section>
 <section id="daten-im-langformat-eingeben" class="slide level2">
 <h2>Daten im Langformat eingeben</h2>
@@ -979,7 +981,7 @@ F = 115.09, num df = 6.0000, denom df = 4.6224, p-value = 6.57e-05</code></pre>
 <span id="cb37-2"><a aria-hidden="true" tabindex="-1"></a>                    <span class="at">growth =</span> <span class="fu">c</span>(<span class="fl">6.6</span>, <span class="fl">7.2</span>, <span class="fl">6.9</span>, <span class="fl">8.3</span>, <span class="fl">7.9</span>, <span class="fl">9.2</span>,</span>
 <span id="cb37-3"><a aria-hidden="true" tabindex="-1"></a>                               <span class="fl">8.3</span>, <span class="fl">8.7</span>, <span class="fl">8.1</span>, <span class="fl">8.5</span>, <span class="fl">9.1</span>, <span class="fl">9.0</span>),</span>
 <span id="cb37-4"><a aria-hidden="true" tabindex="-1"></a>                    <span class="at">fert   =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>), <span class="at">each=</span><span class="dv">2</span>),</span>
-<span id="cb37-5"><a aria-hidden="true" tabindex="-1"></a>                    <span class="at">light   =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"high"</span>), <span class="at">each=</span><span class="dv">6</span>)</span>
+<span id="cb37-5"><a aria-hidden="true" tabindex="-1"></a>                    <span class="at">light  =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"high"</span>), <span class="at">each=</span><span class="dv">6</span>)</span>
 <span id="cb37-6"><a aria-hidden="true" tabindex="-1"></a>          )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:39%;">
@@ -1097,7 +1099,7 @@ F = 115.09, num df = 6.0000, denom df = 4.6224, p-value = 6.57e-05</code></pre>
 <td><code>y ~ x</code></td>
 </tr>
 <tr class="odd">
-<td>Lineares Modell ohne Achsenschnittpunkt</td>
+<td>Linear ohne Achsenschnittpunkt</td>
 <td><code>y ~ x - 1</code></td>
 </tr>
 <tr class="even">
@@ -1109,15 +1111,15 @@ F = 115.09, num df = 6.0000, denom df = 4.6224, p-value = 6.57e-05</code></pre>
 <td><code>y ~ x1 * x2 * x3</code></td>
 </tr>
 <tr class="even">
-<td>Multiple Regression, keine 3-fache Interaktion</td>
+<td>… ohne 3-fache Interaktion</td>
 <td><code>y ~ x1 * x2 * x3 - x1 : x2 : x3</code></td>
 </tr>
 <tr class="odd">
-<td>Transformiert mit ‘as is’ Funktion</td>
+<td>Transformiert mit <code>I()</code> (‘as is’)</td>
 <td><code>y ~ x + I(x^2)</code></td>
 </tr>
 <tr class="even">
-<td>Einseitige ANOVA</td>
+<td>Einfache ANOVA</td>
 <td><code>y ~ f</code></td>
 </tr>
 <tr class="odd">
@@ -1143,7 +1145,7 @@ F = 115.09, num df = 6.0000, denom df = 4.6224, p-value = 6.57e-05</code></pre>
 </tbody>
 </table>
 <ul>
-<li><code>y</code> = Antwortvariable (abhängig, Ziel)</li>
+<li><code>y</code> = Antwortvariable (abhängige, target)</li>
 <li><code>x</code> = metrische Erklärungsvariable (Prädiktor, unabhängig)</li>
 <li><code>f</code> = Faktorvariable (nominal)</li>
 </ul>
@@ -1176,23 +1178,28 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span id="cb40-2"><a aria-hidden="true" tabindex="-1"></a>                            <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"orange"</span>, <span class="st">"brown"</span>), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="07-anova_files/figure-revealjs/plants-interaction-1.png" width="960" class="r-stretch"></section>
+<img data-src="07-anova_files/figure-revealjs/plants-interaction-1.png" width="960" class="r-stretch"><ul>
+<li>Wenn die Linien nicht parallel sind, deutet es auf eine Wechselwirkung hin.</li>
+</ul>
+</section>
 <section id="diagnostik" class="slide level2">
 <h2>Diagnostik</h2>
-<p><strong>Annahmen</strong></p>
+<p><br></p>
 <ol type="1">
-<li>Unabhängigkeit der Messungen (innerhalb von Stichproben)</li>
+<li>Unabhängigkeit der Messungen (innerhalb der Gruppen)</li>
 <li>Homogenität der Varianz der Residuen</li>
 <li>Normalverteilung der Residuen</li>
 </ol>
 <p><br> <span class="red">Der Test der Annahmen benötigt Residuen des angepassten Modells.</span> <br><br> <span class="math inline">\(\Rightarrow\)</span> Passe zuerst das ANOVA-Modell an und prüfe dann, ob es richtig war!</p>
 <p><br></p>
-<p><strong>Diagnoseinstrumente</strong></p>
+<p><strong>Diagnostikinstrumente</strong></p>
 <ul>
-<li>Boxplot</li>
-<li>Plot der Residuen im Vergleich zu den Mittelwerten</li>
-<li>Q-Q-Diagramm der Residuen</li>
-<li>Fligner-Killeen-Test (alternativ: von manchen wird der Levene-Test empfohlen)</li>
+<li>Boxplot (Gruppenvergleich)<br>
+</li>
+<li>Residuen vs.&nbsp;Fitted</li>
+<li>Q-Q-Diagramm der Residuen<br>
+</li>
+<li>Fligner-Killeen-Test (von manchen wird alternativ der Levene-Test empfohlen)</li>
 </ul>
 </section>
 <section id="diagnostik-ii" class="slide level2">
@@ -1217,31 +1224,36 @@ data:  growth by interaction(light, fert)
 Fligner-Killeen:med chi-squared = 10.788, df = 5, p-value = 0.05575</code></pre>
 </div>
 </div>
-<p>Residuen: sehen in Ordnung aus und der p-Wert des Fligner-Tests <span class="math inline">\(&gt; 0,05\)</span>, <span class="math inline">\(\rightarrow\)</span> sieht gut aus.</p>
+<p>Residuen: sehen in Ordnung aus und der p-Wert des Fligner-Tests ist noch ok.</p>
 </section>
 <section id="anmerkungen" class="slide level2">
 <h2>Anmerkungen</h2>
+<p><br></p>
 <p><strong>Lineare Regression oder ANOVA?</strong></p>
 <ul>
-<li>im Wesentlichen dasselbe</li>
-<li>unabhängige Variablen sind <strong>metrisch</strong>: lineares Modell</li>
-<li>unabhängige Variablen sind nominal (= Faktor): ANOVA</li>
-<li>Mischung aus metrischen und nominalen Variablen: ANCOVA</li>
+<li>Im Wesentlichen dasselbe Modell - nur unterschiedliche Sichtweise</li>
+<li>Metrische unabhängige Variablen → lineares Modell<br>
+</li>
+<li>Nominalskalierte unabhängige Variablen (Faktoren) → ANOVA<br>
+</li>
+<li>Mischung aus beidem → ANCOVA</li>
 </ul>
-<p><strong>Verwendung von Pre-Tests</strong></p>
-<p>Pre-Tests sind im Allgemeinen aus theoretischen Gründen fragwürdig:</p>
+<p><strong>Pre-Tests sind theoretisch und praktisch fragwürdig</strong></p>
 <ol type="1">
-<li>Die Nullhypothesen <span class="math inline">\(H_0\)</span> können nur verworfen und nicht endgültig bestätigt werden.</li>
-<li>Wenn der Stichprobenumfang groß ist, ist die Normalität der Residuen nicht erforderlich</li>
+<li>Eine Nullhypothese <span class="math inline">\(H_0\)</span> kann <strong>nicht bestätigt</strong>, sondern nur verworfen werden.<br>
+</li>
+<li>Bei großen Stichproben ist die Normalität der Residuen <strong>nicht zwingend erforderlich</strong>.</li>
 <li>Wenn <span class="math inline">\(p\)</span> in der Nähe des Schwellenwerts liegt und der Stichprobenumfang klein ist, bleiben wir im Ungewissen.</li>
 </ol>
-<p>All dies lässt sich nur durch sorgfältiges Nachdenken und mit etwas Erfahrung überwinden.</p>
-<p>Es ist immer eine gute Idee, die Ergebnisse mit Kollegen und Vorgesetzten zu besprechen.</p>
+<ul>
+<li>All dies lässt sich nur durch sorgfältiges Nachdenken, Erfahrung und kritische Reflexion überwinden.</li>
+<li>Es ist immer eine gute Idee, die Ergebnisse mit anderen zu besprechen – nicht nicht um die Entscheidung zu delegieren, sondern um sie zu <strong>verstehen und zu verteidigen</strong>.</li>
+</ul>
 </section>
 <section id="sequentielles-holm-bonferroni-verfahren" class="slide level2">
 <h2>Sequentielles Holm-Bonferroni-Verfahren</h2>
 <ul>
-<li>Auch Holm-Verfahren genannt <span class="citation" data-cites="Holm1979">(<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">Holm, 1979</a>)</span></li>
+<li>Auch bekannt als Holm-Korrektur <span class="citation" data-cites="Holm1979">(<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">Holm, 1979</a>)</span></li>
 <li>Einfach zu verwenden</li>
 <li>Kann auf jedes Problem mit Mehrfachtests angewendet werden</li>
 <li>Weniger konservativ als die normale Bonferroni-Korrektur, aber …</li>
@@ -1254,12 +1266,20 @@ Fligner-Killeen:med chi-squared = 10.788, df = 5, p-value = 0.05575</code></pre>
 <li>Wenn <span class="math inline">\(p \cdot n &lt; \alpha\)</span> <span class="math inline">\(\Rightarrow\)</span> signifikant, sonst <bf>STOPP</bf></li>
 <li>Setze <span class="math inline">\(n - 1 \rightarrow n\)</span>, entferne das kleinste <span class="math inline">\(p\)</span> aus der Liste und gehe zu Schritt 1.</li>
 </ol>
+<p><br></p>
+<p>Der Algorithmus ist <strong>sequenziell</strong></p>
+<ul>
+<li>Er prüft die Hypothesen in der Reihenfolge der kleinsten <span class="math inline">\(p\)</span>-Werte.</li>
+</ul>
 </section>
 <section id="beispiel-1" class="slide level2">
 <h2>Beispiel</h2>
 <p><br></p>
 <p>Wachstumsrate pro Tag (<span class="math inline">\(d^{-1}\)</span>) von Blaualgenkulturen (<em>Pseudanabaena</em>) nach Zugabe toxischer Peptide einer anderen Blaualge (<em>Microcystis</em>).</p>
-<p>Die ursprüngliche Hypothese war, dass Microcystin LR (MCYST) oder ein Derivat davon (Substanz A) das Wachstum hemmt.</p>
+<p>Die ursprüngliche Hypothese:</p>
+<ul>
+<li>Microcystin LR (MCYST) oder ein Derivat davon (Substanz A) hemmt das Wachstum.</li>
+</ul>
 <p><br></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a aria-hidden="true" tabindex="-1"></a>mcyst <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">treat =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Control"</span>, <span class="dv">5</span>),</span>
@@ -1272,8 +1292,8 @@ Fligner-Killeen:med chi-squared = 10.788, df = 5, p-value = 0.05575</code></pre>
 <span id="cb44-8"><a aria-hidden="true" tabindex="-1"></a>                     )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="ansatz-1-einseitige-anova" class="slide level2">
-<h2>Ansatz 1: einseitige ANOVA</h2>
+<section id="ansatz-1-einfache-anova" class="slide level2">
+<h2>Ansatz 1: einfache ANOVA</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">1</span>), <span class="at">las=</span><span class="dv">1</span>)</span>
 <span id="cb45-2"><a aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(mu <span class="sc">~</span> treat, <span class="at">data=</span>mcyst)</span>
@@ -1306,14 +1326,14 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span id="cb49-2"><a aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(Control, SubstA)<span class="sc">$</span>p.value</span>
 <span id="cb49-3"><a aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(MCYST, SubstA)<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Im Folgenden sind die rohen p-Werte ohne Korrektur dargestellt:</p>
+<p>p-Werte ohne Korrektur:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(p1, p2, p3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.576275261 0.027378832 0.001190592</code></pre>
 </div>
 </div>
-<p>… und mit Holm-Korrektur:</p>
+<p>Mit Holm-Korrektur:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">p.adjust</span>(<span class="fu">c</span>(p1, p2, p3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1325,66 +1345,52 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <h2>Schlussfolgerungen</h2>
 <p><strong>Statistische Methoden</strong></p>
 <ul>
-<li>Im Falle der Holm-korrigierten t-Tests bleibt nur ein einziger p-Wert (MCYST vs.&nbsp;Subst A) signifikant. Dies zeigt, dass die Holm-Methode in diesem Fall konservativer ist als TukeyHSD (nur ein signifikanter Effekt im Vergleich zu zwei signifikanten).</li>
-<li>Eine ANOVA mit Posthoc-Test ist im Allgemeinen vorzuziehen,</li>
-<li>aber die sequentielle Holm-Bonferroni-Methode kann in besonderen Fällen hilfreich sein.</li>
-<li>Außerdem zeigt es deutlich, dass massive Mehrfachtests vermieden werden müssen.</li>
+<li>Beim Holm-korrigierten t-Test bleibt nur ein einziger p-Wert (MCYST vs.&nbsp;Subst A) signifikant, bei der ANOVA sind es zwei.</li>
+<li>ANOVA berücksichtigt Struktur der Daten und die Abhängigkeit der Vergleiche.</li>
+<li>Holm-Methode konservativer als TukeyHSD <span class="math inline">\(\Rightarrow\)</span> ANOVA + Posthoc ist zu bevorzugen.</li>
 </ul>
-<p><span class="math inline">\(\Rightarrow\)</span> ANOVA ist zu bevorzugen, wenn möglich.</p>
-<p><strong>Interpretation</strong></p>
+<p><strong>Interpretation hinsichtlich der ursprünglichen Hypothese</strong></p>
 <ul>
-<li>Hinsichtlich unserer ursprünglichen Hypothese können wir feststellen, dass MCYST und SubstA das Wachstum von <em>Pseudanabaena</em> nicht hemmen. Vielmehr stimulierte SubstA das Wachstum.</li>
-<li>Dies widersprach unseren Erwartungen - der biologische Grund wurde dann 10 Jahre später gefunden.</li>
+<li><p>MCYST und Subst A hemmen das Wachstum von <em>Pseudanabaena</em> nicht.</p></li>
+<li><p>Im Gegenteil: Subst A <strong>stimuliert</strong> das Wachstum.</p></li>
+<li><p>Widerspruch zur Erwartung: der biologische Grund wurde 10 Jahre später entdeckt.</p></li>
+<li><p><strong>Wichtig</strong>: Statistische Signifikanz sagt nichts über die biologische Relevanz aus.</p></li>
+<li><p>Falsche Hypothesen können zu falschen Erwartungen führen - oder zu neuen Entdeckungen.</p></li>
 </ul>
-<p>Mehr dazu ist zu finden in <span class="citation" data-cites="Jahnichen2001">Jähnichen et al. (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2001</a>)</span>, <span class="citation" data-cites="Jahnichen2007">Jähnichen et al. (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2007</a>)</span>, <span class="citation" data-cites="Jahnichen2011">Jähnichen et al. (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2011</a>)</span>, <span class="citation" data-cites="Zilliges2011">Zilliges et al. (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2011</a>)</span> oder <span class="citation" data-cites="Dziallas2011">Dziallas &amp; Grossart (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2011</a>)</span>.</p>
+<p>Mehr dazu in <span class="citation" data-cites="Jahnichen2001">Jähnichen et al. (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2001</a>)</span>, <span class="citation" data-cites="Jahnichen2007">Jähnichen et al. (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2007</a>)</span>, <span class="citation" data-cites="Jahnichen2011">Jähnichen et al. (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2011</a>)</span>, <span class="citation" data-cites="Zilliges2011">Zilliges et al. (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2011</a>)</span>, <span class="citation" data-cites="Dziallas2011">Dziallas &amp; Grossart (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2011</a>)</span>, <span class="citation" data-cites="Wei2024">Wei et al. (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2024</a>)</span></p>
 </section>
 <section id="ancova" class="slide level2">
 <h2>ANCOVA</h2>
 <p><strong>Statistische Frage</strong></p>
 <ul>
-<li>Vergleich von Regressionslinien</li>
+<li>Vergleich von Regressionslinien zwischen Gruppen</li>
 <li>Ähnlich wie bei der ANOVA, enthält aber auch <strong>metrische</strong> Variablen (Kovariaten)</li>
+<li>Haben Gruppen unterschiedliche <strong>Anfangswerte</strong> (Intercept) und/oder unterschiedliche <strong>Steigungen</strong> (Slope)?</li>
 </ul>
 <p><strong>Beispiel</strong></p>
-<p>Annette Dobsons Daten zum Geburtsgewicht. Ein Datensatz aus einem Statistik-Lehrbuch <span class="citation" data-cites="Dobson2013">(<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">Dobson, 2013</a>)</span>, Geburtsgewicht von Jungen und Mädchen in Abhängigkeit von der Schwangerschaftswoche.</p>
 
-<img data-src="07-anova_files/figure-revealjs/dobson-lines-1.png" width="960" class="r-stretch"></section>
+<img data-src="07-anova_files/figure-revealjs/dobson-lines-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>Annette Dobsons Geburtsgewichts-Daten – aus einem Statistik-Lehrbuch <span class="citation" data-cites="Dobson2013">(<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">Dobson, 2013</a>)</span>: Geburtsgewicht von Jungen und Mädchen in Abhängigkeit von der Schwangerschaftswoche.</p>
+</section>
 <section id="der-datensatz-zum-geburtsgewicht" class="slide level2">
 <h2>Der Datensatz zum Geburtsgewicht</h2>
 <p><br></p>
-<p>Der Datensatz ist an verschiedenen Stellen im Internet und in verschiedenen Versionen zu finden.</p>
-<p>Hier die Version, die in einer R-Demo zu finden ist: <code>demo(lm.glm)</code></p>
+<p>Dieser Datensatz ist künstlich – nicht realistisch, aber ideal für die Demonstration.</p>
+<p>Er ist in der R-Demo <code>demo(lm.glm)</code> enthalten.</p>
+<p><br></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a aria-hidden="true" tabindex="-1"></a><span class="do">## Daten zum Geburtsgewicht siehe stats/demo/lm.glm.R</span></span>
 <span id="cb54-2"><a aria-hidden="true" tabindex="-1"></a>dobson <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb54-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">week =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">38</span>, <span class="dv">40</span>, <span class="dv">35</span>, <span class="dv">36</span>, <span class="dv">37</span>, <span class="dv">41</span>, <span class="dv">40</span>, <span class="dv">37</span>, <span class="dv">38</span>, <span class="dv">40</span>, <span class="dv">38</span>,</span>
-<span id="cb54-4"><a aria-hidden="true" tabindex="-1"></a>     <span class="dv">40</span>, <span class="dv">36</span>, <span class="dv">40</span>, <span class="dv">38</span>, <span class="dv">42</span>, <span class="dv">39</span>, <span class="dv">40</span>, <span class="dv">37</span>, <span class="dv">36</span>, <span class="dv">38</span>, <span class="dv">39</span>, <span class="dv">40</span>),</span>
+<span id="cb54-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">week   =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">38</span>, <span class="dv">40</span>, <span class="dv">35</span>, <span class="dv">36</span>, <span class="dv">37</span>, <span class="dv">41</span>, <span class="dv">40</span>, <span class="dv">37</span>, <span class="dv">38</span>, <span class="dv">40</span>, <span class="dv">38</span>,</span>
+<span id="cb54-4"><a aria-hidden="true" tabindex="-1"></a>             <span class="dv">40</span>, <span class="dv">36</span>, <span class="dv">40</span>, <span class="dv">38</span>, <span class="dv">42</span>, <span class="dv">39</span>, <span class="dv">40</span>, <span class="dv">37</span>, <span class="dv">36</span>, <span class="dv">38</span>, <span class="dv">39</span>, <span class="dv">40</span>),</span>
 <span id="cb54-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">weight =</span> <span class="fu">c</span>(<span class="dv">2968</span>, <span class="dv">2795</span>, <span class="dv">3163</span>, <span class="dv">2925</span>, <span class="dv">2625</span>, <span class="dv">2847</span>, <span class="dv">3292</span>, <span class="dv">3473</span>, <span class="dv">2628</span>, <span class="dv">3176</span>,</span>
-<span id="cb54-6"><a aria-hidden="true" tabindex="-1"></a>        <span class="dv">3421</span>, <span class="dv">2975</span>, <span class="dv">3317</span>, <span class="dv">2729</span>, <span class="dv">2935</span>, <span class="dv">2754</span>, <span class="dv">3210</span>, <span class="dv">2817</span>, <span class="dv">3126</span>, <span class="dv">2539</span>,</span>
-<span id="cb54-7"><a aria-hidden="true" tabindex="-1"></a>        <span class="dv">2412</span>, <span class="dv">2991</span>, <span class="dv">2875</span>, <span class="dv">3231</span>),</span>
-<span id="cb54-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fu">gl</span>(<span class="dv">2</span>, <span class="dv">12</span>, <span class="at">labels=</span><span class="fu">c</span>(<span class="st">"M"</span>, <span class="st">"F"</span>))</span>
+<span id="cb54-6"><a aria-hidden="true" tabindex="-1"></a>             <span class="dv">3421</span>, <span class="dv">2975</span>, <span class="dv">3317</span>, <span class="dv">2729</span>, <span class="dv">2935</span>, <span class="dv">2754</span>, <span class="dv">3210</span>, <span class="dv">2817</span>, <span class="dv">3126</span>, <span class="dv">2539</span>,</span>
+<span id="cb54-7"><a aria-hidden="true" tabindex="-1"></a>             <span class="dv">2412</span>, <span class="dv">2991</span>, <span class="dv">2875</span>, <span class="dv">3231</span>),</span>
+<span id="cb54-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">gender =</span> <span class="fu">gl</span>(<span class="dv">2</span>, <span class="dv">12</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"M"</span>, <span class="st">"F"</span>)) <span class="co"># generate factor levels</span></span>
 <span id="cb54-9"><a aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><br></p>
-<p>Anmerkung: Dies ist ein künstlicher Datensatz, nicht die Realität.</p>
-<!------------------------------------------------------------------------------
-## Linear regression, ANOVA and ANCOVA
-
-
-* ANCOVA (analysis of covariance) deals with the comparison of regression lines
-* Simply speaking, we can distinguish the following:
-    * independent variables have metric scale: linear regression
-    * independent variables all nominal (factor): ANOVA
-    * independent variables are mixed nominal and metric: ANCOVA
-    
-For the linear models discussed so far, the **dependent** variable is always 
-metric, while binary or nominal dependent variables can be handled with generalized
-linear models (GLM).
-------------------------------------------------------------------------------->
 </section>
-<section id="anette-dobsons-daten-zum-geburtsgewicht" class="slide level2">
-<h2>Anette Dobsons Daten zum Geburtsgewicht</h2>
-<p>Warum nicht einfach einen t-Test durchführen?</p>
+<section id="warum-nicht-einfach-einen-t-test-durchführen" class="slide level2">
+<h2>Warum nicht einfach einen t-Test durchführen?</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(weight <span class="sc">~</span> gender,<span class="at">data =</span> dobson, <span class="at">ylab =</span> <span class="st">"weight"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
@@ -1403,10 +1409,13 @@ mean in group M mean in group F
        3024.000        2911.333 </code></pre>
 </div>
 </div>
-<img data-src="07-anova_files/figure-revealjs/dobson-boxplot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p>Der Boxplot zeigt viele Überschneidungen, und der Unterschied ist nicht signifikant, weil der t-Test wichtige Informationen außer Acht lässt: die Schwangerschaftswoche.</p>
+<img data-src="07-anova_files/figure-revealjs/dobson-boxplot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><ul>
+<li>Der t-Test zeigt keine signifikante Differenz und der Boxplot zeigt starke Überlappung.</li>
+<li>Aber: Der t-Test ignoriert die Schwangerschaftswoche, eine wichtige Kovariate.</li>
+</ul>
 </section>
-<section id="ancova-verwendet-kovariaten" class="slide level2">
-<h2>ANCOVA verwendet Kovariaten</h2>
+<section id="ancova-berücksichtigung-der-kovariate" class="slide level2">
+<h2>ANCOVA: Berücksichtigung der Kovariate</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> week <span class="sc">*</span> gender, <span class="at">data =</span> dobson)</span>
 <span id="cb58-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1424,36 +1433,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 
-<!---------------------
-## How this works
-
-
-
-
-::: {.cell}
-
-```{.r .cell-code}
-plot(weight ~ week, data=dobson, col=c("blue","red")[as.numeric(gender)], pch=16)
-
-#summary(m)
-p <- coef(m)
-
-## lines fitted by the ANCOVA
-abline(a=p[1],      b=p[2],      col="red")
-abline(a=p[1]+p[3], b=p[2]+p[4], col="blue")
-
-## the result is the same as when we would fit separate linear models
-fem <- lm(weight ~ week, data=dobson, subset = gender=="F")
-mal <- lm(weight ~ week, data=dobson, subset = gender=="M")
-abline(fem, col="black", lty="dashed")
-abline(mal, col="black", lty="dashed")
-```
-:::
-
-
-
---------------------------->
-<img data-src="07-anova_files/figure-revealjs/dobson-ancova-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
+<img data-src="07-anova_files/figure-revealjs/dobson-ancova-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p><span class="gray">Beispiel: Aus Gründen, die wir später besprechen, muss die Kovariate <code>week</code> als erstes in der Modellformel stehen.</span></p>
+</section></section>
 <section>
 <section id="tücken-der-anovaancova" class="title-slide slide level1 center">
 <h1>Tücken der ANOVA/ANCOVA</h1>
@@ -1465,29 +1446,31 @@ abline(mal, col="black", lty="dashed")
 <ol type="1">
 <li>Heterogenität der Varianz
 <ul>
-<li>p-Werte können verzerrt sein (d.&nbsp;h. irreführend oder falsch)</li>
-<li>Verwendung einer einseitigen ANOVA für ungleiche Varianzen (in R: <code>oneway.test</code>)</li>
+<li>p-Werte können verzerrt sein (d.h. irreführend oder falsch)</li>
+<li>Verwendung einer einfachen ANOVA für ungleiche Varianzen (in R: <code>oneway.test</code>)</li>
 </ul></li>
-<li>Unausgeglichener Fall:<br> Ungleiche Anzahl von Stichproben für jede Faktorkombination<br> <span class="math inline">\(\rightarrow\)</span> Die Ergebnisse der ANOVA hängen von der Reihenfolge der Faktoren in der Modellformel ab.
+<li>Unbalanzierter Fall
 <ul>
-<li>Klassische Methode: Typ II oder Typ III ANOVA</li>
-<li>Moderner Ansatz: Modellauswahl und Likelihood-Ratio-Tests</li>
+<li>Ungleiche Anzahl von Stichproben für jede Faktorkombination</li>
+<li><span class="math inline">\(\rightarrow\)</span> ANOVA-Ergebnisse sind von der Reihenfolge der Faktoren in der Modellformel abhängig.</li>
+<li>Klassische Lösung: Typ II oder Typ III ANOVA</li>
+<li>Moderner Ansatz: Modellselektion und Likelihood-Ratio-Tests</li>
 </ul></li>
 </ol>
 </section>
 <section id="typ-ii-und-typ-iii-anova" class="slide level2">
 <h2>Typ II und Typ III ANOVA</h2>
-<p><br></p>
+<p><br><br></p>
 <ul>
 <li>Funktion <code>Anova</code> (mit Großbuchstabe <code>A</code>) im Paket <strong>car</strong></li>
-<li>Hilfsdatei der Funktion <code>Anova</code>:</li>
+<li>Hilfeseite der Funktion <code>Anova</code>:</li>
 </ul>
 <blockquote>
-<p>„Typ-II-Tests werden nach dem Prinzip der Marginalität berechnet, wobei jeder Term nach allen anderen getestet wird, ohne die Verwandten höherer Ordnung zu berücksichtigen; so genannte Typ-III-Tests verletzen die Marginalität, indem sie jeden Term im Modell nach allen anderen testen.“</p>
+<p>Type-II tests are calculated according to the principle of marginality, testing each term after all others, except ignoring the term’s higher-order relatives; so-called type-III tests violate marginality, testing each term in the model after all of the others.</p>
 </blockquote>
 <ul>
 <li>Schlussfolgerung: Verwende Typ II und nicht Typ III.</li>
-<li>Versuche nicht, einzelne Terme im Falle signifikanter Wechselwirkungen zu interpretieren.</li>
+<li>Interpretiere <strong>keine einzelnen Haupteffekte</strong>, wenn eine signifikante Wechselwirkung vorliegt.</li>
 </ul>
 </section>
 <section id="typ-ii-anova-beispiel" class="slide level2">
@@ -1512,28 +1495,28 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </section></section>
 <section>
-<section id="modellauswahl---ein-paradigmenwechsel" class="title-slide slide level1 center">
-<h1>Modellauswahl - <br> ein Paradigmenwechsel</h1>
+<section id="modellselektion---ein-paradigmenwechsel" class="title-slide slide level1 center">
+<h1>Modellselektion - <br> ein Paradigmenwechsel</h1>
 
 </section>
-<section id="auswahl-eines-optimalen-modells-aus-einer-menge-von-kandidaten" class="slide level2">
-<h2>Auswahl eines optimalen Modells aus einer Menge von Kandidaten</h2>
+<section id="modellkandidaten-und-auswahl-eines-optimalen-modells" class="slide level2">
+<h2>Modellkandidaten und Auswahl eines optimalen Modells</h2>
 <p><br></p>
 <p><strong>Problem:</strong></p>
 <ul>
 <li>Bei komplexen ANOVA-Modellen hängen die p-Werte von der Anzahl (und manchmal von der Reihenfolge) der einbezogenen Faktoren und Wechselwirkungen ab.</li>
-<li>Der <span class="math inline">\(H_0\)</span>-basierte Ansatz wird verwirrend, z.B. wegen widersprüchlicher p-Werte.</li>
+<li>Der H<sub>0</sub>-basierte Ansatz wird eventuell verwirrend, z.B. wegen widersprüchlicher p-Werte.</li>
 </ul>
 <p><strong>Alternativer Ansatz:</strong></p>
 <ul>
-<li>Nutzt das Prinzip der Parsimonie</li>
+<li>Modellselektion – nutzt das Prinzip der Parsimonie</li>
 </ul>
-<p>Anstelle von p-Wert-basierten Tests werden verschiedene Modellkandidaten verglichen:</p>
+<p>Es werden verschiedene Modellkandidaten verglichen:</p>
 <ul>
 <li>Modell mit allen potentiellen Effekten → <span class="blue">vollständiges Modell</span></li>
 <li>Weglassen einzelner Faktoren → <span class="blue">reduzierte Modelle</span> (mehrere!)</li>
 <li>Keine Einflussfaktoren (nur Mittelwert) → <span class="blue">Nullmodell</span></li>
-<li>Welches Modell ist das beste → <span class="blue">minimales adäquates Modell</span>?</li>
+<li>Welches Modell ist das beste? → <span class="darkred">minimales adäquates Modell</span></li>
 </ul>
 </section>
 <section id="wie-können-wir-messen-welches-modell-das-beste-ist" class="slide level2">
@@ -1541,7 +1524,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p><br></p>
 <p>Kompromiss zwischen Modellanpassung und Modellkomplexität (Anzahl der Parameter, k).</p>
 <ul>
-<li>Güte der Anpassung: Likelihood L (misst, wie gut die Daten zu einem bestimmten Modell passen).</li>
+<li>Güte der Anpassung: Likelihood L – wie gut die Daten zu einem bestimmten Modell passen.</li>
 <li>Log Likelihood: macht das Kriterium additiv.</li>
 <li>AIC (Akaike Information Criterion):</li>
 </ul>
@@ -1549,15 +1532,16 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <ul>
 <li>BIC ( Bayesian Information Criterion), berücksichtigt den Stichprobenumfang (<span class="math inline">\(n\)</span>):</li>
 </ul>
-<p><span class="math display">\[BIC = −2 \ln(L) + k · \ln(n)\]</span></p>
-<p>Das Modell mit dem kleinsten AIC (oder BIC) ist das <span class="blue">minimal adäquate</span> (d.h. optimale) Modell.</p>
+<p><span class="math display">\[BIC = −2 \ln(L) + k \cdot \ln(n)\]</span></p>
+<p>Das Modell mit dem kleinsten AIC (oder BIC) ist das <span class="darkred">minimal adäquate</span> Modell.</p>
 </section>
-<section id="modellauswahl-und-likelihood-ratio-tests" class="slide level2">
-<h2>Modellauswahl und Likelihood-Ratio-Tests</h2>
+<section id="modellselektion-und-likelihood-ratio-tests" class="slide level2">
+<h2>Modellselektion und Likelihood-Ratio-Tests</h2>
+<p><br></p>
 <p><strong>Ansatz</strong></p>
 <ol type="1">
 <li>Mehrere Modelle einzeln anpassen</li>
-<li>Vergleiche die Modelle paarweise mit ANOVA (Likelihood Ratio Test)</li>
+<li>Modelle paarweise mit ANOVA (Likelihood Ratio Test) vergleichen</li>
 </ol>
 <p><strong>Daten und Beispiel</strong></p>
 <div class="cell">
@@ -1583,12 +1567,12 @@ Model 2: growth ~ fert + light
 </div>
 </div>
 <ul>
-<li>Likelihood-Ratio-Test vergleicht zwei Modelle (<code>anova</code> mit &gt; 1 Modell)</li>
+<li>Likelihood-Ratio-Test vergleicht zwei Modelle (<code>anova</code> in R mit &gt; 1 Modell)</li>
 <li>Modell mit Interaktion (<code>m3</code>) nicht signifikant besser als Modell ohne Interaktion (<code>m2</code>).</li>
 </ul>
 </section>
-<section id="aic-basierte-modellauswahl" class="slide level2">
-<h2>AIC-basierte Modellauswahl</h2>
+<section id="aic-basierte-modellselektion" class="slide level2">
+<h2>AIC-basierte Modellselektion</h2>
 <ul>
 <li>Der paarweise Modellvergleich ist umständlich, insbesondere bei einer großen Anzahl von Modellen.</li>
 <li><strong>Lösung:</strong> Erstelle eine Menge von Kandidatenmodellen</li>
@@ -1611,20 +1595,18 @@ m2   5 26.83151
 m3   7 27.53237</code></pre>
 </div>
 </div>
-<p><strong>Anmerkung</strong></p>
+<p><strong>Anmerkungen</strong></p>
 <ul>
 <li>AIC-Werte sind <span class="blue">bis zu einer additiven Konstante definiert</span></li>
-<li><span class="math inline">\(\rightarrow\)</span> absolute Werte unterscheiden sich manchmal, abhängig von der angewandten Methode</li>
-<li><span class="math inline">\(\Rightarrow\)</span> betrachtet den Bereich des AIC und die Unterschiede, ignoriert die absoluten Werte</li>
-<li>Faustregel: die „AIC-Einheit“ ist 2, Unterschiede <span class="math inline">\(\approx 2.0\rightarrow\)</span> geringe Bedeutung</li>
+<li><span class="math inline">\(\rightarrow\)</span> Absolute Werte können je nach Software oder Methode variieren.</li>
+<li><span class="math inline">\(\Rightarrow\)</span> Betrachte die Differenzen, nicht die absoluten Werte.</li>
+<li>Faustregel: die „AIC-Einheit“ ist 2, Unterschiede <span class="math inline">\(\approx\)</span> 2.0 <span class="math inline">\(\rightarrow\)</span> geringe Bedeutung</li>
 </ul>
 </section>
-<section id="schrittweise-modellauswahl-automatisch" class="slide level2">
-<h2>Schrittweise Modellauswahl (automatisch)</h2>
-<ul>
-<li>Das vollständige Modell wird an die Funktion <code>step</code> übergeben:</li>
-</ul>
-<div class="column" style="width:49%;">
+<section id="schrittweise-modellselektion-automatisch" class="slide level2">
+<h2>Schrittweise Modellselektion (automatisch)</h2>
+<div class="column" style="width:45%;">
+<p>Automatische Modellselektion</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(growth <span class="sc">~</span> fert <span class="sc">*</span> light, <span class="at">data=</span>plants)</span>
 <span id="cb67-2"><a aria-hidden="true" tabindex="-1"></a>opt <span class="ot">&lt;-</span> <span class="fu">step</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1645,10 +1627,11 @@ growth ~ fert + light
 - light  1    2.6133 5.4700 -3.4275</code></pre>
 </div>
 </div>
-<ul>
-<li>Modell mit dem kleinsten AIC<br> <span class="math inline">\(\rightarrow\)</span> optimales Modell.</li>
-</ul>
-</div><div class="column" style="width:49%;">
+<p><span class="smallfont">Modell mit dem kleinsten AIC <span class="math inline">\(\rightarrow\)</span> optimales Modell.</span></p>
+</div><div class="column" style="width:8%;">
+
+</div><div class="column" style="width:45%;">
+<p>Zum Vergleich: klassische ANOVA</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(opt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1663,74 +1646,116 @@ Residuals  8 2.8567 0.35708
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p><br><br></p>
-<ul>
-<li>p &lt; 0.05 <br> <span class="math inline">\(\rightarrow\)</span> signifikant</li>
-</ul>
 </div><p><strong>Ergebnisse des Beispiels:</strong></p>
 <ul>
-<li>optimales Modell (<code>m2</code>, <code>opt</code>), enthält beide Faktoren <code>fert</code> und <code>light</code>, aber keine Interaktion.</li>
-<li>Die Modellauswahl hat <code>fert</code> und <code>light</code> als notwendige erklärende Variablen identifiziert,<br> im Gegensatz zur klassischen ANOVA-Tabelle, in der nur <code>light</code> signifikant ist.</li>
+<li>optimales Modell (<code>opt</code>), enthält beide Faktoren (<code>fert</code>, <code>light</code>), aber keine Interaktion.</li>
+<li>Die Modellselektion identifiziert <code>fert</code> und <code>light</code> als wichtige Erklärungsvariablen.</li>
+<li>im Gegensatz zur klassischen ANOVA-Tabelle, in der nur <code>light</code> signifikant war, zeigt die Modellselektion, dass auch <code>fert</code> zur Erklärung beiträgt.</li>
 </ul>
 </section>
-<section id="signifikanztests" class="slide level2">
-<h2>Signifikanztests?</h2>
+<section id="signifikanztests-vs.-modellselektion" class="slide level2">
+<h2>Signifikanztests vs.&nbsp;Modellselektion</h2>
 <p><br></p>
 <ul>
-<li>Das Konzept der Modellauswahl überlagert die p-Wert-basierte Statistik.</li>
-<li>Einige Autoren raten generell davon ab, p-Werte in diesem Zusammenhang zu verwenden, andere empfehlen einen Kompromiss.</li>
-<li>Wenn man einen p-Wert erhalten möchte, sollte man das optimale Modell mit weiteren reduzierten Modellen vergleichen, die p-Werte aber dennoch mit Vorsicht interpretieren:</li>
+<li>Das Konzept der Modellselektion ersetzt die p-Wert-basierte Statistik, zumindest teilweise.</li>
+<li>Einige Autoren raten davon ab, p-Werte in diesem Kontext noch zu verwenden.</li>
+<li>Andere empfehlen einen Kompromiss: p-Werte als <strong>Hilfsmittel</strong>, nicht als Entscheidungskriterium.</li>
 </ul>
+<p><strong>Derzeitige Empfehlung</strong></p>
+<p>Wenn p-Werte benötigt werden, vergleiche das optimale Modell mit reduzierten Modellen:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2, m1a) <span class="co"># fert</span></span>
 <span id="cb71-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2, m1b) <span class="co"># light</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>In jedem Fall gilt: Konzentriere dich auf die praktischen Implikationen und vergiss nicht, die Effektgrößen anzugeben!</li>
+<li>Interpretiere p-Werte mit Vorsicht:
+<ul>
+<li>Sie sind abhängig von der Modellstruktur.</li>
+<li>Sie können irreführend sein, wenn das Modell nicht optimal ist.</li>
+</ul></li>
+<li>Gib auch Effektstärken und Vertrauensintervalle an!</li>
 </ul>
 </section>
 <section id="zusammenfassung-des-kapitels-anova" class="slide level2">
 <h2>Zusammenfassung des Kapitels ANOVA</h2>
 <ul>
-<li>Lineare Modelle bilden die Grundlage für viele statistische Methoden.
+<li>Lineare Modelle bilden die <strong>Grundlage</strong> für viele statistische Methoden
 <ul>
 <li>Lineare Regression</li>
-<li>ANOVA, ANCOVA, GLM, GAM, GLMM, . . .</li>
 <li>ANOVA/ANCOVA anstelle von Mehrfachtests</li>
+<li>MANOVA, GLM, GAM, GLMM, . . .</li>
 </ul></li>
-<li>ANOVA ist leistungsfähiger als Mehrfachtests:
+<li>ANOVA ist <strong>leistungsfähiger</strong> als Mehrfachtests:
 <ul>
-<li>vermeidet <span class="math inline">\(\alpha\)</span>-Fehlerinflation</li>
-<li>ein großes Experiment benötigt weniger n als viele kleine Experimente</li>
-<li>Identifizierung von Interaktionseffekten</li>
-<li>Eliminierung von Kovariaten</li>
+<li>vermeidet <span class="blue"><span class="math inline">\(\alpha\)</span>-Fehlerinflation</span></li>
+<li>identifiziert <span class="blue">Interaktionseffekte</span></li>
+<li>eliminiert <span class="blue">Kovariate</span></li>
+<li>ein großes Experiment benötigt <span class="blue">weniger Stichprobengröße</span> als viele kleine Experimente</li>
 </ul></li>
-<li>Modellauswahl vs.&nbsp;p-Wert-basierte Tests
+<li>Modellselektion vs.&nbsp;p-Wert-basierte Tests
 <ul>
-<li>Paradigmenwechsel in der Statistik: AIC anstelle des p-Wertes</li>
-<li>zuverlässiger, insbesondere bei unausgewogenen oder komplexen Designs</li>
-<li>erweiterbar auf generalisierte, additive und gemischte Modelle (GLM, GAM, LME, GLMM, …)</li>
+<li><strong>Paradigmenwechsel</strong>: AIC anstelle von p-Werten</li>
+<li>zuverlässiger, besonders bei unausgewogenen oder komplexen Designs</li>
+<li>erweiterbar auf GLM, GAM, LME, GLMM, …</li>
 <li>aber: p-Wert-basierte Tests sind manchmal leichter zu verstehen</li>
 </ul></li>
 </ul>
+<p><strong>Selbststudium:</strong> Lies das Paper von <span class="citation" data-cites="JohnsonOmland2004">Johnson &amp; Omland (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2004</a>)</span> zum Thema Modellselektion.</p>
 </section>
 <section id="vermeide-manipulation-von-p-werten" class="slide level2">
 <h2>Vermeide Manipulation von p-Werten</h2>
-<p><strong>Experimente NICHT wiederholen, bis ein signifikanter p-Wert gefunden wird.</strong></p>
-<p>Die hochrangige Zeitschrift „… Nature hat einflussreiche Statistiker gebeten, eine Änderung zur Verbesserung der Wissenschaft zu empfehlen. Das gemeinsame Thema? Das Problem ist nicht unsere Mathematik, sondern wir selbst.“ <a href="https://doi.org/10.1038/d41586-017-07522-z">(Leek et al.&nbsp;(2017))</a>:</p>
-<p><strong>Fünf Wege, Statistiken zu verbessern. Kommentar zur Nature</strong></p>
+<p><br></p>
+<p><strong>Experimente NICHT wiederholen, bis ein signifikanter p-Wert gefunden wird!</strong></p>
+<p><br></p>
+<p><span class="citation" data-cites="Leek2017">Leek et al. (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2017</a>)</span> in <strong>Nature</strong>:</p>
+<blockquote>
+<p>“… Nature asked influential statisticians to recommend one change to improve science. The common theme? The problem is not our maths, but ourselves.”:</p>
+</blockquote>
+<p><strong>Five ways to fix statistics. Comment on Nature</strong></p>
 <ol type="1">
-<li>Jeff Leek: Anpassung an die menschliche Kognition</li>
-<li>Blakeley B. McShane &amp; Andrew Gelman: Verzicht auf statistische Signifikanz</li>
-<li>David Colquhoun: Auch falsch-positives Risiko angeben</li>
-<li>Michèle B. Nuijten: Analysepläne und Ergebnisse mitteilen</li>
-<li>Steven N. Goodman: Normen von innen heraus ändern</li>
+<li>Jeff Leek: Adjust for human cognition</li>
+<li>Blakeley B. McShane &amp; Andrew Gelman: Abandon statistical significance</li>
+<li>David Colquhoun: State false-positive risk, too</li>
+<li>Michèle B. Nuijten: Share analysis plans and results</li>
+<li>Steven N. Goodman: Change norms from within</li>
 </ol>
+<p><br></p>
+</section>
+<section id="the-asa-statement" class="slide level2">
+<h2>The “ASA Statement …”</h2>
+<p><br></p>
+<p>Das <strong>ASA Statement on Statistical Significance and P-Values</strong> der American Statistical Association <span class="citation" data-cites="ASA2016">(<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">Wasserstein &amp; Lazar, 2016</a>)</span> befasst sich mit der Bedeutung des p-Werts, ohne ihn komplett in Frage zu stellen. Es definiert 6 Prinzipien:</p>
+<div style="background-color: #dddddd">
+<ol type="1">
+<li>P-values can indicate how incompatible the data are with a specified statistical model.</li>
+<li>P-values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone.</li>
+<li>Scientific conclusions and business or policy decisions should not be based only on whether a p-value passes a specific threshold.</li>
+<li>Proper inference requires full reporting and transparency.</li>
+<li>A p-value, or statistical significance, does not measure the size of an effect or the importance of a result.</li>
+<li>By itself, a p-value does not provide a good measure of evidence regarding a model or hypothesis.</li>
+</ol>
+</div>
+<p>Die Details sind im Statement weiter ausgeführt.</p>
+<p><strong>Selbststudium:</strong> Lies dazu neben <span class="citation" data-cites="ASA2016">Wasserstein &amp; Lazar (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2016</a>)</span> auch <span class="citation" data-cites="Hurlbert2019">Hurlbert et al. (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2019</a>)</span>.</p>
 <!--
-See also: [http://daniellakens.blogspot.de/2017/12/understanding-common-misconceptions.html?m=1](http://daniellakens.blogspot.de/2017/12/understanding-common-misconceptions.html?m=1)
+**Hurlbert und andere empfehlen, dem Begriff „signifikant“ den „Coup de Grâce“ zu geben.**  
+  
+Ich stimme dieser Kritik grundsätzlich zu:  
+
+ - p-Werte werden missverstanden  
+ - Signifikanz ist kein Maß für Bedeutung  
+ - Die Kultur des "p < 0.05" führt zu Manipulation und Verzerrung  
+  
+Dennoch habe ich mich entschieden, den Begriff weiter zu lehren: **als historisches und praktisches Werkzeug**.  
+  
+Warum?
+
+- Er ist immer noch weit verbreitet in der Literatur  
+- Studierende müssen ihn verstehen, um Forschung zu lesen  
+- Aber: Wir lehren ihn **kritisch**, mit klaren Grenzen und Alternativen  
+  
+**Ziel: Nicht „p < 0.05“ zu lehren, sondern: „Was sagt mir dieser p-Wert wirklich?“**
 -->
-<p><strong>Selbststudium</strong></p>
-<p>Lies das Paper von <span class="citation" data-cites="JohnsonOmland2004">Johnson &amp; Omland (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2004</a>)</span> um mehr über das Paradigma der Modellauswahl zu erfahren.</p>
 </section>
 <section id="literaturverzeichnis" class="slide level2 smaller scrollable">
 <h2>Literaturverzeichnis</h2>
@@ -1749,6 +1774,9 @@ Dziallas, C., &amp; Grossart, H.-P. (2011). Increasing <span>Oxygen Radicals</sp
 <div id="ref-Holm1979" class="csl-entry" role="listitem">
 Holm, S. (1979). A simple sequentially rejective multiple test procedure. <em>Scandinavian Journal of Statistics</em>, 65–70. <a href="https://www.jstor.org/stable/4615733">https://www.jstor.org/stable/4615733</a>
 </div>
+<div id="ref-Hurlbert2019" class="csl-entry" role="listitem">
+Hurlbert, S. H., Levine, R. A., &amp; Utts, J. (2019). Coup de <span>Grâce</span> for a tough old bull: <span>“<span>Statistically Significant</span>”</span> expires. <em>The American Statistician</em>, <em>73</em>(sup1), 352–357. <a href="https://doi.org/10.1080/00031305.2018.1543616">https://doi.org/10.1080/00031305.2018.1543616</a>
+</div>
 <div id="ref-Jahnichen2007" class="csl-entry" role="listitem">
 Jähnichen, S., Ihle, T., Petzoldt, T., &amp; Benndorf, J. (2007). Impact of <span>Inorganic Carbon Availability</span> on <span>Microcystin Production</span> by <span>Microcystis</span> aeruginosa <span>PCC</span> 7806. <em>Applied and Environmental Microbiology</em>, <em>73</em>(21), 6994–7002. <a href="https://doi.org/10.1128/AEM.01253-07">https://doi.org/10.1128/AEM.01253-07</a>
 </div>
@@ -1760,6 +1788,15 @@ Jähnichen, S., Petzoldt, T., &amp; Benndorf, J. (2001). Evidence for control of
 </div>
 <div id="ref-JohnsonOmland2004" class="csl-entry" role="listitem">
 Johnson, G., Jerald, &amp; Omland, K. S. (2004). Model <span>Selection</span> in <span>Ecology</span> and <span>Evolution</span>. <em>Trends in Ecology and Evolution</em>, <em>19</em>(2), 101–108. <a href="https://doi.org/10.1016/j.tree.2003.10.013">https://doi.org/10.1016/j.tree.2003.10.013</a>
+</div>
+<div id="ref-Leek2017" class="csl-entry" role="listitem">
+Leek, J., McShane, B. B., Gelman, A., Colquhoun, D., Nuijten, M. B., &amp; Goodman, S. N. (2017). Five ways to fix statistics. <em>Nature</em>, <em>551</em>(7682), 557–559. <a href="https://doi.org/10.1038/d41586-017-07522-z">https://doi.org/10.1038/d41586-017-07522-z</a>
+</div>
+<div id="ref-ASA2016" class="csl-entry" role="listitem">
+Wasserstein, R. L., &amp; Lazar, N. A. (2016). The <span>ASA Statement</span> on p-values: Context, process, and purpose. <em>The American Statistician</em>, <em>70</em>(2), 129–133. <a href="https://doi.org/10.1080/00031305.2016.1154108">https://doi.org/10.1080/00031305.2016.1154108</a>
+</div>
+<div id="ref-Wei2024" class="csl-entry" role="listitem">
+Wei, N., Hu, C., Dittmann, E., Song, L., &amp; Gan, N. (2024). The biological functions of microcystins. <em>Water Research</em>, <em>262</em>, 122119. https://doi.org/<a href="https://doi.org/10.1016/j.watres.2024.122119">https://doi.org/10.1016/j.watres.2024.122119</a>
 </div>
 <div id="ref-Zilliges2011" class="csl-entry" role="listitem">
 Zilliges, Y., Kehr, J.-C., Meissner, S., Ishida, K., Mikkat, S., Hagemann, M., Kaplan, A., Börner, T., &amp; Dittmann, E. (2011). The <span>Cyanobacterial Hepatotoxin Microcystin Binds</span> to <span>Proteins</span> and <span>Increases</span> the <span>Fitness</span> of <span>Microcystis</span> under <span>Oxidative Stress Conditions</span>. <em>PLoS ONE</em>, <em>6</em>(3), e17615. <a href="https://doi.org/10.1371/journal.pone.0017615">https://doi.org/10.1371/journal.pone.0017615</a>

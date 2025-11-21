@@ -92,7 +92,7 @@ mypar <- list(las=1, cex.lab=1.4, cex.axis=1.4, lwd=2)
 <div class="vbox"></div>
 <div class="hbox">
 ![](../img/ansaetze2.jpg)
-Dünger -- D. offene Flasche -- D. + Zucker -- D. + CaCO3 -- Basalmedium -- A. dest -- Leitungswasser
+Dünger -- offene Flasche -- + Zucker -- + CaCO3 -- Basalmedium -- A. dest -- Leitungswasser
 </div>
 
 
@@ -124,16 +124,16 @@ xalgae <-
 
 ```{r}
 #| label: tbl-algae-growth
-#| tbl-cap: "Wachstum von Tag 2 bis Tag 6 (relative Einheiten)"
 
 xalgae |>
   kable('html') |> 
   kable_styling(bootstrap_options = "striped", full_width = FALSE)
 ```
 
+* Wachstum von Tag 2 bis Tag 6 (relative Einheiten)
 * [NA]{.red} bedeutet „nicht verfügbar“, d.h. ein fehlender Wert
-* Die Kruztabellenstruktur ist kompakt und übersichtlich, jedoch nicht ideal für die Datenanalyse.
-* $\Rightarrow$ Konvertierung sie in das Langformat
+* Die Kruztabelle ist kompakt und übersichtlich, jedoch nicht ideal für die Datenanalyse.
+* $\Rightarrow$ Konvertierung in das Langformat
 
 
 ## Daten im Langformat
@@ -144,7 +144,7 @@ xalgae |>
 
 ### Vorteile
 
-* sieht „unpraktisch“ aus, ist aber besser für die Datenanalyse
+* sieht „unpraktisch“ aus, ist aber viel besser für die Datenanalyse
 * abhängige Variable **Wachstum** und <br>Erklärungsvariable **Behandlung** deutlich sichtbar
 * Modellformel: `growth ~ treat`
 * leicht erweiterbar auf $>1$ Erklärungsvariable
@@ -164,7 +164,7 @@ algae |>
 
 ## Die Daten in R
 
-<br><br>
+<br>
 
 ```{r, echo=TRUE}
 algae <- data.frame(
@@ -183,7 +183,13 @@ algae <- data.frame(
 )
 ```
 
-... können direkt in den Code eingegeben werden. Eine csv-Datei im Langformat ist ebenfalls möglich.
+<br>
+
+* Kleine Datensätze können direkt in den Code eingebunden werden. 
+* Eine csv-Datei im Langformat ist ebenfalls möglich.
+* Wichtig: `treat` als Faktor (nominale Variable).
+* Mit `levels` kann man die Reihenfolge fixieren.
+
 
 ## Boxplot
 
@@ -197,7 +203,7 @@ abline(h = 0, lty = "dashed", col = "grey")
 ```{r algae-stripchart, echo=TRUE}
 stripchart(growth ~ treat, data = algae, vertical = TRUE)
 ```
-Besser, denn wir haben nur 2-3 Wiederholungen. Boxplot braucht mehr.
+Besser als Boxplot, denn wir haben nur 2-3 Wiederholungen. Boxplot braucht mehr.
 
 
 ## Umwandlung einer wissenschaftlichen Frage in eine statistische Hypothese
@@ -225,7 +231,7 @@ Besser, denn wir haben nur 2-3 Wiederholungen. Boxplot braucht mehr.
 
 $$7 \cdot (7 - 1) / 2 = 21 \qquad\text{Tests.}$$
 
-* Bei $\alpha = 0.05$, erhält man 5% falsch positive Ergebnisse.<br> $\Rightarrow$ [Einer]{.red} von 20 Tests ist im Durchschnitt [falsch positiv]{.red}
+* Bei $\alpha = 0.05$, erhält man 5% falsch positive Ergebnisse.<br> $\Rightarrow$ [Einer]{.red} von 20 Tests ist im Durchschnitt [falsch positiv]{.red}.
 * Bei $N$ Tests erhöht sich der Gesamtfehler von $\alpha$ im schlimmsten Fall auf $N\cdot\alpha$.
 * Dies wird **alpha-Fehler-Inflation** oder **Bonferroni-Ungleichung** genannt:
 
@@ -263,7 +269,7 @@ $$
 * Etwas überraschend: Analyse von Varianzen, um Mittelwerte zu vergleichen. 
 * **Erklärung:** Mittelwertunterschiede tragen zur Gesamtvarianz der ganzen Stichprobe bei. 
 * Die Varianzkomponenten können als **Varianz innerhalb** ($s^2_\varepsilon$) und **Varianz zwischen** Stichproben bezeichnet werden.
-* Die Varianzentrennung erfolgt über ein [lineares Modell]{.blue}.
+* Die Varianz-Zerlegung erfolgt über ein [lineares Modell]{.blue}.
 
 ## Beispiel
 
@@ -393,14 +399,15 @@ $\Rightarrow$ Die p-Werte sind identisch.
 
 
 <br>
-Zurück zu den Daten über das Algenwachstum.
+Zurück zum Algenwachstums-Experiment:
 
 ```{r echo=TRUE}
 m <- lm(growth ~ treat, data = algae)
 ```
 
+<br>
 
-* Wir können die Koeffizienten mit `summary(m)` ausgeben.
+* Wir könnten die Koeffizienten mit `summary(m)` ausgeben.
 * Zunächst interessiert uns der Gesamteffekt, daher verwenden wir `anova(m)`.
 
 ```{r echo=TRUE}
@@ -496,7 +503,7 @@ qqline(residuals(m))
 
 <br>
 
-Die traditionelle Praxis – Residuen zu testen, bevor man ANOVA durchführt – <br>
+Die traditionelle Praxis – Residuen zu testen, **bevor** man ANOVA durchführt – <br>
 ist nicht mehr zeitgemäß und führt zu gravierenden Problemen:
 
 - Residuen sind erst nach Modellanpassung verfügbar.
@@ -510,8 +517,8 @@ ist nicht mehr zeitgemäß und führt zu gravierenden Problemen:
     - Fragestellung, 
     - Unabhängigkeit, 
     - mögliche Nichtnormalität auf Grund des Versuchsdesigns
-2. **Führe die ANOVA durch** – ohne Vortests.
-3. **Dokumentiere die Diagnostik** – grafisch und kritisch (QQ-Plot, Residuals vs. Fitted).
+2. Führe die ANOVA durch – ohne Vortests.
+3. **Diagnostik im Anschluss** – grafisch und kritisch (QQ-Plot, Residuals vs. Fitted).
 
 
 
@@ -525,15 +532,14 @@ ist nicht mehr zeitgemäß und führt zu gravierenden Problemen:
 ```{r, echo=TRUE}
 oneway.test(growth ~ treat, data = algae)
 ```
-
-Der `oneway.test` berücksichtigt ungleiche Varianzen durch gewichtete Mittelwerte und eine angepasste F-Statistik.
-
 <br>
 
-Die Varianzhomogenität ist wichtiger als die Normalverteilung – insbesondere bei unbalancierten Designs.
+* Der `oneway.test` berücksichtigt ungleiche Varianzen durch gewichtete Mittelwerte und Freiheitsgrade und eine angepasste F-Statistik.
+* Die Varianzhomogenität ist wichtiger als die Normalverteilung – insbesondere bei unbalancierten Designs.
+* Ein Varianzunterschied kann den F-Test stärker verzerren als leichte Abweichungen von der Normalverteilung.
 
  
-## Zweiseitige ANOVA
+## Zweifache ANOVA
 
 
 ```{r}
@@ -547,7 +553,7 @@ plants <- data.frame(No=1:12,
 
 
 * Beispiel aus einem Statistik-Lehrbuch [@Crawley2002], angewandt auf einen neuen Kontext
-* Auswirkungen von Dünger und Lichtregime auf das Wachstum der Pflanzenhöhe in cm pro Zeit
+* Auswirkungen von Dünger und Licht auf das Wachstum der Pflanzenhöhe in cm pro Zeit
 
 | Dünger     | helles Licht| schwaches Licht|
 |------------|-------------|----------------|
@@ -560,10 +566,11 @@ plants <- data.frame(No=1:12,
 |            |             |                |
 
 
-* faktorielles Experiment (**mit Wiederholungen**): jede Faktorkombination hat mehr als eine Beobachtung.
-* ohne Wiederholungen: 
-   - keine Wiederholungen pro Faktorkombination
-   - dies ist möglich, erlaubt aber keine Identifizierung von Wechselwirkungen
+* faktorielles Experiment (**mit Wiederholungen**)
+* für jede Faktorkombination mehr als eine Beobachtung
+* Es können Wechselwirkungen identifiziert werden
+    
+[Falls keine Wiederholungen: Keine Schätzung des Fehlers für Interaktionen - keine Identifizierung von Wechselwirkungen möglich.]{.gray .smallfont}
 
 ## Daten im Langformat eingeben
 
@@ -576,7 +583,7 @@ plants <- data.frame(No = 1:12,
                     growth = c(6.6, 7.2, 6.9, 8.3, 7.9, 9.2,
                                8.3, 8.7, 8.1, 8.5, 9.1, 9.0),
                     fert   = rep(c("A", "B", "C"), each=2),
-                    light   = rep(c("low", "high"), each=6)
+                    light  = rep(c("low", "high"), each=6)
           )
 ```
 :::
@@ -593,23 +600,23 @@ plants %>%
 
 ## Beispiele für Modellformeln
 
-| Modell Typ                              | Formel                                            |
+| Modell Typ                              | Formel                                              |
 |-----------------------------------------|-----------------------------------------------------|
 | Nullmodell                              | `y ~ 1`                                             |
 | Einfache lineare Regression             | `y ~ x`                                             |
-| Lineares Modell ohne Achsenschnittpunkt | `y ~ x - 1`                                         |
+| Linear ohne Achsenschnittpunkt          | `y ~ x - 1`                                         |
 | Multiple Regression, keine Interaktion  | `y ~ x1 + x2 + x3`                                  |
 | Multiple Regression mit Interaktion     | `y ~ x1 * x2 * x3`                                  |
-| Multiple Regression, keine 3-fache Interaktion  | `y ~ x1 * x2 * x3 - x1 : x2 : x3`                   |
-| Transformiert mit 'as is' Funktion      | `y ~ x + I(x^2)`                                    |
-| Einseitige ANOVA                        | `y ~ f`                                             |
+| ... ohne 3-fache Interaktion            | `y ~ x1 * x2 * x3 - x1 : x2 : x3`                   |
+| Transformiert mit `I()` ('as is')       | `y ~ x + I(x^2)`                                    |
+| Einfache ANOVA                          | `y ~ f`                                             |
 | ANOVA mit Interaktion                   | `y ~ f1 * f2`                                       |
 | ANCOVA mit Interaktion                  | `y ~ x * f`                                         |
 | Verschachtelte ANOVA                    | `y ~ x + (1 | a / b)`                               |
 | GAM mit glättendem `s`                  | `y ~ s(x) + f`                                      |
 |                                         |                                                     |
 
-* `y` = Antwortvariable (abhängig, Ziel)
+* `y` = Antwortvariable (abhängige, target)
 * `x` = metrische Erklärungsvariable (Prädiktor, unabhängig)
 * `f` = Faktorvariable (nominal)
 
@@ -637,12 +644,14 @@ with(plants, interaction.plot(fert, light, growth,
                             col = c("orange", "brown"), lty = 1, lwd = 2))
 ```
 
+* Wenn die Linien nicht parallel sind, deutet es auf eine Wechselwirkung hin.
+
 ## Diagnostik
 
 
-**Annahmen**
+<br>
 
-1. Unabhängigkeit der Messungen (innerhalb von Stichproben)
+1. Unabhängigkeit der Messungen (innerhalb der Gruppen)
 2. Homogenität der Varianz der Residuen
 3. Normalverteilung der Residuen
 
@@ -652,12 +661,12 @@ $\Rightarrow$ Passe zuerst das ANOVA-Modell an und prüfe dann, ob es richtig wa
 
 <br>
 
-**Diagnoseinstrumente**
+**Diagnostikinstrumente**
 
-* Boxplot
-* Plot der Residuen im Vergleich zu den Mittelwerten
-* Q-Q-Diagramm der Residuen
-* Fligner-Killeen-Test (alternativ: von manchen wird der Levene-Test empfohlen)
+* Boxplot (Gruppenvergleich)  
+* Residuen vs. Fitted
+* Q-Q-Diagramm der Residuen  
+* Fligner-Killeen-Test (von manchen wird alternativ der Levene-Test empfohlen)
 
 ## Diagnostik II
 
@@ -675,34 +684,33 @@ abline(h=0)
 fligner.test(growth ~ interaction(light, fert), data=plants)
 ```
 
-Residuen: sehen in Ordnung aus und der p-Wert des Fligner-Tests $> 0,05$, $\rightarrow$ sieht gut aus. 
+Residuen: sehen in Ordnung aus und der p-Wert des Fligner-Tests ist noch ok. 
 
 ## Anmerkungen
 
+<br>
+
 **Lineare Regression oder ANOVA?**
 
-* im Wesentlichen dasselbe
-* unabhängige Variablen sind **metrisch**: lineares Modell
-* unabhängige Variablen sind nominal (= Faktor): ANOVA
-* Mischung aus metrischen und nominalen Variablen: ANCOVA
+* Im Wesentlichen dasselbe Modell - nur unterschiedliche Sichtweise
+* Metrische unabhängige Variablen → lineares Modell  
+* Nominalskalierte unabhängige Variablen (Faktoren) → ANOVA  
+* Mischung aus beidem → ANCOVA
 
-**Verwendung von Pre-Tests**
+**Pre-Tests sind theoretisch und praktisch fragwürdig**
 
-Pre-Tests sind im Allgemeinen aus theoretischen Gründen fragwürdig:
-
-1. Die Nullhypothesen $H_0$ können nur verworfen und nicht endgültig bestätigt werden. 
-2. Wenn der Stichprobenumfang groß ist, ist die Normalität der Residuen nicht erforderlich
+1. Eine Nullhypothese $H_0$ kann **nicht bestätigt**, sondern nur verworfen werden.  
+2. Bei großen Stichproben ist die Normalität der Residuen **nicht zwingend erforderlich**.
 3. Wenn $p$ in der Nähe des Schwellenwerts liegt und der Stichprobenumfang klein ist, bleiben wir im Ungewissen.
 
 
+* All dies lässt sich nur durch sorgfältiges Nachdenken, Erfahrung und kritische Reflexion überwinden.
+* Es ist immer eine gute Idee, die Ergebnisse mit anderen zu besprechen -- nicht nicht um die Entscheidung zu delegieren, sondern um sie zu **verstehen und zu verteidigen**.
 
-All dies lässt sich nur durch sorgfältiges Nachdenken und mit etwas Erfahrung überwinden.
-
-Es ist immer eine gute Idee, die Ergebnisse mit Kollegen und Vorgesetzten zu besprechen.
 
 ## Sequentielles Holm-Bonferroni-Verfahren
 
-* Auch Holm-Verfahren genannt [@Holm1979]
+* Auch bekannt als Holm-Korrektur [@Holm1979]
 * Einfach zu verwenden
 * Kann auf jedes Problem mit Mehrfachtests angewendet werden
 * Weniger konservativ als die normale Bonferroni-Korrektur, aber ...
@@ -715,6 +723,11 @@ Es ist immer eine gute Idee, die Ergebnisse mit Kollegen und Vorgesetzten zu bes
 2. Wenn $p \cdot n < \alpha$ $\Rightarrow$ signifikant, sonst <bf>STOPP</bf>
 3. Setze $n - 1 \rightarrow n$, entferne das kleinste $p$ aus der Liste und gehe zu Schritt 1.
 
+<br>
+
+Der Algorithmus ist **sequenziell**
+
+* Er prüft die Hypothesen in der Reihenfolge der kleinsten $p$-Werte.
 
 ## Beispiel
 
@@ -722,7 +735,9 @@ Es ist immer eine gute Idee, die Ergebnisse mit Kollegen und Vorgesetzten zu bes
 
 Wachstumsrate pro Tag ($d^{-1}$) von Blaualgenkulturen (*Pseudanabaena*) nach Zugabe toxischer Peptide einer anderen Blaualge (*Microcystis*).
 
-Die ursprüngliche Hypothese war, dass Microcystin LR (MCYST) oder ein Derivat davon (Substanz A) das Wachstum hemmt.
+Die ursprüngliche Hypothese:
+
+* Microcystin LR (MCYST) oder ein Derivat davon (Substanz A) hemmt das Wachstum.
 
 <br>
 
@@ -737,7 +752,7 @@ mcyst <-  data.frame(treat = factor(c(rep("Control", 5),
                      )
 ```
 
-## Ansatz 1: einseitige ANOVA
+## Ansatz 1: einfache ANOVA
 
 ```{r mcyst-tukey, echo=TRUE}
 par(mar=c(4, 8, 2, 1), las=1)
@@ -764,13 +779,13 @@ p2 <- t.test(Control, SubstA)$p.value
 p3 <- t.test(MCYST, SubstA)$p.value
 ```
 
-Im Folgenden sind die rohen p-Werte ohne Korrektur dargestellt:
+p-Werte ohne Korrektur:
 
 ```{r, echo=TRUE}
 c(p1, p2, p3)
 ```
 
-... und mit Holm-Korrektur:
+Mit Holm-Korrektur:
 
 ```{r, echo=TRUE}
 p.adjust(c(p1, p2, p3))
@@ -781,20 +796,21 @@ p.adjust(c(p1, p2, p3))
 
 **Statistische Methoden**
 
-* Im Falle der Holm-korrigierten t-Tests bleibt nur ein einziger p-Wert (MCYST vs. Subst A) signifikant. 
-Dies zeigt, dass die Holm-Methode in diesem Fall konservativer ist als TukeyHSD (nur ein signifikanter Effekt im Vergleich zu zwei signifikanten).
-* Eine ANOVA mit Posthoc-Test ist im Allgemeinen vorzuziehen,
-* aber die sequentielle Holm-Bonferroni-Methode kann in besonderen Fällen hilfreich sein. 
-* Außerdem zeigt es deutlich, dass massive Mehrfachtests vermieden werden müssen.
+* Beim Holm-korrigierten t-Test bleibt nur ein einziger p-Wert (MCYST vs. Subst A) signifikant, bei der ANOVA sind es zwei.
+* ANOVA berücksichtigt Struktur der Daten und die Abhängigkeit der Vergleiche.
+* Holm-Methode konservativer als TukeyHSD $\Rightarrow$ ANOVA + Posthoc ist zu bevorzugen.
 
-$\Rightarrow$ ANOVA ist zu bevorzugen, wenn möglich.
 
-**Interpretation**
+**Interpretation hinsichtlich der ursprünglichen Hypothese**
 
-* Hinsichtlich unserer ursprünglichen Hypothese können wir feststellen, dass MCYST und SubstA das Wachstum von *Pseudanabaena* nicht hemmen. Vielmehr stimulierte SubstA das Wachstum.
-* Dies widersprach unseren Erwartungen - der biologische Grund wurde dann 10 Jahre später gefunden.
+* MCYST und Subst A hemmen das Wachstum von *Pseudanabaena* nicht.
+* Im Gegenteil: Subst A **stimuliert** das Wachstum.
+* Widerspruch zur Erwartung: der biologische Grund wurde 10 Jahre später entdeckt.
 
-Mehr dazu ist zu finden in @Jahnichen2001, @Jahnichen2007, @Jahnichen2011, @Zilliges2011 oder @Dziallas2011.
+* **Wichtig**: Statistische Signifikanz sagt nichts über die biologische Relevanz aus.
+* Falsche Hypothesen können zu falschen Erwartungen führen - oder zu neuen Entdeckungen.
+
+Mehr dazu in @Jahnichen2001, @Jahnichen2007, @Jahnichen2011, @Zilliges2011, @Dziallas2011, @Wei2024
 
 
 ## ANCOVA
@@ -802,15 +818,14 @@ Mehr dazu ist zu finden in @Jahnichen2001, @Jahnichen2007, @Jahnichen2011, @Zill
 
 **Statistische Frage**
 
-* Vergleich von Regressionslinien
+* Vergleich von Regressionslinien zwischen Gruppen
 * Ähnlich wie bei der ANOVA, enthält aber auch **metrische** Variablen (Kovariaten)
+* Haben Gruppen unterschiedliche **Anfangswerte** (Intercept) und/oder unterschiedliche **Steigungen** (Slope)?
 
 
 **Beispiel**
 
-Annette Dobsons Daten zum Geburtsgewicht. Ein Datensatz aus einem Statistik-Lehrbuch [@Dobson2013], Geburtsgewicht von Jungen und Mädchen in Abhängigkeit von der Schwangerschaftswoche.
-
-```{r dobson-lines, echo=FALSE}
+```{r dobson-lines, echo=FALSE, fig.align='center'}
 ## Daten zum Geburtsgewicht siehe stats/demo/lm.glm.R
 dobson <- data.frame(
   week = c(40, 38, 40, 35, 36, 37, 41, 40, 37, 38, 40, 38,
@@ -827,58 +842,45 @@ abline(fem, col = "red")
 abline(mal, col = "blue")
 ```
 
+Annette Dobsons Geburtsgewichts-Daten -- aus einem Statistik-Lehrbuch [@Dobson2013]: Geburtsgewicht von Jungen und Mädchen in Abhängigkeit von der Schwangerschaftswoche.
+
+
 ## Der Datensatz zum Geburtsgewicht
 
 <br>
 
-Der Datensatz ist an verschiedenen Stellen im Internet und in verschiedenen Versionen zu finden.
+Dieser Datensatz ist künstlich – nicht realistisch, aber ideal für die Demonstration.
 
-Hier die Version, die in einer R-Demo zu finden ist: `demo(lm.glm)`
+Er ist in der R-Demo `demo(lm.glm)` enthalten.
+
+<br>
 
 ```{r echo=TRUE, eval=FALSE}
 ## Daten zum Geburtsgewicht siehe stats/demo/lm.glm.R
 dobson <- data.frame(
-  week = c(40, 38, 40, 35, 36, 37, 41, 40, 37, 38, 40, 38,
-	 40, 36, 40, 38, 42, 39, 40, 37, 36, 38, 39, 40),
+  week   = c(40, 38, 40, 35, 36, 37, 41, 40, 37, 38, 40, 38,
+             40, 36, 40, 38, 42, 39, 40, 37, 36, 38, 39, 40),
   weight = c(2968, 2795, 3163, 2925, 2625, 2847, 3292, 3473, 2628, 3176,
-	    3421, 2975, 3317, 2729, 2935, 2754, 3210, 2817, 3126, 2539,
-	    2412, 2991, 2875, 3231),
-  gender = gl(2, 12, labels=c("M", "F"))
+             3421, 2975, 3317, 2729, 2935, 2754, 3210, 2817, 3126, 2539,
+             2412, 2991, 2875, 3231),
+  gender = gl(2, 12, labels = c("M", "F")) # generate factor levels
 )
 ```
 
-<br>
 
-Anmerkung: Dies ist ein künstlicher Datensatz, nicht die Realität.
+## Warum nicht einfach einen t-Test durchführen?
 
-<!------------------------------------------------------------------------------
-## Linear regression, ANOVA and ANCOVA
-
-
-* ANCOVA (analysis of covariance) deals with the comparison of regression lines
-* Simply speaking, we can distinguish the following:
-    * independent variables have metric scale: linear regression
-    * independent variables all nominal (factor): ANOVA
-    * independent variables are mixed nominal and metric: ANCOVA
-    
-For the linear models discussed so far, the **dependent** variable is always 
-metric, while binary or nominal dependent variables can be handled with generalized
-linear models (GLM).
-------------------------------------------------------------------------------->
-
-## Anette Dobsons Daten zum Geburtsgewicht
-
-Warum nicht einfach einen t-Test durchführen?
 
 ```{r dobson-boxplot, fig.align='center', echo=TRUE}
 boxplot(weight ~ gender,data = dobson, ylab = "weight")
 t.test(weight ~ gender, data = dobson, var.equal = TRUE)
 ```
 
-Der Boxplot zeigt viele Überschneidungen, und der Unterschied ist nicht signifikant, weil der t-Test wichtige Informationen außer Acht lässt: die Schwangerschaftswoche.
+* Der t-Test zeigt keine signifikante Differenz und der Boxplot zeigt starke Überlappung.
+* Aber: Der t-Test ignoriert die Schwangerschaftswoche, eine wichtige Kovariate.
 
 
-## ANCOVA verwendet Kovariaten
+## ANCOVA: Berücksichtigung der Kovariate
 
 
 ```{r, echo=TRUE}
@@ -894,30 +896,12 @@ abline(a=p[1]+p[3], b=p[2]+p[4], col="blue")
 
 fem <- lm(weight ~ week, data=dobson, subset = gender=="F")
 mal <- lm(weight ~ week, data=dobson, subset = gender=="M")
-abline(fem, col="black", lty="dashed")
-abline(mal, col="black", lty="dashed")
+#abline(fem, col="black", lty="dashed")
+#abline(mal, col="black", lty="dashed")
 ```
 
-<!---------------------
-## How this works
+[Beispiel: Aus Gründen, die wir später besprechen, muss die Kovariate `week` als erstes in der Modellformel stehen.]{.gray}
 
-```{r, echo=TRUE, eval=FALSE}
-plot(weight ~ week, data=dobson, col=c("blue","red")[as.numeric(gender)], pch=16)
-
-#summary(m)
-p <- coef(m)
-
-## lines fitted by the ANCOVA
-abline(a=p[1],      b=p[2],      col="red")
-abline(a=p[1]+p[3], b=p[2]+p[4], col="blue")
-
-## the result is the same as when we would fit separate linear models
-fem <- lm(weight ~ week, data=dobson, subset = gender=="F")
-mal <- lm(weight ~ week, data=dobson, subset = gender=="M")
-abline(fem, col="black", lty="dashed")
-abline(mal, col="black", lty="dashed")
-```
---------------------------->
 
 # Tücken der ANOVA/ANCOVA 
 
@@ -926,29 +910,26 @@ abline(mal, col="black", lty="dashed")
 <br>
 
 1. Heterogenität der Varianz
-    * p-Werte können verzerrt sein (d. h. irreführend oder falsch)
-    * Verwendung einer einseitigen ANOVA für ungleiche Varianzen (in R: `oneway.test`)
-2. Unausgeglichener Fall:<br>
-  Ungleiche Anzahl von Stichproben für jede Faktorkombination<br>
- $\rightarrow$ Die Ergebnisse der ANOVA hängen von der Reihenfolge der Faktoren in der Modellformel ab.
-    * Klassische Methode: Typ II oder Typ III ANOVA
-    * Moderner Ansatz: Modellauswahl und Likelihood-Ratio-Tests
+    * p-Werte können verzerrt sein (d.h. irreführend oder falsch)
+    * Verwendung einer einfachen ANOVA für ungleiche Varianzen (in R: `oneway.test`)
+2. Unbalanzierter Fall
+    * Ungleiche Anzahl von Stichproben für jede Faktorkombination
+    * $\rightarrow$ ANOVA-Ergebnisse sind von der Reihenfolge der Faktoren in der Modellformel abhängig.
+    * Klassische Lösung: Typ II oder Typ III ANOVA
+    * Moderner Ansatz: Modellselektion und Likelihood-Ratio-Tests
 
 
 ## Typ II und Typ III ANOVA
 
-<br>
+<br><br>
 
 * Funktion `Anova` (mit Großbuchstabe `A`) im Paket **car**
-* Hilfsdatei der Funktion `Anova`:
+* Hilfeseite der Funktion `Anova`:
 
-> „Typ-II-Tests werden nach dem Prinzip der 
-> Marginalität berechnet, wobei jeder Term nach allen anderen getestet wird, 
-> ohne die Verwandten höherer Ordnung zu berücksichtigen;  so genannte Typ-III-Tests verletzen
-> die Marginalität, indem sie jeden Term im Modell nach allen anderen testen.“
+> Type-II tests are calculated according to the principle of marginality, testing each term after all others, except ignoring the term's higher-order relatives; so-called type-III tests violate marginality, testing each term in the model after all of the others.
 
 * Schlussfolgerung: Verwende Typ II und nicht Typ III. 
-* Versuche nicht, einzelne Terme im Falle signifikanter Wechselwirkungen zu interpretieren.
+* Interpretiere **keine einzelnen Haupteffekte**, wenn eine signifikante Wechselwirkung vorliegt.
 
 ## Typ II ANOVA: Beispiel
 
@@ -967,27 +948,29 @@ library("car")
 m <- lm(growth ~ light * fert, data = plants)
 Anova(m, type="II")
 ```
-# Modellauswahl - <br> ein Paradigmenwechsel
 
-## Auswahl eines optimalen Modells aus einer Menge von Kandidaten
+
+# Modellselektion - <br> ein Paradigmenwechsel
+
+## Modellkandidaten und Auswahl eines optimalen Modells
 
 <br>
 
 **Problem:**
 
 * Bei komplexen ANOVA-Modellen hängen die p-Werte von der Anzahl (und manchmal von der Reihenfolge) der einbezogenen Faktoren und Wechselwirkungen ab.
-* Der $H_0$-basierte Ansatz wird verwirrend, z.B. wegen widersprüchlicher p-Werte.
+* Der H~0~-basierte Ansatz wird eventuell verwirrend, z.B. wegen widersprüchlicher p-Werte.
 
 **Alternativer Ansatz:**
 
-* Nutzt das Prinzip der Parsimonie
+* Modellselektion -- nutzt das Prinzip der Parsimonie
 
-Anstelle von p-Wert-basierten Tests werden verschiedene Modellkandidaten verglichen:
+Es werden verschiedene Modellkandidaten verglichen:
 
 * Modell mit allen potentiellen Effekten → [vollständiges Modell]{.blue}
 * Weglassen einzelner Faktoren → [reduzierte Modelle]{.blue} (mehrere!)
 * Keine Einflussfaktoren (nur Mittelwert) → [Nullmodell]{.blue}
-* Welches Modell ist das beste → [minimales adäquates Modell]{.blue}?
+* Welches Modell ist das beste? → [minimales adäquates Modell]{.darkred}
 
 ## Wie können wir messen, welches Modell das beste ist?
 
@@ -996,7 +979,7 @@ Anstelle von p-Wert-basierten Tests werden verschiedene Modellkandidaten verglic
 Kompromiss zwischen Modellanpassung und Modellkomplexität (Anzahl der
 Parameter, k).
 
-* Güte der Anpassung: Likelihood L (misst, wie gut die Daten zu einem bestimmten Modell passen).
+* Güte der Anpassung: Likelihood L -- wie gut die Daten zu einem bestimmten Modell passen.
 * Log Likelihood: macht das Kriterium additiv.
 * AIC (Akaike Information Criterion):
 
@@ -1004,19 +987,20 @@ $$AIC = −2 \ln(L) + 2k$$
 
 * BIC ( Bayesian Information Criterion), berücksichtigt den Stichprobenumfang ($n$):
 
-$$BIC = −2 \ln(L) + k · \ln(n)$$
+$$BIC = −2 \ln(L) + k \cdot \ln(n)$$
 
-Das Modell mit dem kleinsten AIC (oder BIC) ist das [minimal adäquate]{.blue} (d.h. optimale) Modell.
+Das Modell mit dem kleinsten AIC (oder BIC) ist das [minimal adäquate]{.darkred} Modell.
 
 
 
-## Modellauswahl und Likelihood-Ratio-Tests
+## Modellselektion und Likelihood-Ratio-Tests
 
+<br>
 
 **Ansatz**
 
 1. Mehrere Modelle einzeln anpassen
-2. Vergleiche die Modelle paarweise mit ANOVA (Likelihood Ratio Test)
+2. Modelle paarweise mit ANOVA (Likelihood Ratio Test) vergleichen
 
 **Daten und Beispiel**
 
@@ -1035,10 +1019,10 @@ m2 <- lm(growth ~ fert + light, data=plants)  # f1 + f2
 anova(m3, m2)
 ```
 
-* Likelihood-Ratio-Test vergleicht zwei Modelle (`anova` mit > 1 Modell)
+* Likelihood-Ratio-Test vergleicht zwei Modelle (`anova` in R mit > 1 Modell)
 * Modell mit Interaktion (`m3`) nicht signifikant besser als Modell ohne Interaktion (`m2`).
 
-## AIC-basierte Modellauswahl
+## AIC-basierte Modellselektion
 
 
 * Der paarweise Modellvergleich ist umständlich, insbesondere bei einer großen Anzahl von Modellen.
@@ -1054,101 +1038,148 @@ m0  <- lm(growth ~ 1, data = plants)            # Nullmodell
 
 AIC(m0, m1a, m1b, m2, m3)
 ```
-**Anmerkung**
+**Anmerkungen**
 
 * AIC-Werte sind [bis zu einer additiven Konstante definiert]{.blue}
-* $\rightarrow$ absolute Werte unterscheiden sich manchmal, abhängig von der angewandten Methode
-* $\Rightarrow$ betrachtet den Bereich des AIC und die Unterschiede, ignoriert die absoluten Werte
-* Faustregel: die „AIC-Einheit“ ist 2, Unterschiede $\approx 2.0\rightarrow$ geringe Bedeutung
+* $\rightarrow$ Absolute Werte können je nach Software oder Methode variieren.
+* $\Rightarrow$ Betrachte die Differenzen, nicht die absoluten Werte.
+* Faustregel: die „AIC-Einheit“ ist 2, Unterschiede $\approx$ 2.0 $\rightarrow$ geringe Bedeutung
 
-## Schrittweise Modellauswahl (automatisch)
+## Schrittweise Modellselektion (automatisch)
 
 
-* Das vollständige Modell wird an die Funktion `step` übergeben:
-
-::: {.column width="49%"}
+::: {.column width="45%"}
+Automatische Modellselektion
 ```{r, echo=TRUE}
 m1 <- lm(growth ~ fert * light, data=plants)
 opt <- step(m1)
 ```
-* Modell mit dem kleinsten AIC<br> $\rightarrow$ optimales Modell.
+[Modell mit dem kleinsten AIC $\rightarrow$ optimales Modell.]{.smallfont}
 :::
 
-::: {.column width="49%"}
+:::  {.column width="8%"}
+
+:::
+
+::: {.column width="45%"}
+Zum Vergleich: klassische ANOVA
 ```{r, echo=TRUE}
 anova(opt)
 ```
-
-<br><br>
-
-* p < 0.05 <br> $\rightarrow$ signifikant
 :::
 
 
 **Ergebnisse des Beispiels:** 
 
-* optimales Modell (`m2`, `opt`), enthält beide Faktoren `fert` und `light`, aber keine Interaktion.
-* Die Modellauswahl hat `fert` und `light` als notwendige erklärende Variablen identifiziert,<br>
-im Gegensatz zur klassischen ANOVA-Tabelle, in der nur `light` signifikant ist.
+* optimales Modell (`opt`), enthält beide Faktoren (`fert`, `light`), aber keine Interaktion.
+* Die Modellselektion identifiziert `fert` und `light` als wichtige Erklärungsvariablen.
+* im Gegensatz zur klassischen ANOVA-Tabelle, in der nur `light` signifikant war, zeigt die Modellselektion, dass auch `fert` zur Erklärung beiträgt.
 
 
-## Signifikanztests?
+## Signifikanztests vs. Modellselektion
 
 <br>
 
-* Das Konzept der Modellauswahl überlagert die p-Wert-basierte Statistik.
-* Einige Autoren raten generell davon ab, p-Werte in diesem Zusammenhang zu verwenden, andere empfehlen einen Kompromiss.
-* Wenn man einen p-Wert erhalten möchte, sollte man das optimale Modell mit weiteren reduzierten Modellen vergleichen, die p-Werte aber dennoch mit Vorsicht interpretieren:
+* Das Konzept der Modellselektion ersetzt die p-Wert-basierte Statistik, zumindest teilweise.
+* Einige Autoren raten davon ab, p-Werte in diesem Kontext noch zu verwenden.
+* Andere empfehlen einen Kompromiss: p-Werte als **Hilfsmittel**, nicht als Entscheidungskriterium.
+
+**Derzeitige Empfehlung** 
+
+Wenn p-Werte benötigt werden, vergleiche das optimale Modell mit reduzierten Modellen:
 
 ```{r, eval = FALSE, echo=TRUE}
 anova(m2, m1a) # fert
 anova(m2, m1b) # light
 ```
-* In jedem Fall gilt: Konzentriere dich auf die praktischen Implikationen und vergiss nicht, die Effektgrößen anzugeben!
+
+* Interpretiere p-Werte mit Vorsicht:
+    - Sie sind abhängig von der Modellstruktur.
+    - Sie können irreführend sein, wenn das Modell nicht optimal ist.
+* Gib auch Effektstärken und Vertrauensintervalle an!
 
 
 ## Zusammenfassung des Kapitels ANOVA
 
-* Lineare Modelle bilden die Grundlage für viele statistische Methoden.
+* Lineare Modelle bilden die **Grundlage** für viele statistische Methoden
     * Lineare Regression
-    * ANOVA, ANCOVA, GLM, GAM, GLMM, . . .
     * ANOVA/ANCOVA anstelle von Mehrfachtests
-* ANOVA ist leistungsfähiger als Mehrfachtests:
-    * vermeidet $\alpha$-Fehlerinflation
-    * ein großes Experiment benötigt weniger n als viele kleine Experimente
-    * Identifizierung von Interaktionseffekten
-    * Eliminierung von Kovariaten
-* Modellauswahl vs. p-Wert-basierte Tests
-    * Paradigmenwechsel in der Statistik: AIC anstelle des p-Wertes
-    * zuverlässiger, insbesondere bei unausgewogenen oder komplexen Designs
-    * erweiterbar auf generalisierte, additive und gemischte Modelle (GLM, GAM, LME, GLMM, ...)
+    * MANOVA, GLM, GAM, GLMM, . . .
+* ANOVA ist **leistungsfähiger** als Mehrfachtests:
+    * vermeidet [$\alpha$-Fehlerinflation]{.blue}
+    * identifiziert [Interaktionseffekte]{.blue}
+    * eliminiert [Kovariate]{.blue}
+    * ein großes Experiment benötigt [weniger Stichprobengröße]{.blue} als viele kleine Experimente
+* Modellselektion vs. p-Wert-basierte Tests
+    * **Paradigmenwechsel**: AIC anstelle von p-Werten
+    * zuverlässiger, besonders bei unausgewogenen oder komplexen Designs
+    * erweiterbar auf GLM, GAM, LME, GLMM, ...
     * aber: p-Wert-basierte Tests sind manchmal leichter zu verstehen
 
+**Selbststudium:** Lies das Paper von @JohnsonOmland2004 zum Thema Modellselektion.
 
 ## Vermeide Manipulation von p-Werten
 
+<br>
 
-**Experimente NICHT wiederholen, bis ein signifikanter p-Wert gefunden wird.**
+**Experimente NICHT wiederholen, bis ein signifikanter p-Wert gefunden wird!**
 
-Die hochrangige Zeitschrift „... Nature hat einflussreiche Statistiker gebeten, eine Änderung zur Verbesserung der Wissenschaft zu empfehlen. Das gemeinsame Thema? Das Problem ist nicht unsere Mathematik, sondern wir selbst.“ [(Leek et al. (2017))](https://doi.org/10.1038/d41586-017-07522-z):
+<br>
+
+@Leek2017 in **Nature**:
+
+> “... Nature asked influential statisticians to recommend one change to improve science.
+> The common theme? The problem is not our maths, but ourselves.”:
+
+**Five ways to fix statistics. Comment on Nature**
+
+1. Jeff Leek: Adjust for human cognition
+2. Blakeley B. McShane & Andrew Gelman: Abandon statistical significance
+3. David Colquhoun: State false-positive risk, too
+4. Michèle B. Nuijten: Share analysis plans and results
+5. Steven N. Goodman: Change norms from within
+
+<br>
 
 
-**Fünf Wege, Statistiken zu verbessern. Kommentar zur Nature**
 
+## The "ASA Statement ..." 
 
-1. Jeff Leek: Anpassung an die menschliche Kognition
-2. Blakeley B. McShane & Andrew Gelman: Verzicht auf statistische Signifikanz
-3. David Colquhoun: Auch falsch-positives Risiko angeben
-4. Michèle B. Nuijten: Analysepläne und Ergebnisse mitteilen
-5. Steven N. Goodman: Normen von innen heraus ändern
+<br>
+
+Das **ASA Statement on Statistical Significance and P-Values** der American Statistical Association [@ASA2016] befasst sich mit der Bedeutung des p-Werts, ohne ihn komplett in Frage zu stellen. Es definiert 6 Prinzipien:
+
+::: {style="background-color: #dddddd"}
+1. P-values can indicate how incompatible the data are with a specified statistical model.
+2. P-values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone.
+3. Scientific conclusions and business or policy decisions should not be based only on whether a p-value passes a specific threshold.
+4. Proper inference requires full reporting and transparency.
+5. A p-value, or statistical significance, does not measure the size of an effect or the importance of a result.
+6. By itself, a p-value does not provide a good measure of evidence regarding a model or hypothesis.
+:::
+
+Die Details sind im Statement weiter ausgeführt.
+
+**Selbststudium:** Lies dazu neben @ASA2016 auch @Hurlbert2019.
 
 <!--
-See also: [http://daniellakens.blogspot.de/2017/12/understanding-common-misconceptions.html?m=1](http://daniellakens.blogspot.de/2017/12/understanding-common-misconceptions.html?m=1)
+**Hurlbert und andere empfehlen, dem Begriff „signifikant“ den „Coup de Grâce“ zu geben.**  
+  
+Ich stimme dieser Kritik grundsätzlich zu:  
+
+ - p-Werte werden missverstanden  
+ - Signifikanz ist kein Maß für Bedeutung  
+ - Die Kultur des "p < 0.05" führt zu Manipulation und Verzerrung  
+  
+Dennoch habe ich mich entschieden, den Begriff weiter zu lehren: **als historisches und praktisches Werkzeug**.  
+  
+Warum?
+
+- Er ist immer noch weit verbreitet in der Literatur  
+- Studierende müssen ihn verstehen, um Forschung zu lesen  
+- Aber: Wir lehren ihn **kritisch**, mit klaren Grenzen und Alternativen  
+  
+**Ziel: Nicht „p < 0.05“ zu lehren, sondern: „Was sagt mir dieser p-Wert wirklich?“**
 -->
-
-**Selbststudium**
-
-Lies das Paper von @JohnsonOmland2004 um mehr über das Paradigma der Modellauswahl zu erfahren.
-
 
 ## Literaturverzeichnis

@@ -1236,7 +1236,7 @@
     "href": "slides/07-anova.html#ergebnisse",
     "title": "07-ANOVA und ANCOVA",
     "section": "Ergebnisse",
-    "text": "Ergebnisse\n\n\n\n\n Dünger – D. offene Flasche – D. + Zucker – D. + CaCO3 – Basalmedium – A. dest – Leitungswasser",
+    "text": "Ergebnisse\n\n\n\n\n Dünger – offene Flasche – + Zucker – + CaCO3 – Basalmedium – A. dest – Leitungswasser",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1247,7 +1247,7 @@
     "href": "slides/07-anova.html#der-datensatz",
     "title": "07-ANOVA und ANCOVA",
     "section": "Der Datensatz",
-    "text": "Der Datensatz\n\n\n\n\n\nTable 1: Wachstum von Tag 2 bis Tag 6 (relative Einheiten)\n\n\n\n\n\n\ntreat\nreplicate 1\nreplicate 2\nreplicate 3\n\n\n\n\nFertilizer\n0.020\n-0.217\n-0.273\n\n\nF. open\n0.940\n0.780\n0.555\n\n\nF.+sugar\n0.188\n-0.100\n0.020\n\n\nF.+CaCO3\n0.245\n0.236\n0.456\n\n\nBas.med.\n0.699\n0.727\n0.656\n\n\nA.dest\n-0.010\n0.000\n-0.010\n\n\nTap water\n0.030\n-0.070\nNA\n\n\n\n\n\n\n\n\n\n\n\nNA bedeutet „nicht verfügbar“, d.h. ein fehlender Wert\nDie Kruztabellenstruktur ist kompakt und übersichtlich, jedoch nicht ideal für die Datenanalyse.\n\\(\\Rightarrow\\) Konvertierung sie in das Langformat",
+    "text": "Der Datensatz\n\n\n\n\n\n\ntreat\nreplicate 1\nreplicate 2\nreplicate 3\n\n\n\n\nFertilizer\n0.020\n-0.217\n-0.273\n\n\nF. open\n0.940\n0.780\n0.555\n\n\nF.+sugar\n0.188\n-0.100\n0.020\n\n\nF.+CaCO3\n0.245\n0.236\n0.456\n\n\nBas.med.\n0.699\n0.727\n0.656\n\n\nA.dest\n-0.010\n0.000\n-0.010\n\n\nTap water\n0.030\n-0.070\nNA\n\n\n\n\n\n\n\n\nWachstum von Tag 2 bis Tag 6 (relative Einheiten)\nNA bedeutet „nicht verfügbar“, d.h. ein fehlender Wert\nDie Kruztabelle ist kompakt und übersichtlich, jedoch nicht ideal für die Datenanalyse.\n\\(\\Rightarrow\\) Konvertierung in das Langformat",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1269,7 +1269,7 @@
     "href": "slides/07-anova.html#die-daten-in-r",
     "title": "07-ANOVA und ANCOVA",
     "section": "Die Daten in R",
-    "text": "Die Daten in R\n\n\nalgae &lt;- data.frame(\n  treat  = factor(c(\"Fertilizer\", \"Fertilizer\", \"Fertilizer\", \n             \"F. open\", \"F. open\", \"F. open\", \n             \"F.+sugar\", \"F.+sugar\", \"F.+sugar\", \n             \"F.+CaCO3\", \"F.+CaCO3\", \"F.+CaCO3\", \n             \"Bas.med.\", \"Bas.med.\", \"Bas.med.\", \n             \"A.dest\", \"A.dest\", \"A.dest\", \n             \"Tap water\", \"Tap water\"),\n             levels=c(\"Fertilizer\", \"F. open\", \"F.+sugar\", \n                    \"F.+CaCO3\", \"Bas.med.\", \"A.dest\", \"Tap water\")),\n  rep   = c(1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2), \n  growth = c(0.02, -0.217, -0.273, 0.94, 0.78, 0.555, 0.188, -0.1, 0.02, \n             0.245, 0.236, 0.456, 0.699, 0.727, 0.656, -0.01, 0, -0.01, 0.03, -0.07)\n)\n\n… können direkt in den Code eingegeben werden. Eine csv-Datei im Langformat ist ebenfalls möglich.",
+    "text": "Die Daten in R\n\n\nalgae &lt;- data.frame(\n  treat  = factor(c(\"Fertilizer\", \"Fertilizer\", \"Fertilizer\", \n             \"F. open\", \"F. open\", \"F. open\", \n             \"F.+sugar\", \"F.+sugar\", \"F.+sugar\", \n             \"F.+CaCO3\", \"F.+CaCO3\", \"F.+CaCO3\", \n             \"Bas.med.\", \"Bas.med.\", \"Bas.med.\", \n             \"A.dest\", \"A.dest\", \"A.dest\", \n             \"Tap water\", \"Tap water\"),\n             levels=c(\"Fertilizer\", \"F. open\", \"F.+sugar\", \n                    \"F.+CaCO3\", \"Bas.med.\", \"A.dest\", \"Tap water\")),\n  rep   = c(1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2), \n  growth = c(0.02, -0.217, -0.273, 0.94, 0.78, 0.555, 0.188, -0.1, 0.02, \n             0.245, 0.236, 0.456, 0.699, 0.727, 0.656, -0.01, 0, -0.01, 0.03, -0.07)\n)\n\n\n\nKleine Datensätze können direkt in den Code eingebunden werden.\nEine csv-Datei im Langformat ist ebenfalls möglich.\nWichtig: treat als Faktor (nominale Variable).\nMit levels kann man die Reihenfolge fixieren.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1291,7 +1291,7 @@
     "href": "slides/07-anova.html#streifendiagramm",
     "title": "07-ANOVA und ANCOVA",
     "section": "Streifendiagramm",
-    "text": "Streifendiagramm\n\nstripchart(growth ~ treat, data = algae, vertical = TRUE)\n\n\nBesser, denn wir haben nur 2-3 Wiederholungen. Boxplot braucht mehr.",
+    "text": "Streifendiagramm\n\nstripchart(growth ~ treat, data = algae, vertical = TRUE)\n\n\nBesser als Boxplot, denn wir haben nur 2-3 Wiederholungen. Boxplot braucht mehr.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1379,7 +1379,7 @@
     "href": "slides/07-anova.html#anova-mit-mehr-als-2-stichproben",
     "title": "07-ANOVA und ANCOVA",
     "section": "ANOVA mit mehr als 2 Stichproben",
-    "text": "ANOVA mit mehr als 2 Stichproben\n Zurück zu den Daten über das Algenwachstum.\n\nm &lt;- lm(growth ~ treat, data = algae)\n\n\nWir können die Koeffizienten mit summary(m) ausgeben.\nZunächst interessiert uns der Gesamteffekt, daher verwenden wir anova(m).\n\n\nanova(m)\n\nAnalysis of Variance Table\n\nResponse: growth\n          Df  Sum Sq Mean Sq F value    Pr(&gt;F)    \ntreat      6 2.35441 0.39240  25.045 1.987e-06 ***\nResiduals 13 0.20368 0.01567                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nzeigt den F-Test für den Gesamteffekt des Faktors treat.\n\n\\(\\Rightarrow\\) Der p-Wert ist sehr klein → der Behandlungseffekt ist signifikant.",
+    "text": "ANOVA mit mehr als 2 Stichproben\n Zurück zum Algenwachstums-Experiment:\n\nm &lt;- lm(growth ~ treat, data = algae)\n\n\n\nWir könnten die Koeffizienten mit summary(m) ausgeben.\nZunächst interessiert uns der Gesamteffekt, daher verwenden wir anova(m).\n\n\nanova(m)\n\nAnalysis of Variance Table\n\nResponse: growth\n          Df  Sum Sq Mean Sq F value    Pr(&gt;F)    \ntreat      6 2.35441 0.39240  25.045 1.987e-06 ***\nResiduals 13 0.20368 0.01567                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nzeigt den F-Test für den Gesamteffekt des Faktors treat.\n\n\\(\\Rightarrow\\) Der p-Wert ist sehr klein → der Behandlungseffekt ist signifikant.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1467,7 +1467,7 @@
     "href": "slides/07-anova.html#beispiele-für-modellformeln",
     "title": "07-ANOVA und ANCOVA",
     "section": "Beispiele für Modellformeln",
-    "text": "Beispiele für Modellformeln\n\n\n\n\n\n\n\nModell Typ\nFormel\n\n\n\n\nNullmodell\ny ~ 1\n\n\nEinfache lineare Regression\ny ~ x\n\n\nLineares Modell ohne Achsenschnittpunkt\ny ~ x - 1\n\n\nMultiple Regression, keine Interaktion\ny ~ x1 + x2 + x3\n\n\nMultiple Regression mit Interaktion\ny ~ x1 * x2 * x3\n\n\nMultiple Regression, keine 3-fache Interaktion\ny ~ x1 * x2 * x3 - x1 : x2 : x3\n\n\nTransformiert mit ‘as is’ Funktion\ny ~ x + I(x^2)\n\n\nEinseitige ANOVA\ny ~ f\n\n\nANOVA mit Interaktion\ny ~ f1 * f2\n\n\nANCOVA mit Interaktion\ny ~ x * f\n\n\nVerschachtelte ANOVA\ny ~ x + (1 | a / b)\n\n\nGAM mit glättendem s\ny ~ s(x) + f\n\n\n\n\n\n\n\n\ny = Antwortvariable (abhängig, Ziel)\nx = metrische Erklärungsvariable (Prädiktor, unabhängig)\nf = Faktorvariable (nominal)",
+    "text": "Beispiele für Modellformeln\n\n\n\n\n\n\n\nModell Typ\nFormel\n\n\n\n\nNullmodell\ny ~ 1\n\n\nEinfache lineare Regression\ny ~ x\n\n\nLinear ohne Achsenschnittpunkt\ny ~ x - 1\n\n\nMultiple Regression, keine Interaktion\ny ~ x1 + x2 + x3\n\n\nMultiple Regression mit Interaktion\ny ~ x1 * x2 * x3\n\n\n… ohne 3-fache Interaktion\ny ~ x1 * x2 * x3 - x1 : x2 : x3\n\n\nTransformiert mit I() (‘as is’)\ny ~ x + I(x^2)\n\n\nEinfache ANOVA\ny ~ f\n\n\nANOVA mit Interaktion\ny ~ f1 * f2\n\n\nANCOVA mit Interaktion\ny ~ x * f\n\n\nVerschachtelte ANOVA\ny ~ x + (1 | a / b)\n\n\nGAM mit glättendem s\ny ~ s(x) + f\n\n\n\n\n\n\n\n\ny = Antwortvariable (abhängige, target)\nx = metrische Erklärungsvariable (Prädiktor, unabhängig)\nf = Faktorvariable (nominal)",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1489,7 +1489,7 @@
     "href": "slides/07-anova.html#interaktionsplot",
     "title": "07-ANOVA und ANCOVA",
     "section": "Interaktionsplot",
-    "text": "Interaktionsplot\n\nwith(plants, interaction.plot(fert, light, growth, \n                            col = c(\"orange\", \"brown\"), lty = 1, lwd = 2))",
+    "text": "Interaktionsplot\n\nwith(plants, interaction.plot(fert, light, growth, \n                            col = c(\"orange\", \"brown\"), lty = 1, lwd = 2))\n\n\n\nWenn die Linien nicht parallel sind, deutet es auf eine Wechselwirkung hin.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1500,7 +1500,7 @@
     "href": "slides/07-anova.html#diagnostik",
     "title": "07-ANOVA und ANCOVA",
     "section": "Diagnostik",
-    "text": "Diagnostik\nAnnahmen\n\nUnabhängigkeit der Messungen (innerhalb von Stichproben)\nHomogenität der Varianz der Residuen\nNormalverteilung der Residuen\n\n Der Test der Annahmen benötigt Residuen des angepassten Modells.  \\(\\Rightarrow\\) Passe zuerst das ANOVA-Modell an und prüfe dann, ob es richtig war!\n\nDiagnoseinstrumente\n\nBoxplot\nPlot der Residuen im Vergleich zu den Mittelwerten\nQ-Q-Diagramm der Residuen\nFligner-Killeen-Test (alternativ: von manchen wird der Levene-Test empfohlen)",
+    "text": "Diagnostik\n\n\nUnabhängigkeit der Messungen (innerhalb der Gruppen)\nHomogenität der Varianz der Residuen\nNormalverteilung der Residuen\n\n Der Test der Annahmen benötigt Residuen des angepassten Modells.  \\(\\Rightarrow\\) Passe zuerst das ANOVA-Modell an und prüfe dann, ob es richtig war!\n\nDiagnostikinstrumente\n\nBoxplot (Gruppenvergleich)\n\nResiduen vs. Fitted\nQ-Q-Diagramm der Residuen\n\nFligner-Killeen-Test (von manchen wird alternativ der Levene-Test empfohlen)",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1511,7 +1511,7 @@
     "href": "slides/07-anova.html#diagnostik-ii",
     "title": "07-ANOVA und ANCOVA",
     "section": "Diagnostik II",
-    "text": "Diagnostik II\n\npar(mfrow=c(1, 2))\npar(cex=1.2, las=1)\nqqnorm(residuals(m))\nqqline(residuals(m))\n\nplot(residuals(m)~fitted(m))\nabline(h=0)\n\n\n\nfligner.test(growth ~ interaction(light, fert), data=plants)\n\n\n    Fligner-Killeen test of homogeneity of variances\n\ndata:  growth by interaction(light, fert)\nFligner-Killeen:med chi-squared = 10.788, df = 5, p-value = 0.05575\n\n\nResiduen: sehen in Ordnung aus und der p-Wert des Fligner-Tests \\(&gt; 0,05\\), \\(\\rightarrow\\) sieht gut aus.",
+    "text": "Diagnostik II\n\npar(mfrow=c(1, 2))\npar(cex=1.2, las=1)\nqqnorm(residuals(m))\nqqline(residuals(m))\n\nplot(residuals(m)~fitted(m))\nabline(h=0)\n\n\n\nfligner.test(growth ~ interaction(light, fert), data=plants)\n\n\n    Fligner-Killeen test of homogeneity of variances\n\ndata:  growth by interaction(light, fert)\nFligner-Killeen:med chi-squared = 10.788, df = 5, p-value = 0.05575\n\n\nResiduen: sehen in Ordnung aus und der p-Wert des Fligner-Tests ist noch ok.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1522,7 +1522,7 @@
     "href": "slides/07-anova.html#anmerkungen",
     "title": "07-ANOVA und ANCOVA",
     "section": "Anmerkungen",
-    "text": "Anmerkungen\nLineare Regression oder ANOVA?\n\nim Wesentlichen dasselbe\nunabhängige Variablen sind metrisch: lineares Modell\nunabhängige Variablen sind nominal (= Faktor): ANOVA\nMischung aus metrischen und nominalen Variablen: ANCOVA\n\nVerwendung von Pre-Tests\nPre-Tests sind im Allgemeinen aus theoretischen Gründen fragwürdig:\n\nDie Nullhypothesen \\(H_0\\) können nur verworfen und nicht endgültig bestätigt werden.\nWenn der Stichprobenumfang groß ist, ist die Normalität der Residuen nicht erforderlich\nWenn \\(p\\) in der Nähe des Schwellenwerts liegt und der Stichprobenumfang klein ist, bleiben wir im Ungewissen.\n\nAll dies lässt sich nur durch sorgfältiges Nachdenken und mit etwas Erfahrung überwinden.\nEs ist immer eine gute Idee, die Ergebnisse mit Kollegen und Vorgesetzten zu besprechen.",
+    "text": "Anmerkungen\n\nLineare Regression oder ANOVA?\n\nIm Wesentlichen dasselbe Modell - nur unterschiedliche Sichtweise\nMetrische unabhängige Variablen → lineares Modell\n\nNominalskalierte unabhängige Variablen (Faktoren) → ANOVA\n\nMischung aus beidem → ANCOVA\n\nPre-Tests sind theoretisch und praktisch fragwürdig\n\nEine Nullhypothese \\(H_0\\) kann nicht bestätigt, sondern nur verworfen werden.\n\nBei großen Stichproben ist die Normalität der Residuen nicht zwingend erforderlich.\nWenn \\(p\\) in der Nähe des Schwellenwerts liegt und der Stichprobenumfang klein ist, bleiben wir im Ungewissen.\n\n\nAll dies lässt sich nur durch sorgfältiges Nachdenken, Erfahrung und kritische Reflexion überwinden.\nEs ist immer eine gute Idee, die Ergebnisse mit anderen zu besprechen – nicht nicht um die Entscheidung zu delegieren, sondern um sie zu verstehen und zu verteidigen.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1533,7 +1533,7 @@
     "href": "slides/07-anova.html#sequentielles-holm-bonferroni-verfahren",
     "title": "07-ANOVA und ANCOVA",
     "section": "Sequentielles Holm-Bonferroni-Verfahren",
-    "text": "Sequentielles Holm-Bonferroni-Verfahren\n\nAuch Holm-Verfahren genannt (Holm, 1979)\nEinfach zu verwenden\nKann auf jedes Problem mit Mehrfachtests angewendet werden\nWeniger konservativ als die normale Bonferroni-Korrektur, aber …\n… immer noch ein sehr konservativer Ansatz\nsiehe auch Wikipedia\n\nAlgorithmus\n\nWähle den kleinsten \\(p\\)-Wert aus allen \\(n\\) \\(p\\)-Werten\nWenn \\(p \\cdot n &lt; \\alpha\\) \\(\\Rightarrow\\) signifikant, sonst STOPP\nSetze \\(n - 1 \\rightarrow n\\), entferne das kleinste \\(p\\) aus der Liste und gehe zu Schritt 1.",
+    "text": "Sequentielles Holm-Bonferroni-Verfahren\n\nAuch bekannt als Holm-Korrektur (Holm, 1979)\nEinfach zu verwenden\nKann auf jedes Problem mit Mehrfachtests angewendet werden\nWeniger konservativ als die normale Bonferroni-Korrektur, aber …\n… immer noch ein sehr konservativer Ansatz\nsiehe auch Wikipedia\n\nAlgorithmus\n\nWähle den kleinsten \\(p\\)-Wert aus allen \\(n\\) \\(p\\)-Werten\nWenn \\(p \\cdot n &lt; \\alpha\\) \\(\\Rightarrow\\) signifikant, sonst STOPP\nSetze \\(n - 1 \\rightarrow n\\), entferne das kleinste \\(p\\) aus der Liste und gehe zu Schritt 1.\n\n\nDer Algorithmus ist sequenziell\n\nEr prüft die Hypothesen in der Reihenfolge der kleinsten \\(p\\)-Werte.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1544,7 +1544,7 @@
     "href": "slides/07-anova.html#beispiel-1",
     "title": "07-ANOVA und ANCOVA",
     "section": "Beispiel",
-    "text": "Beispiel\n\nWachstumsrate pro Tag (\\(d^{-1}\\)) von Blaualgenkulturen (Pseudanabaena) nach Zugabe toxischer Peptide einer anderen Blaualge (Microcystis).\nDie ursprüngliche Hypothese war, dass Microcystin LR (MCYST) oder ein Derivat davon (Substanz A) das Wachstum hemmt.\n\n\nmcyst &lt;-  data.frame(treat = factor(c(rep(\"Control\", 5),\n                                       rep(\"MCYST\", 5),\n                                       rep(\"Subst A\", 5)),\n                                levels=c(\"Control\", \"MCYST\", \"Subst A\")),\n                      mu   = c(0.086, 0.101, 0.086, 0.086, 0.099,\n                               0.092, 0.088, 0.093, 0.088, 0.086,\n                               0.095, 0.102, 0.106, 0.106, 0.106)\n                     )",
+    "text": "Beispiel\n\nWachstumsrate pro Tag (\\(d^{-1}\\)) von Blaualgenkulturen (Pseudanabaena) nach Zugabe toxischer Peptide einer anderen Blaualge (Microcystis).\nDie ursprüngliche Hypothese:\n\nMicrocystin LR (MCYST) oder ein Derivat davon (Substanz A) hemmt das Wachstum.\n\n\n\nmcyst &lt;-  data.frame(treat = factor(c(rep(\"Control\", 5),\n                                       rep(\"MCYST\", 5),\n                                       rep(\"Subst A\", 5)),\n                                levels=c(\"Control\", \"MCYST\", \"Subst A\")),\n                      mu   = c(0.086, 0.101, 0.086, 0.086, 0.099,\n                               0.092, 0.088, 0.093, 0.088, 0.086,\n                               0.095, 0.102, 0.106, 0.106, 0.106)\n                     )",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1566,7 +1566,7 @@
     "href": "slides/07-anova.html#ansatz-2-multiple-t-tests-mit-sequentieller-bonferroni-korrektur",
     "title": "07-ANOVA und ANCOVA",
     "section": "Ansatz 2: multiple t-Tests mit sequentieller Bonferroni-Korrektur",
-    "text": "Ansatz 2: multiple t-Tests mit sequentieller Bonferroni-Korrektur\nWir trennen den Datensatz in einzelne Teilmengen:\n\nControl &lt;- mcyst$mu[mcyst$treat == \"Control\"]\nMCYST   &lt;- mcyst$mu[mcyst$treat == \"MCYST\"]\nSubstA  &lt;- mcyst$mu[mcyst$treat == \"Subst A\"]\n\nund führen 3 t-Tests durch:\n\np1 &lt;- t.test(Control, MCYST)$p.value\np2 &lt;- t.test(Control, SubstA)$p.value\np3 &lt;- t.test(MCYST, SubstA)$p.value\n\nIm Folgenden sind die rohen p-Werte ohne Korrektur dargestellt:\n\nc(p1, p2, p3)\n\n[1] 0.576275261 0.027378832 0.001190592\n\n\n… und mit Holm-Korrektur:\n\np.adjust(c(p1, p2, p3))\n\n[1] 0.576275261 0.054757664 0.003571775",
+    "text": "Ansatz 2: multiple t-Tests mit sequentieller Bonferroni-Korrektur\nWir trennen den Datensatz in einzelne Teilmengen:\n\nControl &lt;- mcyst$mu[mcyst$treat == \"Control\"]\nMCYST   &lt;- mcyst$mu[mcyst$treat == \"MCYST\"]\nSubstA  &lt;- mcyst$mu[mcyst$treat == \"Subst A\"]\n\nund führen 3 t-Tests durch:\n\np1 &lt;- t.test(Control, MCYST)$p.value\np2 &lt;- t.test(Control, SubstA)$p.value\np3 &lt;- t.test(MCYST, SubstA)$p.value\n\np-Werte ohne Korrektur:\n\nc(p1, p2, p3)\n\n[1] 0.576275261 0.027378832 0.001190592\n\n\nMit Holm-Korrektur:\n\np.adjust(c(p1, p2, p3))\n\n[1] 0.576275261 0.054757664 0.003571775",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1577,7 +1577,7 @@
     "href": "slides/07-anova.html#schlussfolgerungen",
     "title": "07-ANOVA und ANCOVA",
     "section": "Schlussfolgerungen",
-    "text": "Schlussfolgerungen\nStatistische Methoden\n\nIm Falle der Holm-korrigierten t-Tests bleibt nur ein einziger p-Wert (MCYST vs. Subst A) signifikant. Dies zeigt, dass die Holm-Methode in diesem Fall konservativer ist als TukeyHSD (nur ein signifikanter Effekt im Vergleich zu zwei signifikanten).\nEine ANOVA mit Posthoc-Test ist im Allgemeinen vorzuziehen,\naber die sequentielle Holm-Bonferroni-Methode kann in besonderen Fällen hilfreich sein.\nAußerdem zeigt es deutlich, dass massive Mehrfachtests vermieden werden müssen.\n\n\\(\\Rightarrow\\) ANOVA ist zu bevorzugen, wenn möglich.\nInterpretation\n\nHinsichtlich unserer ursprünglichen Hypothese können wir feststellen, dass MCYST und SubstA das Wachstum von Pseudanabaena nicht hemmen. Vielmehr stimulierte SubstA das Wachstum.\nDies widersprach unseren Erwartungen - der biologische Grund wurde dann 10 Jahre später gefunden.\n\nMehr dazu ist zu finden in Jähnichen et al. (2001), Jähnichen et al. (2007), Jähnichen et al. (2011), Zilliges et al. (2011) oder Dziallas & Grossart (2011).",
+    "text": "Schlussfolgerungen\nStatistische Methoden\n\nBeim Holm-korrigierten t-Test bleibt nur ein einziger p-Wert (MCYST vs. Subst A) signifikant, bei der ANOVA sind es zwei.\nANOVA berücksichtigt Struktur der Daten und die Abhängigkeit der Vergleiche.\nHolm-Methode konservativer als TukeyHSD \\(\\Rightarrow\\) ANOVA + Posthoc ist zu bevorzugen.\n\nInterpretation hinsichtlich der ursprünglichen Hypothese\n\nMCYST und Subst A hemmen das Wachstum von Pseudanabaena nicht.\nIm Gegenteil: Subst A stimuliert das Wachstum.\nWiderspruch zur Erwartung: der biologische Grund wurde 10 Jahre später entdeckt.\nWichtig: Statistische Signifikanz sagt nichts über die biologische Relevanz aus.\nFalsche Hypothesen können zu falschen Erwartungen führen - oder zu neuen Entdeckungen.\n\nMehr dazu in Jähnichen et al. (2001), Jähnichen et al. (2007), Jähnichen et al. (2011), Zilliges et al. (2011), Dziallas & Grossart (2011), Wei et al. (2024)",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1588,7 +1588,7 @@
     "href": "slides/07-anova.html#ancova",
     "title": "07-ANOVA und ANCOVA",
     "section": "ANCOVA",
-    "text": "ANCOVA\nStatistische Frage\n\nVergleich von Regressionslinien\nÄhnlich wie bei der ANOVA, enthält aber auch metrische Variablen (Kovariaten)\n\nBeispiel\nAnnette Dobsons Daten zum Geburtsgewicht. Ein Datensatz aus einem Statistik-Lehrbuch (Dobson, 2013), Geburtsgewicht von Jungen und Mädchen in Abhängigkeit von der Schwangerschaftswoche.",
+    "text": "ANCOVA\nStatistische Frage\n\nVergleich von Regressionslinien zwischen Gruppen\nÄhnlich wie bei der ANOVA, enthält aber auch metrische Variablen (Kovariaten)\nHaben Gruppen unterschiedliche Anfangswerte (Intercept) und/oder unterschiedliche Steigungen (Slope)?\n\nBeispiel\n\nAnnette Dobsons Geburtsgewichts-Daten – aus einem Statistik-Lehrbuch (Dobson, 2013): Geburtsgewicht von Jungen und Mädchen in Abhängigkeit von der Schwangerschaftswoche.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1599,7 +1599,7 @@
     "href": "slides/07-anova.html#der-datensatz-zum-geburtsgewicht",
     "title": "07-ANOVA und ANCOVA",
     "section": "Der Datensatz zum Geburtsgewicht",
-    "text": "Der Datensatz zum Geburtsgewicht\n\nDer Datensatz ist an verschiedenen Stellen im Internet und in verschiedenen Versionen zu finden.\nHier die Version, die in einer R-Demo zu finden ist: demo(lm.glm)\n\n## Daten zum Geburtsgewicht siehe stats/demo/lm.glm.R\ndobson &lt;- data.frame(\n  week = c(40, 38, 40, 35, 36, 37, 41, 40, 37, 38, 40, 38,\n     40, 36, 40, 38, 42, 39, 40, 37, 36, 38, 39, 40),\n  weight = c(2968, 2795, 3163, 2925, 2625, 2847, 3292, 3473, 2628, 3176,\n        3421, 2975, 3317, 2729, 2935, 2754, 3210, 2817, 3126, 2539,\n        2412, 2991, 2875, 3231),\n  gender = gl(2, 12, labels=c(\"M\", \"F\"))\n)\n\n\nAnmerkung: Dies ist ein künstlicher Datensatz, nicht die Realität.",
+    "text": "Der Datensatz zum Geburtsgewicht\n\nDieser Datensatz ist künstlich – nicht realistisch, aber ideal für die Demonstration.\nEr ist in der R-Demo demo(lm.glm) enthalten.\n\n\n## Daten zum Geburtsgewicht siehe stats/demo/lm.glm.R\ndobson &lt;- data.frame(\n  week   = c(40, 38, 40, 35, 36, 37, 41, 40, 37, 38, 40, 38,\n             40, 36, 40, 38, 42, 39, 40, 37, 36, 38, 39, 40),\n  weight = c(2968, 2795, 3163, 2925, 2625, 2847, 3292, 3473, 2628, 3176,\n             3421, 2975, 3317, 2729, 2935, 2754, 3210, 2817, 3126, 2539,\n             2412, 2991, 2875, 3231),\n  gender = gl(2, 12, labels = c(\"M\", \"F\")) # generate factor levels\n)",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1632,7 +1632,7 @@
     "href": "slides/07-anova.html#bisher-beschriebene-tücken-von-anova-und-ancova",
     "title": "07-ANOVA und ANCOVA",
     "section": "Bisher beschriebene Tücken von ANOVA und ANCOVA",
-    "text": "Bisher beschriebene Tücken von ANOVA und ANCOVA\n\n\nHeterogenität der Varianz\n\np-Werte können verzerrt sein (d. h. irreführend oder falsch)\nVerwendung einer einseitigen ANOVA für ungleiche Varianzen (in R: oneway.test)\n\nUnausgeglichener Fall: Ungleiche Anzahl von Stichproben für jede Faktorkombination \\(\\rightarrow\\) Die Ergebnisse der ANOVA hängen von der Reihenfolge der Faktoren in der Modellformel ab.\n\nKlassische Methode: Typ II oder Typ III ANOVA\nModerner Ansatz: Modellauswahl und Likelihood-Ratio-Tests",
+    "text": "Bisher beschriebene Tücken von ANOVA und ANCOVA\n\n\nHeterogenität der Varianz\n\np-Werte können verzerrt sein (d.h. irreführend oder falsch)\nVerwendung einer einfachen ANOVA für ungleiche Varianzen (in R: oneway.test)\n\nUnbalanzierter Fall\n\nUngleiche Anzahl von Stichproben für jede Faktorkombination\n\\(\\rightarrow\\) ANOVA-Ergebnisse sind von der Reihenfolge der Faktoren in der Modellformel abhängig.\nKlassische Lösung: Typ II oder Typ III ANOVA\nModerner Ansatz: Modellselektion und Likelihood-Ratio-Tests",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1643,7 +1643,7 @@
     "href": "slides/07-anova.html#typ-ii-und-typ-iii-anova",
     "title": "07-ANOVA und ANCOVA",
     "section": "Typ II und Typ III ANOVA",
-    "text": "Typ II und Typ III ANOVA\n\n\nFunktion Anova (mit Großbuchstabe A) im Paket car\nHilfsdatei der Funktion Anova:\n\n\n„Typ-II-Tests werden nach dem Prinzip der Marginalität berechnet, wobei jeder Term nach allen anderen getestet wird, ohne die Verwandten höherer Ordnung zu berücksichtigen; so genannte Typ-III-Tests verletzen die Marginalität, indem sie jeden Term im Modell nach allen anderen testen.“\n\n\nSchlussfolgerung: Verwende Typ II und nicht Typ III.\nVersuche nicht, einzelne Terme im Falle signifikanter Wechselwirkungen zu interpretieren.",
+    "text": "Typ II und Typ III ANOVA\n\n\nFunktion Anova (mit Großbuchstabe A) im Paket car\nHilfeseite der Funktion Anova:\n\n\nType-II tests are calculated according to the principle of marginality, testing each term after all others, except ignoring the term’s higher-order relatives; so-called type-III tests violate marginality, testing each term in the model after all of the others.\n\n\nSchlussfolgerung: Verwende Typ II und nicht Typ III.\nInterpretiere keine einzelnen Haupteffekte, wenn eine signifikante Wechselwirkung vorliegt.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1676,7 +1676,7 @@
     "href": "slides/07-anova.html#wie-können-wir-messen-welches-modell-das-beste-ist",
     "title": "07-ANOVA und ANCOVA",
     "section": "Wie können wir messen, welches Modell das beste ist?",
-    "text": "Wie können wir messen, welches Modell das beste ist?\n\nKompromiss zwischen Modellanpassung und Modellkomplexität (Anzahl der Parameter, k).\n\nGüte der Anpassung: Likelihood L (misst, wie gut die Daten zu einem bestimmten Modell passen).\nLog Likelihood: macht das Kriterium additiv.\nAIC (Akaike Information Criterion):\n\n\\[AIC = −2 \\ln(L) + 2k\\]\n\nBIC ( Bayesian Information Criterion), berücksichtigt den Stichprobenumfang (\\(n\\)):\n\n\\[BIC = −2 \\ln(L) + k · \\ln(n)\\]\nDas Modell mit dem kleinsten AIC (oder BIC) ist das minimal adäquate (d.h. optimale) Modell.",
+    "text": "Wie können wir messen, welches Modell das beste ist?\n\nKompromiss zwischen Modellanpassung und Modellkomplexität (Anzahl der Parameter, k).\n\nGüte der Anpassung: Likelihood L – wie gut die Daten zu einem bestimmten Modell passen.\nLog Likelihood: macht das Kriterium additiv.\nAIC (Akaike Information Criterion):\n\n\\[AIC = −2 \\ln(L) + 2k\\]\n\nBIC ( Bayesian Information Criterion), berücksichtigt den Stichprobenumfang (\\(n\\)):\n\n\\[BIC = −2 \\ln(L) + k \\cdot \\ln(n)\\]\nDas Modell mit dem kleinsten AIC (oder BIC) ist das minimal adäquate Modell.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1698,7 +1698,7 @@
     "href": "slides/07-anova.html#aic-basierte-modellauswahl",
     "title": "07-ANOVA und ANCOVA",
     "section": "AIC-basierte Modellauswahl",
-    "text": "AIC-basierte Modellauswahl\n\nDer paarweise Modellvergleich ist umständlich, insbesondere bei einer großen Anzahl von Modellen.\nLösung: Erstelle eine Menge von Kandidatenmodellen\nVerwende kleinstes AIC, um das minimal angemessene Modell auszuwählen.\n\n\nm3  &lt;- lm(growth ~ light * fert, data = plants) # Gesamtmodell\nm2  &lt;- lm(growth ~ light + fert, data = plants)\nm1a &lt;- lm(growth ~ fert, data = plants)\nm1b &lt;- lm(growth ~ light, data = plants)\nm0  &lt;- lm(growth ~ 1, data = plants)            # Nullmodell\n\nAIC(m0, m1a, m1b, m2, m3)\n\n    df      AIC\nm0   2 33.38238\nm1a  4 32.62699\nm1b  3 30.72893\nm2   5 26.83151\nm3   7 27.53237\n\n\nAnmerkung\n\nAIC-Werte sind bis zu einer additiven Konstante definiert\n\\(\\rightarrow\\) absolute Werte unterscheiden sich manchmal, abhängig von der angewandten Methode\n\\(\\Rightarrow\\) betrachtet den Bereich des AIC und die Unterschiede, ignoriert die absoluten Werte\nFaustregel: die „AIC-Einheit“ ist 2, Unterschiede \\(\\approx 2.0\\rightarrow\\) geringe Bedeutung",
+    "text": "AIC-basierte Modellauswahl\n\nDer paarweise Modellvergleich ist umständlich, insbesondere bei einer großen Anzahl von Modellen.\nLösung: Erstelle eine Menge von Kandidatenmodellen\nVerwende kleinstes AIC, um das minimal angemessene Modell auszuwählen.\n\n\nm3  &lt;- lm(growth ~ light * fert, data = plants) # Gesamtmodell\nm2  &lt;- lm(growth ~ light + fert, data = plants)\nm1a &lt;- lm(growth ~ fert, data = plants)\nm1b &lt;- lm(growth ~ light, data = plants)\nm0  &lt;- lm(growth ~ 1, data = plants)            # Nullmodell\n\nAIC(m0, m1a, m1b, m2, m3)\n\n    df      AIC\nm0   2 33.38238\nm1a  4 32.62699\nm1b  3 30.72893\nm2   5 26.83151\nm3   7 27.53237\n\n\nAnmerkungen\n\nAIC-Werte sind bis zu einer additiven Konstante definiert\n\\(\\rightarrow\\) Absolute Werte können je nach Software oder Methode variieren.\n\\(\\Rightarrow\\) Betrachte die Differenzen, nicht die absoluten Werte.\nFaustregel: die „AIC-Einheit“ ist 2, Unterschiede \\(\\approx 2.0\\rightarrow\\) geringe Bedeutung",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1709,7 +1709,7 @@
     "href": "slides/07-anova.html#schrittweise-modellauswahl-automatisch",
     "title": "07-ANOVA und ANCOVA",
     "section": "Schrittweise Modellauswahl (automatisch)",
-    "text": "Schrittweise Modellauswahl (automatisch)\n\nDas vollständige Modell wird an die Funktion step übergeben:\n\n\n\nm1 &lt;- lm(growth ~ fert * light, data=plants)\nopt &lt;- step(m1)\n\nStart:  AIC=-8.52\ngrowth ~ fert * light\n\n             Df Sum of Sq    RSS     AIC\n- fert:light  2   0.68667 2.8567 -9.2230\n&lt;none&gt;                    2.1700 -8.5222\n\nStep:  AIC=-9.22\ngrowth ~ fert + light\n\n        Df Sum of Sq    RSS     AIC\n&lt;none&gt;               2.8567 -9.2230\n- fert   2    2.6600 5.5167 -5.3256\n- light  1    2.6133 5.4700 -3.4275\n\n\n\nModell mit dem kleinsten AIC \\(\\rightarrow\\) optimales Modell.\n\n\n\nanova(opt)\n\nAnalysis of Variance Table\n\nResponse: growth\n          Df Sum Sq Mean Sq F value  Pr(&gt;F)  \nfert       2 2.6600 1.33000  3.7246 0.07190 .\nlight      1 2.6133 2.61333  7.3186 0.02685 *\nResiduals  8 2.8567 0.35708                  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\n\np &lt; 0.05  \\(\\rightarrow\\) signifikant\n\nErgebnisse des Beispiels:\n\noptimales Modell (m2, opt), enthält beide Faktoren fert und light, aber keine Interaktion.\nDie Modellauswahl hat fert und light als notwendige erklärende Variablen identifiziert, im Gegensatz zur klassischen ANOVA-Tabelle, in der nur light signifikant ist.",
+    "text": "Schrittweise Modellauswahl (automatisch)\n\nAutomatische Modellselektion\n\nm1 &lt;- lm(growth ~ fert * light, data=plants)\nopt &lt;- step(m1)\n\nStart:  AIC=-8.52\ngrowth ~ fert * light\n\n             Df Sum of Sq    RSS     AIC\n- fert:light  2   0.68667 2.8567 -9.2230\n&lt;none&gt;                    2.1700 -8.5222\n\nStep:  AIC=-9.22\ngrowth ~ fert + light\n\n        Df Sum of Sq    RSS     AIC\n&lt;none&gt;               2.8567 -9.2230\n- fert   2    2.6600 5.5167 -5.3256\n- light  1    2.6133 5.4700 -3.4275\n\n\nModell mit dem kleinsten AIC \\(\\rightarrow\\) optimales Modell.\n\n\n\nZum Vergleich: klassische ANOVA\n\nanova(opt)\n\nAnalysis of Variance Table\n\nResponse: growth\n          Df Sum Sq Mean Sq F value  Pr(&gt;F)  \nfert       2 2.6600 1.33000  3.7246 0.07190 .\nlight      1 2.6133 2.61333  7.3186 0.02685 *\nResiduals  8 2.8567 0.35708                  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nErgebnisse des Beispiels:\n\noptimales Modell (opt), enthält beide Faktoren (fert, light), aber keine Interaktion.\nDie Modellauswahl identifiziert fert und light als wichtige Erklärungsvariablen.\nim Gegensatz zur klassischen ANOVA-Tabelle, in der nur light signifikant war, zeigt die Modellselektion, dass auch fert zur Erklärung beiträgt.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1720,7 +1720,7 @@
     "href": "slides/07-anova.html#signifikanztests",
     "title": "07-ANOVA und ANCOVA",
     "section": "Signifikanztests?",
-    "text": "Signifikanztests?\n\n\nDas Konzept der Modellauswahl überlagert die p-Wert-basierte Statistik.\nEinige Autoren raten generell davon ab, p-Werte in diesem Zusammenhang zu verwenden, andere empfehlen einen Kompromiss.\nWenn man einen p-Wert erhalten möchte, sollte man das optimale Modell mit weiteren reduzierten Modellen vergleichen, die p-Werte aber dennoch mit Vorsicht interpretieren:\n\n\nanova(m2, m1a) # fert\nanova(m2, m1b) # light\n\n\nIn jedem Fall gilt: Konzentriere dich auf die praktischen Implikationen und vergiss nicht, die Effektgrößen anzugeben!",
+    "text": "Signifikanztests?\n\n\nDas Konzept der Modellselektion ersetzt die p-Wert-basierte Statistik mindestens teilweise.\nEinige Autoren raten generell davon ab, p-Werte in diesem Kontext zu verwenden.\nAndere empfehlen einen Kompromiss: p-Werte nur als Hilfsmittel, nicht als Entscheidungskriterium.\nWenn du p-Werte dennoch benötigst, vergleiche das optimale Modell mit reduzierten Modellen:\n\n\nanova(m2, m1a) # fert\nanova(m2, m1b) # light\n\n\nInterpretiere p-Werte mit Vorsicht:\n\nSie sind abhängig von der Modellstruktur.\nSie können irreführend sein, wenn das Modell nicht optimal ist.\n\nKonzentriere dich auf die praktischen Implikationen und gib Effektstärken an – nicht nur p-Werte.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1731,7 +1731,7 @@
     "href": "slides/07-anova.html#zusammenfassung-des-kapitels-anova",
     "title": "07-ANOVA und ANCOVA",
     "section": "Zusammenfassung des Kapitels ANOVA",
-    "text": "Zusammenfassung des Kapitels ANOVA\n\nLineare Modelle bilden die Grundlage für viele statistische Methoden.\n\nLineare Regression\nANOVA, ANCOVA, GLM, GAM, GLMM, . . .\nANOVA/ANCOVA anstelle von Mehrfachtests\n\nANOVA ist leistungsfähiger als Mehrfachtests:\n\nvermeidet \\(\\alpha\\)-Fehlerinflation\nein großes Experiment benötigt weniger n als viele kleine Experimente\nIdentifizierung von Interaktionseffekten\nEliminierung von Kovariaten\n\nModellauswahl vs. p-Wert-basierte Tests\n\nParadigmenwechsel in der Statistik: AIC anstelle des p-Wertes\nzuverlässiger, insbesondere bei unausgewogenen oder komplexen Designs\nerweiterbar auf generalisierte, additive und gemischte Modelle (GLM, GAM, LME, GLMM, …)\naber: p-Wert-basierte Tests sind manchmal leichter zu verstehen",
+    "text": "Zusammenfassung des Kapitels ANOVA\n\nLineare Modelle bilden die Grundlage für viele statistische Methoden\n\nLineare Regression\nANOVA/ANCOVA anstelle von Mehrfachtests\nMANOVA, GLM, GAM, GLMM, . . .\n\nANOVA ist leistungsfähiger als Mehrfachtests:\n\nvermeidet \\(\\alpha\\)-Fehlerinflation\nidentifiziert Interaktionseffekte\neliminiert Kovariate\nein großes Experiment benötigt weniger Stichprobengröße als viele kleine Experimente\n\nModellselektion vs. p-Wert-basierte Tests\n\nParadigmenwechsel: AIC anstelle von p-Werten\nzuverlässiger, besonders bei unausgewogenen oder komplexen Designs\nerweiterbar auf GLM, GAM, LME, GLMM, …\naber: p-Wert-basierte Tests sind manchmal leichter zu verstehen\n\n\nSelbststudium: Lies das Paper von Johnson & Omland (2004) zum Thema Modellselektion.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1742,7 +1742,7 @@
     "href": "slides/07-anova.html#vermeide-manipulation-von-p-werten",
     "title": "07-ANOVA und ANCOVA",
     "section": "Vermeide Manipulation von p-Werten",
-    "text": "Vermeide Manipulation von p-Werten\nExperimente NICHT wiederholen, bis ein signifikanter p-Wert gefunden wird.\nDie hochrangige Zeitschrift „… Nature hat einflussreiche Statistiker gebeten, eine Änderung zur Verbesserung der Wissenschaft zu empfehlen. Das gemeinsame Thema? Das Problem ist nicht unsere Mathematik, sondern wir selbst.“ (Leek et al. (2017)):\nFünf Wege, Statistiken zu verbessern. Kommentar zur Nature\n\nJeff Leek: Anpassung an die menschliche Kognition\nBlakeley B. McShane & Andrew Gelman: Verzicht auf statistische Signifikanz\nDavid Colquhoun: Auch falsch-positives Risiko angeben\nMichèle B. Nuijten: Analysepläne und Ergebnisse mitteilen\nSteven N. Goodman: Normen von innen heraus ändern\n\n\nSelbststudium\nLies das Paper von Johnson & Omland (2004) um mehr über das Paradigma der Modellauswahl zu erfahren.",
+    "text": "Vermeide Manipulation von p-Werten\n\nExperimente NICHT wiederholen, bis ein signifikanter p-Wert gefunden wird!\n\nLeek et al. (2017) in Nature:\n\n“… Nature asked influential statisticians to recommend one change to improve science. The common theme? The problem is not our maths, but ourselves.”:\n\nFive ways to fix statistics. Comment on Nature\n\nJeff Leek: Adjust for human cognition\nBlakeley B. McShane & Andrew Gelman: Abandon statistical significance\nDavid Colquhoun: State false-positive risk, too\nMichèle B. Nuijten: Share analysis plans and results\nSteven N. Goodman: Change norms from within",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -1753,7 +1753,7 @@
     "href": "slides/07-anova.html#literaturverzeichnis",
     "title": "07-ANOVA und ANCOVA",
     "section": "Literaturverzeichnis",
-    "text": "Literaturverzeichnis\n\n\n\n\nCrawley, M. J. (2002). Statistical computing. An introduction to data analysis using S-PLUS (pp. 1–761). Wiley. datasets: http://www.bio.ic.ac.uk/research/mjcraw/statcomp/data/\n\n\nDobson, A. J. (2013). Introduction to statistical modelling. Springer.\n\n\nDziallas, C., & Grossart, H.-P. (2011). Increasing Oxygen Radicals and Water Temperature Select for Toxic Microcystis sp. PLoS ONE, 6(9), e25569. https://doi.org/10.1371/journal.pone.0025569\n\n\nHolm, S. (1979). A simple sequentially rejective multiple test procedure. Scandinavian Journal of Statistics, 65–70. https://www.jstor.org/stable/4615733\n\n\nJähnichen, S., Ihle, T., Petzoldt, T., & Benndorf, J. (2007). Impact of Inorganic Carbon Availability on Microcystin Production by Microcystis aeruginosa PCC 7806. Applied and Environmental Microbiology, 73(21), 6994–7002. https://doi.org/10.1128/AEM.01253-07\n\n\nJähnichen, S., Long, B. M., & Petzoldt, T. (2011). Microcystin production by Microcystis aeruginosa: Direct regulation by multiple environmental factors. Harmful Algae, 12, 95–104. https://doi.org/10.1016/j.hal.2011.09.002\n\n\nJähnichen, S., Petzoldt, T., & Benndorf, J. (2001). Evidence for control of microcystin dynamics in Bautzen Reservoir (Germany) by cyanobacterial population growth rates and dissolved inorganic carbon. Fundamental and Applied Limnology, 150(2), 177–196. https://doi.org/10.1127/archiv-hydrobiol/150/2001/177\n\n\nJohnson, G., Jerald, & Omland, K. S. (2004). Model Selection in Ecology and Evolution. Trends in Ecology and Evolution, 19(2), 101–108. https://doi.org/10.1016/j.tree.2003.10.013\n\n\nZilliges, Y., Kehr, J.-C., Meissner, S., Ishida, K., Mikkat, S., Hagemann, M., Kaplan, A., Börner, T., & Dittmann, E. (2011). The Cyanobacterial Hepatotoxin Microcystin Binds to Proteins and Increases the Fitness of Microcystis under Oxidative Stress Conditions. PLoS ONE, 6(3), e17615. https://doi.org/10.1371/journal.pone.0017615",
+    "text": "Literaturverzeichnis\n\n\n\n\nCrawley, M. J. (2002). Statistical computing. An introduction to data analysis using S-PLUS (pp. 1–761). Wiley. datasets: http://www.bio.ic.ac.uk/research/mjcraw/statcomp/data/\n\n\nDobson, A. J. (2013). Introduction to statistical modelling. Springer.\n\n\nDziallas, C., & Grossart, H.-P. (2011). Increasing Oxygen Radicals and Water Temperature Select for Toxic Microcystis sp. PLoS ONE, 6(9), e25569. https://doi.org/10.1371/journal.pone.0025569\n\n\nHolm, S. (1979). A simple sequentially rejective multiple test procedure. Scandinavian Journal of Statistics, 65–70. https://www.jstor.org/stable/4615733\n\n\nHurlbert, S. H., Levine, R. A., & Utts, J. (2019). Coup de Grâce for a tough old bull: “Statistically Significant” expires. The American Statistician, 73(sup1), 352–357. https://doi.org/10.1080/00031305.2018.1543616\n\n\nJähnichen, S., Ihle, T., Petzoldt, T., & Benndorf, J. (2007). Impact of Inorganic Carbon Availability on Microcystin Production by Microcystis aeruginosa PCC 7806. Applied and Environmental Microbiology, 73(21), 6994–7002. https://doi.org/10.1128/AEM.01253-07\n\n\nJähnichen, S., Long, B. M., & Petzoldt, T. (2011). Microcystin production by Microcystis aeruginosa: Direct regulation by multiple environmental factors. Harmful Algae, 12, 95–104. https://doi.org/10.1016/j.hal.2011.09.002\n\n\nJähnichen, S., Petzoldt, T., & Benndorf, J. (2001). Evidence for control of microcystin dynamics in Bautzen Reservoir (Germany) by cyanobacterial population growth rates and dissolved inorganic carbon. Fundamental and Applied Limnology, 150(2), 177–196. https://doi.org/10.1127/archiv-hydrobiol/150/2001/177\n\n\nJohnson, G., Jerald, & Omland, K. S. (2004). Model Selection in Ecology and Evolution. Trends in Ecology and Evolution, 19(2), 101–108. https://doi.org/10.1016/j.tree.2003.10.013\n\n\nLeek, J., McShane, B. B., Gelman, A., Colquhoun, D., Nuijten, M. B., & Goodman, S. N. (2017). Five ways to fix statistics. Nature, 551(7682), 557–559. https://doi.org/10.1038/d41586-017-07522-z\n\n\nWasserstein, R. L., & Lazar, N. A. (2016). The ASA Statement on p-values: Context, process, and purpose. The American Statistician, 70(2), 129–133. https://doi.org/10.1080/00031305.2016.1154108\n\n\nWei, N., Hu, C., Dittmann, E., Song, L., & Gan, N. (2024). The biological functions of microcystins. Water Research, 262, 122119. https://doi.org/https://doi.org/10.1016/j.watres.2024.122119\n\n\nZilliges, Y., Kehr, J.-C., Meissner, S., Ishida, K., Mikkat, S., Hagemann, M., Kaplan, A., Börner, T., & Dittmann, E. (2011). The Cyanobacterial Hepatotoxin Microcystin Binds to Proteins and Increases the Fitness of Microcystis under Oxidative Stress Conditions. PLoS ONE, 6(3), e17615. https://doi.org/10.1371/journal.pone.0017615",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -4586,7 +4586,7 @@
     "href": "slides/07-anova.html#daten-im-langformat",
     "title": "07-ANOVA und ANCOVA",
     "section": "Daten im Langformat",
-    "text": "Daten im Langformat\n\n\nVorteile\n\nsieht „unpraktisch“ aus, ist aber besser für die Datenanalyse\nabhängige Variable Wachstum und Erklärungsvariable Behandlung deutlich sichtbar\nModellformel: growth ~ treat\nleicht erweiterbar auf \\(&gt;1\\) Erklärungsvariable\n\n\n\n\n\n\n\ntreat\nrep\ngrowth\n\n\n\n\nFertilizer\n1\n0.020\n\n\nFertilizer\n2\n-0.217\n\n\nFertilizer\n3\n-0.273\n\n\nF. open\n1\n0.940\n\n\nF. open\n2\n0.780\n\n\nF. open\n3\n0.555\n\n\nF.+sugar\n1\n0.188\n\n\nF.+sugar\n2\n-0.100\n\n\nF.+sugar\n3\n0.020\n\n\nF.+CaCO3\n1\n0.245\n\n\nF.+CaCO3\n2\n0.236\n\n\nF.+CaCO3\n3\n0.456",
+    "text": "Daten im Langformat\n\n\nVorteile\n\nsieht „unpraktisch“ aus, ist aber viel besser für die Datenanalyse\nabhängige Variable Wachstum und Erklärungsvariable Behandlung deutlich sichtbar\nModellformel: growth ~ treat\nleicht erweiterbar auf \\(&gt;1\\) Erklärungsvariable\n\n\n\n\n\n\n\ntreat\nrep\ngrowth\n\n\n\n\nFertilizer\n1\n0.020\n\n\nFertilizer\n2\n-0.217\n\n\nFertilizer\n3\n-0.273\n\n\nF. open\n1\n0.940\n\n\nF. open\n2\n0.780\n\n\nF. open\n3\n0.555\n\n\nF.+sugar\n1\n0.188\n\n\nF.+sugar\n2\n-0.100\n\n\nF.+sugar\n3\n0.020\n\n\nF.+CaCO3\n1\n0.245\n\n\nF.+CaCO3\n2\n0.236\n\n\nF.+CaCO3\n3\n0.456",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -4597,7 +4597,7 @@
     "href": "slides/07-anova.html#warum-nicht-einfach-mehrere-t-tests",
     "title": "07-ANOVA und ANCOVA",
     "section": "Warum nicht einfach mehrere t-Tests?",
-    "text": "Warum nicht einfach mehrere t-Tests?\n\n\nWenn wir bei 7 Behandlungen jede gegen jede testen wollen, brauchen wir:\n\n\\[7 \\cdot (7 - 1) / 2 = 21 \\qquad\\text{Tests.}\\]\n\nBei \\(\\alpha = 0.05\\), erhält man 5% falsch positive Ergebnisse. \\(\\Rightarrow\\) Einer von 20 Tests ist im Durchschnitt falsch positiv\nBei \\(N\\) Tests erhöht sich der Gesamtfehler von \\(\\alpha\\) im schlimmsten Fall auf \\(N\\cdot\\alpha\\).\nDies wird alpha-Fehler-Inflation oder Bonferroni-Ungleichung genannt:\n\n\\[\n\\alpha_{total} \\le \\sum_{i=1}^{N} \\alpha_i = N \\cdot \\alpha\n\\]\nWird die Regel ignoriert, erhält man zufällige falsch-positive Ergebnisse (statistical fishing).",
+    "text": "Warum nicht einfach mehrere t-Tests?\n\n\nWenn wir bei 7 Behandlungen jede gegen jede testen wollen, brauchen wir:\n\n\\[7 \\cdot (7 - 1) / 2 = 21 \\qquad\\text{Tests.}\\]\n\nBei \\(\\alpha = 0.05\\), erhält man 5% falsch positive Ergebnisse. \\(\\Rightarrow\\) Einer von 20 Tests ist im Durchschnitt falsch positiv.\nBei \\(N\\) Tests erhöht sich der Gesamtfehler von \\(\\alpha\\) im schlimmsten Fall auf \\(N\\cdot\\alpha\\).\nDies wird alpha-Fehler-Inflation oder Bonferroni-Ungleichung genannt:\n\n\\[\n\\alpha_{total} \\le \\sum_{i=1}^{N} \\alpha_i = N \\cdot \\alpha\n\\]\nWird die Regel ignoriert, erhält man zufällige falsch-positive Ergebnisse (statistical fishing).",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -4608,7 +4608,7 @@
     "href": "slides/07-anova.html#anova-varianzanalyse",
     "title": "07-ANOVA und ANCOVA",
     "section": "ANOVA: Varianzanalyse",
-    "text": "ANOVA: Varianzanalyse\n\nGrundgedanke\n\nAufteilung der Gesamtvarianz in Wirkung(en) und Fehler:\n\n\n\\[\ns_y^2 = s^2_\\mathrm{effect} + s^2_{\\varepsilon}\n\\]\n\n\nEtwas überraschend: Analyse von Varianzen, um Mittelwerte zu vergleichen.\nErklärung: Mittelwertunterschiede tragen zur Gesamtvarianz der ganzen Stichprobe bei.\nDie Varianzkomponenten können als Varianz innerhalb (\\(s^2_\\varepsilon\\)) und Varianz zwischen Stichproben bezeichnet werden.\nDie Varianzentrennung erfolgt über ein lineares Modell.",
+    "text": "ANOVA: Varianzanalyse\n\nGrundgedanke\n\nAufteilung der Gesamtvarianz in Wirkung(en) und Fehler:\n\n\n\\[\ns_y^2 = s^2_\\mathrm{effect} + s^2_{\\varepsilon}\n\\]\n\n\nEtwas überraschend: Analyse von Varianzen, um Mittelwerte zu vergleichen.\nErklärung: Mittelwertunterschiede tragen zur Gesamtvarianz der ganzen Stichprobe bei.\nDie Varianzkomponenten können als Varianz innerhalb (\\(s^2_\\varepsilon\\)) und Varianz zwischen Stichproben bezeichnet werden.\nDie Varianz-Zerlegung erfolgt über ein lineares Modell.",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -4641,7 +4641,7 @@
     "href": "slides/07-anova.html#daten-im-langformat-eingeben",
     "title": "07-ANOVA und ANCOVA",
     "section": "Daten im Langformat eingeben",
-    "text": "Daten im Langformat eingeben\n\n\n\nplants &lt;- data.frame(No = 1:12,\n                    growth = c(6.6, 7.2, 6.9, 8.3, 7.9, 9.2,\n                               8.3, 8.7, 8.1, 8.5, 9.1, 9.0),\n                    fert   = rep(c(\"A\", \"B\", \"C\"), each=2),\n                    light   = rep(c(\"low\", \"high\"), each=6)\n          )\n\n\n\n\n\n\n\nNo\ngrowth\nfert\nlight\n\n\n\n\n1\n6.6\nA\nlow\n\n\n2\n7.2\nA\nlow\n\n\n3\n6.9\nB\nlow\n\n\n4\n8.3\nB\nlow\n\n\n5\n7.9\nC\nlow\n\n\n6\n9.2\nC\nlow\n\n\n7\n8.3\nA\nhigh\n\n\n8\n8.7\nA\nhigh\n\n\n9\n8.1\nB\nhigh\n\n\n10\n8.5\nB\nhigh\n\n\n11\n9.1\nC\nhigh\n\n\n12\n9.0\nC\nhigh",
+    "text": "Daten im Langformat eingeben\n\n\n\nplants &lt;- data.frame(No = 1:12,\n                    growth = c(6.6, 7.2, 6.9, 8.3, 7.9, 9.2,\n                               8.3, 8.7, 8.1, 8.5, 9.1, 9.0),\n                    fert   = rep(c(\"A\", \"B\", \"C\"), each=2),\n                    light  = rep(c(\"low\", \"high\"), each=6)\n          )\n\n\n\n\n\n\n\nNo\ngrowth\nfert\nlight\n\n\n\n\n1\n6.6\nA\nlow\n\n\n2\n7.2\nA\nlow\n\n\n3\n6.9\nB\nlow\n\n\n4\n8.3\nB\nlow\n\n\n5\n7.9\nC\nlow\n\n\n6\n9.2\nC\nlow\n\n\n7\n8.3\nA\nhigh\n\n\n8\n8.7\nA\nhigh\n\n\n9\n8.1\nB\nhigh\n\n\n10\n8.5\nB\nhigh\n\n\n11\n9.1\nC\nhigh\n\n\n12\n9.0\nC\nhigh",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -4696,7 +4696,7 @@
     "href": "slides/07-anova.html#moderne-sichtweise-keine-vortests-mehr",
     "title": "07-ANOVA und ANCOVA",
     "section": "Moderne Sichtweise: Keine Vortests mehr!",
-    "text": "Moderne Sichtweise: Keine Vortests mehr!\n\nDie traditionelle Praxis – Residuen zu testen, bevor man ANOVA durchführt –  ist nicht mehr zeitgemäß und führt zu gravierenden Problemen:\n\nResiduen sind erst nach Modellanpassung verfügbar.\nBei Vortests müsste man sie „irgendwie vorher“ schätzen, oft durch Pooling.\nHäufig wurden Rohdaten statt Residuen getestet - Kardinalfehler.\nDie Methode stammt aus der Ära manueller Berechnungen.\n\nEmpfohlene Vorgehensweise:\n\nPrüfe, ob ANOVA grundsätzlich angemessen ist:\n\nFragestellung,\nUnabhängigkeit,\nmögliche Nichtnormalität auf Grund des Versuchsdesigns\n\nFühre die ANOVA durch – ohne Vortests.\nDokumentiere die Diagnostik – grafisch und kritisch (QQ-Plot, Residuals vs. Fitted).",
+    "text": "Moderne Sichtweise: Keine Vortests mehr!\n\nDie traditionelle Praxis – Residuen zu testen, bevor man ANOVA durchführt –  ist nicht mehr zeitgemäß und führt zu gravierenden Problemen:\n\nResiduen sind erst nach Modellanpassung verfügbar.\nBei Vortests müsste man sie „irgendwie vorher“ schätzen, oft durch Pooling.\nHäufig wurden Rohdaten statt Residuen getestet - Kardinalfehler.\nDie Methode stammt aus der Ära manueller Berechnungen.\n\nEmpfohlene Vorgehensweise:\n\nPrüfe, ob ANOVA grundsätzlich angemessen ist:\n\nFragestellung,\nUnabhängigkeit,\nmögliche Nichtnormalität auf Grund des Versuchsdesigns\n\nFühre die ANOVA durch – ohne Vortests.\nDiagnostik im Anschluss – grafisch und kritisch (QQ-Plot, Residuals vs. Fitted).",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -4707,7 +4707,128 @@
     "href": "slides/07-anova.html#einfache-anova-mit-heterogenen-varianzen",
     "title": "07-ANOVA und ANCOVA",
     "section": "Einfache ANOVA mit heterogenen Varianzen",
-    "text": "Einfache ANOVA mit heterogenen Varianzen\n Die Varianzhomogenität ist wichtiger als die Normalverteilung – insbesondere bei unbalancierten Designs. \n\nErweiterung des Welch-Tests für \\(\\ge 2\\) Stichproben\nin R oneway.test genannt.\n\n\noneway.test(growth ~ treat, data = algae)\n\n\n    One-way analysis of means (not assuming equal variances)\n\ndata:  growth and treat\nF = 115.09, num df = 6.0000, denom df = 4.6224, p-value = 6.57e-05\n\n\nDer oneway.test berücksichtigt ungleiche Varianzen durch gewichtete Mittelwerte und eine angepasste F-Statistik – ideal für unbalancierte oder heterogene Daten.",
+    "text": "Einfache ANOVA mit heterogenen Varianzen\n\n\nErweiterung des Welch-Tests für \\(\\ge 2\\) Stichproben\nin R oneway.test genannt.\n\n\noneway.test(growth ~ treat, data = algae)\n\n\n    One-way analysis of means (not assuming equal variances)\n\ndata:  growth and treat\nF = 115.09, num df = 6.0000, denom df = 4.6224, p-value = 6.57e-05\n\n\n\n\nDer oneway.test berücksichtigt ungleiche Varianzen durch gewichtete Mittelwerte und Freiheitsgrade und eine angepasste F-Statistik.\nDie Varianzhomogenität ist wichtiger als die Normalverteilung – insbesondere bei unbalancierten Designs.\nEin Varianzunterschied kann den F-Test stärker verzerren als leichte Abweichungen von der Normalverteilung.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#zweifache-anova",
+    "href": "slides/07-anova.html#zweifache-anova",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Zweifache ANOVA",
+    "text": "Zweifache ANOVA\n\nBeispiel aus einem Statistik-Lehrbuch (Crawley, 2002), angewandt auf einen neuen Kontext\nAuswirkungen von Dünger und Licht auf das Wachstum der Pflanzenhöhe in cm pro Zeit\n\n\n\n\nDünger\nhelles Licht\nschwaches Licht\n\n\n\n\nA\n8.3\n6.6\n\n\nA\n8.7\n7.2\n\n\nB\n8.1\n6.9\n\n\nB\n8.5\n8.3\n\n\nC\n9.1\n7.9\n\n\nC\n9.0\n9.2\n\n\n\n\n\n\n\n\n\nfaktorielles Experiment (mit Wiederholungen)\nfür jede Faktorkombination mehr als eine Beobachtung\nEs können Wechselwirkungen identifiziert werden\n\nFalls keine Wiederholungen: Keine Schätzung des Fehlers für Interaktionen - keine Identifizierung von Wechselwirkungen möglich.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#warum-nicht-einfach-einen-t-test-durchführen",
+    "href": "slides/07-anova.html#warum-nicht-einfach-einen-t-test-durchführen",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Warum nicht einfach einen t-Test durchführen?",
+    "text": "Warum nicht einfach einen t-Test durchführen?\n\nboxplot(weight ~ gender,data = dobson, ylab = \"weight\")\n\nt.test(weight ~ gender, data = dobson, var.equal = TRUE)\n\n\n    Two Sample t-test\n\ndata:  weight by gender\nt = 0.97747, df = 22, p-value = 0.339\nalternative hypothesis: true difference in means between group M and group F is not equal to 0\n95 percent confidence interval:\n -126.3753  351.7086\nsample estimates:\nmean in group M mean in group F \n       3024.000        2911.333 \n\n\n\nDer t-Test zeigt keine signifikante Differenz und der Boxplot zeigt starke Überlappung.\nAber: Der t-Test ignoriert die Schwangerschaftswoche, eine wichtige Kovariate.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#ancova-berücksichtigung-der-kovariate",
+    "href": "slides/07-anova.html#ancova-berücksichtigung-der-kovariate",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "ANCOVA: Berücksichtigung der Kovariate",
+    "text": "ANCOVA: Berücksichtigung der Kovariate\n\nm &lt;- lm(weight ~ week * gender, data = dobson)\nanova(m)\n\nAnalysis of Variance Table\n\nResponse: weight\n            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    \nweek         1 1013799 1013799 31.0779 1.862e-05 ***\ngender       1  157304  157304  4.8221   0.04006 *  \nweek:gender  1    6346    6346  0.1945   0.66389    \nResiduals   20  652425   32621                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nBeispiel: Aus Gründen, die wir später besprechen, muss die Kovariate week als erstes in der Modellformel stehen.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#modellselektion-und-likelihood-ratio-tests",
+    "href": "slides/07-anova.html#modellselektion-und-likelihood-ratio-tests",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Modellselektion und Likelihood-Ratio-Tests",
+    "text": "Modellselektion und Likelihood-Ratio-Tests\n\nAnsatz\n\nMehrere Modelle einzeln anpassen\nModelle paarweise mit ANOVA (Likelihood Ratio Test) vergleichen\n\nDaten und Beispiel\n\nplants &lt;- data.frame(No=1:12,\n                   growth=c(6.6, 7.2, 6.9, 8.3, 7.9, 9.2,\n                            8.3, 8.7, 8.1, 8.5, 9.1, 9.0),\n                   fert= rep(c(\"A\", \"B\", \"C\"), each=2),\n                   light= rep(c(\"low\", \"high\"), each=6)\n                   )\n\n\nm3 &lt;- lm(growth ~ fert * light, data=plants)  # f1 + f2 + f1:f2\nm2 &lt;- lm(growth ~ fert + light, data=plants)  # f1 + f2\nanova(m3, m2)\n\nAnalysis of Variance Table\n\nModel 1: growth ~ fert * light\nModel 2: growth ~ fert + light\n  Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)\n1      6 2.1700                           \n2      8 2.8567 -2  -0.68667 0.9493 0.4383\n\n\n\nLikelihood-Ratio-Test vergleicht zwei Modelle (anova in R mit &gt; 1 Modell)\nModell mit Interaktion (m3) nicht signifikant besser als Modell ohne Interaktion (m2).",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#aic-basierte-modellselektion",
+    "href": "slides/07-anova.html#aic-basierte-modellselektion",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "AIC-basierte Modellselektion",
+    "text": "AIC-basierte Modellselektion\n\nDer paarweise Modellvergleich ist umständlich, insbesondere bei einer großen Anzahl von Modellen.\nLösung: Erstelle eine Menge von Kandidatenmodellen\nVerwende kleinstes AIC, um das minimal angemessene Modell auszuwählen.\n\n\nm3  &lt;- lm(growth ~ light * fert, data = plants) # Gesamtmodell\nm2  &lt;- lm(growth ~ light + fert, data = plants)\nm1a &lt;- lm(growth ~ fert, data = plants)\nm1b &lt;- lm(growth ~ light, data = plants)\nm0  &lt;- lm(growth ~ 1, data = plants)            # Nullmodell\n\nAIC(m0, m1a, m1b, m2, m3)\n\n    df      AIC\nm0   2 33.38238\nm1a  4 32.62699\nm1b  3 30.72893\nm2   5 26.83151\nm3   7 27.53237\n\n\nAnmerkungen\n\nAIC-Werte sind bis zu einer additiven Konstante definiert\n\\(\\rightarrow\\) Absolute Werte können je nach Software oder Methode variieren.\n\\(\\Rightarrow\\) Betrachte die Differenzen, nicht die absoluten Werte.\nFaustregel: die „AIC-Einheit“ ist 2, Unterschiede \\(\\approx\\) 2.0 \\(\\rightarrow\\) geringe Bedeutung",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#schrittweise-modellselektion-automatisch",
+    "href": "slides/07-anova.html#schrittweise-modellselektion-automatisch",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Schrittweise Modellselektion (automatisch)",
+    "text": "Schrittweise Modellselektion (automatisch)\n\nAutomatische Modellselektion\n\nm1 &lt;- lm(growth ~ fert * light, data=plants)\nopt &lt;- step(m1)\n\nStart:  AIC=-8.52\ngrowth ~ fert * light\n\n             Df Sum of Sq    RSS     AIC\n- fert:light  2   0.68667 2.8567 -9.2230\n&lt;none&gt;                    2.1700 -8.5222\n\nStep:  AIC=-9.22\ngrowth ~ fert + light\n\n        Df Sum of Sq    RSS     AIC\n&lt;none&gt;               2.8567 -9.2230\n- fert   2    2.6600 5.5167 -5.3256\n- light  1    2.6133 5.4700 -3.4275\n\n\nModell mit dem kleinsten AIC \\(\\rightarrow\\) optimales Modell.\n\n\n\nZum Vergleich: klassische ANOVA\n\nanova(opt)\n\nAnalysis of Variance Table\n\nResponse: growth\n          Df Sum Sq Mean Sq F value  Pr(&gt;F)  \nfert       2 2.6600 1.33000  3.7246 0.07190 .\nlight      1 2.6133 2.61333  7.3186 0.02685 *\nResiduals  8 2.8567 0.35708                  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nErgebnisse des Beispiels:\n\noptimales Modell (opt), enthält beide Faktoren (fert, light), aber keine Interaktion.\nDie Modellselektion identifiziert fert und light als wichtige Erklärungsvariablen.\nim Gegensatz zur klassischen ANOVA-Tabelle, in der nur light signifikant war, zeigt die Modellselektion, dass auch fert zur Erklärung beiträgt.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#signifikanztests-vs.-modellselektion",
+    "href": "slides/07-anova.html#signifikanztests-vs.-modellselektion",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Signifikanztests vs. Modellselektion",
+    "text": "Signifikanztests vs. Modellselektion\n\n\nDas Konzept der Modellselektion ersetzt die p-Wert-basierte Statistik, zumindest teilweise.\nEinige Autoren raten davon ab, p-Werte in diesem Kontext noch zu verwenden.\nAndere empfehlen einen Kompromiss: p-Werte als Hilfsmittel, nicht als Entscheidungskriterium.\n\nDerzeitige Empfehlung\nWenn p-Werte benötigt werden, vergleiche das optimale Modell mit reduzierten Modellen:\n\nanova(m2, m1a) # fert\nanova(m2, m1b) # light\n\n\nInterpretiere p-Werte mit Vorsicht:\n\nSie sind abhängig von der Modellstruktur.\nSie können irreführend sein, wenn das Modell nicht optimal ist.\n\nGib auch Effektstärken und Vertrauensintervalle an!",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#the-asa-statement-on-statistical-significance-and-p-values",
+    "href": "slides/07-anova.html#the-asa-statement-on-statistical-significance-and-p-values",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "The “ASA Statement on Statistical Significance and P-Values”",
+    "text": "The “ASA Statement on Statistical Significance and P-Values”\nDas Statement der American Statistical Association (Wasserstein & Lazar, 2016) befasst sich mit Definition und Bedeutung des p-Werts, ohne das Konzept komplett in Frage zu stellen. Es definiiert 6 Prinzipien:\n\n\\(P\\)-values can indicate how incompatible the data are with a specified statistical model.\n\\(P\\)-values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone.\nScientific conclusions and business or policy decisions should not be based only on whether a \\(p\\)-value passes a specific threshold.\nProper inference requires full reporting and transparency.\nA \\(p\\)-value, or statistical significance, does not measure the size of an effect or the importance of a result.\nBy itself, a \\(p\\)-value does not provide a good measure of evidence regarding a model or hypothesis.\n\nDie Prinzipien sind im Artikel weiter ausgeführt.\nSelbststudium: Setze Dich kritisch mit den Konzepten von p-Wert und Signifikanz auseinander und lies dazu neben Wasserstein & Lazar (2016) auch Hurlbert et al. (2019).",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#the-asa-statement",
+    "href": "slides/07-anova.html#the-asa-statement",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "The “ASA Statement …”",
+    "text": "The “ASA Statement …”\n\nDas ASA Statement on Statistical Significance and P-Values der American Statistical Association (Wasserstein & Lazar, 2016) befasst sich mit der Bedeutung des p-Werts, ohne ihn komplett in Frage zu stellen. Es definiert 6 Prinzipien:\n\n\nP-values can indicate how incompatible the data are with a specified statistical model.\nP-values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone.\nScientific conclusions and business or policy decisions should not be based only on whether a p-value passes a specific threshold.\nProper inference requires full reporting and transparency.\nA p-value, or statistical significance, does not measure the size of an effect or the importance of a result.\nBy itself, a p-value does not provide a good measure of evidence regarding a model or hypothesis.\n\n\nDie Details sind im Statement weiter ausgeführt.\nSelbststudium: Lies dazu neben Wasserstein & Lazar (2016) auch Hurlbert et al. (2019).",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#modellkandidaten-und-auswahl-eines-optimalen-modells",
+    "href": "slides/07-anova.html#modellkandidaten-und-auswahl-eines-optimalen-modells",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Modellkandidaten und Auswahl eines optimalen Modells",
+    "text": "Modellkandidaten und Auswahl eines optimalen Modells\n\nProblem:\n\nBei komplexen ANOVA-Modellen hängen die p-Werte von der Anzahl (und manchmal von der Reihenfolge) der einbezogenen Faktoren und Wechselwirkungen ab.\nDer H0-basierte Ansatz wird eventuell verwirrend, z.B. wegen widersprüchlicher p-Werte.\n\nAlternativer Ansatz:\n\nModellselektion – nutzt das Prinzip der Parsimonie\n\nEs werden verschiedene Modellkandidaten verglichen:\n\nModell mit allen potentiellen Effekten → vollständiges Modell\nWeglassen einzelner Faktoren → reduzierte Modelle (mehrere!)\nKeine Einflussfaktoren (nur Mittelwert) → Nullmodell\nWelches Modell ist das beste? → minimales adäquates Modell",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "07-ANOVA und ANCOVA"
+    ]
+  },
+  {
+    "objectID": "slides/07-anova.html#ansatz-1-einfache-anova",
+    "href": "slides/07-anova.html#ansatz-1-einfache-anova",
+    "title": "07-ANOVA und ANCOVA",
+    "section": "Ansatz 1: einfache ANOVA",
+    "text": "Ansatz 1: einfache ANOVA\n\npar(mar=c(4, 8, 2, 1), las=1)\nm &lt;- lm(mu ~ treat, data=mcyst)\nanova(m)\n\nAnalysis of Variance Table\n\nResponse: mu\n          Df     Sum Sq    Mean Sq F value   Pr(&gt;F)   \ntreat      2 0.00053293 2.6647e-04   8.775 0.004485 **\nResiduals 12 0.00036440 3.0367e-05                    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nplot(TukeyHSD(aov(m)))",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
