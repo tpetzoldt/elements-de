@@ -1,0 +1,327 @@
+---
+title: "09-Generalized Linear Models"
+date:   "`r Sys.Date()`"
+--- 
+
+# GLM -- Verallgemeinertes Lineares Modell
+
+<br>
+
+## Was ist ein Generalisiertes Lineares Modell (GLM)?
+
+Erweitert die Theorie der linearen Modelle auf **nichtnormalverteilte Responsevariablen** durch die Verwendung einer Link-Funktion.
+
+- **Poisson-Verteilung:**
+  - Zähldaten, z.B. Vorkommen von Tieren.
+  - Häufigkeit von Ereignissen: $0, 1, 2, 3, \dots$ Zahlen sind strikt positiv, Null kann vorkommen. 
+
+
+- **Binomial-Verteilung:**
+  - Binäre Variablen (lebend/tot, vorhanden/nicht vorhanden) oder Dosis-Wirkungsbeziehungen.
+  - Nominelle Variablen (Faktorstufen) mit zwei oder mehr Ausprägungen. 
+
+
+- **Gamma-Verteilung:**
+  - Metrische Variablen, oft **rechtsschief** (z. B. Reaktionszeiten, Wartezeiten).
+  - Vermeidet Transformationen (z.B. log-Transformation) der Responsevariable.
+
+## Verteilungsfamilie und Linkfunktion
+
+<br>
+
+Ein GLM trennt das Modells in drei Komponenten:
+
+- **1. Zufallskomponente (Verteilungsfamilie):**
+  - Definiert die **Wahrscheinlichkeitsverteilung** der Responsevariable $Y$.
+  - Legt fest, welche Verteilung die Daten (z. B. Poisson, Binomial, Gamma) annehmen.
+
+- **2. Systematische Komponente (Linearer Prädiktor):**
+  - Die bekannte lineare Gleichung: $\eta = \beta_0 + \beta_1 X_1 + \dots$
+  - Enthält alle Kovariablen und deren Koeffizienten.
+
+- **3. Linkfunktion:**
+  - Verbindet die **Zufallskomponente** (den Erwartungswert $E(Y)$ des Response) mit der **Systematischen Komponente** (dem linearen Prädiktor $\eta$).
+  - Transformation des Erwartungswertes: $g(E(Y)) = \eta$
+
+**Beispiel:** Bei binären Daten transformiert die **Logit-Linkfunktion** die Wahrscheinlichkeiten (die zwischen 0 und 1 liegen müssen) auf die gesamte reelle y-Achse ($-\infty$ bis $+\infty$), damit sie mit dem linearen Modell übereinstimmen.
+
+
+## Typische Familien und Kanonische Linkfunktionen
+
+Die Wahl der Linkfunktion hängt von der Verteilung der Response ab.
+
+**Kanonische Linkfunktion:** ist die Standard- und rechnerisch effizienteste Wahl.
+
+::: {.smallfont}
+
+| Verteilungsfamilie | Response-Typ              | Kanonische Linkfunktion | Funktion |
+| :---               | :---                      | :---                    | :---     |
+| **Normal (Gauß)**  | Metrisch, kontinuierlich  | **Identitäts-Link**     | $g(\mu) = \mu$ |
+| **Poisson**        | Zähldaten (Counts)        | **Log-Link**            | $g(\mu) = \log(\mu)$ |
+| **Binomial**       | Binär (0/1), Proportionen | **Logit-Link**          | $g(\mu) = \log(\frac{\mu}{1-\mu})$ |
+| **Gamma**          | Metrisch, positiv, schief | **Reziprok-Link**       | $g(\mu) = 1/\mu$ |
+| **Inverse Gauß**   | Metrisch, positiv, schief | **Reziprok-Quadrat-Link** | $g(\mu) = 1/\mu^2$ |
+
+:::
+
+**Flexible Anpassungen möglich**
+
+- **Quasi-Poisson / Quasi-Binomial:** 
+    - Wird verwendet, wenn eine Über- oder Unterdispersion vorliegt.
+    – Varianz ist größer oder kleiner als von Poisson oder Binomial angenommen.
+
+- **Nicht-kanonische Linkfunktionen:**
+  - Für bestimmte Interpretation oder Datentypen.
+  - Bei der Binomialverteilung kann statt des Logit-Links der **Probit-Link** (basiert auf der Normalverteilung) verwendet werden.
+
+
+## Modellformel
+
+<br>
+
+Sieht im Prinzip genauso aus, wie bei `lm`:
+
+```r
+glm(growth ~ pH + nutrient, data = growthdata, family = binomial)
+```
+
+
+**Beispiel: Binomialverteilung**
+
+* Modellierung von **Wahrscheinlichkeiten** eines Ereignisses.
+* Definitiv viel besser als Arbeiten mit Prozentzahlen!
+
+**Responsevariable**
+
+Die Responsevariable enthält entweder einen langen Vektor mit (0, 1) für die Ereignisse oder eine Matrix mit zwei Spalten mit den Häufigkeiten für "ja" oder "nein".
+
+
+**Erklärungsvariablen**
+
+- **Standard:** Die Wahrscheinlichkeit steigt monoton mit dem Prädiktor (z. B. Dosis).
+- **Optimum:** Die Wahrscheinlichkeit steigt zuerst an und fällt dann wieder ab, z. B. Wachstum in Abhängigkeit vom pH. Quadratischer Term in der Modellformel: `I(x^2)`
+
+```r
+glm(growth ~ pH + I(pH^2), data = growthdata, family = binomial)
+```
+- Die Funktion `I()` (AsIs) stellt sicher, dass der Term arithmetisch und nicht symbolisch interpretiert wird.
+
+## GLM Datenstruktur im R-Code
+
+Die Binomial-Familie akzeptiert zwei primäre Formate für die Responsevariable:
+
+::: {.columns}
+:::: {.column width="48%"}
+
+### A: Logischer Vektor (0/1)
+
+Jede Zeile repräsentiert einen einzelnen Versuch.
+
+```{r}
+#| eval: false
+#| echo: true
+df_vektor <- data.frame(
+  pH = c(5.0, 5.2, 5.5, 5.8, 6.0, 6.2, 6.5, 6.7, 7.0, 7.2),
+  # 1 = Gekeimt (Erfolg), 0 = Nicht Gekeimt (Misserfolg)
+  keimung = c(0, 0, 1, 1, 1, 1, 1, 0, 0, 0)
+)
+
+# Modellaufruf:
+# glm(keimung ~ pH + I(pH^2), data = df_vektor, family = binomial)
+```
+::::
+
+:::: {.column width="4%"}
+ 
+::::
+
+:::: {.column width="48%"}
+
+### B: Häufigkeits-Matrix
+
+Jede Zeile repräsentiert die Replikate mit aggregierten Zählungen.
+
+```{r}
+#| eval: false
+#| echo: true
+df_matrix <- data.frame(
+  pH = c(5.0, 5.5, 6.0, 6.5, 7.0),
+  Anzahl_gesamt = c(20, 20, 20, 20, 20),
+  # Spalten müssen "Erfolge" und "Misserfolge" sein
+  Erfolg = c(2, 8, 18, 12, 3), 
+  Misserfolg = c(18, 12, 2, 8, 17) # Anzahl_Samen - Erfolg
+)
+
+# Modellaufruf:
+# glm(cbind(Erfolg, Misserfolg) ~ pH, data = df_matrix, family = binomial)
+```
+::::
+:::
+
+
+**Wichtig beim Matrix-Format:**
+
+- Der Response muss mit `cbind(Erfolg, Misserfolg)` im Modellaufruf angegeben werden.
+- Dieses Format ist effizienter bei großen, aggregierten Datensätzen.
+
+
+## Diagnostik: Einfluss und Residuen
+
+<br>
+
+Überprüfung der Modellannahmen nach dem Fitten.
+
+::: {.columns}
+::: {.column width="50%"}
+### A: Einflussreiche Punkte (Leverage)
+* **Plot:** Cook's Distance und Leverage. 
+* **Befund (Ihre Daten):** Die Punkte sind zwischen $0.042$ und $0.045$ geclustert.
+* **Interpretation:** Die Beobachtungen üben einen **gleichmäßigen und geringen Einfluss** aus ($\approx 1/n$). Es sind keine extremen Ausreißer vorhanden, die das Modell verzerren.
+:::
+
+::: {.column width="50%"}
+### B: Residuen-Analyse
+* **Plot:** Q-Q-Plot der deviance-Residuen. 
+* **Befund (Ihre Daten):** Die Residuen biegen an den Enden (Tails) leicht nach oben ab.
+* **Interpretation:** Die Verteilung ist **leicht rechtsschief** und hat "schwerere Tails" als eine reine Normalverteilung.
+* **Fazit:** Der Modellfit ist **akzeptabel**; GLMs sind robust gegenüber leichten Abweichungen der Residuen-Normalität.
+:::
+:::
+
+<!------------------------------------>
+
+## Anwendung: Toxizitätstest (Toxtest)
+
+<br>
+
+**Ziel:** Modellierung der Mortalität als Funktion der Dosis.
+
+**Datenstruktur (7 Dosisstufen):** Verwendung des Matrix-Formats.
+
+```{r daphnia-data, echo=TRUE}
+library(dplyr)
+
+daphnia <- data.frame(
+  number   = c(11, 13, 17, 10, 11, 10, 11), 
+  dose     = c(0, 1, 2, 3, 4, 5, 6),
+  survived = c(11, 12, 17, 6, 2, 0, 0)
+)
+
+plot(survived/(number) ~ dose, data = daphnia, pch=16)
+```
+
+## Fitten des Modells und statistischer Test
+<br>
+
+```{r daphnia-glm, echo=TRUE}
+# Vorbereitung für 2spaltige Datenstruktur cbind(Erfolg, Misserfolg)
+daphnia <- daphnia |> mutate(dead = number - survived)
+
+## Fitten des GLM
+m <- glm(cbind(survived, dead) ~ dose, data = daphnia, family = binomial(link = "logit"))
+
+# Test der Gesamtsignifikanz (Äquivalent zur F-Statistik im lm)
+anova(m, test="Chi")
+```
+- **Response:** `cbind(survived, dead)` (Überleben, Tod).
+- **Test:** Der **Chi-Quadrat-Test** aus der ANOVA zeigt, ob das Modell mit `dose` besser ist als ein Nullmodell.
+
+## Visualisierung
+
+<br>
+
+Transformation der Vorhersage von der Link-Skala zurück zur Wahrscheinlichkeits-Skala
+
+<br>
+
+```{r daphnia-ci, echo=TRUE}
+# Predict on the 'link' scale to get standard errors
+dose_seq <- data.frame(dose = seq(0, 6, length.out = 100))
+preds    <- predict(m, newdata = dose_seq, type = "link", se.fit = TRUE)
+
+# Calculate CI on the link scale and back-transform
+fit_link <- preds$fit
+se_link  <- preds$se.fit
+
+dose_seq$prob     <- plogis(fit_link)
+dose_seq$lwr <- plogis(fit_link + (qnorm(0.025) * se_link))
+dose_seq$upr <- plogis(fit_link + (qnorm(0.975) * se_link))
+```
+
+**Interpretation:**
+
+- **Link-Skala:** Log-Odds, Werte von $-\infty$ bis $+\infty$.
+- **Response-Skala:** Wahrscheinlichkeiten, Werte von $0$ bis $1$.
+- `plogis()` ist die Umkehrfunktion (Inverse) des Logit-Links.
+
+## Konfidenzintervalle
+
+<br>
+
+:::{.columns}
+
+::::{.column width="50%"}
+
+**Code**
+
+```{r daphnina-ci-plot, eval =FALSE, echo=TRUE}
+plot(daphnia$dose, daphnia$survived / daphnia$number,
+     pch = 16, col = "darkblue", ylim = c(0, 1), las=1,
+     xlab = "Dose", ylab = "Proportion Survived (p)")
+lines(dose_seq$dose, dose_seq$prob, lwd = 2, col = "red")
+
+lines(dose_seq$dose, dose_seq$upr, lty="dashed")
+lines(dose_seq$dose, dose_seq$lwr, lty="dashed")
+abline(h=0.5, lty="dotted")
+```
+
+::::
+
+::::{.column width="50%"}
+
+```{r daphnia-ci-result, eval=TRUE, echo=FALSE}
+par(cex=1.4)
+plot(daphnia$dose, daphnia$survived / daphnia$number,
+     pch = 16, col = "darkblue", ylim = c(0, 1), las=1,
+     xlab = "Dose", ylab = "Proportion Survived")
+lines(dose_seq$dose, dose_seq$prob, lwd = 2, col = "red")
+
+lines(dose_seq$dose, dose_seq$upr, lty="dashed")
+lines(dose_seq$dose, dose_seq$lwr, lty="dashed")
+abline(h=0.5, lty="dotted")
+```
+
+::::
+
+:::
+
+
+
+- Wir verwenden den **$z$-Wert (`qnorm`)**, da in GLMs die Normalverteilung der Koeffizienten (asymptotische Theorie) angenommen wird.
+- `plogis()` ist die Umkehrfunktion des Logit-Links.
+- **Rot:** Die vom Modell geschätzte Überlebenswahrscheinlichkeit.
+- **Gestrichelt:** Das 95%-Konfidenzintervall.
+- **Gepunktet (LC50):** Schnittpunkt der Kurve mit $\text{p}=0.5$. An diesem Punkt ist der lineare Prädiktor $\eta$ genau Null.
+
+## Numerische Schätzung der LC50
+
+- LC50 Konzentration, bei der 50% der Organismen überleben, p=0.5
+- linearer Prädiktor $\eta$ ist Null)
+- Schätzung des Konfidenzintervalls mittels **Delta-Methode**
+
+$$
+\text{LC}_{50} = -\beta_{\text{Intercept}} / \beta_{\text{Dose}}
+$$.
+
+
+```{r lc50-calc, echo=TRUE}
+library(MASS)
+lc50 <- dose.p(m, p = 0.5)
+lc50
+```
+
+
+## Referenzen
+
+<br>
+

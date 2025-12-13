@@ -1,5 +1,4 @@
 ---
-subtitle: "Applied Statistics -- A Practical Course"
 title: "08-Nichtlineare Regression"
 date:   "`r Sys.Date()`"
 --- 
@@ -476,7 +475,7 @@ Die Qualität eines Modells hängt nicht von p-Werten ab – sondern von **Plaus
 Siehe: [https://en.wikipedia.org/wiki/Lineweaver-Burk_plot](https://en.wikipedia.org/wiki/Lineweaver-Burk_plot)
 
 
-## Referenzen
+## Literatur
 
 <br>
 
