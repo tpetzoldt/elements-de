@@ -502,6 +502,16 @@ with conditional variances for "sample" </code></pre>
 </ul></li>
 </ol>
 </section>
+<section id="prüfung-der-modellannahmen-diagnostik" class="slide level2">
+<h2>Prüfung der Modellannahmen (Diagnostik)</h2>
+<p>Zur Prüfung der Modellannahmen verwenden wir die Funktion <code>check_model()</code> aus dem Paket <strong>performance</strong> <span class="citation" data-cites="Luedecke2021-performance">(<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">Lüdecke et al., 2021</a>)</span>, die alle wichtigen diagnostischen Plots generiert.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"performance"</span>)</span>
+<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"see"</span>)</span>
+<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">check_model</span>(lmm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="10-lmer_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1536"></section>
 <section id="interpretation-der-ergebnisse-summarylmm" class="slide level2">
 <h2>Interpretation der Ergebnisse (<code>summary(lmm)</code>)</h2>
 <p>Wir analysieren die Ausgabe des Modells</p>
@@ -539,18 +549,19 @@ with conditional variances for "sample" </code></pre>
 </section>
 <section id="schritt-2-intra-klassen-korrelation-icc" class="slide level2">
 <h2>Schritt 2: Intra-Klassen-Korrelation (ICC)</h2>
+<p><br></p>
 <p>Die ICC gibt an, wie viel der Gesamtvarianz durch die Gruppierung (Charge) erklärt wird.</p>
 <p><span class="math display">\[\text{ICC} = \frac{\sigma^2_{\text{Charge}}}{\sigma^2_{\text{Charge}} + \sigma^2_{\text{Residuum}}}\]</span></p>
 <p><strong>Berechnung des ICC in R:</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Berechnung der Varianzen</span></span>
-<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>Var_Charge <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">VarCorr</span>(lmm))[<span class="dv">1</span>, <span class="st">"vcov"</span>]</span>
-<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>Var_Residuum <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">VarCorr</span>(lmm))[<span class="dv">2</span>, <span class="st">"vcov"</span>]</span>
-<span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a aria-hidden="true" tabindex="-1"></a><span class="co"># ICC-Formel</span></span>
-<span id="cb8-6"><a aria-hidden="true" tabindex="-1"></a>ICC <span class="ot">&lt;-</span> Var_Charge <span class="sc">/</span> (Var_Charge <span class="sc">+</span> Var_Residuum)</span>
-<span id="cb8-7"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ICC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Berechnung der Varianzen</span></span>
+<span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>Var_Charge <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">VarCorr</span>(lmm))[<span class="dv">1</span>, <span class="st">"vcov"</span>]</span>
+<span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>Var_Residuum <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">VarCorr</span>(lmm))[<span class="dv">2</span>, <span class="st">"vcov"</span>]</span>
+<span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a><span class="co"># ICC-Formel</span></span>
+<span id="cb9-6"><a aria-hidden="true" tabindex="-1"></a>ICC <span class="ot">&lt;-</span> Var_Charge <span class="sc">/</span> (Var_Charge <span class="sc">+</span> Var_Residuum)</span>
+<span id="cb9-7"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ICC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.02831354</code></pre>
 </div>
@@ -562,8 +573,8 @@ with conditional variances for "sample" </code></pre>
 <p>Wenn das Paket <strong>lmerTest</strong> <span class="citation" data-cites="Kuznetsova2017-lmertest">(<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">Kuznetsova et al., 2017</a>)</span> verwendet wird, erhalten wir eine ANOVA-Tabelle mit p-Werten für die festen Effekte:</p>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"lmerTest"</span>)</span>
-<span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lmm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"lmerTest"</span>)</span>
+<span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lmm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Type III Analysis of Variance Table with Satterthwaite's method
       Sum Sq Mean Sq NumDF  DenDF F value    Pr(&gt;F)    
@@ -574,7 +585,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 <p><br></p>
 <p>Zur Anwendung solcher Signifikanztests gibt es bei statisikern unterschiedliche Auffassungen. Im vorliegenden fall ist es jedoch viel einfacher als andere Verfahren.</p>
-<p>Bei komplizierteren Modellen verwendet man stattdessen besser eine AIC-basierte Modellselektion.</p>
+<p>Bei komplexeren Modellen verwendet man stattdessen besser eine AIC-basierte Modellselektion.</p>
 <p>Interpretation: Der resultierende p-Wert zeigt, ob der Effekt der Marke (brand) auf das Gewicht statistisch signifikant ist, nachdem die Variation durch die Chargen kontrolliert wurde.</p>
 </section>
 <section id="zum-weiterlesen-und-vertiefen" class="slide level2">
@@ -605,6 +616,9 @@ Fox, G. A., Negrete-Yankelevich, S., &amp; Sosa, V. J. (Eds.). (2015). <em>Ecolo
 </div>
 <div id="ref-Kuznetsova2017-lmertest" class="csl-entry" role="listitem">
 Kuznetsova, A., Brockhoff, P. B., &amp; Christensen, R. H. B. (2017). <span class="nocase">lmerTest</span> package: Tests in linear mixed effects models. <em>Journal of Statistical Software</em>, <em>82</em>(13), 1–26. <a href="https://doi.org/10.18637/jss.v082.i13">https://doi.org/10.18637/jss.v082.i13</a>
+</div>
+<div id="ref-Luedecke2021-performance" class="csl-entry" role="listitem">
+Lüdecke, D., Ben-Shachar, M. S., Patil, I., Waggoner, P., &amp; Makowski, D. (2021). <span class="nocase">performance</span>: An <span>R</span> package for assessment, comparison and testing of statistical models. <em>Journal of Open Source Software</em>, <em>6</em>(60), 3139. <a href="https://doi.org/10.21105/joss.03139">https://doi.org/10.21105/joss.03139</a>
 </div>
 <div id="ref-Pinheiro2000Mixed" class="csl-entry" role="listitem">
 Pinheiro, J. C., &amp; Bates, D. M. (2000). <em>Mixed-effects models in s and s-PLUS</em>. Springer.

@@ -4173,7 +4173,7 @@
     "href": "slides/10-lmer.html#schritt-2-intra-klassen-korrelation-icc",
     "title": "10-Linear Mixed Effects Models",
     "section": "Schritt 2: Intra-Klassen-Korrelation (ICC)",
-    "text": "Schritt 2: Intra-Klassen-Korrelation (ICC)\nDie ICC gibt an, wie viel der Gesamtvarianz durch die Gruppierung (Charge) erklärt wird.\n\\[\\text{ICC} = \\frac{\\sigma^2_{\\text{Charge}}}{\\sigma^2_{\\text{Charge}} + \\sigma^2_{\\text{Residuum}}}\\]\nBerechnung des ICC in R:\n\n# Berechnung der Varianzen\nVar_Charge &lt;- as.data.frame(VarCorr(lmm))[1, \"vcov\"]\nVar_Residuum &lt;- as.data.frame(VarCorr(lmm))[2, \"vcov\"]\n\n# ICC-Formel\nICC &lt;- Var_Charge / (Var_Charge + Var_Residuum)\n\nprint(ICC)\n\n[1] 0.02831354",
+    "text": "Schritt 2: Intra-Klassen-Korrelation (ICC)\n\nDie ICC gibt an, wie viel der Gesamtvarianz durch die Gruppierung (Charge) erklärt wird.\n\\[\\text{ICC} = \\frac{\\sigma^2_{\\text{Charge}}}{\\sigma^2_{\\text{Charge}} + \\sigma^2_{\\text{Residuum}}}\\]\nBerechnung des ICC in R:\n\n# Berechnung der Varianzen\nVar_Charge &lt;- as.data.frame(VarCorr(lmm))[1, \"vcov\"]\nVar_Residuum &lt;- as.data.frame(VarCorr(lmm))[2, \"vcov\"]\n\n# ICC-Formel\nICC &lt;- Var_Charge / (Var_Charge + Var_Residuum)\n\nprint(ICC)\n\n[1] 0.02831354",
     "crumbs": [
       "Statistische Grundlagen",
       "10-Linear Mixed Effects Models"
@@ -4184,7 +4184,7 @@
     "href": "slides/10-lmer.html#schritt-3-signifikanz-des-festen-effekts",
     "title": "10-Linear Mixed Effects Models",
     "section": "Schritt 3: Signifikanz des festen Effekts",
-    "text": "Schritt 3: Signifikanz des festen Effekts\n\nWenn das Paket lmerTest (Kuznetsova et al., 2017) verwendet wird, erhalten wir eine ANOVA-Tabelle mit p-Werten für die festen Effekte:\n\n\nlibrary(\"lmerTest\")\nanova(lmm)\n\nType III Analysis of Variance Table with Satterthwaite's method\n      Sum Sq Mean Sq NumDF  DenDF F value    Pr(&gt;F)    \nbrand  18437   18437     1 6.2111  217.16 4.579e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nZur Anwendung solcher Signifikanztests gibt es bei statisikern unterschiedliche Auffassungen. Im vorliegenden fall ist es jedoch viel einfacher als andere Verfahren.\nBei komplizierteren Modellen verwendet man stattdessen besser eine AIC-basierte Modellselektion.\nInterpretation: Der resultierende p-Wert zeigt, ob der Effekt der Marke (brand) auf das Gewicht statistisch signifikant ist, nachdem die Variation durch die Chargen kontrolliert wurde.",
+    "text": "Schritt 3: Signifikanz des festen Effekts\n\nWenn das Paket lmerTest (Kuznetsova et al., 2017) verwendet wird, erhalten wir eine ANOVA-Tabelle mit p-Werten für die festen Effekte:\n\n\nlibrary(\"lmerTest\")\nanova(lmm)\n\nType III Analysis of Variance Table with Satterthwaite's method\n      Sum Sq Mean Sq NumDF  DenDF F value    Pr(&gt;F)    \nbrand  18437   18437     1 6.2111  217.16 4.579e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nZur Anwendung solcher Signifikanztests gibt es bei statisikern unterschiedliche Auffassungen. Im vorliegenden fall ist es jedoch viel einfacher als andere Verfahren.\nBei komplexeren Modellen verwendet man stattdessen besser eine AIC-basierte Modellselektion.\nInterpretation: Der resultierende p-Wert zeigt, ob der Effekt der Marke (brand) auf das Gewicht statistisch signifikant ist, nachdem die Variation durch die Chargen kontrolliert wurde.",
     "crumbs": [
       "Statistische Grundlagen",
       "10-Linear Mixed Effects Models"
@@ -4206,7 +4206,7 @@
     "href": "slides/10-lmer.html#literaturverzeichnis",
     "title": "10-Linear Mixed Effects Models",
     "section": "Literaturverzeichnis",
-    "text": "Literaturverzeichnis\n\n\n\n\n\nBates, D. (2005). Fitting linear mixed models in r. R News, 5(1), 27–30.\n\n\nBates, D., Mächler, M., Bolker, B., & Walker, S. (2015). Fitting linear mixed-effects models using lme4. Journal of Statistical Software, 67(1), 1–48. https://doi.org/10.18637/jss.v067.i01\n\n\nFox, G. A., Negrete-Yankelevich, S., & Sosa, V. J. (Eds.). (2015). Ecological statistics: Contemporary theory and application. Oxford University Press.\n\n\nKuznetsova, A., Brockhoff, P. B., & Christensen, R. H. B. (2017). lmerTest package: Tests in linear mixed effects models. Journal of Statistical Software, 82(13), 1–26. https://doi.org/10.18637/jss.v082.i13\n\n\nPinheiro, J. C., & Bates, D. M. (2000). Mixed-effects models in s and s-PLUS. Springer.\n\n\nZuur, A. F., Ieno, E. N., Walker, N., Saveliev, A. A., & Smith, G. M. (2009). Mixed effects models and extensions in ecology with r. Springer.",
+    "text": "Literaturverzeichnis\n\n\n\n\n\nBates, D. (2005). Fitting linear mixed models in r. R News, 5(1), 27–30.\n\n\nBates, D., Mächler, M., Bolker, B., & Walker, S. (2015). Fitting linear mixed-effects models using lme4. Journal of Statistical Software, 67(1), 1–48. https://doi.org/10.18637/jss.v067.i01\n\n\nFox, G. A., Negrete-Yankelevich, S., & Sosa, V. J. (Eds.). (2015). Ecological statistics: Contemporary theory and application. Oxford University Press.\n\n\nKuznetsova, A., Brockhoff, P. B., & Christensen, R. H. B. (2017). lmerTest package: Tests in linear mixed effects models. Journal of Statistical Software, 82(13), 1–26. https://doi.org/10.18637/jss.v082.i13\n\n\nLüdecke, D., Ben-Shachar, M. S., Patil, I., Waggoner, P., & Makowski, D. (2021). performance: An R package for assessment, comparison and testing of statistical models. Journal of Open Source Software, 6(60), 3139. https://doi.org/10.21105/joss.03139\n\n\nPinheiro, J. C., & Bates, D. M. (2000). Mixed-effects models in s and s-PLUS. Springer.\n\n\nZuur, A. F., Ieno, E. N., Walker, N., Saveliev, A. A., & Smith, G. M. (2009). Mixed effects models and extensions in ecology with r. Springer.",
     "crumbs": [
       "Statistische Grundlagen",
       "10-Linear Mixed Effects Models"
@@ -5053,5 +5053,16 @@
     "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
     "section": "Autor",
     "text": "Autor\nhomepage +++ github\n2025-11-05"
+  },
+  {
+    "objectID": "slides/10-lmer.html#prüfung-der-modellannahmen-diagnostik",
+    "href": "slides/10-lmer.html#prüfung-der-modellannahmen-diagnostik",
+    "title": "10-Linear Mixed Effects Models",
+    "section": "Prüfung der Modellannahmen (Diagnostik)",
+    "text": "Prüfung der Modellannahmen (Diagnostik)\nZur Prüfung der Modellannahmen verwenden wir die Funktion check_model() aus dem Paket performance (Lüdecke et al., 2021), die alle wichtigen diagnostischen Plots generiert.\n\nlibrary(\"performance\")\nlibrary(\"see\")\ncheck_model(lmm)",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "10-Linear Mixed Effects Models"
+    ]
   }
 ]

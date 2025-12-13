@@ -9,6 +9,8 @@ date:   "`r Sys.Date()`"
 library(dplyr)
 library(lme4)
 library(lmerTest) # Für p-Werte der festen Effekte
+library(performance)
+library(see)
 ```
 
 
@@ -221,6 +223,19 @@ Die zufälligen Effekte und die Residualfehler müssen unabhängig und normalver
     $$
     * Wir schätzen $\sigma^2_{\text{Residuum}}$, die verbleibende Varianz **innerhalb** der Chargen.
 
+
+## Prüfung der Modellannahmen (Diagnostik)
+
+Zur Prüfung der Modellannahmen verwenden wir die Funktion `check_model()` aus dem Paket **performance** [@Luedecke2021-performance], die alle wichtigen diagnostischen Plots generiert.
+
+
+```{r eval=TRUE, echo=TRUE, message=FALSE, fig.width=16, fig.height=8, fig.align='center', warning=FALSE}
+library("performance")
+library("see")
+check_model(lmm)
+```
+
+
 ## Interpretation der Ergebnisse (`summary(lmm)`)
 
 Wir analysieren die Ausgabe des Modells
@@ -241,6 +256,8 @@ Dieser Schritt quantifiziert die Varianz, die auf die Gruppenstruktur (*Chargen*
 | Residuum | $\sigma^2_{\text{Residuum}}$ | `as.data.frame(VarCorr(lmm))[2, "vcov"]` |
 
 ## Schritt 2: Intra-Klassen-Korrelation (ICC)
+
+<br>
 
 Die ICC gibt an, wie viel der Gesamtvarianz durch die Gruppierung (Charge) erklärt wird. 
 
@@ -275,14 +292,9 @@ anova(lmm)
 
 Zur Anwendung solcher Signifikanztests gibt es bei statisikern unterschiedliche Auffassungen. Im vorliegenden fall ist es jedoch viel einfacher als andere Verfahren.
 
-Bei komplizierteren Modellen verwendet man stattdessen besser eine AIC-basierte Modellselektion. 
-
-
-
-
+Bei komplexeren Modellen verwendet man stattdessen besser eine AIC-basierte Modellselektion. 
 
 Interpretation: Der resultierende p-Wert zeigt, ob der Effekt der Marke (brand) auf das Gewicht statistisch signifikant ist, nachdem die Variation durch die Chargen kontrolliert wurde.
-
 
 ## Zum Weiterlesen und Vertiefen
 
