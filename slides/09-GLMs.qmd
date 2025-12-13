@@ -1,15 +1,17 @@
 ---
 title: "09-Generalized Linear Models"
 date:   "`r Sys.Date()`"
---- 
+---
 
-# GLM -- Verallgemeinertes Lineares Modell
+```{r, eval=TRUE, echo=FALSE, include=FALSE}
+library(drc)
+```
 
 <br>
 
 ## Was ist ein Generalisiertes Lineares Modell (GLM)?
 
-Erweitert die Theorie der linearen Modelle auf **nichtnormalverteilte Responsevariablen** durch die Verwendung einer Link-Funktion.
+Erweitert die Theorie der linearen Modelle auf bestimmte **nichtnormalverteilte Responsevariablen** durch die Verwendung einer Link-Funktion.
 
 - **Poisson-Verteilung:**
   - Zähldaten, z.B. Vorkommen von Tieren.
@@ -104,7 +106,7 @@ Die Responsevariable enthält entweder einen langen Vektor mit (0, 1) für die E
 ```r
 glm(growth ~ pH + I(pH^2), data = growthdata, family = binomial)
 ```
-- Die Funktion `I()` (AsIs) stellt sicher, dass der Term arithmetisch und nicht symbolisch interpretiert wird.
+- Durch die Funktion `I()` (AsIs) wird der Term arithmetisch und nicht symbolisch interpretiert.
 
 ## GLM Datenstruktur im R-Code
 
@@ -203,7 +205,8 @@ library(dplyr)
 
 daphnia <- data.frame(
   number   = c(11, 13, 17, 10, 11, 10, 11), 
-  dose     = c(0, 1, 2, 3, 4, 5, 6),
+  dose     = c(1,  2,  4,  8, 16, 32, 64),
+  dose_log = c(0, 1, 2, 3, 4, 5, 6),        # zur Vereinfachung log_2 transformiert
   survived = c(11, 12, 17, 6, 2, 0, 0)
 )
 
@@ -218,13 +221,13 @@ plot(survived/(number) ~ dose, data = daphnia, pch=16)
 daphnia <- daphnia |> mutate(dead = number - survived)
 
 ## Fitten des GLM
-m <- glm(cbind(survived, dead) ~ dose, data = daphnia, family = binomial(link = "logit"))
+m <- glm(cbind(survived, dead) ~ dose_log, data = daphnia, family = binomial(link = "logit"))
 
 # Test der Gesamtsignifikanz (Äquivalent zur F-Statistik im lm)
 anova(m, test="Chi")
 ```
 - **Response:** `cbind(survived, dead)` (Überleben, Tod).
-- **Test:** Der **Chi-Quadrat-Test** aus der ANOVA zeigt, ob das Modell mit `dose` besser ist als ein Nullmodell.
+- **Test:** Der **Chi-Quadrat-Test** aus der ANOVA zeigt, ob das Modell mit `dose_log` besser ist als ein Nullmodell.
 
 ## Visualisierung
 
@@ -236,16 +239,16 @@ Transformation der Vorhersage von der Link-Skala zurück zur Wahrscheinlichkeits
 
 ```{r daphnia-ci, echo=TRUE}
 # Predict on the 'link' scale to get standard errors
-dose_seq <- data.frame(dose = seq(0, 6, length.out = 100))
+dose_seq <- data.frame(dose_log = seq(0, 6, length.out = 100))
 preds    <- predict(m, newdata = dose_seq, type = "link", se.fit = TRUE)
 
 # Calculate CI on the link scale and back-transform
 fit_link <- preds$fit
 se_link  <- preds$se.fit
 
-dose_seq$prob     <- plogis(fit_link)
-dose_seq$lwr <- plogis(fit_link + (qnorm(0.025) * se_link))
-dose_seq$upr <- plogis(fit_link + (qnorm(0.975) * se_link))
+dose_seq$prob <- plogis(fit_link)
+dose_seq$lwr  <- plogis(fit_link + (qnorm(0.025) * se_link))
+dose_seq$upr  <- plogis(fit_link + (qnorm(0.975) * se_link))
 ```
 
 **Interpretation:**
@@ -265,13 +268,13 @@ dose_seq$upr <- plogis(fit_link + (qnorm(0.975) * se_link))
 **Code**
 
 ```{r daphnina-ci-plot, eval =FALSE, echo=TRUE}
-plot(daphnia$dose, daphnia$survived / daphnia$number,
+plot(daphnia$dose_log, daphnia$survived / daphnia$number,
      pch = 16, col = "darkblue", ylim = c(0, 1), las=1,
-     xlab = "Dose", ylab = "Proportion Survived (p)")
+     xlab = "log2(Dose)", ylab = "Proportion Survived (p)")
 lines(dose_seq$dose, dose_seq$prob, lwd = 2, col = "red")
 
-lines(dose_seq$dose, dose_seq$upr, lty="dashed")
-lines(dose_seq$dose, dose_seq$lwr, lty="dashed")
+lines(dose_seq$dose_log, dose_seq$upr, lty="dashed")
+lines(dose_seq$dose_log, dose_seq$lwr, lty="dashed")
 abline(h=0.5, lty="dotted")
 ```
 
@@ -281,13 +284,13 @@ abline(h=0.5, lty="dotted")
 
 ```{r daphnia-ci-result, eval=TRUE, echo=FALSE}
 par(cex=1.4)
-plot(daphnia$dose, daphnia$survived / daphnia$number,
+plot(daphnia$dose_log, daphnia$survived / daphnia$number,
      pch = 16, col = "darkblue", ylim = c(0, 1), las=1,
      xlab = "Dose", ylab = "Proportion Survived")
 lines(dose_seq$dose, dose_seq$prob, lwd = 2, col = "red")
 
-lines(dose_seq$dose, dose_seq$upr, lty="dashed")
-lines(dose_seq$dose, dose_seq$lwr, lty="dashed")
+lines(dose_seq$dose_log, dose_seq$upr, lty="dashed")
+lines(dose_seq$dose_log, dose_seq$lwr, lty="dashed")
 abline(h=0.5, lty="dotted")
 ```
 
@@ -311,17 +314,136 @@ abline(h=0.5, lty="dotted")
 
 $$
 \text{LC}_{50} = -\beta_{\text{Intercept}} / \beta_{\text{Dose}}
-$$.
+$$
 
 
 ```{r lc50-calc, echo=TRUE}
-library(MASS)
-lc50 <- dose.p(m, p = 0.5)
-lc50
+# Koeffizienten und Varkov-Matrix abrufen
+b <- coef(m); V <- vcov(m)
+
+b0 <- b["(Intercept)"]  # b0
+b1 <- b["dose_log"]     # b1
 ```
 
+**LC50, Standardfehler und CI**
 
-## Referenzen
+- $LC_{50} = - b_0 / b_1$
+- Berechnung des Standardfehlers ($\text{se}$) mit der **Delta-Methode**:
+
+```{r lc50-ci-pure-r, echo=TRUE}
+se <- sqrt(V[1,1]/b1^2 + V[2, 2] * b0^2 / b1^4 - 2*V[1,2] * b0/b1^3)
+
+# 95%-Konfidenzintervall
+lc50 <- -b0 / b1
+CI <- lc50 + qnorm(c(0.025, 0.975)) * se
+cat("LC50 =", lc50, "CI = (", CI, ")\n")
+```
+<!----------------------------------------------------------------------------->
+
+## GLM Diagnostik: Residuen und Leverage
+
+Die Modellannahmen müssen überprüft werden, um die Zuverlässigkeit der Ergebnisse sicherzustellen.
+
+* Unabhängigkeit: Beobachtungen (z.B. Daphnien) sind voneinander unabhängig.
+* Korrekte Spezifikation: Der Zusammenhang (hier: logistisch) ist korrekt spezifiziert.
+* Keine Überdispersion: Die beobachtete Variabilität entspricht der theoretischen Variabilität der gewählten Familie (Binomial).
+
+**Diagnostik-Plots**
+
+Im GLM überprüfen wir standardmäßig vier Haupt-Plots:
+
+- Deviance Residuen vs. Fitted Values
+- Normal Q-Q Plot: Normalverteilung der Residuen
+- Scale-Location Plot: Überprüft die Homoskedastizität
+- Hebelwirkung (Leverage)
+    - Leverage: Punkte mit ungewöhnlichen Prädiktorwerten (z.B. sehr hohe Dosis).
+    - Cook's Distance: Einfluss jedes Datenpunkts auf die Modellschätzung.
+
+## Diagnostik-Plots
+```{r}
+par(mfrow=c(2, 2))
+plot(m)
+```
+
+## Toxtest mit dem `drc`-Paket
+
+<br>
+
+- Das $\text{drc}$-Paket bietet Funktionen speziell für die Dosis-Wirkungs-Analyse.
+- Daten **nicht** im $\text{cbind}$-Format sondern Verhältnis (events/trials) und Gesamtzahl (`weights`).
+- Falls die Dosis im logarithmierten Format vorliegt, muss die Basis angegeben werden (`logDose`).
+
+```{r drc-fit, eval=TRUE, echo=TRUE}
+library(drc)
+# Fitten eines Log-Logistischen Modells
+m_drc <- drm(survived / number ~ dose_log, weights = number, 
+             data = daphnia, type = "binomial",
+             fct = LL.3(), logDose = 2)
+summary(m_drc)
+```
+* Das 3-Parameter-Modell (LL.3) ist oft eine robustere Alternative zum einfachen $\text{GLM}$.
+
+## Plot und $\text{ED}_{50}$ ($\text{LC}_{50}$)
+
+<br>
+
+`drc` vereinfacht sowohl die Visualisierung als auch die Schätzung der $\text{EC}_{50}$.
+
+:::{.columns}
+
+::::{.column width="50%"}
+
+```{r drc-code-lc50, eval=TRUE, echo=TRUE, fig.show='hide'}
+# Plot mit 95% CI
+plot(m_drc, type = "all", xlab = "Log2-Dosis")
+
+
+# Schätzung der EC50 (ED50) mit CI
+# target.level = 50%
+ED(m_drc, respLev = 50, interval = "delta")
+```
+::::
+
+::::{.column width="50%"}
+```{r drc-plot-lc50, eval=TRUE, echo=FALSE}
+plot(m_drc, type = "all", xlab = "Log2-Dosis")
+```
+::::
+:::
+
+<br>
+
+- Die Schätzung der EC~50~ und des CI ist hier direkter und robuster als mit manuellen Methoden.
+
+## Zusammenfassung: Modellvergleich (GLM vs. drc)
+
+* **GLM** (Logistische Regression): fundamentale Grundlage zur Modellierung von Proportionen. 
+    * Es schätzt zwei Parameter (EC~50~ und Steigung).
+    * Relativ starr, erzwingt eine Symmetrie um den EC~50~.
+
+* **Dose Response Curves** mit `drc`
+    * **flexiblere Log-Logistischee Modelle, z.B. (LL.3)** mit drei Parametern<br> (Steigung, EC~50~, Asymptote). 
+    * präzisere Anpassung an biologische Dosis-Wirkungs-Daten.
+
+**Modellvergleich:** $\rightarrow$ Füllen Sie folgende Tabelle aus:
+
+<br>
+
+| Modell              | EC~50~               | $CI$ (lower, upper) |
+| :---                | :---                 | :---                |
+| GLM (Linear Logit)  | ......               | ......, ......      |
+| drc (`LL.3`)        | ......               | ......, ......      |
+
+<br>
+
+Wichtig: Log-Transformation beachten und auf die Konzentrationsskala transformieren.
+
+
+
+
+## Literaturverzeichnis
+
+
 
 <br>
 

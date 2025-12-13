@@ -4624,5 +4624,166 @@
     "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
     "section": "Autor",
     "text": "Autor\nhomepage +++ github\n2025-11-05"
+  },
+  {
+    "objectID": "slides/09-GLMs.html#was-ist-ein-generalisiertes-lineares-modell-glm",
+    "href": "slides/09-GLMs.html#was-ist-ein-generalisiertes-lineares-modell-glm",
+    "title": "09-Generalized Linear Models",
+    "section": "Was ist ein Generalisiertes Lineares Modell (GLM)?",
+    "text": "Was ist ein Generalisiertes Lineares Modell (GLM)?\nErweitert die Theorie der linearen Modelle auf bestimmte nichtnormalverteilte Responsevariablen durch die Verwendung einer Link-Funktion.\n\nPoisson-Verteilung:\n\nZähldaten, z.B. Vorkommen von Tieren.\nHäufigkeit von Ereignissen: \\(0, 1, 2, 3, \\dots\\) Zahlen sind strikt positiv, Null kann vorkommen.\n\nBinomial-Verteilung:\n\nBinäre Variablen (lebend/tot, vorhanden/nicht vorhanden) oder Dosis-Wirkungsbeziehungen.\nNominelle Variablen (Faktorstufen) mit zwei oder mehr Ausprägungen.\n\nGamma-Verteilung:\n\nMetrische Variablen, oft rechtsschief (z. B. Reaktionszeiten, Wartezeiten).\nVermeidet Transformationen (z.B. log-Transformation) der Responsevariable."
+  },
+  {
+    "objectID": "slides/09-GLMs.html#verteilungsfamilie-und-linkfunktion",
+    "href": "slides/09-GLMs.html#verteilungsfamilie-und-linkfunktion",
+    "title": "09-Generalized Linear Models",
+    "section": "Verteilungsfamilie und Linkfunktion",
+    "text": "Verteilungsfamilie und Linkfunktion\n\nEin GLM trennt das Modells in drei Komponenten:\n\n1. Zufallskomponente (Verteilungsfamilie):\n\nDefiniert die Wahrscheinlichkeitsverteilung der Responsevariable \\(Y\\).\nLegt fest, welche Verteilung die Daten (z. B. Poisson, Binomial, Gamma) annehmen.\n\n2. Systematische Komponente (Linearer Prädiktor):\n\nDie bekannte lineare Gleichung: \\(\\eta = \\beta_0 + \\beta_1 X_1 + \\dots\\)\nEnthält alle Kovariablen und deren Koeffizienten.\n\n3. Linkfunktion:\n\nVerbindet die Zufallskomponente (den Erwartungswert \\(E(Y)\\) des Response) mit der Systematischen Komponente (dem linearen Prädiktor \\(\\eta\\)).\nTransformation des Erwartungswertes: \\(g(E(Y)) = \\eta\\)\n\n\nBeispiel: Bei binären Daten transformiert die Logit-Linkfunktion die Wahrscheinlichkeiten (die zwischen 0 und 1 liegen müssen) auf die gesamte reelle y-Achse (\\(-\\infty\\) bis \\(+\\infty\\)), damit sie mit dem linearen Modell übereinstimmen."
+  },
+  {
+    "objectID": "slides/09-GLMs.html#typische-familien-und-kanonische-linkfunktionen",
+    "href": "slides/09-GLMs.html#typische-familien-und-kanonische-linkfunktionen",
+    "title": "09-Generalized Linear Models",
+    "section": "Typische Familien und Kanonische Linkfunktionen",
+    "text": "Typische Familien und Kanonische Linkfunktionen\nDie Wahl der Linkfunktion hängt von der Verteilung der Response ab.\nKanonische Linkfunktion: ist die Standard- und rechnerisch effizienteste Wahl.\n\n\n\n\n\n\n\n\n\n\nVerteilungsfamilie\nResponse-Typ\nKanonische Linkfunktion\nFunktion\n\n\n\n\nNormal (Gauß)\nMetrisch, kontinuierlich\nIdentitäts-Link\n\\(g(\\mu) = \\mu\\)\n\n\nPoisson\nZähldaten (Counts)\nLog-Link\n\\(g(\\mu) = \\log(\\mu)\\)\n\n\nBinomial\nBinär (0/1), Proportionen\nLogit-Link\n\\(g(\\mu) = \\log(\\frac{\\mu}{1-\\mu})\\)\n\n\nGamma\nMetrisch, positiv, schief\nReziprok-Link\n\\(g(\\mu) = 1/\\mu\\)\n\n\nInverse Gauß\nMetrisch, positiv, schief\nReziprok-Quadrat-Link\n\\(g(\\mu) = 1/\\mu^2\\)\n\n\n\n\nFlexible Anpassungen möglich\n\nQuasi-Poisson / Quasi-Binomial:\n\nWird verwendet, wenn eine Über- oder Unterdispersion vorliegt. – Varianz ist größer oder kleiner als von Poisson oder Binomial angenommen.\n\nNicht-kanonische Linkfunktionen:\n\nFür bestimmte Interpretation oder Datentypen.\nBei der Binomialverteilung kann statt des Logit-Links der Probit-Link (basiert auf der Normalverteilung) verwendet werden."
+  },
+  {
+    "objectID": "slides/09-GLMs.html#referenzen",
+    "href": "slides/09-GLMs.html#referenzen",
+    "title": "09-Generalized Linear Models",
+    "section": "Referenzen",
+    "text": "Referenzen"
+  },
+  {
+    "objectID": "slides/09-GLMs.html#modellformel",
+    "href": "slides/09-GLMs.html#modellformel",
+    "title": "09-Generalized Linear Models",
+    "section": "Modellformel",
+    "text": "Modellformel\n\nSieht im Prinzip genauso aus, wie bei lm:\nglm(growth ~ pH + nutrient, data = growthdata, family = binomial)\nBeispiel: Binomialverteilung\n\nModellierung von Wahrscheinlichkeiten eines Ereignisses.\nDefinitiv viel besser als Arbeiten mit Prozentzahlen!\n\nResponsevariable\nDie Responsevariable enthält entweder einen langen Vektor mit (0, 1) für die Ereignisse oder eine Matrix mit zwei Spalten mit den Häufigkeiten für “ja” oder “nein”.\nErklärungsvariablen\n\nStandard: Die Wahrscheinlichkeit steigt monoton mit dem Prädiktor (z. B. Dosis).\nOptimum: Die Wahrscheinlichkeit steigt zuerst an und fällt dann wieder ab, z. B. Wachstum in Abhängigkeit vom pH. Quadratischer Term in der Modellformel: I(x^2)\n\nglm(growth ~ pH + I(pH^2), data = growthdata, family = binomial)\n\nDurch die Funktion I() (AsIs) wird der Term arithmetisch und nicht symbolisch interpretiert."
+  },
+  {
+    "objectID": "slides/09-GLMs.html#glm-datenstruktur-im-r-code",
+    "href": "slides/09-GLMs.html#glm-datenstruktur-im-r-code",
+    "title": "09-Generalized Linear Models",
+    "section": "GLM Datenstruktur im R-Code",
+    "text": "GLM Datenstruktur im R-Code\nDie Binomial-Familie akzeptiert zwei primäre Formate für die Responsevariable:\n\n\nA: Logischer Vektor (0/1)\nJede Zeile repräsentiert einen einzelnen Versuch.\n\ndf_vektor &lt;- data.frame(\n  pH = c(5.0, 5.2, 5.5, 5.8, 6.0, 6.2, 6.5, 6.7, 7.0, 7.2),\n  # 1 = Gekeimt (Erfolg), 0 = Nicht Gekeimt (Misserfolg)\n  keimung = c(0, 0, 1, 1, 1, 1, 1, 0, 0, 0)\n)\n\n# Modellaufruf:\n# glm(keimung ~ pH + I(pH^2), data = df_vektor, family = binomial)\n\n\n \n\nB: Häufigkeits-Matrix\nJede Zeile repräsentiert die Replikate mit aggregierten Zählungen.\n\ndf_matrix &lt;- data.frame(\n  pH = c(5.0, 5.5, 6.0, 6.5, 7.0),\n  Anzahl_gesamt = c(20, 20, 20, 20, 20),\n  # Spalten müssen \"Erfolge\" und \"Misserfolge\" sein\n  Erfolg = c(2, 8, 18, 12, 3), \n  Misserfolg = c(18, 12, 2, 8, 17) # Anzahl_Samen - Erfolg\n)\n\n# Modellaufruf:\n# glm(cbind(Erfolg, Misserfolg) ~ pH, data = df_matrix, family = binomial)\n\n\nWichtig beim Matrix-Format:\n\nDer Response muss mit cbind(Erfolg, Misserfolg) im Modellaufruf angegeben werden.\nDieses Format ist effizienter bei großen, aggregierten Datensätzen."
+  },
+  {
+    "objectID": "slides/09-GLMs.html#diagnostik-einfluss-und-residuen",
+    "href": "slides/09-GLMs.html#diagnostik-einfluss-und-residuen",
+    "title": "09-Generalized Linear Models",
+    "section": "Diagnostik: Einfluss und Residuen",
+    "text": "Diagnostik: Einfluss und Residuen\n\nÜberprüfung der Modellannahmen nach dem Fitten.\n\n\nA: Einflussreiche Punkte (Leverage)\n\nPlot: Cook’s Distance und Leverage.\nBefund (Ihre Daten): Die Punkte sind zwischen \\(0.042\\) und \\(0.045\\) geclustert.\nInterpretation: Die Beobachtungen üben einen gleichmäßigen und geringen Einfluss aus (\\(\\approx 1/n\\)). Es sind keine extremen Ausreißer vorhanden, die das Modell verzerren.\n\n\nB: Residuen-Analyse\n\nPlot: Q-Q-Plot der deviance-Residuen.\nBefund (Ihre Daten): Die Residuen biegen an den Enden (Tails) leicht nach oben ab.\nInterpretation: Die Verteilung ist leicht rechtsschief und hat “schwerere Tails” als eine reine Normalverteilung.\nFazit: Der Modellfit ist akzeptabel; GLMs sind robust gegenüber leichten Abweichungen der Residuen-Normalität."
+  },
+  {
+    "objectID": "slides/09-GLMs.html#anwendung-toxizitätstest-toxtest",
+    "href": "slides/09-GLMs.html#anwendung-toxizitätstest-toxtest",
+    "title": "09-Generalized Linear Models",
+    "section": "Anwendung: Toxizitätstest (Toxtest)",
+    "text": "Anwendung: Toxizitätstest (Toxtest)\n\nZiel: Modellierung der Mortalität als Funktion der Dosis.\nDatenstruktur (7 Dosisstufen): Verwendung des Matrix-Formats.\n\nlibrary(dplyr)\n\ndaphnia &lt;- data.frame(\n  number   = c(11, 13, 17, 10, 11, 10, 11), \n  dose     = c(1,  2,  4,  8, 16, 32, 64),\n  dose_log = c(0, 1, 2, 3, 4, 5, 6),        # zur Vereinfachung log_2 transformiert\n  survived = c(11, 12, 17, 6, 2, 0, 0)\n)\n\nplot(survived/(number) ~ dose, data = daphnia, pch=16)"
+  },
+  {
+    "objectID": "slides/09-GLMs.html#modell-output-und-signifikanz",
+    "href": "slides/09-GLMs.html#modell-output-und-signifikanz",
+    "title": "09-Generalized Linear Models",
+    "section": "07: Modell-Output und Signifikanz",
+    "text": "07: Modell-Output und Signifikanz\nDer statistische Summary des GLM-Fits.\nErgebnis-Highlight: - Koeffizient dose: Hochsignifikant (\\(p &lt; 0.001\\)). - AIC: \\(10.45\\) (Maß für die relative Modellgüte). - Die Koeffizienten sind auf der Log-Odds-Skala zu interpretieren."
+  },
+  {
+    "objectID": "slides/09-GLMs.html#visualisierung-der-modellvorhersage",
+    "href": "slides/09-GLMs.html#visualisierung-der-modellvorhersage",
+    "title": "09-Generalized Linear Models",
+    "section": "08: Visualisierung der Modellvorhersage",
+    "text": "08: Visualisierung der Modellvorhersage\nPlot der Estimated Marginal Means (EMMs).\n\nKurve: Zeigt die vorhergesagte Wahrscheinlichkeit in Abhängigkeit von der Dosis.\nInterpretation: Das Modell beschreibt den erwarteten S-förmigen Anstieg der Mortalität sauber."
+  },
+  {
+    "objectID": "slides/09-GLMs.html#diagnostik-einfluss-und-residuen-1",
+    "href": "slides/09-GLMs.html#diagnostik-einfluss-und-residuen-1",
+    "title": "09-Generalized Linear Models",
+    "section": "09: Diagnostik: Einfluss und Residuen",
+    "text": "09: Diagnostik: Einfluss und Residuen\nÜberprüfung der Modellannahmen (kompakt).\n\n\nA: Einfluss (Leverage)\n\nBefund: Punkte sind eng geclustert (\\(0.042 - 0.045\\)).\nFazit: Einfluss ist gleichmäßig gering; das Modell ist robust.\n\n\nB: Residuen-Normalität\n\nBefund: Q-Q-Plot zeigt leichtes Abbiegen an den Enden (schwerere Tails).\nFazit: Akzeptable Abweichung für GLMs. Die Koeffizienten sind verlässlich.\n\n\nSind Sie nun bereit, zur LMER-Sektion zu wechseln, oder möchten Sie noch eine letzte GLM-Folie hinzufügen?"
+  },
+  {
+    "objectID": "slides/09-GLMs.html#fitten-des-modells-und-statistischer-test",
+    "href": "slides/09-GLMs.html#fitten-des-modells-und-statistischer-test",
+    "title": "09-Generalized Linear Models",
+    "section": "Fitten des Modells und statistischer Test",
+    "text": "Fitten des Modells und statistischer Test\n\n\n# Vorbereitung für 2spaltige Datenstruktur cbind(Erfolg, Misserfolg)\ndaphnia &lt;- daphnia |&gt; mutate(dead = number - survived)\n\n## Fitten des GLM\nm &lt;- glm(cbind(survived, dead) ~ dose_log, data = daphnia, family = binomial(link = \"logit\"))\n\n# Test der Gesamtsignifikanz (Äquivalent zur F-Statistik im lm)\nanova(m, test=\"Chi\")\n\nAnalysis of Deviance Table\n\nModel: binomial, link: logit\n\nResponse: cbind(survived, dead)\n\nTerms added sequentially (first to last)\n\n         Df Deviance Resid. Df Resid. Dev  Pr(&gt;Chi)    \nNULL                         6     82.076              \ndose_log  1   76.444         5      5.632 &lt; 2.2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nResponse: cbind(survived, dead) (Überleben, Tod).\nTest: Der Chi-Quadrat-Test aus der ANOVA zeigt, ob das Modell mit dose_log besser ist als ein Nullmodell."
+  },
+  {
+    "objectID": "slides/09-GLMs.html#visualisierung",
+    "href": "slides/09-GLMs.html#visualisierung",
+    "title": "09-Generalized Linear Models",
+    "section": "Visualisierung",
+    "text": "Visualisierung\n\nTransformation der Vorhersage von der Link-Skala zurück zur Wahrscheinlichkeits-Skala\n\n\n# Predict on the 'link' scale to get standard errors\ndose_seq &lt;- data.frame(dose_log = seq(0, 6, length.out = 100))\npreds    &lt;- predict(m, newdata = dose_seq, type = \"link\", se.fit = TRUE)\n\n# Calculate CI on the link scale and back-transform\nfit_link &lt;- preds$fit\nse_link  &lt;- preds$se.fit\n\ndose_seq$prob &lt;- plogis(fit_link)\ndose_seq$lwr  &lt;- plogis(fit_link + (qnorm(0.025) * se_link))\ndose_seq$upr  &lt;- plogis(fit_link + (qnorm(0.975) * se_link))\n\nInterpretation:\n\nLink-Skala: Log-Odds, Werte von \\(-\\infty\\) bis \\(+\\infty\\).\nResponse-Skala: Wahrscheinlichkeiten, Werte von \\(0\\) bis \\(1\\).\nplogis() ist die Umkehrfunktion (Inverse) des Logit-Links."
+  },
+  {
+    "objectID": "slides/09-GLMs.html#numerische-schätzung-der-lc50",
+    "href": "slides/09-GLMs.html#numerische-schätzung-der-lc50",
+    "title": "09-Generalized Linear Models",
+    "section": "Numerische Schätzung der LC50",
+    "text": "Numerische Schätzung der LC50\n\nLC50 Konzentration, bei der 50% der Organismen überleben, p=0.5\nlinearer Prädiktor \\(\\eta\\) ist Null)\nSchätzung des Konfidenzintervalls mittels Delta-Methode\n\n\\[\n\\text{LC}_{50} = -\\beta_{\\text{Intercept}} / \\beta_{\\text{Dose}}\n\\]\n\n# Koeffizienten und Varkov-Matrix abrufen\nb &lt;- coef(m); V &lt;- vcov(m)\n\nb0 &lt;- b[\"(Intercept)\"]  # b0\nb1 &lt;- b[\"dose_log\"]     # b1\n\nLC50, Standardfehler und CI\n\n\\(LC_{50} = - b_0 / b_1\\)\nBerechnung des Standardfehlers (\\(\\text{se}\\)) mit der Delta-Methode:\n\n\nse &lt;- sqrt(V[1,1]/b1^2 + V[2, 2] * b0^2 / b1^4 - 2*V[1,2] * b0/b1^3)\n\n# 95%-Konfidenzintervall\nlc50 &lt;- -b0 / b1\nCI &lt;- lc50 + qnorm(c(0.025, 0.975)) * se\ncat(\"LC50 =\", lc50, \"CI = (\", CI, \")\\n\")\n\nLC50 = 3.235783 CI = ( 2.828378 3.643188 )"
+  },
+  {
+    "objectID": "slides/09-GLMs.html#konfidenzintervalle",
+    "href": "slides/09-GLMs.html#konfidenzintervalle",
+    "title": "09-Generalized Linear Models",
+    "section": "Konfidenzintervalle",
+    "text": "Konfidenzintervalle\n\n\n\nCode\n\nplot(daphnia$dose_log, daphnia$survived / daphnia$number,\n     pch = 16, col = \"darkblue\", ylim = c(0, 1), las=1,\n     xlab = \"log2(Dose)\", ylab = \"Proportion Survived (p)\")\nlines(dose_seq$dose, dose_seq$prob, lwd = 2, col = \"red\")\n\nlines(dose_seq$dose_log, dose_seq$upr, lty=\"dashed\")\nlines(dose_seq$dose_log, dose_seq$lwr, lty=\"dashed\")\nabline(h=0.5, lty=\"dotted\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nWir verwenden den \\(z\\)-Wert (qnorm), da in GLMs die Normalverteilung der Koeffizienten (asymptotische Theorie) angenommen wird.\nplogis() ist die Umkehrfunktion des Logit-Links.\nRot: Die vom Modell geschätzte Überlebenswahrscheinlichkeit.\nGestrichelt: Das 95%-Konfidenzintervall.\nGepunktet (LC50): Schnittpunkt der Kurve mit \\(\\text{p}=0.5\\). An diesem Punkt ist der lineare Prädiktor \\(\\eta\\) genau Null."
+  },
+  {
+    "objectID": "slides/09-GLMs.html#glm-diagnostik-residuen-und-hebelwirkung",
+    "href": "slides/09-GLMs.html#glm-diagnostik-residuen-und-hebelwirkung",
+    "title": "09-Generalized Linear Models",
+    "section": "GLM Diagnostik: Residuen und Hebelwirkung",
+    "text": "GLM Diagnostik: Residuen und Hebelwirkung\nDie Modellannahmen müssen überprüft werden, um die Zuverlässigkeit der Ergebnisse sicherzustellen.\n\nUnabhängigkeit: Beobachtungen (z.B. Daphnien) sind voneinander unabhängig.\nKorrekte Spezifikation: Der Zusammenhang (hier: logistisch) ist korrekt spezifiziert.\nKeine Überdispersion: Die beobachtete Variabilität entspricht der theoretischen Variabilität der gewählten Familie (Binomial).\n\nDiagnostik-Plots\nIm GLM überprüfen wir standardmäßig vier Haupt-Plots:\n\nDeviance Residuen vs. Fitted Values\nNormal Q-Q Plot: Normalverteilung der Residuen\nScale-Location Plot: Überprüft die Homoskedastizität\nHebelwirkung (Leverage)\n\nLeverage: Punkte mit ungewöhnlichen Prädiktorwerten (z.B. sehr hohe Dosis).\nCook’s Distance: Einfluss jedes Datenpunkts auf die Modellschätzung."
+  },
+  {
+    "objectID": "slides/09-GLMs.html#toxizitätstest-mit-dem-drc-paket-dosis-wirkungs-analyse",
+    "href": "slides/09-GLMs.html#toxizitätstest-mit-dem-drc-paket-dosis-wirkungs-analyse",
+    "title": "09-Generalized Linear Models",
+    "section": "Toxizitätstest mit dem drc-Paket (Dosis-Wirkungs-Analyse)",
+    "text": "Toxizitätstest mit dem drc-Paket (Dosis-Wirkungs-Analyse)\n\n\nDas \\(\\text{drc}\\)-Paket bietet Funktionen speziell für die Dosis-Wirkungs-Analyse.\nDaten nicht im \\(\\text{cbind}\\)-Format sondern Verhältnis (events/trials) und Gesamtzahl (weights).\n\n\nlibrary(drc)\n# Fitten eines 2-Parameter Log-Logistischen Modells\nm_drc &lt;- drm(survived / number ~ dose, weights = number, data = daphnia, fct = LL.2()\n)\nsummary(m_drc)\n\n\nModel fitted: Log-logistic (ED50 as parameter) with lower limit at 0 and upper limit at 1 (2 parms)\n\nParameter estimates:\n\n              Estimate Std. Error t-value   p-value    \nb:(Intercept) 7.691935   1.126224  6.8298  0.001026 ** \ne:(Intercept) 3.202251   0.081076 39.4971 1.961e-07 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error:\n\n 0.5389202 (5 degrees of freedom)\n\n\n\nDas 3-Parameter-Modell (\\(\\text{LL.3}\\)) ist oft eine robustere Alternative zum einfachen \\(\\text{GLM}\\). ::::\n\n\nPlot und \\(\\text{ED}_{50}\\) (\\(\\text{LC}_{50}\\))\n\ndrc vereinfacht sowohl die Visualisierung als auch die Schätzung der \\(\\text{EC}_{50}\\).\n\n# Plot mit 95% CI\nplot(m_drc) \n\n# Schätzung der ED50 (LC50) mit CI\n# target.level = 50%\nec50 &lt;- ED(m_drc, respLev = 50, interval = \"delta\")\nec50\n\n\n\\(\\text{LC}_{50}\\): \\(2.9248\\) (in Konsistenz mit \\(P(\\text{Survival})=0.5\\) im GLM).\nVorteil: Die Schätzung der \\(\\text{LC}_{50}\\) und des \\(\\text{CI}\\) ist hier direkter und robuster als mit manuellen Methoden.\n\n:::"
+  },
+  {
+    "objectID": "slides/09-GLMs.html#glm-diagnostik-residuen-und-leverage",
+    "href": "slides/09-GLMs.html#glm-diagnostik-residuen-und-leverage",
+    "title": "09-Generalized Linear Models",
+    "section": "GLM Diagnostik: Residuen und Leverage",
+    "text": "GLM Diagnostik: Residuen und Leverage\nDie Modellannahmen müssen überprüft werden, um die Zuverlässigkeit der Ergebnisse sicherzustellen.\n\nUnabhängigkeit: Beobachtungen (z.B. Daphnien) sind voneinander unabhängig.\nKorrekte Spezifikation: Der Zusammenhang (hier: logistisch) ist korrekt spezifiziert.\nKeine Überdispersion: Die beobachtete Variabilität entspricht der theoretischen Variabilität der gewählten Familie (Binomial).\n\nDiagnostik-Plots\nIm GLM überprüfen wir standardmäßig vier Haupt-Plots:\n\nDeviance Residuen vs. Fitted Values\nNormal Q-Q Plot: Normalverteilung der Residuen\nScale-Location Plot: Überprüft die Homoskedastizität\nHebelwirkung (Leverage)\n\nLeverage: Punkte mit ungewöhnlichen Prädiktorwerten (z.B. sehr hohe Dosis).\nCook’s Distance: Einfluss jedes Datenpunkts auf die Modellschätzung."
+  },
+  {
+    "objectID": "slides/09-GLMs.html#diagnostik-plots",
+    "href": "slides/09-GLMs.html#diagnostik-plots",
+    "title": "09-Generalized Linear Models",
+    "section": "Diagnostik-Plots",
+    "text": "Diagnostik-Plots"
+  },
+  {
+    "objectID": "slides/09-GLMs.html#toxtest-mit-dem-drc-paket",
+    "href": "slides/09-GLMs.html#toxtest-mit-dem-drc-paket",
+    "title": "09-Generalized Linear Models",
+    "section": "Toxtest mit dem drc-Paket",
+    "text": "Toxtest mit dem drc-Paket\n\n\nDas \\(\\text{drc}\\)-Paket bietet Funktionen speziell für die Dosis-Wirkungs-Analyse.\nDaten nicht im \\(\\text{cbind}\\)-Format sondern Verhältnis (events/trials) und Gesamtzahl (weights).\nFalls die Dosis im logarithmierten Format vorliegt, muss die Basis angegeben werden (logDose).\n\n\nlibrary(drc)\n# Fitten eines Log-Logistischen Modells\nm_drc &lt;- drm(survived / number ~ dose_log, weights = number, \n             data = daphnia, type = \"binomial\",\n             fct = LL.3(), logDose = 2)\nsummary(m_drc)\n\n\nModel fitted: Log-logistic (ED50 as parameter) with lower limit at 0 (3 parms)\n\nParameter estimates:\n\n              Estimate Std. Error t-value   p-value    \nb:(Intercept) 3.972751   1.145539  3.4680 0.0005243 ***\nd:(Intercept) 0.975727   0.025955 37.5927 &lt; 2.2e-16 ***\ne:(Intercept) 9.995332   1.347866  7.4157  1.21e-13 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nDas 3-Parameter-Modell (LL.3) ist oft eine robustere Alternative zum einfachen \\(\\text{GLM}\\)."
+  },
+  {
+    "objectID": "slides/09-GLMs.html#plot-und-texted_50-textlc_50",
+    "href": "slides/09-GLMs.html#plot-und-texted_50-textlc_50",
+    "title": "09-Generalized Linear Models",
+    "section": "Plot und \\(\\text{ED}_{50}\\) (\\(\\text{LC}_{50}\\))",
+    "text": "Plot und \\(\\text{ED}_{50}\\) (\\(\\text{LC}_{50}\\))\n\ndrc vereinfacht sowohl die Visualisierung als auch die Schätzung der \\(\\text{EC}_{50}\\).\n\n\n\n# Plot mit 95% CI\nplot(m_drc, type = \"all\", xlab = \"Log2-Dosis\")\n# Schätzung der EC50 (ED50) mit CI\n# target.level = 50%\nED(m_drc, respLev = 50, interval = \"delta\")\n\n\nEstimated effective doses\n\n       Estimate Std. Error   Lower   Upper\ne:1:50   9.9953     1.3479  7.3536 12.6371\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDie Schätzung der EC50 und des CI ist hier direkter und robuster als mit manuellen Methoden."
+  },
+  {
+    "objectID": "slides/09-GLMs.html#literaturverzeichnis",
+    "href": "slides/09-GLMs.html#literaturverzeichnis",
+    "title": "09-Generalized Linear Models",
+    "section": "Literaturverzeichnis",
+    "text": "Literaturverzeichnis"
+  },
+  {
+    "objectID": "slides/09-GLMs.html#zusammenfassung-modellvergleich-glm-vs.-drc",
+    "href": "slides/09-GLMs.html#zusammenfassung-modellvergleich-glm-vs.-drc",
+    "title": "09-Generalized Linear Models",
+    "section": "Zusammenfassung: Modellvergleich (GLM vs. drc)",
+    "text": "Zusammenfassung: Modellvergleich (GLM vs. drc)\n\nGLM (Logistische Regression): fundamentale Grundlage zur Modellierung von Proportionen.\n\nEs schätzt zwei Parameter (EC50 und Steigung).\nRelativ starr, erzwingt eine Symmetrie um den EC50.\n\nDose Response Curves mit drc\n\nflexiblere Log-Logistischee Modelle, z.B. (LL.3) mit drei Parametern (Steigung, EC50, Asymptote).\npräzisere Anpassung an biologische Dosis-Wirkungs-Daten.\n\n\nModellvergleich: \\(\\rightarrow\\) Füllen Sie folgende Tabelle aus:\n\n\n\n\nModell\nEC50\n\\(CI\\) (lower, upper)\n\n\n\n\nGLM (Linear Logit)\n……\n……, ……\n\n\ndrc (LL.3)\n……\n……, ……\n\n\n\n\nWichtig: Log-Transformation beachten und auf die Konzentrationsskala transformieren."
   }
 ]
