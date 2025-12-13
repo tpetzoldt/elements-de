@@ -24,6 +24,8 @@ website:
           - slides/06-linear.qmd
           - slides/07-anova.qmd
           - slides/08-nonlinear-regression.qmd
+          - slides/09-glm.qmd
+          - slides/10-lmer.qmd
 #          - slides/09-timeseries-basics.qmd
 #          - slides/10-timeseries-outlook.qmd
 #          - slides/11-multivariate-1.qmd

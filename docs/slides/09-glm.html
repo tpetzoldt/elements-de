@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
+
+  <meta name="author" content="Thomas Petzoldt">
+  <meta name="dcterms.date" content="2025-12-13">
+  <title>Elemente der statistischen Datenanalyse und Statistik mit R – 09-Generalized Linear Models</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-cb13c09ad5a7270edb89df8c4c84031f.css">
+  <link rel="stylesheet" href="../thpe.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <style>
+  #title-slide 
+    .title {color: #cef0ffff;}
+    .subtitle {color: #ee7f00;}
+    .quarto-title-author {color: #69af22;}
+    .date {color: #69af22;}
+  </style>  
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" body-color="#ffffff" data-background-image="../img/tud-title-bg-wide-2021.png" class="quarto-title-block center">
+  <h1 class="title">09-Generalized Linear Models</h1>
+  <p class="subtitle">Angewandte Statistik – Ein Praxiskurs</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Thomas Petzoldt 
+</div>
+</div>
+</div>
+
+  <p class="date">2025-12-13</p>
+</section>
+<section>
+<section id="ausgewählte-beispiele" class="title-slide slide level1 center">
+<h1>Ausgewählte Beispiele</h1>
+
+</section>
+<section id="was-ist-ein-generalisiertes-lineares-modell-glm" class="slide level2">
+<h2>Was ist ein Generalisiertes Lineares Modell (GLM)?</h2>
+<p><br></p>
+<p>Erweitert die Theorie der linearen Modelle auf bestimmte <strong>nichtnormalverteilte Responsevariablen</strong> durch die Verwendung einer Link-Funktion.</p>
+<ul>
+<li><strong>Poisson-Verteilung:</strong>
+<ul>
+<li>Zähldaten, z.B. Vorkommen von Tieren.</li>
+<li>Häufigkeit von Ereignissen: <span class="math inline">\(0, 1, 2, 3, \dots\)</span> Zahlen sind strikt positiv, Null kann vorkommen.</li>
+</ul></li>
+<li><strong>Binomial-Verteilung:</strong>
+<ul>
+<li>Binäre Variablen (lebend/tot, vorhanden/nicht vorhanden) oder Dosis-Wirkungsbeziehungen.</li>
+<li>Nominelle Variablen (Faktorstufen) mit zwei oder mehr Ausprägungen.</li>
+</ul></li>
+<li><strong>Gamma-Verteilung:</strong>
+<ul>
+<li>Metrische Variablen, oft <strong>rechtsschief</strong> (z. B. Reaktionszeiten, Wartezeiten).</li>
+<li>Vermeidet Transformationen (z.B. log-Transformation) der Responsevariable.</li>
+</ul></li>
+</ul>
+</section>
+<section id="verteilungsfamilie-und-linkfunktion" class="slide level2">
+<h2>Verteilungsfamilie und Linkfunktion</h2>
+<p><br></p>
+<p>Ein GLM trennt das Modells in drei Komponenten:</p>
+<ul>
+<li><strong>1. Zufallskomponente (Verteilungsfamilie):</strong>
+<ul>
+<li>Definiert die <strong>Wahrscheinlichkeitsverteilung</strong> der Responsevariable <span class="math inline">\(Y\)</span>.</li>
+<li>Legt fest, welche Verteilung die Daten (z. B. Poisson, Binomial, Gamma) annehmen.</li>
+</ul></li>
+<li><strong>2. Systematische Komponente (Linearer Prädiktor):</strong>
+<ul>
+<li>Die bekannte lineare Gleichung: <span class="math inline">\(\eta = \beta_0 + \beta_1 X_1 + \dots\)</span></li>
+<li>Enthält alle Kovariablen und deren Koeffizienten.</li>
+</ul></li>
+<li><strong>3. Linkfunktion:</strong>
+<ul>
+<li>Verbindet die <strong>Zufallskomponente</strong> (den Erwartungswert <span class="math inline">\(E(Y)\)</span> des Response) mit der <strong>Systematischen Komponente</strong> (dem linearen Prädiktor <span class="math inline">\(\eta\)</span>).</li>
+<li>Transformation des Erwartungswertes: <span class="math inline">\(g(E(Y)) = \eta\)</span></li>
+</ul></li>
+</ul>
+<p><strong>Beispiel:</strong> Bei binären Daten transformiert die <strong>Logit-Linkfunktion</strong> die Wahrscheinlichkeiten (die zwischen 0 und 1 liegen müssen) auf die gesamte reelle y-Achse (<span class="math inline">\(-\infty\)</span> bis <span class="math inline">\(+\infty\)</span>), damit sie mit dem linearen Modell übereinstimmen.</p>
+</section>
+<section id="typische-familien-und-kanonische-linkfunktionen" class="slide level2">
+<h2>Typische Familien und Kanonische Linkfunktionen</h2>
+<p>Die Wahl der Linkfunktion hängt von der Verteilung der Response ab.</p>
+<p><strong>Kanonische Linkfunktion:</strong> ist die Standard- und rechnerisch effizienteste Wahl.</p>
+<div class="smallfont">
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Verteilungsfamilie</th>
+<th style="text-align: left;">Response-Typ</th>
+<th style="text-align: left;">Kanonische Linkfunktion</th>
+<th style="text-align: left;">Funktion</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Normal (Gauß)</strong></td>
+<td style="text-align: left;">Metrisch, kontinuierlich</td>
+<td style="text-align: left;"><strong>Identitäts-Link</strong></td>
+<td style="text-align: left;"><span class="math inline">\(g(\mu) = \mu\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Poisson</strong></td>
+<td style="text-align: left;">Zähldaten (Counts)</td>
+<td style="text-align: left;"><strong>Log-Link</strong></td>
+<td style="text-align: left;"><span class="math inline">\(g(\mu) = \log(\mu)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Binomial</strong></td>
+<td style="text-align: left;">Binär (0/1), Proportionen</td>
+<td style="text-align: left;"><strong>Logit-Link</strong></td>
+<td style="text-align: left;"><span class="math inline">\(g(\mu) = \log(\frac{\mu}{1-\mu})\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Gamma</strong></td>
+<td style="text-align: left;">Metrisch, positiv, schief</td>
+<td style="text-align: left;"><strong>Reziprok-Link</strong></td>
+<td style="text-align: left;"><span class="math inline">\(g(\mu) = 1/\mu\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Inverse Gauß</strong></td>
+<td style="text-align: left;">Metrisch, positiv, schief</td>
+<td style="text-align: left;"><strong>Reziprok-Quadrat-Link</strong></td>
+<td style="text-align: left;"><span class="math inline">\(g(\mu) = 1/\mu^2\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Flexible Anpassungen möglich</strong></p>
+<ul>
+<li><strong>Quasi-Poisson / Quasi-Binomial:</strong>
+<ul>
+<li>Wird verwendet, wenn eine Über- oder Unterdispersion vorliegt. – Varianz ist größer oder kleiner als von Poisson oder Binomial angenommen.</li>
+</ul></li>
+<li><strong>Nicht-kanonische Linkfunktionen:</strong>
+<ul>
+<li>Für bestimmte Interpretation oder Datentypen.</li>
+<li>Bei der Binomialverteilung kann statt des Logit-Links der <strong>Probit-Link</strong> (basiert auf der Normalverteilung) verwendet werden.</li>
+</ul></li>
+</ul>
+</section>
+<section id="modellformel" class="slide level2">
+<h2>Modellformel</h2>
+<p><br></p>
+<p>Sieht im Prinzip genauso aus, wie bei <code>lm</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">glm</span>(growth <span class="sc">~</span> pH <span class="sc">+</span> nutrient, <span class="at">data =</span> growthdata, <span class="at">family =</span> binomial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Beispiel: Binomialverteilung</strong></p>
+<ul>
+<li>Modellierung von <strong>Wahrscheinlichkeiten</strong> eines Ereignisses.</li>
+<li>Definitiv viel besser als Arbeiten mit Prozentzahlen!</li>
+</ul>
+<p><strong>Responsevariable</strong></p>
+<p>Die Responsevariable enthält entweder einen langen Vektor mit (0, 1) für die Ereignisse oder eine Matrix mit zwei Spalten mit den Häufigkeiten für “ja” oder “nein”.</p>
+<p><strong>Erklärungsvariablen</strong></p>
+<ul>
+<li><strong>Standard:</strong> Die Wahrscheinlichkeit steigt monoton mit dem Prädiktor (z. B. Dosis).</li>
+<li><strong>Optimum:</strong> Die Wahrscheinlichkeit steigt zuerst an und fällt dann wieder ab, z. B. Wachstum in Abhängigkeit vom pH. Quadratischer Term in der Modellformel: <code>I(x^2)</code></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">glm</span>(growth <span class="sc">~</span> pH <span class="sc">+</span> <span class="fu">I</span>(pH<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> growthdata, <span class="at">family =</span> binomial)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Durch die Funktion <code>I()</code> (AsIs) wird der Term arithmetisch und nicht symbolisch interpretiert.</li>
+</ul>
+</section>
+<section id="glm-datenstruktur-im-r-code" class="slide level2">
+<h2>GLM Datenstruktur im R-Code</h2>
+<p>Die Binomial-Familie akzeptiert zwei primäre Formate für die Responsevariable:</p>
+<div class="columns">
+<div class="column" style="width:48%;">
+<h3 id="a-logischer-vektor-01">A: Logischer Vektor (0/1)</h3>
+<p>Jede Zeile repräsentiert einen einzelnen Versuch.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>df_vektor <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">pH =</span> <span class="fu">c</span>(<span class="fl">5.0</span>, <span class="fl">5.2</span>, <span class="fl">5.5</span>, <span class="fl">5.8</span>, <span class="fl">6.0</span>, <span class="fl">6.2</span>, <span class="fl">6.5</span>, <span class="fl">6.7</span>, <span class="fl">7.0</span>, <span class="fl">7.2</span>),</span>
+<span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1 = Gekeimt (Erfolg), 0 = Nicht Gekeimt (Misserfolg)</span></span>
+<span id="cb3-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">keimung =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb3-5"><a aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-6"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Modellaufruf:</span></span>
+<span id="cb3-8"><a aria-hidden="true" tabindex="-1"></a><span class="co"># glm(keimung ~ pH + I(pH^2), data = df_vektor, family = binomial)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:4%;">
+<p>&nbsp;</p>
+</div><div class="column" style="width:48%;">
+<h3 id="b-häufigkeits-matrix">B: Häufigkeits-Matrix</h3>
+<p>Jede Zeile repräsentiert die Replikate mit aggregierten Zählungen.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a>df_matrix <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">pH =</span> <span class="fu">c</span>(<span class="fl">5.0</span>, <span class="fl">5.5</span>, <span class="fl">6.0</span>, <span class="fl">6.5</span>, <span class="fl">7.0</span>),</span>
+<span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">Anzahl_gesamt =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>),</span>
+<span id="cb4-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="co"># Spalten müssen "Erfolge" und "Misserfolge" sein</span></span>
+<span id="cb4-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">Erfolg =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">18</span>, <span class="dv">12</span>, <span class="dv">3</span>), </span>
+<span id="cb4-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">Misserfolg =</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">12</span>, <span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">17</span>) <span class="co"># Anzahl_Samen - Erfolg</span></span>
+<span id="cb4-7"><a aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-8"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Modellaufruf:</span></span>
+<span id="cb4-10"><a aria-hidden="true" tabindex="-1"></a><span class="co"># glm(cbind(Erfolg, Misserfolg) ~ pH, data = df_matrix, family = binomial)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div></div>
+<p><strong>Wichtig beim Matrix-Format:</strong></p>
+<ul>
+<li>Der Response muss mit <code>cbind(Erfolg, Misserfolg)</code> im Modellaufruf angegeben werden.</li>
+<li>Dieses Format ist effizienter bei großen, aggregierten Datensätzen.</li>
+</ul>
+<!------------------------------------>
+</section>
+<section id="anwendung-toxizitätstest-toxtest" class="slide level2">
+<h2>Anwendung: Toxizitätstest (Toxtest)</h2>
+<p><br></p>
+<p><strong>Ziel:</strong> Modellierung der Mortalität als Funktion der Dosis.</p>
+<p><strong>Datenstruktur (7 Dosisstufen):</strong> Verwendung des Matrix-Formats.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>daphnia <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">number   =</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">17</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">10</span>, <span class="dv">11</span>), </span>
+<span id="cb5-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">dose     =</span> <span class="fu">c</span>(<span class="dv">1</span>,  <span class="dv">2</span>,  <span class="dv">4</span>,  <span class="dv">8</span>, <span class="dv">16</span>, <span class="dv">32</span>, <span class="dv">64</span>),</span>
+<span id="cb5-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">dose_log =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>),        <span class="co"># zur Vereinfachung log_2 transformiert</span></span>
+<span id="cb5-7"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">survived =</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">17</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb5-8"><a aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-9"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(survived<span class="sc">/</span>(number) <span class="sc">~</span> dose, <span class="at">data =</span> daphnia, <span class="at">pch=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="09-glm_files/figure-revealjs/daphnia-data-1.png" width="960" class="r-stretch"></section>
+<section id="fitten-des-modells-und-statistischer-test" class="slide level2">
+<h2>Fitten des Modells und statistischer Test</h2>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Vorbereitung für 2spaltige Datenstruktur cbind(Erfolg, Misserfolg)</span></span>
+<span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>daphnia <span class="ot">&lt;-</span> daphnia <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">dead =</span> number <span class="sc">-</span> survived)</span>
+<span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a aria-hidden="true" tabindex="-1"></a><span class="do">## Fitten des GLM</span></span>
+<span id="cb6-5"><a aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">cbind</span>(survived, dead) <span class="sc">~</span> dose_log, <span class="at">data =</span> daphnia, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>))</span>
+<span id="cb6-6"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Test der Gesamtsignifikanz (Äquivalent zur F-Statistik im lm)</span></span>
+<span id="cb6-8"><a aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m, <span class="at">test=</span><span class="st">"Chi"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Deviance Table
+
+Model: binomial, link: logit
+
+Response: cbind(survived, dead)
+
+Terms added sequentially (first to last)
+
+         Df Deviance Resid. Df Resid. Dev  Pr(&gt;Chi)    
+NULL                         6     82.076              
+dose_log  1   76.444         5      5.632 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>Response:</strong> <code>cbind(survived, dead)</code> (Überleben, Tod).</li>
+<li><strong>Test:</strong> Der <strong>Chi-Quadrat-Test</strong> aus der ANOVA zeigt, ob das Modell mit <code>dose_log</code> besser ist als ein Nullmodell.</li>
+</ul>
+</section>
+<section id="visualisierung" class="slide level2">
+<h2>Visualisierung</h2>
+<p><br></p>
+<p>Transformation der Vorhersage von der Link-Skala zurück zur Wahrscheinlichkeits-Skala</p>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Predict on the 'link' scale to get standard errors</span></span>
+<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>dose_seq <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">dose_log =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">6</span>, <span class="at">length.out =</span> <span class="dv">100</span>))</span>
+<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>preds    <span class="ot">&lt;-</span> <span class="fu">predict</span>(m, <span class="at">newdata =</span> dose_seq, <span class="at">type =</span> <span class="st">"link"</span>, <span class="at">se.fit =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate CI on the link scale and back-transform</span></span>
+<span id="cb8-6"><a aria-hidden="true" tabindex="-1"></a>fit_link <span class="ot">&lt;-</span> preds<span class="sc">$</span>fit</span>
+<span id="cb8-7"><a aria-hidden="true" tabindex="-1"></a>se_link  <span class="ot">&lt;-</span> preds<span class="sc">$</span>se.fit</span>
+<span id="cb8-8"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a aria-hidden="true" tabindex="-1"></a>dose_seq<span class="sc">$</span>prob <span class="ot">&lt;-</span> <span class="fu">plogis</span>(fit_link)</span>
+<span id="cb8-10"><a aria-hidden="true" tabindex="-1"></a>dose_seq<span class="sc">$</span>lwr  <span class="ot">&lt;-</span> <span class="fu">plogis</span>(fit_link <span class="sc">+</span> (<span class="fu">qnorm</span>(<span class="fl">0.025</span>) <span class="sc">*</span> se_link))</span>
+<span id="cb8-11"><a aria-hidden="true" tabindex="-1"></a>dose_seq<span class="sc">$</span>upr  <span class="ot">&lt;-</span> <span class="fu">plogis</span>(fit_link <span class="sc">+</span> (<span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> se_link))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Interpretation:</strong></p>
+<ul>
+<li><strong>Link-Skala:</strong> Log-Odds, Werte von <span class="math inline">\(-\infty\)</span> bis <span class="math inline">\(+\infty\)</span>.</li>
+<li><strong>Response-Skala:</strong> Wahrscheinlichkeiten, Werte von <span class="math inline">\(0\)</span> bis <span class="math inline">\(1\)</span>.</li>
+<li><code>plogis()</code> ist die Umkehrfunktion (Inverse) des Logit-Links.</li>
+</ul>
+</section>
+<section id="konfidenzintervalle" class="slide level2">
+<h2>Konfidenzintervalle</h2>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Code</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(daphnia<span class="sc">$</span>dose_log, daphnia<span class="sc">$</span>survived <span class="sc">/</span> daphnia<span class="sc">$</span>number,</span>
+<span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">"darkblue"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">las=</span><span class="dv">1</span>,</span>
+<span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"log2(Dose)"</span>, <span class="at">ylab =</span> <span class="st">"Proportion Survived (p)"</span>)</span>
+<span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(dose_seq<span class="sc">$</span>dose, dose_seq<span class="sc">$</span>prob, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(dose_seq<span class="sc">$</span>dose_log, dose_seq<span class="sc">$</span>upr, <span class="at">lty=</span><span class="st">"dashed"</span>)</span>
+<span id="cb9-7"><a aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(dose_seq<span class="sc">$</span>dose_log, dose_seq<span class="sc">$</span>lwr, <span class="at">lty=</span><span class="st">"dashed"</span>)</span>
+<span id="cb9-8"><a aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fl">0.5</span>, <span class="at">lty=</span><span class="st">"dotted"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="09-glm_files/figure-revealjs/daphnia-ci-result-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<ul>
+<li>Wir verwenden den <strong><span class="math inline">\(z\)</span>-Wert (<code>qnorm</code>)</strong>, da in GLMs die Normalverteilung der Koeffizienten (asymptotische Theorie) angenommen wird.</li>
+<li><code>plogis()</code> ist die Umkehrfunktion des Logit-Links.</li>
+<li><strong>Rot:</strong> Die vom Modell geschätzte Überlebenswahrscheinlichkeit.</li>
+<li><strong>Gestrichelt:</strong> Das 95%-Konfidenzintervall.</li>
+<li><strong>Gepunktet (EC50):</strong> Schnittpunkt der Kurve mit <span class="math inline">\(\text{p}=0.5\)</span>. An diesem Punkt ist der lineare Prädiktor <span class="math inline">\(\eta\)</span> genau Null.</li>
+</ul>
+</section>
+<section id="numerische-schätzung-der-ec50" class="slide level2">
+<h2>Numerische Schätzung der EC50</h2>
+<ul>
+<li>EC50 Konzentration, bei der 50% der Organismen überleben, p=0.5</li>
+<li>linearer Prädiktor <span class="math inline">\(\eta\)</span> ist Null)</li>
+<li>Schätzung des Konfidenzintervalls mittels <strong>Delta-Methode</strong></li>
+</ul>
+<p><span class="math display">\[
+\text{LC}_{50} = -\beta_{\text{Intercept}} / \beta_{\text{Dose}}
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Koeffizienten und Varkov-Matrix abrufen</span></span>
+<span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">coef</span>(m); V <span class="ot">&lt;-</span> <span class="fu">vcov</span>(m)</span>
+<span id="cb10-3"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a aria-hidden="true" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> b[<span class="st">"(Intercept)"</span>]  <span class="co"># b0</span></span>
+<span id="cb10-5"><a aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> b[<span class="st">"dose_log"</span>]     <span class="co"># b1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>EC50, Standardfehler und CI</strong></p>
+<ul>
+<li><span class="math inline">\(LC_{50} = - b_0 / b_1\)</span></li>
+<li>Berechnung des Standardfehlers (<span class="math inline">\(\text{se}\)</span>) mit der <strong>Delta-Methode</strong>:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(V[<span class="dv">1</span>,<span class="dv">1</span>]<span class="sc">/</span>b1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> V[<span class="dv">2</span>, <span class="dv">2</span>] <span class="sc">*</span> b0<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> b1<span class="sc">^</span><span class="dv">4</span> <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span>V[<span class="dv">1</span>,<span class="dv">2</span>] <span class="sc">*</span> b0<span class="sc">/</span>b1<span class="sc">^</span><span class="dv">3</span>)</span>
+<span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a aria-hidden="true" tabindex="-1"></a><span class="co"># 95%-Konfidenzintervall</span></span>
+<span id="cb11-4"><a aria-hidden="true" tabindex="-1"></a>ec50 <span class="ot">&lt;-</span> <span class="sc">-</span>b0 <span class="sc">/</span> b1</span>
+<span id="cb11-5"><a aria-hidden="true" tabindex="-1"></a>CI <span class="ot">&lt;-</span> ec50 <span class="sc">+</span> <span class="fu">qnorm</span>(<span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)) <span class="sc">*</span> se</span>
+<span id="cb11-6"><a aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"ec50 ="</span>, ec50, <span class="st">"CI = ("</span>, CI, <span class="st">")</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ec50 = 3.235783 CI = ( 2.828378 3.643188 )</code></pre>
+</div>
+</div>
+<!----------------------------------------------------------------------------->
+</section>
+<section id="glm-diagnostik-residuen-und-leverage" class="slide level2">
+<h2>GLM Diagnostik: Residuen und Leverage</h2>
+<p>Die Modellannahmen müssen überprüft werden, um die Zuverlässigkeit der Ergebnisse sicherzustellen.</p>
+<ul>
+<li>Unabhängigkeit: Beobachtungen (z.B. Daphnien) sind voneinander unabhängig.</li>
+<li>Korrekte Spezifikation: Der Zusammenhang (hier: logistisch) ist korrekt spezifiziert.</li>
+<li>Keine Überdispersion: Die beobachtete Variabilität entspricht der theoretischen Variabilität der gewählten Familie (Binomial).</li>
+</ul>
+<p><strong>Diagnostik-Plots</strong></p>
+<p>Im GLM überprüfen wir standardmäßig vier Haupt-Plots:</p>
+<ul>
+<li>Deviance Residuen vs.&nbsp;Fitted Values</li>
+<li>Normal Q-Q Plot: Normalverteilung der Residuen</li>
+<li>Scale-Location Plot: Überprüft die Homoskedastizität</li>
+<li>Hebelwirkung (Leverage)
+<ul>
+<li>Leverage: Punkte mit ungewöhnlichen Prädiktorwerten (z.B. sehr hohe Dosis).</li>
+<li>Cook’s Distance: Einfluss jedes Datenpunkts auf die Modellschätzung.</li>
+</ul></li>
+</ul>
+</section>
+<section id="diagnostik-plots" class="slide level2">
+<h2>Diagnostik-Plots</h2>
+
+<img data-src="09-glm_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<section id="diagnostik-einfluss-und-residuen" class="slide level2">
+<h2>Diagnostik: Einfluss und Residuen</h2>
+<p><br></p>
+<p>Überprüfung der Modellannahmen nach dem Fitten.</p>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="a-einflussreiche-punkte-leverage">A: Einflussreiche Punkte (Leverage)</h3>
+<ul>
+<li><strong>Plot:</strong> Cook’s Distance und Leverage.</li>
+<li><strong>Interpretation:</strong> Üben die Beobachtungen einen <strong>gleichmäßigen und geringen Einfluss</strong> aus (<span class="math inline">\(\approx 1/n\)</span>)?</li>
+<li>Sind extreme Ausreißer vorhanden, die das Modell verzerren?</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="b-residuen-analyse">B: Residuen-Analyse</h3>
+<ul>
+<li><strong>Plot:</strong> Q-Q-Plot der deviance-Residuen.</li>
+<li><strong>Interpretation:</strong> Ist die Verteilung schief oder hat sie “schwerere Tails” als eine reine Normalverteilung?</li>
+<li>GLMs sind robust gegenüber leichten Abweichungen der Residuen-Normalität.</li>
+</ul>
+</div></div>
+</section></section>
+<section>
+<section id="dosis-wirkungs-analyse-mit-drc" class="title-slide slide level1 center">
+<h1>Dosis-Wirkungs-Analyse mit <strong>drc</strong></h1>
+
+</section>
+<section id="analyse-des-toxtests-mit-dem-drc-paket" class="slide level2">
+<h2>Analyse des Toxtests mit dem <strong>drc</strong>-Paket</h2>
+<p><br></p>
+<ul>
+<li>Das <span class="math inline">\(\text{drc}\)</span>-Paket <span class="citation" data-cites="Ritz2015-drc">(<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">Ritz et al., 2015</a>)</span> enthält Funktionen speziell für die Dosis-Wirkungs-Analyse.</li>
+<li>Daten <strong>nicht</strong> im <span class="math inline">\(\text{cbind}\)</span>-Format, sondern Verhältnis (events/trials) und Gesamtzahl (<code>weights</code>).</li>
+<li>Falls die Dosis im logarithmiert vorliegt, muss die Basis angegeben werden (<code>logDose</code>).</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(drc)</span>
+<span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Fitten eines Log-Logistischen Modells</span></span>
+<span id="cb13-3"><a aria-hidden="true" tabindex="-1"></a>m_drc <span class="ot">&lt;-</span> <span class="fu">drm</span>(survived <span class="sc">/</span> number <span class="sc">~</span> dose_log, <span class="at">weights =</span> number, </span>
+<span id="cb13-4"><a aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> daphnia, <span class="at">type =</span> <span class="st">"binomial"</span>,</span>
+<span id="cb13-5"><a aria-hidden="true" tabindex="-1"></a>             <span class="at">fct =</span> <span class="fu">LL.3</span>(), <span class="at">logDose =</span> <span class="dv">2</span>)</span>
+<span id="cb13-6"><a aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_drc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Model fitted: Log-logistic (ED50 as parameter) with lower limit at 0 (3 parms)
+
+Parameter estimates:
+
+              Estimate Std. Error t-value   p-value    
+b:(Intercept) 3.972751   1.145539  3.4680 0.0005243 ***
+d:(Intercept) 0.975727   0.025955 37.5927 &lt; 2.2e-16 ***
+e:(Intercept) 9.995332   1.347866  7.4157  1.21e-13 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<ul>
+<li>Das 3-Parameter-Modell (LL.3) ist oft eine robustere Alternative zum einfachen <span class="math inline">\(\text{GLM}\)</span>.</li>
+</ul>
+</section>
+<section id="plot-und-ed50-bzw.-ec50" class="slide level2">
+<h2>Plot und ED<sub>50</sub> bzw. EC<sub>50</sub></h2>
+<p><br></p>
+<p>**drc*+ vereinfacht Visualisierung und Schätzung der EC<sub>50</sub>.</p>
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li>Plot mit 95% CI</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(m_drc, <span class="at">type =</span> <span class="st">"all"</span>, <span class="at">xlab =</span> <span class="st">"Log2-Dosis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Schätzung der EC50 (ED50) mit CI</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ED</span>(m_drc, <span class="at">respLev =</span> <span class="dv">50</span>, <span class="at">interval =</span> <span class="st">"delta"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Estimated effective doses
+
+       Estimate Std. Error   Lower   Upper
+e:1:50   9.9953     1.3479  7.3536 12.6371</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="09-glm_files/figure-revealjs/drc-plot-ec50-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<p><br></p>
+<ul>
+<li>Schätzung von EC<sub>50</sub> und des CI ist mit <strong>drc</strong> direkter und robuster als mit <code>glm</code>.</li>
+<li>CI an den Rändern nur approximativ (überschreitet Intervall (0, 1))</li>
+</ul>
+</section>
+<section id="zusammenfassung-modellvergleich-glm-vs.-drc" class="slide level2">
+<h2>Zusammenfassung: Modellvergleich (GLM vs.&nbsp;drc)</h2>
+<ul>
+<li><strong>GLM</strong> (Logistische Regression): fundamentale Grundlage zur Modellierung von Proportionen.
+<ul>
+<li>Schätzt zwei Parameter (EC<sub>50</sub> und Steigung)</li>
+<li>Relativ starr, erzwingt eine Symmetrie um den EC<sub>50</sub></li>
+</ul></li>
+<li><strong>Dose Response Curves</strong> mit <code>drc</code>
+<ul>
+<li><strong>flexiblere log-logistische Modelle, z.B. (LL.3)</strong> mit drei Parametern<br> (Steigung, EC<sub>50</sub>, Asymptote).</li>
+<li>präzisere Anpassung an biologische Dosis-Wirkungs-Daten.</li>
+</ul></li>
+</ul>
+<p><strong>Modellvergleich:</strong> <span class="math inline">\(\rightarrow\)</span> Füllen Sie folgende Tabelle aus:</p>
+<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Modell</th>
+<th style="text-align: left;">EC<sub>50</sub></th>
+<th style="text-align: left;"><span class="math inline">\(CI\)</span> (lower, upper)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">GLM (Linear Logit)</td>
+<td style="text-align: left;">……</td>
+<td style="text-align: left;">……, ……</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">drc (<code>LL.3</code>)</td>
+<td style="text-align: left;">……</td>
+<td style="text-align: left;">……, ……</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>Wichtig: Log-Transformation beachten und auf die Konzentrationsskala transformieren.</p>
+</section>
+<section id="binomiale-ancova" class="slide level2">
+<h2>Binomiale ANCOVA</h2>
+<p><strong>Ziel:</strong> Modellierung des Effekts einer kontinuierlichen Kovariaten (<code>logdose</code>) unter Berücksichtigung eines kategorialen Faktors (<code>Substanz</code>).</p>
+<h3 id="szenario-vergleich-zweier-tox-tests">Szenario: Vergleich zweier Tox-Tests</h3>
+<p>Wir testen die Überlebensrate von Daphnien in Abhängigkeit von der <strong>Log-Dosis</strong> (<code>dose_log</code>) für zwei <strong>verschiedene Substanzen</strong> (<code>Substanz A</code> und <code>Substanz B</code>).</p>
+<ul>
+<li>Response: Binär/Proportional (Überleben/Tod)</li>
+<li>Kovariate (Kontinuierlich): Dosis oder log(Dosis)</li>
+<li>Faktor (Kategorial): mehrere Substanzen oder Randbedingungen</li>
+</ul>
+<h3 id="modellierung-im-glm">Modellierung im GLM</h3>
+<p>Die ANCOVA-Struktur im GLM vergleicht drei Hypothesen:</p>
+<ul>
+<li>A: Unabhängige Linien (Additive ANCOVA)</li>
+</ul>
+<p>Das Modell nimmt an, dass die Substanzen die <span class="math inline">\(\text{LC}_{50}\)</span> verschieben, aber die <strong>Steigung</strong> (Wirkstärke) <strong>gleich</strong> ist. Die Kurven sind parallel auf der Logit-Skala.</p>
+<ul>
+<li>B: Interaktion (Vollständige ANCOVA)</li>
+</ul>
+<p>Das Modell nimmt an, dass sich sowohl die EC<sub>50</sub> als auch die <strong>Steigung</strong> der Dosis-Wirkungs-Kurve zwischen den Substanzen <strong>unterscheiden</strong>. <!-----------------------------------------------------------------------------></p>
+</section>
+<section id="binomiale-ancova-mehrere-substanzen-gleichzeitig" class="slide level2">
+<h2>Binomiale ANCOVA: Mehrere Substanzen gleichzeitig</h2>
+<p><strong>Fragestellung:</strong> Sind die EC<sub>50</sub> von 2 Substanzen signifikant verschieden?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>daphnia2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">dead =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">9</span>, <span class="dv">10</span>, </span>
+<span id="cb18-3"><a aria-hidden="true" tabindex="-1"></a>           <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">10</span>),</span>
+<span id="cb18-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">total =</span> <span class="dv">10</span>,</span>
+<span id="cb18-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">dose_log =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>, <span class="dv">2</span>),</span>
+<span id="cb18-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">substance =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>), <span class="at">each =</span> <span class="dv">7</span>))</span>
+<span id="cb18-7"><a aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="verwendete-pakete" class="slide level2">
+<h2>Verwendete Pakete</h2>
+<ul>
+<li><p>Zur Visualisierung könnte man sich eine “base graphics” zusammenbauen oder <strong>ggplot2</strong> verwenden.</p></li>
+<li><p>Im folgenden verwenden wir das Paket <strong>tinyplot</strong> <span class="citation" data-cites="McDermott2025-tinyplot">(<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">McDermott et al., 2025</a>)</span> sowie Pakete aus der <strong>easystats</strong>-Familie <span class="citation" data-cites="Luedecke2022-easystats Luedecke2021-performance">(<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">Lüdecke et al., 2021</a>, <a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2022</a>)</span>.</p></li>
+<li><p>Ein Vorteil von <strong>tinyplot</strong> ist, dass man darin direkt Modellformeln verwenden kann.</p></li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Code anzeigen</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tinyplot"</span>)</span>
+<span id="cb19-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">plt</span>(</span>
+<span id="cb19-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">I</span>(dead <span class="sc">/</span> total) <span class="sc">~</span> dose_log <span class="sc">|</span> substance,</span>
+<span id="cb19-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> daphnia2,</span>
+<span id="cb19-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"p"</span>,</span>
+<span id="cb19-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Daphnia: 2 Substances"</span>,</span>
+<span id="cb19-7"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Proportion"</span>,</span>
+<span id="cb19-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> <span class="cn">TRUE</span></span>
+<span id="cb19-9"><a aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="09-glm_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<section id="fitten-und-test-einr-binomial-glm-ancova" class="slide level2">
+<h2>Fitten und Test einr Binomial-GLM-ANCOVA</h2>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a>m_AB <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb20-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(dead, total <span class="sc">-</span> dead) <span class="sc">~</span> dose_log <span class="sc">*</span> substance,</span>
+<span id="cb20-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> daphnia2, </span>
+<span id="cb20-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>)</span>
+<span id="cb20-5"><a aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-6"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m_AB, <span class="at">test=</span><span class="st">"Chi"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Deviance Table
+
+Model: binomial, link: logit
+
+Response: cbind(dead, total - dead)
+
+Terms added sequentially (first to last)
+
+                   Df Deviance Resid. Df Resid. Dev Pr(&gt;Chi)    
+NULL                                  13    111.461             
+dose_log            1  100.834        12     10.627  &lt; 2e-16 ***
+substance           1    7.215        11      3.412  0.00723 ** 
+dose_log:substance  1    0.532        10      2.880  0.46586    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+</section>
+<section id="visualisierung-1" class="slide level2">
+<h2>Visualisierung</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code anzeigen</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Interaction was not significant --&gt; use model without interaaction (+)</span></span>
+<span id="cb22-2"><a aria-hidden="true" tabindex="-1"></a>m_AB<span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb22-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(dead, total <span class="sc">-</span> dead) <span class="sc">~</span> dose_log <span class="sc">+</span> substance,</span>
+<span id="cb22-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> daphnia2, </span>
+<span id="cb22-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>)</span>
+<span id="cb22-6"><a aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-7"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a aria-hidden="true" tabindex="-1"></a><span class="co"># create range of doses for a smooth plot</span></span>
+<span id="cb22-9"><a aria-hidden="true" tabindex="-1"></a>dose_range <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">7</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb22-10"><a aria-hidden="true" tabindex="-1"></a>newdata    <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">dose_log =</span> dose_range, <span class="at">substance =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>))</span>
+<span id="cb22-11"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-12"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Predict probabilities using the model</span></span>
+<span id="cb22-13"><a aria-hidden="true" tabindex="-1"></a>newdata<span class="sc">$</span>prob <span class="ot">&lt;-</span> <span class="fu">predict</span>(m_AB, <span class="at">newdata =</span> newdata, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb22-14"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-15"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the empirical proportions</span></span>
+<span id="cb22-16"><a aria-hidden="true" tabindex="-1"></a><span class="fu">plt</span>(</span>
+<span id="cb22-17"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">I</span>(dead <span class="sc">/</span> total) <span class="sc">~</span> dose_log <span class="sc">|</span> substance,</span>
+<span id="cb22-18"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> daphnia2,</span>
+<span id="cb22-19"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"p"</span>,</span>
+<span id="cb22-20"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Daphnia: 2 Substances"</span>,</span>
+<span id="cb22-21"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Proportion"</span>,</span>
+<span id="cb22-22"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> <span class="cn">TRUE</span></span>
+<span id="cb22-23"><a aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-24"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-25"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Overlay the GLM fit lines</span></span>
+<span id="cb22-26"><a aria-hidden="true" tabindex="-1"></a><span class="fu">plt</span>(</span>
+<span id="cb22-27"><a aria-hidden="true" tabindex="-1"></a>  prob <span class="sc">~</span> dose_log <span class="sc">|</span> substance,</span>
+<span id="cb22-28"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> newdata,</span>
+<span id="cb22-29"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"l"</span>,</span>
+<span id="cb22-30"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">add =</span> <span class="cn">TRUE</span>,    <span class="co"># 'add = TRUE' acts like base R's lines()</span></span>
+<span id="cb22-31"><a aria-hidden="true" tabindex="-1"></a>  <span class="at">lwd =</span> <span class="dv">2</span></span>
+<span id="cb22-32"><a aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-33"><a aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fl">0.5</span>, <span class="at">col=</span><span class="st">"grey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="09-glm_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
+<section id="diagnostik" class="slide level2">
+<h2>Diagnostik</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(performance)</span>
+<span id="cb23-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(see) <span class="co"># für bessere Plots</span></span>
+<span id="cb23-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">check_model</span>(m_AB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="09-glm_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1536"></section>
+<section id="modellparameter" class="slide level2">
+<h2>Modellparameter</h2>
+<p><br></p>
+<ul>
+<li>Zusammenfassung der Koeffizienten mit CIs</li>
+<li>Interpretation auf der Antwortskala (Wahrscheinlichkeit)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parameters)</span>
+<span id="cb24-2"><a aria-hidden="true" tabindex="-1"></a>mp <span class="ot">&lt;-</span> <span class="fu">model_parameters</span>(m_AB, <span class="at">exponentiate=</span><span class="cn">FALSE</span>)</span>
+<span id="cb24-3"><a aria-hidden="true" tabindex="-1"></a>mp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Parameter     | Log-Odds |   SE |         95% CI |     z |      p
+-----------------------------------------------------------------
+(Intercept)   |    -6.70 | 1.15 | [-9.27, -4.71] | -5.84 | &lt; .001
+dose log      |     1.49 | 0.24 | [ 1.07,  2.03] |  6.16 | &lt; .001
+substance [B] |     1.50 | 0.60 | [ 0.39,  2.75] |  2.53 | 0.012 </code></pre>
+</div>
+</div>
+</section>
+<section id="schätzung-der-ec50" class="slide level2">
+<h2>Schätzung der EC50</h2>
+<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Koeffizienten abrufen</span></span>
+<span id="cb26-2"><a aria-hidden="true" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> mp<span class="sc">$</span>Coefficient[mp<span class="sc">$</span>Parameter <span class="sc">==</span> <span class="st">"(Intercept)"</span>]  <span class="co"># -6.70</span></span>
+<span id="cb26-3"><a aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> mp<span class="sc">$</span>Coefficient[mp<span class="sc">$</span>Parameter <span class="sc">==</span> <span class="st">"dose_log"</span>]     <span class="co"># 1.49 (Steigung)</span></span>
+<span id="cb26-4"><a aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> mp<span class="sc">$</span>Coefficient[mp<span class="sc">$</span>Parameter <span class="sc">==</span> <span class="st">"substanceB"</span>]   <span class="co"># 1.50 (Verschiebung)</span></span>
+<span id="cb26-5"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a aria-hidden="true" tabindex="-1"></a><span class="co"># --- 1. EC50 auf der Log-Skala (log2(Dose)) ---</span></span>
+<span id="cb26-7"><a aria-hidden="true" tabindex="-1"></a><span class="co"># A) EC50 für Substanz A (Referenz)</span></span>
+<span id="cb26-8"><a aria-hidden="true" tabindex="-1"></a>ec50_log_A <span class="ot">&lt;-</span> <span class="sc">-</span>b0 <span class="sc">/</span> b1</span>
+<span id="cb26-9"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a aria-hidden="true" tabindex="-1"></a><span class="co"># B) EC50 für Substanz B (mit Intercept-Verschiebung)</span></span>
+<span id="cb26-11"><a aria-hidden="true" tabindex="-1"></a><span class="co"># (Formel gilt das additive Modell ohne Interaktion)</span></span>
+<span id="cb26-12"><a aria-hidden="true" tabindex="-1"></a>ec50_log_B <span class="ot">&lt;-</span> <span class="sc">-</span>(b0 <span class="sc">+</span> b2) <span class="sc">/</span> b1</span>
+<span id="cb26-13"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a aria-hidden="true" tabindex="-1"></a><span class="co"># --- 2. Rücktransformation auf die Konzentrationsskala ---</span></span>
+<span id="cb26-15"><a aria-hidden="true" tabindex="-1"></a>ec50_conc_A <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">^</span>ec50_log_A</span>
+<span id="cb26-16"><a aria-hidden="true" tabindex="-1"></a>ec50_conc_B <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">^</span>ec50_log_B</span>
+<span id="cb26-17"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-18"><a aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"EC50 (log2) A, B:"</span>, <span class="fu">round</span>(ec50_log_A, <span class="dv">2</span>), <span class="fu">round</span>(ec50_log_B, <span class="dv">2</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>EC50 (log2) A, B: 4.51 3.49 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"EC50 (Conc) A, B:"</span>, <span class="fu">round</span>(ec50_conc_A, <span class="dv">1</span>), <span class="fu">round</span>(ec50_conc_B, <span class="dv">1</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>EC50 (Conc) A, B: 22.7 11.3 </code></pre>
+</div>
+</div>
+</section>
+<section id="zum-weiterlesen-und-vertiefen" class="slide level2">
+<h2>Zum Weiterlesen und Vertiefen</h2>
+<p><br></p>
+<p>Für eine tiefere Einarbeitung in die statistische Modellierung mit den oben genannten und weiteren Methoden der ökologischen Statistik wird empfohlen:</p>
+<ul>
+<li><p>Die <strong>Dosis-Wirkungs-Analyse mit dem R-Paket drc</strong> wird umfassend im Buch von <span class="citation" data-cites="Ritz2019DoseResponse">Ritz et al. (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2019</a>)</span> behandelt. Es enthält die Grundlagen und fortgeschrittene Techniken zur Modellierung nichtlinearer Kurven.</p></li>
+<li><p>Das Buch von <span class="citation" data-cites="Crawley2012RBook">Crawley (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2012</a>)</span> enthält neben klassischen statistischen Tests und ANOVA auch eine Reihe von Beispielen zur Anwendung von GLMs.</p></li>
+<li><p>Das Buch von <span class="citation" data-cites="Zuur2009MixedModels">Zuur et al. (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2009</a>)</span> zur Anwendung gemischter Modelle (Mixed Models) enthält u.a. auch Beispiele für GLMs, speziell ausgerichtet auf ökologische Fragestellungen.</p></li>
+<li><p>Für eine moderne Sichtweise auf die Ökologische Statistik gibt der Sammelband von <span class="citation" data-cites="Fox2015EcologicalStats">Fox et al. (<a href="#/literaturverzeichnis" role="doc-biblioref" onclick="">2015</a>)</span> eine hervorragende Übersicht. Er verbindet aktuelle Theorie und praktische Anwendung in der ökologischen Forschung.</p></li>
+</ul>
+</section>
+<section id="literaturverzeichnis" class="slide level2 smaller scrollable">
+<h2>Literaturverzeichnis</h2>
+<p><br></p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-Crawley2012RBook" class="csl-entry" role="listitem">
+Crawley, M. J. (2012). <em>The r book</em> (2nd ed.). John Wiley &amp; Sons.
+</div>
+<div id="ref-Fox2015EcologicalStats" class="csl-entry" role="listitem">
+Fox, G. A., Negrete-Yankelevich, S., &amp; Sosa, V. J. (Eds.). (2015). <em>Ecological statistics: Contemporary theory and application</em>. Oxford University Press.
+</div>
+<div id="ref-Luedecke2021-performance" class="csl-entry" role="listitem">
+Lüdecke, D., Ben-Shachar, M. S., Patil, I., Waggoner, P., &amp; Makowski, D. (2021). <span class="nocase">performance</span>: An <span>R</span> package for assessment, comparison and testing of statistical models. <em>Journal of Open Source Software</em>, <em>6</em>(60), 3139. <a href="https://doi.org/10.21105/joss.03139">https://doi.org/10.21105/joss.03139</a>
+</div>
+<div id="ref-Luedecke2022-easystats" class="csl-entry" role="listitem">
+Lüdecke, D., Ben-Shachar, M. S., Patil, I., Wiernik, B. M., Bacher, E., Thériault, R., &amp; Makowski, D. (2022). Easystats: Framework for easy statistical modeling, visualization, and reporting. <em>CRAN</em>. <a href="https://doi.org/10.32614/CRAN.package.easystats">https://doi.org/10.32614/CRAN.package.easystats</a>
+</div>
+<div id="ref-McDermott2025-tinyplot" class="csl-entry" role="listitem">
+McDermott, G., Arel-Bundock, V., &amp; Zeileis, A. (2025). <em><span class="nocase">tinyplot</span>: Lightweight extension of the base r graphics system</em>. <a href="https://doi.org/10.32614/CRAN.package.tinyplot">https://doi.org/10.32614/CRAN.package.tinyplot</a>
+</div>
+<div id="ref-Ritz2015-drc" class="csl-entry" role="listitem">
+Ritz, C., Baty, F., Streibig, J. C., &amp; Gerhard, D. (2015). Dose-response analysis using r. <em>PLOS ONE</em>, <em>10</em>(e0146021, 12). <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0146021">http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0146021</a>
+</div>
+<div id="ref-Ritz2019DoseResponse" class="csl-entry" role="listitem">
+Ritz, C., Jensen, S. M., Gerhard, D., &amp; Streibig, J. C. (2019). <em>Dose-response analysis using r</em>. CRC Press.
+</div>
+<div id="ref-Zuur2009MixedModels" class="csl-entry" role="listitem">
+Zuur, A. F., Ieno, E. N., Walker, N., Saveliev, A. A., &amp; Smith, G. M. (2009). <em>Mixed effects models and extensions in ecology with r</em>. Springer.
+</div>
+</div>
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p><span style="color: white; font-size: small; font-weight:400; float: right; margin-top: 40px; margin-right: 4%;"> <a href="../">🏠 Home</a> </span></p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>

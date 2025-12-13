@@ -1,0 +1,310 @@
+---
+title: "10-Linear Mixed Effects Models"
+date:   "`r Sys.Date()`"
+---
+
+# Ein sehr einfaches Beispiel
+
+```{r, eval=TRUE, echo=FALSE, include=FALSE}
+library(dplyr)
+library(lme4)
+library(lmerTest) # Für p-Werte der festen Effekte
+```
+
+
+## Was ist ein Lineares Gemischtes Modell (LMM)?
+
+Ein LMM berücksichtigt sowohl feste als auch zufällige Effekte
+
+**Feste Effekte (Fixed Effects)**
+
+* Beschreiben die **mittlere** Antwort der Population.
+* Werden durch das experimentelle Design **kontrolliert** (z.B. Behandlung, Dosis, Geschlecht).
+* Das Interesse gilt **allen** Ebenen, die im Modell enthalten sind.
+* *Ziel:* Schätzung spezifischer Mittelwertsunterschiede ($\beta$).
+
++**Zufällige Effekte (Random Effects)**
+
+* Beschreiben die **Variabilität** in der Antwort.
+* Werte sind **bekannt**, können aber keiner festen Behandlung zugeordnet werden.
+* Das Interesse gilt nur der **Varianz** ($\sigma^2$) zwischen den Gruppen, nicht dem spezifischen Effekt jeder Gruppe.
+
+**Typische Anwendungsfälle**
+
+* **Pseudoreplikate:** Wiederholte Messungen am gleichen Subjekt oder in derselben räumlichen Einheit.
+* **Hierarchische Daten:** Daten sind verschachtelt (z.B. Pflanzen in Plots, Plots in Feldern).
+
+
+## Warum LMMs verwenden?
+
+<br>
+
+1.  **Korrekte Standardfehler:** Berücksichtigen Abhängigkeiten (Korrelationen) in den Daten, was zu validen p-Werten und Konfidenzintervallen führt.
+
+2.  **Pseudoreplikation:** Sie bieten die korrekte Methode, um hierarchische Daten zu analysieren und das Problem der Pseudoreplikation zu lösen.
+
+3.  **Parsimonie:** Sie verwenden weniger Parameter als herkömmliche Modelle, da sie nur die *Varianz* der Zufallseffekte schätzen und nicht deren individuelle Mittelwerte.
+
+**Hinweis zur Komplexität**
+
+Die dahinter liegende Statistik und die Philosophie der Modellspezifikation sind komplex. Deshalb soll hier nur **ein einfaches Beispiel** zur Veranschaulichung des Grundprinzips der Varianzzerlegung vorgestellt werden.
+
+## Wie unterscheiden sich die Früchte 
+
+<br>
+
+Gibt es einen signifikanten Unterschied im **Gewicht** von Clementinen aus zwei verschiedenen **Marken-Kategorien** ('organic' vs. 'standard')?
+
+<br>
+
+**Das Problem der Pseudoreplikation**
+
+Die Früchte stammen nicht aus einer zufälligen repräsentativen Stichprobe, sondern wurden als **Abpackungen** (`sample`) gekauft.
+
+* **Beobachtung:** Jede Packung (z.B. S1, I2, S4) enthält mehrere Früchte.
+* **Abhängigkeit:** Die Früchte innerhalb einer Packung sind eventuell ähnlicher zueinander als Früchte aus verschiedenen Abpackungen (z.B. aufgrund der Sortierung und Lagerung).
+
+**Die Forschungsfrage mit LMM:**
+
+1.  **Gibt es einen Effekt der Marke** (`brand`) auf das Fruchtgewicht (`weight`)? *(Fester Effekt)*
+2.  **Wie groß ist die Variation** zwischen den einzelnen Packungen (`sample`)? *(Zufälliger Effekt)*
+
+Wir verwenden ein LMM, um den Effekt der Marke zu schätzen und gleichzeitig die **Chargen-Variabilität** statistisch zu kontrollieren.
+
+## Der Datensatz
+
+<br>
+
+Der Datensatz `clem`, enthält die Messungen von 74 einzelnen Clementinen.
+
+<br>
+
+| Variable | Beschreibung | Rolle im Modell |
+| :--- | :--- | :--- |
+| `weight` | Gewicht der Frucht (Abhängige Variable) | Zielgröße, deren Variation erklärt werden soll. |
+| `brand` | Marke (nominal: 'organic', 'standard') | **Fester Effekt:** Der Haupteffekt von Interesse. |
+| `sample` | Packungs-ID (nominal: S1, I1, S2, ...) | **Zufälliger Effekt:** Die Gruppierungsstruktur. |
+
+
+```{r}
+#| echo: true
+#| code-fold: true
+#| code-summary: "Datensatz anzeigen"
+clem <- structure(list(id = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28,
+29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44,
+45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+61, 62, 63, 64, 65, 2, 67, 68, 69, 70, 71, 72, 73, 74), no = c(1,
+2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2,
+3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5,
+6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8,
+9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9), brand = c("organic", "organic",
+"organic", "organic", "organic", "organic", "organic", "organic",
+"organic", "organic", "organic", "organic", "organic", "organic",
+"organic", "organic", "organic", "organic", "organic", "organic",
+"organic", "organic", "organic", "organic", "organic", "organic",
+"organic", "organic", "standard", "standard", "standard", "standard",
+"standard", "standard", "standard", "standard", "standard", "standard",
+"standard", "standard", "standard", "standard", "standard", "standard",
+"standard", "standard", "standard", "standard", "standard", "standard",
+"standard", "standard", "standard", "standard", "standard", "organic",
+"organic", "organic", "organic", "organic", "organic", "organic",
+"organic", "organic", "organic", "standard", "standard", "standard",
+"standard", "standard", "standard", "standard", "standard", "standard"
+), sample = c("S1", "S1", "S1", "S1", "S1", "S1", "S1", "S1",
+"S1", "S2", "S2", "S2", "S2", "S2", "S2", "S2", "S2", "S2", "S2",
+"S3", "S3", "S3", "S3", "S3", "S3", "S3", "S3", "S3", "I1", "I1",
+"I1", "I1", "I1", "I1", "I1", "I1", "I1", "I2", "I2", "I2", "I2",
+"I2", "I2", "I2", "I2", "I2", "I3", "I3", "I3", "I3", "I3", "I3",
+"I3", "I3", "I3", "S4", "S4", "S4", "S4", "S4", "S4", "S4", "S4",
+"S4", "S4", "I4", "I4", "I4", "I4", "I4", "I4", "I4", "I4", "I4"
+), weight = c(85, 90, 75, 86, 87, 72, 81, 94, 83, 89, 69, 71,
+67, 83, 66, 76, 88, 75, 77, 82, 84, 82, 81, 100, 70, 73, 95,
+73, 114, 110, 153, 121, 108, 100, 107, 112, 117, 103, 115, 109,
+124, 111, 116, 121, 114, 116, 105, 119, 110, 106, 123, 119, 113,
+114, 112, 71, 73, 70, 66, 81, 71, 75, 87, 69, 78, 105, 134, 126,
+119, 103, 105, 109, 121, 106), width = c(57, 57, 53, 57, 54,
+54, 58, 60, 59, 52, 52, 54, 54, 53, 54, 56, 57, 56, 56, 58, 58,
+58, 57, 85, 53, 52, 58, 54, 57, 56, 73, 58, 63, 53, 60, 60, 59,
+54, 54, 55, 60, 54, 63, 57, 61, 57, 58, 65, 54, 56, 59, 57, 52,
+61, 58, 54, 55, 55, 54, 59, 54, 56, 60, 54, 55, 61, 66, 62, 62,
+62, 61, 62, 64, 62), height = c("45", "48", "46", "47", "46",
+"45", "47", "47", "46", "46", "46", "47", "44", "48", "42", "48",
+"51", "47", "45", "49", "46", "47", "48", "70", "40", "47", "51",
+"43", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA",
+"NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA",
+"NA", "NA", "NA", "NA", "NA", "NA", "46", "45", "45", "44", "43",
+"42", "45", "49", "45", "42", "53", "64", "52", "62", "54", "63",
+"54", "59", "56")), class = c("tbl_df", "tbl", "data.frame"), row.names = c(NA,
+-74L))
+```
+
+
+## Explorative Analyse: Die Notwendigkeit eines LMM
+
+Der Boxplot zeigt die Verteilung des Gewichts (`weight`) pro Packung (`sample`).
+
+```{r clem-boxplot, echo=TRUE, fig.width=16, fig.height=8}
+boxplot(weight ~ sample, data = clem,
+        main = "Gewichtsverteilung nach Packung (sample)",
+        xlab = "Packung (sample)", ylab = "Gewicht")
+```        
+
+## Fitten des LMM (`lmer`)
+
+
+Wir modellieren das Gewicht (`weight`) als Funktion des Marken-Effekts (`brand`), wobei wir die Variation der Achsenabschnitte pro Charge (`sample`) als zufällig annehmen.
+
+**Die R-Syntax**
+
+Wir verwenden die Funktion `lmer` aus dem Paket **lme4** [@Bates2015-lme4]:
+
+```{r, eval=TRUE, echo=TRUE}
+library(lme4)
+library(lmerTest) # Für p-Werte der festen Effekte
+
+# Gewicht ~ fester Effekt (Marke) + zufälliger Achsenabschnitt (pro Charge)
+lmm <- lmer(weight ~ brand + (1 | sample), data = clem)
+```
+
+**Feste und zufällige Effekte**
+
+```{r, eval=TRUE, echo=TRUE}
+# Feste Effekte (Mittelwertsunterschiede)
+fixef(lmm) 
+
+# Zufällige Effekte (Abweichung der Achsenabschnitte pro Charge)
+ranef(lmm)
+```
+
+## Die Mathematische Notation (LMM)
+
+### Die Modellformel
+
+Das Lineare Gemischte Modell (LMM) für unser Clementinen-Beispiel lautet:
+
+$$
+\text{weight}_{ij} = \beta_0 + \beta_1 \cdot \text{brand}_i + \gamma_j + \epsilon_{ij}
+$$
+
+**Erklärung der Komponenten**
+
+:::{.smallfont}
+| Komponente | Bezeichnung | Rolle |
+| :--- | :--- | :--- |
+| $\text{weight}_{ij}$ | **Abhängige Variable** | Gewicht der $i$-ten Frucht in der $j$-ten Packung. |
+| $\beta_0$ | **Globaler Achsenabschnitt** | Erwartetes Gewicht für die Referenzkategorie ('organic'). |
+| $\beta_1$ | **Fester Effekt der Marke** | Der interessierende **mittlere Unterschied** zwischen 'standard' und 'organic'. |
+| $\gamma_j$ | **Zufälliger Effekt der Packung** | Abweichung des Achsenabschnitts der $j$-ten Packung vom globalen Mittelwert. |
+| $\epsilon_{ij}$ | **Residualfehler** | Unabhängiger, nicht erklärter Fehler. |
+:::
+
+## Die Verteilungsannahmen (Varianzkomponenten)
+
+<br>
+
+Die zufälligen Effekte und die Residualfehler müssen unabhängig und normalverteilt sein:
+
+<br>
+
+1.  **Zufälliger Achsenabschnitt der Charge ($\gamma_j$):**
+    $$
+    \gamma_j \sim N(0, \sigma^2_{\text{Charge}})
+    $$
+    * Wir schätzen $\sigma^2_{\text{Charge}}$, die Varianz **zwischen** den Chargen.
+
+<br>
+
+2.  **Residualfehler ($\epsilon_{ij}$):**
+    $$
+    \epsilon_{ij} \sim N(0, \sigma^2_{\text{Residuum}})
+    $$
+    * Wir schätzen $\sigma^2_{\text{Residuum}}$, die verbleibende Varianz **innerhalb** der Chargen.
+
+## Interpretation der Ergebnisse (`summary(lmm)`)
+
+Wir analysieren die Ausgabe des Modells
+
+`lmm <- lmer(weight ~ brand + (1 | sample), data = clem)`
+
+in drei Schritten.
+
+**Schritt 1: Zufällige Effekte (Die Varianz-Analyse)**
+
+Dieser Schritt quantifiziert die Varianz, die auf die Gruppenstruktur (*Chargen*) und auf den reinen Fehler (*Residualfehler*) zurückzuführen ist.
+
+<br>
+
+| Komponente | Varianz-Schätzung ($\sigma^2$) | Berechnung im Code |
+| :--- | :--- | :--- |
+| $\text{sample}$ (Charge) | $\sigma^2_{\text{Charge}}$ | `as.data.frame(VarCorr(lmm))[1, "vcov"]` |
+| Residuum | $\sigma^2_{\text{Residuum}}$ | `as.data.frame(VarCorr(lmm))[2, "vcov"]` |
+
+## Schritt 2: Intra-Klassen-Korrelation (ICC)
+
+Die ICC gibt an, wie viel der Gesamtvarianz durch die Gruppierung (Charge) erklärt wird. 
+
+$$\text{ICC} = \frac{\sigma^2_{\text{Charge}}}{\sigma^2_{\text{Charge}} + \sigma^2_{\text{Residuum}}}$$
+
+**Berechnung des ICC in R:**
+
+```{r eval=TRUE, echo=TRUE}
+# Berechnung der Varianzen
+Var_Charge <- as.data.frame(VarCorr(lmm))[1, "vcov"]
+Var_Residuum <- as.data.frame(VarCorr(lmm))[2, "vcov"]
+
+# ICC-Formel
+ICC <- Var_Charge / (Var_Charge + Var_Residuum)
+
+print(ICC)
+```
+
+## Schritt 3: Signifikanz des festen Effekts
+
+<br>
+
+Wenn das Paket **lmerTest** [@Kuznetsova2017-lmertest] verwendet wird, erhalten wir eine ANOVA-Tabelle mit p-Werten für die festen Effekte:
+
+<br>
+
+```{r echo=TRUE, eval=TRUE}
+library("lmerTest")
+anova(lmm)
+```
+<br>
+
+Zur Anwendung solcher Signifikanztests gibt es bei statisikern unterschiedliche Auffassungen. Im vorliegenden fall ist es jedoch viel einfacher als andere Verfahren.
+
+Bei komplizierteren Modellen verwendet man stattdessen besser eine AIC-basierte Modellselektion. 
+
+
+
+
+
+Interpretation: Der resultierende p-Wert zeigt, ob der Effekt der Marke (brand) auf das Gewicht statistisch signifikant ist, nachdem die Variation durch die Chargen kontrolliert wurde.
+
+
+## Zum Weiterlesen und Vertiefen
+
+<br>
+
+Das hier vorgestellte lineare gemischte Modell ist nur ein erster Anfang. Für eine umfassende Vertiefung wird empfohlen:
+
+
+*  Der R News-Artikel von @Bates2005lmer. Er bietet eine klare Einführung in die Grundkonzepte des `lme4`-Pakets und enthält mehrere einfache, leicht verständliche Beispiele zur Anwendung.
+
+* Das Buch von @Pinheiro2000Mixed ist der theoretische Standard für gemischte Modelle in R. Es legt dieGrundlage für das ältere, aber nach wie vor wichtige `nlme`-Paket.
+
+* Das Buch von @Zuur2009MixedModels ist ein praxisorientierter Leitfaden zur Anwendung in der Ökologie und die beste Quelle für die Themen Modellselektion und -validierung.
+
+* Für eine moderne Sichtweise auf die Ökologische Statistik gibt der Sammelband von @Fox2015EcologicalStats eine hervorragende Übersicht. Er verbindet aktuelle Theorie und praktische Anwendung in der ökologischen Forschung.
+
+
+
+
+## Literaturverzeichnis
+
+
+
+<br>
+
