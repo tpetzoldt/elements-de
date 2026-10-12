@@ -169,7 +169,7 @@ Welche dieser Parameter sind am besten geeignet?
 par(mar=c(4.1,5,3,1))
 par(mfrow=c(2,2))
 dat$year <- as.numeric(format(dat$date, "%Y"))
-with(dat, plot(date, discharge, ylab=expression(m^3~s^{-1}), type="l", las=1, main="zeitreihe"))
+with(dat, plot(date, discharge, ylab=expression(m^3~s^{-1}), type="l", las=1, main="Zeitreihe"))
 with(dat, boxplot(discharge ~ year, ylab=expression(m^3~s^{-1}), range=0, las=2, main="Boxplot"))
 avg <- with(dat, aggregate(list(Q=discharge), list(year=year), mean))
 with(dat, barplot(avg$Q, las=2, names.arg=avg$year, ylab=expression(m^3~s^{-1}), main="Balkendiagramm"))
@@ -484,7 +484,7 @@ Im Gegensatz zu anderen Systemen ist Copy & Paste erlaubt -- aber bitte zitieren
 -   Sehr gut verständlich, insbesondere für Regressions- und Zeitreihenanalyse:
     -   Kleiber, C. and Zeileis, A., 2008: Applied Econometrics with R,
         Springer Verlag, New York.
-        <https://link.springer.com/book/10.1007/978-0-387-77318-6>
+        <https://doi.org/10.1007/978-0-387-77318-6>
 
 **R Programmierung**
 
