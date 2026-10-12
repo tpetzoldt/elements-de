@@ -29,7 +29,7 @@ library("kableExtra")
     -   Grundlagen der Sprache R
     -   Anwendungen mit realen und simulierten Datensätzen
 
-$\Rightarrow$ Praktisches Verständnis und „statistisches Gefühl“,
+$\Rightarrow$ Praktisches Verständnis und „statistisches Gefühl“
 
 $\rightarrow$ Wichtiger als auswendig gelernte Fakten.
 
@@ -44,7 +44,7 @@ $\rightarrow$ Wichtiger als auswendig gelernte Fakten.
 5.  Lineare Modelle
 6.  Varianzanalyse
 7.  Nichtlineare Regression
-8.  grundlagen der Zeitreihenanalyse (optional)
+8.  Grundlagen der Zeitreihenanalyse (optional)
 9.  Multivariate Statistik
 
 ## Material
@@ -63,10 +63,12 @@ $\rightarrow$ Folien und Übungen werden regelmäßig aktualisiert, je nach
 Fortschritt des Kurses. Kommentare sind willkommen.
 :::
 
-**Prüfung**
+**Portfolio-Prüfung**
 
--   Vorlesungsbegleitende Präsentationen zu den Übungen  
--   Schriftliche Klausur am Ende des Semesters
+
+- Vorlesungsbegleitende Präsentationen zu den Übungen
+- Kurze elektronische Testate
+
 
 <br>
 
@@ -120,19 +122,19 @@ $>$ 70.000 Messungen. Wie können wir das analysieren und was bedeutet das?
 Datenquelle: [Bundesanstalt für
 Gewässerkunde](https://tpetzoldt.github.io/datasets/data/elbe_info.txt)
 
-## Grafik über 20 Jahre
+## Grafik über > 25 Jahre
 
 ```{r elbe-timeseries1, echo=FALSE}
 
 library(ggplot2)
-dat <- read.csv("https://tpetzoldt.github.io/datasets/data/elbe.csv")
+dat <- read.csv("https://tpetzoldt.github.io/datasets/data/elbe-2000.csv")
 dat$date <- as.Date(dat$date)
 dat <- na.omit(dat)
 
 plot(discharge ~ date, data=dat, type="l")
 ```
 
-Abfluss der Elbe, Pegel Dresden, Datenquelle BfG
+Abfluss der Elbe, Pegel Dresden, Datenquelle BfG und WSV
 
 ## Was sagen uns diese Daten?
 
@@ -476,10 +478,9 @@ Im Gegensatz zu anderen Systemen ist Copy & Paste erlaubt -- aber bitte zitieren
 
 -   Sehr gut lesbare Einführungen
     -   Dalgaard, P., 2008: Introductory Statistics with **R**.
-        Springer, New York, 2nd edition. (Volltext der 1. Auflage 
-        [frei verfügbar](https://link.springer.com/book/10.1007/b97671))
+        Springer, New York, 2nd edition. <https://doi.org/10.1007/978-0-387-79054-1>
     -   Verzani, J. (2019). Using R for introductory statistics. CRC
-        press.
+        press. <https://doi.org/10.1201/9781315373089>
 -   Sehr gut verständlich, insbesondere für Regressions- und Zeitreihenanalyse:
     -   Kleiber, C. and Zeileis, A., 2008: Applied Econometrics with R,
         Springer Verlag, New York.

@@ -389,7 +389,7 @@
     "href": "slides/x5-quarto-intro.html#exercise",
     "title": "x05-Creation of Reports with Quarto",
     "section": "Exercise",
-    "text": "Exercise\n\n\nWrite your first Quarto document in RStudio.\nRender it to HTML and Word\n\nOptional without warranty\n\nCreate PDF output\nNeeds LaTeX type setting system installed\nCan be done with R’s tinytex package:\n\n::: {.cell}\n\n:::\n… or by installing tinytex from the Terminal of RStudio\nquarto install tinytex\nand then include format: pdf in the YAML header\ntitle: \"My document\"\nformat: pdf\nSee more at: https://quarto.org/docs/output-formats/pdf-basics.html",
+    "text": "Exercise\n\n\nWrite your first Quarto document in RStudio.\nRender it to HTML and Word\n\nOptional without warranty\n\nCreate PDF output\nNeeds LaTeX type setting system installed\nCan be done with R’s tinytex package:\n\n\n::: {.cell}\n\n:::\n\n… or by installing tinytex from the Terminal of RStudio\nquarto install tinytex\nand then include format: pdf in the YAML header\ntitle: \"My document\"\nformat: pdf\nSee more at: https://quarto.org/docs/output-formats/pdf-basics.html",
     "crumbs": [
       "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
@@ -411,7 +411,18 @@
     "href": "slides/x5-quarto-intro.html#weblinks",
     "title": "x05-Creation of Reports with Quarto",
     "section": "Weblinks",
-    "text": "Weblinks\n\nFormatted weblinks\n[further reading](https://rmarkdown.rstudio.com)\nis then formatted as: further reading\nExample\nThe [*Markdown Wikipedia page*](https://de.wikipedia.org/wiki/Markdown) contains examples.\nThe Markdown Wikipedia page contains examples.",
+    "text": "Weblinks\n\nFormatted weblinks\n[further reading](https://rmarkdown.rstudio.com)\nis then formatted as: further reading\nExample\nThe [*Markdown Wikipedia page*](https://de.wikipedia.org/wiki/Markdown) contains examples.",
+    "crumbs": [
+      "Selected Programming Topics",
+      "x05-Creation of Reports with Quarto"
+    ]
+  },
+  {
+    "objectID": "slides/x5-quarto-intro.html#the-markdown-wikipedia-page-contains-examples.",
+    "href": "slides/x5-quarto-intro.html#the-markdown-wikipedia-page-contains-examples.",
+    "title": "x05-Creation of Reports with Quarto",
+    "section": "The Markdown Wikipedia page contains examples.",
+    "text": "The Markdown Wikipedia page contains examples.",
     "crumbs": [
       "Selected Programming Topics",
       "x05-Creation of Reports with Quarto"
@@ -1060,7 +1071,7 @@
     "href": "slides/x1-r-basics.html#lists-1",
     "title": "x1-R Basics",
     "section": "Lists",
-    "text": "Lists\n\nmost flexible data type in R\ncan contain arbitrary data objects as elements of the list\nallows tree-like structure\n\nExamples\n\nOutput of many R functions, e.g. return value of hist:\n\n\nL &lt;- hist(rnorm(100), plot=FALSE)\nstr(L)\n\nList of 6\n $ breaks  : num [1:13] -2.5 -2 -1.5 -1 -0.5 0 0.5 1 1.5 2 ...\n $ counts  : int [1:12] 1 2 9 20 11 19 25 7 4 1 ...\n $ density : num [1:12] 0.02 0.04 0.18 0.4 0.22 0.38 0.5 0.14 0.08 0.02 ...\n $ mids    : num [1:12] -2.25 -1.75 -1.25 -0.75 -0.25 0.25 0.75 1.25 1.75 2.25 ...\n $ xname   : chr \"rnorm(100)\"\n $ equidist: logi TRUE\n - attr(*, \"class\")= chr \"histogram\"",
+    "text": "Lists\n\nmost flexible data type in R\ncan contain arbitrary data objects as elements of the list\nallows tree-like structure\n\nExamples\n\nOutput of many R functions, e.g. return value of hist:\n\n\nL &lt;- hist(rnorm(100), plot=FALSE)\nstr(L)\n\nList of 6\n $ breaks  : num [1:11] -3 -2.5 -2 -1.5 -1 -0.5 0 0.5 1 1.5 ...\n $ counts  : int [1:10] 1 2 3 9 16 21 23 13 9 3\n $ density : num [1:10] 0.02 0.04 0.06 0.18 0.32 0.42 0.46 0.26 0.18 0.06\n $ mids    : num [1:10] -2.75 -2.25 -1.75 -1.25 -0.75 -0.25 0.25 0.75 1.25 1.75\n $ xname   : chr \"rnorm(100)\"\n $ equidist: logi TRUE\n - attr(*, \"class\")= chr \"histogram\"",
     "crumbs": [
       "Selected Programming Topics",
       "x1-R Basics"
@@ -1533,7 +1544,7 @@
     "href": "slides/07-anova.html#der-datensatz",
     "title": "07-ANOVA und ANCOVA",
     "section": "Der Datensatz",
-    "text": "Der Datensatz\n\n\n\n\n\n\ntreat\nreplicate 1\nreplicate 2\nreplicate 3\n\n\n\n\nFertilizer\n0.020\n-0.217\n-0.273\n\n\nF. open\n0.940\n0.780\n0.555\n\n\nF.+sugar\n0.188\n-0.100\n0.020\n\n\nF.+CaCO3\n0.245\n0.236\n0.456\n\n\nBas.med.\n0.699\n0.727\n0.656\n\n\nA.dest\n-0.010\n0.000\n-0.010\n\n\nTap water\n0.030\n-0.070\nNA\n\n\n\n\n\n\n\n\nWachstum von Tag 2 bis Tag 6 (relative Einheiten)\nNA bedeutet „nicht verfügbar“, d.h. ein fehlender Wert\nDie Kruztabelle ist kompakt und übersichtlich, jedoch nicht ideal für die Datenanalyse.\n\\(\\Rightarrow\\) Konvertierung in das Langformat",
+    "text": "Der Datensatz\n\n\n\n\n\nTable 1\n\n\n\n\n\n\ntreat\nreplicate 1\nreplicate 2\nreplicate 3\n\n\n\n\nFertilizer\n0.020\n-0.217\n-0.273\n\n\nF. open\n0.940\n0.780\n0.555\n\n\nF.+sugar\n0.188\n-0.100\n0.020\n\n\nF.+CaCO3\n0.245\n0.236\n0.456\n\n\nBas.med.\n0.699\n0.727\n0.656\n\n\nA.dest\n-0.010\n0.000\n-0.010\n\n\nTap water\n0.030\n-0.070\nNA\n\n\n\n\n\n\n\n\n\nWachstum von Tag 2 bis Tag 6 (relative Einheiten)\nNA bedeutet „nicht verfügbar“, d.h. ein fehlender Wert\nDie Kruztabelle ist kompakt und übersichtlich, jedoch nicht ideal für die Datenanalyse.\n\\(\\Rightarrow\\) Konvertierung in das Langformat",
     "crumbs": [
       "Statistische Grundlagen",
       "07-ANOVA und ANCOVA"
@@ -2952,7 +2963,7 @@
     "href": "slides/01-introduction.html#ziele-des-kurses",
     "title": "01-Einführung",
     "section": "Ziele des Kurses",
-    "text": "Ziele des Kurses\n\n\nEinführung in die „Datenwissenschaft“\nStatistische Konzepte und ausgewählte Methoden\n\nStatistische Parameter\nVerteilungen und Wahrscheinlichkeiten\nStatistische Tests\nAuswahl von Modellen\n\nPraktische Erfahrungen\n\nDaten-Strukturen\nGrundlagen der Sprache R\nAnwendungen mit realen und simulierten Datensätzen\n\n\n\\(\\Rightarrow\\) Praktisches Verständnis und „statistisches Gefühl“,\n\\(\\rightarrow\\) Wichtiger als auswendig gelernte Fakten.",
+    "text": "Ziele des Kurses\n\n\nEinführung in die „Datenwissenschaft“\nStatistische Konzepte und ausgewählte Methoden\n\nStatistische Parameter\nVerteilungen und Wahrscheinlichkeiten\nStatistische Tests\nAuswahl von Modellen\n\nPraktische Erfahrungen\n\nDaten-Strukturen\nGrundlagen der Sprache R\nAnwendungen mit realen und simulierten Datensätzen\n\n\n\\(\\Rightarrow\\) Praktisches Verständnis und „statistisches Gefühl“\n\\(\\rightarrow\\) Wichtiger als auswendig gelernte Fakten.",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -2963,7 +2974,7 @@
     "href": "slides/01-introduction.html#themen",
     "title": "01-Einführung",
     "section": "Themen",
-    "text": "Themen\n\n\nGrundlegende Konzepte der Statistik\nEine Einführung in R\nStatistische Parameter und Verteilungen\nAusgewählte Klassische Tests\nLineare Modelle\nVarianzanalyse\nNichtlineare Regression\ngrundlagen der Zeitreihenanalyse (optional)\nMultivariate Statistik",
+    "text": "Themen\n\n\nGrundlegende Konzepte der Statistik\nEine Einführung in R\nStatistische Parameter und Verteilungen\nAusgewählte Klassische Tests\nLineare Modelle\nVarianzanalyse\nNichtlineare Regression\nGrundlagen der Zeitreihenanalyse (optional)\nMultivariate Statistik",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -2974,7 +2985,7 @@
     "href": "slides/01-introduction.html#material",
     "title": "01-Einführung",
     "section": "Material",
-    "text": "Material\n\n\nFolien, Tutorien: tpetzoldt.github.io/elements-de\nÜbungen: tpetzoldt.github.io/element-labs\nDaten: tpetzoldt.github.io/datasets\n\n\n\\(\\rightarrow\\) Folien und Übungen werden regelmäßig aktualisiert, je nach Fortschritt des Kurses. Kommentare sind willkommen.\n\nPrüfung\n\nVorlesungsbegleitende Präsentationen zu den Übungen\n\nSchriftliche Klausur am Ende des Semesters\n\n\n\nFragen?",
+    "text": "Material\n\n\nFolien, Tutorien: tpetzoldt.github.io/elements-de\nÜbungen: tpetzoldt.github.io/element-labs\nDaten: tpetzoldt.github.io/datasets\n\n\n\\(\\rightarrow\\) Folien und Übungen werden regelmäßig aktualisiert, je nach Fortschritt des Kurses. Kommentare sind willkommen.\n\nPortfolio-Prüfung\n\nVorlesungsbegleitende Präsentationen zu den Übungen\nKurze elektronische Testate\n\n\n\nFragen?",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -2992,11 +3003,11 @@
     ]
   },
   {
-    "objectID": "slides/01-introduction.html#grafik-über-20-jahre",
-    "href": "slides/01-introduction.html#grafik-über-20-jahre",
+    "objectID": "slides/01-introduction.html#grafik-über-25-jahre",
+    "href": "slides/01-introduction.html#grafik-über-25-jahre",
     "title": "01-Einführung",
-    "section": "Grafik über 20 Jahre",
-    "text": "Grafik über 20 Jahre\n\nAbfluss der Elbe, Pegel Dresden, Datenquelle BfG",
+    "section": "Grafik über > 25 Jahre",
+    "text": "Grafik über &gt; 25 Jahre\n\nAbfluss der Elbe, Pegel Dresden, Datenquelle BfG und WSV",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -3018,7 +3029,7 @@
     "href": "slides/01-introduction.html#wie-soll-man-anfangen",
     "title": "01-Einführung",
     "section": "Wie soll man anfangen?",
-    "text": "Wie soll man anfangen?\n\n\nMittelwert: 224\nMedian: 224\nStandardabweichung: 253\nSpannweite: 2, 4500\n\nWelche dieser Parameter sind am besten geeignet?",
+    "text": "Wie soll man anfangen?\n\n\nMittelwert: 215\nMedian: 215\nStandardabweichung: 256\nSpannweite: 2, 4511\n\nWelche dieser Parameter sind am besten geeignet?",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -3106,7 +3117,7 @@
     "href": "slides/01-introduction.html#welche-datenstruktur-ist-besser",
     "title": "01-Einführung",
     "section": "Welche Datenstruktur ist besser?",
-    "text": "Welche Datenstruktur ist besser?\n\n\nWide-Format\n\n\n\n\n\n\nstation\n2021\n2022\n2023\n\n\n\n\nA\n14\n9\n20\n\n\nB\n5\n6\n8\n\n\nC\n19\n3\n16\n\n\nD\n18\n14\n12\n\n\nE\n2\n19\n20\n\n\n\n\n\n\nLong-Format\n\n\n\n\n\n\nyear\nstation\nvalue\n\n\n\n\n2021\nA\n14\n\n\n2021\nB\n5\n\n\n2021\nC\n19\n\n\n2021\nD\n18\n\n\n2021\nE\n2\n\n\n2022\nA\n9\n\n\n2022\nB\n6\n\n\n2022\nC\n3\n\n\n2022\nD\n14\n\n\n2022\nE\n19\n\n\n2023\nA\n20\n\n\n2023\nB\n8\n\n\n2023\nC\n16\n\n\n2023\nD\n12\n\n\n2023\nE\n20",
+    "text": "Welche Datenstruktur ist besser?\n\n\nWide-Format\n\n\n\n\n\n\nstation\n2021\n2022\n2023\n\n\n\n\nA\n18\n12\n1\n\n\nB\n9\n11\n16\n\n\nC\n12\n15\n7\n\n\nD\n9\n9\n6\n\n\nE\n5\n19\n15\n\n\n\n\n\n\nLong-Format\n\n\n\n\n\n\nyear\nstation\nvalue\n\n\n\n\n2021\nA\n18\n\n\n2021\nB\n9\n\n\n2021\nC\n12\n\n\n2021\nD\n9\n\n\n2021\nE\n5\n\n\n2022\nA\n12\n\n\n2022\nB\n11\n\n\n2022\nC\n15\n\n\n2022\nD\n9\n\n\n2022\nE\n19\n\n\n2023\nA\n1\n\n\n2023\nB\n16\n\n\n2023\nC\n7\n\n\n2023\nD\n6\n\n\n2023\nE\n15",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -3117,7 +3128,7 @@
     "href": "slides/01-introduction.html#beispiel-ein-experiment-zum-algenwachstum",
     "title": "01-Einführung",
     "section": "Beispiel: Ein Experiment zum Algenwachstum",
-    "text": "Beispiel: Ein Experiment zum Algenwachstum\n\nWide-Format\n\n\n\n\nTable 1: Vermehrung einer Algenpopulation innerhalb von 4 Tagen (relative Einheiten)\n\n\n\n\n\n\ntreat\nreplicate 1\nreplicate 2\nreplicate 3\n\n\n\n\nFertilizer\n0.020\n-0.217\n-0.273\n\n\nF. open\n0.940\n0.780\n0.555\n\n\nF.+sugar\n0.188\n-0.100\n0.020\n\n\nF.+CaCO3\n0.245\n0.236\n0.456\n\n\nBas.med.\n0.699\n0.727\n0.656\n\n\nA.dest\n-0.010\n0.000\n-0.010\n\n\nTap water\n0.030\n-0.070\nNA\n\n\n\n\n\n\n\n\n\n\n\nNA bedeutet „nicht verfügbar“ (not available), d.h. ein fehlender Wert",
+    "text": "Beispiel: Ein Experiment zum Algenwachstum\n\nWide-Format\n\n\n\n\nTable 1: Vermehrung einer Algenpopulation innerhalb von 4 Tagen (relative Einheiten)\n\n\n\n\n\n\ntreat\nreplicate 1\nreplicate 2\nreplicate 3\n\n\n\n\nFertilizer\n0.020\n-0.217\n-0.273\n\n\nF. open\n0.940\n0.780\n0.555\n\n\nF.+sugar\n0.188\n-0.100\n0.020\n\n\nF.+CaCO3\n0.245\n0.236\n0.456\n\n\nBas.med.\n0.699\n0.727\n0.656\n\n\nA.dest\n-0.010\n0.000\n-0.010\n\n\nTap water\n0.030\n-0.070\nNA\n\n\n\n\n\n\n\n\n\nNA bedeutet „nicht verfügbar“ (not available), d.h. ein fehlender Wert",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -3183,7 +3194,7 @@
     "href": "slides/01-introduction.html#bücher",
     "title": "01-Einführung",
     "section": "Bücher",
-    "text": "Bücher\nStatistische Methoden\n\nSehr gut lesbare Einführungen\n\nDalgaard, P., 2008: Introductory Statistics with R. Springer, New York, 2nd edition. (Volltext der 1. Auflage frei verfügbar)\nVerzani, J. (2019). Using R for introductory statistics. CRC press.\n\nSehr gut verständlich, insbesondere für Regressions- und Zeitreihenanalyse:\n\nKleiber, C. and Zeileis, A., 2008: Applied Econometrics with R, Springer Verlag, New York. https://link.springer.com/book/10.1007/978-0-387-77318-6\n\n\nR Programmierung\n\nEinführung in die Datenwissenschaft mit dem modernen „Tidyverse“-Ansatz:\n\nWickham, H., Çetinkaya-Rundel, M and Grolemund, G, 2023: R for Data Science. Free ebook: https://r4ds.hadley.nz/\n\n\n\n\n\n\nUnd jede Menge frei verfügbares Material im Internet …",
+    "text": "Bücher\nStatistische Methoden\n\nSehr gut lesbare Einführungen\n\nDalgaard, P., 2008: Introductory Statistics with R. Springer, New York, 2nd edition. https://doi.org/10.1007/978-0-387-79054-1\nVerzani, J. (2019). Using R for introductory statistics. CRC press. https://doi.org/10.1201/9781315373089\n\nSehr gut verständlich, insbesondere für Regressions- und Zeitreihenanalyse:\n\nKleiber, C. and Zeileis, A., 2008: Applied Econometrics with R, Springer Verlag, New York. https://link.springer.com/book/10.1007/978-0-387-77318-6\n\n\nR Programmierung\n\nEinführung in die Datenwissenschaft mit dem modernen „Tidyverse“-Ansatz:\n\nWickham, H., Çetinkaya-Rundel, M and Grolemund, G, 2023: R for Data Science. Free ebook: https://r4ds.hadley.nz/\n\n\n\n\n\n\nUnd jede Menge frei verfügbares Material im Internet …",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -3370,7 +3381,7 @@
     "href": "slides/04-distributions.html#kontinuierliche-gleichverteilung-mathbfu0-1",
     "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)",
-    "text": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)\n\n\ngleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall\nz.B. \\([0, 1]\\)\nin R: runif, random, uniform\n\n\nrunif(10)\n\n [1] 0.6456617 0.5670464 0.9081005 0.2869251 0.9775987 0.6275322 0.9037572\n [8] 0.6328973 0.1875725 0.5415799\n\n\n \n\nKlassenbildung (Binning): Einteilung der Werte in Klassen",
+    "text": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)\n\n\ngleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall\nz.B. \\([0, 1]\\)\nin R: runif, random, uniform\n\n\nrunif(10)\n\n [1] 0.36379612 0.10721012 0.01362066 0.03801855 0.24286761 0.20923878\n [7] 0.55496966 0.46128109 0.83423520 0.14263028\n\n\n \n\nKlassenbildung (Binning): Einteilung der Werte in Klassen",
     "crumbs": [
       "Statistische Grundlagen",
       "04-Wahrscheinlichkeitsverteilungen"
@@ -4158,6 +4169,17 @@
     ]
   },
   {
+    "objectID": "slides/10-lmer.html#prüfung-der-modellannahmen-diagnostik",
+    "href": "slides/10-lmer.html#prüfung-der-modellannahmen-diagnostik",
+    "title": "10-Linear Mixed Effects Models",
+    "section": "Prüfung der Modellannahmen (Diagnostik)",
+    "text": "Prüfung der Modellannahmen (Diagnostik)\nZur Prüfung der Modellannahmen verwenden wir die Funktion check_model() aus dem Paket performance (Lüdecke et al., 2021), die alle wichtigen diagnostischen Plots generiert.\n\nlibrary(\"performance\")\nlibrary(\"see\")\ncheck_model(lmm)",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "10-Linear Mixed Effects Models"
+    ]
+  },
+  {
     "objectID": "slides/10-lmer.html#interpretation-der-ergebnisse-summarylmm",
     "href": "slides/10-lmer.html#interpretation-der-ergebnisse-summarylmm",
     "title": "10-Linear Mixed Effects Models",
@@ -4602,7 +4624,7 @@
     "href": "slides/x4-pipes-intro.html#summary-statistics",
     "title": "x4-Pipelines in R",
     "section": "Summary statistics",
-    "text": "Summary statistics\n\n\nsummary(leaves)\n\n    group                 no             length           width      \n Length:126         Min.   :  1.00   Min.   : 37.00   Min.   : 44.0  \n Class :character   1st Qu.: 32.25   1st Qu.: 72.00   1st Qu.: 96.0  \n Mode  :character   Median : 63.50   Median : 90.00   Median :118.5  \n                    Mean   : 63.50   Mean   : 95.83   Mean   :117.4  \n                    3rd Qu.: 94.75   3rd Qu.:102.00   3rd Qu.:138.5  \n                    Max.   :126.00   Max.   :250.00   Max.   :199.0  \n     stalk       \n Min.   : 29.00  \n 1st Qu.: 62.00  \n Median : 82.00  \n Mean   : 81.89  \n 3rd Qu.:101.00  \n Max.   :175.00",
+    "text": "Summary statistics\n\n\nsummary(leaves)\n\n       group           no             length           width      \n Length   :126   Min.   :  1.00   Min.   : 37.00   Min.   : 44.0  \n N.unique :  2   1st Qu.: 32.25   1st Qu.: 72.00   1st Qu.: 96.0  \n N.blank  :  0   Median : 63.50   Median : 90.00   Median :118.5  \n Min.nchar:  3   Mean   : 63.50   Mean   : 95.83   Mean   :117.4  \n Max.nchar:  3   3rd Qu.: 94.75   3rd Qu.:102.00   3rd Qu.:138.5  \n                 Max.   :126.00   Max.   :250.00   Max.   :199.0  \n     stalk       \n Min.   : 29.00  \n 1st Qu.: 62.00  \n Median : 82.00  \n Mean   : 81.89  \n 3rd Qu.:101.00  \n Max.   :175.00",
     "crumbs": [
       "Selected Programming Topics",
       "x4-Pipelines in R"
@@ -5053,16 +5075,5 @@
     "title": "Elemente der statistischen Datenanalyse und Statistik mit R",
     "section": "Autor",
     "text": "Autor\nhomepage +++ github\n2025-11-05"
-  },
-  {
-    "objectID": "slides/10-lmer.html#prüfung-der-modellannahmen-diagnostik",
-    "href": "slides/10-lmer.html#prüfung-der-modellannahmen-diagnostik",
-    "title": "10-Linear Mixed Effects Models",
-    "section": "Prüfung der Modellannahmen (Diagnostik)",
-    "text": "Prüfung der Modellannahmen (Diagnostik)\nZur Prüfung der Modellannahmen verwenden wir die Funktion check_model() aus dem Paket performance (Lüdecke et al., 2021), die alle wichtigen diagnostischen Plots generiert.\n\nlibrary(\"performance\")\nlibrary(\"see\")\ncheck_model(lmm)",
-    "crumbs": [
-      "Statistische Grundlagen",
-      "10-Linear Mixed Effects Models"
-    ]
   }
 ]

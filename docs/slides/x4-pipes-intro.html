@@ -6,11 +6,11 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.37">
 
   <meta name="author" content="Thomas Petzoldt">
-  <meta name="dcterms.date" content="2025-12-13">
+  <meta name="dcterms.date" content="2026-10-12">
   <title>Elemente der statistischen Datenanalyse und Statistik mit R – x4-Pipelines in R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -18,6 +18,9 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -30,8 +33,9 @@
       vertical-align: middle;
     }
     /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -42,7 +46,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -115,7 +119,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-cb13c09ad5a7270edb89df8c4c84031f.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-9197ed92144eb5ba5731738e77b63148.css">
   <link rel="stylesheet" href="../thpe.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -216,7 +220,7 @@
 
   <link href="../site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet">
 
-  <script src="../site_libs/grViz-binding-1.0.11/grViz.js"></script>
+  <script src="../site_libs/grViz-binding-1.0.12/grViz.js"></script>
 
   <style>
   #title-slide 
@@ -242,7 +246,7 @@ Thomas Petzoldt
 </div>
 </div>
 
-  <p class="date">2025-12-13</p>
+  <p class="date">2026-10-12</p>
 </section>
 <section id="prerequisites" class="slide level2">
 <h2>Prerequisites</h2>
@@ -251,16 +255,16 @@ Thomas Petzoldt
 <p><br></p>
 <p><strong>Installation</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"dplyr"</span>, <span class="st">"tiryr"</span>, <span class="st">"lubridate"</span>, <span class="st">"readxl"</span>, <span class="st">"ggplot2"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"dplyr"</span>, <span class="st">"tiryr"</span>, <span class="st">"lubridate"</span>, <span class="st">"readxl"</span>, <span class="st">"ggplot2"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <p><strong>Loading</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span>
 <span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyr"</span>)</span>
 <span id="cb2-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"lubridate"</span>)</span>
 <span id="cb2-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"readxl"</span>)</span>
-<span id="cb2-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <p>The examples were tested with <strong>R</strong> 4.3.1 and <strong>RStudio</strong> 2023.06.1</p>
@@ -276,12 +280,12 @@ Thomas Petzoldt
 <div class="column add-space" style="width:59%;">
 <p>Download the file <a href="https://raw.githubusercontent.com/tpetzoldt/datasets/main/data/leaves.csv">leaves.csv</a>, save it to a working directory and then read it with <code>read.csv</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>leaves <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"leaves.csv"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>leaves <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"leaves.csv"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <p>Have a look at the data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(leaves)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(leaves)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  group no length width stalk
 1   HSE  1     83    87    74
@@ -300,7 +304,7 @@ Thomas Petzoldt
 <p><br></p>
 <div class="bigfont">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(width <span class="sc">~</span> group, <span class="at">data=</span>leaves)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(width <span class="sc">~</span> group, <span class="at">data=</span>leaves)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -315,15 +319,15 @@ Thomas Petzoldt
 <h2>Summary statistics</h2>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(leaves)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(leaves)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    group                 no             length           width      
- Length:126         Min.   :  1.00   Min.   : 37.00   Min.   : 44.0  
- Class :character   1st Qu.: 32.25   1st Qu.: 72.00   1st Qu.: 96.0  
- Mode  :character   Median : 63.50   Median : 90.00   Median :118.5  
-                    Mean   : 63.50   Mean   : 95.83   Mean   :117.4  
-                    3rd Qu.: 94.75   3rd Qu.:102.00   3rd Qu.:138.5  
-                    Max.   :126.00   Max.   :250.00   Max.   :199.0  
+<pre><code>       group           no             length           width      
+ Length   :126   Min.   :  1.00   Min.   : 37.00   Min.   : 44.0  
+ N.unique :  2   1st Qu.: 32.25   1st Qu.: 72.00   1st Qu.: 96.0  
+ N.blank  :  0   Median : 63.50   Median : 90.00   Median :118.5  
+ Min.nchar:  3   Mean   : 63.50   Mean   : 95.83   Mean   :117.4  
+ Max.nchar:  3   3rd Qu.: 94.75   3rd Qu.:102.00   3rd Qu.:138.5  
+                 Max.   :126.00   Max.   :250.00   Max.   :199.0  
      stalk       
  Min.   : 29.00  
  1st Qu.: 62.00  
@@ -343,19 +347,19 @@ Thomas Petzoldt
 </ul>
 <p><strong>A few examples</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(<span class="fu">cbind</span>(length, width, stalk) <span class="sc">~</span> group, mean, <span class="at">data=</span>leaves)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(<span class="fu">cbind</span>(length, width, stalk) <span class="sc">~</span> group, mean, <span class="at">data=</span>leaves)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  group    length    width     stalk
 1   HSE 137.82857 139.0286 102.02857
 2   HYB  79.67033 109.1319  74.14286</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(<span class="fu">cbind</span>(length, width, stalk) <span class="sc">~</span> group, sd, <span class="at">data=</span>leaves)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(<span class="fu">cbind</span>(length, width, stalk) <span class="sc">~</span> group, sd, <span class="at">data=</span>leaves)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  group   length    width    stalk
 1   HSE 47.99356 26.07285 26.47917
 2   HYB 19.93771 30.90423 25.24087</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(<span class="fu">cbind</span>(length, width, stalk) <span class="sc">~</span> group, min, <span class="at">data=</span>leaves)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">aggregate</span>(<span class="fu">cbind</span>(length, width, stalk) <span class="sc">~</span> group, min, <span class="at">data=</span>leaves)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  group length width stalk
 1   HSE     83    87    52
@@ -375,13 +379,13 @@ Thomas Petzoldt
 <p>The functions can be combined in different ways:</p>
 <p><strong>A) Two separate code lines</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a>leaves_grouped <span class="ot">&lt;-</span> <span class="fu">group_by</span>(leaves, group)</span>
-<span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(leaves_grouped, <span class="at">mean =</span> <span class="fu">mean</span>(width), <span class="at">sd =</span> <span class="fu">sd</span>(width), <span class="at">min =</span> <span class="fu">min</span>(width), <span class="at">max =</span> <span class="fu">max</span>(width))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a>leaves_grouped <span class="ot">&lt;-</span> <span class="fu">group_by</span>(leaves, group)</span>
+<span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(leaves_grouped, <span class="at">mean =</span> <span class="fu">mean</span>(width), <span class="at">sd =</span> <span class="fu">sd</span>(width), <span class="at">min =</span> <span class="fu">min</span>(width), <span class="at">max =</span> <span class="fu">max</span>(width))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><span class="red"><span class="math inline">\(\ominus\)</span></span> needs a temporary variable: <code>leaves_grouped</code></p>
 <p><br> <strong>B) One line, <code>group_by</code> enclosed in parentheses</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="fu">group_by</span>(leaves, group), <span class="at">mean=</span><span class="fu">mean</span>(width), <span class="at">sd=</span><span class="fu">sd</span>(width), <span class="at">min=</span><span class="fu">min</span>(width), <span class="at">max=</span><span class="fu">max</span>(width))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="fu">group_by</span>(leaves, group), <span class="at">mean=</span><span class="fu">mean</span>(width), <span class="at">sd=</span><span class="fu">sd</span>(width), <span class="at">min=</span><span class="fu">min</span>(width), <span class="at">max=</span><span class="fu">max</span>(width))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><span class="red"><span class="math inline">\(\oplus\)</span></span> no temporary variables necessary <br> <span class="red"><span class="math inline">\(\ominus\)</span></span> nested parentheses</p>
 </section>
@@ -412,17 +416,17 @@ Thomas Petzoldt
 <p><br></p>
 <p><strong>The output from the first function is piped to the next</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(leaves, group) <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(leaves, group) <span class="sc">|&gt;</span></span>
 <span id="cb17-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(width), <span class="at">sd =</span> <span class="fu">sd</span>(width), </span>
-<span id="cb17-3"><a aria-hidden="true" tabindex="-1"></a>          <span class="at">min =</span> <span class="fu">min</span>(width), <span class="at">max =</span> <span class="fu">max</span>(width))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-3"><a aria-hidden="true" tabindex="-1"></a>          <span class="at">min =</span> <span class="fu">min</span>(width), <span class="at">max =</span> <span class="fu">max</span>(width))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <p><strong>Or, even more streamlined: start pipeline with the data frame</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>leaves <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>leaves <span class="sc">|&gt;</span></span>
 <span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group) <span class="sc">|&gt;</span></span>
 <span id="cb18-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(width), <span class="at">sd =</span> <span class="fu">sd</span>(width), </span>
-<span id="cb18-4"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> <span class="fu">min</span>(width), <span class="at">max =</span> <span class="fu">max</span>(width))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-4"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> <span class="fu">min</span>(width), <span class="at">max =</span> <span class="fu">max</span>(width))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   group  mean    sd   min   max
@@ -439,23 +443,23 @@ Thomas Petzoldt
 <div class="column" style="width:49%;">
 <p><strong>Classical functional style</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(leaves, group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(leaves, group)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-ede76b937f20020672be" style="width:432px;height:384px;"></div>
-<script type="application/json" data-for="htmlwidget-ede76b937f20020672be">{"x":{"diagram":"digraph functional {\n         graph [rankdir = \"LR\", bgcolor=\"none\"]\n           node [shape = box, penwidth=2, fontname = \"Helvetica\"]\n             \"input\", \"output\"\n           node [shape = \"oval\"]\n             \"function(arg1, arg2, ...)\"\n           edge [penwidth=1.5]\n              output -> \"function(arg1, arg2, ...)\"[dir=back]\n           edge [penwidth=0.7, tailport = \"e\", headport = \"n\", constraint = false, color=\"tomato\"]\n              \"input\" -> \"function(arg1, arg2, ...)\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-d4f44d0fb79416d2af74" style="width:432px;height:384px;"></div>
+<script type="application/json" data-for="htmlwidget-d4f44d0fb79416d2af74">{"x":{"diagram":"digraph functional {\n         graph [rankdir = \"LR\", bgcolor=\"none\"]\n           node [shape = box, penwidth=2, fontname = \"Helvetica\"]\n             \"input\", \"output\"\n           node [shape = \"oval\"]\n             \"function(arg1, arg2, ...)\"\n           edge [penwidth=1.5]\n              output -> \"function(arg1, arg2, ...)\"[dir=back]\n           edge [penwidth=0.7, tailport = \"e\", headport = \"n\", constraint = false, color=\"tomato\"]\n              \"input\" -> \"function(arg1, arg2, ...)\"\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div><div class="column" style="width:49%;">
 <p><strong>Pipeline style</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a>leaves <span class="sc">|&gt;</span> <span class="fu">group_by</span>(group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a>leaves <span class="sc">|&gt;</span> <span class="fu">group_by</span>(group)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="grViz html-widget html-fill-item" id="htmlwidget-20931ef46d6317db3306" style="width:432px;height:384px;"></div>
-<script type="application/json" data-for="htmlwidget-20931ef46d6317db3306">{"x":{"diagram":"digraph pipes {\n         graph [rankdir = \"LR\", bgcolor=\"none\"]\n           node [shape = box, penwidth=2, fontname = \"Helvetica\"]\n             \"input\", \"output\"\n           node [shape = \"oval\"]\n             \"function(arg2, ...)\"\n           node [shape=none]\n             \"|>\"\n           edge [penwidth=1.5]\n              input -> \"|>\" -> \"function(arg2, ...)\" -> output\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div class="grViz html-widget html-fill-item" id="htmlwidget-5f026587e6e85117a985" style="width:432px;height:384px;"></div>
+<script type="application/json" data-for="htmlwidget-5f026587e6e85117a985">{"x":{"diagram":"digraph pipes {\n         graph [rankdir = \"LR\", bgcolor=\"none\"]\n           node [shape = box, penwidth=2, fontname = \"Helvetica\"]\n             \"input\", \"output\"\n           node [shape = \"oval\"]\n             \"function(arg2, ...)\"\n           node [shape=none]\n             \"|>\"\n           edge [penwidth=1.5]\n              input -> \"|>\" -> \"function(arg2, ...)\" -> output\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div></section>
@@ -467,12 +471,12 @@ Thomas Petzoldt
 </ul>
 <p><strong>Add more code rows</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a>leaves <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a>leaves <span class="sc">|&gt;</span></span>
 <span id="cb22-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group) <span class="sc">|&gt;</span></span>
 <span id="cb22-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_l=</span><span class="fu">mean</span>(width),  <span class="at">sd_l=</span><span class="fu">sd</span>(width),  <span class="at">min_l=</span><span class="fu">min</span>(width),  <span class="at">max_l=</span><span class="fu">max</span>(width),</span>
 <span id="cb22-4"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_w=</span><span class="fu">mean</span>(length), <span class="at">sd_w=</span><span class="fu">sd</span>(length), <span class="at">min_w=</span><span class="fu">min</span>(length), <span class="at">max_w=</span><span class="fu">max</span>(length),</span>
 <span id="cb22-5"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_s=</span><span class="fu">mean</span>(stalk),  <span class="at">sd_s=</span><span class="fu">sd</span>(stalk),  <span class="at">min_s=</span><span class="fu">min</span>(stalk),  <span class="at">max_s=</span><span class="fu">max</span>(stalk)</span>
-<span id="cb22-6"><a aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-6"><a aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <p><strong>Is copy and paste a good idea?</strong></p>
@@ -672,8 +676,8 @@ Thomas Petzoldt
 <p><br></p>
 <div class="bigfont">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a>leaves <span class="sc">|&gt;</span> </span>
-<span id="cb23-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="st">"length"</span>, <span class="st">"width"</span>, <span class="st">"stalk"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a>leaves <span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="st">"length"</span>, <span class="st">"width"</span>, <span class="st">"stalk"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 378 × 4
    group    no name   value
@@ -698,13 +702,13 @@ Thomas Petzoldt
 <p><br></p>
 <div class="bigfont">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a aria-hidden="true" tabindex="-1"></a>leaves <span class="sc">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a aria-hidden="true" tabindex="-1"></a>leaves <span class="sc">|&gt;</span> </span>
 <span id="cb25-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="st">"length"</span>, <span class="st">"width"</span>, <span class="st">"stalk"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb25-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group, name) <span class="sc">|&gt;</span></span>
 <span id="cb25-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(value), </span>
 <span id="cb25-5"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">sd   =</span> <span class="fu">sd</span>(value), </span>
 <span id="cb25-6"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">min  =</span> <span class="fu">min</span>(value),</span>
-<span id="cb25-7"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">max  =</span> <span class="fu">max</span>(value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-7"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">max  =</span> <span class="fu">max</span>(value))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 6
 # Groups:   group [2]
@@ -729,11 +733,11 @@ Thomas Petzoldt
 </ul>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a aria-hidden="true" tabindex="-1"></a>totals <span class="ot">&lt;-</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a aria-hidden="true" tabindex="-1"></a>totals <span class="ot">&lt;-</span> </span>
 <span id="cb27-2"><a aria-hidden="true" tabindex="-1"></a>  leaves <span class="sc">|&gt;</span> </span>
 <span id="cb27-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="st">"length"</span>, <span class="st">"width"</span>, <span class="st">"stalk"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb27-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group, name) <span class="sc">|&gt;</span></span>
-<span id="cb27-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean=</span><span class="fu">mean</span>(value), <span class="at">sd=</span><span class="fu">sd</span>(value), <span class="at">min=</span><span class="fu">min</span>(value), <span class="at">max=</span><span class="fu">max</span>(value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean=</span><span class="fu">mean</span>(value), <span class="at">sd=</span><span class="fu">sd</span>(value), <span class="at">min=</span><span class="fu">min</span>(value), <span class="at">max=</span><span class="fu">max</span>(value))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <p>Don’t get confused!</p>
@@ -750,11 +754,11 @@ Thomas Petzoldt
 <p>“More logical”, but less common would be a consequent left to the right notation with <code>-&gt;</code></p>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a>leaves <span class="sc">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a>leaves <span class="sc">|&gt;</span> </span>
 <span id="cb28-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="st">"length"</span>, <span class="st">"width"</span>, <span class="st">"stalk"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb28-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group, name) <span class="sc">|&gt;</span></span>
 <span id="cb28-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean=</span><span class="fu">mean</span>(value), <span class="at">sd=</span><span class="fu">sd</span>(value), <span class="at">min=</span><span class="fu">min</span>(value), <span class="at">max=</span><span class="fu">max</span>(value)) <span class="ot">-&gt;</span></span>
-<span id="cb28-5"><a aria-hidden="true" tabindex="-1"></a>  totals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-5"><a aria-hidden="true" tabindex="-1"></a>  totals</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <p>Amelia McNamara used this style in her keynote talk at the 2020 use!R conference about <a href="https://youtu.be/ckW9sSdIVAc">Speaking R</a> on youtube.</p>
@@ -764,11 +768,11 @@ Thomas Petzoldt
 <h2>Indentation</h2>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a aria-hidden="true" tabindex="-1"></a>totals <span class="ot">&lt;-</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a aria-hidden="true" tabindex="-1"></a>totals <span class="ot">&lt;-</span> </span>
 <span id="cb29-2"><a aria-hidden="true" tabindex="-1"></a>  leaves <span class="sc">|&gt;</span> </span>
 <span id="cb29-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(<span class="st">"length"</span>, <span class="st">"width"</span>, <span class="st">"stalk"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb29-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group, name) <span class="sc">|&gt;</span></span>
-<span id="cb29-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean=</span><span class="fu">mean</span>(value), <span class="at">sd=</span><span class="fu">sd</span>(value), <span class="at">min=</span><span class="fu">min</span>(value), <span class="at">max=</span><span class="fu">max</span>(value))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean=</span><span class="fu">mean</span>(value), <span class="at">sd=</span><span class="fu">sd</span>(value), <span class="at">min=</span><span class="fu">min</span>(value), <span class="at">max=</span><span class="fu">max</span>(value))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <p>The pipeline above shows essentially <span class="blue">one single line of code</span>.</p>
@@ -802,8 +806,8 @@ Thomas Petzoldt
 <p><br></p>
 <p><strong>Read data directly from Excel file</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a aria-hidden="true" tabindex="-1"></a>brands  <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"clementines_2019.xlsx"</span>, <span class="st">"Brands"</span>)</span>
-<span id="cb30-2"><a aria-hidden="true" tabindex="-1"></a>fruits  <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"clementines_2019.xlsx"</span>, <span class="st">"Fruits"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a aria-hidden="true" tabindex="-1"></a>brands  <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"clementines_2019.xlsx"</span>, <span class="st">"Brands"</span>)</span>
+<span id="cb30-2"><a aria-hidden="true" tabindex="-1"></a>fruits  <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"clementines_2019.xlsx"</span>, <span class="st">"Fruits"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="clementine-orange-data-set-1" class="slide level2">
@@ -998,7 +1002,7 @@ Thomas Petzoldt
 </ul>
 <!-- chunk two times, bugfix to suppress joining output -->
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a aria-hidden="true" tabindex="-1"></a>fruits2 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(fruits, brands)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a aria-hidden="true" tabindex="-1"></a>fruits2 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(fruits, brands)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="smallfont">
 <div class="cell">
@@ -1159,9 +1163,9 @@ Thomas Petzoldt
 <p><br></p>
 <div class="bigfont">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a aria-hidden="true" tabindex="-1"></a>fruits2 <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a aria-hidden="true" tabindex="-1"></a>fruits2 <span class="sc">|&gt;</span></span>
 <span id="cb32-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(brand, shop, type, weight, width) <span class="sc">|&gt;</span></span>
-<span id="cb32-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(shop <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Edeka"</span>, <span class="st">"Lidl"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(shop <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Edeka"</span>, <span class="st">"Lidl"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 44 × 5
    brand shop  type  weight width
@@ -1187,16 +1191,16 @@ Thomas Petzoldt
 <p><strong>Example</strong></p>
 <p>Transform a variable, e.g.&nbsp;weight by <span class="math inline">\(x^{1/3}\)</span> into a theoretical mean diameter</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a aria-hidden="true" tabindex="-1"></a>fruits2 <span class="ot">&lt;-</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a aria-hidden="true" tabindex="-1"></a>fruits2 <span class="ot">&lt;-</span> </span>
 <span id="cb34-2"><a aria-hidden="true" tabindex="-1"></a>  fruits2 <span class="sc">|&gt;</span></span>
-<span id="cb34-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">L_mean =</span> weight<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb34-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">L_mean =</span> weight<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div><div class="column" style="width:49%;">
 <p><strong>Show results</strong></p>
 <p>Classical <code>boxplot</code></p>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(L_mean <span class="sc">~</span> brand, <span class="at">data=</span>fruits2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(L_mean <span class="sc">~</span> brand, <span class="at">data=</span>fruits2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1209,9 +1213,9 @@ Thomas Petzoldt
 <section id="plot-in-tidyverse-style-with-pipes-and-ggplot" class="slide level2">
 <h2>Plot in “tidyverse”-style with pipes and <code>ggplot</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a aria-hidden="true" tabindex="-1"></a>fruits2 <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a aria-hidden="true" tabindex="-1"></a>fruits2 <span class="sc">|&gt;</span></span>
 <span id="cb36-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">L_mean =</span> weight<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb36-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(brand, L_mean)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(brand, L_mean)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="x4-pipes-intro_files/figure-revealjs/fruits-ggplot-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -1222,17 +1226,17 @@ Thomas Petzoldt
 V = 4/3 \pi \cdot \rm (length/2)^2 \cdot height/2
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a aria-hidden="true" tabindex="-1"></a>fruits <span class="ot">&lt;-</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a aria-hidden="true" tabindex="-1"></a>fruits <span class="ot">&lt;-</span></span>
 <span id="cb37-2"><a aria-hidden="true" tabindex="-1"></a>  fruits <span class="sc">|&gt;</span></span>
-<span id="cb37-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">V =</span> <span class="fl">0.001</span> <span class="sc">*</span> <span class="dv">4</span><span class="sc">/</span><span class="dv">3</span> <span class="sc">*</span> pi <span class="sc">*</span> (width<span class="sc">/</span><span class="dv">2</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> height<span class="sc">/</span><span class="dv">2</span>, <span class="at">index =</span> weight <span class="sc">/</span> V)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">V =</span> <span class="fl">0.001</span> <span class="sc">*</span> <span class="dv">4</span><span class="sc">/</span><span class="dv">3</span> <span class="sc">*</span> pi <span class="sc">*</span> (width<span class="sc">/</span><span class="dv">2</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> height<span class="sc">/</span><span class="dv">2</span>, <span class="at">index =</span> weight <span class="sc">/</span> V)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <div class="column" style="width:49%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb38-2"><a aria-hidden="true" tabindex="-1"></a>fruits <span class="sc">|&gt;</span></span>
 <span id="cb38-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(weight, index)) <span class="sc">+</span> </span>
-<span id="cb38-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The “+” operator in <code>ggplot</code> looks like a pipeline, but works differently.</p>
 <p>It adds elements to a plot.</p>
@@ -1250,31 +1254,31 @@ V = 4/3 \pi \cdot \rm (length/2)^2 \cdot height/2
 <section id="color-coded-points" class="slide level2">
 <h2>Color coded points</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb39-2"><a aria-hidden="true" tabindex="-1"></a>fruits <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(weight, index, <span class="at">color=</span>brand)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb39-2"><a aria-hidden="true" tabindex="-1"></a>fruits <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(weight, index, <span class="at">color=</span>brand)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="x4-pipes-intro_files/figure-revealjs/fruits-color-coded-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="categorial-split-faceting-and-regression-line" class="slide level2">
 <h2>Categorial split (faceting) and regression line</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a aria-hidden="true" tabindex="-1"></a>fruits <span class="sc">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a aria-hidden="true" tabindex="-1"></a>fruits <span class="sc">|&gt;</span> </span>
 <span id="cb40-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(weight, V)) <span class="sc">+</span> </span>
 <span id="cb40-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb40-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb40-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> brand)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb40-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> brand)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="x4-pipes-intro_files/figure-revealjs/fruits-categorial-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
 <section id="modify-font-size" class="slide level2">
 <h2>Modify font size</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a aria-hidden="true" tabindex="-1"></a>fruits <span class="sc">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a aria-hidden="true" tabindex="-1"></a>fruits <span class="sc">|&gt;</span> </span>
 <span id="cb41-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(weight, V)) <span class="sc">+</span> </span>
 <span id="cb41-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb41-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span> </span>
 <span id="cb41-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> brand) <span class="sc">+</span></span>
-<span id="cb41-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">24</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb41-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">24</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="x4-pipes-intro_files/figure-revealjs/fruits-increased-font-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"><p><span class="math inline">\(\rightarrow\)</span> <strong>themes</strong> allow to configure “almost everything” …</p>
@@ -1292,7 +1296,7 @@ V = 4/3 \pi \cdot \rm (length/2)^2 \cdot height/2
 <p>We can skip downloading and read the file directly from its internet location:</p>
 <!--- read data from local file to save compilation time --->
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a aria-hidden="true" tabindex="-1"></a>elbe <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/tpetzoldt/datasets/main/data/elbe.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a aria-hidden="true" tabindex="-1"></a>elbe <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/tpetzoldt/datasets/main/data/elbe.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <p>The third column “validated” indicate whether the values were finally approved by WSV and BfG. Data of the 19th century are particularly uncertain. Please consult the file <a href="https://raw.githubusercontent.com/tpetzoldt/datasets/main/data/elbe_info.txt">elbe_info.txt</a> for details.</p>
@@ -1305,13 +1309,13 @@ V = 4/3 \pi \cdot \rm (length/2)^2 \cdot height/2
 <p>Details about date and time conversion can be found in the <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/lubridate.pdf">lubridate cheatsheet</a>.</p>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate) <span class="co"># a tidyverse package for dates</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate) <span class="co"># a tidyverse package for dates</span></span>
 <span id="cb43-2"><a aria-hidden="true" tabindex="-1"></a>elbe <span class="ot">&lt;-</span> <span class="fu">mutate</span>(elbe,</span>
 <span id="cb43-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">date  =</span> <span class="fu">as.POSIXct</span>(date),</span>
 <span id="cb43-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">day   =</span> <span class="fu">day</span>(date), </span>
 <span id="cb43-5"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">month =</span> <span class="fu">month</span>(date), </span>
 <span id="cb43-6"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">year  =</span> <span class="fu">year</span>(date), </span>
-<span id="cb43-7"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">doy   =</span> <span class="fu">yday</span>(date))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb43-7"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">doy   =</span> <span class="fu">yday</span>(date))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="inspect-data-structure" class="slide level2">
@@ -1450,17 +1454,17 @@ V = 4/3 \pi \cdot \rm (length/2)^2 \cdot height/2
 <p><br></p>
 <p><strong>Summarize data</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a aria-hidden="true" tabindex="-1"></a><span class="do">## calculate annual mean, minimum, maximum</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a aria-hidden="true" tabindex="-1"></a><span class="do">## calculate annual mean, minimum, maximum</span></span>
 <span id="cb44-2"><a aria-hidden="true" tabindex="-1"></a>totals <span class="ot">&lt;-</span> elbe <span class="sc">|&gt;</span></span>
 <span id="cb44-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
 <span id="cb44-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(discharge), </span>
 <span id="cb44-5"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> <span class="fu">min</span>(discharge), </span>
-<span id="cb44-6"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(discharge))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb44-6"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(discharge))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <p><strong>Show table of summary statistics</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(totals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(totals)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
    year  mean   min   max
@@ -1495,12 +1499,12 @@ V = 4/3 \pi \cdot \rm (length/2)^2 \cdot height/2
 <h2>Crosstable with one column per year</h2>
 <p><br></p>
 <div class="cell" data-fig="false">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a aria-hidden="true" tabindex="-1"></a>elbe_wide <span class="ot">&lt;-</span>  elbe <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a aria-hidden="true" tabindex="-1"></a>elbe_wide <span class="ot">&lt;-</span>  elbe <span class="sc">|&gt;</span></span>
 <span id="cb47-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> doy, </span>
 <span id="cb47-3"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">names_from =</span> year, </span>
 <span id="cb47-4"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> discharge, </span>
 <span id="cb47-5"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">values_fn =</span> mean)</span>
-<span id="cb47-6"><a aria-hidden="true" tabindex="-1"></a>elbe_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb47-6"><a aria-hidden="true" tabindex="-1"></a>elbe_wide</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <p><strong>Exercise</strong></p>
@@ -1523,7 +1527,7 @@ pivot_wider(elbe,
 <p>The inverse case is also possible, e.g.&nbsp;the conversion of a cross table into a data base table. It can be done with the function <code>pivot_longer</code>. The column of the <code>id.vars</code> variable(s) will become identifier(s) downwards.</p>
 <p><br></p>
 <div class="cell" data-fig="false">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_longer</span>(elbe_wide, <span class="at">names_to=</span><span class="st">"year"</span>, <span class="at">cols=</span><span class="fu">as.character</span>(<span class="dv">1989</span><span class="sc">:</span><span class="dv">2019</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_longer</span>(elbe_wide, <span class="at">names_to=</span><span class="st">"year"</span>, <span class="at">cols=</span><span class="fu">as.character</span>(<span class="dv">1989</span><span class="sc">:</span><span class="dv">2019</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><br></p>
 <p><strong>Exercise</strong></p>
@@ -1532,7 +1536,7 @@ pivot_wider(elbe,
 <section id="minimum-maximum-plot-with-summarize-and-ggplot2" class="slide level2">
 <h2>Minimum-Maximum plot with summarize and ggplot2</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a aria-hidden="true" tabindex="-1"></a>elbe <span class="sc">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a aria-hidden="true" tabindex="-1"></a>elbe <span class="sc">|&gt;</span> </span>
 <span id="cb49-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">doy =</span> <span class="fu">yday</span>(date)) <span class="sc">|&gt;</span></span>
 <span id="cb49-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(doy) <span class="sc">|&gt;</span></span>
 <span id="cb49-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">max =</span> <span class="fu">max</span>(discharge), </span>
@@ -1541,7 +1545,7 @@ pivot_wider(elbe,
 <span id="cb49-7"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"min"</span>, <span class="st">"mean"</span>, <span class="st">"max"</span>), </span>
 <span id="cb49-8"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"statistic"</span>, </span>
 <span id="cb49-9"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"discharge"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb49-10"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(doy, discharge, <span class="at">color =</span> statistic)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb49-10"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(doy, discharge, <span class="at">color =</span> statistic)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="x4-pipes-intro_files/figure-revealjs/elbe-minmax-1.png" class="quarto-figure quarto-figure-center r-stretch" width="576"><p><strong>Exercise</strong></p>
@@ -1558,8 +1562,8 @@ pivot_wider(elbe,
 <p><br></p>
 <p><strong>Example</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb50-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">cumsum</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb50-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">cumsum</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  1  4  6 12 16 18 21</code></pre>
 </div>
@@ -1570,12 +1574,12 @@ pivot_wider(elbe,
 <p>Cummulative sums allow to detect dry and wet years, or periods within years.</p>
 <p>If we just use <code>cumsum</code>, we get a cumulative sum for all years:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a aria-hidden="true" tabindex="-1"></a>elbe <span class="sc">|&gt;</span> </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a aria-hidden="true" tabindex="-1"></a>elbe <span class="sc">|&gt;</span> </span>
 <span id="cb52-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">doy =</span> <span class="fu">yday</span>(date), <span class="at">year =</span> <span class="fu">year</span>(date)) <span class="sc">|&gt;</span></span>
 <span id="cb52-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="dv">2000</span><span class="sc">:</span><span class="dv">2010</span>) <span class="sc">|&gt;</span></span>
 <span id="cb52-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">year =</span> <span class="fu">factor</span>(year)) <span class="sc">|&gt;</span></span>
 <span id="cb52-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cum_discharge =</span> <span class="fu">cumsum</span>(discharge) <span class="sc">*</span> <span class="dv">60</span><span class="sc">*</span><span class="dv">60</span><span class="sc">*</span><span class="dv">24</span>) <span class="sc">|&gt;</span></span>
-<span id="cb52-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(doy, cum_discharge, <span class="at">color =</span> year)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb52-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(doy, cum_discharge, <span class="at">color =</span> year)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="x4-pipes-intro_files/figure-revealjs/elbe-cumsum-1.png" class="quarto-figure quarto-figure-center r-stretch" width="576"><p>The multiplication with <span class="math inline">\(60 \cdot 60 \cdot 24\)</span> converts <span class="math inline">\(\rm m^3 s^{-1}\)</span> in <span class="math inline">\(\rm m^3 d^{-1}\)</span>.</p>
@@ -1815,7 +1819,7 @@ Wickham, H., François, R., Henry, L., Müller, K., &amp; Vaughan, D. (2023). <e
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1918,190 +1922,173 @@ Wickham, H., François, R., Henry, L., Müller, K., &amp; Vaughan, D. (2023). <e
     
 
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
           }
+          return false;
         }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
           }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
           for (const childEl of codeEl.children) {
             if (isCodeAnnotation(childEl)) {
               childEl.remove();
             }
           }
           return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
             }
           }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
           }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
           }
-        } else {
-          return undefined;
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
         }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
-              }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>

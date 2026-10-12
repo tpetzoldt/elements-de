@@ -6,11 +6,11 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.37">
 
   <meta name="author" content="Thomas Petzoldt">
-  <meta name="dcterms.date" content="2025-12-13">
+  <meta name="dcterms.date" content="2026-10-12">
   <title>Elemente der statistischen Datenanalyse und Statistik mit R – 01-Einführung</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -18,6 +18,9 @@
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -30,7 +33,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-cb13c09ad5a7270edb89df8c4c84031f.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-9197ed92144eb5ba5731738e77b63148.css">
   <link rel="stylesheet" href="../thpe.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -151,7 +154,7 @@ Thomas Petzoldt
 </div>
 </div>
 
-  <p class="date">2025-12-13</p>
+  <p class="date">2026-10-12</p>
 </section>
 <section>
 <section id="vorbemerkungen" class="title-slide slide level1 center" data-background-color="#006ab2">
@@ -177,7 +180,7 @@ Thomas Petzoldt
 <li>Anwendungen mit realen und simulierten Datensätzen</li>
 </ul></li>
 </ol>
-<p><span class="math inline">\(\Rightarrow\)</span> Praktisches Verständnis und „statistisches Gefühl“,</p>
+<p><span class="math inline">\(\Rightarrow\)</span> Praktisches Verständnis und „statistisches Gefühl“</p>
 <p><span class="math inline">\(\rightarrow\)</span> Wichtiger als auswendig gelernte Fakten.</p>
 </section>
 <section id="themen" class="slide level2">
@@ -191,7 +194,7 @@ Thomas Petzoldt
 <li>Lineare Modelle</li>
 <li>Varianzanalyse</li>
 <li>Nichtlineare Regression</li>
-<li>grundlagen der Zeitreihenanalyse (optional)</li>
+<li>Grundlagen der Zeitreihenanalyse (optional)</li>
 <li>Multivariate Statistik</li>
 </ol>
 </section>
@@ -206,11 +209,10 @@ Thomas Petzoldt
 <div class="smallfont">
 <p><span class="math inline">\(\rightarrow\)</span> Folien und Übungen werden regelmäßig aktualisiert, je nach Fortschritt des Kurses. Kommentare sind willkommen.</p>
 </div>
-<p><strong>Prüfung</strong></p>
+<p><strong>Portfolio-Prüfung</strong></p>
 <ul>
-<li>Vorlesungsbegleitende Präsentationen zu den Übungen<br>
-</li>
-<li>Schriftliche Klausur am Ende des Semesters</li>
+<li>Vorlesungsbegleitende Präsentationen zu den Übungen</li>
+<li>Kurze elektronische Testate</li>
 </ul>
 <p><br></p>
 <div class="bigfont fragment highlight-red">
@@ -258,10 +260,10 @@ Thomas Petzoldt
 <p><span class="math inline">\(&gt;\)</span> 70.000 Messungen. Wie können wir das analysieren und was bedeutet das?</p>
 <p>Datenquelle: <a href="https://tpetzoldt.github.io/datasets/data/elbe_info.txt">Bundesanstalt für Gewässerkunde</a></p>
 </section>
-<section id="grafik-über-20-jahre" class="slide level2">
-<h2>Grafik über 20 Jahre</h2>
+<section id="grafik-über-25-jahre" class="slide level2">
+<h2>Grafik über &gt; 25 Jahre</h2>
 
-<img data-src="01-introduction_files/figure-revealjs/elbe-timeseries1-1.png" width="960" class="r-stretch"><p>Abfluss der Elbe, Pegel Dresden, Datenquelle BfG</p>
+<img data-src="01-introduction_files/figure-revealjs/elbe-timeseries1-1.png" width="960" class="r-stretch"><p>Abfluss der Elbe, Pegel Dresden, Datenquelle BfG und WSV</p>
 </section>
 <section id="was-sagen-uns-diese-daten" class="slide level2">
 <h2>Was sagen uns diese Daten?</h2>
@@ -278,10 +280,10 @@ Thomas Petzoldt
 <h2>Wie soll man anfangen?</h2>
 
 <img data-src="01-introduction_files/figure-revealjs/elbe-timeseries3-1.png" width="960" class="r-stretch"><ul>
-<li>Mittelwert: 224</li>
-<li>Median: 224</li>
-<li>Standardabweichung: 253</li>
-<li>Spannweite: 2, 4500</li>
+<li>Mittelwert: 215</li>
+<li>Median: 215</li>
+<li>Standardabweichung: 256</li>
+<li>Spannweite: 2, 4511</li>
 </ul>
 <p>Welche dieser Parameter sind am besten geeignet?</p>
 </section>
@@ -413,33 +415,33 @@ Thomas Petzoldt
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">A</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">9</td>
-<td style="text-align: right;">20</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">1</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">B</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">8</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">16</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">C</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">16</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">7</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">D</td>
-<td style="text-align: right;">18</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">6</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">E</td>
-<td style="text-align: right;">2</td>
+<td style="text-align: right;">5</td>
 <td style="text-align: right;">19</td>
-<td style="text-align: right;">20</td>
+<td style="text-align: right;">15</td>
 </tr>
 </tbody>
 </table>
@@ -462,47 +464,47 @@ Thomas Petzoldt
 <tr class="odd">
 <td style="text-align: right;">2021</td>
 <td style="text-align: left;">A</td>
-<td style="text-align: right;">14</td>
+<td style="text-align: right;">18</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2021</td>
 <td style="text-align: left;">B</td>
-<td style="text-align: right;">5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2021</td>
-<td style="text-align: left;">C</td>
-<td style="text-align: right;">19</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2021</td>
-<td style="text-align: left;">D</td>
-<td style="text-align: right;">18</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">2021</td>
-<td style="text-align: left;">E</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2022</td>
-<td style="text-align: left;">A</td>
 <td style="text-align: right;">9</td>
 </tr>
 <tr class="odd">
+<td style="text-align: right;">2021</td>
+<td style="text-align: left;">C</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2021</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2021</td>
+<td style="text-align: left;">E</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2022</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
 <td style="text-align: right;">2022</td>
 <td style="text-align: left;">B</td>
-<td style="text-align: right;">6</td>
+<td style="text-align: right;">11</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2022</td>
 <td style="text-align: left;">C</td>
-<td style="text-align: right;">3</td>
+<td style="text-align: right;">15</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2022</td>
 <td style="text-align: left;">D</td>
-<td style="text-align: right;">14</td>
+<td style="text-align: right;">9</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2022</td>
@@ -512,27 +514,27 @@ Thomas Petzoldt
 <tr class="odd">
 <td style="text-align: right;">2023</td>
 <td style="text-align: left;">A</td>
-<td style="text-align: right;">20</td>
+<td style="text-align: right;">1</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2023</td>
 <td style="text-align: left;">B</td>
-<td style="text-align: right;">8</td>
+<td style="text-align: right;">16</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2023</td>
 <td style="text-align: left;">C</td>
-<td style="text-align: right;">16</td>
+<td style="text-align: right;">7</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2023</td>
 <td style="text-align: left;">D</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">6</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">2023</td>
 <td style="text-align: left;">E</td>
-<td style="text-align: right;">20</td>
+<td style="text-align: right;">15</td>
 </tr>
 </tbody>
 </table>
@@ -552,7 +554,7 @@ Table&nbsp;1: Vermehrung einer Algenpopulation innerhalb von 4 Tagen (relative E
 </figcaption>
 <div aria-describedby="tbl-algae-growth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<table class="table table-striped do-not-create-environment cell caption-top" data-quarto-postprocess="true" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table table-striped cell caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">treat</th>
@@ -606,8 +608,6 @@ Table&nbsp;1: Vermehrung einer Algenpopulation innerhalb von 4 Tagen (relative E
 </tr>
 </tbody>
 </table>
-
-
 </div>
 </div>
 </figure>
@@ -631,7 +631,7 @@ Table&nbsp;1: Vermehrung einer Algenpopulation innerhalb von 4 Tagen (relative E
 </div><div class="column" style="width:39%;">
 <div class="cell">
 <div class="cell-output-display">
-<table class="table table-striped caption-top" data-quarto-postprocess="true" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table table-striped caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">treat</th>
@@ -702,8 +702,6 @@ Table&nbsp;1: Vermehrung einer Algenpopulation innerhalb von 4 Tagen (relative E
 </tr>
 </tbody>
 </table>
-
-
 </div>
 </div>
 </div></section>
@@ -791,8 +789,8 @@ Table&nbsp;1: Vermehrung einer Algenpopulation innerhalb von 4 Tagen (relative E
 <ul>
 <li>Sehr gut lesbare Einführungen
 <ul>
-<li>Dalgaard, P., 2008: Introductory Statistics with <strong>R</strong>. Springer, New York, 2nd edition. (Volltext der 1. Auflage <a href="https://link.springer.com/book/10.1007/b97671">frei verfügbar</a>)</li>
-<li>Verzani, J. (2019). Using R for introductory statistics. CRC press.</li>
+<li>Dalgaard, P., 2008: Introductory Statistics with <strong>R</strong>. Springer, New York, 2nd edition. <a href="https://doi.org/10.1007/978-0-387-79054-1" class="uri">https://doi.org/10.1007/978-0-387-79054-1</a></li>
+<li>Verzani, J. (2019). Using R for introductory statistics. CRC press. <a href="https://doi.org/10.1201/9781315373089" class="uri">https://doi.org/10.1201/9781315373089</a></li>
 </ul></li>
 <li>Sehr gut verständlich, insbesondere für Regressions- und Zeitreihenanalyse:
 <ul>
@@ -1001,7 +999,7 @@ Table&nbsp;1: Vermehrung einer Algenpopulation innerhalb von 4 Tagen (relative E
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -1104,190 +1102,173 @@ Table&nbsp;1: Vermehrung einer Algenpopulation innerhalb von 4 Tagen (relative E
     
 
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
           }
+          return false;
         }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
           }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
           for (const childEl of codeEl.children) {
             if (isCodeAnnotation(childEl)) {
               childEl.remove();
             }
           }
           return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
             }
           }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
           }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
           }
-        } else {
-          return undefined;
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
         }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
-              }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>
