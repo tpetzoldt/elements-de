@@ -796,7 +796,7 @@
     "href": "slides/x1-r-basics.html#allowed-and-disallowed-identifiers",
     "title": "x1-R Basics",
     "section": "Allowed and disallowed identifiers",
-    "text": "Allowed and disallowed identifiers\n\ncorrect:\n\nx, y, X, x1, i, j, k\nvalue, test, myVariableName, do_something\n`.hidden, .x1``\n\nforbidden:\n\n1x, .1x (starts with a number)\n!, @, \\$, #, space, comma, semicolon and other special characters\n\nreserved words cannot be used as variable names:\n\nif, else, repeat, while, function, for, in, next, break\nTRUE, FALSE, NULL, Inf, NaN, NA, NA_integer_, NA_real_, NA_complex_, NA_character\\_\n..., ..1, ..2\n\nNote: R is case sensitive, x and X, value and Value are different.",
+    "text": "Allowed and disallowed identifiers\n\ncorrect:\n\nx, y, X, x1, i, j, k\nvalue, test, myVariableName, do_something\n.hidden, .x1\n\nforbidden:\n\n1x, .1x (starts with a number)\n!, @, \\$, #, space, comma, semicolon and other special characters\n\nreserved words cannot be used as variable names:\n\nif, else, repeat, while, function, for, in, next, break\nTRUE, FALSE, NULL, Inf, NaN, NA, NA_integer_, NA_real_, NA_complex_, NA_character\\_\n..., ..1, ..2\n\nNote: R is case sensitive, x and X, value and Value are different.",
     "crumbs": [
       "Selected Programming Topics",
       "x1-R Basics"
@@ -1071,7 +1071,7 @@
     "href": "slides/x1-r-basics.html#lists-1",
     "title": "x1-R Basics",
     "section": "Lists",
-    "text": "Lists\n\nmost flexible data type in R\ncan contain arbitrary data objects as elements of the list\nallows tree-like structure\n\nExamples\n\nOutput of many R functions, e.g. return value of hist:\n\n\nL &lt;- hist(rnorm(100), plot=FALSE)\nstr(L)\n\nList of 6\n $ breaks  : num [1:11] -3 -2.5 -2 -1.5 -1 -0.5 0 0.5 1 1.5 ...\n $ counts  : int [1:10] 1 2 3 9 16 21 23 13 9 3\n $ density : num [1:10] 0.02 0.04 0.06 0.18 0.32 0.42 0.46 0.26 0.18 0.06\n $ mids    : num [1:10] -2.75 -2.25 -1.75 -1.25 -0.75 -0.25 0.25 0.75 1.25 1.75\n $ xname   : chr \"rnorm(100)\"\n $ equidist: logi TRUE\n - attr(*, \"class\")= chr \"histogram\"",
+    "text": "Lists\n\nmost flexible data type in R\ncan contain arbitrary data objects as elements of the list\nallows tree-like structure\n\nExamples\n\nOutput of many R functions, e.g. return value of hist:\n\n\nL &lt;- hist(rnorm(100), plot=FALSE)\nstr(L)\n\nList of 6\n $ breaks  : num [1:13] -3 -2.5 -2 -1.5 -1 -0.5 0 0.5 1 1.5 ...\n $ counts  : int [1:12] 1 2 6 10 8 15 19 20 12 6 ...\n $ density : num [1:12] 0.02 0.04 0.12 0.2 0.16 0.3 0.38 0.4 0.24 0.12 ...\n $ mids    : num [1:12] -2.75 -2.25 -1.75 -1.25 -0.75 -0.25 0.25 0.75 1.25 1.75 ...\n $ xname   : chr \"rnorm(100)\"\n $ equidist: logi TRUE\n - attr(*, \"class\")= chr \"histogram\"",
     "crumbs": [
       "Selected Programming Topics",
       "x1-R Basics"
@@ -2798,7 +2798,7 @@
     "href": "slides/03-statparams.html#lagemaße-ii",
     "title": "03-Statistische Parameter",
     "section": "Lagemaße II",
-    "text": "Lagemaße II\nHarmonisches Mittel\n\\[\n    \\frac{1}{H}=\\frac{1}{n}\\cdot \\sum_{i=1}^n \\frac{1}{x_i} \\quad; x_i&gt;0\n\\]\nBeispiel:\nMan fährt mit 50km/h zur Uni und mit 100km/h wieder nach Hause. Wie groß ist die mittlere Geschwindigkeit?\nErgebnis:\n1/((1/50 + 1/100)/2) = 1/((0.02 + 0.01)/2) = 1/0.015 = 66.67",
+    "text": "Lagemaße II\n\nHarmonisches Mittel\n\\[\n    \\frac{1}{H}=\\frac{1}{n}\\cdot \\sum_{i=1}^n \\frac{1}{x_i} \\quad; x_i&gt;0\n\\]\nBeispiel:\n\nMan fährt mit 50km/h zur Uni und mit 100km/h wieder nach Hause.\n\n\\(\\Rightarrow\\) Wie groß ist die mittlere Geschwindigkeit?\nErgebnis:\n1/((1/50 + 1/100)/2) = 1/((0.02 + 0.01)/2) = 1/0.015 = 66.67",
     "crumbs": [
       "Statistische Grundlagen",
       "03-Statistische Parameter"
@@ -3117,7 +3117,7 @@
     "href": "slides/01-introduction.html#welche-datenstruktur-ist-besser",
     "title": "01-Einführung",
     "section": "Welche Datenstruktur ist besser?",
-    "text": "Welche Datenstruktur ist besser?\n\n\nWide-Format\n\n\n\n\n\n\nstation\n2021\n2022\n2023\n\n\n\n\nA\n18\n12\n1\n\n\nB\n9\n11\n16\n\n\nC\n12\n15\n7\n\n\nD\n9\n9\n6\n\n\nE\n5\n19\n15\n\n\n\n\n\n\nLong-Format\n\n\n\n\n\n\nyear\nstation\nvalue\n\n\n\n\n2021\nA\n18\n\n\n2021\nB\n9\n\n\n2021\nC\n12\n\n\n2021\nD\n9\n\n\n2021\nE\n5\n\n\n2022\nA\n12\n\n\n2022\nB\n11\n\n\n2022\nC\n15\n\n\n2022\nD\n9\n\n\n2022\nE\n19\n\n\n2023\nA\n1\n\n\n2023\nB\n16\n\n\n2023\nC\n7\n\n\n2023\nD\n6\n\n\n2023\nE\n15",
+    "text": "Welche Datenstruktur ist besser?\n\n\nWide-Format\n\n\n\n\n\n\nstation\n2021\n2022\n2023\n\n\n\n\nA\n19\n15\n9\n\n\nB\n15\n13\n4\n\n\nC\n4\n8\n11\n\n\nD\n16\n5\n11\n\n\nE\n15\n17\n16\n\n\n\n\n\n\nLong-Format\n\n\n\n\n\n\nyear\nstation\nvalue\n\n\n\n\n2021\nA\n19\n\n\n2021\nB\n15\n\n\n2021\nC\n4\n\n\n2021\nD\n16\n\n\n2021\nE\n15\n\n\n2022\nA\n15\n\n\n2022\nB\n13\n\n\n2022\nC\n8\n\n\n2022\nD\n5\n\n\n2022\nE\n17\n\n\n2023\nA\n9\n\n\n2023\nB\n4\n\n\n2023\nC\n11\n\n\n2023\nD\n11\n\n\n2023\nE\n16",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -3194,7 +3194,7 @@
     "href": "slides/01-introduction.html#bücher",
     "title": "01-Einführung",
     "section": "Bücher",
-    "text": "Bücher\nStatistische Methoden\n\nSehr gut lesbare Einführungen\n\nDalgaard, P., 2008: Introductory Statistics with R. Springer, New York, 2nd edition. https://doi.org/10.1007/978-0-387-79054-1\nVerzani, J. (2019). Using R for introductory statistics. CRC press. https://doi.org/10.1201/9781315373089\n\nSehr gut verständlich, insbesondere für Regressions- und Zeitreihenanalyse:\n\nKleiber, C. and Zeileis, A., 2008: Applied Econometrics with R, Springer Verlag, New York. https://link.springer.com/book/10.1007/978-0-387-77318-6\n\n\nR Programmierung\n\nEinführung in die Datenwissenschaft mit dem modernen „Tidyverse“-Ansatz:\n\nWickham, H., Çetinkaya-Rundel, M and Grolemund, G, 2023: R for Data Science. Free ebook: https://r4ds.hadley.nz/\n\n\n\n\n\n\nUnd jede Menge frei verfügbares Material im Internet …",
+    "text": "Bücher\nStatistische Methoden\n\nSehr gut lesbare Einführungen\n\nDalgaard, P., 2008: Introductory Statistics with R. Springer, New York, 2nd edition. https://doi.org/10.1007/978-0-387-79054-1\nVerzani, J. (2019). Using R for introductory statistics. CRC press. https://doi.org/10.1201/9781315373089\n\nSehr gut verständlich, insbesondere für Regressions- und Zeitreihenanalyse:\n\nKleiber, C. and Zeileis, A., 2008: Applied Econometrics with R, Springer Verlag, New York. https://doi.org/10.1007/978-0-387-77318-6\n\n\nR Programmierung\n\nEinführung in die Datenwissenschaft mit dem modernen „Tidyverse“-Ansatz:\n\nWickham, H., Çetinkaya-Rundel, M and Grolemund, G, 2023: R for Data Science. Free ebook: https://r4ds.hadley.nz/\n\n\n\n\n\n\nUnd jede Menge frei verfügbares Material im Internet …",
     "crumbs": [
       "Statistische Grundlagen",
       "01-Einführung"
@@ -3293,7 +3293,7 @@
     "href": "slides/02-terminology.html#stichprobe-und-grundgesamtheit",
     "title": "02-Grundbegriffe",
     "section": "Stichprobe und Grundgesamtheit",
-    "text": "Stichprobe und Grundgesamtheit\n\nStichprobe\nObjekte, von denen wir Messungen oder Beobachtungen haben\n\nGrundgesamtheit\nMenge aller Probanden, die die gleiche Chance hatten, Teil der Stichprobe zu werden.\n\\(\\Rightarrow\\) Die Grundgesamtheit wird durch die Art der Strichprobengewinnung definiert\n\\(\\Rightarrow\\) Die Stichproben sollten repräsentativ für unser beabsichtigtes Beobachtungsobjekt sein.",
+    "text": "Stichprobe und Grundgesamtheit\n\nStichprobe\nObjekte, von denen wir Messungen oder Beobachtungen haben\n\nGrundgesamtheit\nMenge aller Objekte, die die gleiche Chance hatten, Teil der Stichprobe zu werden.\n\\(\\Rightarrow\\) Die Grundgesamtheit wird durch die Art der Stichprobengewinnung definiert\n\\(\\Rightarrow\\) Die Grundgesamtheit, auf die wir schließen wollen, und die, aus der die Stichprobe tatsächlich stammt, sollten übereinstimmen.\n\\(\\Rightarrow\\) Repräsentativität wird durch das Stichprobendesign erreicht – nicht durch Stichprobengröße allein.\n\nBeispiel\nFische am Ufer gefangen – repräsentativ für den See?",
     "crumbs": [
       "Statistische Grundlagen",
       "02-Grundbegriffe"
@@ -3311,11 +3311,22 @@
     ]
   },
   {
+    "objectID": "slides/02-terminology.html#merksatz-und-anwendungsbeispiel",
+    "href": "slides/02-terminology.html#merksatz-und-anwendungsbeispiel",
+    "title": "02-Grundbegriffe",
+    "section": "Merksatz und Anwendungsbeispiel",
+    "text": "Merksatz und Anwendungsbeispiel\n\nZufallsstichprobe: Zufall entscheidet, wo und was beprobt wird.\nGeschichtete Stichprobe: Vorwissen strukturiert die Stichprobe, der Zufall entscheidet innerhalb jeder Schicht.\nBeispiel\nDie Uferfische wären repräsentativ gewesen, wenn der See stratifiziert worden wäre:\n\nSchichten (Ufer / Freiwasser / Tiefenzonen) definieren\nin jeder Schicht zufällig fangen\ngewichtet kombinieren\n\nVorteile: Gesamtstichprobenumfang kann verringert werden, Zusatzinformationen zu den einzelnen Schichten, höhere Präzision.\nVoraussetzung: Schichten überschneidungsfrei und vollständig, Größe der Schichten muss bekannt sein.\nGefahr: Systematischer Fehler (Bias), wenn die Gewichtung nicht stimmt.",
+    "crumbs": [
+      "Statistische Grundlagen",
+      "02-Grundbegriffe"
+    ]
+  },
+  {
     "objectID": "slides/02-terminology.html#zufällige-und-systematische-fehler",
     "href": "slides/02-terminology.html#zufällige-und-systematische-fehler",
     "title": "02-Grundbegriffe",
     "section": "Zufällige und systematische Fehler",
-    "text": "Zufällige und systematische Fehler\n\nZufallsfehler\n\nkönnen mit statistischen Methoden geschätzt werden\nwerden eliminiert, wenn der Stichprobenumfang groß ist\nbei großen Stichproben gleichen sich große und kleine Fehler aus\n\nSystematische Fehler auch Bias genannt\n\nkönnen in der Regel nicht allein mit statistischen Methoden geschätzt werden\nerfordern Kenntnisse über das betrachtete System\nEliminierung erfordert Kalibrierung mittels Standards, Blindwerten oder Paarbildung",
+    "text": "Zufällige und systematische Fehler\n\nZufallsfehler\n\nkönnen mit statistischen Methoden geschätzt werden\nwerden reduziert, wenn der Stichprobenumfang groß ist\nbei großen Stichproben gleichen sich große und kleine Fehler aus\n\nSystematische Fehler auch Bias genannt\n\nkönnen in der Regel nicht allein mit statistischen Methoden geschätzt werden\nerfordern Kenntnisse über das betrachtete System\nEliminierung erfordert Kalibrierung mittels Standards, Blindwerten oder Paarbildung\n\nMerksatz: Präzision ≠ Richtigkeit\n\nZufallsfehler bestimmen die Präzision (Streuung um den Mittelwert)\nSystematische Fehler bestimmen die Richtigkeit (Abweichung vom wahren Wert = Bias)\nGroße Stichproben → präzise, aber nicht automatisch richtig!",
     "crumbs": [
       "Statistische Grundlagen",
       "02-Grundbegriffe"
@@ -3326,7 +3337,7 @@
     "href": "slides/02-terminology.html#grundgesamtheits--und-stichprobenparameter",
     "title": "02-Grundbegriffe",
     "section": "Grundgesamtheits- und Stichprobenparameter",
-    "text": "Grundgesamtheits- und Stichprobenparameter\n\n„Wahre“ Parameter der Grundgesamtheit\n\nsymbolisiert durch griechische Buchstaben, (\\(\\mu, \\sigma, \\gamma\\, \\alpha, \\beta\\))\nin der Regel unbekannt\nwerden anhand einer Stichprobe geschätzt\n\n„Berechnete“ Parameter aus einer Probe\n\nsymbolisiert mit lateinischen Buchstaben (\\(\\bar{x}\\), \\(s\\), \\(r^2\\), …)\ndie Berechnung erfolgt anhand einer Stichprobe\nStatistiker sagen „Schätzung“ statt „Berechnung“.\nDie geschätzten Parameter können auch wieder als Zufallsvariable behandelt werden",
+    "text": "Grundgesamtheits- und Stichprobenparameter\n\n“Wahre” Parameter der Grundgesamtheit\n\nsymbolisiert durch griechische Buchstaben (\\(\\mu, \\sigma, \\rho^2, \\alpha, \\beta\\))\nin der Regel unbekannt\nwerden anhand einer Stichprobe geschätzt\n\n“Berechnete” Parameter aus einer Stichprobe\n\nsymbolisiert mit lateinischen Buchstaben (\\(\\bar{x}\\), \\(s\\), \\(r^2\\), …)\ngehören paarweise zu den Populationsparametern: \\(\\bar{x} \\leftrightarrow \\mu\\), \\(s \\leftrightarrow \\sigma\\), \\(r^2 \\leftrightarrow \\rho^2\\)\nStatistiker sagen “Schätzung” statt “Berechnung”\nDer Schätzer ist auch wieder eine Zufallsvariable. Er besitzt ebenfalls eine Verteilung (Stichprobenverteilung).",
     "crumbs": [
       "Statistische Grundlagen",
       "02-Grundbegriffe"
@@ -3337,7 +3348,7 @@
     "href": "slides/02-terminology.html#erwartungswert",
     "title": "02-Grundbegriffe",
     "section": "Erwartungswert",
-    "text": "Erwartungswert\n\nEine einzelne Messung \\(x_i\\) einer Zufallsvariablen \\(X\\) kann als Summe des Erwartungswertes \\(\\mathbf{E}(X)\\) der Zufallsvariablen und eines Zufallsfehlers \\(\\varepsilon_i\\) formuliert werden.\n\\[\\begin{align}\n  x_i &= \\mathbf{E}(X) + \\varepsilon_i\\\\\n  \\mathbf{E}(\\varepsilon)&=0\n\\end{align}\\]\nBeispiel:\n\nfür einen fairen Würfel mit 6 Augen sollte der wahre Mittelwert \\(\\mu =3.5\\) sein\nIn Wirklichkeit ist nicht genau bekannt, ob ein realer Würfel perfekt symmetrisch ist.\n\nBeispiel: 3 Personen mit 5 Versuchen:\n\n\n\nsample 1:  3 3 2 4 1  mean: 2.6\n\n\nsample 2:  6 1 1 6 1  mean: 3\n\n\nsample 3:  6 5 6 6 5  mean: 5.6\n\n\n\nGesamtmittelwert: \\(\\bar{x} = 3.73\\) liegt nahe an \\(\\mu = 3.5\\).",
+    "text": "Erwartungswert\n\nEine einzelne Messung \\(x_i\\) einer Zufallsvariablen \\(X\\) kann als Summe des Erwartungswertes \\(\\mathbf{E}(X)\\) der Zufallsvariablen und eines Zufallsfehlers \\(\\varepsilon_i\\) formuliert werden.\n\\[\\begin{align}\n  x_i &= \\mathbf{E}(X) + \\varepsilon_i\\\\\n  \\mathbf{E}(\\varepsilon)&=0\n\\end{align}\\]\nBeispiel:\n\nFür einen fairen Würfel mit 6 Augen sollte der wahre Mittelwert \\(\\mu =3.5\\) sein\nIn Wirklichkeit ist nicht genau bekannt, ob ein realer Würfel perfekt symmetrisch ist.\n\nBeispiel: 3 Personen mit 5 Versuchen:\n\n\n\nsample 1:  3 3 2 4 1  mean: 2.6\n\n\nsample 2:  6 1 1 6 1  mean: 3\n\n\nsample 3:  6 5 6 6 5  mean: 5.6\n\n\n\nGesamtmittelwert: \\(\\bar{x} = 3.73\\) liegt näher an \\(\\mu = 3.5\\).",
     "crumbs": [
       "Statistische Grundlagen",
       "02-Grundbegriffe"
@@ -3381,7 +3392,7 @@
     "href": "slides/04-distributions.html#kontinuierliche-gleichverteilung-mathbfu0-1",
     "title": "04-Wahrscheinlichkeitsverteilungen",
     "section": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)",
-    "text": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)\n\n\ngleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall\nz.B. \\([0, 1]\\)\nin R: runif, random, uniform\n\n\nrunif(10)\n\n [1] 0.36379612 0.10721012 0.01362066 0.03801855 0.24286761 0.20923878\n [7] 0.55496966 0.46128109 0.83423520 0.14263028\n\n\n \n\nKlassenbildung (Binning): Einteilung der Werte in Klassen",
+    "text": "Kontinuierliche Gleichverteilung \\(\\mathbf{U}(0, 1)\\)\n\n\ngleiche Wahrscheinlichkeit des Auftretens in einem bestimmten Intervall\nz.B. \\([0, 1]\\)\nin R: runif, random, uniform\n\n\nrunif(10)\n\n [1] 0.88109505 0.11399092 0.54359412 0.24992362 0.21206236 0.35065457\n [7] 0.61793420 0.20751744 0.21322023 0.03638141\n\n\n \n\nKlassenbildung (Binning): Einteilung der Werte in Klassen",
     "crumbs": [
       "Statistische Grundlagen",
       "04-Wahrscheinlichkeitsverteilungen"

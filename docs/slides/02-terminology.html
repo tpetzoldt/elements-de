@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.9.37">
 
   <meta name="author" content="Thomas Petzoldt">
-  <meta name="dcterms.date" content="2026-10-12">
+  <meta name="dcterms.date" content="2026-10-21">
   <title>Elemente der statistischen Datenanalyse und Statistik mit R – 02-Grundbegriffe</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -150,7 +150,7 @@ Thomas Petzoldt
 </div>
 </div>
 
-  <p class="date">2026-10-12</p>
+  <p class="date">2026-10-21</p>
 </section>
 <section id="grundlagen-und-terminologie" class="slide level2">
 <h2>Grundlagen und Terminologie</h2>
@@ -315,9 +315,13 @@ p = \frac{\text{Anzahl der ausgewählten Fälle}}{\text{Anzahl aller möglichen 
 <p>Objekte, von denen wir Messungen oder Beobachtungen <span class="blue">haben</span></p>
 <p><br></p>
 <p><strong>Grundgesamtheit</strong></p>
-<p>Menge aller Probanden, die die <span class="blue">gleiche Chance</span> hatten, Teil der Stichprobe zu werden.</p>
-<p><span class="math inline">\(\Rightarrow\)</span> Die Grundgesamtheit wird durch die Art der Strichprobengewinnung definiert</p>
-<p><span class="math inline">\(\Rightarrow\)</span> Die Stichproben sollten <span class="blue">repräsentativ</span> für unser <span class="blue">beabsichtigtes</span> Beobachtungsobjekt sein.</p>
+<p>Menge aller Objekte, die die <span class="blue">gleiche Chance</span> hatten, Teil der Stichprobe zu werden.</p>
+<p><span class="math inline">\(\Rightarrow\)</span> Die Grundgesamtheit wird durch die Art der Stichprobengewinnung definiert</p>
+<p><span class="math inline">\(\Rightarrow\)</span> Die Grundgesamtheit, auf die wir schließen wollen, und die, aus der die Stichprobe tatsächlich stammt, sollten übereinstimmen.</p>
+<p><span class="math inline">\(\Rightarrow\)</span> <span class="blue">Repräsentativität</span> wird durch das <span class="blue">Stichprobendesign</span> erreicht – nicht durch Stichprobengröße allein.</p>
+<p><br></p>
+<p><strong>Beispiel</strong></p>
+<p>Fische am Ufer gefangen – repräsentativ für den See?</p>
 </section>
 <section id="stichproben-strategien" class="slide level2">
 <h2>Stichproben-Strategien</h2>
@@ -340,13 +344,29 @@ p = \frac{\text{Anzahl der ausgewählten Fälle}}{\text{Anzahl aller möglichen 
 <li><p>Beispiele: Wahlprognosen, Tiefenschichten in einem See, Altersklassen von Tieren.</p></li>
 </ul>
 </section>
+<section id="merksatz-und-anwendungsbeispiel" class="slide level2">
+<h2>Merksatz und Anwendungsbeispiel</h2>
+<p><br></p>
+<p><strong>Zufallsstichprobe:</strong> Zufall entscheidet, wo und was beprobt wird.</p>
+<p><strong>Geschichtete Stichprobe:</strong> Vorwissen strukturiert die Stichprobe, der Zufall entscheidet innerhalb jeder Schicht.</p>
+<p><strong>Beispiel</strong></p>
+<p>Die Uferfische wären repräsentativ gewesen, wenn der See stratifiziert worden wäre:</p>
+<ul>
+<li>Schichten (Ufer / Freiwasser / Tiefenzonen) definieren</li>
+<li>in jeder Schicht zufällig fangen</li>
+<li>gewichtet kombinieren</li>
+</ul>
+<p><strong>Vorteile:</strong> Gesamtstichprobenumfang kann verringert werden, Zusatzinformationen zu den einzelnen Schichten, höhere Präzision.</p>
+<p><strong>Voraussetzung:</strong> Schichten überschneidungsfrei und vollständig, Größe der Schichten muss bekannt sein.</p>
+<p><strong>Gefahr:</strong> Systematischer Fehler (Bias), wenn die Gewichtung nicht stimmt.</p>
+</section>
 <section id="zufällige-und-systematische-fehler" class="slide level2">
 <h2>Zufällige und systematische Fehler</h2>
 <p><br></p>
 <p><strong>Zufallsfehler</strong></p>
 <ul>
 <li>können <span class="blue">mit statistischen Methoden geschätzt werden</span></li>
-<li>werden eliminiert, wenn der Stichprobenumfang groß ist</li>
+<li>werden reduziert, wenn der Stichprobenumfang groß ist</li>
 <li>bei großen Stichproben gleichen sich große und kleine Fehler aus</li>
 </ul>
 <p><strong>Systematische Fehler</strong> auch <strong>Bias</strong> genannt</p>
@@ -355,22 +375,28 @@ p = \frac{\text{Anzahl der ausgewählten Fälle}}{\text{Anzahl aller möglichen 
 <li>erfordern Kenntnisse über das betrachtete System</li>
 <li>Eliminierung erfordert <span class="blue">Kalibrierung</span> mittels Standards, Blindwerten oder Paarbildung</li>
 </ul>
+<p><strong>Merksatz:</strong> Präzision ≠ Richtigkeit</p>
+<ul>
+<li>Zufallsfehler bestimmen die <span class="blue">Präzision</span> (Streuung um den Mittelwert)</li>
+<li>Systematische Fehler bestimmen die <span class="blue">Richtigkeit</span> (Abweichung vom wahren Wert = Bias)</li>
+<li>Große Stichproben → präzise, aber nicht automatisch richtig!</li>
+</ul>
 </section>
 <section id="grundgesamtheits--und-stichprobenparameter" class="slide level2">
 <h2>Grundgesamtheits- und Stichprobenparameter</h2>
 <p><br></p>
-<p><strong>„Wahre“ Parameter der Grundgesamtheit</strong></p>
+<p><strong>“Wahre” Parameter der Grundgesamtheit</strong></p>
 <ul>
-<li>symbolisiert durch griechische Buchstaben, (<span class="blue"><span class="math inline">\(\mu, \sigma, \gamma\, \alpha, \beta\)</span></span>)</li>
+<li>symbolisiert durch griechische Buchstaben (<span class="blue"><span class="math inline">\(\mu, \sigma, \rho^2, \alpha, \beta\)</span></span>)</li>
 <li>in der Regel unbekannt</li>
 <li>werden anhand einer Stichprobe geschätzt</li>
 </ul>
-<p><strong>„Berechnete“ Parameter aus einer Probe</strong></p>
+<p><strong>“Berechnete” Parameter aus einer Stichprobe</strong></p>
 <ul>
 <li>symbolisiert mit lateinischen Buchstaben (<span class="blue"><span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(s\)</span>, <span class="math inline">\(r^2\)</span>, …</span>)</li>
-<li>die Berechnung erfolgt anhand einer Stichprobe</li>
-<li>Statistiker sagen „Schätzung“ statt „Berechnung“.</li>
-<li>Die geschätzten Parameter können auch wieder als Zufallsvariable behandelt werden</li>
+<li>gehören paarweise zu den Populationsparametern: <span class="math inline">\(\bar{x} \leftrightarrow \mu\)</span>, <span class="math inline">\(s \leftrightarrow \sigma\)</span>, <span class="math inline">\(r^2 \leftrightarrow \rho^2\)</span></li>
+<li>Statistiker sagen “Schätzung” statt “Berechnung”</li>
+<li>Der <strong>Schätzer</strong> ist auch wieder eine Zufallsvariable. Er besitzt ebenfalls eine Verteilung (Stichprobenverteilung).</li>
 </ul>
 </section>
 <section id="erwartungswert" class="slide level2">
@@ -383,7 +409,7 @@ p = \frac{\text{Anzahl der ausgewählten Fälle}}{\text{Anzahl aller möglichen 
 \end{align}\]</span></p>
 <p>Beispiel:</p>
 <ul>
-<li>für einen fairen Würfel mit 6 Augen sollte der wahre Mittelwert <span class="math inline">\(\mu =3.5\)</span> sein</li>
+<li>Für einen fairen Würfel mit 6 Augen sollte der wahre Mittelwert <span class="math inline">\(\mu =3.5\)</span> sein</li>
 <li>In Wirklichkeit ist nicht genau bekannt, ob ein realer Würfel perfekt symmetrisch ist.</li>
 </ul>
 <p><strong>Beispiel:</strong> 3 Personen mit 5 Versuchen:</p>
@@ -400,7 +426,7 @@ p = \frac{\text{Anzahl der ausgewählten Fälle}}{\text{Anzahl aller möglichen 
 </div>
 </div>
 </div>
-<p>Gesamtmittelwert: <span class="math inline">\(\bar{x} = 3.73\)</span> liegt nahe an <span class="math inline">\(\mu = 3.5\)</span>.</p>
+<p>Gesamtmittelwert: <span class="math inline">\(\bar{x} = 3.73\)</span> liegt näher an <span class="math inline">\(\mu = 3.5\)</span>.</p>
 
 
 </section>
