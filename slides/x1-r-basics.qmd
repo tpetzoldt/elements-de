@@ -172,7 +172,7 @@ International characters (e.g German umlauts &auml;, &ouml;, &uuml;, ...) are po
 
 - `x, y, X, x1, i, j, k`
 - `value, test, myVariableName, do_something`
-- `.hidden, .x1``
+- `.hidden, .x1`
 
 **forbidden:**
 
