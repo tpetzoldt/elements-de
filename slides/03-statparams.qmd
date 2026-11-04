@@ -66,6 +66,8 @@ vermeidet große Zahlen, die dem Computer numerische Probleme bereiten.
 
 ## Lagemaße II
 
+<br>
+
 **Harmonisches Mittel**
 
 $$
@@ -74,8 +76,9 @@ $$
 
 **Beispiel:**
 
-Man fährt mit 50km/h zur Uni und mit 100km/h wieder nach Hause.<br> 
-Wie groß ist die mittlere Geschwindigkeit?
+* Man fährt mit 50km/h zur Uni und mit 100km/h wieder nach Hause.
+
+$\Rightarrow$ Wie groß ist die mittlere Geschwindigkeit?
 
 **Ergebnis:**
 

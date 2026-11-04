@@ -175,13 +175,19 @@ Objekte, von denen wir Messungen oder Beobachtungen [haben]{.blue}
 
 **Grundgesamtheit**
 
-Menge aller Probanden, die die [gleiche Chance]{.blue} hatten, Teil der Stichprobe zu werden.
+Menge aller Objekte, die die [gleiche Chance]{.blue} hatten, Teil der Stichprobe zu werden.
 
-$\Rightarrow$ Die Grundgesamtheit wird durch die Art der Strichprobengewinnung definiert
+$\Rightarrow$ Die Grundgesamtheit wird durch die Art der Stichprobengewinnung definiert
 
-$\Rightarrow$  Die Stichproben sollten [repräsentativ]{.blue} für
-unser [beabsichtigtes]{.blue} Beobachtungsobjekt sein.
+$\Rightarrow$  Die Grundgesamtheit, auf die wir schließen wollen, und die, aus der die Stichprobe tatsächlich stammt, sollten übereinstimmen.
 
+$\Rightarrow$ [Repräsentativität]{.blue} wird durch das [Stichprobendesign]{.blue} erreicht – nicht durch Stichprobengröße allein.
+
+<br>
+
+**Beispiel**
+
+Fische am Ufer gefangen – repräsentativ für den See?
 
 ## Stichproben-Strategien
 
@@ -204,6 +210,32 @@ unser [beabsichtigtes]{.blue} Beobachtungsobjekt sein.
 
 * Beispiele: Wahlprognosen, Tiefenschichten in einem See, Altersklassen von Tieren.
 
+## Merksatz und Anwendungsbeispiel
+
+<br>
+
+**Zufallsstichprobe:** Zufall entscheidet, wo und was beprobt wird.
+
+**Geschichtete Stichprobe:** Vorwissen strukturiert die Stichprobe,
+der Zufall entscheidet innerhalb jeder Schicht.
+
+**Beispiel**
+
+Die Uferfische wären repräsentativ gewesen, wenn der See stratifiziert worden wäre:
+
+* Schichten (Ufer / Freiwasser / Tiefenzonen) definieren
+* in jeder Schicht zufällig fangen
+* gewichtet kombinieren
+
+**Vorteile:** Gesamtstichprobenumfang kann verringert werden,
+Zusatzinformationen zu den einzelnen Schichten, höhere Präzision.
+
+**Voraussetzung:** Schichten überschneidungsfrei und vollständig,
+Größe der Schichten muss bekannt sein.
+
+**Gefahr:** Systematischer Fehler (Bias), wenn die Gewichtung
+nicht stimmt.
+
 
 ## Zufällige und systematische Fehler
 
@@ -212,7 +244,7 @@ unser [beabsichtigtes]{.blue} Beobachtungsobjekt sein.
 **Zufallsfehler** 
 
 * können [mit statistischen Methoden geschätzt werden]{.blue}
-* werden eliminiert, wenn der Stichprobenumfang groß ist
+* werden reduziert, wenn der Stichprobenumfang groß ist
 * bei großen Stichproben gleichen sich große und kleine Fehler aus
 
 **Systematische Fehler** auch **Bias** genannt 
@@ -221,22 +253,28 @@ unser [beabsichtigtes]{.blue} Beobachtungsobjekt sein.
 * erfordern Kenntnisse über das betrachtete System
 * Eliminierung erfordert [Kalibrierung]{.blue} mittels Standards, Blindwerten oder Paarbildung
 
+**Merksatz:** Präzision ≠ Richtigkeit
+
+* Zufallsfehler bestimmen die [Präzision]{.blue} (Streuung um den Mittelwert)
+* Systematische Fehler bestimmen die [Richtigkeit]{.blue} (Abweichung vom wahren Wert = Bias)
+* Große Stichproben → präzise, aber nicht automatisch richtig!
+
 ## Grundgesamtheits- und Stichprobenparameter
 
 <br>
 
-**„Wahre“ Parameter der Grundgesamtheit**
+**"Wahre" Parameter der Grundgesamtheit**
 
-* symbolisiert durch griechische Buchstaben, ([$\mu, \sigma, \gamma\, \alpha, \beta$]{.blue})
+* symbolisiert durch griechische Buchstaben ([$\mu, \sigma, \rho^2, \alpha, \beta$]{.blue})
 * in der Regel unbekannt
 * werden anhand einer Stichprobe geschätzt
 
-**„Berechnete“ Parameter aus einer Probe**
+**"Berechnete" Parameter aus einer Stichprobe**
 
 * symbolisiert mit lateinischen Buchstaben ([$\bar{x}$, $s$, $r^2$, ...]{.blue})
-* die Berechnung erfolgt anhand einer Stichprobe
-* Statistiker sagen „Schätzung“ statt „Berechnung“.
-* Die geschätzten Parameter können auch wieder als Zufallsvariable behandelt werden
+* gehören paarweise zu den Populationsparametern: $\bar{x} \leftrightarrow \mu$, $s \leftrightarrow \sigma$, $r^2 \leftrightarrow \rho^2$
+* Statistiker sagen "Schätzung" statt "Berechnung"
+* Der **Schätzer** ist auch wieder eine Zufallsvariable. Er besitzt ebenfalls eine Verteilung (Stichprobenverteilung).
 
 ## Erwartungswert
 
@@ -251,7 +289,7 @@ Eine einzelne Messung $x_i$ einer Zufallsvariablen $X$ kann als Summe des Erwart
 
 Beispiel: 
 
-* für einen fairen Würfel mit 6 Augen sollte der wahre Mittelwert $\mu =3.5$ sein
+* Für einen fairen Würfel mit 6 Augen sollte der wahre Mittelwert $\mu =3.5$ sein
 * In Wirklichkeit ist nicht genau bekannt, ob ein realer Würfel perfekt symmetrisch ist.
 
 **Beispiel:** 3 Personen mit 5 Versuchen:
@@ -268,4 +306,4 @@ cat("sample 3: ", x3, " mean:", round(mean(x3), 2))
 ```
 :::
 
-Gesamtmittelwert: $\bar{x} = `r round(mean(c(x1, x2, x3)), 2)`$ liegt nahe an $\mu = 3.5$.
+Gesamtmittelwert: $\bar{x} = `r round(mean(c(x1, x2, x3)), 2)`$ liegt näher an $\mu = 3.5$.
