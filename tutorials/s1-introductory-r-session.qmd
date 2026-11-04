@@ -607,7 +607,7 @@ lakes <- read.csv("lakes.csv", header = TRUE)
 Wir können auch einen Unterordner `data` des Arbeitsverzeichnisses erstellen und die Daten dort ablegen. Dann könnten wir zum Beispiel verwenden:
 
 ```{r eval=TRUE}
-lakes <- read.csv("../data/lakes.csv", header = TRUE)
+lakes <- read.csv("../data/lakes.csv")
 ```
 
 
@@ -675,7 +675,7 @@ Dies führt dann `View(lakes)` aus und die Daten werden angezeigt.
 Bei großen Tabellen ist es manchmal unbersichtlich, den gesamten Inhalt mit `View` anzuzeigen, so dass es besser sein kann, die Funktion `str` (Struktur) zu verwenden, die einen kompakten Überblick über Typ, Größe und Inhalt einer Variablen gibt:
 
 ```{r eval=FALSE, fig=FALSE, echo=TRUE, keep.source=TRUE}
-str(mydata)
+str(lakes)
 ```
 
 Die Funktion `str` ist universell und auch für komplizierte Objekttypen wie Listen geeignet. Natürlich gibt es noch viele weitere Möglichkeiten, den Inhalt einer Variablen zu untersuchen:
@@ -709,7 +709,7 @@ Wir sollten auch den subtilen Unterschied zwischen der Ausgabe der `[]` und der 
 
 **Warnung:** In einigen älteren Büchern wird der `$`-Stil manchmal mit den Funktionen `attach` und `detach` abgekürzt. Von diesem „prähistorischen Relikt“ wird dringend abgeraten, da es zu Dateninkonsistenz und seltsamen Fehlern führen kann. Wenn man es irgendwo findet, wo es noch benutzt wird, dann ist es eine gute Idee, `detach` wiederholt zu benutzen, bis eine Fehlermeldung uns bestätigt, dass es nichts mehr gibt, was abgetrennt werden kann. Schließlich: Verwende niemals `attach/detach` in einem Paket.
 
-Stattdessen ist es viel besser, eine andere Funktion `width` zu verwenden, die den Dataframe nur vorübergehend öffnet:
+Stattdessen ist es viel besser, eine andere Funktion `with` zu verwenden, die den Dataframe nur vorübergehend öffnet:
 
 ```{r eval=FALSE, fig=FALSE, echo=TRUE, keep.source=TRUE}
 with(lakes, plot(z, t))
