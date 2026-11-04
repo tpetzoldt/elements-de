@@ -36,12 +36,12 @@ Die dazugehörigen **Übungsaufgaben** befinden sich unter:
 
 * [**Elements of Data Analysis and Statistics**](../elements/) (englische Version)
 * Übungen: [**Collection of lab exercises**](../element-labs/) (englisch)
-* [**Datasets**](https://github.com/tpetzoldt/datasets/)
+* [**Datasets**](../datasets/)
 * Quelltexte der Folien: [deutsch](https://github.com/tpetzoldt/elements-de),
-  [englisch](https://github.com/tpetzoldt/elements)
+  [englisch](https://github.com/tpetzoldt/elements/)
 
 ## Autor
 
 [homepage](https://tu-dresden.de/Members/thomas.petzoldt) +++ [github](https://github.com/tpetzoldt)
 
-2025-11-05
+2026-11-04
