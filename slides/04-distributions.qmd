@@ -157,7 +157,7 @@ $$
 [und für $\mathbf{U}(x_{min}, x_{max})$ im Intervall $[x_{min}, y_{max}]$]{.gray}
 
 
-## Kumulative Verteilungsfunktion von $\mathbf{U}(x_{min}, x_{max})$
+## Verteilungsfunktion von $\mathbf{U}(x_{min}, x_{max})$
 
 <br>
 
@@ -205,13 +205,13 @@ box()
 
 <br>
 
-... die Umkehrung der kumulativen Verteilungsfunktion.
+... die Umkehrung der Verteilungsfunktion.
 
 ::: {.column width="49%"}
 
 ```{r uniform-cdf, fig.width=4, fig.height=4}
 ```
-[Kumulative Verteilungsfunktion]{.blue}
+[Verteilungsfunktion]{.blue}
 :::
 
 ::: {.column width="49%"}
@@ -366,7 +366,7 @@ lines(x, dnorm(x), lwd=2, col="red")
 ![](../img/normal-density-quantiles.png)
 
 
-## Kumulative Verteilungsfunktion und Quantilfunktion
+## Verteilungsfunktion und Quantilfunktion
 
 ```{r normal-cdf, echo=FALSE, fig.align='center'}
 par(mfrow=c(1, 2), las=1)
@@ -463,7 +463,7 @@ plot(x, dnorm(x, 0, 1), type="l", col="red", lwd=2, xlab="z", ylab="Dichtefunkti
 ```
 
 $$
-f(x) = \frac{1}{\sqrt{2\pi}} \, \mathrm{e}^{-\frac{1}{2}x^2}
+f(z) = \frac{1}{\sqrt{2\pi}} \, \mathrm{e}^{-\frac{1}{2}z^2}
 $$
 :::
 
